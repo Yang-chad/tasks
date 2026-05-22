@@ -1,529 +1,210 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>孙元通5月份工作量统计</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: "宋体", SimSun, serif;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .header {
-            background: #1a1a2e;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 30px;
-            background: #f8f9fa;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .stat-card .number {
-            font-size: 36px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .stat-card .label {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .stat-card.tasks { border-top: 4px solid #1890ff; }
-        .stat-card.tasks .number { color: #1890ff; }
-        
-        .stat-card.completed { border-top: 4px solid #52c41a; }
-        .stat-card.completed .number { color: #52c41a; }
-        
-        .stat-card.pending { border-top: 4px solid #faad14; }
-        .stat-card.pending .number { color: #faad14; }
-        
-        .stat-card.bugs { border-top: 4px solid #ff4d4f; }
-        .stat-card.bugs .number { color: #ff4d4f; }
-        
-        .section {
-            padding: 30px;
-        }
-        
-        .section h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e8e8e8;
-            color: #333;
-        }
-        
-        .task-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 30px;
-        }
-        
-        .task-table th {
-            background: #fafafa;
-            padding: 12px;
-            text-align: left;
-            font-size: 14px;
-            color: #666;
-            border-bottom: 2px solid #e8e8e8;
-        }
-        
-        .task-table td {
-            padding: 12px;
-            font-size: 14px;
-            border-bottom: 1px solid #e8e8e8;
-            color: #333;
-        }
-        
-        .task-table tr:hover {
-            background: #f5f5f5;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .status-done {
-            background: #f6ffed;
-            color: #52c41a;
-            border: 1px solid #b7eb8f;
-        }
-        
-        .status-wait {
-            background: #fff7e6;
-            color: #fa8c16;
-            border: 1px solid #ffd591;
-        }
-        
-        .status-doing {
-            background: #e6f7ff;
-            color: #1890ff;
-            border: 1px solid #91d5ff;
-        }
-        
-        .priority-1 { color: #ff4d4f; font-weight: bold; }
-        .priority-2 { color: #fa8c16; }
-        .priority-3 { color: #1890ff; }
-        .priority-4 { color: #52c41a; }
-        
-        .footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 12px;
-        }
-        
-        .exec-tag {
-            display: inline-block;
-            padding: 2px 8px;
-            background: #f0f0f0;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #666;
-            max-width: 300px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        .chart-container {
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .bar-chart {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            height: 200px;
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .bar {
-            width: 60px;
-            border-radius: 4px 4px 0 0;
-            position: relative;
-            transition: all 0.3s;
-        }
-        
-        .bar:hover {
-            opacity: 0.8;
-        }
-        
-        .bar-label {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 12px;
-            color: #666;
-            white-space: nowrap;
-        }
-        
-        .bar-value {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .bar-completed { background: #52c41a; }
-        .bar-pending { background: #faad14; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>禅道任务报告 · 导航</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* ── Header ── */
+.header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.header .logo {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(120deg, #667eea, #f093fb, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+.header .subtitle {
+    color: #8892b0;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.header .date-tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #a5b4fc;
+    background: rgba(102, 126, 234, 0.12);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+}
+
+/* ── Card Grid ── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* ── Card ── */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 24px 30px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 0;
+}
+.card:nth-child(1)::before { background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(240,147,251,0.15)); }
+.card:nth-child(2)::before { background: linear-gradient(135deg, rgba(67,233,123,0.20), rgba(102,126,234,0.15)); }
+.card:nth-child(3)::before { background: linear-gradient(135deg, rgba(240,147,251,0.25), rgba(79,172,254,0.15)); }
+.card:nth-child(4)::before { background: linear-gradient(135deg, rgba(255,167,38,0.20), rgba(239,83,80,0.12)); }
+.card:hover::before { opacity: 1; }
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.35);
+}
+.card:active { transform: translateY(-2px); }
+
+.card .icon {
+    font-size: 42px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+.card .name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+}
+.card .desc {
+    font-size: 13px;
+    color: #8892b0;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* ── Card colors ── */
+.card.product .name { color: #a5b4fc; }
+.card.backend  .name { color: #66eea6; }
+.card.frontend .name { color: #f093fb; }
+.card.mobile   .name { color: #ffa726; }
+
+/* ── Footer ── */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #4a5568;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+.footer a { color: #667eea; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+    .header h1 { font-size: 24px; }
+    .card { padding: 28px 16px 22px; }
+    .card .icon { font-size: 34px; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>孙元通 - 5月份工作量统计</h1>
-            <p>查询时间：2026-05-19 | 查询范围：2026年5月份</p>
-        </div>
-        
-        <div class="stats-grid">
-            <div class="stat-card tasks">
-                <div class="label">任务总数</div>
-                <div class="number">22</div>
-            </div>
-            <div class="stat-card completed">
-                <div class="label">已完成任务</div>
-                <div class="number">9</div>
-            </div>
-            <div class="stat-card pending">
-                <div class="label">未完成任务</div>
-                <div class="number">13</div>
-            </div>
-            <div class="stat-card bugs">
-                <div class="label">Bug总数</div>
-                <div class="number">0</div>
-            </div>
-        </div>
-        
-        <div class="chart-container">
-            <h2 style="text-align: left; padding: 0 0 20px 0;">任务完成情况</h2>
-            <div class="bar-chart">
-                <div class="bar bar-completed" style="height: 120px;">
-                    <div class="bar-value">9</div>
-                    <div class="bar-label">已完成</div>
-                </div>
-                <div class="bar bar-pending" style="height: 173px;">
-                    <div class="bar-value">13</div>
-                    <div class="bar-label">未完成</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>✅ 已完成任务 (9项)</h2>
-            <table class="task-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>任务名称</th>
-                        <th>执行版本</th>
-                        <th>状态</th>
-                        <th>优先级</th>
-                        <th>预估工时</th>
-                        <th>已消耗</th>
-                        <th>完成时间</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>281202</td>
-                        <td>【后端】海南商用工机备货9个图流程绘制</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>281201</td>
-                        <td>【后端】海南商用工机11个图流程绘制</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>279160</td>
-                        <td>【后端】【GC38】工程备货#商用-工程单详情页展示"批复点位"</td>
-                        <td><span class="exec-tag">网批2.0_V2.76.0（0519/dev11.3.1）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>279159</td>
-                        <td>【后端】【GC38】工程备货 审批进度查看展示"申请点位"及"批复点位"</td>
-                        <td><span class="exec-tag">网批2.0_V2.76.0（0519/dev11.3.1）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>279151</td>
-                        <td>【后端】【GC34】常规审批进度查看展示"申请点位"及"批复点位"</td>
-                        <td><span class="exec-tag">网批2.0_V2.76.0（0519/dev11.3.1）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>279150</td>
-                        <td>【后端】【GC33】二次批价-审批，新增"申请点位"及"批复点位"</td>
-                        <td><span class="exec-tag">网批2.0_V2.76.0（0519/dev11.3.1）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>279149</td>
-                        <td>【后端】【GC33】常规：申请价格-审批，新增"申请点位"及"批复点位"</td>
-                        <td><span class="exec-tag">网批2.0_V2.76.0（0519/dev11.3.1）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>279148</td>
-                        <td>【后端】【GC32】常规：二次批价，新增"申请点位"</td>
-                        <td><span class="exec-tag">网批2.0_V2.76.0（0519/dev11.3.1）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                    <tr>
-                        <td>279147</td>
-                        <td>【后端】【GC31】常规：登录审批-审批/查看，新增"申请点位"</td>
-                        <td><span class="exec-tag">网批2.0_V2.76.0（0519/dev11.3.1）</span></td>
-                        <td><span class="status-badge status-done">已完成</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                        <td>2026-05-19</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="section">
-            <h2>⏳ 未完成任务 (13项)</h2>
-            <table class="task-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>任务名称</th>
-                        <th>执行版本</th>
-                        <th>状态</th>
-                        <th>优先级</th>
-                        <th>截止日期</th>
-                        <th>预估工时</th>
-                        <th>剩余工时</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>280496</td>
-                        <td>【后端】【GC43】商用常规工程：登录审批/申请价格/二次批价 支持变更行业标签</td>
-                        <td><span class="exec-tag">网批2.0_V2.80.0（0630/dev11.5.1）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>2026-06-26</td>
-                        <td>8h</td>
-                        <td>8h</td>
-                    </tr>
-                    <tr>
-                        <td>277565</td>
-                        <td>【后端】定金分批提货订单不需要定金--定金支付</td>
-                        <td><span class="exec-tag">网批2.0_V2.79.0（0615/dev11.5）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-1">P1</td>
-                        <td>2026-05-29</td>
-                        <td>8h</td>
-                        <td>8h</td>
-                    </tr>
-                    <tr>
-                        <td>280323</td>
-                        <td>【后端】授权**行业业务经理下拉框组件</td>
-                        <td><span class="exec-tag">网批2.0_V2.80.0（0630/dev11.5.1）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-3">P3</td>
-                        <td>2026-05-30</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                    </tr>
-                    <tr>
-                        <td>280322</td>
-                        <td>【后端】绑定**行业业务经理下拉框组件</td>
-                        <td><span class="exec-tag">网批2.0_V2.80.0（0630/dev11.5.1）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-3">P3</td>
-                        <td>2026-05-30</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                    </tr>
-                    <tr>
-                        <td>280321</td>
-                        <td>【后端】员工授权经销商范围数据改造</td>
-                        <td><span class="exec-tag">网批2.0_V2.80.0（0630/dev11.5.1）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-3">P3</td>
-                        <td>2026-05-30</td>
-                        <td>8h</td>
-                        <td>8h</td>
-                    </tr>
-                    <tr>
-                        <td>280320</td>
-                        <td>【后端】提供新的数据控权接口</td>
-                        <td><span class="exec-tag">网批2.0_V2.80.0（0630/dev11.5.1）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-3">P3</td>
-                        <td>2026-05-30</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                    </tr>
-                    <tr>
-                        <td>280319</td>
-                        <td>【后端】全部旧的数据控权接口改造</td>
-                        <td><span class="exec-tag">网批2.0_V2.80.0（0630/dev11.5.1）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-3">P3</td>
-                        <td>2026-05-30</td>
-                        <td>4h</td>
-                        <td>4h</td>
-                    </tr>
-                    <tr>
-                        <td>279232</td>
-                        <td>【后端】购物车新增资源工程特批--新增、编辑</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-2">P2</td>
-                        <td>2026-05-28</td>
-                        <td>6h</td>
-                        <td>6h</td>
-                    </tr>
-                    <tr>
-                        <td>279231</td>
-                        <td>【后端】购物车新增资源工程特批方案查询</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-2">P2</td>
-                        <td>2026-05-28</td>
-                        <td>6h</td>
-                        <td>6h</td>
-                    </tr>
-                    <tr>
-                        <td>279226</td>
-                        <td>【后端】主页带我审批--商用工程--数量统计</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-2">P2</td>
-                        <td>2026-05-28</td>
-                        <td>2h</td>
-                        <td>2h</td>
-                    </tr>
-                    <tr>
-                        <td>279225</td>
-                        <td>【后端】主页带我审批--售后单--数量统计</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-2">P2</td>
-                        <td>2026-05-28</td>
-                        <td>2h</td>
-                        <td>2h</td>
-                    </tr>
-                    <tr>
-                        <td>279224</td>
-                        <td>【后端】主页带我审批--家用工程--数量统计</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-2">P2</td>
-                        <td>2026-05-28</td>
-                        <td>2h</td>
-                        <td>2h</td>
-                    </tr>
-                    <tr>
-                        <td>279223</td>
-                        <td>【后端】主页带我审批--订单--数量统计</td>
-                        <td><span class="exec-tag">网批2.0_V2.77.0（0602/dev11.4）</span></td>
-                        <td><span class="status-badge status-wait">未开始</span></td>
-                        <td class="priority-2">P2</td>
-                        <td>2026-05-28</td>
-                        <td>2h</td>
-                        <td>2h</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="footer">
-            <p>数据来源：禅道项目管理系统 (ztpm.gree.com:8888) | 生成时间：2026-05-19 14:46</p>
-        </div>
+
+<div class="container">
+
+    <div class="header">
+        <span class="logo">📊</span>
+        <h1>禅道任务报告中心</h1>
+        <p class="subtitle">Zentao Task Dashboard</p>
+        <span class="date-tag">2026-05-22</span>
     </div>
+
+    <div class="grid">
+
+        <!-- 产品任务 / AB 类型 -->
+        <a href="未完成ab类型任务_可视化报告.html" class="card product" target="_blank">
+            <span class="icon">📋</span>
+            <span class="name">产品任务</span>
+            <span class="desc">需求 / AB 类型<br>未完成任务明细</span>
+        </a>
+
+        <!-- 后端开发 -->
+        <a href="未完成后端开发任务_详细任务.html" class="card backend" target="_blank">
+            <span class="icon">⚙️</span>
+            <span class="name">后端开发</span>
+            <span class="desc">后端开发任务<br>工时 & 状态追踪</span>
+        </a>
+
+        <!-- 前端开发 -->
+        <a href="未完成前端开发任务_详细任务.html" class="card frontend" target="_blank">
+            <span class="icon">🎨</span>
+            <span class="name">前端开发</span>
+            <span class="desc">前端开发任务<br>工时 & 状态追踪</span>
+        </a>
+
+        <!-- 移动端开发 -->
+        <a href="未完成移动端开发任务_详细任务.html" class="card mobile" target="_blank">
+            <span class="icon">📱</span>
+            <span class="name">移动端开发</span>
+            <span class="desc">移动端开发任务<br>工时 & 状态追踪</span>
+        </a>
+
+    </div>
+
+    <div class="footer">
+        数据来源：禅道管理系统 &nbsp;|&nbsp;
+        <a href="https://github.com/Yang-chad/tasks" target="_blank">GitHub Tasks</a>
+    </div>
+
+</div>
+
 </body>
 </html>
