@@ -51,13 +51,13 @@ tr:hover { background: #fafbfc; }
 <body>
 <div class="header">
     <h1>📋 前端开发(a_dev2_front) - 未完成任务明细</h1>
-    <p>统计日期: 2026-05-22 | 总计: 202 个未完成任务 | 涉及 6 人</p>
+    <p>统计日期: 2026-05-22 | 总计: 203 个未完成任务 | 涉及 6 人</p>
 </div>
 
 <div class="cards">
-    <div class="card card-total"><div class="num">202</div><div class="label">任务总数</div></div>
+    <div class="card card-total"><div class="num">203</div><div class="label">任务总数</div></div>
     <div class="card card-wait"><div class="num">146</div><div class="label">待处理</div></div>
-    <div class="card card-doing"><div class="num">39</div><div class="label">进行中</div></div>
+    <div class="card card-doing"><div class="num">40</div><div class="label">进行中</div></div>
     <div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
     <div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
 </div>
@@ -1782,13 +1782,13 @@ tr:hover { background: #fafbfc; }
             <summary style="background:#4caf5015; border-left:4px solid #4caf50;">
                 <span class="assignee-name">莫世有</span>
                 <span class="assignee-stats">
-                    <span class="stat-badge">共27个</span>
+                    <span class="stat-badge">共28个</span>
                     <span class="stat-badge stat-wait">待处理16</span>
-                    <span class="stat-badge stat-doing">进行中11</span>
+                    <span class="stat-badge stat-doing">进行中12</span>
                     <span class="stat-badge stat-overdue">延期0</span>
-                    <span class="stat-badge stat-h">预估66h</span>
+                    <span class="stat-badge stat-h">预估68h</span>
                     <span class="stat-badge stat-h">消耗0h</span>
-                    <span class="stat-badge stat-h">剩余66h</span>
+                    <span class="stat-badge stat-h">剩余68h</span>
                 </span>
             </summary>
             <div class="table-wrapper">
@@ -1852,6 +1852,18 @@ tr:hover { background: #fafbfc; }
             <tr>
                 <td>279628</td>
                 <td title="【PC管理】【GC53】方案审批->工程特批方案审批：">【PC管理】【GC53】方案审批->工程特批方案审批：</td>
+                <td><span class="badge-doing">进行中</span></td>
+                <td>3-中</td>
+                <td>网批2.0_V2.77.0（0602/d</td>
+                <td>2026-06-01</td>
+                <td></td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>279626</td>
+                <td title="【PC管理】【GC52】查看-资源机项目 ；">【PC管理】【GC52】查看-资源机项目 ；</td>
                 <td><span class="badge-doing">进行中</span></td>
                 <td>3-中</td>
                 <td>网批2.0_V2.77.0（0602/d</td>
@@ -2671,7 +2683,7 @@ new Chart(document.getElementById('barChart'), {
         labels: ["艾思芹", "王子尘", "李红燕", "莫世有", "范文玉", "田宇飞"],
         datasets: [{
             label: '未完成任务数',
-            data: [57, 40, 38, 27, 27, 13],
+            data: [57, 40, 38, 28, 27, 13],
             backgroundColor: ["#1a237e", "#e91e63", "#00bcd4", "#4caf50", "#ff9800", "#9c27b0"],
             borderRadius: 6,
         }]
@@ -2689,7 +2701,7 @@ new Chart(document.getElementById('statusPie'), {
     data: {
         labels: ["待处理", "进行中"],
         datasets: [{
-            data: [146, 39],
+            data: [146, 40],
             backgroundColor: ['#f5576c', '#43e97b', '#bbb'],
         }]
     },
@@ -2705,7 +2717,7 @@ new Chart(document.getElementById('priPie'), {
     data: {
         labels: ["3-中"],
         datasets: [{
-            data: [202],
+            data: [203],
             backgroundColor: ['#f5576c', '#ffa726', '#4facfe', '#43e97b'],
         }]
     },
