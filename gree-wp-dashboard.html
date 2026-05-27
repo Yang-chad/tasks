@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>格力网批系统</title>
@@ -262,6 +261,9 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
 .edit-toggle.active { color: #fa8c16; border-color: #fa8c16; background: #fff7e6; }
 .edit-toggle .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; transition: all .2s; }
 .edit-toggle.active .dot { background: #fa8c16; box-shadow: 0 0 6px #fa8c16; }
+.save-btn { display: none; padding: 4px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; color: #fff; background: #20bf6b; border: 1px solid #20bf6b; transition: all .2s; }
+.save-btn:hover { background: #0a8f3c; }
+.edit-toggle.active ~ .save-btn { display: inline-block; }
 
 /* Attention / Pulse */
 .attention-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #fa8c16; margin-left: 4px; animation: pulse 1.5s infinite; vertical-align: middle; }
@@ -272,7 +274,7 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
 .menu-highlight::after { content: ' NEW'; font-size: 10px; color: #fa8c16; font-weight: 600; }
 </style>
 </head>
-<body>
+<body class="">
 
 <!-- Header -->
 <header class="header">
@@ -281,11 +283,12 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
     <span class="system-name">格力网批</span>
   </div>
   <div class="header-right">
-    <svg class="header-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
-    <svg class="header-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+    <svg class="header-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"></path></svg>
+    <svg class="header-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path></svg>
     <div class="edit-toggle" onclick="toggleEditMode(this)" title="点击开启编辑模式，直接修改页面文字">
       <span class="dot"></span> 编辑
     </div>
+    <button class="save-btn" onclick="saveEdits()" title="保存修改后的文案到文件">💾 保存文案</button>
     <div class="user-info">
       <div class="avatar">G</div>
       <span class="username">greedman</span>
@@ -298,72 +301,72 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <div class="nav-item active"><i>🏠</i> 主页</div>
-    <div class="nav-item"><i>👥</i> 客户管理</div>
-    <div class="nav-item"><i>💰</i> 账户资金</div>
-    <div class="nav-item"><i>📋</i> 销售任务</div>
-    <div class="nav-item"><i>📦</i> 商品管理</div>
-    <div class="nav-item"><i>💲</i> 价格管理</div>
-    <div class="nav-item has-submenu" onclick="toggleSubmenu(this)">
+    <div class="nav-item active" data-editable="" contenteditable="false"><i>🏠</i> 主页</div>
+    <div class="nav-item" data-editable="" contenteditable="false"><i>👥</i> 客户管理</div>
+    <div class="nav-item" data-editable="" contenteditable="false"><i>💰</i> 账户资金</div>
+    <div class="nav-item" data-editable="" contenteditable="false"><i>📋</i> 销售任务</div>
+    <div class="nav-item" data-editable="" contenteditable="false"><i>📦</i> 商品管理</div>
+    <div class="nav-item" data-editable="" contenteditable="false"><i>💲</i> 价格管理</div>
+    <div class="nav-item has-submenu expanded" onclick="toggleSubmenu(this)" data-editable="" contenteditable="false">
       <i>🎁</i> 返利政策
       <span class="nav-arrow">▼</span>
     </div>
-    <div class="nav-submenu">
-      <div class="nav-sub-item has-submenu" onclick="toggleSubSubmenu(this)">
+    <div class="nav-submenu open">
+      <div class="nav-sub-item has-submenu expanded" onclick="toggleSubSubmenu(this)" data-editable="" contenteditable="false">
         政策库
         <span class="sub-arrow">▼</span>
       </div>
-      <div class="nav-sub-submenu">
-        <div class="nav-sub-sub-item menu-highlight">政策库更新<span class="attention-dot"></span></div>
-        <div class="nav-sub-sub-item">政策库审核</div>
+      <div class="nav-sub-submenu open">
+        <div class="nav-sub-sub-item menu-highlight active" data-editable="" contenteditable="false">政策库更新<span class="attention-dot"></span></div>
+        <div class="nav-sub-sub-item" data-editable="" contenteditable="false">政策库审核</div>
       </div>
     </div>
-    <div class="nav-item"><i>🏗️</i> 高包资源管理</div>
+    <div class="nav-item" data-editable="" contenteditable="false"><i>🏗️</i> 高包资源管理</div>
     <div class="nav-divider"></div>
-    <div class="nav-item"><i>☰</i> 折叠菜单</div>
+    <div class="nav-item" data-editable="" contenteditable="false"><i>☰</i> 折叠菜单</div>
   </aside>
 
   <!-- Main Content -->
   <main class="main">
 
     <!-- Page: Home Dashboard -->
-    <div class="page-home active" id="page-home">
+    <div class="page-home" id="page-home">
 
     <!-- Quick Access Cards -->
     <div class="quick-cards">
       <div class="quick-card">
         <div class="quick-card-icon">💳</div>
         <div class="quick-card-text">
-          <h3>回款</h3>
-          <p>资金回款管理</p>
+          <h3 data-editable="" contenteditable="false">回款</h3>
+          <p data-editable="" contenteditable="false">资金回款管理</p>
         </div>
       </div>
       <div class="quick-card">
         <div class="quick-card-icon">📄</div>
         <div class="quick-card-text">
-          <h3>政策</h3>
-          <p>政策文件管理</p>
+          <h3 data-editable="" contenteditable="false">政策</h3>
+          <p data-editable="" contenteditable="false">政策文件管理</p>
         </div>
       </div>
       <div class="quick-card">
         <div class="quick-card-icon">🏗️</div>
         <div class="quick-card-text">
-          <h3>工程</h3>
-          <p>工程项目管理</p>
+          <h3 data-editable="" contenteditable="false">工程</h3>
+          <p data-editable="" contenteditable="false">工程项目管理</p>
         </div>
       </div>
       <div class="quick-card">
         <div class="quick-card-icon">📦</div>
         <div class="quick-card-text">
-          <h3>商品</h3>
-          <p>商品中心管理</p>
+          <h3 data-editable="" contenteditable="false">商品</h3>
+          <p data-editable="" contenteditable="false">商品中心管理</p>
         </div>
       </div>
       <div class="quick-card">
         <div class="quick-card-icon">📊</div>
         <div class="quick-card-text">
-          <h3>销售</h3>
-          <p>销售数据统计</p>
+          <h3 data-editable="" contenteditable="false">销售</h3>
+          <p data-editable="" contenteditable="false">销售数据统计</p>
         </div>
       </div>
     </div>
@@ -374,57 +377,57 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
       <!-- Apps Section -->
       <div class="apps-section">
         <div class="section-header">
-          <span class="section-title">常用应用</span>
-          <span class="section-more">管理 ▾</span>
+          <span class="section-title" data-editable="" contenteditable="false">常用应用</span>
+          <span class="section-more" data-editable="" contenteditable="false">管理 ▾</span>
         </div>
         <div class="apps-grid">
           <div class="app-item">
             <div class="app-icon icon-blue">🔗</div>
-            <span class="app-name">邀请码管理</span>
+            <span class="app-name" data-editable="" contenteditable="false">邀请码管理</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-green">🏢</div>
-            <span class="app-name">经销商管理</span>
+            <span class="app-name" data-editable="" contenteditable="false">经销商管理</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-orange">📝</div>
-            <span class="app-name">资料审核</span>
+            <span class="app-name" data-editable="" contenteditable="false">资料审核</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-purple">🔄</div>
-            <span class="app-name">资料变更</span>
+            <span class="app-name" data-editable="" contenteditable="false">资料变更</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-blue">🏗️</div>
-            <span class="app-name">全部工程单</span>
+            <span class="app-name" data-editable="" contenteditable="false">全部工程单</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-green">📊</div>
-            <span class="app-name">工程收发明细</span>
+            <span class="app-name" data-editable="" contenteditable="false">工程收发明细</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-orange">👤</div>
-            <span class="app-name">代客申请</span>
+            <span class="app-name" data-editable="" contenteditable="false">代客申请</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-purple">✅</div>
-            <span class="app-name">工程审批</span>
+            <span class="app-name" data-editable="" contenteditable="false">工程审批</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-blue">📋</div>
-            <span class="app-name">订单管理</span>
+            <span class="app-name" data-editable="" contenteditable="false">订单管理</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-green">🧾</div>
-            <span class="app-name">发票管理</span>
+            <span class="app-name" data-editable="" contenteditable="false">发票管理</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-red">↩️</div>
-            <span class="app-name">退款管理</span>
+            <span class="app-name" data-editable="" contenteditable="false">退款管理</span>
           </div>
           <div class="app-item">
             <div class="app-icon icon-orange">📤</div>
-            <span class="app-name">退货管理</span>
+            <span class="app-name" data-editable="" contenteditable="false">退货管理</span>
           </div>
         </div>
       </div>
@@ -442,24 +445,24 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
           </div>
           <div class="todo-list">
             <div class="todo-item">
-              <div class="todo-item-title">【方案审核】辽宁分销公司方案申请</div>
-              <div class="todo-item-meta">2026-05-27 10:30</div>
+              <div class="todo-item-title" data-editable="" contenteditable="false">【方案审核】辽宁分销公司方案申请</div>
+              <div class="todo-item-meta" data-editable="" contenteditable="false">2026-05-27 10:30</div>
             </div>
             <div class="todo-item">
-              <div class="todo-item-title">【订单核对】广东区域Q2季度订单</div>
-              <div class="todo-item-meta">2026-05-27 09:15</div>
+              <div class="todo-item-title" data-editable="" contenteditable="false">【订单核对】广东区域Q2季度订单</div>
+              <div class="todo-item-meta" data-editable="" contenteditable="false">2026-05-27 09:15</div>
             </div>
             <div class="todo-item">
-              <div class="todo-item-title">【资质审核】新经销商入驻申请审核</div>
-              <div class="todo-item-meta">2026-05-26 16:45</div>
+              <div class="todo-item-title" data-editable="" contenteditable="false">【资质审核】新经销商入驻申请审核</div>
+              <div class="todo-item-meta" data-editable="" contenteditable="false">2026-05-26 16:45</div>
             </div>
             <div class="todo-item">
-              <div class="todo-item-title">【返利核算】华东区年度返利结算</div>
-              <div class="todo-item-meta">2026-05-26 14:20</div>
+              <div class="todo-item-title" data-editable="" contenteditable="false">【返利核算】华东区年度返利结算</div>
+              <div class="todo-item-meta" data-editable="" contenteditable="false">2026-05-26 14:20</div>
             </div>
             <div class="todo-item">
-              <div class="todo-item-title">【合同签署】合作伙伴年度框架协议</div>
-              <div class="todo-item-meta">2026-05-26 11:00</div>
+              <div class="todo-item-title" data-editable="" contenteditable="false">【合同签署】合作伙伴年度框架协议</div>
+              <div class="todo-item-meta" data-editable="" contenteditable="false">2026-05-26 11:00</div>
             </div>
           </div>
           <div class="todo-more">查看更多 →</div>
@@ -468,7 +471,7 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
         <!-- Notice Section -->
         <div class="notice-section">
           <div class="section-header" style="padding: 16px 16px 0;">
-            <span class="section-title">公告通知</span>
+            <span class="section-title" data-editable="" contenteditable="false">公告通知</span>
           </div>
           <div class="notice-search">
             <span class="notice-search-icon">🔍</span>
@@ -483,27 +486,27 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
           <div class="notice-list">
             <div class="notice-item">
               <span class="notice-dot"></span>
-              <span class="notice-text">最新返利政策调整通知（2026年5月版）</span>
+              <span class="notice-text" data-editable="" contenteditable="false">最新返利政策调整通知（2026年5月版）</span>
             </div>
             <div class="notice-item">
               <span class="notice-dot"></span>
-              <span class="notice-text">关于系统升级维护的临时停机公告</span>
+              <span class="notice-text" data-editable="" contenteditable="false">关于系统升级维护的临时停机公告</span>
             </div>
             <div class="notice-item">
               <span class="notice-dot"></span>
-              <span class="notice-text">2026年Q2季度新品培训会议通知</span>
+              <span class="notice-text" data-editable="" contenteditable="false">2026年Q2季度新品培训会议通知</span>
             </div>
             <div class="notice-item">
               <span class="notice-dot"></span>
-              <span class="notice-text">广东区域经销商大会筹备工作安排</span>
+              <span class="notice-text" data-editable="" contenteditable="false">广东区域经销商大会筹备工作安排</span>
             </div>
             <div class="notice-item">
               <span class="notice-dot"></span>
-              <span class="notice-text">网批2.0系统功能优化更新说明</span>
+              <span class="notice-text" data-editable="" contenteditable="false">网批2.0系统功能优化更新说明</span>
             </div>
             <div class="notice-item">
               <span class="notice-dot"></span>
-              <span class="notice-text">关于工程订单流程优化的内部通告</span>
+              <span class="notice-text" data-editable="" contenteditable="false">关于工程订单流程优化的内部通告</span>
             </div>
           </div>
         </div>
@@ -515,25 +518,25 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
 
     <!-- Page: Policy List -->
     <div class="page-policy" id="page-policy">
-      <div class="breadcrumb">返利政策 / <span>政策录入</span></div>
+      <div class="breadcrumb">返利政策 / <span data-editable="" contenteditable="false">政策录入</span></div>
       <div class="filter-card">
         <div class="filter-row">
           <div class="filter-item">
-            <span class="filter-label">政策名称</span>
+            <span class="filter-label" data-editable="" contenteditable="false">政策名称</span>
             <input class="filter-input" type="text" placeholder="请输入政策名称">
           </div>
           <div class="filter-item">
-            <span class="filter-label">销售年度</span>
+            <span class="filter-label" data-editable="" contenteditable="false">销售年度</span>
             <select class="filter-select"><option value="">全部</option><option>2026</option><option>2025</option><option>2024</option></select>
           </div>
           <div class="filter-item">
-            <span class="filter-label">政策状态</span>
+            <span class="filter-label" data-editable="" contenteditable="false">政策状态</span>
             <select class="filter-select"><option value="">全部</option><option>生效中</option><option>草稿</option><option>已终止</option></select>
           </div>
         </div>
         <div class="filter-row">
           <div class="filter-item">
-            <span class="filter-label">创建时间</span>
+            <span class="filter-label" data-editable="" contenteditable="false">创建时间</span>
             <div class="filter-date-range">
               <input class="filter-input" type="date">
               <span>至</span>
@@ -541,11 +544,11 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
             </div>
           </div>
           <div class="filter-item">
-            <span class="filter-label">销售公司</span>
+            <span class="filter-label" data-editable="" contenteditable="false">销售公司</span>
             <input class="filter-input" type="text" placeholder="请输入销售公司">
           </div>
           <div class="filter-item">
-            <span class="filter-label">关联政策</span>
+            <span class="filter-label" data-editable="" contenteditable="false">关联政策</span>
             <input class="filter-input" type="text" placeholder="请输入关联政策">
           </div>
         </div>
@@ -565,110 +568,110 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
         <table>
           <thead>
             <tr>
-              <th style="width:50px">序号</th>
-              <th style="width:130px">操作</th>
-              <th style="width:200px">政策名称</th>
-              <th style="width:100px">销售年度</th>
-              <th style="width:160px">年度时间范围</th>
-              <th style="width:180px">关联政策</th>
-              <th style="width:140px">销售公司</th>
-              <th style="width:90px">政策状态</th>
-              <th style="width:110px">创建时间</th>
-              <th style="width:90px">创建人</th>
-              <th style="width:110px">审核时间</th>
-              <th style="width:90px">审核人</th>
+              <th style="width:50px" data-editable="" contenteditable="false">序号</th>
+              <th style="width:130px" data-editable="" contenteditable="false">操作</th>
+              <th style="width:200px" data-editable="" contenteditable="false">政策名称</th>
+              <th style="width:100px" data-editable="" contenteditable="false">销售年度</th>
+              <th style="width:160px" data-editable="" contenteditable="false">年度时间范围</th>
+              <th style="width:180px" data-editable="" contenteditable="false">关联政策</th>
+              <th style="width:140px" data-editable="" contenteditable="false">销售公司</th>
+              <th style="width:90px" data-editable="" contenteditable="false">政策状态</th>
+              <th style="width:110px" data-editable="" contenteditable="false">创建时间</th>
+              <th style="width:90px" data-editable="" contenteditable="false">创建人</th>
+              <th style="width:110px" data-editable="" contenteditable="false">审核时间</th>
+              <th style="width:90px" data-editable="" contenteditable="false">审核人</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
-              <td>2026年度返利政策（华南）</td>
-              <td>2026</td>
-              <td>2026-01-01 ~ 2026-12-31</td>
-              <td>2025年度返利政策（华南）</td>
-              <td>华南销售公司</td>
-              <td><span class="status-tag status-active">生效中</span></td>
-              <td>2026-01-05</td>
-              <td>张晓明</td>
-              <td>2026-01-10</td>
-              <td>李建国</td>
+              <td data-editable="" contenteditable="false"><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
+              <td data-editable="" contenteditable="false">2026年度返利政策（华南）</td>
+              <td data-editable="" contenteditable="false">2026</td>
+              <td data-editable="" contenteditable="false">2026-01-01 ~ 2026-12-31</td>
+              <td data-editable="" contenteditable="false">2025年度返利政策（华南）</td>
+              <td data-editable="" contenteditable="false">华南销售公司</td>
+              <td data-editable="" contenteditable="false"><span class="status-tag status-active" data-editable="" contenteditable="false">生效中</span></td>
+              <td data-editable="" contenteditable="false">2026-01-05</td>
+              <td data-editable="" contenteditable="false">张晓明</td>
+              <td data-editable="" contenteditable="false">2026-01-10</td>
+              <td data-editable="" contenteditable="false">李建国</td>
             </tr>
             <tr>
               <td>2</td>
-              <td><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
-              <td>2026年度返利政策（华东）</td>
-              <td>2026</td>
-              <td>2026-01-01 ~ 2026-12-31</td>
-              <td>2025年度返利政策（华东）</td>
-              <td>华东销售公司</td>
-              <td><span class="status-tag status-active">生效中</span></td>
-              <td>2026-01-08</td>
-              <td>王芳</td>
-              <td>2026-01-12</td>
-              <td>李建国</td>
+              <td data-editable="" contenteditable="false"><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
+              <td data-editable="" contenteditable="false">2026年度返利政策（华东）</td>
+              <td data-editable="" contenteditable="false">2026</td>
+              <td data-editable="" contenteditable="false">2026-01-01 ~ 2026-12-31</td>
+              <td data-editable="" contenteditable="false">2025年度返利政策（华东）</td>
+              <td data-editable="" contenteditable="false">华东销售公司</td>
+              <td data-editable="" contenteditable="false"><span class="status-tag status-active" data-editable="" contenteditable="false">生效中</span></td>
+              <td data-editable="" contenteditable="false">2026-01-08</td>
+              <td data-editable="" contenteditable="false">王芳</td>
+              <td data-editable="" contenteditable="false">2026-01-12</td>
+              <td data-editable="" contenteditable="false">李建国</td>
             </tr>
             <tr>
               <td>3</td>
-              <td><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
-              <td>2026年度返利政策（华北）</td>
-              <td>2026</td>
-              <td>2026-03-01 ~ 2026-12-31</td>
-              <td>2025年度返利政策（华北）</td>
-              <td>华北销售公司</td>
-              <td><span class="status-tag status-draft">草稿</span></td>
-              <td>2026-02-15</td>
-              <td>刘伟</td>
-              <td>—</td>
-              <td>—</td>
+              <td data-editable="" contenteditable="false"><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
+              <td data-editable="" contenteditable="false">2026年度返利政策（华北）</td>
+              <td data-editable="" contenteditable="false">2026</td>
+              <td data-editable="" contenteditable="false">2026-03-01 ~ 2026-12-31</td>
+              <td data-editable="" contenteditable="false">2025年度返利政策（华北）</td>
+              <td data-editable="" contenteditable="false">华北销售公司</td>
+              <td data-editable="" contenteditable="false"><span class="status-tag status-draft" data-editable="" contenteditable="false">草稿</span></td>
+              <td data-editable="" contenteditable="false">2026-02-15</td>
+              <td data-editable="" contenteditable="false">刘伟</td>
+              <td data-editable="" contenteditable="false">—</td>
+              <td data-editable="" contenteditable="false">—</td>
             </tr>
             <tr>
               <td>4</td>
-              <td><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
-              <td>2025年度返利政策（华南）</td>
-              <td>2025</td>
-              <td>2025-01-01 ~ 2025-12-31</td>
-              <td>—</td>
-              <td>华南销售公司</td>
-              <td><span class="status-tag status-closed">已终止</span></td>
-              <td>2025-01-03</td>
-              <td>张晓明</td>
-              <td>2025-01-08</td>
-              <td>李建国</td>
+              <td data-editable="" contenteditable="false"><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
+              <td data-editable="" contenteditable="false">2025年度返利政策（华南）</td>
+              <td data-editable="" contenteditable="false">2025</td>
+              <td data-editable="" contenteditable="false">2025-01-01 ~ 2025-12-31</td>
+              <td data-editable="" contenteditable="false">—</td>
+              <td data-editable="" contenteditable="false">华南销售公司</td>
+              <td data-editable="" contenteditable="false"><span class="status-tag status-closed" data-editable="" contenteditable="false">已终止</span></td>
+              <td data-editable="" contenteditable="false">2025-01-03</td>
+              <td data-editable="" contenteditable="false">张晓明</td>
+              <td data-editable="" contenteditable="false">2025-01-08</td>
+              <td data-editable="" contenteditable="false">李建国</td>
             </tr>
             <tr>
               <td>5</td>
-              <td><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
-              <td>2026年度返利政策（西南）</td>
-              <td>2026</td>
-              <td>2026-02-01 ~ 2026-12-31</td>
-              <td>2025年度返利政策（西南）</td>
-              <td>西南销售公司</td>
-              <td><span class="status-tag status-active">生效中</span></td>
-              <td>2026-01-20</td>
-              <td>陈丽</td>
-              <td>2026-01-25</td>
-              <td>赵强</td>
+              <td data-editable="" contenteditable="false"><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
+              <td data-editable="" contenteditable="false">2026年度返利政策（西南）</td>
+              <td data-editable="" contenteditable="false">2026</td>
+              <td data-editable="" contenteditable="false">2026-02-01 ~ 2026-12-31</td>
+              <td data-editable="" contenteditable="false">2025年度返利政策（西南）</td>
+              <td data-editable="" contenteditable="false">西南销售公司</td>
+              <td data-editable="" contenteditable="false"><span class="status-tag status-active" data-editable="" contenteditable="false">生效中</span></td>
+              <td data-editable="" contenteditable="false">2026-01-20</td>
+              <td data-editable="" contenteditable="false">陈丽</td>
+              <td data-editable="" contenteditable="false">2026-01-25</td>
+              <td data-editable="" contenteditable="false">赵强</td>
             </tr>
             <tr>
               <td>6</td>
-              <td><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
-              <td>2026年度返利政策（华中）</td>
-              <td>2026</td>
-              <td>2026-04-01 ~ 2026-12-31</td>
-              <td>—</td>
-              <td>华中销售公司</td>
-              <td><span class="status-tag status-draft">草稿</span></td>
-              <td>2026-03-10</td>
-              <td>周涛</td>
-              <td>—</td>
-              <td>—</td>
+              <td data-editable="" contenteditable="false"><a href="#">编辑</a><a href="#">查看</a><a href="#" class="danger">终止</a></td>
+              <td data-editable="" contenteditable="false">2026年度返利政策（华中）</td>
+              <td data-editable="" contenteditable="false">2026</td>
+              <td data-editable="" contenteditable="false">2026-04-01 ~ 2026-12-31</td>
+              <td data-editable="" contenteditable="false">—</td>
+              <td data-editable="" contenteditable="false">华中销售公司</td>
+              <td data-editable="" contenteditable="false"><span class="status-tag status-draft" data-editable="" contenteditable="false">草稿</span></td>
+              <td data-editable="" contenteditable="false">2026-03-10</td>
+              <td data-editable="" contenteditable="false">周涛</td>
+              <td data-editable="" contenteditable="false">—</td>
+              <td data-editable="" contenteditable="false">—</td>
             </tr>
           </tbody>
         </table>
         </div>
         <div class="pagination">
-          <div class="pagination-info">共 <strong>6</strong> 条记录</div>
+          <div class="pagination-info" data-editable="" contenteditable="false">共 <strong>6</strong> 条记录</div>
           <div class="pagination-controls">
             <button class="page-btn disabled">«</button>
             <button class="page-btn active">1</button>
@@ -682,52 +685,52 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
     </div><!-- end page-policy -->
 
     <!-- Page: Create Policy -->
-    <div class="page-create" id="page-create">
-      <div class="breadcrumb">返利政策 / <span>政策录入</span> / <span style="color:#333;cursor:default;text-decoration:none">编辑</span></div>
+    <div class="page-create active" id="page-create">
+      <div class="breadcrumb">返利政策 / <span data-editable="" contenteditable="false">政策录入</span> / <span style="color:#333;cursor:default;text-decoration:none" data-editable="" contenteditable="false">编辑</span></div>
       <div class="form-tabs">
-        <div class="form-tab active">政策录入</div>
-        <div class="form-tab">编辑</div>
+        <div class="form-tab active" data-editable="" contenteditable="false">政策录入</div>
+        <div class="form-tab" data-editable="" contenteditable="false">编辑</div>
       </div>
       <div class="form-card">
-        <div class="form-section-title">政策信息</div>
+        <div class="form-section-title" data-editable="" contenteditable="false">政策信息</div>
         <div class="form-grid">
           <div class="form-field">
-            <span class="form-field-label">政策名称<span class="required">*</span></span>
+            <span class="form-field-label" data-editable="" contenteditable="false">政策名称<span class="required">*</span></span>
             <input class="form-field-input" type="text" placeholder="请输入政策名称">
           </div>
           <div class="form-field">
-            <span class="form-field-label">销售年度<span class="required">*</span></span>
+            <span class="form-field-label" data-editable="" contenteditable="false">销售年度<span class="required">*</span></span>
             <select class="form-field-select"><option value="">请选择</option><option>2026</option><option>2025</option><option>2024</option></select>
           </div>
           <div class="form-field">
-            <span class="form-field-label">年度时间范围<span class="required">*</span></span>
+            <span class="form-field-label" data-editable="" contenteditable="false">年度时间范围<span class="required">*</span></span>
             <div class="form-field-date">
               <input type="date"><span>至</span><input type="date">
             </div>
           </div>
           <div class="form-field">
-            <span class="form-field-label">销售公司<span class="required">*</span></span>
+            <span class="form-field-label" data-editable="" contenteditable="false">销售公司<span class="required">*</span></span>
             <input class="form-field-input" type="text" placeholder="请输入销售公司">
           </div>
           <div class="form-field">
-            <span class="form-field-label">关联政策</span>
+            <span class="form-field-label" data-editable="" contenteditable="false">关联政策</span>
             <input class="form-field-input" type="text" placeholder="请输入关联政策">
           </div>
           <div class="form-field" style="background:#fffbe6;border:1px dashed #f0c040;border-radius:6px;padding:12px 14px;margin:-4px -4px;position:relative;">
             <span style="position:absolute;top:-10px;left:14px;background:#fa8c16;color:#fff;font-size:11px;padding:1px 8px;border-radius:10px;font-weight:500;">迭代新增</span>
-            <span class="form-field-label">是否通补</span>
+            <span class="form-field-label" data-editable="" contenteditable="false">通补政策</span>
             <label class="toggle-switch">
               <input type="checkbox" onchange="var label=this.closest('.form-field').querySelector('.toggle-label'); label.textContent=this.checked?'是':'否';">
               <span class="toggle-slider"></span>
             </label>
-            <span class="toggle-label">否</span>
+            <span class="toggle-label" data-editable="" contenteditable="false">否</span>
           </div>
           <div class="form-field">
-            <span class="form-field-label">商品类目<span class="required">*</span></span>
+            <span class="form-field-label" data-editable="" contenteditable="false">商品类目<span class="required">*</span></span>
             <select class="form-field-select"><option value="">请选择</option><option>空调</option><option>冰箱</option><option>洗衣机</option></select>
           </div>
           <div class="form-field full">
-            <span class="form-field-label">政策内容</span>
+            <span class="form-field-label" data-editable="" contenteditable="false">政策内容</span>
             <div style="flex:1">
               <div class="editor-toolbar">
                 <button class="editor-btn" title="撤销">↩</button>
@@ -754,13 +757,13 @@ body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6
 
         <div class="upload-area">
           <button class="upload-btn">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"></path></svg>
             上传文件
           </button>
         </div>
 
         <div class="form-footer">
-          <button class="btn btn-primary" style="padding:8px 28px;" onclick="showToast()">提交</button>
+          <button class="btn btn-primary" style="padding:8px 28px;" onclick="showToastMsg('保存成功','政策信息已成功提交')">提交</button>
           <button class="btn btn-default" style="padding:8px 28px;" onclick="showPage('page-policy')">取消</button>
         </div>
       </div>
@@ -794,10 +797,45 @@ function showPage(pageId) {
   document.getElementById(pageId).classList.add('active');
 }
 
-function showToast() {
+function toggleEditMode(el) {
+  el.classList.toggle('active');
+  var on = el.classList.contains('active');
+  document.body.classList.toggle('edit-mode', on);
+  var editables = document.querySelectorAll('[data-editable]');
+  editables.forEach(function(e) { e.contentEditable = on ? 'true' : 'false'; });
+  el.querySelector('span:first-child').textContent = on ? '✎' : '';
+}
+
+function saveEdits() {
+  document.body.classList.remove('edit-mode');
+  document.querySelectorAll('[data-editable]').forEach(function(e) { e.contentEditable = 'false'; });
+  document.querySelector('.edit-toggle').classList.remove('active');
+  document.querySelector('.edit-toggle .dot').textContent = '';
+
+  var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  fetch('http://127.0.0.1:19876', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ html: html })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.ok) {
+      showToastMsg('保存成功', '文案已写入原 HTML 文件');
+    } else {
+      showToastMsg('保存失败', '请重试');
+    }
+  })
+  .catch(function() {
+    showToastMsg('保存失败', '本地保存服务未启动，请检查');
+  });
+}
+
+function showToastMsg(title, msg) {
   var overlay = document.createElement('div');
   overlay.className = 'toast-overlay';
-  overlay.innerHTML = '<div class="toast-box"><div class="toast-icon">✓</div><div class="toast-title">保存成功</div><div class="toast-msg">政策信息已成功提交</div></div>';
+  overlay.innerHTML = '<div class="toast-box"><div class="toast-icon">✓</div><div class="toast-title">' + title + '</div><div class="toast-msg">' + msg + '</div></div>';
   overlay.onclick = function() { overlay.remove(); };
   document.body.appendChild(overlay);
   setTimeout(function() { overlay.remove(); }, 2000);
@@ -822,14 +860,6 @@ document.querySelectorAll('.nav-sub-sub-item').forEach(function(item) {
     });
   }
 });
-function toggleEditMode(el) {
-  el.classList.toggle('active');
-  var on = el.classList.contains('active');
-  document.body.classList.toggle('edit-mode', on);
-  var editables = document.querySelectorAll('[data-editable]');
-  editables.forEach(function(e) { e.contentEditable = on ? 'true' : 'false'; });
-  el.querySelector('span:first-child').textContent = on ? '✎' : '';
-}
 
 // 初始化 data-editable 属性自动标记
 (function() {
@@ -837,5 +867,6 @@ function toggleEditMode(el) {
   tags.forEach(function(el) { el.setAttribute('data-editable', ''); });
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
