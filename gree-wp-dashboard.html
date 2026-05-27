@@ -252,6 +252,24 @@ td a.danger { color: #ee5a24; }
 .toast-msg { font-size: 13px; color: #999; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes scaleIn { from { transform: scale(.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* Edit Mode */
+body.edit-mode [data-editable] { outline: 2px dashed #fa8c16; outline-offset: 2px; cursor: text; padding: 2px 4px; border-radius: 3px; transition: outline .2s; }
+body.edit-mode [data-editable]:hover { background: #fffbe6; }
+body.edit-mode [data-editable]:focus { outline-style: solid; background: #fffbe6; }
+.edit-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 4px 12px; border-radius: 4px; font-size: 13px; color: #888; border: 1px solid #e0e0e0; background: #fff; transition: all .2s; }
+.edit-toggle:hover { color: #1a73e8; border-color: #1a73e8; }
+.edit-toggle.active { color: #fa8c16; border-color: #fa8c16; background: #fff7e6; }
+.edit-toggle .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; transition: all .2s; }
+.edit-toggle.active .dot { background: #fa8c16; box-shadow: 0 0 6px #fa8c16; }
+
+/* Attention / Pulse */
+.attention-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #fa8c16; margin-left: 4px; animation: pulse 1.5s infinite; vertical-align: middle; }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(1.6); } }
+.btn-attention { position: relative; }
+.btn-attention::after { content: ''; position: absolute; top: -3px; right: -3px; width: 8px; height: 8px; border-radius: 50%; background: #fa8c16; animation: pulse 1.5s infinite; }
+.menu-highlight { color: #1a73e8 !important; font-weight: 500 !important; }
+.menu-highlight::after { content: ' NEW'; font-size: 10px; color: #fa8c16; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -265,6 +283,9 @@ td a.danger { color: #ee5a24; }
   <div class="header-right">
     <svg class="header-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
     <svg class="header-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+    <div class="edit-toggle" onclick="toggleEditMode(this)" title="点击开启编辑模式，直接修改页面文字">
+      <span class="dot"></span> 编辑
+    </div>
     <div class="user-info">
       <div class="avatar">G</div>
       <span class="username">greedman</span>
@@ -293,7 +314,7 @@ td a.danger { color: #ee5a24; }
         <span class="sub-arrow">▼</span>
       </div>
       <div class="nav-sub-submenu">
-        <div class="nav-sub-sub-item">政策库更新</div>
+        <div class="nav-sub-sub-item menu-highlight">政策库更新<span class="attention-dot"></span></div>
         <div class="nav-sub-sub-item">政策库审核</div>
       </div>
     </div>
@@ -538,7 +559,7 @@ td a.danger { color: #ee5a24; }
 
       <div class="table-card">
         <div style="margin-bottom: 12px;">
-          <button class="btn btn-primary" style="padding: 8px 24px; font-size: 14px;" onclick="showPage('page-create')">新建</button>
+          <button class="btn btn-primary btn-attention" style="padding: 8px 24px; font-size: 14px;" onclick="showPage('page-create')">新建</button>
         </div>
         <div style="overflow-x:auto;">
         <table>
@@ -801,6 +822,20 @@ document.querySelectorAll('.nav-sub-sub-item').forEach(function(item) {
     });
   }
 });
+function toggleEditMode(el) {
+  el.classList.toggle('active');
+  var on = el.classList.contains('active');
+  document.body.classList.toggle('edit-mode', on);
+  var editables = document.querySelectorAll('[data-editable]');
+  editables.forEach(function(e) { e.contentEditable = on ? 'true' : 'false'; });
+  el.querySelector('span:first-child').textContent = on ? '✎' : '';
+}
+
+// 初始化 data-editable 属性自动标记
+(function() {
+  var tags = document.querySelectorAll('.nav-item, .nav-sub-item, .nav-sub-sub-item, .quick-card-text h3, .quick-card-text p, .app-name, .section-title, .section-more, .todo-item-title, .todo-item-meta, .notice-text, .breadcrumb span, .form-section-title, .form-field-label, .form-tab, .filter-label, th, td:not(:first-child), .table-title, .pagination-info, .status-tag, .toggle-label');
+  tags.forEach(function(el) { el.setAttribute('data-editable', ''); });
+})();
 </script>
 </body>
 </html>
