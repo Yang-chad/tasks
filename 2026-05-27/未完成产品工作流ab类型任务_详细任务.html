@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成产品任务任务明细</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">
+</script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: -apple-system, "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff; padding: 20px; min-height:100vh;
+}
+.header {
+    text-align:center; padding:30px 20px;
+    background: rgba(255,255,255,0.05); border-radius:16px;
+    margin-bottom:24px; backdrop-filter:blur(10px);
+}
+.header h1 { font-size:28px; background: linear-gradient(120deg, #667eea, #f093fb); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.header .meta { color:#aaa; font-size:14px; margin-top:8px; }
+.cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    gap:16px; margin-bottom:24px;
+}
+.card {
+    background: rgba(255,255,255,0.07); border-radius:12px; padding:20px;
+    text-align:center; border:1px solid rgba(255,255,255,0.1);
+}
+.card .num { font-size:36px; font-weight:bold; margin:8px 0; }
+.card .label { color:#aaa; font-size:14px; }
+.charts-row {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(400px,1fr));
+    gap:20px; margin-bottom:24px;
+}
+.chart-card {
+    background: rgba(255,255,255,0.07); border-radius:12px;
+    padding:20px; border:1px solid rgba(255,255,255,0.1);
+}
+.chart-card h3 { font-size:16px; margin-bottom:16px; color:#ccc; }
+.section-title {
+    font-size:20px; margin:24px 0 16px; padding-left:12px;
+    border-left:4px solid #667eea;
+}
+.assignee-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(500px,1fr));
+    gap:16px;
+}
+.assignee-card {
+    background: rgba(255,255,255,0.06); border-radius:12px;
+    border:1px solid rgba(255,255,255,0.08); overflow:hidden;
+}
+.assignee-header {
+    padding:16px 20px; cursor:pointer; display:flex; justify-content:space-between;
+    align-items:center;
+}
+.assignee-header:hover { background: rgba(255,255,255,0.08); }
+.assignee-name { font-size:17px; font-weight:bold; }
+.assignee-stats { display:flex; gap:16px; font-size:13px; color:#aaa; }
+.assignee-body { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+.assignee-body.open { max-height:2000px; }
+.stats-bar {
+    display:flex; gap:12px; padding:12px 20px;
+    background: rgba(0,0,0,0.2); font-size:13px; flex-wrap:wrap;
+}
+.stat-item span { font-weight:bold; }
+.task-table {
+    width:100%; border-collapse:collapse; font-size:13px;
+}
+.task-table th {
+    background: rgba(0,0,0,0.3); padding:10px 12px; text-align:left;
+    font-weight:600; color:#bbb; position:sticky; top:0;
+}
+.task-table td { padding:10px 12px; border-top:1px solid rgba(255,255,255,0.05); }
+.task-table tr:hover { background: rgba(255,255,255,0.04); }
+.status-wait { color:#ffa726; }
+.status-doing { color:#66eea6; }
+.overdue { color:#ef5350; font-weight:bold; }
+.pri-1 { color:#ef5350; font-weight:bold; }
+.pri-2 { color:#ff7043; }
+.pri-3 { color:#ffa726; }
+.pri-4 { color:#66bb6a; }
+.arrow { transition: transform 0.2s; }
+.arrow.open { transform: rotate(90deg); }
+</style>
+</head>
+<body>
+<div class="header">
+    <h1>未完成产品任务任务明细</h1>
+    <div class="meta">数据截止: 2026-05-27 | 平台: 三平台汇总 | 3平台汇总</div>
+</div>
+<div class="cards">
+    <div class="card"><div class="label">总任务数</div><div class="num">53</div></div>
+    <div class="card"><div class="label">待处理</div><div class="num" style="color:#ffa726">33</div></div>
+    <div class="card"><div class="label">进行中</div><div class="num" style="color:#66eea6">20</div></div>
+
+    <div class="card"><div class="label">负责人数</div><div class="num" style="color:#667eea">4</div></div>
+</div>
+<div class="charts-row">
+    <div class="chart-card">
+        <h3>负责人任务分布 (Top)</h3>
+        <canvas id="assigneeChart" height="280"></canvas>
+    </div>
+    <div class="chart-card">
+        <h3>状态分布 & 优先级分布</h3>
+        <div style="display:flex; gap:20px;">
+            <canvas id="statusChart" width="200" height="220"></canvas>
+            <canvas id="priChart" width="200" height="220"></canvas>
+        </div>
+    </div>
+</div>
+<div class="section-title">按人员明细（点击展开）</div>
+<div class="assignee-grid">    <div class="assignee-card">
+        <div class="assignee-header" onclick="toggleBody(this)">
+            <span class="assignee-name" style="color:#667eea">● 钟日健</span>
+            <span class="arrow open">▶</span>
+        </div>
+        <div class="assignee-body open">
+            <div class="stats-bar">
+                <div class="stat-item">任务: <span>24</span></div>
+                <div class="stat-item">待处理: <span style="color:#ffa726">24</span></div>
+                <div class="stat-item">进行中: <span style="color:#66eea6">0</span></div>
+                <div class="stat-item">预估: <span>140h</span></div>
+                <div class="stat-item">已消耗: <span>0h</span></div>
+                <div class="stat-item">剩余: <span style="color:#667eea">140h</span></div>
+            </div>
+            <table class="task-table">
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
+                <tbody><tr>
+                <td>268984</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】验收">【产品】验收</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr><tr>
+                <td>268983</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】研发期间沟通">【产品】研发期间沟通</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>10</td>
+                <td>0</td>
+                <td>10</td>
+            </tr><tr>
+                <td>268982</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】需求评审">【产品】需求评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>4</td>
+            </tr><tr>
+                <td>268981</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】业务评审">【产品】业务评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>4</td>
+            </tr><tr>
+                <td>268980</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】原型设计">【产品】原型设计</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>10</td>
+                <td>0</td>
+                <td>10</td>
+            </tr><tr>
+                <td>268979</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】调研">【产品】调研</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr><tr>
+                <td>268978</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】验收">【产品】验收</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr><tr>
+                <td>268977</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】研发期间沟通">【产品】研发期间沟通</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>10</td>
+                <td>0</td>
+                <td>10</td>
+            </tr><tr>
+                <td>268976</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】需求评审">【产品】需求评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>3</td>
+                <td>0</td>
+                <td>3</td>
+            </tr><tr>
+                <td>268975</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】业务评审">【产品】业务评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>3</td>
+                <td>0</td>
+                <td>3</td>
+            </tr><tr>
+                <td>268974</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】原型设计">【产品】原型设计</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>17</td>
+                <td>0</td>
+                <td>17</td>
+            </tr><tr>
+                <td>268973</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】调研">【产品】调研</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>8</td>
+                <td>0</td>
+                <td>8</td>
+            </tr><tr>
+                <td>268969</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】验收">【产品】验收</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr><tr>
+                <td>268968</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】研发期间沟通">【产品】研发期间沟通</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>15</td>
+                <td>0</td>
+                <td>15</td>
+            </tr><tr>
+                <td>268967</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】需求评审">【产品】需求评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>4</td>
+            </tr><tr>
+                <td>268966</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】业务评审">【产品】业务评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>4</td>
+            </tr><tr>
+                <td>268965</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】原型设计">【产品】原型设计</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>15</td>
+                <td>0</td>
+                <td>15</td>
+            </tr><tr>
+                <td>268964</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】调研">【产品】调研</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr><tr>
+                <td>268945</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】验收">【产品】验收</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+            </tr><tr>
+                <td>268944</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】研发期间沟通">【产品】研发期间沟通</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>5</td>
+                <td>0</td>
+                <td>5</td>
+            </tr><tr>
+                <td>268943</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】需求评审">【产品】需求评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr><tr>
+                <td>268942</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】业务评审">【产品】业务评审</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>0</td>
+                <td>2</td>
+            </tr><tr>
+                <td>268941</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】原型设计">【产品】原型设计</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>7</td>
+                <td>0</td>
+                <td>7</td>
+            </tr><tr>
+                <td>268940</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】调研">【产品】调研</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-3">3</td>
+                <td>6</td>
+                <td>0</td>
+                <td>6</td>
+            </tr></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="assignee-card">
+        <div class="assignee-header" onclick="toggleBody(this)">
+            <span class="assignee-name" style="color:#f093fb">● 周志杰</span>
+            <span class="arrow">▶</span>
+        </div>
+        <div class="assignee-body ">
+            <div class="stats-bar">
+                <div class="stat-item">任务: <span>11</span></div>
+                <div class="stat-item">待处理: <span style="color:#ffa726">0</span></div>
+                <div class="stat-item">进行中: <span style="color:#66eea6">11</span></div>
+                <div class="stat-item">预估: <span>249h</span></div>
+                <div class="stat-item">已消耗: <span>0h</span></div>
+                <div class="stat-item">剩余: <span style="color:#f093fb">249h</span></div>
+            </div>
+            <table class="task-table">
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
+                <tbody><tr>
+                <td>276601</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="返利填报商用销司屏蔽恒信返利字段">返利填报商用销司屏蔽恒信返利字段</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-29</td>
+                <td class="pri-3">3</td>
+                <td>8</td>
+                <td>0</td>
+                <td>8</td>
+            </tr><tr>
+                <td>268985</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="经销商活动/返利方案新增复制方案功能">经销商活动/返利方案新增复制方案功能</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-06-15</td>
+                <td class="pri-3">3</td>
+                <td>19</td>
+                <td>0</td>
+                <td>19</td>
+            </tr><tr>
+                <td>273638</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="经销商销售任务行业属性改造">经销商销售任务行业属性改造</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-06-30</td>
+                <td class="pri-2">2</td>
+                <td>65</td>
+                <td>0</td>
+                <td>65</td>
+            </tr><tr>
+                <td>268988</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="3.0模式经销商销售方案行业属性优化">3.0模式经销商销售方案行业属性优化</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-06-30</td>
+                <td class="pri-3">3</td>
+                <td>35</td>
+                <td>0</td>
+                <td>35</td>
+            </tr><tr>
+                <td>234592</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="销司方案新增上下架功能及逻辑">销司方案新增上下架功能及逻辑</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-06-30</td>
+                <td class="pri-3">3</td>
+                <td>33</td>
+                <td>0</td>
+                <td>33</td>
+            </tr><tr>
+                <td>270674</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="商用工程分批提货资金流水改造">商用工程分批提货资金流水改造</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.77.0（0615/dev11.5）【2026】</td>
+                <td>2026-06-30</td>
+                <td class="pri-2">2</td>
+                <td>4</td>
+                <td>0</td>
+                <td>4</td>
+            </tr><tr>
+                <td>270037</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="销司日销方案新增批量上下架逻辑">销司日销方案新增批量上下架逻辑</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-06-30</td>
+                <td class="pri-3">3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>4</td>
+            </tr><tr>
+                <td>269104</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="资金账户新增输入支付密码校验逻辑">资金账户新增输入支付密码校验逻辑</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-06-30</td>
+                <td class="pri-2">2</td>
+                <td>22</td>
+                <td>0</td>
+                <td>22</td>
+            </tr><tr>
+                <td>284476</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="经销商端活动专区新增商品检索功能">经销商端活动专区新增商品检索功能</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-03</td>
+                <td class="pri-3">3</td>
+                <td>25</td>
+                <td>0</td>
+                <td>25</td>
+            </tr><tr>
+                <td>283461</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="销司销售方案新增商品生产状态校验逻辑">销司销售方案新增商品生产状态校验逻辑</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-03</td>
+                <td class="pri-3">3</td>
+                <td>26</td>
+                <td>0</td>
+                <td>26</td>
+            </tr><tr>
+                <td>282539</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="经销商方案新增逻辑限制商品调价可见可下单">经销商方案新增逻辑限制商品调价可见可下单</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-03</td>
+                <td class="pri-2">2</td>
+                <td>8</td>
+                <td>0</td>
+                <td>8</td>
+            </tr></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="assignee-card">
+        <div class="assignee-header" onclick="toggleBody(this)">
+            <span class="assignee-name" style="color:#4facfe">● 王也</span>
+            <span class="arrow">▶</span>
+        </div>
+        <div class="assignee-body ">
+            <div class="stats-bar">
+                <div class="stat-item">任务: <span>9</span></div>
+                <div class="stat-item">待处理: <span style="color:#ffa726">9</span></div>
+                <div class="stat-item">进行中: <span style="color:#66eea6">0</span></div>
+                <div class="stat-item">预估: <span>156.0h</span></div>
+                <div class="stat-item">已消耗: <span>0h</span></div>
+                <div class="stat-item">剩余: <span style="color:#4facfe">156.0h</span></div>
+            </div>
+            <table class="task-table">
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
+                <tbody><tr>
+                <td>271907</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑">管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-29</td>
+                <td class="pri-3">3</td>
+                <td>7.5</td>
+                <td>0</td>
+                <td>7.5</td>
+            </tr><tr>
+                <td>280540</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="大客户模式-客户管理迭代改造增加销售主体编码">大客户模式-客户管理迭代改造增加销售主体编码</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-06-03</td>
+                <td class="pri-3">3</td>
+                <td>15</td>
+                <td>0</td>
+                <td>15</td>
+            </tr><tr>
+                <td>280539</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑">管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-06-03</td>
+                <td class="pri-3">3</td>
+                <td>4.5</td>
+                <td>0</td>
+                <td>4.5</td>
+            </tr><tr>
+                <td>280538</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="入驻审核H5消息推送逻辑更新-需求设计">入驻审核H5消息推送逻辑更新-需求设计</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-06-03</td>
+                <td class="pri-3">3</td>
+                <td>4.5</td>
+                <td>0</td>
+                <td>4.5</td>
+            </tr><tr>
+                <td>280579</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="行业数据隔离【二期】---权限隔离迭代">行业数据隔离【二期】---权限隔离迭代</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-01</td>
+                <td class="pri-3">3</td>
+                <td>50</td>
+                <td>0</td>
+                <td>50</td>
+            </tr><tr>
+                <td>280577</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="行业数据隔离【二期】---客户管理-入驻流程迭代">行业数据隔离【二期】---客户管理-入驻流程迭代</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-01</td>
+                <td class="pri-3">3</td>
+                <td>30</td>
+                <td>0</td>
+                <td>30</td>
+            </tr><tr>
+                <td>280569</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="行业数据隔离【二期】---分销商管理迭代">行业数据隔离【二期】---分销商管理迭代</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-01</td>
+                <td class="pri-3">3</td>
+                <td>10</td>
+                <td>0</td>
+                <td>10</td>
+            </tr><tr>
+                <td>280568</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="行业数据隔离【二期】---经营信息变更迭代">行业数据隔离【二期】---经营信息变更迭代</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-01</td>
+                <td class="pri-3">3</td>
+                <td>30</td>
+                <td>0</td>
+                <td>30</td>
+            </tr><tr>
+                <td>280567</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="岗位删除联动清空员工授权及行业数据">岗位删除联动清空员工授权及行业数据</td>
+                <td class="status-wait">wait</td>
+                <td>网批2.0_V2.78.0（0630/dev11.5.1）【2026】</td>
+                <td>2026-07-01</td>
+                <td class="pri-3">3</td>
+                <td>4.5</td>
+                <td>0</td>
+                <td>4.5</td>
+            </tr></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="assignee-card">
+        <div class="assignee-header" onclick="toggleBody(this)">
+            <span class="assignee-name" style="color:#43e97b">● 胡健</span>
+            <span class="arrow">▶</span>
+        </div>
+        <div class="assignee-body ">
+            <div class="stats-bar">
+                <div class="stat-item">任务: <span>9</span></div>
+                <div class="stat-item">待处理: <span style="color:#ffa726">0</span></div>
+                <div class="stat-item">进行中: <span style="color:#66eea6">9</span></div>
+                <div class="stat-item">预估: <span>152h</span></div>
+                <div class="stat-item">已消耗: <span>87h</span></div>
+                <div class="stat-item">剩余: <span style="color:#43e97b">70h</span></div>
+            </div>
+            <table class="task-table">
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
+                <tbody><tr>
+                <td>284356</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】0602、0615测试用例评审">【产品】0602、0615测试用例评审</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-26<span class="overdue"> +1天</span></td>
+                <td class="pri-3">3</td>
+                <td>2</td>
+                <td>1</td>
+                <td>1</td>
+            </tr><tr>
+                <td>282352</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】商用财务相关需求调研及研讨">【产品】商用财务相关需求调研及研讨</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-28</td>
+                <td class="pri-3">3</td>
+                <td>18</td>
+                <td>10</td>
+                <td>8</td>
+            </tr><tr>
+                <td>282348</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】家用延期发货需求的业务调研及初步产品方案">【产品】家用延期发货需求的业务调研及初步产品方案</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-29</td>
+                <td class="pri-2">2</td>
+                <td>30</td>
+                <td>16</td>
+                <td>14</td>
+            </tr><tr>
+                <td>279094</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】商品生产状态数据同步至中台，业务需求调研及技术方案确认">【产品】商品生产状态数据同步至中台，业务需求调研及技术方案确认</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-30</td>
+                <td class="pri-2">2</td>
+                <td>6</td>
+                <td>4</td>
+                <td>2</td>
+            </tr><tr>
+                <td>275859</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】【适用销司/销售公司/所属销司】筛选控件及字段名称优化">【产品】【适用销司/销售公司/所属销司】筛选控件及字段名称优化</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-31</td>
+                <td class="pri-3">3</td>
+                <td>12</td>
+                <td>8</td>
+                <td>7</td>
+            </tr><tr>
+                <td>270633</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】管理侧待办事项增加数量及调整刷新机制的产品设计">【产品】管理侧待办事项增加数量及调整刷新机制的产品设计</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-31</td>
+                <td class="pri-2">2</td>
+                <td>20</td>
+                <td>12</td>
+                <td>8</td>
+            </tr><tr>
+                <td>270295</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】系统从当前页签新打开的页签，需要在当前页签之后">【产品】系统从当前页签新打开的页签，需要在当前页签之后</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-31</td>
+                <td class="pri-2">2</td>
+                <td>8</td>
+                <td>4</td>
+                <td>6</td>
+            </tr><tr>
+                <td>270294</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】网批系统各模块导出能力对接下载中心，同时文件导出时加上打开密码">【产品】网批系统各模块导出能力对接下载中心，同时文件导出时加上打开密码</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.76.0（0602/dev11.4）【2026】</td>
+                <td>2026-05-31</td>
+                <td class="pri-3">3</td>
+                <td>24</td>
+                <td>16</td>
+                <td>8</td>
+            </tr><tr>
+                <td>282330</td>
+                <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【产品】【管理侧】管理侧菜单改造：增加收藏、搜索、收藏排序等能力的产品工作">【产品】【管理侧】管理侧菜单改造：增加收藏、搜索、收藏排序等能力的产品工作</td>
+                <td class="status-doing">doing</td>
+                <td>网批2.0_V2.77.0（0615/dev11.5）【2026】</td>
+                <td>2026-06-19</td>
+                <td class="pri-3">3</td>
+                <td>32</td>
+                <td>16</td>
+                <td>16</td>
+            </tr></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+function toggleBody(header) {
+    header.querySelector(".arrow").classList.toggle("open");
+    var body = header.nextElementSibling;
+    body.classList.toggle("open");
+}
+
+var chartColors = ["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c"];
+function makeColors(n) { return Array.from({length:n}, function(_,i) { return chartColors[i % chartColors.length]; }); }
+
+new Chart(document.getElementById("assigneeChart"), {
+    type: "bar",
+    data: {
+        labels: ["\u949f\u65e5\u5065", "\u5468\u5fd7\u6770", "\u738b\u4e5f", "\u80e1\u5065"],
+        datasets: [{ label: "任务数", data: [24, 11, 9, 9],
+            backgroundColor: makeColors(4), borderRadius: 6 }]
+    },
+    options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false} },
+        scales:{ y:{ ticks:{color:"#888"}, grid:{color:"rgba(255,255,255,0.06)"} },
+                  x:{ ticks:{color:"#888", maxRotation:45}, grid:{display:false} } }
+    }
+});
+
+new Chart(document.getElementById("statusChart"), {
+    type: "doughnut",
+    data: {
+        labels: ["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],
+        datasets: [{ data: [33, 20],
+            backgroundColor: ["#ffa726", "#66eea6"],
+            borderWidth: 0 }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:"right", labels:{ color:"#aaa", padding:12 } } } }
+});
+
+new Chart(document.getElementById("priChart"), {
+    type: "doughnut",
+    data: {
+        labels: ["P2", "P3"],
+        datasets: [{ data: [8, 45],
+            backgroundColor: ["#ef5350","#ff7043","#ffa726","#66bb6a"], borderWidth: 0 }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:"right", labels:{ color:"#aaa", padding:12 } } } }
+});
+
+</script>
+</body>
+</html>
