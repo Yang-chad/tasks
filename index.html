@@ -137,6 +137,56 @@ body {
 .card.frontend .name { color: #f093fb; }
 .card.mobile   .name { color: #ffa726; }
 
+/* ── Trend Table ── */
+.trend-section {
+    margin-top: 40px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+}
+.trend-title {
+    padding: 20px 24px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.trend-title .icon { font-size: 20px; }
+.trend-wrap { overflow-x: auto; padding: 16px 24px 24px; }
+.trend-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; min-width: 600px;
+}
+.trend-table th {
+    background: rgba(0,0,0,0.25); padding: 10px 14px;
+    text-align: center; font-weight: 600; color: #aaa;
+    border-bottom: 2px solid rgba(255,255,255,0.08);
+    white-space: nowrap;
+}
+.trend-table th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+.trend-table th:last-child { border-radius: 0 8px 0 0; }
+.trend-table td {
+    padding: 10px 14px; text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #ccc;
+}
+.trend-table td:first-child { text-align: left; color: #8892b0; font-weight: 500; }
+.trend-table tr:last-child td { border-bottom: none; }
+.trend-table tr:hover td { background: rgba(255,255,255,0.03); }
+.trend-table .today td { background: rgba(102,126,234,0.08); }
+.trend-table .today td:first-child { color: #a5b4fc; font-weight: 700; }
+.trend-delta { font-size: 11px; margin-left: 4px; }
+.trend-up { color: #ef5350; }
+.trend-down { color: #43e97b; }
+.trend-flat { color: #78909c; }
+.trend-c-p { color: #a5b4fc; }
+.trend-c-b { color: #66eea6; }
+.trend-c-f { color: #f093fb; }
+.trend-c-m { color: #ffa726; }
+
 /* ── Footer ── */
 .footer {
     text-align: center;
@@ -217,6 +267,75 @@ body {
             <span class="desc">移动端开发任务<br>工时 & 状态追踪</span>
         </a>
 
+    </div>
+
+    <!-- 趋势变化 -->
+    <div class="trend-section">
+        <div class="trend-title"><span class="icon">📈</span> 任务数量趋势</div>
+        <div class="trend-wrap">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>📋 产品</th>
+                        <th>⚙️ 后端</th>
+                        <th>🎨 前端</th>
+                        <th>📱 移动端</th>
+                        <th>📊 合计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-05-22</td>
+                        <td class="trend-c-p">—</td>
+                        <td class="trend-c-b">—</td>
+                        <td class="trend-c-f">—</td>
+                        <td class="trend-c-m">—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>2026-05-23</td>
+                        <td class="trend-c-p">53</td>
+                        <td class="trend-c-b">366</td>
+                        <td class="trend-c-f">187</td>
+                        <td class="trend-c-m">96</td>
+                        <td>702</td>
+                    </tr>
+                    <tr>
+                        <td>2026-05-26</td>
+                        <td class="trend-c-p">54 <span class="trend-delta trend-up">+1</span></td>
+                        <td class="trend-c-b">238 <span class="trend-delta trend-down">-128</span></td>
+                        <td class="trend-c-f">140 <span class="trend-delta trend-down">-47</span></td>
+                        <td class="trend-c-m">95 <span class="trend-delta trend-down">-1</span></td>
+                        <td>527 <span class="trend-delta trend-down">-175</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-05-27</td>
+                        <td class="trend-c-p">53 <span class="trend-delta trend-down">-1</span></td>
+                        <td class="trend-c-b">201 <span class="trend-delta trend-down">-37</span></td>
+                        <td class="trend-c-f">140 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-m">112 <span class="trend-delta trend-up">+17</span></td>
+                        <td>506 <span class="trend-delta trend-down">-21</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-05-28</td>
+                        <td class="trend-c-p">53 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-b">194 <span class="trend-delta trend-down">-7</span></td>
+                        <td class="trend-c-f">131 <span class="trend-delta trend-down">-9</span></td>
+                        <td class="trend-c-m">109 <span class="trend-delta trend-down">-3</span></td>
+                        <td>487 <span class="trend-delta trend-down">-19</span></td>
+                    </tr>
+                    <tr class="today">
+                        <td>2026-05-29 ⬅</td>
+                        <td class="trend-c-p">53 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-b">197 <span class="trend-delta trend-up">+3</span></td>
+                        <td class="trend-c-f">131 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-m">102 <span class="trend-delta trend-down">-7</span></td>
+                        <td>483 <span class="trend-delta trend-down">-4</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="footer">
