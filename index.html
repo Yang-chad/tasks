@@ -9,51 +9,63 @@
 
 body {
     font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
-    background: #f0f2f5;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 40px 20px;
 }
 
 .container {
     width: 100%;
     max-width: 900px;
-    margin: 0 auto;
 }
 
 /* ── Header ── */
 .header {
     text-align: center;
-    margin-bottom: 36px;
-    background: #fff;
-    border-radius: 16px;
-    padding: 36px 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 12px;
 }
 .header .logo {
-    font-size: 48px;
-    margin-bottom: 12px;
+    font-size: 36px;
+    margin-bottom: 8px;
     display: block;
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }
 .header h1 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 8px;
+    background: linear-gradient(120deg, #667eea, #f093fb, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
 }
 .header .subtitle {
-    color: #999;
-    font-size: 15px;
+    color: #8892b0;
+    font-size: 14px;
     letter-spacing: 1px;
 }
-.header .date-tag {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 4px 16px;
-    border-radius: 20px;
+
+/* ── Date Tag ── */
+.date-tag {
+    display: block;
+    text-align: center;
+    margin-bottom: 24px;
     font-size: 13px;
-    color: #667eea;
-    background: rgba(102, 126, 234, 0.08);
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    color: #a5b4fc;
+}
+.date-tag span {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: rgba(102, 126, 234, 0.12);
+    border: 1px solid rgba(102, 126, 234, 0.25);
 }
 
 /* ── Summary ── */
@@ -62,13 +74,12 @@ body {
     justify-content: center; margin-bottom: 24px;
 }
 .summary-item {
-    background: #fff; border-radius: 12px; padding: 14px 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center;
-    min-width: 110px; transition: transform 0.2s;
+    background: rgba(255,255,255,0.04); border-radius: 10px; padding: 12px 18px;
+    border: 1px solid rgba(255,255,255,0.06); text-align: center;
+    min-width: 100px;
 }
-.summary-item:hover { transform: translateY(-2px); }
-.summary-item .num { font-size: 22px; font-weight: 700; }
-.summary-item .label { font-size: 11px; color: #888; margin-top: 4px; }
+.summary-item .num { font-size: 20px; font-weight: 700; }
+.summary-item .label { font-size: 11px; color: #666; margin-top: 4px; }
 
 /* ── Card Grid ── */
 .grid {
@@ -86,62 +97,65 @@ body {
     justify-content: center;
     padding: 36px 24px 30px;
     border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 .card::before {
     content: '';
     position: absolute; inset: 0; border-radius: 16px;
     opacity: 0; transition: opacity 0.3s; z-index: 0;
 }
-.card:nth-child(1)::before { background: linear-gradient(135deg, rgba(102,126,234,0.08), rgba(240,147,251,0.05)); }
-.card:nth-child(2)::before { background: linear-gradient(135deg, rgba(67,233,123,0.08), rgba(102,126,234,0.05)); }
-.card:nth-child(3)::before { background: linear-gradient(135deg, rgba(240,147,251,0.08), rgba(79,172,254,0.05)); }
-.card:nth-child(4)::before { background: linear-gradient(135deg, rgba(255,167,38,0.08), rgba(239,83,80,0.05)); }
+.card:nth-child(1)::before { background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(240,147,251,0.15)); }
+.card:nth-child(2)::before { background: linear-gradient(135deg, rgba(67,233,123,0.20), rgba(102,126,234,0.15)); }
+.card:nth-child(3)::before { background: linear-gradient(135deg, rgba(240,147,251,0.25), rgba(79,172,254,0.15)); }
+.card:nth-child(4)::before { background: linear-gradient(135deg, rgba(255,167,38,0.20), rgba(239,83,80,0.12)); }
 .card:hover::before { opacity: 1; }
 .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.35);
 }
 .card:active { transform: translateY(-2px); }
 
 .card .icon {
     font-size: 42px; margin-bottom: 16px;
     position: relative; z-index: 1;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
 }
 .card .name {
     font-size: 17px; font-weight: 600;
-    color: #333; margin-bottom: 6px;
+    color: #e2e8f0; margin-bottom: 6px;
     position: relative; z-index: 1;
 }
 .card .desc {
-    font-size: 13px; color: #888;
+    font-size: 13px; color: #8892b0;
     position: relative; z-index: 1;
     text-align: center; line-height: 1.5;
 }
 
 /* ── Card colors ── */
-.card.product .name { color: #667eea; }
-.card.backend  .name { color: #2e7d32; }
-.card.frontend .name { color: #c2185b; }
-.card.mobile   .name { color: #e65100; }
+.card.product .name { color: #a5b4fc; }
+.card.backend  .name { color: #66eea6; }
+.card.frontend .name { color: #f093fb; }
+.card.mobile   .name { color: #ffa726; }
 
 /* ── Trend Table ── */
 .trend-section {
     margin-top: 40px;
-    background: #fff;
+    background: rgba(255,255,255,0.04);
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
     overflow: hidden;
 }
 .trend-title {
     padding: 20px 24px 0;
     font-size: 16px; font-weight: 600;
-    color: #333; display: flex;
+    color: #e2e8f0; display: flex;
     align-items: center; gap: 8px;
 }
 .trend-title .icon { font-size: 20px; }
@@ -151,37 +165,37 @@ body {
     font-size: 13px; min-width: 600px;
 }
 .trend-table th {
-    background: #f5f6f8; padding: 10px 14px;
-    text-align: center; font-weight: 600; color: #666;
-    border-bottom: 2px solid #e8e8e8;
+    background: rgba(0,0,0,0.25); padding: 10px 14px;
+    text-align: center; font-weight: 600; color: #aaa;
+    border-bottom: 2px solid rgba(255,255,255,0.08);
     white-space: nowrap;
 }
 .trend-table th:first-child { text-align: left; border-radius: 8px 0 0 0; }
 .trend-table th:last-child { border-radius: 0 8px 0 0; }
 .trend-table td {
     padding: 10px 14px; text-align: center;
-    border-bottom: 1px solid #f0f0f0;
-    color: #444;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #ccc;
 }
-.trend-table td:first-child { text-align: left; color: #777; font-weight: 500; }
+.trend-table td:first-child { text-align: left; color: #8892b0; font-weight: 500; }
 .trend-table tr:last-child td { border-bottom: none; }
-.trend-table tr:hover td { background: #fafbfc; }
-.trend-table .today td { background: rgba(102,126,234,0.06); }
-.trend-table .today td:first-child { color: #667eea; font-weight: 700; }
+.trend-table tr:hover td { background: rgba(255,255,255,0.03); }
+.trend-table .today td { background: rgba(102,126,234,0.08); }
+.trend-table .today td:first-child { color: #a5b4fc; font-weight: 700; }
 .trend-delta { font-size: 11px; margin-left: 4px; }
-.trend-up { color: #e53935; }
-.trend-down { color: #2e7d32; }
-.trend-flat { color: #999; }
-.trend-c-p { color: #667eea; }
-.trend-c-b { color: #2e7d32; }
-.trend-c-f { color: #c2185b; }
-.trend-c-m { color: #e65100; }
+.trend-up { color: #ef5350; }
+.trend-down { color: #43e97b; }
+.trend-flat { color: #78909c; }
+.trend-c-p { color: #a5b4fc; }
+.trend-c-b { color: #66eea6; }
+.trend-c-f { color: #f093fb; }
+.trend-c-m { color: #ffa726; }
 
 /* ── Footer ── */
 .footer {
     text-align: center;
     margin-top: 40px;
-    color: #999;
+    color: #4a5568;
     font-size: 12px;
     letter-spacing: 0.5px;
 }
@@ -189,26 +203,30 @@ body {
 .footer a:hover { text-decoration: underline; }
 
 /* ── History nav ── */
-.history-nav { margin-bottom: 16px; color: #666; font-size: 14px; font-weight: 600; }
+.history-nav { margin-bottom: 16px; color: #667eea; font-size: 14px; font-weight: 600; }
 .history-links {
     display: flex; gap: 10px; justify-content: center;
     flex-wrap: wrap; margin-bottom: 20px;
 }
 .history-links a {
-    padding: 6px 16px; border-radius: 20px;
-    background: #fff; border: 1px solid #e0e0e0;
-    font-size: 13px; text-decoration: none; color: #888;
+    padding: 6px 14px; border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px; text-decoration: none;
+    color: #8892b0;
     transition: all 0.2s;
 }
 .history-links a:first-child {
-    color: #667eea; border-color: rgba(102,126,234,0.3);
-    background: rgba(102,126,234,0.06);
+    color: #4facfe;
+    border-color: rgba(79,172,254,0.25);
+    background: rgba(79,172,254,0.12);
 }
 .history-links a:hover { border-color: #667eea; color: #667eea; }
 
 /* ── Responsive ── */
 @media (max-width: 500px) {
-    .header h1 { font-size: 24px; }
+    .header h1 { font-size: 22px; }
+    .header .logo { font-size: 32px; }
     .card { padding: 28px 16px 22px; }
     .card .icon { font-size: 34px; }
 }
@@ -222,25 +240,26 @@ body {
         <span class="logo">📊</span>
         <h1>禅道任务报告中心</h1>
         <p class="subtitle">Zentao Task Dashboard</p>
-        <span class="date-tag">2026-05-29</span>
     </div>
+
+    <div class="date-tag"><span>2026-05-29</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
         <div class="summary-item">
-            <div class="num" style="color:#667eea;">53</div>
+            <div class="num" style="color:#a5b4fc;">53</div>
             <div class="label">📋 产品 (待33/做20)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#2e7d32;">197</div>
+            <div class="num" style="color:#66eea6;">197</div>
             <div class="label">⚙️ 后端 (待159/做19)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#c2185b;">131</div>
+            <div class="num" style="color:#f093fb;">131</div>
             <div class="label">🎨 前端 (待95/做22)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#e65100;">102</div>
+            <div class="num" style="color:#ffa726;">102</div>
             <div class="label">📱 移动端 (待59/做38)</div>
         </div>
     </div>
