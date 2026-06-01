@@ -62,13 +62,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="header">
   <h1>未完成产品任务任务明细</h1>
-  <p>统计日期: 2026-06-01 | 总计: 48 个未完成任务 | 涉及 4 人 | 平台: 网批2.0</p>
+  <p>统计日期: 2026-06-01 | 总计: 49 个未完成任务 | 涉及 4 人 | 平台: 网批2.0</p>
 </div>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="cards">
-  <div class="card card-total"><div class="num">48</div><div class="label">任务总数</div></div>
+  <div class="card card-total"><div class="num">49</div><div class="label">任务总数</div></div>
   <div class="card card-wait"><div class="num">27</div><div class="label">待处理</div></div>
-  <div class="card card-doing"><div class="num">21</div><div class="label">进行中</div></div>
+  <div class="card card-doing"><div class="num">22</div><div class="label">进行中</div></div>
   <div class="card card-overdue"><div class="num">27</div><div class="label">延期</div></div>
   <div class="card card-people"><div class="num">4</div><div class="label">负责人</div></div>
 </div>
@@ -344,13 +344,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
         <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
             <span class="assignee-name">周志杰</span>
             <span class="assignee-stats">
-                <span class="stat-badge">共12个</span>
+                <span class="stat-badge">共13个</span>
                 <span class="stat-badge stat-wait">待处理0</span>
-                <span class="stat-badge stat-doing">进行中12</span>
+                <span class="stat-badge stat-doing">进行中13</span>
                 <span class="stat-badge stat-overdue">延期0</span>
-                <span class="stat-badge stat-h">预估273h</span>
+                <span class="stat-badge stat-h">预估296h</span>
                 <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余273h</span>
+                <span class="stat-badge stat-h">剩余296h</span>
             </span>
         </summary>
         <div class="table-wrapper">
@@ -518,6 +518,19 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
             <td>8</td>
             <td>0</td>
             <td>8</td>
+        </tr>
+        <tr>
+            <td>287792</td>
+            <td title="经销商返利组合套餐返利支付区间支持填0">经销商返利组合套餐返利支付区间支持填0</td>
+            <td><span class="badge-doing">进行中</span></td>
+            <td>3-中</td>
+            <td>ab2_request_des</td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-07-10</td>
+            <td></td>
+            <td>23</td>
+            <td>0</td>
+            <td>23</td>
         </tr>
                 </tbody>
             </table>
@@ -821,7 +834,7 @@ new Chart(document.getElementById('barChart'), {
         labels: ["\u949f\u65e5\u5065", "\u5468\u5fd7\u6770", "\u80e1\u5065", "\u738b\u4e5f"],
         datasets: [{
             label: '未完成任务数',
-            data: [18, 12, 9, 9],
+            data: [18, 13, 9, 9],
             backgroundColor: ["#667eea", "#f093fb", "#4facfe", "#43e97b"],
             borderRadius: 6,
         }]
@@ -839,7 +852,7 @@ new Chart(document.getElementById('statusPie'), {
     data: {
         labels: ["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],
         datasets: [{
-            data: [27, 21],
+            data: [27, 22],
             backgroundColor: ['#f5576c', '#43e97b'],
         }]
     },
@@ -855,7 +868,7 @@ new Chart(document.getElementById('priPie'), {
     data: {
         labels: ["1-\u7d27\u6025", "2-\u9ad8", "3-\u4e2d"],
         datasets: [{
-            data: [1, 8, 39],
+            data: [1, 8, 40],
             backgroundColor: ["#f5576c", "#ffa726", "#4facfe"],
         }]
     },
