@@ -4,282 +4,1164 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>未完成移动端开发任务明细</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,"Microsoft YaHei",sans-serif;background:#fff;color:#333;padding:20px;min-height:100vh;}
-.header{text-align:center;padding:24px 20px;background:#f8f9fa;border-radius:12px;margin-bottom:20px;border:1px solid #e0e0e0;}
-.header h1{font-size:24px;color:#ff6f00;}
-.header .meta{color:#888;font-size:13px;margin-top:6px;}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px;}
-.card{background:#f8f9fa;border-radius:10px;padding:18px;text-align:center;border:1px solid #e8e8e8;transition:box-shadow 0.2s;}
-.card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08);}
-.card .num{font-size:32px;font-weight:bold;margin:6px 0;}
-.card .label{color:#888;font-size:13px;}
-.charts-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px;margin-bottom:20px;}
-.chart-card{background:#f8f9fa;border-radius:10px;padding:18px;border:1px solid #e8e8e8;}
-.chart-card h3{font-size:15px;margin-bottom:14px;color:#555;}
-.section-title{font-size:18px;margin:20px 0 14px;padding-left:10px;border-left:4px solid #ff6f00;}
-.assignee-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:12px;}
-.assignee-card{background:#f8f9fa;border-radius:10px;border:1px solid #e8e8e8;overflow:hidden;}
-.assignee-header{padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background 0.2s;}
-.assignee-header:hover{background:#eee;}
-.assignee-name{font-size:15px;font-weight:bold;}
-.assignee-stats{display:flex;gap:14px;font-size:12px;color:#888;}
-.assignee-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
-.assignee-body.open{max-height:3000px;}
-.stats-bar{display:flex;gap:10px;padding:10px 18px;background:#eef0f2;font-size:12px;flex-wrap:wrap;}
-.stat-item span{font-weight:bold;}
-.task-table{width:100%;border-collapse:collapse;font-size:12px;}
-.task-table th{background:#e8eaed;padding:8px 10px;text-align:left;font-weight:600;color:#555;position:sticky;top:0;}
-.task-table td{padding:8px 10px;border-top:1px solid #e8e8e8;}
-.task-table tr:hover{background:#edf2fa;}
-.status-wait{color:#e67e22;}
-.status-doing{color:#27ae60;}
-.status-pause{color:#8e44ad;}
-.pri-1{color:#e74c3c;font-weight:bold;}
-.pri-2{color:#e67e22;}
-.pri-3{color:#f39c12;}
-.pri-4{color:#27ae60;}
-.overdue{color:#e74c3c;font-weight:bold;}
-.arrow{transition:transform 0.2s;}
-.arrow.open{transform:rotate(90deg);}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+.details { }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; user-select: none; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
 </style>
 </head>
 <body>
 <div class="header">
-<h1>未完成移动端开发任务明细</h1>
-<div class="meta">数据截止: 2026-05-30 | 平台: 网批2.0</div>
+  <h1>未完成移动端开发任务明细</h1>
+  <p>统计日期: 2026-05-30 | 总计: 74 个未完成任务 | 涉及 6 人 | 平台: 网批2.0</p>
 </div>
 <div class="cards">
-<div class="card"><div class="label">总任务数</div><div class="num">74</div></div>
-<div class="card"><div class="label">待处理</div><div class="num" style="color:#e67e22">54</div></div>
-<div class="card"><div class="label">进行中</div><div class="num" style="color:#27ae60">18</div></div>
-<div class="card"><div class="label">已延期</div><div class="num" style="color:#e74c3c">9</div></div>
-<div class="card"><div class="label">负责人数</div><div class="num" style="color:#ff6f00">6</div></div>
+  <div class="card card-total"><div class="num">74</div><div class="label">任务总数</div></div>
+  <div class="card card-wait"><div class="num">0</div><div class="label">待处理</div></div>
+  <div class="card card-doing"><div class="num">0</div><div class="label">进行中</div></div>
+  <div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
+  <div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
 </div>
-<div class="charts-row">
-<div class="chart-card">
-<h3>负责人任务分布 (Top)</h3>
-<div style="position:relative;height:280px;"><canvas id="assigneeChart"></canvas></div>
+<div class="charts">
+  <div class="chart-box"><h3>负责人任务分布 (Top6)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+  <div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+  <div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
 </div>
-<div class="chart-card">
-<h3>状态分布 & 优先级分布</h3>
-<div style="display:flex;gap:16px;justify-content:center;">
-<div style="position:relative;width:200px;height:220px;"><canvas id="statusChart"></canvas></div>
-<div style="position:relative;width:200px;height:220px;"><canvas id="priChart"></canvas></div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">● 张其辉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共15个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估0h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th></tr></thead>
+                <tbody>
+        <tr>
+            <td>283674</td>
+            <td title="【Android】商用工程退款详情">【Android】商用工程退款详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>283126</td>
+            <td title="【Android】工程定金单详情">【Android】工程定金单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>282433</td>
+            <td title="【Android】管理端-售后详情">【Android】管理端-售后详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>282430</td>
+            <td title="【Android】管理端-售后单列表">【Android】管理端-售后单列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>282369</td>
+            <td title="【Android】管理端-订单管理详情">【Android】管理端-订单管理详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>282367</td>
+            <td title="【Android】管理端-订单管理列表">【Android】管理端-订单管理列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>282343</td>
+            <td title="【Android】退款售后单详情">【Android】退款售后单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>2</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>282341</td>
+            <td title="【Android】退款售后单列表">【Android】退款售后单列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>2</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>282218</td>
+            <td title="【Android】订单列表-延期发货">【Android】订单列表-延期发货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>282210</td>
+            <td title="【Android】订单详情-延期发货">【Android】订单详情-延期发货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>268953</td>
+            <td title="【用户侧】审批进度详情-单据信息">【用户侧】审批进度详情-单据信息</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批大前端V1.7（0507）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>12</td>
+            <td>16</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>285520</td>
+            <td title="【Android】我的提货任务">【Android】我的提货任务</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>12</td>
+            <td>0</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>285226</td>
+            <td title="【Android】分销商管理">【Android】分销商管理</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>283760</td>
+            <td title="【Android】订单详情">【Android】订单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>283759</td>
+            <td title="【Android】工程定金单提货单详情">【Android】工程定金单提货单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>2</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">● 徐良侦</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共15个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估0h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th></tr></thead>
+                <tbody>
+        <tr>
+            <td>283701</td>
+            <td title="【iOS】管理端-退款售后提货单详情">【iOS】管理端-退款售后提货单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>283693</td>
+            <td title="【iOS】管理端-退款售后定金详情">【iOS】管理端-退款售后定金详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>283691</td>
+            <td title="【iOS】管理端-订单管理-工程提货戏详情">【iOS】管理端-订单管理-工程提货戏详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>283589</td>
+            <td title="【iOS】待支付订单合并支付调整">【iOS】待支付订单合并支付调整</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>283128</td>
+            <td title="【iOS】工程定金单详情">【iOS】工程定金单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>282432</td>
+            <td title="【iOS】管理端-售后详情">【iOS】管理端-售后详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>282431</td>
+            <td title="【iOS】管理端-售后单列表">【iOS】管理端-售后单列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>282368</td>
+            <td title="【iOS】管理端-订单管理详情">【iOS】管理端-订单管理详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>282366</td>
+            <td title="【iOS】管理端-订单管理列表">【iOS】管理端-订单管理列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>282342</td>
+            <td title="【iOS】退款售后单详情">【iOS】退款售后单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>2</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>282340</td>
+            <td title="【iOS】退款售后单列表">【iOS】退款售后单列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>2</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>282217</td>
+            <td title="【iOS】订单列表-延期发货">【iOS】订单列表-延期发货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>282208</td>
+            <td title="【iOS】订单详情-延期发货">【iOS】订单详情-延期发货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-05</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>283761</td>
+            <td title="【iOS】订单详情">【iOS】订单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>283758</td>
+            <td title="【iOS】工程定金单提货单详情">【iOS】工程定金单提货单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>2</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">● 张春杰</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共12个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估0h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th></tr></thead>
+                <tbody>
+        <tr>
+            <td>283596</td>
+            <td title="【iOS】分批提货-为分销商提货">【iOS】分批提货-为分销商提货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>283593</td>
+            <td title="【iOS】分批提货-为我提货">【iOS】分批提货-为我提货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>32</td>
+            <td>0</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>285185</td>
+            <td title="【iOS】经营信息变更审核">【iOS】经营信息变更审核</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>285164</td>
+            <td title="【iOS】经销商审核-经营信息查看">【iOS】经销商审核-经营信息查看</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>285163</td>
+            <td title="【iOS】入驻审核-经销商资料审核">【iOS】入驻审核-经销商资料审核</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>285151</td>
+            <td title="【iOS】购物车商品限制">【iOS】购物车商品限制</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284926</td>
+            <td title="【iOS】数据清洗-无原型">【iOS】数据清洗-无原型</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284283</td>
+            <td title="【iOS】商用-常规工程审批">【iOS】商用-常规工程审批</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>12</td>
+            <td>0</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>284084</td>
+            <td title="【iOS】用户端-商用常规工程-新建工程单">【iOS】用户端-商用常规工程-新建工程单</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284083</td>
+            <td title="【iOS】管理端-商用常规工程-申请价格">【iOS】管理端-商用常规工程-申请价格</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284082</td>
+            <td title="【iOS】用户端-商用常规工程-重新提交">【iOS】用户端-商用常规工程-重新提交</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284081</td>
+            <td title="【iOS】管理端-商用常规工程-新建工程单、代客申请">【iOS】管理端-商用常规工程-新建工程单、代客申请</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">● 吴炜欣</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共11个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估0h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th></tr></thead>
+                <tbody>
+        <tr>
+            <td>284866</td>
+            <td title="【Android】管理侧-工程备货列表">【Android】管理侧-工程备货列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>284865</td>
+            <td title="【iOS】管理侧-工程备货列表">【iOS】管理侧-工程备货列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>284308</td>
+            <td title="【iOS】商用工程备货-重新提交">【iOS】商用工程备货-重新提交</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>284307</td>
+            <td title="【iOS】商用工程备货-新增/代客申请">【iOS】商用工程备货-新增/代客申请</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>282487</td>
+            <td title="【iOS】资金账户流水明细">【iOS】资金账户流水明细</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>282328</td>
+            <td title="【iOS】履约单详情">【iOS】履约单详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>282319</td>
+            <td title="【iOS】用户端-新增履约单">【iOS】用户端-新增履约单</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>12</td>
+            <td>0</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>283129</td>
+            <td title="【iOS】工程定金单-申请退定金">【iOS】工程定金单-申请退定金</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>285519</td>
+            <td title="【iOS】我的提货任务">【iOS】我的提货任务</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>12</td>
+            <td>0</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>285225</td>
+            <td title="【iOS】分销商管理">【iOS】分销商管理</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>285160</td>
+            <td title="【iOS】注册邀请码">【iOS】注册邀请码</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">● 陈灿茂</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共11个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估0h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th></tr></thead>
+                <tbody>
+        <tr>
+            <td>284925</td>
+            <td title="【Android】数据清洗-无原型">【Android】数据清洗-无原型</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284284</td>
+            <td title="【Android】商用-常规工程审批">【Android】商用-常规工程审批</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-29 +1天</td>
+            <td></td>
+            <td>12</td>
+            <td>0</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>284295</td>
+            <td title="【iOS】商用常规工程-列表">【iOS】商用常规工程-列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>284294</td>
+            <td title="【Android】商用常规工程-列表">【Android】商用常规工程-列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>283597</td>
+            <td title="【Android】分批提货-为分销商提货">【Android】分批提货-为分销商提货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>283594</td>
+            <td title="【Android】分批提货-为我提货">【Android】分批提货-为我提货</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>32</td>
+            <td>0</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>283588</td>
+            <td title="【Android】待支付订单合并支付调整">【Android】待支付订单合并支付调整</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-05-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>284088</td>
+            <td title="【Android】管理端-商用常规工程-新建工程单、代客申请">【Android】管理端-商用常规工程-新建工程单、代客申请</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284087</td>
+            <td title="【Android】管理端-商用常规工程-申请价格">【Android】管理端-商用常规工程-申请价格</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284086</td>
+            <td title="【Android】用户端-商用常规工程-重新提交">【Android】用户端-商用常规工程-重新提交</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284085</td>
+            <td title="【Android】用户端-商用常规工程-新建工程单">【Android】用户端-商用常规工程-新建工程单</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">● 黄宇安</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共10个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估0h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th></tr></thead>
+                <tbody>
+        <tr>
+            <td>283127</td>
+            <td title="【Android】工程定金单-申请退定金">【Android】工程定金单-申请退定金</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-04</td>
+            <td></td>
+            <td>16</td>
+            <td>0</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>282437</td>
+            <td title="【Android】管理端-履约单售后详情">【Android】管理端-履约单售后详情</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-04</td>
+            <td></td>
+            <td>12</td>
+            <td>0</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>282434</td>
+            <td title="【Android】管理端-履约售后单列表">【Android】管理端-履约售后单列表</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+            <td>2026-06-04</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>285184</td>
+            <td title="【Android】经营信息变更审核">【Android】经营信息变更审核</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>285165</td>
+            <td title="【Android】经销商审核-经营信息查看">【Android】经销商审核-经营信息查看</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>285162</td>
+            <td title="【Android】入驻审核-经销商资料审核">【Android】入驻审核-经销商资料审核</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>285161</td>
+            <td title="【Android】注册邀请码">【Android】注册邀请码</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>285150</td>
+            <td title="【Android】购物车商品限制">【Android】购物车商品限制</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>4</td>
+            <td>0</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>284306</td>
+            <td title="【Android】商用工程备货-重新提交">【Android】商用工程备货-重新提交</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>284305</td>
+            <td title="【Android】商用工程备货-新增/代客申请">【Android】商用工程备货-新增/代客申请</td>
+            <td><span class="badge-wait">待处理</span></td>
+            <td>3-中</td>
+            <td></td>
+            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+            <td>2026-06-30</td>
+            <td></td>
+            <td>8</td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
 </div>
-</div>
-<div class="chart-card">
-<h3>工时负载对比 (Top10)</h3>
-<div style="position:relative;height:260px;"><canvas id="hoursChart"></canvas></div>
-</div>
-</div>
-<div class="section-title">按人员明细（点击展开）</div>
-<div class="assignee-grid">
-<div class="assignee-card">
-<div class="assignee-header" onclick="toggleBody(this)">
-<span class="assignee-name" style="color:#ff6f00">● 张其辉</span>
-<span class="arrow open">▶</span>
-</div>
-<div class="assignee-body open">
-<div class="stats-bar">
-<div class="stat-item">任务: <span>15</span></div>
-<div class="stat-item">待处理: <span style="color:#e67e22">4</span></div>
-<div class="stat-item">进行中: <span style="color:#27ae60">11</span></div>
-<div class="stat-item">预估: <span>86h</span></div>
-<div class="stat-item">已消耗: <span>16h</span></div>
-<div class="stat-item">剩余: <span style="color:#ff6f00">106h</span></div>
-</div>
-<table class="task-table">
-<thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
-<tbody><tr><td>283674</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】商用工程退款详情">【Android】商用工程退款详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>283126</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】工程定金单详情">【Android】工程定金单详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>282433</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-售后详情">【Android】管理端-售后详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>282430</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-售后单列表">【Android】管理端-售后单列表</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>282369</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-订单管理详情">【Android】管理端-订单管理详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>282367</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-订单管理列表">【Android】管理端-订单管理列表</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>282343</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】退款售后单详情">【Android】退款售后单详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>2</td><td>0</td><td>2</td></tr>
-<tr><td>282341</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】退款售后单列表">【Android】退款售后单列表</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>2</td><td>0</td><td>2</td></tr>
-<tr><td>282218</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】订单列表-延期发货">【Android】订单列表-延期发货</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>282210</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】订单详情-延期发货">【Android】订单详情-延期发货</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>268953</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【用户侧】审批进度详情-单据信息">【用户侧】审批进度详情-单据信息</td><td class="status-doing">doing</td><td>网批大前端V1.7（0507）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>12</td><td>16</td><td>32</td></tr>
-<tr><td>285520</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】我的提货任务">【Android】我的提货任务</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>12</td><td>0</td><td>12</td></tr>
-<tr><td>285226</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】分销商管理">【Android】分销商管理</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>283760</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】订单详情">【Android】订单详情</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>283759</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】工程定金单提货单详情">【Android】工程定金单提货单详情</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>2</td><td>0</td><td>2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="assignee-card">
-<div class="assignee-header" onclick="toggleBody(this)">
-<span class="assignee-name" style="color:#00838f">● 徐良侦</span>
-<span class="arrow">▶</span>
-</div>
-<div class="assignee-body ">
-<div class="stats-bar">
-<div class="stat-item">任务: <span>15</span></div>
-<div class="stat-item">待处理: <span style="color:#e67e22">13</span></div>
-<div class="stat-item">进行中: <span style="color:#27ae60">2</span></div>
-<div class="stat-item">预估: <span>98h</span></div>
-<div class="stat-item">已消耗: <span>0h</span></div>
-<div class="stat-item">剩余: <span style="color:#00838f">98h</span></div>
-</div>
-<table class="task-table">
-<thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
-<tbody><tr><td>283701</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-退款售后提货单详情">【iOS】管理端-退款售后提货单详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>283693</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-退款售后定金详情">【iOS】管理端-退款售后定金详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>283691</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-订单管理-工程提货戏详情">【iOS】管理端-订单管理-工程提货戏详情</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>283589</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】待支付订单合并支付调整">【iOS】待支付订单合并支付调整</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>283128</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】工程定金单详情">【iOS】工程定金单详情</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>282432</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-售后详情">【iOS】管理端-售后详情</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>282431</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-售后单列表">【iOS】管理端-售后单列表</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>282368</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-订单管理详情">【iOS】管理端-订单管理详情</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>282366</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-订单管理列表">【iOS】管理端-订单管理列表</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>282342</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】退款售后单详情">【iOS】退款售后单详情</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>2</td><td>0</td><td>2</td></tr>
-<tr><td>282340</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】退款售后单列表">【iOS】退款售后单列表</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>2</td><td>0</td><td>2</td></tr>
-<tr><td>282217</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】订单列表-延期发货">【iOS】订单列表-延期发货</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>282208</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】订单详情-延期发货">【iOS】订单详情-延期发货</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-05</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>283761</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】订单详情">【iOS】订单详情</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>1</td><td>0</td><td>1</td></tr>
-<tr><td>283758</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】工程定金单提货单详情">【iOS】工程定金单提货单详情</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>2</td><td>0</td><td>2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="assignee-card">
-<div class="assignee-header" onclick="toggleBody(this)">
-<span class="assignee-name" style="color:#558b2f">● 张春杰</span>
-<span class="arrow">▶</span>
-</div>
-<div class="assignee-body ">
-<div class="stats-bar">
-<div class="stat-item">任务: <span>12</span></div>
-<div class="stat-item">待处理: <span style="color:#e67e22">10</span></div>
-<div class="stat-item">进行中: <span style="color:#27ae60">2</span></div>
-<div class="stat-item">预估: <span>104h</span></div>
-<div class="stat-item">已消耗: <span>0h</span></div>
-<div class="stat-item">剩余: <span style="color:#558b2f">104h</span></div>
-</div>
-<table class="task-table">
-<thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
-<tbody><tr><td>283596</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】分批提货-为分销商提货">【iOS】分批提货-为分销商提货</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>283593</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】分批提货-为我提货">【iOS】分批提货-为我提货</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>32</td><td>0</td><td>32</td></tr>
-<tr><td>285185</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】经营信息变更审核">【iOS】经营信息变更审核</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>285164</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】经销商审核-经营信息查看">【iOS】经销商审核-经营信息查看</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>285163</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】入驻审核-经销商资料审核">【iOS】入驻审核-经销商资料审核</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>285151</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】购物车商品限制">【iOS】购物车商品限制</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284926</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】数据清洗-无原型">【iOS】数据清洗-无原型</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284283</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】商用-常规工程审批">【iOS】商用-常规工程审批</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>12</td><td>0</td><td>12</td></tr>
-<tr><td>284084</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】用户端-商用常规工程-新建工程单">【iOS】用户端-商用常规工程-新建工程单</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284083</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-商用常规工程-申请价格">【iOS】管理端-商用常规工程-申请价格</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284082</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】用户端-商用常规工程-重新提交">【iOS】用户端-商用常规工程-重新提交</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284081</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理端-商用常规工程-新建工程单、代客申请">【iOS】管理端-商用常规工程-新建工程单、代客申请</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="assignee-card">
-<div class="assignee-header" onclick="toggleBody(this)">
-<span class="assignee-name" style="color:#6a1b9a">● 吴炜欣</span>
-<span class="arrow">▶</span>
-</div>
-<div class="assignee-body ">
-<div class="stats-bar">
-<div class="stat-item">任务: <span>11</span></div>
-<div class="stat-item">待处理: <span style="color:#e67e22">9</span></div>
-<div class="stat-item">进行中: <span style="color:#27ae60">0</span></div>
-<div class="stat-item">预估: <span>96h</span></div>
-<div class="stat-item">已消耗: <span>0h</span></div>
-<div class="stat-item">剩余: <span style="color:#6a1b9a">96h</span></div>
-</div>
-<table class="task-table">
-<thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
-<tbody><tr><td>284866</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理侧-工程备货列表">【Android】管理侧-工程备货列表</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>284865</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】管理侧-工程备货列表">【iOS】管理侧-工程备货列表</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>284308</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】商用工程备货-重新提交">【iOS】商用工程备货-重新提交</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>284307</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】商用工程备货-新增/代客申请">【iOS】商用工程备货-新增/代客申请</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>282487</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】资金账户流水明细">【iOS】资金账户流水明细</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>282328</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】履约单详情">【iOS】履约单详情</td><td class="status-changed">changed</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>282319</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】用户端-新增履约单">【iOS】用户端-新增履约单</td><td class="status-changed">changed</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>12</td><td>0</td><td>12</td></tr>
-<tr><td>283129</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】工程定金单-申请退定金">【iOS】工程定金单-申请退定金</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>285519</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】我的提货任务">【iOS】我的提货任务</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>12</td><td>0</td><td>12</td></tr>
-<tr><td>285225</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】分销商管理">【iOS】分销商管理</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>285160</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】注册邀请码">【iOS】注册邀请码</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="assignee-card">
-<div class="assignee-header" onclick="toggleBody(this)">
-<span class="assignee-name" style="color:#bf360c">● 陈灿茂</span>
-<span class="arrow">▶</span>
-</div>
-<div class="assignee-body ">
-<div class="stats-bar">
-<div class="stat-item">任务: <span>11</span></div>
-<div class="stat-item">待处理: <span style="color:#e67e22">11</span></div>
-<div class="stat-item">进行中: <span style="color:#27ae60">0</span></div>
-<div class="stat-item">预估: <span>104h</span></div>
-<div class="stat-item">已消耗: <span>0h</span></div>
-<div class="stat-item">剩余: <span style="color:#bf360c">104h</span></div>
-</div>
-<table class="task-table">
-<thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
-<tbody><tr><td>284925</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】数据清洗-无原型">【Android】数据清洗-无原型</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284284</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】商用-常规工程审批">【Android】商用-常规工程审批</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-29<span class="overdue"> +1天</span></td><td class="pri-3">3</td><td>12</td><td>0</td><td>12</td></tr>
-<tr><td>284295</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【iOS】商用常规工程-列表">【iOS】商用常规工程-列表</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>284294</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】商用常规工程-列表">【Android】商用常规工程-列表</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>283597</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】分批提货-为分销商提货">【Android】分批提货-为分销商提货</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>283594</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】分批提货-为我提货">【Android】分批提货-为我提货</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>32</td><td>0</td><td>32</td></tr>
-<tr><td>283588</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】待支付订单合并支付调整">【Android】待支付订单合并支付调整</td><td class="status-wait">wait</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-05-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>284088</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-商用常规工程-新建工程单、代客申请">【Android】管理端-商用常规工程-新建工程单、代客申请</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284087</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-商用常规工程-申请价格">【Android】管理端-商用常规工程-申请价格</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284086</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】用户端-商用常规工程-重新提交">【Android】用户端-商用常规工程-重新提交</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284085</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】用户端-商用常规工程-新建工程单">【Android】用户端-商用常规工程-新建工程单</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="assignee-card">
-<div class="assignee-header" onclick="toggleBody(this)">
-<span class="assignee-name" style="color:#ff6f00">● 黄宇安</span>
-<span class="arrow">▶</span>
-</div>
-<div class="assignee-body ">
-<div class="stats-bar">
-<div class="stat-item">任务: <span>10</span></div>
-<div class="stat-item">待处理: <span style="color:#e67e22">7</span></div>
-<div class="stat-item">进行中: <span style="color:#27ae60">3</span></div>
-<div class="stat-item">预估: <span>80h</span></div>
-<div class="stat-item">已消耗: <span>0h</span></div>
-<div class="stat-item">剩余: <span style="color:#ff6f00">80h</span></div>
-</div>
-<table class="task-table">
-<thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>所属执行</th><th>截止日期</th><th>P</th><th>预估</th><th>已消耗</th><th>剩余</th></tr></thead>
-<tbody><tr><td>283127</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】工程定金单-申请退定金">【Android】工程定金单-申请退定金</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-04</td><td class="pri-3">3</td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>282437</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-履约单售后详情">【Android】管理端-履约单售后详情</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-04</td><td class="pri-3">3</td><td>12</td><td>0</td><td>12</td></tr>
-<tr><td>282434</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】管理端-履约售后单列表">【Android】管理端-履约售后单列表</td><td class="status-doing">doing</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-04</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>285184</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】经营信息变更审核">【Android】经营信息变更审核</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>285165</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】经销商审核-经营信息查看">【Android】经销商审核-经营信息查看</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>285162</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】入驻审核-经销商资料审核">【Android】入驻审核-经销商资料审核</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>285161</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】注册邀请码">【Android】注册邀请码</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>285150</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】购物车商品限制">【Android】购物车商品限制</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>284306</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】商用工程备货-重新提交">【Android】商用工程备货-重新提交</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>284305</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="【Android】商用工程备货-新增/代客申请">【Android】商用工程备货-新增/代客申请</td><td class="status-wait">wait</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td class="pri-3">3</td><td>8</td><td>0</td><td>8</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-05-30</div>
 <script>
-function toggleBody(header){header.querySelector(".arrow").classList.toggle("open");header.nextElementSibling.classList.toggle("open");}
-const chartColors=["#ff6f00", "#00838f", "#558b2f", "#6a1b9a", "#bf360c"];
-const makeColors=n=>Array.from({length:n},(_,i)=>chartColors[i%chartColors.length]);
-new Chart(document.getElementById("assigneeChart"),{type:"bar",data:{labels:["\u5f20\u5176\u8f89", "\u5f90\u826f\u4fa6", "\u5f20\u6625\u6770", "\u5434\u709c\u6b23", "\u9648\u707f\u8302", "\u9ec4\u5b87\u5b89"],datasets:[{label:"任务数",data:[15, 15, 12, 11, 11, 10],backgroundColor:makeColors(6),borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:"#888"},grid:{color:"#eee"}},x:{ticks:{color:"#888",maxRotation:45},grid:{display:false}}}}});
-new Chart(document.getElementById("statusChart"),{type:"doughnut",data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d", "\u5176\u4ed6"],datasets:[{data:[54, 18, 2],backgroundColor:["#e67e22", "#27ae60", "#95a5a6"],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"right",labels:{color:"#666",padding:10}}}}});
-new Chart(document.getElementById("priChart"),{type:"doughnut",data:{labels:["P3"],datasets:[{data:[74],backgroundColor:["#e74c3c","#e67e22","#f39c12","#27ae60"],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"right",labels:{color:"#666",padding:10}}}}});
-new Chart(document.getElementById("hoursChart"),{type:"bar",data:{labels:["\u5f20\u5176\u8f89", "\u5f90\u826f\u4fa6", "\u5f20\u6625\u6770", "\u5434\u709c\u6b23", "\u9648\u707f\u8302", "\u9ec4\u5b87\u5b89"],datasets:[{label:"预估(h)",data:[86, 98, 104, 96, 104, 80],backgroundColor:"rgba(102,126,234,0.7)",borderRadius:3},{label:"已消耗(h)",data:[16, 0, 0, 0, 0, 0],backgroundColor:"rgba(240,147,251,0.7)",borderRadius:3},{label:"剩余(h)",data:[106, 98, 104, 96, 104, 80],backgroundColor:"rgba(67,233,123,0.7)",borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:"#666"}}},scales:{y:{ticks:{color:"#888"},grid:{color:"#eee"}},x:{ticks:{color:"#888",maxRotation:45},grid:{display:false}}}}});
+new Chart(document.getElementById('barChart'), {type:'bar',data:{labels:["\u25cf \u5f20\u5176\u8f89", "\u25cf \u5f90\u826f\u4fa6", "\u25cf \u5f20\u6625\u6770", "\u25cf \u5434\u709c\u6b23", "\u25cf \u9648\u707f\u8302", "\u25cf \u9ec4\u5b87\u5b89"],datasets:[{label:'未完成任务数',data:[15, 15, 12, 11, 11, 10],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'), {type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[0, 0],backgroundColor:['#f5576c','#43e97b']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'), {type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[74],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
