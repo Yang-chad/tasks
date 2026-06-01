@@ -45,6 +45,9 @@ tr:hover { background: #fafbfc; }
 .badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
 .badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
 .badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
 .back-link { text-align: center; margin-bottom: 16px; }
 .back-link a {
     color: #667eea; text-decoration: none; font-size: 13px;
@@ -66,7 +69,7 @@ tr:hover { background: #fafbfc; }
   <div class="card card-total"><div class="num">48</div><div class="label">任务总数</div></div>
   <div class="card card-wait"><div class="num">27</div><div class="label">待处理</div></div>
   <div class="card card-doing"><div class="num">21</div><div class="label">进行中</div></div>
-  <div class="card card-overdue"><div class="num">28</div><div class="label">延期</div></div>
+  <div class="card card-overdue"><div class="num">27</div><div class="label">延期</div></div>
   <div class="card card-people"><div class="num">4</div><div class="label">负责人</div></div>
 </div>
 <div class="charts">
@@ -99,7 +102,7 @@ tr:hover { background: #fafbfc; }
                     </tr>
                 </thead>
                 <tbody>
-        <tr>
+        <tr class="row-overdue">
             <td>268984</td>
             <td title="【产品】验收">【产品】验收</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -112,7 +115,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>2</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268983</td>
             <td title="【产品】研发期间沟通">【产品】研发期间沟通</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -125,7 +128,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>10</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268982</td>
             <td title="【产品】需求评审">【产品】需求评审</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -138,7 +141,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>4</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268981</td>
             <td title="【产品】业务评审">【产品】业务评审</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -151,7 +154,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>4</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268980</td>
             <td title="【产品】原型设计">【产品】原型设计</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -164,7 +167,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>10</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268979</td>
             <td title="【产品】调研">【产品】调研</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -177,7 +180,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>2</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268978</td>
             <td title="【产品】验收">【产品】验收</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -190,7 +193,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>2</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268977</td>
             <td title="【产品】研发期间沟通">【产品】研发期间沟通</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -203,7 +206,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>10</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268976</td>
             <td title="【产品】需求评审">【产品】需求评审</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -216,7 +219,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>3</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268975</td>
             <td title="【产品】业务评审">【产品】业务评审</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -229,7 +232,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>3</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268974</td>
             <td title="【产品】原型设计">【产品】原型设计</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -242,7 +245,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>17</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268973</td>
             <td title="【产品】调研">【产品】调研</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -255,7 +258,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>8</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268969</td>
             <td title="【产品】验收">【产品】验收</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -268,7 +271,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>2</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268968</td>
             <td title="【产品】研发期间沟通">【产品】研发期间沟通</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -281,7 +284,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>15</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268967</td>
             <td title="【产品】需求评审">【产品】需求评审</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -294,7 +297,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>4</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268966</td>
             <td title="【产品】业务评审">【产品】业务评审</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -307,7 +310,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>4</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268965</td>
             <td title="【产品】原型设计">【产品】原型设计</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -320,7 +323,7 @@ tr:hover { background: #fafbfc; }
             <td>0</td>
             <td>15</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>268964</td>
             <td title="【产品】调研">【产品】调研</td>
             <td><span class="badge-wait">待处理</span></td>
@@ -344,7 +347,7 @@ tr:hover { background: #fafbfc; }
                 <span class="stat-badge">共12个</span>
                 <span class="stat-badge stat-wait">待处理0</span>
                 <span class="stat-badge stat-doing">进行中12</span>
-                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-overdue">延期0</span>
                 <span class="stat-badge stat-h">预估273h</span>
                 <span class="stat-badge stat-h">消耗0h</span>
                 <span class="stat-badge stat-h">剩余273h</span>
@@ -367,8 +370,8 @@ tr:hover { background: #fafbfc; }
             <td>3-中</td>
             <td>ab2_request_des</td>
             <td>网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
-            <td>2026-05-29</td>
-            <td>+3天</td>
+            <td>2026-06-03</td>
+            <td></td>
             <td>8</td>
             <td>0</td>
             <td>8</td>
@@ -543,7 +546,7 @@ tr:hover { background: #fafbfc; }
                     </tr>
                 </thead>
                 <tbody>
-        <tr>
+        <tr class="row-overdue">
             <td>282352</td>
             <td title="【产品】商用财务相关需求调研及研讨">【产品】商用财务相关需求调研及研讨</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -556,7 +559,7 @@ tr:hover { background: #fafbfc; }
             <td>10</td>
             <td>8</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>285871</td>
             <td title="【产品】总部政策通补返利政策+方案+订单打标及类型区分">【产品】总部政策通补返利政策+方案+订单打标及类型区分</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -569,7 +572,7 @@ tr:hover { background: #fafbfc; }
             <td>6</td>
             <td>4</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>282348</td>
             <td title="【产品】家用延期发货需求的业务调研及初步产品方案">【产品】家用延期发货需求的业务调研及初步产品方案</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -582,7 +585,7 @@ tr:hover { background: #fafbfc; }
             <td>16</td>
             <td>14</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>279094</td>
             <td title="【产品】商品生产状态数据同步至中台，业务需求调研及技术方案确认">【产品】商品生产状态数据同步至中台，业务需求调研及技术方案确认</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -595,7 +598,7 @@ tr:hover { background: #fafbfc; }
             <td>4</td>
             <td>2</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>275859</td>
             <td title="【产品】【适用销司/销售公司/所属销司】筛选控件及字段名称优化">【产品】【适用销司/销售公司/所属销司】筛选控件及字段名称优化</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -608,7 +611,7 @@ tr:hover { background: #fafbfc; }
             <td>8</td>
             <td>7</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>270633</td>
             <td title="【产品】管理侧待办事项增加数量及调整刷新机制的产品设计">【产品】管理侧待办事项增加数量及调整刷新机制的产品设计</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -621,7 +624,7 @@ tr:hover { background: #fafbfc; }
             <td>12</td>
             <td>8</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>270295</td>
             <td title="【产品】系统从当前页签新打开的页签，需要在当前页签之后">【产品】系统从当前页签新打开的页签，需要在当前页签之后</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -634,7 +637,7 @@ tr:hover { background: #fafbfc; }
             <td>4</td>
             <td>6</td>
         </tr>
-        <tr>
+        <tr class="row-overdue">
             <td>270294</td>
             <td title="【产品】网批系统各模块导出能力对接下载中心，同时文件导出时加上打开密码">【产品】网批系统各模块导出能力对接下载中心，同时文件导出时加上打开密码</td>
             <td><span class="badge-doing">进行中</span></td>
@@ -687,7 +690,7 @@ tr:hover { background: #fafbfc; }
                     </tr>
                 </thead>
                 <tbody>
-        <tr>
+        <tr class="row-overdue">
             <td>271907</td>
             <td title="管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑">管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑</td>
             <td><span class="badge-wait">待处理</span></td>
