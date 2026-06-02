@@ -62,14 +62,14 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="header">
   <h1>未完成移动端开发任务明细</h1>
-  <p>统计日期: 2026-06-02 | 总计: 70 个未完成任务 | 涉及 6 人 | 平台: 网批2.0</p>
+  <p>统计日期: 2026-06-02 | 总计: 69 个未完成任务 | 涉及 6 人 | 平台: 网批2.0</p>
 </div>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="cards">
-  <div class="card card-total"><div class="num">70</div><div class="label">任务总数</div></div>
-  <div class="card card-wait"><div class="num">43</div><div class="label">待处理</div></div>
+  <div class="card card-total"><div class="num">69</div><div class="label">任务总数</div></div>
+  <div class="card card-wait"><div class="num">42</div><div class="label">待处理</div></div>
   <div class="card card-doing"><div class="num">27</div><div class="label">进行中</div></div>
-  <div class="card card-overdue"><div class="num">13</div><div class="label">延期</div></div>
+  <div class="card card-overdue"><div class="num">12</div><div class="label">延期</div></div>
   <div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
 </div>
 <div class="charts">
@@ -880,13 +880,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
         <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
             <span class="assignee-name">吴炜欣</span>
             <span class="assignee-stats">
-                <span class="stat-badge">共9个</span>
-                <span class="stat-badge stat-wait">待处理9</span>
+                <span class="stat-badge">共8个</span>
+                <span class="stat-badge stat-wait">待处理8</span>
                 <span class="stat-badge stat-doing">进行中0</span>
-                <span class="stat-badge stat-overdue">延期6</span>
-                <span class="stat-badge stat-h">预估80h</span>
+                <span class="stat-badge stat-overdue">延期5</span>
+                <span class="stat-badge stat-h">预估72h</span>
                 <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余80h</span>
+                <span class="stat-badge stat-h">剩余72h</span>
             </span>
         </summary>
         <div class="table-wrapper">
@@ -899,19 +899,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
                     </tr>
                 </thead>
                 <tbody>
-        <tr class="row-overdue">
-            <td>282487</td>
-            <td title="【iOS】资金账户流水明细">【iOS】资金账户流水明细</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev6_mobile</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-05-29</td>
-            <td>+4天</td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
         <tr class="row-overdue">
             <td>284866</td>
             <td title="【Android】管理侧-工程备货列表">【Android】管理侧-工程备货列表</td>
@@ -1161,7 +1148,7 @@ new Chart(document.getElementById('barChart'), {
         labels: ["\u5f20\u5176\u8f89", "\u5f90\u826f\u4fa6", "\u5f20\u6625\u6770", "\u9648\u707f\u8302", "\u5434\u709c\u6b23", "\u9ec4\u5b87\u5b89"],
         datasets: [{
             label: '未完成任务数',
-            data: [15, 15, 12, 11, 9, 8],
+            data: [15, 15, 12, 11, 8, 8],
             backgroundColor: ["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726"],
             borderRadius: 6,
         }]
@@ -1179,7 +1166,7 @@ new Chart(document.getElementById('statusPie'), {
     data: {
         labels: ["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],
         datasets: [{
-            data: [43, 27],
+            data: [42, 27],
             backgroundColor: ['#f5576c', '#43e97b'],
         }]
     },
@@ -1195,7 +1182,7 @@ new Chart(document.getElementById('priPie'), {
     data: {
         labels: ["3-\u4e2d"],
         datasets: [{
-            data: [70],
+            data: [69],
             backgroundColor: ["#4facfe"],
         }]
     },
