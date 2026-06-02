@@ -9,7 +9,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #f0f2f5; font-family: 'Microsoft YaHei', -apple-system, sans-serif; color: #333; }
 
-  /* ===== 头部 ===== */
   .header {
     background: linear-gradient(135deg, #1a73e8 0%, #4a9af5 50%, #7ec8f7 100%);
     color: #fff; padding: 28px 32px 22px;
@@ -17,14 +16,13 @@
   .header h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
   .header .subtitle { font-size: 13px; opacity: .85; margin-top: 6px; }
 
-  /* ===== 汇总卡片行 ===== */
   .summary-row {
     display: flex; gap: 16px; flex-wrap: wrap;
     padding: 20px 32px 0;
   }
   .sum-card {
     background: #fff; border-radius: 12px; padding: 18px 24px;
-    flex: 1 1 150px; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    flex: 1 1 140px; box-shadow: 0 2px 8px rgba(0,0,0,.06);
     text-align: center;
   }
   .sum-card .val { font-size: 32px; font-weight: 700; }
@@ -34,7 +32,6 @@
   .val-red   { color: #ea4335; }
   .val-orange{ color: #e37400; }
 
-  /* ===== 平台分区 ===== */
   .platform-section { padding: 20px 32px 8px; }
   .platform-title {
     display: flex; align-items: center; gap: 10px;
@@ -42,7 +39,6 @@
   }
   .platform-dot { width: 12px; height: 12px; border-radius: 50%; }
 
-  /* ===== 迭代卡片网格 ===== */
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -64,14 +60,12 @@
   .card-name { font-size: 14px; font-weight: 600; line-height: 1.4; }
   .card-date { font-size: 12px; color: #888; margin-top: 4px; }
 
-  /* 进度条 */
   .progress-wrap { padding: 0 18px 4px; }
   .progress-bar-bg {
     height: 6px; background: #e8eaed; border-radius: 3px; overflow: hidden; margin-top: 2px;
   }
   .progress-bar-fill { height: 100%; border-radius: 3px; transition: width .3s; }
 
-  /* 统计徽章行 */
   .card-stats {
     display: flex; gap: 8px; flex-wrap: wrap;
     padding: 10px 18px 14px;
@@ -87,14 +81,12 @@
   .badge-red   { background: #fce8e6; color: #c62828; }
   .badge-orange{ background: #fef3e2; color: #c56400; }
 
-  /* 已截止警告 */
   .deadline-warn {
     background: #fff5f5; color: #c62828;
     font-size: 11px; padding: 4px 18px; border-top: 1px solid #fecdd3;
     display: flex; align-items: center; gap: 5px;
   }
 
-  /* ===== 图表区域 ===== */
   .charts-row {
     display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
     padding: 20px 32px 0;
@@ -103,13 +95,11 @@
   .chart-title { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: #444; }
   .chart-wrap { height: 220px; }
 
-  /* ===== 页脚 ===== */
   .footer {
     text-align: center; color: #999; font-size: 12px;
     padding: 24px 32px 32px;
   }
 
-  /* ===== 响应式 ===== */
   @media (max-width: 640px) {
     .summary-row { padding: 16px; }
     .platform-section { padding: 16px; }
@@ -121,21 +111,21 @@
 
 <div class="header">
   <h1>📊 迭代执行进展总览</h1>
-  <div class="subtitle">生成时间：2026-06-02 &nbsp;|&nbsp; 共 14 个进行中迭代 &nbsp;|&nbsp; 三平台（网批902 / 集采1244 / 分销1245）</div>
+  <div class="subtitle">生成时间：2026-06-02 &nbsp;|&nbsp; 8 个活跃版本迭代 &nbsp;|&nbsp; 三平台（网批902 / 集采1244 / 分销1245）</div>
 </div>
 
 <!-- 汇总卡片 -->
 <div class="summary-row">
   <div class="sum-card">
-    <div class="val val-blue">14</div>
-    <div class="lbl">进行中迭代</div>
+    <div class="val val-blue">8</div>
+    <div class="lbl">活跃迭代</div>
   </div>
   <div class="sum-card">
-    <div class="val val-blue">2063</div>
+    <div class="val val-blue">1,598</div>
     <div class="lbl">总任务数</div>
   </div>
   <div class="sum-card">
-    <div class="val val-green">2078</div>
+    <div class="val val-green">1,112</div>
     <div class="lbl">已完成任务</div>
   </div>
   <div class="sum-card">
@@ -143,7 +133,7 @@
     <div class="lbl">延期任务</div>
   </div>
   <div class="sum-card">
-    <div class="val val-orange">104</div>
+    <div class="val val-orange">21</div>
     <div class="lbl">活跃Bug</div>
   </div>
 </div>
@@ -151,7 +141,7 @@
 <!-- 图表区域 -->
 <div class="charts-row">
   <div class="chart-card">
-    <div class="chart-title">各迭代进度对比（主要版本）</div>
+    <div class="chart-title">各迭代进度对比</div>
     <div class="chart-wrap"><canvas id="progressChart"></canvas></div>
   </div>
   <div class="chart-card">
@@ -165,15 +155,14 @@
   <div class="platform-title">
     <div class="platform-dot" style="background:#1a73e8"></div>
     网批902
-    <span style="font-size:13px;font-weight:400;color:#888">（8个迭代）</span>
+    <span style="font-size:13px;font-weight:400;color:#888">（6个活跃迭代）</span>
   </div>
   <div class="card-grid">
 
-    <!-- 4561 V2.79.0 -->
     <div class="iter-card">
       <a href="迭代4561_执行进展报告.html">
         <div class="card-top" style="border-left-color:#1a73e8">
-          <div class="card-name">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</div>
+          <div class="card-name">网批2.0_V2.79.0（0630/dev11.5.1）</div>
           <div class="card-date">📅 2026-05-13 → 2026-07-03</div>
         </div>
         <div class="progress-wrap">
@@ -190,15 +179,14 @@
           <span class="badge badge-red">延期 31</span>
           <span class="badge badge-green">Bug 0</span>
         </div>
-        <div class="deadline-warn">⚠️ 截止日：2026-07-03 &nbsp;|&nbsp; 剩余 31 天</div>
+        <div class="deadline-warn">⚠️ 截止 2026-07-03 · 剩余 31 天</div>
       </a>
     </div>
 
-    <!-- 4541 V2.78.0 -->
     <div class="iter-card">
       <a href="迭代4541_执行进展报告.html">
         <div class="card-top" style="border-left-color:#1a73e8">
-          <div class="card-name">网批2.0_V2.78.0（0615/dev11.5）【2026】</div>
+          <div class="card-name">网批2.0_V2.78.0（0615/dev11.5）</div>
           <div class="card-date">📅 2026-05-11 → 2026-06-18</div>
         </div>
         <div class="progress-wrap">
@@ -215,15 +203,14 @@
           <span class="badge badge-red">延期 19</span>
           <span class="badge badge-green">Bug 0</span>
         </div>
-        <div class="deadline-warn">⚠️ 截止日：2026-06-18 &nbsp;|&nbsp; 剩余 16 天</div>
+        <div class="deadline-warn">⚠️ 截止 2026-06-18 · 剩余 16 天</div>
       </a>
     </div>
 
-    <!-- 4540 V2.77.0 -->
     <div class="iter-card">
       <a href="迭代4540_执行进展报告.html">
         <div class="card-top" style="border-left-color:#f9ab00">
-          <div class="card-name">网批2.0_V2.77.0（0602/dev11.4）【2026】</div>
+          <div class="card-name">网批2.0_V2.77.0（0602/dev11.4）</div>
           <div class="card-date">📅 2026-05-11 → 2026-06-05</div>
         </div>
         <div class="progress-wrap">
@@ -240,16 +227,15 @@
           <span class="badge badge-red">延期 3</span>
           <span class="badge badge-orange">Bug 3</span>
         </div>
-        <div class="deadline-warn">⚠️ 截止日：2026-06-05 &nbsp;|&nbsp; 剩余 3 天</div>
+        <div class="deadline-warn">⚠️ 截止 2026-06-05 · 剩余 3 天</div>
       </a>
     </div>
 
-    <!-- 4478 V2.75.0 -->
     <div class="iter-card">
       <a href="迭代4478_执行进展报告.html">
         <div class="card-top" style="border-left-color:#ea4335">
-          <div class="card-name">网批2.0_V2.75.0（0514/dev11.3）【2026】</div>
-          <div class="card-date">📅 2026-04-14 → 2026-06-02 &nbsp;<span style="color:#ea4335;font-size:11px">⚠️已到截止</span></div>
+          <div class="card-name">网批2.0_V2.75.0（0514/dev11.3）</div>
+          <div class="card-date">📅 2026-04-14 → 2026-06-02 <span style="color:#ea4335;font-size:11px">⚠️已截止</span></div>
         </div>
         <div class="progress-wrap">
           <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px">
@@ -265,15 +251,14 @@
           <span class="badge badge-red">延期 21</span>
           <span class="badge badge-red">Bug 18</span>
         </div>
-        <div class="deadline-warn" style="background:#fce8e6;color:#c62828;border-top-color:#f5c6cb">🚨 截止日：2026-06-02 &nbsp;|&nbsp; 今日截止！</div>
+        <div class="deadline-warn" style="background:#fce8e6;color:#c62828;border-top-color:#f5c6cb">🚨 今日截止！延期21 + Bug18</div>
       </a>
     </div>
 
-    <!-- 4390 前台V1.7 -->
     <div class="iter-card">
       <a href="迭代4390_执行进展报告.html">
         <div class="card-top" style="border-left-color:#34a853">
-          <div class="card-name">网批大前端V1.7（0507）【2026】</div>
+          <div class="card-name">网批大前端V1.7（0507）</div>
           <div class="card-date">📅 2026-03-03 → 2026-05-07</div>
         </div>
         <div class="progress-wrap">
@@ -286,17 +271,15 @@
           <span class="badge badge-gray">总任务 30</span>
           <span class="badge badge-green">完成 28</span>
           <span class="badge badge-blue">进行中 2</span>
-          <span class="badge badge-gray">延期 0</span>
-          <span class="badge badge-green">Bug 0</span>
+          <span class="badge badge-green">延期 0 · Bug 0</span>
         </div>
       </a>
     </div>
 
-    <!-- 4503 AI需求 -->
     <div class="iter-card">
       <a href="迭代4503_执行进展报告.html">
         <div class="card-top" style="border-left-color:#9c27b0">
-          <div class="card-name">网批AI需求研究开发【2026】</div>
+          <div class="card-name">网批AI需求研究开发</div>
           <div class="card-date">📅 2026-04-20 → 2026-12-31</div>
         </div>
         <div class="progress-wrap">
@@ -309,50 +292,7 @@
           <span class="badge badge-gray">总任务 16</span>
           <span class="badge badge-green">完成 12</span>
           <span class="badge badge-blue">进行中 4</span>
-          <span class="badge badge-green">延期 0</span>
-          <span class="badge badge-green">Bug 0</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- 3394 研发需求池 -->
-    <div class="iter-card">
-      <a href="迭代3394_执行进展报告.html">
-        <div class="card-top" style="border-left-color:#607d8b">
-          <div class="card-name">网批研发需求池</div>
-          <div class="card-date">📅 2024-11-25 → 2028-01-07 &nbsp;（长期池）</div>
-        </div>
-        <div class="progress-wrap">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px">
-            <span>系统进度</span><span style="font-weight:600;color:#607d8b">100%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%;background:#607d8b"></div></div>
-        </div>
-        <div class="card-stats">
-          <span class="badge badge-gray">总任务 560</span>
-          <span class="badge badge-green">完成 560</span>
-          <span class="badge badge-green">Bug 0</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- 1132 系统安全 -->
-    <div class="iter-card">
-      <a href="迭代1132_执行进展报告.html">
-        <div class="card-top" style="border-left-color:#607d8b">
-          <div class="card-name">网批2.0_系统安全问题跟踪</div>
-          <div class="card-date">📅 2023-07-06 → 2028-12-31 &nbsp;（长期跟踪）</div>
-        </div>
-        <div class="progress-wrap">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px">
-            <span>系统进度</span><span style="font-weight:600;color:#607d8b">100%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%;background:#607d8b"></div></div>
-        </div>
-        <div class="card-stats">
-          <span class="badge badge-gray">总任务 284</span>
-          <span class="badge badge-green">完成 284</span>
-          <span class="badge badge-red">活跃Bug 30</span>
+          <span class="badge badge-green">延期 0 · Bug 0</span>
         </div>
       </a>
     </div>
@@ -365,15 +305,14 @@
   <div class="platform-title">
     <div class="platform-dot" style="background:#0f9d58"></div>
     集采1244
-    <span style="font-size:13px;font-weight:400;color:#888">（3个迭代）</span>
+    <span style="font-size:13px;font-weight:400;color:#888">（1个活跃迭代）</span>
   </div>
   <div class="card-grid">
 
-    <!-- 4546 V1.29.0 -->
     <div class="iter-card">
       <a href="迭代4546_执行进展报告.html">
         <div class="card-top" style="border-left-color:#0f9d58">
-          <div class="card-name">集采平台_V1.29.0（0530/集采dev3.9）【2026】</div>
+          <div class="card-name">集采平台_V1.29.0（0530/dev3.9）</div>
           <div class="card-date">📅 2026-05-11 → 2026-06-04</div>
         </div>
         <div class="progress-wrap">
@@ -387,51 +326,9 @@
           <span class="badge badge-green">完成 12</span>
           <span class="badge badge-blue">进行中 2</span>
           <span class="badge badge-gray">待处理 4</span>
-          <span class="badge badge-green">延期 0</span>
-          <span class="badge badge-green">Bug 0</span>
+          <span class="badge badge-green">延期 0 · Bug 0</span>
         </div>
-        <div class="deadline-warn">⚠️ 截止日：2026-06-04 &nbsp;|&nbsp; 剩余 2 天</div>
-      </a>
-    </div>
-
-    <!-- 3405 集采需求池 -->
-    <div class="iter-card">
-      <a href="迭代3405_执行进展报告.html">
-        <div class="card-top" style="border-left-color:#607d8b">
-          <div class="card-name">集采研发需求池</div>
-          <div class="card-date">📅 2024-11-25 → 2029-02-01 &nbsp;（长期池）</div>
-        </div>
-        <div class="progress-wrap">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px">
-            <span>系统进度</span><span style="font-weight:600;color:#607d8b">100%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%;background:#607d8b"></div></div>
-        </div>
-        <div class="card-stats">
-          <span class="badge badge-gray">总任务 26</span>
-          <span class="badge badge-green">完成 26</span>
-          <span class="badge badge-green">Bug 0</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- 1690 集采系统安全 -->
-    <div class="iter-card">
-      <a href="迭代1690_执行进展报告.html">
-        <div class="card-top" style="border-left-color:#607d8b">
-          <div class="card-name">集采_系统安全问题跟踪</div>
-          <div class="card-date">📅 2024-05-09 → 2028-05-31 &nbsp;（长期跟踪）</div>
-        </div>
-        <div class="progress-wrap">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px">
-            <span>系统进度</span><span style="font-weight:600;color:#607d8b">0%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%;background:#607d8b"></div></div>
-        </div>
-        <div class="card-stats">
-          <span class="badge badge-gray">总任务 0</span>
-          <span class="badge badge-red">活跃Bug 22</span>
-        </div>
+        <div class="deadline-warn">⚠️ 截止 2026-06-04 · 剩余 2 天</div>
       </a>
     </div>
 
@@ -443,15 +340,14 @@
   <div class="platform-title">
     <div class="platform-dot" style="background:#e37400"></div>
     分销1245
-    <span style="font-size:13px;font-weight:400;color:#888">（3个迭代）</span>
+    <span style="font-size:13px;font-weight:400;color:#888">（1个活跃迭代）</span>
   </div>
   <div class="card-grid">
 
-    <!-- 4566 V1.37.0 -->
     <div class="iter-card">
       <a href="迭代4566_执行进展报告.html">
         <div class="card-top" style="border-left-color:#e37400">
-          <div class="card-name">分销平台_V1.37.0（0530分销/dev4.3）【2026】</div>
+          <div class="card-name">分销平台_V1.37.0（0530/dev4.3）</div>
           <div class="card-date">📅 2026-05-15 → 2026-06-03</div>
         </div>
         <div class="progress-wrap">
@@ -465,52 +361,9 @@
           <span class="badge badge-green">完成 12</span>
           <span class="badge badge-blue">进行中 1</span>
           <span class="badge badge-gray">待处理 2</span>
-          <span class="badge badge-green">延期 0</span>
-          <span class="badge badge-green">Bug 0</span>
+          <span class="badge badge-green">延期 0 · Bug 0</span>
         </div>
-        <div class="deadline-warn">⚠️ 截止日：2026-06-03 &nbsp;|&nbsp; 剩余 1 天</div>
-      </a>
-    </div>
-
-    <!-- 3404 分销需求池 -->
-    <div class="iter-card">
-      <a href="迭代3404_执行进展报告.html">
-        <div class="card-top" style="border-left-color:#607d8b">
-          <div class="card-name">分销研发需求池</div>
-          <div class="card-date">📅 2024-11-25 → 2029-01-03 &nbsp;（长期池）</div>
-        </div>
-        <div class="progress-wrap">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px">
-            <span>系统进度</span><span style="font-weight:600;color:#607d8b">100%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%;background:#607d8b"></div></div>
-        </div>
-        <div class="card-stats">
-          <span class="badge badge-gray">总任务 91</span>
-          <span class="badge badge-green">完成 91</span>
-          <span class="badge badge-green">Bug 0</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- 1691 分销系统安全 -->
-    <div class="iter-card">
-      <a href="迭代1691_执行进展报告.html">
-        <div class="card-top" style="border-left-color:#607d8b">
-          <div class="card-name">分销平台_系统安全问题跟踪</div>
-          <div class="card-date">📅 2024-05-09 → 2028-01-31 &nbsp;（长期跟踪）</div>
-        </div>
-        <div class="progress-wrap">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px">
-            <span>系统进度</span><span style="font-weight:600;color:#607d8b">100%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%;background:#607d8b"></div></div>
-        </div>
-        <div class="card-stats">
-          <span class="badge badge-gray">总任务 5</span>
-          <span class="badge badge-green">完成 5</span>
-          <span class="badge badge-red">活跃Bug 31</span>
-        </div>
+        <div class="deadline-warn">🚨 截止 2026-06-03 · 仅剩 1 天！</div>
       </a>
     </div>
 
@@ -518,19 +371,17 @@
 </div>
 
 <div class="footer">
-  数据来源：禅道项目管理系统 &nbsp;|&nbsp; 生成时间：2026-06-02 08:36 &nbsp;|&nbsp;
+  数据来源：禅道管理系统 &nbsp;|&nbsp; 生成时间：2026-06-02 &nbsp;|&nbsp;
   <a href="../index.html" style="color:#1a73e8">← 返回报告中心</a>
 </div>
 
 <script>
-// 进度对比图（主要版本迭代）
-const progressCtx = document.getElementById('progressChart').getContext('2d');
-new Chart(progressCtx, {
+new Chart(document.getElementById('progressChart'), {
   type: 'bar',
   data: {
-    labels: ['V2.79.0\n(0630)', 'V2.78.0\n(0615)', 'V2.77.0\n(0602)', 'V2.75.0\n(0514)', '前台V1.7', 'AI需求', '集采V1.29', '分销V1.37'],
+    labels: ['V2.79\n(0630)', 'V2.78\n(0615)', 'V2.77\n(0602)', 'V2.75\n(0514)', '前台V1.7', 'AI需求', '集采V1.29', '分销V1.37'],
     datasets: [{
-      label: '系统进度 %',
+      label: '进度 %',
       data: [27.3, 47.7, 84.9, 95.5, 93.3, 69.5, 66.3, 70.9],
       backgroundColor: ['#1a73e8','#1a73e8','#f9ab00','#ea4335','#34a853','#9c27b0','#0f9d58','#e37400'],
       borderRadius: 6,
@@ -540,20 +391,18 @@ new Chart(progressCtx, {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
-      y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } },
+      y: { beginAtZero: true, max: 100, ticks: { callback: v => v+'%' } },
       x: { ticks: { font: { size: 11 } } }
     }
   }
 });
 
-// 任务状态饼图
-const statusCtx = document.getElementById('statusChart').getContext('2d');
-new Chart(statusCtx, {
+new Chart(document.getElementById('statusChart'), {
   type: 'doughnut',
   data: {
     labels: ['已完成', '进行中', '待处理', '延期'],
     datasets: [{
-      data: [2078, 157, 290, 74],
+      data: [1112, 157, 290, 74],
       backgroundColor: ['#34a853', '#1a73e8', '#bdbdbd', '#ea4335'],
       borderWidth: 2, borderColor: '#fff'
     }]
