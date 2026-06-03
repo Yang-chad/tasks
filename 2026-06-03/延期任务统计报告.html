@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>延期任务统计报告 - 2026-06-03</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a {
+    color: #667eea; text-decoration: none; font-size: 13px;
+    padding: 6px 16px; border-radius: 16px;
+    background: #e8ecf4; border: 1px solid #d0d5e0;
+    display: inline-block; transition: background 0.2s;
+}
+.back-link a:hover { background: #d0d5e0; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #ef5350; }
+.card-wait .num { color: #ffa726; }
+.card-doing .num { color: #66eea6; }
+.card-people .num { color: #667eea; }
+.card-pri1 .num { color: #ef5350; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+.details { }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.stat-max { background: #fce4ec; color: #c62828; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.pri-1 { color: #ef5350; font-weight: 700; }
+.pri-2 { color: #ff7043; font-weight: 600; }
+.pri-3 { color: #ffa726; }
+.pri-4 { color: #66bb6a; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>⏰ 延期任务统计报告</h1>
+  <p>统计日期: 2026-06-03 | 延期总数: 48 个 | 涉及 15 人 | 全平台扫描(网批2.0+集采+分销)</p>
+</div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+
+<div class="cards">
+  <div class="card card-total"><div class="num">48</div><div class="label">延期任务总数</div></div>
+  <div class="card card-wait"><div class="num">28</div><div class="label">待处理</div></div>
+  <div class="card card-doing"><div class="num">20</div><div class="label">进行中</div></div>
+  <div class="card card-people"><div class="num">15</div><div class="label">涉及负责人</div></div>
+  <div class="card card-pri1"><div class="num">7</div><div class="label">紧急(P1)</div></div>
+</div>
+
+<div class="charts">
+  <div class="chart-box"><h3>负责人延期分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+  <div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+  <div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+
+<div class="details">
+<h3 style="margin-bottom:10px;">👤 按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name" style="color:#667eea">● 范文玉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共14个</span>
+                <span class="stat-badge stat-wait">待处理14</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期14</span>
+                <span class="stat-badge stat-max">最长2天</span>
+                <span class="stat-badge stat-h">预估56h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余56h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>277516</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277515</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277514</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段">【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277513</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277512</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277511</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277510</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277509</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277508</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277507</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277506</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277505</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277504</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277503</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name" style="color:#f093fb">● 谢婉扬</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共8个</span>
+                <span class="stat-badge stat-wait">待处理8</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期8</span>
+                <span class="stat-badge stat-max">最长5天</span>
+                <span class="stat-badge stat-h">预估112h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余112h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>277563</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】 为分销商提货订单提交">【后端】 为分销商提货订单提交</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-1">紧急</span></td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277562</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】为分销商提货订单确认页">【后端】为分销商提货订单确认页</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-1">紧急</span></td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277560</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】为我提货提货订单提交">【后端】为我提货提货订单提交</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-1">紧急</span></td>
+                    <td>16</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277559</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】为我提货 提货订单确认页">【后端】为我提货 提货订单确认页</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-1">紧急</span></td>
+                    <td>16</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277520</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】用户侧-支付成功后，提供回调支付接口-封装大方法-订单状态">【后端】用户侧-支付成功后，提供回调支付接口-封装大方法-订单状态</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-1">紧急</span></td>
+                    <td>12</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277519</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】用户侧-分批提货定金订单-订单提交">【后端】用户侧-分批提货定金订单-订单提交</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-1">紧急</span></td>
+                    <td>24</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277518</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】用户侧-分批提货定金订单-订单结算页">【后端】用户侧-分批提货定金订单-订单结算页</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-1">紧急</span></td>
+                    <td>12</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>279069</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】订单算法改造（按行业统计）">【后端】订单算法改造（按行业统计）</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-05-30</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>16</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+4天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name" style="color:#4facfe">● 王子尘</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共7个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中7</span>
+                <span class="stat-badge stat-overdue">延期7</span>
+                <span class="stat-badge stat-max">最长2天</span>
+                <span class="stat-badge stat-h">预估28h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余28h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>278598</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】编辑业务经理任务">【PC管理】编辑业务经理任务</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>278597</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】创建业务经理任务">【PC管理】创建业务经理任务</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>278596</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】业务经理任务管理列表">【PC管理】业务经理任务管理列表</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277556</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC用户】资金流水增加定金退款流水类型">【PC用户】资金流水增加定金退款流水类型</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277555</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC用户】资金流水增加定金扣款流水类型">【PC用户】资金流水增加定金扣款流水类型</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277554</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】资金流水增加定金退款流水类型">【PC管理】资金流水增加定金退款流水类型</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>277553</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【PC管理】资金流水增加定金扣款流水类型">【PC管理】资金流水增加定金扣款流水类型</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
+                    <td>2026-06-01</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+2天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name" style="color:#43e97b">● 马腾</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共3个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中3</span>
+                <span class="stat-badge stat-overdue">延期3</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估44h</span>
+                <span class="stat-badge stat-h">消耗32h</span>
+                <span class="stat-badge stat-h">剩余12h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>284161</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】资金账户新增输入支付密码校验逻辑">【测试】资金账户新增输入支付密码校验逻辑</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>8</td>
+                    <td>6</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>284125</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】经销商账户明细流水备注信息取值优化">【测试】经销商账户明细流水备注信息取值优化</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>12</td>
+                    <td>9</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>284111</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】销司日销方案新增批量上下架逻辑">【测试】销司日销方案新增批量上下架逻辑</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>24</td>
+                    <td>17</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name" style="color:#f5576c">● 王也</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理1</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期2</span>
+                <span class="stat-badge stat-max">最长19天</span>
+                <span class="stat-badge stat-h">预估12.0h</span>
+                <span class="stat-badge stat-h">消耗4.5h</span>
+                <span class="stat-badge stat-h">剩余12.0h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>280487</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="海南推广-客户管理相关审批流">海南推广-客户管理相关审批流</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-05-15</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4.5</td>
+                    <td>4.5</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+19天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>271907</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑">管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-05-29</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>7.5</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+5天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name" style="color:#ffa726">● 匡军</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期2</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估48h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余48h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>284135</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】营销一体化打通-销司订单发货场景补全">【测试】营销一体化打通-销司订单发货场景补全</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>16</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>284133</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】网批系统各模块导出能力对接下载中心，同时文件导出的时候增加导出密码能力--一期">【测试】网批系统各模块导出能力对接下载中心，同时文件导出的时候增加导出密码能力--一期</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>32</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
+            <span class="assignee-name" style="color:#26c6da">● 李成斌</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中2</span>
+                <span class="stat-badge stat-overdue">延期2</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估28h</span>
+                <span class="stat-badge stat-h">消耗23h</span>
+                <span class="stat-badge stat-h">剩余5h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>284123</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】销司ERP编码配置增加-销售主体编码">【测试】销司ERP编码配置增加-销售主体编码</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>284117</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】家用工程优化GC39~GC41">【测试】家用工程优化GC39~GC41</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>24</td>
+                    <td>20</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+            <span class="assignee-name" style="color:#ab47bc">● 邹娟</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中2</span>
+                <span class="stat-badge stat-overdue">延期2</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估56h</span>
+                <span class="stat-badge stat-h">消耗40h</span>
+                <span class="stat-badge stat-h">剩余16h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>284121</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】大客户模式-客户管理迭代改造增加销售主体编码">【测试】大客户模式-客户管理迭代改造增加销售主体编码</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>40</td>
+                    <td>25</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>284119</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】入驻审核H5消息推送逻辑">【测试】入驻审核H5消息推送逻辑</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>16</td>
+                    <td>15</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#ef535015; border-left:4px solid #ef5350;">
+            <span class="assignee-name" style="color:#ef5350">● 许峻嘉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期2</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估32h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余32h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>282307</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销售公司销售方案审批流程、销司查询多选、下载中心任务、分销商品库等代码自测、代码走查文档编写">【后端】销售公司销售方案审批流程、销司查询多选、下载中心任务、分销商品库等代码自测、代码走查文档编写</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>24</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                <tr class="row-overdue">
+                    <td>282304</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销售公司销售方案审批流程、销司查询多选、下载中心任务、分销商品库等需求评审">【后端】销售公司销售方案审批流程、销司查询多选、下载中心任务、分销商品库等需求评审</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name" style="color:#667eea">● 胡健</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-max">最长3天</span>
+                <span class="stat-badge stat-h">预估24h</span>
+                <span class="stat-badge stat-h">消耗16h</span>
+                <span class="stat-badge stat-h">剩余8h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>270294</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】网批系统各模块导出能力对接下载中心，同时文件导出时加上打开密码">【产品】网批系统各模块导出能力对接下载中心，同时文件导出时加上打开密码</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-05-31</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>24</td>
+                    <td>16</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+3天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name" style="color:#f093fb">● 李学鹍</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理1</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估55h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余55h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>289293</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试设计】网批分销集采5月份需求评审和测试用例评审">【测试设计】网批分销集采5月份需求评审和测试用例评审</td>
+                    <td><span class="badge-wait">待处理</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>55</td>
+                    <td>0</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name" style="color:#4facfe">● 江小芳</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估40h</span>
+                <span class="stat-badge stat-h">消耗28h</span>
+                <span class="stat-badge stat-h">剩余12h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>283985</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】网批家用-工程特批方案“资源机&quot;--江小芳">【测试】网批家用-工程特批方案“资源机"--江小芳</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>40</td>
+                    <td>28</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name" style="color:#43e97b">● 刘孝亮</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估40h</span>
+                <span class="stat-badge stat-h">消耗36h</span>
+                <span class="stat-badge stat-h">剩余4h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>283981</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【测试】网批家用-工程特批方案“资源机&quot;--刘孝亮">【测试】网批家用-工程特批方案“资源机"--刘孝亮</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>40</td>
+                    <td>36</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name" style="color:#f5576c">● 李兆杰</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估20h</span>
+                <span class="stat-badge stat-h">消耗17h</span>
+                <span class="stat-badge stat-h">剩余3h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>281293</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【总任务】经销商账户明细流水备注信息取值优化">【总任务】经销商账户明细流水备注信息取值优化</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>20</td>
+                    <td>17</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name" style="color:#ffa726">● 未指派</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-max">最长1天</span>
+                <span class="stat-badge stat-h">预估223.5h</span>
+                <span class="stat-badge stat-h">消耗226.5h</span>
+                <span class="stat-badge stat-h">剩余4.5h</span>
+            </span>
+        </summary>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>任务名称</th><th>状态</th><th>平台</th>
+                        <th>所属执行</th><th>截止日期</th><th>P</th>
+                        <th>预估</th><th>已消耗</th><th>延期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="row-overdue">
+                    <td>276257</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【总任务】5月产品经理其他任务工时（业务模式调研、材料准备与汇报、生产问题协助）">【总任务】5月产品经理其他任务工时（业务模式调研、材料准备与汇报、生产问题协助）</td>
+                    <td><span class="badge-doing">进行中</span></td>
+                    <td style="font-size:11px;color:#888;">网批2.0</td>
+                    <td style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
+                    <td>2026-06-02</td>
+                    <td><span class="pri-3">中</span></td>
+                    <td>223.5</td>
+                    <td>226.5</td>
+                    <td><span style="color:#ef5350;font-weight:700;">+1天</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+</div>
+<div class="footer">数据来源：禅道管理系统 · ztpm.gree.com | 报告生成时间：2026-06-03</div>
+
+<script>
+const chartColors = ["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726", "#26c6da", "#ab47bc", "#ef5350"];
+
+// 负责人柱状图
+new Chart(document.getElementById("barChart"), {
+    type: "bar",
+    data: {
+        labels: ["\u8303\u6587\u7389", "\u8c22\u5a49\u626c", "\u738b\u5b50\u5c18", "\u9a6c\u817e", "\u738b\u4e5f", "\u5321\u519b", "\u674e\u6210\u658c", "\u90b9\u5a1f", "\u8bb8\u5cfb\u5609", "\u80e1\u5065", "\u674e\u5b66\u9e4d", "\u6c5f\u5c0f\u82b3", "\u5218\u5b5d\u4eae", "\u674e\u5146\u6770", "\u672a\u6307\u6d3e"],
+        datasets: [{
+            label: "延期任务数",
+            data: [14, 8, 7, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
+            backgroundColor: chartColors.slice(0, 15),
+            borderRadius: 6,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { ticks: { color: "#888", stepSize: 1 }, grid: { color: "#eee" } },
+            x: { ticks: { color: "#666", maxRotation: 45 }, grid: { display: false } }
+        }
+    }
+});
+
+// 状态饼图
+new Chart(document.getElementById("statusPie"), {
+    type: "pie",
+    data: {
+        labels: ["待处理", "进行中"],
+        datasets: [{
+            data: [28, 20],
+            backgroundColor: ["#ffa726", "#66eea6"],
+            borderWidth: 0,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: "bottom", labels: { color: "#666", padding: 12, font: { size: 12 } } } }
+    }
+});
+
+// 优先级饼图
+new Chart(document.getElementById("priPie"), {
+    type: "pie",
+    data: {
+        labels: ["紧急(P1)", "高(P2)", "中(P3)", "低(P4)"],
+        datasets: [{
+            data: [7, 0, 41, 0],
+            backgroundColor: ["#ef5350", "#ff7043", "#ffa726", "#66bb6a"],
+            borderWidth: 0,
+        }]
+    },
+    options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: "bottom", labels: { color: "#666", padding: 12, font: { size: 12 } } } }
+    }
+});
+</script>
+</body>
+</html>
