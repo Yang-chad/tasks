@@ -3,493 +3,402 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>禅道任务报告中心</title>
+<title>禅道任务报告 · 导航</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-    font-family: -apple-system, "Microsoft YaHei", sans-serif;
-    background: #f5f5f5; color: #333;
-    padding: 20px; min-height: 100vh;
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
 }
-.container { max-width: 1200px; margin: 0 auto; }
+
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* ── Header ── */
 .header {
-    text-align: center; padding: 30px;
-    background: #fff; border-radius: 12px;
-    margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    text-align: center;
+    margin-bottom: 12px;
 }
-.header h1 { font-size: 28px; color: #1a237e; margin-bottom: 8px; }
-.header p { color: #888; font-size: 14px; }
-.date-section { margin-bottom: 24px; }
-.date-title {
-    font-size: 20px; font-weight: bold; color: #1a237e;
-    padding: 16px 20px; background: #fff; border-radius: 10px 10px 0 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+.header .logo {
+    font-size: 36px;
+    margin-bottom: 8px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
 }
-.file-grid {
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(120deg, #667eea, #f093fb, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
+.header .subtitle {
+    color: #8892b0;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* ── Date Tag ── */
+.date-tag {
+    display: block;
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: #a5b4fc;
+}
+.date-tag span {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: rgba(102, 126, 234, 0.12);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+}
+
+/* ── Summary ── */
+.summary-bar {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-bottom: 24px;
+}
+.summary-item {
+    background: rgba(255,255,255,0.04); border-radius: 10px; padding: 12px 18px;
+    border: 1px solid rgba(255,255,255,0.06); text-align: center;
+    min-width: 100px;
+}
+.summary-item .num { font-size: 20px; font-weight: 700; }
+.summary-item .label { font-size: 11px; color: #666; margin-top: 4px; }
+
+/* ── Card Grid ── */
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px; padding: 16px;
-    background: #fff; border-radius: 0 0 10px 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
-.file-card {
-    display: block; padding: 14px 18px;
-    background: #f8f9ff; border: 1px solid #e0e0e0;
-    border-radius: 8px; text-decoration: none;
-    color: #333; transition: all 0.2s;
+
+/* ── Card ── */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 24px 30px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
 }
-.file-card:hover {
-    background: #e8eaff; border-color: #667eea;
-    transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102,126,234,0.15);
+.card::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: 16px;
+    opacity: 0; transition: opacity 0.3s; z-index: 0;
 }
-.file-card .name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
-.file-card .meta { font-size: 12px; color: #999; }
-.no-files { padding: 30px; text-align: center; color: #999; }
+.card:nth-child(1)::before { background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(240,147,251,0.15)); }
+.card:nth-child(2)::before { background: linear-gradient(135deg, rgba(67,233,123,0.20), rgba(102,126,234,0.15)); }
+.card:nth-child(3)::before { background: linear-gradient(135deg, rgba(240,147,251,0.25), rgba(79,172,254,0.15)); }
+.card:nth-child(4)::before { background: linear-gradient(135deg, rgba(255,167,38,0.20), rgba(239,83,80,0.12)); }
+.card:hover::before { opacity: 1; }
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.35);
+}
+.card:active { transform: translateY(-2px); }
+
+.card .icon {
+    font-size: 42px; margin-bottom: 16px;
+    position: relative; z-index: 1;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+.card .name {
+    font-size: 17px; font-weight: 600;
+    color: #e2e8f0; margin-bottom: 6px;
+    position: relative; z-index: 1;
+}
+.card .desc {
+    font-size: 13px; color: #8892b0;
+    position: relative; z-index: 1;
+    text-align: center; line-height: 1.5;
+}
+
+/* ── Card colors ── */
+.card.product .name { color: #a5b4fc; }
+.card.backend  .name { color: #66eea6; }
+.card.frontend .name { color: #f093fb; }
+.card.mobile   .name { color: #ffa726; }
+
+/* ── Trend Table ── */
+.trend-section {
+    margin-top: 40px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+}
+.trend-title {
+    padding: 20px 24px 0;
+    font-size: 16px; font-weight: 600;
+    color: #e2e8f0; display: flex;
+    align-items: center; gap: 8px;
+}
+.trend-title .icon { font-size: 20px; }
+.trend-wrap { overflow-x: auto; padding: 16px 24px 24px; }
+.trend-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; min-width: 600px;
+}
+.trend-table th {
+    background: rgba(0,0,0,0.25); padding: 10px 14px;
+    text-align: center; font-weight: 600; color: #aaa;
+    border-bottom: 2px solid rgba(255,255,255,0.08);
+    white-space: nowrap;
+}
+.trend-table th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+.trend-table th:last-child { border-radius: 0 8px 0 0; }
+.trend-table td {
+    padding: 10px 14px; text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #ccc;
+}
+.trend-table td:first-child { text-align: left; color: #8892b0; font-weight: 500; }
+.trend-table tr:last-child td { border-bottom: none; }
+.trend-table tr:hover td { background: rgba(255,255,255,0.03); }
+.trend-table .today td { background: rgba(102,126,234,0.08); }
+.trend-table .today td:first-child { color: #a5b4fc; font-weight: 700; }
+.trend-delta { font-size: 11px; margin-left: 4px; }
+.trend-up { color: #ef5350; }
+.trend-down { color: #43e97b; }
+.trend-flat { color: #78909c; }
+.trend-c-p { color: #a5b4fc; }
+.trend-c-b { color: #66eea6; }
+.trend-c-f { color: #f093fb; }
+.trend-c-m { color: #ffa726; }
+
+/* ── Footer ── */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #4a5568;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+.footer a { color: #667eea; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ── History nav ── */
+.history-nav { margin-bottom: 16px; color: #667eea; font-size: 14px; font-weight: 600; }
+.history-links {
+    display: flex; gap: 10px; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 20px;
+}
+.history-links a {
+    padding: 6px 14px; border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px; text-decoration: none;
+    color: #8892b0;
+    transition: all 0.2s;
+}
+.history-links a:first-child {
+    color: #4facfe;
+    border-color: rgba(79,172,254,0.25);
+    background: rgba(79,172,254,0.12);
+}
+.history-links a:hover { border-color: #667eea; color: #667eea; }
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+    .header h1 { font-size: 22px; }
+    .header .logo { font-size: 32px; }
+    .card { padding: 28px 16px 22px; }
+    .card .icon { font-size: 34px; }
+}
 </style>
 </head>
 <body>
+
 <div class="container">
-<div class="header">
-    <h1>禅道任务报告中心</h1>
-    <p>每日自动生成的多维度任务分析报告</p>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-06-03</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-06-03/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/延期任务统计报告.html">
-            <div class="name">延期任务统计报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/未完成ab类型任务_详细任务.html">
-            <div class="name">未完成ab类型任务_详细任务</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4390_执行进展报告.html">
-            <div class="name">迭代4390_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4478_执行进展报告.html">
-            <div class="name">迭代4478_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4503_执行进展报告.html">
-            <div class="name">迭代4503_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4540_执行进展报告.html">
-            <div class="name">迭代4540_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4541_执行进展报告.html">
-            <div class="name">迭代4541_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4546_执行进展报告.html">
-            <div class="name">迭代4546_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4561_执行进展报告.html">
-            <div class="name">迭代4561_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
-        <a class="file-card" href="2026-06-03/迭代4566_执行进展报告.html">
-            <div class="name">迭代4566_执行进展报告</div>
-            <div class="meta">2026-06-03</div>
-        </a>
+
+    <div class="header">
+        <span class="logo">📊</span>
+        <h1>禅道任务报告中心</h1>
+        <p class="subtitle">Zentao Task Dashboard</p>
     </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-06-02</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-06-02/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/延期任务统计报告.html">
-            <div class="name">延期任务统计报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/未完成ab类型任务_详细任务.html">
-            <div class="name">未完成ab类型任务_详细任务</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4390_执行进展报告.html">
-            <div class="name">迭代4390_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4478_执行进展报告.html">
-            <div class="name">迭代4478_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4503_执行进展报告.html">
-            <div class="name">迭代4503_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4540_执行进展报告.html">
-            <div class="name">迭代4540_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4541_执行进展报告.html">
-            <div class="name">迭代4541_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4546_执行进展报告.html">
-            <div class="name">迭代4546_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4561_执行进展报告.html">
-            <div class="name">迭代4561_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代4566_执行进展报告.html">
-            <div class="name">迭代4566_执行进展报告</div>
-            <div class="meta">2026-06-02</div>
-        </a>
-        <a class="file-card" href="2026-06-02/迭代总览.html">
-            <div class="name">迭代总览</div>
-            <div class="meta">2026-06-02</div>
-        </a>
+
+    <div class="date-tag"><span>2026-06-03 10:03 更新</span></div>
+
+    <!-- 今日摘要 -->
+    <div class="summary-bar">
+        <div class="summary-item">
+            <div class="num" style="color:#a5b4fc;">28</div>
+            <div class="label">📋 产品 (待9/做19)</div>
+        </div>
+        <div class="summary-item">
+            <div class="num" style="color:#66eea6;">112</div>
+            <div class="label">⚙️ 后端 (待84/做9)</div>
+        </div>
+        <div class="summary-item">
+            <div class="num" style="color:#f093fb;">115</div>
+            <div class="label">🎨 前端 (待82/做29)</div>
+        </div>
+        <div class="summary-item">
+            <div class="num" style="color:#ffa726;">66</div>
+            <div class="label">📱 移动端 (待39/做27)</div>
+        </div>
+        <div class="summary-item">
+            <div class="num" style="color:#ef5350;">36</div>
+            <div class="label">🚨 延期任务 (8人)</div>
+        </div>
     </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-06-01</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-06-01/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-06-01</div>
+
+    <div class="grid">
+
+        <!-- 产品任务 / AB 类型 -->
+        <a href="2026-06-03/未完成ab类型任务_详细任务.html" class="card product" target="_blank">
+            <span class="icon">📋</span>
+            <span class="name">产品任务</span>
+            <span class="desc">需求 / AB 类型<br>28个未完成 · 4人</span>
         </a>
-        <a class="file-card" href="2026-06-01/延期任务统计报告.html">
-            <div class="name">延期任务统计报告</div>
-            <div class="meta">2026-06-01</div>
+
+        <!-- 后端开发 -->
+        <a href="2026-06-03/未完成后端开发任务_详细任务.html" class="card backend" target="_blank">
+            <span class="icon">⚙️</span>
+            <span class="name">后端开发</span>
+            <span class="desc">后端开发任务<br>112个未完成 · 11人</span>
         </a>
-        <a class="file-card" href="2026-06-01/未完成ab类型任务_详细任务.html">
-            <div class="name">未完成ab类型任务_详细任务</div>
-            <div class="meta">2026-06-01</div>
+
+        <!-- 前端开发 -->
+        <a href="2026-06-03/未完成前端开发任务_详细任务.html" class="card frontend" target="_blank">
+            <span class="icon">🎨</span>
+            <span class="name">前端开发</span>
+            <span class="desc">前端开发任务<br>115个未完成 · 6人</span>
         </a>
-        <a class="file-card" href="2026-06-01/未完成产品工作流ab类型任务_详细任务.html">
-            <div class="name">未完成产品工作流ab类型任务_详细任务</div>
-            <div class="meta">2026-06-01</div>
+
+        <!-- 移动端开发 -->
+        <a href="2026-06-03/未完成移动端开发任务_详细任务.html" class="card mobile" target="_blank">
+            <span class="icon">📱</span>
+            <span class="name">移动端开发</span>
+            <span class="desc">移动端开发任务<br>66个未完成 · 6人</span>
         </a>
-        <a class="file-card" href="2026-06-01/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-06-01</div>
+
+        <!-- 迭代总览 -->
+        <a href="2026-06-03/" class="card" target="_blank" style="border-color: rgba(79,172,254,0.3);">
+            <span class="icon">📊</span>
+            <span class="name" style="color:#4facfe;">迭代执行进展</span>
+            <span class="desc">8 个进行中迭代<br>报告总览 →</span>
         </a>
-        <a class="file-card" href="2026-06-01/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-06-01</div>
+
+        <!-- 延期任务 -->
+        <a href="2026-06-03/延期任务统计报告.html" class="card" target="_blank" style="border-color: rgba(239,83,80,0.3);">
+            <span class="icon">🚨</span>
+            <span class="name" style="color:#ef5350;">延期任务</span>
+            <span class="desc">36个延期 / 8人<br>全平台超期追踪</span>
         </a>
-        <a class="file-card" href="2026-06-01/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4390_执行进展报告.html">
-            <div class="name">迭代4390_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4478_执行进展报告.html">
-            <div class="name">迭代4478_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4503_执行进展报告.html">
-            <div class="name">迭代4503_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4540_执行进展报告.html">
-            <div class="name">迭代4540_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4541_多维度分析报告.html">
-            <div class="name">迭代4541_多维度分析报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4541_执行进展报告.html">
-            <div class="name">迭代4541_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4546_执行进展报告.html">
-            <div class="name">迭代4546_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4561_执行进展报告.html">
-            <div class="name">迭代4561_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代4566_执行进展报告.html">
-            <div class="name">迭代4566_执行进展报告</div>
-            <div class="meta">2026-06-01</div>
-        </a>
-        <a class="file-card" href="2026-06-01/迭代总览.html">
-            <div class="name">迭代总览</div>
-            <div class="meta">2026-06-01</div>
-        </a>
+
     </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-31</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-31/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-05-31</div>
-        </a>
-        <a class="file-card" href="2026-05-31/延期任务统计报告.html">
-            <div class="name">延期任务统计报告</div>
-            <div class="meta">2026-05-31</div>
-        </a>
-        <a class="file-card" href="2026-05-31/未完成ab类型任务_详细任务.html">
-            <div class="name">未完成ab类型任务_详细任务</div>
-            <div class="meta">2026-05-31</div>
-        </a>
-        <a class="file-card" href="2026-05-31/未完成产品工作流ab类型任务_详细任务.html">
-            <div class="name">未完成产品工作流ab类型任务_详细任务</div>
-            <div class="meta">2026-05-31</div>
-        </a>
-        <a class="file-card" href="2026-05-31/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-31</div>
-        </a>
-        <a class="file-card" href="2026-05-31/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-31</div>
-        </a>
-        <a class="file-card" href="2026-05-31/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-31</div>
-        </a>
+
+    <!-- 趋势变化 -->
+    <div class="trend-section">
+        <div class="trend-title"><span class="icon">📈</span> 任务数量趋势</div>
+        <div class="trend-wrap">
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>📋 产品</th>
+                        <th>⚙️ 后端</th>
+                        <th>🎨 前端</th>
+                        <th>📱 移动端</th>
+                        <th>📊 合计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-05-29</td>
+                        <td class="trend-c-p">48 <span class="trend-delta trend-down">-5</span></td>
+                        <td class="trend-c-b">224 <span class="trend-delta trend-up">+30</span></td>
+                        <td class="trend-c-f">136 <span class="trend-delta trend-up">+5</span></td>
+                        <td class="trend-c-m">77 <span class="trend-delta trend-down">-32</span></td>
+                        <td>485 <span class="trend-delta trend-down">-2</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-05-30</td>
+                        <td class="trend-c-p">48 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-b">174 <span class="trend-delta trend-down">-50</span></td>
+                        <td class="trend-c-f">136 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-m">74 <span class="trend-delta trend-down">-3</span></td>
+                        <td>432 <span class="trend-delta trend-down">-53</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-05-31</td>
+                        <td class="trend-c-p">48 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-b">174 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-f">136 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-m">74 <span class="trend-delta trend-flat">--</span></td>
+                        <td>432 <span class="trend-delta trend-flat">--</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-06-01</td>
+                        <td class="trend-c-p">49 <span class="trend-delta trend-up">+1</span></td>
+                        <td class="trend-c-b">129 <span class="trend-delta trend-down">-45</span></td>
+                        <td class="trend-c-f">136 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-m">74 <span class="trend-delta trend-flat">--</span></td>
+                        <td>388 <span class="trend-delta trend-down">-44</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-06-02</td>
+                        <td class="trend-c-p">45 <span class="trend-delta trend-down">-4</span></td>
+                        <td class="trend-c-b">116 <span class="trend-delta trend-down">-13</span></td>
+                        <td class="trend-c-f">115 <span class="trend-delta trend-down">-21</span></td>
+                        <td class="trend-c-m">69 <span class="trend-delta trend-down">-5</span></td>
+                        <td>345 <span class="trend-delta trend-down">-43</span></td>
+                    </tr>
+                    <tr class="today">
+                        <td>2026-06-03 ⬅</td>
+                        <td class="trend-c-p">28 <span class="trend-delta trend-down">-17</span></td>
+                        <td class="trend-c-b">112 <span class="trend-delta trend-down">-4</span></td>
+                        <td class="trend-c-f">115 <span class="trend-delta trend-flat">--</span></td>
+                        <td class="trend-c-m">66 <span class="trend-delta trend-down">-3</span></td>
+                        <td>321 <span class="trend-delta trend-down">-24</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-30</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-30/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-05-30</div>
-        </a>
-        <a class="file-card" href="2026-05-30/延期任务统计报告.html">
-            <div class="name">延期任务统计报告</div>
-            <div class="meta">2026-05-30</div>
-        </a>
-        <a class="file-card" href="2026-05-30/未完成ab类型任务_详细任务.html">
-            <div class="name">未完成ab类型任务_详细任务</div>
-            <div class="meta">2026-05-30</div>
-        </a>
-        <a class="file-card" href="2026-05-30/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-30</div>
-        </a>
-        <a class="file-card" href="2026-05-30/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-30</div>
-        </a>
-        <a class="file-card" href="2026-05-30/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-30</div>
-        </a>
+
+    <div class="footer">
+        <div class="history-nav">📅 历史报告</div>
+        <div class="history-links">
+            <a href="2026-06-03/">2026-06-03</a>
+            <a href="2026-06-02/">2026-06-02</a>
+            <a href="2026-06-01/">2026-06-01</a>
+            <a href="2026-05-31/">2026-05-31</a>
+            <a href="2026-05-30/">2026-05-30</a>
+            <a href="2026-05-29/">2026-05-29</a>
+            <a href="2026-05-28/">2026-05-28</a>
+        </div>
+        数据来源：禅道管理系统 &nbsp;|&nbsp;
+        <a href="https://github.com/Yang-chad/tasks" target="_blank">GitHub Tasks</a>
     </div>
+
 </div>
-<div class="date-section">
-    <div class="date-title">2026-05-29</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-29/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-05-29</div>
-        </a>
-        <a class="file-card" href="2026-05-29/未完成ab类型任务_详细任务.html">
-            <div class="name">未完成ab类型任务_详细任务</div>
-            <div class="meta">2026-05-29</div>
-        </a>
-        <a class="file-card" href="2026-05-29/未完成产品工作流ab类型任务_详细任务.html">
-            <div class="name">未完成产品工作流ab类型任务_详细任务</div>
-            <div class="meta">2026-05-29</div>
-        </a>
-        <a class="file-card" href="2026-05-29/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-29</div>
-        </a>
-        <a class="file-card" href="2026-05-29/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-29</div>
-        </a>
-        <a class="file-card" href="2026-05-29/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-29</div>
-        </a>
-    </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-28</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-28/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-05-28</div>
-        </a>
-        <a class="file-card" href="2026-05-28/未完成产品工作流ab类型任务_详细任务.html">
-            <div class="name">未完成产品工作流ab类型任务_详细任务</div>
-            <div class="meta">2026-05-28</div>
-        </a>
-        <a class="file-card" href="2026-05-28/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-28</div>
-        </a>
-        <a class="file-card" href="2026-05-28/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-28</div>
-        </a>
-        <a class="file-card" href="2026-05-28/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-28</div>
-        </a>
-    </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-27</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-27/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-05-27</div>
-        </a>
-        <a class="file-card" href="2026-05-27/未完成产品工作流ab类型任务_详细任务.html">
-            <div class="name">未完成产品工作流ab类型任务_详细任务</div>
-            <div class="meta">2026-05-27</div>
-        </a>
-        <a class="file-card" href="2026-05-27/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-27</div>
-        </a>
-        <a class="file-card" href="2026-05-27/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-27</div>
-        </a>
-        <a class="file-card" href="2026-05-27/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-27</div>
-        </a>
-    </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-26</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-26/index.html">
-            <div class="name">index</div>
-            <div class="meta">2026-05-26</div>
-        </a>
-        <a class="file-card" href="2026-05-26/未完成ab类型任务_可视化报告.html">
-            <div class="name">未完成ab类型任务_可视化报告</div>
-            <div class="meta">2026-05-26</div>
-        </a>
-        <a class="file-card" href="2026-05-26/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-26</div>
-        </a>
-        <a class="file-card" href="2026-05-26/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-26</div>
-        </a>
-        <a class="file-card" href="2026-05-26/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-26</div>
-        </a>
-    </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-25</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-25/未完成ab类型任务_可视化报告.html">
-            <div class="name">未完成ab类型任务_可视化报告</div>
-            <div class="meta">2026-05-25</div>
-        </a>
-        <a class="file-card" href="2026-05-25/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-25</div>
-        </a>
-        <a class="file-card" href="2026-05-25/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-25</div>
-        </a>
-        <a class="file-card" href="2026-05-25/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-25</div>
-        </a>
-    </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-23</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-23/未完成ab类型任务_可视化报告.html">
-            <div class="name">未完成ab类型任务_可视化报告</div>
-            <div class="meta">2026-05-23</div>
-        </a>
-        <a class="file-card" href="2026-05-23/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-23</div>
-        </a>
-        <a class="file-card" href="2026-05-23/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-23</div>
-        </a>
-        <a class="file-card" href="2026-05-23/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-23</div>
-        </a>
-    </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-22</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-22/未完成ab类型任务_可视化报告.html">
-            <div class="name">未完成ab类型任务_可视化报告</div>
-            <div class="meta">2026-05-22</div>
-        </a>
-        <a class="file-card" href="2026-05-22/未完成前端开发任务_详细任务.html">
-            <div class="name">未完成前端开发任务_详细任务</div>
-            <div class="meta">2026-05-22</div>
-        </a>
-        <a class="file-card" href="2026-05-22/未完成后端开发任务_详细任务.html">
-            <div class="name">未完成后端开发任务_详细任务</div>
-            <div class="meta">2026-05-22</div>
-        </a>
-        <a class="file-card" href="2026-05-22/未完成移动端开发任务_详细任务.html">
-            <div class="name">未完成移动端开发任务_详细任务</div>
-            <div class="meta">2026-05-22</div>
-        </a>
-    </div>
-</div>
-<div class="date-section">
-    <div class="date-title">2026-05-21</div>
-    <div class="file-grid">
-        <a class="file-card" href="2026-05-21/1111111.html">
-            <div class="name">1111111</div>
-            <div class="meta">2026-05-21</div>
-        </a>
-    </div>
-</div>
-</div>
+
 </body>
 </html>
