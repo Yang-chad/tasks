@@ -114,6 +114,7 @@ body {
 .card:nth-child(2)::before { background: linear-gradient(135deg, rgba(67,233,123,0.20), rgba(102,126,234,0.15)); }
 .card:nth-child(3)::before { background: linear-gradient(135deg, rgba(240,147,251,0.25), rgba(79,172,254,0.15)); }
 .card:nth-child(4)::before { background: linear-gradient(135deg, rgba(255,167,38,0.20), rgba(239,83,80,0.12)); }
+.card:nth-child(5)::before { background: linear-gradient(135deg, rgba(38,198,218,0.20), rgba(79,172,254,0.12)); }
 .card:hover::before { opacity: 1; }
 .card:hover {
     transform: translateY(-6px);
@@ -143,6 +144,7 @@ body {
 .card.backend  .name { color: #66eea6; }
 .card.frontend .name { color: #f093fb; }
 .card.mobile   .name { color: #ffa726; }
+.card.test     .name { color: #26c6da; }
 
 /* ── Trend Table ── */
 .trend-section {
@@ -268,6 +270,10 @@ body {
             <div class="label">📱 移动端 (待37/做22)</div>
         </div>
         <div class="summary-item">
+            <div class="num" style="color:#26c6da;">2</div>
+            <div class="label">🧪 测试 (待0/做2)</div>
+        </div>
+        <div class="summary-item">
             <div class="num" style="color:#ef5350;">35</div>
             <div class="label">🚨 延期任务 (7人)</div>
         </div>
@@ -301,6 +307,13 @@ body {
             <span class="icon">📱</span>
             <span class="name">移动端开发</span>
             <span class="desc">移动端开发任务<br>59个未完成 · 6人</span>
+        </a>
+
+        <!-- 测试任务 -->
+        <a href="2026-06-03/未完成测试任务_详细任务.html" class="card test" target="_blank">
+            <span class="icon">🧪</span>
+            <span class="name">测试任务</span>
+            <span class="desc">测试执行 + 测试设计<br>2个未完成 · 1人</span>
         </a>
 
         <!-- 迭代总览 -->
