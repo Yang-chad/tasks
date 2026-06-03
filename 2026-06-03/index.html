@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>禅道任务报告总览 — 2026-06-03</title>
+<title>禅道迭代报告总览 — 2026-06-03</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -13,148 +13,53 @@
     background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); border-radius:16px; color:#fff; }
   .header h1 { font-size:26px; margin-bottom:8px; }
   .header p { color:#8892b0; font-size:13px; }
-
-  /* ── Summary Cards ── */
   .summary { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; justify-content:center; }
   .summary-card { background:#fff; border-radius:12px; padding:20px 24px; text-align:center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-width:140px; }
-  .summary-card .num { font-size:32px; font-weight:800; }
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-width:160px; }
+  .summary-card .num { font-size:32px; font-weight:800; color:#667eea; }
   .summary-card .lbl { font-size:12px; color:#888; margin-top:4px; }
-  .summary-card.warn .num { color:#ef4444; }
-  .summary-card.warn { border:1px solid #fecaca; }
-
-  /* ── Table Card ── */
-  .table-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom:24px; }
-  .table-card .section-title { padding:16px 24px; font-size:15px; font-weight:700; color:#374151;
-    background:#f9fafb; border-bottom:2px solid #e5e7eb; }
+  .table-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   table { width:100%; border-collapse:collapse; }
   th { background:#f3f4f6; color:#374151; padding:12px 16px; text-align:left; font-weight:600; font-size:13px; }
   td { padding:12px 16px; border-bottom:1px solid #f0f0f0; font-size:13px; }
   tr:hover { background:#f8f9fc; }
   a { color:#667eea; text-decoration:none; font-weight:600; }
   a:hover { text-decoration:underline; }
-
-  /* ── Progress Bar ── */
   .progress-bar { width:120px; height:8px; background:#e5e7eb; border-radius:4px; overflow:hidden; display:inline-block; vertical-align:middle; }
   .progress-fill { height:100%; border-radius:4px; }
-
-  /* ── Tags ── */
   .tag { display:inline-block; padding:2px 8px; border-radius:8px; font-size:11px; margin-right:4px; }
   .tag-wp { background:#dbeafe; color:#1d4ed8; }
   .tag-jc { background:#dcfce7; color:#16a34a; }
   .tag-fx { background:#fef3c7; color:#d97706; }
-  .tag-ab { background:#f3e8ff; color:#7c3aed; }
-  .tag-be { background:#dcfce7; color:#16a34a; }
-  .tag-fe { background:#fce7f3; color:#db2777; }
-  .tag-mo { background:#fff7ed; color:#ea580c; }
-  .tag-od { background:#fee2e2; color:#dc2626; }
-
-  /* ── Stats ── */
   .stat-num { font-weight:700; font-size:13px; }
   .stat-num.tasks { color:#667eea; }
   .stat-num.stories { color:#16a34a; }
   .stat-num.bugs { color:#ef4444; }
-  .stat-num.ab { color:#7c3aed; }
-  .stat-num.od { color:#dc2626; }
-
-  /* ── Platform Separator ── */
   .platform-sep { background:#f3f4f6; }
   .platform-sep td { padding:8px 16px; font-size:12px; font-weight:700; color:#6b7280; letter-spacing:1px; border-bottom:2px solid #d1d5db; }
-
   .footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:30px; padding:16px; }
   .back-link { display:inline-block; margin-bottom:16px; color:#667eea; font-size:13px; text-decoration:none; }
   .back-link:hover { text-decoration:underline; }
-
-  @media(max-width:768px) {
-    .summary { flex-direction:column; align-items:center; }
-    .summary-card { width:100%; max-width:300px; }
-    .table-card { overflow-x:auto; }
-  }
 </style>
 </head>
 <body>
 <div class="container">
   <a class="back-link" href="https://yang-chad.github.io/tasks/">← 返回报告中心</a>
-
   <div class="header">
-    <h1>禅道任务报告总览</h1>
-    <p>2026-06-03 08:14 更新 &nbsp;|&nbsp; 功能12/13/14/15/16 + 8个进行中迭代 &nbsp;|&nbsp; 15个HTML报告</p>
+    <h1>禅道迭代执行进展总览</h1>
+    <p>2026-06-03 08:14 更新 &nbsp;|&nbsp; 三平台进行中迭代共 8 个 &nbsp;|&nbsp; 报告总大小 ~2.1 MB</p>
   </div>
 
-  <!-- ── 未完成任务摘要 ── -->
   <div class="summary">
-    <div class="summary-card"><div class="num" style="color:#a5b4fc;">27</div><div class="lbl">📋 产品任务 (待9/做18)</div></div>
-    <div class="summary-card"><div class="num" style="color:#66eea6;">112</div><div class="lbl">⚙️ 后端开发 (待84/做9)</div></div>
-    <div class="summary-card"><div class="num" style="color:#f093fb;">115</div><div class="lbl">🎨 前端开发 (待82/做29)</div></div>
-    <div class="summary-card"><div class="num" style="color:#ffa726;">66</div><div class="lbl">📱 移动端 (待39/做27)</div></div>
-    <div class="summary-card warn"><div class="num">48</div><div class="lbl">🚨 延期任务 (15人)</div></div>
-    <div class="summary-card"><div class="num" style="color:#667eea;">320</div><div class="lbl">📊 合计未完成</div></div>
+    <div class="summary-card"><div class="num">6</div><div class="lbl">网批2.0 迭代</div></div>
+    <div class="summary-card"><div class="num">1</div><div class="lbl">集采平台 迭代</div></div>
+    <div class="summary-card"><div class="num">1</div><div class="lbl">分销平台 迭代</div></div>
+    <div class="summary-card"><div class="num">1,595</div><div class="lbl">总任务数</div></div>
+    <div class="summary-card"><div class="num">105</div><div class="lbl">总需求数</div></div>
+    <div class="summary-card"><div class="num">362</div><div class="lbl">总Bug数</div></div>
   </div>
 
-  <!-- ── 未完成任务明细（功能12/13/14/15/16） ── -->
   <div class="table-card">
-    <div class="section-title">📋 未完成任务明细 — 功能12/13/14/15/16</div>
-    <table>
-      <thead><tr>
-        <th>功能</th><th>报告名称</th><th>任务类型</th><th>任务数</th><th>待处理</th><th>进行中</th><th>负责人</th><th>报告</th>
-      </tr></thead>
-      <tbody>
-        <tr>
-          <td><span class="tag tag-ab">功能12</span></td>
-          <td style="font-weight:600;">产品(AB)任务</td>
-          <td><span class="tag tag-ab">ab*</span></td>
-          <td class="stat-num ab">27</td>
-          <td>9</td>
-          <td>18</td>
-          <td>3人</td>
-          <td><a href="未完成ab类型任务_详细任务.html">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><span class="tag tag-be">功能13</span></td>
-          <td style="font-weight:600;">后端开发任务</td>
-          <td><span class="tag tag-be">a_dev4_control / a_dev</span></td>
-          <td class="stat-num tasks">112</td>
-          <td>84</td>
-          <td>9</td>
-          <td>11人</td>
-          <td><a href="未完成后端开发任务_详细任务.html">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><span class="tag tag-fe">功能14</span></td>
-          <td style="font-weight:600;">前端开发任务</td>
-          <td><span class="tag tag-fe">a_dev2_front</span></td>
-          <td class="stat-num tasks">115</td>
-          <td>82</td>
-          <td>29</td>
-          <td>6人</td>
-          <td><a href="未完成前端开发任务_详细任务.html">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><span class="tag tag-mo">功能15</span></td>
-          <td style="font-weight:600;">移动端开发任务</td>
-          <td><span class="tag tag-mo">a_dev6_mobile</span></td>
-          <td class="stat-num tasks">66</td>
-          <td>39</td>
-          <td>27</td>
-          <td>6人</td>
-          <td><a href="未完成移动端开发任务_详细任务.html">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><span class="tag tag-od">功能16</span></td>
-          <td style="font-weight:600;color:#dc2626;">延期任务检查</td>
-          <td><span class="tag tag-od">全平台超期</span></td>
-          <td class="stat-num od">48</td>
-          <td colspan="2" style="color:#dc2626;">⚠ 超期任务</td>
-          <td>15人</td>
-          <td><a href="延期任务统计报告.html">查看报告</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- ── 迭代执行进展 ── -->
-  <div class="table-card">
-    <div class="section-title">📊 迭代执行进展 — 8个进行中迭代</div>
     <table>
       <thead><tr>
         <th>迭代</th><th>平台</th><th>版本</th><th>时间</th><th>任务|需求|Bug</th><th>进度</th><th>报告</th>
