@@ -25,7 +25,6 @@ body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f
 .chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
 .chart-container { position: relative; height: 300px; }
 .chart-container canvas { max-height: 300px; }
-.details { }
 details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
 summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
 summary::-webkit-details-marker { display: none; }
@@ -49,33 +48,26 @@ tr.row-overdue { background: #fff5f5 !important; }
 tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
 tr.row-overdue:hover { background: #fee2e2 !important; }
 .back-link { text-align: center; margin-bottom: 16px; }
-.back-link a {
-    color: #667eea; text-decoration: none; font-size: 13px;
-    padding: 6px 16px; border-radius: 16px;
-    background: #e8ecf4; border: 1px solid #d0d5e0;
-    display: inline-block; transition: background 0.2s;
-}
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
 .back-link a:hover { background: #d0d5e0; }
 .footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>未完成前端开发任务明细</h1>
-  <p>统计日期: 2026-06-03 | 总计: 115 个未完成任务 | 涉及 6 人 | 平台: 网批2.0</p>
-</div>
+<div class="header"><h1>未完成前端开发任务明细</h1>
+<p>统计日期: 2026-06-03 | 总计: 108 个未完成任务 | 涉及 6 人</p></div>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="cards">
-  <div class="card card-total"><div class="num">115</div><div class="label">任务总数</div></div>
-  <div class="card card-wait"><div class="num">81</div><div class="label">待处理</div></div>
-  <div class="card card-doing"><div class="num">30</div><div class="label">进行中</div></div>
-  <div class="card card-overdue"><div class="num">21</div><div class="label">延期</div></div>
-  <div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
+<div class="card card-total"><div class="num">108</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">81</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">23</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">21</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
 </div>
 <div class="charts">
-  <div class="chart-box"><h3>负责人任务分布 (Top6)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
-  <div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
-  <div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+<div class="chart-box"><h3>负责人任务分布 (Top6)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
 </div>
 <div class="details">
 <h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
@@ -92,829 +84,53 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
                 <span class="stat-badge stat-h">剩余148h</span>
             </span>
         </summary>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
-                        <th>类型</th><th>执行</th><th>截止日期</th><th>延期</th>
-                        <th>预估h</th><th>消耗h</th><th>剩余h</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr>
-            <td>284385</td>
-            <td title="【PC管理】平台仓异常签收单修改签收">【PC管理】平台仓异常签收单修改签收</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>284384</td>
-            <td title="【PC管理】平台仓异常签收单列表查询">【PC管理】平台仓异常签收单列表查询</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279752</td>
-            <td title="【H5】履约单详情">【H5】履约单详情</td>
-            <td><span class="badge-wait">changed</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279683</td>
-            <td title="【PC用户】我的订单详情列表">【PC用户】我的订单详情列表</td>
-            <td><span class="badge-wait">changed</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279680</td>
-            <td title="【PC用户】履约退货售后单详情">【PC用户】履约退货售后单详情</td>
-            <td><span class="badge-wait">changed</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279678</td>
-            <td title="【PC管理】履约退货售后单详情">【PC管理】履约退货售后单详情</td>
-            <td><span class="badge-wait">changed</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>278047</td>
-            <td title="【PC用户】零售退款单">【PC用户】零售退款单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277891</td>
-            <td title="【PC用户】待付款订单">【PC用户】待付款订单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277889</td>
-            <td title="【PC管理】网批订单-零售订单">【PC管理】网批订单-零售订单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277814</td>
-            <td title="【H5】退款售后单-提货退款详情">【H5】退款售后单-提货退款详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277813</td>
-            <td title="【H5】退款售后单-提货退款">【H5】退款售后单-提货退款</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277812</td>
-            <td title="【H5】网批订单-工程提货单详情">【H5】网批订单-工程提货单详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277811</td>
-            <td title="【H5】网批订单-工程提货单">【H5】网批订单-工程提货单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277810</td>
-            <td title="【PC管理】退款售后单(退货退款)-详情">【PC管理】退款售后单(退货退款)-详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277809</td>
-            <td title="【PC管理】退款售后单(退货退款)">【PC管理】退款售后单(退货退款)</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277808</td>
-            <td title="【PC管理】网批订单-工程提货单详情">【PC管理】网批订单-工程提货单详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277807</td>
-            <td title="【PC管理】网批订单-工程提货单">【PC管理】网批订单-工程提货单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277806</td>
-            <td title="【PC用户】工程退款单-提货退款详情">【PC用户】工程退款单-提货退款详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277805</td>
-            <td title="【PC用户】工程退款单-提货退款">【PC用户】工程退款单-提货退款</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277743</td>
-            <td title="【H5】退款售后单-定金退款详情">【H5】退款售后单-定金退款详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277741</td>
-            <td title="【H5】订单管理-工程定金单详情">【H5】订单管理-工程定金单详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277740</td>
-            <td title="【H5】订单管理-工程定金单">【H5】订单管理-工程定金单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277739</td>
-            <td title="【PC用户】我的售后-定金退款详情">【PC用户】我的售后-定金退款详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277738</td>
-            <td title="【PC用户】我的售后-定金退款">【PC用户】我的售后-定金退款</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277737</td>
-            <td title="【PC用户】工程订单-申请退定金">【PC用户】工程订单-申请退定金</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277736</td>
-            <td title="【PC用户】工程订单-定金单详情">【PC用户】工程订单-定金单详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277735</td>
-            <td title="【PC用户】工程订单-定金单">【PC用户】工程订单-定金单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277734</td>
-            <td title="【PC管理】退款售后单定金退款-详情">【PC管理】退款售后单定金退款-详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277733</td>
-            <td title="【PC管理】退款售后单定金退款">【PC管理】退款售后单定金退款</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277732</td>
-            <td title="【PC管理】网批订单-定金单详情">【PC管理】网批订单-定金单详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>277731</td>
-            <td title="【PC管理】网批订单列表-工程定金单">【PC管理】网批订单列表-工程定金单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279847</td>
-            <td title="【H5】网批订单展示订单行关联的 行业属性名称">【H5】网批订单展示订单行关联的 行业属性名称</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>2</td>
-            <td>0</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>279846</td>
-            <td title="【PC管理】网批订单展示订单行关联的 行业属性名称">【PC管理】网批订单展示订单行关联的 行业属性名称</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>2</td>
-            <td>0</td>
-            <td>2</td>
-        </tr>
-                </tbody>
-            </table>
-        </div>
-    </details>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>284385</td><td title="【PC管理】平台仓异常签收单修改签收">【PC管理】平台仓异常签收单修改签收</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>284384</td><td title="【PC管理】平台仓异常签收单列表查询">【PC管理】平台仓异常签收单列表查询</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279752</td><td title="【H5】履约单详情">【H5】履约单详情</td><td><span class="badge-wait">changed</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279683</td><td title="【PC用户】我的订单详情列表">【PC用户】我的订单详情列表</td><td><span class="badge-wait">changed</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279680</td><td title="【PC用户】履约退货售后单详情">【PC用户】履约退货售后单详情</td><td><span class="badge-wait">changed</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279678</td><td title="【PC管理】履约退货售后单详情">【PC管理】履约退货售后单详情</td><td><span class="badge-wait">changed</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>278047</td><td title="【PC用户】零售退款单">【PC用户】零售退款单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277891</td><td title="【PC用户】待付款订单">【PC用户】待付款订单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277889</td><td title="【PC管理】网批订单-零售订单">【PC管理】网批订单-零售订单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277814</td><td title="【H5】退款售后单-提货退款详情">【H5】退款售后单-提货退款详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277813</td><td title="【H5】退款售后单-提货退款">【H5】退款售后单-提货退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277812</td><td title="【H5】网批订单-工程提货单详情">【H5】网批订单-工程提货单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277811</td><td title="【H5】网批订单-工程提货单">【H5】网批订单-工程提货单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277810</td><td title="【PC管理】退款售后单(退货退款)-详情">【PC管理】退款售后单(退货退款)-详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277809</td><td title="【PC管理】退款售后单(退货退款)">【PC管理】退款售后单(退货退款)</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277808</td><td title="【PC管理】网批订单-工程提货单详情">【PC管理】网批订单-工程提货单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277807</td><td title="【PC管理】网批订单-工程提货单">【PC管理】网批订单-工程提货单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277806</td><td title="【PC用户】工程退款单-提货退款详情">【PC用户】工程退款单-提货退款详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277805</td><td title="【PC用户】工程退款单-提货退款">【PC用户】工程退款单-提货退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277743</td><td title="【H5】退款售后单-定金退款详情">【H5】退款售后单-定金退款详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277741</td><td title="【H5】订单管理-工程定金单详情">【H5】订单管理-工程定金单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277740</td><td title="【H5】订单管理-工程定金单">【H5】订单管理-工程定金单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277739</td><td title="【PC用户】我的售后-定金退款详情">【PC用户】我的售后-定金退款详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277738</td><td title="【PC用户】我的售后-定金退款">【PC用户】我的售后-定金退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277737</td><td title="【PC用户】工程订单-申请退定金">【PC用户】工程订单-申请退定金</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277736</td><td title="【PC用户】工程订单-定金单详情">【PC用户】工程订单-定金单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277735</td><td title="【PC用户】工程订单-定金单">【PC用户】工程订单-定金单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277734</td><td title="【PC管理】退款售后单定金退款-详情">【PC管理】退款售后单定金退款-详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277733</td><td title="【PC管理】退款售后单定金退款">【PC管理】退款售后单定金退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277732</td><td title="【PC管理】网批订单-定金单详情">【PC管理】网批订单-定金单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>277731</td><td title="【PC管理】网批订单列表-工程定金单">【PC管理】网批订单列表-工程定金单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279847</td><td title="【H5】网批订单展示订单行关联的 行业属性名称">【H5】网批订单展示订单行关联的 行业属性名称</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>279846</td><td title="【PC管理】网批订单展示订单行关联的 行业属性名称">【PC管理】网批订单展示订单行关联的 行业属性名称</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+</tbody>
+</table>
+</div>
+</details>
     <details>
         <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
-            <span class="assignee-name">王子尘</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共27个</span>
-                <span class="stat-badge stat-wait">待处理3</span>
-                <span class="stat-badge stat-doing">进行中24</span>
-                <span class="stat-badge stat-overdue">延期7</span>
-                <span class="stat-badge stat-h">预估132h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余132h</span>
-            </span>
-        </summary>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
-                        <th>类型</th><th>执行</th><th>截止日期</th><th>延期</th>
-                        <th>预估h</th><th>消耗h</th><th>剩余h</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr class="row-overdue">
-            <td>277556</td>
-            <td title="【PC用户】资金流水增加定金退款流水类型">【PC用户】资金流水增加定金退款流水类型</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277555</td>
-            <td title="【PC用户】资金流水增加定金扣款流水类型">【PC用户】资金流水增加定金扣款流水类型</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277554</td>
-            <td title="【PC管理】资金流水增加定金退款流水类型">【PC管理】资金流水增加定金退款流水类型</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277553</td>
-            <td title="【PC管理】资金流水增加定金扣款流水类型">【PC管理】资金流水增加定金扣款流水类型</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>278598</td>
-            <td title="【PC管理】编辑业务经理任务">【PC管理】编辑业务经理任务</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>278597</td>
-            <td title="【PC管理】创建业务经理任务">【PC管理】创建业务经理任务</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>278596</td>
-            <td title="【PC管理】业务经理任务管理列表">【PC管理】业务经理任务管理列表</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279748</td>
-            <td title="【PC管理】仓储物流平台仓配置">【PC管理】仓储物流平台仓配置</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279747</td>
-            <td title="【PC管理】仓储物流配送设置">【PC管理】仓储物流配送设置</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>278613</td>
-            <td title="【PC管理】客户任务调整-审核">【PC管理】客户任务调整-审核</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278612</td>
-            <td title="【PC管理】客户任务调整">【PC管理】客户任务调整</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278611</td>
-            <td title="【PC管理】客户任务进度-查看">【PC管理】客户任务进度-查看</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278610</td>
-            <td title="【PC管理】客户任务进度">【PC管理】客户任务进度</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278609</td>
-            <td title="【PC管理】线下维护数据">【PC管理】线下维护数据</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278608</td>
-            <td title="【PC用户】我的提货任务">【PC用户】我的提货任务</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>278607</td>
-            <td title="【PC管理】客户年度任务设置-查看">【PC管理】客户年度任务设置-查看</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278606</td>
-            <td title="【PC管理】客户年度任务设置-编辑">【PC管理】客户年度任务设置-编辑</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278605</td>
-            <td title="【PC管理】客户年度任务设置-创建">【PC管理】客户年度任务设置-创建</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278604</td>
-            <td title="【PC管理】客户年度任务设置">【PC管理】客户年度任务设置</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278603</td>
-            <td title="【PC管理】阶段任务设置-查看占比">【PC管理】阶段任务设置-查看占比</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278602</td>
-            <td title="【PC管理】阶段任务设置-编辑占比">【PC管理】阶段任务设置-编辑占比</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278601</td>
-            <td title="【PC管理】阶段任务设置-设置占比">【PC管理】阶段任务设置-设置占比</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278600</td>
-            <td title="【PC管理】阶段任务设置">【PC管理】阶段任务设置</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>278599</td>
-            <td title="【PC管理】查看业务经理任务">【PC管理】查看业务经理任务</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279674</td>
-            <td title="【PC管理】菜单收藏组件支持排序">【PC管理】菜单收藏组件支持排序</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279673</td>
-            <td title="【PC管理】菜单增加收藏功能组件">【PC管理】菜单增加收藏功能组件</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279672</td>
-            <td title="【PC管理】菜单增加可搜索组件">【PC管理】菜单增加可搜索组件</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-                </tbody>
-            </table>
-        </div>
-    </details>
-    <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">李红燕</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共22个</span>
@@ -926,306 +142,85 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
                 <span class="stat-badge stat-h">剩余152h</span>
             </span>
         </summary>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
-                        <th>类型</th><th>执行</th><th>截止日期</th><th>延期</th>
-                        <th>预估h</th><th>消耗h</th><th>剩余h</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr>
-            <td>288574</td>
-            <td title="【PC管理】行业属性增加商用热水机">【PC管理】行业属性增加商用热水机</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>288573</td>
-            <td title="【PC管理】行业相关文案调整">【PC管理】行业相关文案调整</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>280056</td>
-            <td title="【PC用户】分销商管理">【PC用户】分销商管理</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280055</td>
-            <td title="【PC用户】企业信息">【PC用户】企业信息</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280053</td>
-            <td title="【H5】经营信息变更审核页面">【H5】经营信息变更审核页面</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280052</td>
-            <td title="【H5】驳回重新提交">【H5】驳回重新提交</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280051</td>
-            <td title="【H5】申请经营信息变更">【H5】申请经营信息变更</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280050</td>
-            <td title="【PC管理】经营信息变更审核页面">【PC管理】经营信息变更审核页面</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280049</td>
-            <td title="【PC管理】驳回重新提交">【PC管理】驳回重新提交</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280048</td>
-            <td title="【PC管理】申请经营信息变更">【PC管理】申请经营信息变更</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280047</td>
-            <td title="【PC管理】客户管理详情">【PC管理】客户管理详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280046</td>
-            <td title="【H5】客户管理详情">【H5】客户管理详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280045</td>
-            <td title="【PC管理】客户管理详情">【PC管理】客户管理详情</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280044</td>
-            <td title="【H5】客户管理列表">【H5】客户管理列表</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280043</td>
-            <td title="【PC管理】客户管理列表">【PC管理】客户管理列表</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280042</td>
-            <td title="【H5】入住审核">【H5】入住审核</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280041</td>
-            <td title="【PC管理】入住审核">【PC管理】入住审核</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>280040</td>
-            <td title="【H5】分销商升级经销商、服务商">【H5】分销商升级经销商、服务商</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>280039</td>
-            <td title="【H5】注册邀请码">【H5】注册邀请码</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>280038</td>
-            <td title="【PC管理】分销商升级经销商、服务商">【PC管理】分销商升级经销商、服务商</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>280037</td>
-            <td title="【PC管理】注册邀请码">【PC管理】注册邀请码</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279758</td>
-            <td title="【PC管理】检索框优化为支持多选及搜索：涉及32个页面调整——二期">【PC管理】检索框优化为支持多选及搜索：涉及32个页面调整——二期</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-                </tbody>
-            </table>
-        </div>
-    </details>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>288574</td><td title="【PC管理】行业属性增加商用热水机">【PC管理】行业属性增加商用热水机</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>288573</td><td title="【PC管理】行业相关文案调整">【PC管理】行业相关文案调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>280056</td><td title="【PC用户】分销商管理">【PC用户】分销商管理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280055</td><td title="【PC用户】企业信息">【PC用户】企业信息</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280053</td><td title="【H5】经营信息变更审核页面">【H5】经营信息变更审核页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280052</td><td title="【H5】驳回重新提交">【H5】驳回重新提交</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280051</td><td title="【H5】申请经营信息变更">【H5】申请经营信息变更</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280050</td><td title="【PC管理】经营信息变更审核页面">【PC管理】经营信息变更审核页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280049</td><td title="【PC管理】驳回重新提交">【PC管理】驳回重新提交</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280048</td><td title="【PC管理】申请经营信息变更">【PC管理】申请经营信息变更</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280047</td><td title="【PC管理】客户管理详情">【PC管理】客户管理详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280046</td><td title="【H5】客户管理详情">【H5】客户管理详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280045</td><td title="【PC管理】客户管理详情">【PC管理】客户管理详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280044</td><td title="【H5】客户管理列表">【H5】客户管理列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280043</td><td title="【PC管理】客户管理列表">【PC管理】客户管理列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280042</td><td title="【H5】入住审核">【H5】入住审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280041</td><td title="【PC管理】入住审核">【PC管理】入住审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280040</td><td title="【H5】分销商升级经销商、服务商">【H5】分销商升级经销商、服务商</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>280039</td><td title="【H5】注册邀请码">【H5】注册邀请码</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>280038</td><td title="【PC管理】分销商升级经销商、服务商">【PC管理】分销商升级经销商、服务商</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>280037</td><td title="【PC管理】注册邀请码">【PC管理】注册邀请码</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279758</td><td title="【PC管理】检索框优化为支持多选及搜索：涉及32个页面调整——二期">【PC管理】检索框优化为支持多选及搜索：涉及32个页面调整——二期</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">王子尘</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共20个</span>
+                <span class="stat-badge stat-wait">待处理3</span>
+                <span class="stat-badge stat-doing">进行中17</span>
+                <span class="stat-badge stat-overdue">延期7</span>
+                <span class="stat-badge stat-h">预估96h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余96h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>278598</td><td title="【PC管理】编辑业务经理任务">【PC管理】编辑业务经理任务</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>278597</td><td title="【PC管理】创建业务经理任务">【PC管理】创建业务经理任务</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>278596</td><td title="【PC管理】业务经理任务管理列表">【PC管理】业务经理任务管理列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277556</td><td title="【PC用户】资金流水增加定金退款流水类型">【PC用户】资金流水增加定金退款流水类型</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277555</td><td title="【PC用户】资金流水增加定金扣款流水类型">【PC用户】资金流水增加定金扣款流水类型</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277554</td><td title="【PC管理】资金流水增加定金退款流水类型">【PC管理】资金流水增加定金退款流水类型</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277553</td><td title="【PC管理】资金流水增加定金扣款流水类型">【PC管理】资金流水增加定金扣款流水类型</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278608</td><td title="【PC用户】我的提货任务">【PC用户】我的提货任务</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>278607</td><td title="【PC管理】客户年度任务设置-查看">【PC管理】客户年度任务设置-查看</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278606</td><td title="【PC管理】客户年度任务设置-编辑">【PC管理】客户年度任务设置-编辑</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278605</td><td title="【PC管理】客户年度任务设置-创建">【PC管理】客户年度任务设置-创建</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278604</td><td title="【PC管理】客户年度任务设置">【PC管理】客户年度任务设置</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278603</td><td title="【PC管理】阶段任务设置-查看占比">【PC管理】阶段任务设置-查看占比</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278602</td><td title="【PC管理】阶段任务设置-编辑占比">【PC管理】阶段任务设置-编辑占比</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278601</td><td title="【PC管理】阶段任务设置-设置占比">【PC管理】阶段任务设置-设置占比</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278600</td><td title="【PC管理】阶段任务设置">【PC管理】阶段任务设置</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>278599</td><td title="【PC管理】查看业务经理任务">【PC管理】查看业务经理任务</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279674</td><td title="【PC管理】菜单收藏组件支持排序">【PC管理】菜单收藏组件支持排序</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279673</td><td title="【PC管理】菜单增加收藏功能组件">【PC管理】菜单增加收藏功能组件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279672</td><td title="【PC管理】菜单增加可搜索组件">【PC管理】菜单增加可搜索组件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
     <details>
         <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
             <span class="assignee-name">范文玉</span>
@@ -1239,202 +234,32 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
                 <span class="stat-badge stat-h">剩余56h</span>
             </span>
         </summary>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
-                        <th>类型</th><th>执行</th><th>截止日期</th><th>延期</th>
-                        <th>预估h</th><th>消耗h</th><th>剩余h</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr class="row-overdue">
-            <td>277516</td>
-            <td title="【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277515</td>
-            <td title="【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277514</td>
-            <td title="【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段">【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277513</td>
-            <td title="【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277512</td>
-            <td title="【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277511</td>
-            <td title="【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277510</td>
-            <td title="【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277509</td>
-            <td title="【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277508</td>
-            <td title="【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277507</td>
-            <td title="【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277506</td>
-            <td title="【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277505</td>
-            <td title="【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277504</td>
-            <td title="【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr class="row-overdue">
-            <td>277503</td>
-            <td title="【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-01</td>
-            <td>+2天</td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-                </tbody>
-            </table>
-        </div>
-    </details>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>277516</td><td title="【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277515</td><td title="【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277514</td><td title="【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段">【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277513</td><td title="【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277512</td><td title="【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277511</td><td title="【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277510</td><td title="【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277509</td><td title="【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277508</td><td title="【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277507</td><td title="【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277506</td><td title="【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277505</td><td title="【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277504</td><td title="【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr class="row-overdue"><td>277503</td><td title="【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-01</td><td>+2天</td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
     <details>
         <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
             <span class="assignee-name">田宇飞</span>
@@ -1448,189 +273,31 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
                 <span class="stat-badge stat-h">剩余104h</span>
             </span>
         </summary>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
-                        <th>类型</th><th>执行</th><th>截止日期</th><th>延期</th>
-                        <th>预估h</th><th>消耗h</th><th>剩余h</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr>
-            <td>279687</td>
-            <td title="【PC用户】履约单详情">【PC用户】履约单详情</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279686</td>
-            <td title="【PC用户】新增履约单-为分销商履约">【PC用户】新增履约单-为分销商履约</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279685</td>
-            <td title="【PC用户】新增履约单-为我履约">【PC用户】新增履约单-为我履约</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279684</td>
-            <td title="【PC用户】履约单列表">【PC用户】履约单列表</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>279677</td>
-            <td title="【PC用户】提交订单延期发货">【PC用户】提交订单延期发货</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-16</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>282439</td>
-            <td title="【PC用户】下单页为分销商下单">【PC用户】下单页为分销商下单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>282438</td>
-            <td title="【PC用户】下单页为我下单">【PC用户】下单页为我下单</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277804</td>
-            <td title="【PC用户】分批提货-为分销商提货-暂存前置仓">【PC用户】分批提货-为分销商提货-暂存前置仓</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277803</td>
-            <td title="【PC用户】分批提货-为分销商提货-自提">【PC用户】分批提货-为分销商提货-自提</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277802</td>
-            <td title="【PC用户】分批提货-为分销商提货-配送">【PC用户】分批提货-为分销商提货-配送</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277801</td>
-            <td title="【PC用户】分批提货-为我提货-暂存前置仓">【PC用户】分批提货-为我提货-暂存前置仓</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277800</td>
-            <td title="【PC用户】分批提货-为我提货-自提">【PC用户】分批提货-为我提货-自提</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>277799</td>
-            <td title="【PC用户】分批提货-为我提货-配送">【PC用户】分批提货-为我提货-配送</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-            <td>2026-06-15</td>
-            <td></td>
-            <td>8</td>
-            <td>0</td>
-            <td>8</td>
-        </tr>
-                </tbody>
-            </table>
-        </div>
-    </details>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>279687</td><td title="【PC用户】履约单详情">【PC用户】履约单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279686</td><td title="【PC用户】新增履约单-为分销商履约">【PC用户】新增履约单-为分销商履约</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279685</td><td title="【PC用户】新增履约单-为我履约">【PC用户】新增履约单-为我履约</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279684</td><td title="【PC用户】履约单列表">【PC用户】履约单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279677</td><td title="【PC用户】提交订单延期发货">【PC用户】提交订单延期发货</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>282439</td><td title="【PC用户】下单页为分销商下单">【PC用户】下单页为分销商下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>282438</td><td title="【PC用户】下单页为我下单">【PC用户】下单页为我下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277804</td><td title="【PC用户】分批提货-为分销商提货-暂存前置仓">【PC用户】分批提货-为分销商提货-暂存前置仓</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277803</td><td title="【PC用户】分批提货-为分销商提货-自提">【PC用户】分批提货-为分销商提货-自提</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277802</td><td title="【PC用户】分批提货-为分销商提货-配送">【PC用户】分批提货-为分销商提货-配送</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277801</td><td title="【PC用户】分批提货-为我提货-暂存前置仓">【PC用户】分批提货-为我提货-暂存前置仓</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277800</td><td title="【PC用户】分批提货-为我提货-自提">【PC用户】分批提货-为我提货-自提</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>277799</td><td title="【PC用户】分批提货-为我提货-配送">【PC用户】分批提货-为我提货-配送</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
     <details>
         <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
             <span class="assignee-name">莫世有</span>
@@ -1644,152 +311,30 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
                 <span class="stat-badge stat-h">剩余24h</span>
             </span>
         </summary>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
-                        <th>类型</th><th>执行</th><th>截止日期</th><th>延期</th>
-                        <th>预估h</th><th>消耗h</th><th>剩余h</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr>
-            <td>279920</td>
-            <td title="【PC管理】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价">【PC管理】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价</td>
-            <td><span class="badge-doing">进行中</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279925</td>
-            <td title="【H5】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；">【H5】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279924</td>
-            <td title="【PC管理】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；">【PC管理】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279923</td>
-            <td title="【H5】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签">【H5】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279922</td>
-            <td title="【PC管理】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签">【PC管理】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>279921</td>
-            <td title="【H5】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价">【H5】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价</td>
-            <td><span class="badge-wait">待处理</span></td>
-            <td>3-中</td>
-            <td>a_dev2_front</td>
-            <td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-            <td>2026-06-30</td>
-            <td></td>
-            <td>4</td>
-            <td>0</td>
-            <td>4</td>
-        </tr>
-                </tbody>
-            </table>
-        </div>
-    </details>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>279920</td><td title="【PC管理】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价">【PC管理】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279925</td><td title="【H5】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；">【H5】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279924</td><td title="【PC管理】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；">【PC管理】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279923</td><td title="【H5】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签">【H5】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279922</td><td title="【PC管理】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签">【PC管理】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>279921</td><td title="【H5】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价">【H5】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
 </div>
-
+</details>
+</div>
 <div class="footer">禅道项目管理系统 · 自动生成于 2026-06-03</div>
 <script>
-new Chart(document.getElementById('barChart'), {
-    type: 'bar',
-    data: {
-        labels: ["\u827e\u601d\u82b9", "\u738b\u5b50\u5c18", "\u674e\u7ea2\u71d5", "\u8303\u6587\u7389", "\u7530\u5b87\u98de", "\u83ab\u4e16\u6709"],
-        datasets: [{
-            label: '未完成任务数',
-            data: [33, 27, 22, 14, 13, 6],
-            backgroundColor: ["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726"],
-            borderRadius: 6,
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
-    }
-});
-
-new Chart(document.getElementById('statusPie'), {
-    type: 'pie',
-    data: {
-        labels: ["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],
-        datasets: [{
-            data: [81, 30],
-            backgroundColor: ['#f5576c', '#43e97b'],
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom' } }
-    }
-});
-
-new Chart(document.getElementById('priPie'), {
-    type: 'pie',
-    data: {
-        labels: ["3-\u4e2d"],
-        datasets: [{
-            data: [115],
-            backgroundColor: ["#4facfe"],
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom' } }
-    }
-});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u827e\u601d\u82b9", "\u674e\u7ea2\u71d5", "\u738b\u5b50\u5c18", "\u8303\u6587\u7389", "\u7530\u5b87\u98de", "\u83ab\u4e16\u6709"],datasets:[{label:'未完成任务数',data:[33, 22, 20, 14, 13, 6],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[81, 23],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[108],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>

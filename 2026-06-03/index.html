@@ -1,288 +1,54 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>禅道迭代报告总览 — 2026-06-03</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-03 禅道任务报告</title>
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-         background: #f0f2f5; color: #1f2937; padding:20px; }
-  .container { max-width: 1400px; margin:0 auto; }
-  .header { text-align:center; padding:30px 20px; margin-bottom:24px;
-    background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); border-radius:16px; color:#fff; }
-  .header h1 { font-size:26px; margin-bottom:8px; }
-  .header p { color:#8892b0; font-size:13px; }
-  .summary { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; justify-content:center; }
-  .summary-card { background:#fff; border-radius:12px; padding:20px 24px; text-align:center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-width:160px; }
-  .summary-card .num { font-size:32px; font-weight:800; color:#667eea; }
-  .summary-card .lbl { font-size:12px; color:#888; margin-top:4px; }
-  .table-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom:24px; }
-  .table-card h3 { padding:16px 20px; font-size:15px; color:#374151; border-bottom:1px solid #f0f0f0; }
-  table { width:100%; border-collapse:collapse; }
-  th { background:#f3f4f6; color:#374151; padding:12px 16px; text-align:left; font-weight:600; font-size:13px; }
-  td { padding:12px 16px; border-bottom:1px solid #f0f0f0; font-size:13px; }
-  tr:hover { background:#f8f9fc; }
-  a { color:#667eea; text-decoration:none; font-weight:600; }
-  a:hover { text-decoration:underline; }
-  .progress-bar { width:120px; height:8px; background:#e5e7eb; border-radius:4px; overflow:hidden; display:inline-block; vertical-align:middle; }
-  .progress-fill { height:100%; border-radius:4px; }
-  .tag { display:inline-block; padding:2px 8px; border-radius:8px; font-size:11px; margin-right:4px; }
-  .tag-wp { background:#dbeafe; color:#1d4ed8; }
-  .tag-jc { background:#dcfce7; color:#16a34a; }
-  .tag-fx { background:#fef3c7; color:#d97706; }
-  .stat-num { font-weight:700; font-size:13px; }
-  .stat-num.tasks { color:#667eea; }
-  .stat-num.stories { color:#16a34a; }
-  .stat-num.bugs { color:#ef4444; }
-  .platform-sep { background:#f3f4f6; }
-  .platform-sep td { padding:8px 16px; font-size:12px; font-weight:700; color:#6b7280; letter-spacing:1px; border-bottom:2px solid #d1d5db; }
-  .footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:30px; padding:16px; }
-  .back-link { display:inline-block; margin-bottom:16px; color:#667eea; font-size:13px; text-decoration:none; }
-  .back-link:hover { text-decoration:underline; }
-  .nav-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:24px; }
-  .nav-card { background:#fff; border-radius:12px; padding:18px 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05); display:flex; align-items:center; gap:14px;
-    text-decoration:none; transition: all 0.2s; border-left:4px solid #667eea; }
-  .nav-card:hover { transform:translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-  .nav-card .icon { font-size:28px; }
-  .nav-card .info { flex:1; }
-  .nav-card .info .title { font-size:14px; font-weight:600; color:#1f2937; }
-  .nav-card .info .stat { font-size:12px; color:#888; margin-top:2px; }
-  .nav-card.product { border-left-color:#a5b4fc; }
-  .nav-card.backend { border-left-color:#66eea6; }
-  .nav-card.frontend { border-left-color:#f093fb; }
-  .nav-card.mobile { border-left-color:#ffa726; }
-  .nav-card.overdue { border-left-color:#ef4444; }
-</style>
-</head>
-<body>
-<div class="container">
-  <a class="back-link" href="https://yang-chad.github.io/tasks/">← 返回报告中心</a>
-  <div class="header">
-    <h1>禅道迭代执行进展总览</h1>
-    <p>2026-06-03 09:26 更新 &nbsp;|&nbsp; 三平台进行中迭代共 8 个 &nbsp;|&nbsp; 含功能12/13/14/15/16报告</p>
-  </div>
-
-  <div class="summary">
-    <div class="summary-card"><div class="num">6</div><div class="lbl">网批2.0 迭代</div></div>
-    <div class="summary-card"><div class="num">1</div><div class="lbl">集采平台 迭代</div></div>
-    <div class="summary-card"><div class="num">1</div><div class="lbl">分销平台 迭代</div></div>
-    <div class="summary-card"><div class="num">1,603</div><div class="lbl">总任务数</div></div>
-    <div class="summary-card"><div class="num">105</div><div class="lbl">总需求数</div></div>
-    <div class="summary-card"><div class="num">362</div><div class="lbl">总Bug数</div></div>
-  </div>
-
-  <!-- 功能报告快捷入口 -->
-  <div class="table-card">
-    <h3> 未完成任务明细（功能12/13/14/15/16）</h3>
-    <div class="nav-grid" style="padding:16px 20px;">
-      <a href="未完成ab类型任务_详细任务.html" class="nav-card product" target="_blank">
-        <span class="icon">📋</span>
-        <div class="info">
-          <div class="title">产品任务 (ab类型)</div>
-          <div class="stat">28个未完成 · 4人</div>
-        </div>
-      </a>
-      <a href="未完成后端开发任务_详细任务.html" class="nav-card backend" target="_blank">
-        <span class="icon">⚙️</span>
-        <div class="info">
-          <div class="title">后端开发任务</div>
-          <div class="stat">112个未完成 · 11人</div>
-        </div>
-      </a>
-      <a href="未完成前端开发任务_详细任务.html" class="nav-card frontend" target="_blank">
-        <span class="icon">🎨</span>
-        <div class="info">
-          <div class="title">前端开发任务</div>
-          <div class="stat">115个未完成 · 6人</div>
-        </div>
-      </a>
-      <a href="未完成移动端开发任务_详细任务.html" class="nav-card mobile" target="_blank">
-        <span class="icon">📱</span>
-        <div class="info">
-          <div class="title">移动端开发任务</div>
-          <div class="stat">66个未完成 · 6人</div>
-        </div>
-      </a>
-      <a href="延期任务统计报告.html" class="nav-card overdue" target="_blank">
-        <span class="icon">⏰</span>
-        <div class="info">
-          <div class="title">延期任务检查</div>
-          <div class="stat">36个延期 · 8人</div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- 迭代进度表 -->
-  <div class="table-card">
-    <h3> 进行中迭代进度总表</h3>
-    <table>
-      <thead><tr>
-        <th>迭代</th><th>平台</th><th>版本</th><th>时间</th><th>任务|需求|Bug</th><th>进度</th><th>报告</th>
-      </tr></thead>
-      <tbody>
-        <!-- ═══════ 网批2.0 ═══════ -->
-        <tr class="platform-sep"><td colspan="7"> 网批2.0（6个迭代）</td></tr>
-        <tr>
-          <td><a href="迭代4390_执行进展报告.html">#4390</a></td>
-          <td><span class="tag tag-wp">网批2.0</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批大前端V1.7（0507）【2026】">网批大前端V1.7（0507）【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-03-03 ~ 2026-05-07</td>
-          <td>
-            <span class="stat-num tasks">30</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">5</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs">0</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:93.3%;background:#52c41a;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">93.3%</span>
-          </td>
-          <td><a href="迭代4390_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><a href="迭代4478_执行进展报告.html">#4478</a></td>
-          <td><span class="tag tag-wp">网批2.0</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.75.0（0514/dev11.3）【2026】">网批2.0_V2.75.0（0514/dev11.3）【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-04-14 ~ 2026-06-02</td>
-          <td>
-            <span class="stat-num tasks">370</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">17</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs" style="color:#ef4444;">218</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#52c41a;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">100%</span>
-          </td>
-          <td><a href="迭代4478_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><a href="迭代4503_执行进展报告.html">#4503</a></td>
-          <td><span class="tag tag-wp">网批2.0</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批AI需求研究开发【2026】">网批AI需求研究开发【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-04-20 ~ 2026-12-31</td>
-          <td>
-            <span class="stat-num tasks">16</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">2</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs">1</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#52c41a;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">100%</span>
-          </td>
-          <td><a href="迭代4503_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><a href="迭代4540_执行进展报告.html">#4540</a></td>
-          <td><span class="tag tag-wp">网批2.0</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.77.0（0602/dev11.4）【2026】">网批2.0_V2.77.0（0602/dev11.4）【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-05-11 ~ 2026-06-05</td>
-          <td>
-            <span class="stat-num tasks">551</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">35</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs" style="color:#ef4444;">128</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:94.5%;background:#52c41a;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">94.5%</span>
-          </td>
-          <td><a href="迭代4540_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><a href="迭代4541_执行进展报告.html">#4541</a></td>
-          <td><span class="tag tag-wp">网批2.0</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.78.0（0615/dev11.5）【2026】">网批2.0_V2.78.0（0615/dev11.5）【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-05-11 ~ 2026-06-18</td>
-          <td>
-            <span class="stat-num tasks">280</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">17</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs">0</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:55.1%;background:#faad14;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">55.1%</span>
-          </td>
-          <td><a href="迭代4541_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-        <tr>
-          <td><a href="迭代4561_执行进展报告.html">#4561</a></td>
-          <td><span class="tag tag-wp">网批2.0</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批2.0_V2.79.0（0630/dev11.5.1）【2026】">网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-05-13 ~ 2026-07-03</td>
-          <td>
-            <span class="stat-num tasks">323</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">24</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs">0</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:27.2%;background:#faad14;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">27.2%</span>
-          </td>
-          <td><a href="迭代4561_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-
-        <!-- ═══════ 集采平台 ═══════ -->
-        <tr class="platform-sep"><td colspan="7"> 集采平台（1个迭代）</td></tr>
-        <tr>
-          <td><a href="迭代4546_执行进展报告.html">#4546</a></td>
-          <td><span class="tag tag-jc">集采平台</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="集采平台_V1.29.0（0530/集采dev3.9）【2026】">集采平台_V1.29.0（0530/集采dev3.9）【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-05-11 ~ 2026-06-04</td>
-          <td>
-            <span class="stat-num tasks">18</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">2</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs">6</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#52c41a;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">100%</span>
-          </td>
-          <td><a href="迭代4546_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-
-        <!-- ═══════ 分销平台 ═══════ -->
-        <tr class="platform-sep"><td colspan="7"> 分销平台（1个迭代）</td></tr>
-        <tr>
-          <td><a href="迭代4566_执行进展报告.html">#4566</a></td>
-          <td><span class="tag tag-fx">分销平台</span></td>
-          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="分销平台_V1.37.0（0530分销/dev4.3）【2026】">分销平台_V1.37.0（0530分销/dev4.3）【2026】</td>
-          <td style="font-size:12px;color:#888;">2026-05-15 ~ 2026-06-03</td>
-          <td>
-            <span class="stat-num tasks">15</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num stories">3</span>
-            <span style="color:#ccc;margin:0 2px;">|</span>
-            <span class="stat-num bugs">9</span>
-          </td>
-          <td>
-            <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#52c41a;"></div></div>
-            <span style="font-size:12px;color:#666;margin-left:6px;">100%</span>
-          </td>
-          <td><a href="迭代4566_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="footer">
-    <p>数据来源：禅道 ztpm.gree.com:8888 &nbsp;|&nbsp; 自动生成于 2026-06-03 09:26</p>
-  </div>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system,"Microsoft YaHei","PingFang SC",sans-serif; background: linear-gradient(135deg,#0f0c29,#302b63,#24243e); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px 20px; }
+.container { width:100%; max-width:900px; }
+.header { text-align:center; margin-bottom:48px; }
+.header .logo { font-size:48px; margin-bottom:12px; display:block; }
+.header h1 { font-size:32px; font-weight:700; background: linear-gradient(120deg,#667eea,#f093fb,#4facfe); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:8px; }
+.header .subtitle { color:#8892b0; font-size:15px; }
+.grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.card { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:36px 24px 30px; border-radius:16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); text-decoration:none; cursor:pointer; transition:all .3s cubic-bezier(.4,0,.2,1); overflow:hidden; backdrop-filter:blur(10px); }
+.card::before { content:''; position:absolute; inset:0; border-radius:16px; opacity:0; transition:opacity .3s; z-index:0; }
+.card:nth-child(1)::before { background:linear-gradient(135deg,rgba(102,126,234,.25),rgba(240,147,251,.15)); }
+.card:nth-child(2)::before { background:linear-gradient(135deg,rgba(67,233,123,.20),rgba(102,126,234,.15)); }
+.card:nth-child(3)::before { background:linear-gradient(135deg,rgba(240,147,251,.25),rgba(79,172,254,.15)); }
+.card:nth-child(4)::before { background:linear-gradient(135deg,rgba(255,167,38,.20),rgba(239,83,80,.12)); }
+.card:hover::before { opacity:1; }
+.card:hover { transform:translateY(-6px); border-color:rgba(255,255,255,.18); box-shadow:0 20px 48px rgba(0,0,0,.35); }
+.card:active { transform:translateY(-2px); }
+.card .icon { font-size:42px; margin-bottom:16px; position:relative; z-index:1; }
+.card .name { font-size:17px; font-weight:600; color:#e2e8f0; margin-bottom:6px; position:relative; z-index:1; }
+.card .desc { font-size:13px; color:#8892b0; position:relative; z-index:1; text-align:center; line-height:1.5; }
+.card.product .name { color:#a5b4fc; }
+.card.backend .name { color:#66eea6; }
+.card.frontend .name { color:#f093fb; }
+.card.mobile .name { color:#ffa726; }
+.summary-bar { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:32px; }
+.summary-item { background:rgba(255,255,255,0.05); border-radius:10px; padding:12px 18px; border:1px solid rgba(255,255,255,0.08); text-align:center; min-width:100px; }
+.summary-item .num { font-size:22px; font-weight:700; }
+.summary-item .label { font-size:11px; color:#666; }
+.back-link { text-align:center; margin-top:36px; }
+.back-link a { color:#667eea; text-decoration:none; font-size:14px; padding:8px 20px; border-radius:20px; background:rgba(102,126,234,.1); border:1px solid rgba(102,126,234,.2); transition:all .2s; }
+.back-link a:hover { background:rgba(102,126,234,.2); }
+.footer { text-align:center; margin-top:30px; color:#4a5568; font-size:12px; }
+</style></head>
+<body><div class="container">
+<div class="header"><span class="logo">📅</span><h1>2026-06-03 任务报告</h1><p class="subtitle">禅道未完成任务明细</p></div>
+<div class="summary-bar"><div class="summary-item"><div class="num" style="color:#a5b4fc;">30</div><div class="label">📋 产品任务 (待9/做21)</div></div>
+<div class="summary-item"><div class="num" style="color:#66eea6;">112</div><div class="label">⚙️ 后端开发 (待84/做9)</div></div>
+<div class="summary-item"><div class="num" style="color:#f093fb;">108</div><div class="label">🎨 前端开发 (待81/做23)</div></div>
+<div class="summary-item"><div class="num" style="color:#ffa726;">59</div><div class="label">📱 移动端开发 (待39/做20)</div></div>
 </div>
-</body>
-</html>
+<div class="grid"><a href="未完成ab类型任务_详细任务.html" class="card product" target="_blank"><span class="icon">📋</span><span class="name">产品任务</span><span class="desc">产品任务任务<br>30个未完成任务</span></a>
+<a href="未完成后端开发任务_详细任务.html" class="card backend" target="_blank"><span class="icon">⚙️</span><span class="name">后端开发</span><span class="desc">后端开发任务<br>112个未完成任务</span></a>
+<a href="未完成前端开发任务_详细任务.html" class="card frontend" target="_blank"><span class="icon">🎨</span><span class="name">前端开发</span><span class="desc">前端开发任务<br>108个未完成任务</span></a>
+<a href="未完成移动端开发任务_详细任务.html" class="card mobile" target="_blank"><span class="icon">📱</span><span class="name">移动端开发</span><span class="desc">移动端开发任务<br>59个未完成任务</span></a>
+</div>
+<div class="back-link"><a href="../">← 返回报告中心首页</a></div>
+<div class="footer">数据来源：禅道管理系统 · 生成于 2026-06-03</div>
+</div></body></html>
