@@ -1,0 +1,3794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>团队工时负载分析 — 2026年6月</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.container { max-width: 1440px; margin: 0 auto; }
+
+/* Header */
+.header { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); color: #fff; padding: 36px 44px; border-radius: 14px; margin-bottom: 24px; }
+.header h1 { font-size: 28px; margin-bottom: 6px; letter-spacing: 1px; }
+.header .subtitle { opacity: 0.7; font-size: 14px; }
+
+/* Summary cards */
+.summary-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 24px; }
+.card { background: #fff; border-radius: 12px; padding: 20px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.2s; }
+.card:hover { transform: translateY(-2px); }
+.card .card-num { font-size: 32px; font-weight: 800; color: #1a1a2e; }
+.card .card-label { font-size: 13px; color: #999; margin-top: 6px; }
+.card.overdue .card-num { color: #ef4444; }
+.card.green .card-num { color: #10b981; }
+
+/* Section */
+.section { background: #fff; border-radius: 12px; padding: 28px 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.section h2 { font-size: 18px; margin-bottom: 20px; color: #1a1a2e; border-left: 4px solid #4facfe; padding-left: 14px; }
+.section h3 { font-size: 15px; margin-bottom: 14px; color: #555; }
+
+/* Charts */
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+.chart-box { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.chart-box h3 { font-size: 15px; margin-bottom: 16px; color: #555; }
+.chart-wrap { position: relative; height: 380px; }
+.chart-wrap canvas { max-height: 380px; }
+
+/* Main table */
+.main-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.main-table thead th { background: #f8f9fa; padding: 12px 10px; text-align: left; font-weight: 600; color: #666; border-bottom: 2px solid #e8e8e8; white-space: nowrap; font-size: 13px; }
+.main-table thead th.num { text-align: center; }
+.main-table tbody td { padding: 10px; border-bottom: 1px solid #f3f3f3; vertical-align: middle; }
+.main-table tbody tr:hover { background: #fafbff; }
+.main-table .rank { width: 36px; text-align: center; color: #bbb; font-weight: 700; font-size: 13px; }
+.main-table .member-name { font-weight: 600; white-space: nowrap; font-size: 14px; }
+.main-table .num { text-align: center; font-variant-numeric: tabular-nums; font-family: "SF Mono", Consolas, monospace; }
+.main-table .bar-wrap { width: 100px; height: 10px; background: #eee; border-radius: 5px; overflow: hidden; }
+.main-table .bar-fill { height: 100%; border-radius: 5px; transition: width 0.6s ease; }
+.tags-cell { font-size: 12px; line-height: 1.8; }
+.pf-cell { font-size: 12px; color: #999; }
+
+/* Row styles */
+.row-unassigned { background: #fafafa; }
+.row-unassigned .member-name { color: #aaa; font-style: italic; }
+.row-high-risk { background: #fff5f5 !important; }
+
+/* Tags */
+.tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; margin: 1px 2px; font-weight: 500; }
+.tag-product { background: #ede9fe; color: #7c3aed; }
+.tag-backend { background: #dcfce7; color: #16a34a; }
+.tag-frontend { background: #fce7f3; color: #db2777; }
+.tag-mobile { background: #fff7ed; color: #ea580c; }
+.tag-test { background: #e0f2fe; color: #0284c7; }
+.badge-overdue { background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; padding: 2px 9px; border-radius: 12px; font-size: 12px; font-weight: 700; }
+
+/* Task detail */
+.task-detail-row td { padding: 0 !important; }
+details { margin: 6px 0; }
+details summary { cursor: pointer; color: #4facfe; font-size: 13px; padding: 6px 12px; outline: none; user-select: none; }
+details summary:hover { color: #1a73e8; }
+.task-table-wrap { overflow-x: auto; padding: 8px 16px 16px; }
+.task-detail-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.task-detail-table th { background: #fafafa; padding: 8px 10px; text-align: left; border-bottom: 1px solid #e8e8e8; font-weight: 600; color: #888; font-size: 12px; }
+.task-detail-table td { padding: 6px 10px; border-bottom: 1px solid #f8f8f8; }
+.task-detail-table td.num { text-align: center; }
+.task-detail-table tr:hover { background: #fafbff; }
+.task-id { color: #aaa; font-size: 12px; font-family: "SF Mono", Consolas, monospace; }
+.task-name { max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deadline { color: #aaa; font-size: 12px; white-space: nowrap; }
+.status-badge { display: inline-block; padding: 1px 9px; border-radius: 10px; font-size: 12px; white-space: nowrap; }
+.st-wait { background: #fff7ed; color: #ea580c; }
+.st-doing { background: #dcfce7; color: #16a34a; }
+.st-pause { background: #f1f5f9; color: #64748b; }
+.row-overdue { background: #fff5f5 !important; }
+
+/* Footer */
+.footer { text-align: center; color: #bbb; font-size: 12px; padding: 24px 0; }
+
+@media (max-width: 1100px) {
+    .summary-cards { grid-template-columns: repeat(3, 1fr); }
+    .charts-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📊 团队工时负载分析</h1>
+    <div class="subtitle">2026年6月 · 数据刷新: 2026-06-04 09:38:10 · 网批2.0 / 集采 / 分销 三平台汇总</div>
+</div>
+
+<div class="summary-cards">
+    <div class="card"><div class="card-num">333</div><div class="card-label">活跃任务数</div></div>
+    <div class="card"><div class="card-num">36</div><div class="card-label">参与人员</div></div>
+    <div class="card"><div class="card-num">7755.0h</div><div class="card-label">总预估工时</div></div>
+    <div class="card green"><div class="card-num">3527.0h</div><div class="card-label">总已消耗工时</div></div>
+    <div class="card"><div class="card-num">4339.0h</div><div class="card-label">总剩余工时</div></div>
+    <div class="card overdue"><div class="card-num">39</div><div class="card-label">⚠ 延期任务数</div></div>
+</div>
+
+<div class="section">
+    <h2>👥 团队成员工时负载明细</h2>
+    <div style="overflow-x: auto;">
+    <table class="main-table">
+        <thead><tr>
+            <th>#</th>
+            <th>人员</th>
+            <th style="width:120px">负载比例</th>
+            <th class="num">任务数</th>
+            <th class="num">预估(h)</th>
+            <th class="num">已耗(h)</th>
+            <th class="num">剩余(h)</th>
+            <th>延期</th>
+            <th>任务类型分布</th>
+            <th>平台分布</th>
+        </tr></thead>
+        <tbody>
+            <tr class="row-unassigned">
+            <td class="rank">1</td>
+            <td class="member-name">未指派</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#f59e0b"></div></div></td>
+            <td class="num">45</td>
+            <td class="num">4703.5h</td>
+            <td class="num">2681.5h</td>
+            <td class="num">2032.5h</td>
+            <td><span class="badge-overdue">⚠ 3</span></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×1</span></td>
+            <td class="pf-cell">网批×45</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (15/20 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">277007</td>
+                <td class="task-name" title="【总任务】商用分批提货-定金部分">【总任务】商用分批提货-定金部分</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">476.0</td>
+                <td class="num">320.0</td>
+                <td class="num">156.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277079</td>
+                <td class="task-name" title="【总任务】商用分批提货-分批提货部分">【总任务】商用分批提货-分批提货部分</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">412.0</td>
+                <td class="num">240.0</td>
+                <td class="num">180.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277398</td>
+                <td class="task-name" title="【总任务】经销商销售任务行业属性优化">【总任务】经销商销售任务行业属性优化</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">352.0</td>
+                <td class="num">175.0</td>
+                <td class="num">177.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277373</td>
+                <td class="task-name" title="【总任务】3.0模式经销商销售方案行业属性优化">【总任务】3.0模式经销商销售方案行业属性优化</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">265.0</td>
+                <td class="num">94.0</td>
+                <td class="num">171.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279260</td>
+                <td class="task-name" title="【总任务】商用-工程行业隔离GC42~47">【总任务】商用-工程行业隔离GC42~47</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">256.0</td>
+                <td class="num">0.0</td>
+                <td class="num">256.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279259</td>
+                <td class="task-name" title="【总任务】行业数据隔离二期---权限隔离迭代">【总任务】行业数据隔离二期---权限隔离迭代</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">232.0</td>
+                <td class="num">38.0</td>
+                <td class="num">178.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">276257</td>
+                <td class="task-name" title="【总任务】5月产品经理其他任务工时（业务模式调研、材料准备与汇报、生产问题协助）">【总任务】5月产品经理其他任务工时（业务模式调研、材料准备与汇报、生产问题协助）</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">223.5</td>
+                <td class="num">226.5</td>
+                <td class="num">4.5</td>
+                <td class="deadline">2026-06-02</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277387</td>
+                <td class="task-name" title="【总任务】适用销司/销售公司/所属部门等检索框优化为支持多选及搜索：涉及32个页面调整--一期">【总任务】适用销司/销售公司/所属部门等检索框优化为支持多选及搜索：涉及32个页面调整--</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">211.0</td>
+                <td class="num">207.0</td>
+                <td class="num">7.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279210</td>
+                <td class="task-name" title="【总任务】非空平台仓订单-平台仓履约单(小单)">【总任务】非空平台仓订单-平台仓履约单(小单)</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">201.0</td>
+                <td class="num">124.0</td>
+                <td class="num">81.0</td>
+                <td class="deadline">2026-06-18</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279211</td>
+                <td class="task-name" title="【总任务】非空平台仓订单-延期发货单(大单)">【总任务】非空平台仓订单-延期发货单(大单)</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">192.0</td>
+                <td class="num">142.0</td>
+                <td class="num">60.0</td>
+                <td class="deadline">2026-06-18</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286985</td>
+                <td class="task-name" title="【总任务】销司返利方案新增通补政策关联逻辑改造">【总任务】销司返利方案新增通补政策关联逻辑改造</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">171.0</td>
+                <td class="num">82.0</td>
+                <td class="num">89.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279254</td>
+                <td class="task-name" title="【总任务】行业数据隔离二期---客户管理-入驻流程迭代">【总任务】行业数据隔离二期---客户管理-入驻流程迭代</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">170.0</td>
+                <td class="num">79.5</td>
+                <td class="num">66.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279252</td>
+                <td class="task-name" title="【总任务】行业数据隔离二期---经营信息变更迭代">【总任务】行业数据隔离二期---经营信息变更迭代</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">162.0</td>
+                <td class="num">52.0</td>
+                <td class="num">86.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277090</td>
+                <td class="task-name" title="【总任务】商用分批提货-分批提货售后部分">【总任务】商用分批提货-分批提货售后部分</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">160.0</td>
+                <td class="num">132.0</td>
+                <td class="num">24.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279189</td>
+                <td class="task-name" title="【总任务】大客户模式-客户管理迭代改造增加销售主体编码">【总任务】大客户模式-客户管理迭代改造增加销售主体编码</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">139.0</td>
+                <td class="num">113.0</td>
+                <td class="num">15.0</td>
+                <td class="deadline">2026-06-04</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">2</td>
+            <td class="member-name">李兆杰</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#f59e0b"></div></div></td>
+            <td class="num">2</td>
+            <td class="num">549.0h</td>
+            <td class="num">504.0h</td>
+            <td class="num">86.0h</td>
+            <td><span class="badge-overdue">⚠ 1</span></td>
+            <td class="tags-cell"></td>
+            <td class="pf-cell">网批×2</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (2/2 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="row-overdue">
+                <td class="task-id">276255</td>
+                <td class="task-name" title="【总任务】26年5月开发和测试其他任务工时（工单处理与数据处理）">【总任务】26年5月开发和测试其他任务工时（工单处理与数据处理）</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">484.0</td>
+                <td class="num">461.0</td>
+                <td class="num">24.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">239970</td>
+                <td class="task-name" title="【总任务】销售方案新增上下架功能及逻辑">【总任务】销售方案新增上下架功能及逻辑</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">65.0</td>
+                <td class="num">43.0</td>
+                <td class="num">62.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">3</td>
+            <td class="member-name">梁庆芬</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:51%;background:#f59e0b"></div></div></td>
+            <td class="num">4</td>
+            <td class="num">285.0h</td>
+            <td class="num">238.0h</td>
+            <td class="num">23.0h</td>
+            <td><span class="badge-overdue">⚠ 3</span></td>
+            <td class="tags-cell"><span class="tag tag-product">产品×3</span></td>
+            <td class="pf-cell">网批×4</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (4/4 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">279184</td>
+                <td class="task-name" title="【总任务】工程配提资源机订单部分">【总任务】工程配提资源机订单部分</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">231.0</td>
+                <td class="num">197.0</td>
+                <td class="num">10.0</td>
+                <td class="deadline">2026-06-04</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">289407</td>
+                <td class="task-name" title="【产品设计】工程配提资源机订单部分">【产品设计】工程配提资源机订单部分</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">40.0</td>
+                <td class="num">30.0</td>
+                <td class="num">10.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">289430</td>
+                <td class="task-name" title="【产品设计】通补不计收入-订单部分">【产品设计】通补不计收入-订单部分</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">10.0</td>
+                <td class="num">8.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">289431</td>
+                <td class="task-name" title="【产品设计】金蝶运费补差-传值税率固定值">【产品设计】金蝶运费补差-传值税率固定值</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">3.0</td>
+                <td class="num">1.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">4</td>
+            <td class="member-name">周志杰</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:44%;background:#10b981"></div></div></td>
+            <td class="num">9</td>
+            <td class="num">243.0h</td>
+            <td class="num">35.0h</td>
+            <td class="num">240.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-product">产品×9</span></td>
+            <td class="pf-cell">网批×9</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (9/9 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">273638</td>
+                <td class="task-name" title="经销商销售任务行业属性改造">经销商销售任务行业属性改造</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>高</td>
+                <td class="num">65.0</td>
+                <td class="num">0.0</td>
+                <td class="num">65.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">268988</td>
+                <td class="task-name" title="3.0模式经销商销售方案行业属性优化">3.0模式经销商销售方案行业属性优化</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">35.0</td>
+                <td class="num">0.0</td>
+                <td class="num">35.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">234592</td>
+                <td class="task-name" title="销司方案新增上下架功能及逻辑">销司方案新增上下架功能及逻辑</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">33.0</td>
+                <td class="num">35.0</td>
+                <td class="num">30.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283461</td>
+                <td class="task-name" title="销司销售方案新增商品生产状态校验逻辑">销司销售方案新增商品生产状态校验逻辑</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">26.0</td>
+                <td class="num">0.0</td>
+                <td class="num">26.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284476</td>
+                <td class="task-name" title="经销商端活动专区新增商品检索功能">经销商端活动专区新增商品检索功能</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">25.0</td>
+                <td class="num">0.0</td>
+                <td class="num">25.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286874</td>
+                <td class="task-name" title="销司返利方案新增通补政策关联逻辑改造">销司返利方案新增通补政策关联逻辑改造</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>紧急</td>
+                <td class="num">24.0</td>
+                <td class="num">0.0</td>
+                <td class="num">24.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">287792</td>
+                <td class="task-name" title="经销商返利组合套餐返利支付区间支持填0">经销商返利组合套餐返利支付区间支持填0</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">23.0</td>
+                <td class="num">0.0</td>
+                <td class="num">23.0</td>
+                <td class="deadline">2026-07-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282539</td>
+                <td class="task-name" title="经销商方案新增逻辑限制商品调价可见可下单">经销商方案新增逻辑限制商品调价可见可下单</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">270674</td>
+                <td class="task-name" title="商用工程分批提货资金流水改造">商用工程分批提货资金流水改造</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>高</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class=" row-high-risk">
+            <td class="rank">5</td>
+            <td class="member-name">王也</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:29%;background:#ef4444"></div></div></td>
+            <td class="num">10</td>
+            <td class="num">160.5h</td>
+            <td class="num">4.5h</td>
+            <td class="num">160.5h</td>
+            <td><span class="badge-overdue">⚠ 5</span></td>
+            <td class="tags-cell"><span class="tag tag-product">产品×9</span></td>
+            <td class="pf-cell">网批×10</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (10/10 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">280579</td>
+                <td class="task-name" title="行业数据隔离【二期】---权限隔离迭代">行业数据隔离【二期】---权限隔离迭代</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">50.0</td>
+                <td class="num">0.0</td>
+                <td class="num">50.0</td>
+                <td class="deadline">2026-07-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280577</td>
+                <td class="task-name" title="行业数据隔离【二期】---客户管理-入驻流程迭代">行业数据隔离【二期】---客户管理-入驻流程迭代</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">30.0</td>
+                <td class="num">0.0</td>
+                <td class="num">30.0</td>
+                <td class="deadline">2026-07-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280568</td>
+                <td class="task-name" title="行业数据隔离【二期】---经营信息变更迭代">行业数据隔离【二期】---经营信息变更迭代</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">30.0</td>
+                <td class="num">0.0</td>
+                <td class="num">30.0</td>
+                <td class="deadline">2026-07-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">280540</td>
+                <td class="task-name" title="大客户模式-客户管理迭代改造增加销售主体编码">大客户模式-客户管理迭代改造增加销售主体编码</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">15.0</td>
+                <td class="num">0.0</td>
+                <td class="num">15.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280569</td>
+                <td class="task-name" title="行业数据隔离【二期】---分销商管理迭代">行业数据隔离【二期】---分销商管理迭代</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">10.0</td>
+                <td class="num">0.0</td>
+                <td class="num">10.0</td>
+                <td class="deadline">2026-07-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">271907</td>
+                <td class="task-name" title="管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑">管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">7.5</td>
+                <td class="num">0.0</td>
+                <td class="num">7.5</td>
+                <td class="deadline">2026-05-29</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280567</td>
+                <td class="task-name" title="岗位删除联动清空员工授权及行业数据">岗位删除联动清空员工授权及行业数据</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.5</td>
+                <td class="num">0.0</td>
+                <td class="num">4.5</td>
+                <td class="deadline">2026-07-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">280539</td>
+                <td class="task-name" title="管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑">管理侧-员工管理修改手机号、获取企微id场景触发更新企微标签逻辑</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.5</td>
+                <td class="num">0.0</td>
+                <td class="num">4.5</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">280538</td>
+                <td class="task-name" title="入驻审核H5消息推送逻辑更新-需求设计">入驻审核H5消息推送逻辑更新-需求设计</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.5</td>
+                <td class="num">0.0</td>
+                <td class="num">4.5</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">280487</td>
+                <td class="task-name" title="海南推广-客户管理相关审批流">海南推广-客户管理相关审批流</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.5</td>
+                <td class="num">4.5</td>
+                <td class="num">4.5</td>
+                <td class="deadline">2026-05-15</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">6</td>
+            <td class="member-name">李红燕</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:27%;background:#10b981"></div></div></td>
+            <td class="num">22</td>
+            <td class="num">152.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">152.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×22</span></td>
+            <td class="pf-cell">网批×22</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (15/20 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">280056</td>
+                <td class="task-name" title="【PC用户】分销商管理">【PC用户】分销商管理</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280055</td>
+                <td class="task-name" title="【PC用户】企业信息">【PC用户】企业信息</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280053</td>
+                <td class="task-name" title="【H5】经营信息变更审核页面">【H5】经营信息变更审核页面</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280052</td>
+                <td class="task-name" title="【H5】驳回重新提交">【H5】驳回重新提交</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280051</td>
+                <td class="task-name" title="【H5】申请经营信息变更">【H5】申请经营信息变更</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280050</td>
+                <td class="task-name" title="【PC管理】经营信息变更审核页面">【PC管理】经营信息变更审核页面</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280049</td>
+                <td class="task-name" title="【PC管理】驳回重新提交">【PC管理】驳回重新提交</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280048</td>
+                <td class="task-name" title="【PC管理】申请经营信息变更">【PC管理】申请经营信息变更</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280047</td>
+                <td class="task-name" title="【PC管理】客户管理详情">【PC管理】客户管理详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280046</td>
+                <td class="task-name" title="【H5】客户管理详情">【H5】客户管理详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280045</td>
+                <td class="task-name" title="【PC管理】客户管理详情">【PC管理】客户管理详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280044</td>
+                <td class="task-name" title="【H5】客户管理列表">【H5】客户管理列表</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280043</td>
+                <td class="task-name" title="【PC管理】客户管理列表">【PC管理】客户管理列表</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280042</td>
+                <td class="task-name" title="【H5】入住审核">【H5】入住审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280041</td>
+                <td class="task-name" title="【PC管理】入住审核">【PC管理】入住审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">7</td>
+            <td class="member-name">艾思芹</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:26%;background:#10b981"></div></div></td>
+            <td class="num">32</td>
+            <td class="num">144.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">144.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×32</span></td>
+            <td class="pf-cell">网批×32</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (15/20 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">279683</td>
+                <td class="task-name" title="【PC用户】我的订单详情列表">【PC用户】我的订单详情列表</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279680</td>
+                <td class="task-name" title="【PC用户】履约退货售后单详情">【PC用户】履约退货售后单详情</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279678</td>
+                <td class="task-name" title="【PC管理】履约退货售后单详情">【PC管理】履约退货售后单详情</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278047</td>
+                <td class="task-name" title="【PC用户】零售退款单">【PC用户】零售退款单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277734</td>
+                <td class="task-name" title="【PC管理】退款售后单定金退款-详情">【PC管理】退款售后单定金退款-详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284385</td>
+                <td class="task-name" title="【PC管理】平台仓异常签收单修改签收">【PC管理】平台仓异常签收单修改签收</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284384</td>
+                <td class="task-name" title="【PC管理】平台仓异常签收单列表查询">【PC管理】平台仓异常签收单列表查询</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279752</td>
+                <td class="task-name" title="【H5】履约单详情">【H5】履约单详情</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277891</td>
+                <td class="task-name" title="【PC用户】待付款订单">【PC用户】待付款订单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277814</td>
+                <td class="task-name" title="【H5】退款售后单-提货退款详情">【H5】退款售后单-提货退款详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277813</td>
+                <td class="task-name" title="【H5】退款售后单-提货退款">【H5】退款售后单-提货退款</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277812</td>
+                <td class="task-name" title="【H5】网批订单-工程提货单详情">【H5】网批订单-工程提货单详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277811</td>
+                <td class="task-name" title="【H5】网批订单-工程提货单">【H5】网批订单-工程提货单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277810</td>
+                <td class="task-name" title="【PC管理】退款售后单(退货退款)-详情">【PC管理】退款售后单(退货退款)-详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277809</td>
+                <td class="task-name" title="【PC管理】退款售后单(退货退款)">【PC管理】退款售后单(退货退款)</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">8</td>
+            <td class="member-name">阳超</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:25%;background:#10b981"></div></div></td>
+            <td class="num">20</td>
+            <td class="num">138.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">138.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×20</span></td>
+            <td class="pf-cell">网批×20</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (15/20 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">279560</td>
+                <td class="task-name" title="【后端】自动核对签收逻辑当OMS 订单行 物流签收状态 与 三方平台签收状态  都变成 已签收时  触发  自动核对签收逻辑">【后端】自动核对签收逻辑当OMS 订单行 物流签收状态 与 三方平台签收状态  都变成 已</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279552</td>
+                <td class="task-name" title="【后端】oms对接--oms推送网批-甩货数据">【后端】oms对接--oms推送网批-甩货数据</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280471</td>
+                <td class="task-name" title="【后端】管理侧-授权工程定金单  数据隔离">【后端】管理侧-授权工程定金单  数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279557</td>
+                <td class="task-name" title="【后端】OMS-B签收状态">【后端】OMS-B签收状态</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279556</td>
+                <td class="task-name" title="【后端】OMS-B同步销售单发货状态、发货单及退件单物流基础信息">【后端】OMS-B同步销售单发货状态、发货单及退件单物流基础信息</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279555</td>
+                <td class="task-name" title="【后端】OMS业务区分 家用、商用 及 各种业务订单传值逻辑调">【后端】OMS业务区分 家用、商用 及 各种业务订单传值逻辑调</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279554</td>
+                <td class="task-name" title="【后端】B-OMS创建及更新订单(经销商订单)OMS业务区分 家用、商用 及 各种业务订单传值">【后端】B-OMS创建及更新订单(经销商订单)OMS业务区分 家用、商用 及 各种业务订单</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279553</td>
+                <td class="task-name" title="【后端】oms对接--网批-OMS（经销商货权转移订单）">【后端】oms对接--网批-OMS（经销商货权转移订单）</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279274</td>
+                <td class="task-name" title="【后端】管理测-oms--推送挂起订单处理">【后端】管理测-oms--推送挂起订单处理</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280441</td>
+                <td class="task-name" title="【后端】非空平台仓订单- 4.  履约单运费运费为0 无需推送">【后端】非空平台仓订单- 4.  履约单运费运费为0 无需推送</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>中</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280440</td>
+                <td class="task-name" title="【后端】 非空平台仓订单-3.  销售订单-签收信息更新">【后端】 非空平台仓订单-3.  销售订单-签收信息更新</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>中</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280439</td>
+                <td class="task-name" title="【后端】 非空平台仓订单-金蝶销司ERP-销售出库单-发货信息更新">【后端】 非空平台仓订单-金蝶销司ERP-销售出库单-发货信息更新</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>中</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280473</td>
+                <td class="task-name" title="【后端】管理侧授权零售订单  数据隔离">【后端】管理侧授权零售订单  数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280472</td>
+                <td class="task-name" title="【后端】管理侧授权工程提货单  数据隔离">【后端】管理侧授权工程提货单  数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279289</td>
+                <td class="task-name" title="【后端】用户侧直发平台仓-订单详情">【后端】用户侧直发平台仓-订单详情</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">9</td>
+            <td class="member-name">张春杰</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:18%;background:#10b981"></div></div></td>
+            <td class="num">12</td>
+            <td class="num">104.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">104.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×12</span></td>
+            <td class="pf-cell">网批×12</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (12/12 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">283593</td>
+                <td class="task-name" title="【iOS】分批提货-为我提货">【iOS】分批提货-为我提货</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">32.0</td>
+                <td class="num">0.0</td>
+                <td class="num">32.0</td>
+                <td class="deadline">2026-06-04</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283596</td>
+                <td class="task-name" title="【iOS】分批提货-为分销商提货">【iOS】分批提货-为分销商提货</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-04</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284283</td>
+                <td class="task-name" title="【iOS】商用-常规工程审批">【iOS】商用-常规工程审批</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285164</td>
+                <td class="task-name" title="【iOS】经销商审核-经营信息查看">【iOS】经销商审核-经营信息查看</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285163</td>
+                <td class="task-name" title="【iOS】入驻审核-经销商资料审核">【iOS】入驻审核-经销商资料审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285185</td>
+                <td class="task-name" title="【iOS】经营信息变更审核">【iOS】经营信息变更审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285151</td>
+                <td class="task-name" title="【iOS】购物车商品限制">【iOS】购物车商品限制</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284926</td>
+                <td class="task-name" title="【iOS】数据清洗-无原型">【iOS】数据清洗-无原型</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284084</td>
+                <td class="task-name" title="【iOS】用户端-商用常规工程-新建工程单">【iOS】用户端-商用常规工程-新建工程单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284083</td>
+                <td class="task-name" title="【iOS】管理端-商用常规工程-申请价格">【iOS】管理端-商用常规工程-申请价格</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284082</td>
+                <td class="task-name" title="【iOS】用户端-商用常规工程-重新提交">【iOS】用户端-商用常规工程-重新提交</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284081</td>
+                <td class="task-name" title="【iOS】管理端-商用常规工程-新建工程单、代客申请">【iOS】管理端-商用常规工程-新建工程单、代客申请</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">10</td>
+            <td class="member-name">田宇飞</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:18%;background:#10b981"></div></div></td>
+            <td class="num">13</td>
+            <td class="num">104.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">104.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×13</span></td>
+            <td class="pf-cell">网批×13</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (13/13 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">282439</td>
+                <td class="task-name" title="【PC用户】下单页为分销商下单">【PC用户】下单页为分销商下单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282438</td>
+                <td class="task-name" title="【PC用户】下单页为我下单">【PC用户】下单页为我下单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279687</td>
+                <td class="task-name" title="【PC用户】履约单详情">【PC用户】履约单详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279686</td>
+                <td class="task-name" title="【PC用户】新增履约单-为分销商履约">【PC用户】新增履约单-为分销商履约</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279685</td>
+                <td class="task-name" title="【PC用户】新增履约单-为我履约">【PC用户】新增履约单-为我履约</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279684</td>
+                <td class="task-name" title="【PC用户】履约单列表">【PC用户】履约单列表</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279677</td>
+                <td class="task-name" title="【PC用户】提交订单延期发货">【PC用户】提交订单延期发货</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277804</td>
+                <td class="task-name" title="【PC用户】分批提货-为分销商提货-暂存前置仓">【PC用户】分批提货-为分销商提货-暂存前置仓</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277803</td>
+                <td class="task-name" title="【PC用户】分批提货-为分销商提货-自提">【PC用户】分批提货-为分销商提货-自提</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277802</td>
+                <td class="task-name" title="【PC用户】分批提货-为分销商提货-配送">【PC用户】分批提货-为分销商提货-配送</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277801</td>
+                <td class="task-name" title="【PC用户】分批提货-为我提货-暂存前置仓">【PC用户】分批提货-为我提货-暂存前置仓</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277800</td>
+                <td class="task-name" title="【PC用户】分批提货-为我提货-自提">【PC用户】分批提货-为我提货-自提</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277799</td>
+                <td class="task-name" title="【PC用户】分批提货-为我提货-配送">【PC用户】分批提货-为我提货-配送</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">11</td>
+            <td class="member-name">谢婉扬</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:17%;background:#f59e0b"></div></div></td>
+            <td class="num">13</td>
+            <td class="num">96.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">96.0h</td>
+            <td><span class="badge-overdue">⚠ 2</span></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×13</span></td>
+            <td class="pf-cell">网批×13</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (13/13 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="row-overdue">
+                <td class="task-id">279069</td>
+                <td class="task-name" title="【后端】订单算法改造（按行业统计）">【后端】订单算法改造（按行业统计）</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-05-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279194</td>
+                <td class="task-name" title="【后端】阶段任务计算网批商用新增按行业模式任务统计算法">【后端】阶段任务计算网批商用新增按行业模式任务统计算法</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-23</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279273</td>
+                <td class="task-name" title="【后端】管理测-挂起订单处理，这一步只处理经销商延期发货货权校验，区分现在的">【后端】管理测-挂起订单处理，这一步只处理经销商延期发货货权校验，区分现在的</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279272</td>
+                <td class="task-name" title="【后端】用户侧延期发货4.0延期发货订单 同步支持  合并库存上线--提交订单页面">【后端】用户侧延期发货4.0延期发货订单 同步支持  合并库存上线--提交订单页面</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279271</td>
+                <td class="task-name" title="【后端】用户侧延期发货4.0延期发货订单 同步支持  合并库存上线--确认订单页面">【后端】用户侧延期发货4.0延期发货订单 同步支持  合并库存上线--确认订单页面</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280470</td>
+                <td class="task-name" title="【后端】用户侧-工程订单行、工程分批提货订单行 (小单)">【后端】用户侧-工程订单行、工程分批提货订单行 (小单)</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280469</td>
+                <td class="task-name" title="【后端】用户侧-工程订单行、工程分批提货订单行 (大单)">【后端】用户侧-工程订单行、工程分批提货订单行 (大单)</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280468</td>
+                <td class="task-name" title="【后端】用户侧-经销商下单行和-零售订单行(含 零售、活动、返利)">【后端】用户侧-经销商下单行和-零售订单行(含 零售、活动、返利)</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279195</td>
+                <td class="task-name" title="【后端】业务经理任务统计按照行业任务攻击">【后端】业务经理任务统计按照行业任务攻击</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-23</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279287</td>
+                <td class="task-name" title="【后端】用户侧只发平台仓--确认履约页面为我履约 / 为分销商履约">【后端】用户侧只发平台仓--确认履约页面为我履约 / 为分销商履约</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279285</td>
+                <td class="task-name" title="【后端】用户侧配送--确认履约页面为我履约 / 为分销商履约">【后端】用户侧配送--确认履约页面为我履约 / 为分销商履约</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">281166</td>
+                <td class="task-name" title="【后端】经销商货款账户新增定金单 定金扣款/定金退款类型流水 纳入“累计提货总额”统计">【后端】经销商货款账户新增定金单 定金扣款/定金退款类型流水 纳入“累计提货总额”统计</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279286</td>
+                <td class="task-name" title="【后端】用户侧自提--确认履约页面为我履约 / 为分销商履约">【后端】用户侧自提--确认履约页面为我履约 / 为分销商履约</td>
+                <td><span class="status-badge st-changed">changed</span></td>
+                <td>高</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">12</td>
+            <td class="member-name">张其辉</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:15%;background:#10b981"></div></div></td>
+            <td class="num">15</td>
+            <td class="num">86.0h</td>
+            <td class="num">16.0h</td>
+            <td class="num">106.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×15</span></td>
+            <td class="pf-cell">网批×15</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (15/15 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">283674</td>
+                <td class="task-name" title="【Android】商用工程退款详情">【Android】商用工程退款详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283126</td>
+                <td class="task-name" title="【Android】工程定金单详情">【Android】工程定金单详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">268953</td>
+                <td class="task-name" title="【用户侧】审批进度详情-单据信息">【用户侧】审批进度详情-单据信息</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">16.0</td>
+                <td class="num">32.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285520</td>
+                <td class="task-name" title="【Android】我的提货任务">【Android】我的提货任务</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282210</td>
+                <td class="task-name" title="【Android】订单详情-延期发货">【Android】订单详情-延期发货</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282369</td>
+                <td class="task-name" title="【Android】管理端-订单管理详情">【Android】管理端-订单管理详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282218</td>
+                <td class="task-name" title="【Android】订单列表-延期发货">【Android】订单列表-延期发货</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285226</td>
+                <td class="task-name" title="【Android】分销商管理">【Android】分销商管理</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282343</td>
+                <td class="task-name" title="【Android】退款售后单详情">【Android】退款售后单详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282341</td>
+                <td class="task-name" title="【Android】退款售后单列表">【Android】退款售后单列表</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283759</td>
+                <td class="task-name" title="【Android】工程定金单提货单详情">【Android】工程定金单提货单详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282433</td>
+                <td class="task-name" title="【Android】管理端-售后详情">【Android】管理端-售后详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">1.0</td>
+                <td class="num">0.0</td>
+                <td class="num">1.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282430</td>
+                <td class="task-name" title="【Android】管理端-售后单列表">【Android】管理端-售后单列表</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">1.0</td>
+                <td class="num">0.0</td>
+                <td class="num">1.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">282367</td>
+                <td class="task-name" title="【Android】管理端-订单管理列表">【Android】管理端-订单管理列表</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">1.0</td>
+                <td class="num">0.0</td>
+                <td class="num">1.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283760</td>
+                <td class="task-name" title="【Android】订单详情">【Android】订单详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">1.0</td>
+                <td class="num">0.0</td>
+                <td class="num">1.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class=" row-high-risk">
+            <td class="rank">13</td>
+            <td class="member-name">王子尘</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:15%;background:#ef4444"></div></div></td>
+            <td class="num">18</td>
+            <td class="num">84.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">84.0h</td>
+            <td><span class="badge-overdue">⚠ 7</span></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×18</span></td>
+            <td class="pf-cell">网批×18</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (15/18 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">279674</td>
+                <td class="task-name" title="【PC管理】菜单收藏组件支持排序">【PC管理】菜单收藏组件支持排序</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279673</td>
+                <td class="task-name" title="【PC管理】菜单增加收藏功能组件">【PC管理】菜单增加收藏功能组件</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279672</td>
+                <td class="task-name" title="【PC管理】菜单增加可搜索组件">【PC管理】菜单增加可搜索组件</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-15</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277556</td>
+                <td class="task-name" title="【PC用户】资金流水增加定金退款流水类型">【PC用户】资金流水增加定金退款流水类型</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277555</td>
+                <td class="task-name" title="【PC用户】资金流水增加定金扣款流水类型">【PC用户】资金流水增加定金扣款流水类型</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277554</td>
+                <td class="task-name" title="【PC管理】资金流水增加定金退款流水类型">【PC管理】资金流水增加定金退款流水类型</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277553</td>
+                <td class="task-name" title="【PC管理】资金流水增加定金扣款流水类型">【PC管理】资金流水增加定金扣款流水类型</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278606</td>
+                <td class="task-name" title="【PC管理】客户年度任务设置-编辑">【PC管理】客户年度任务设置-编辑</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278605</td>
+                <td class="task-name" title="【PC管理】客户年度任务设置-创建">【PC管理】客户年度任务设置-创建</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278604</td>
+                <td class="task-name" title="【PC管理】客户年度任务设置">【PC管理】客户年度任务设置</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278603</td>
+                <td class="task-name" title="【PC管理】阶段任务设置-查看占比">【PC管理】阶段任务设置-查看占比</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278602</td>
+                <td class="task-name" title="【PC管理】阶段任务设置-编辑占比">【PC管理】阶段任务设置-编辑占比</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278601</td>
+                <td class="task-name" title="【PC管理】阶段任务设置-设置占比">【PC管理】阶段任务设置-设置占比</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278600</td>
+                <td class="task-name" title="【PC管理】阶段任务设置">【PC管理】阶段任务设置</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">278599</td>
+                <td class="task-name" title="【PC管理】查看业务经理任务">【PC管理】查看业务经理任务</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">14</td>
+            <td class="member-name">冯澈</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:14%;background:#10b981"></div></div></td>
+            <td class="num">10</td>
+            <td class="num">80.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">80.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×10</span></td>
+            <td class="pf-cell">网批×10</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (10/10 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">283664</td>
+                <td class="task-name" title="【后端】3.0商用销司经销商零售、返利、活动等方案行业信息同步、索引更新&维护">【后端】3.0商用销司经销商零售、返利、活动等方案行业信息同步、索引更新&维护</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">24.0</td>
+                <td class="num">0.0</td>
+                <td class="num">24.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283665</td>
+                <td class="task-name" title="【后端】3.0商用销司经销商零售首页、活动首页、商详页（零售、活动、工程）等搜索响应">【后端】3.0商用销司经销商零售首页、活动首页、商详页（零售、活动、工程）等搜索响应</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281556</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商返利方案-方案管理&amp;方案审核-新建&amp;编辑&amp;调价&amp;查看-新增“行业”字段&amp;权限逻辑">【后端】3.0商用销司-经销商返利方案-方案管理&amp;方案审核-新建&amp;编辑&a</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281552</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商日销方案-方案管理&amp;方案审核-新建&amp;编辑&amp;调价&amp;查看-新增“行业”字段">【后端】3.0商用销司-经销商日销方案-方案管理&amp;方案审核-新建&amp;编辑&a</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281557</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商返利方案-主页代办&amp;企微推送-支持行业权限逻辑">【后端】3.0商用销司-经销商返利方案-主页代办&amp;企微推送-支持行业权限逻辑</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281553</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商日销方案-主页代办&amp;企微推送-支持行业权限逻辑">【后端】3.0商用销司-经销商日销方案-主页代办&amp;企微推送-支持行业权限逻辑</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281559</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商返利方案-行业审批流绘图">【后端】3.0商用销司-经销商返利方案-行业审批流绘图</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281558</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商返利方案-订单-新增“行业”字段-提供接口">【后端】3.0商用销司-经销商返利方案-订单-新增“行业”字段-提供接口</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281555</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商日销方案-行业审批流绘图">【后端】3.0商用销司-经销商日销方案-行业审批流绘图</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">281554</td>
+                <td class="task-name" title="【后端】3.0商用销司-经销商日销方案-订单-新增“行业”字段-提供接口">【后端】3.0商用销司-经销商日销方案-订单-新增“行业”字段-提供接口</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">15</td>
+            <td class="member-name">徐良侦</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:13%;background:#10b981"></div></div></td>
+            <td class="num">7</td>
+            <td class="num">75.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">75.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×7</span></td>
+            <td class="pf-cell">网批×7</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (7/7 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">283701</td>
+                <td class="task-name" title="【iOS】管理端-退款售后提货单详情">【iOS】管理端-退款售后提货单详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283693</td>
+                <td class="task-name" title="【iOS】管理端-退款售后定金详情">【iOS】管理端-退款售后定金详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283691</td>
+                <td class="task-name" title="【iOS】管理端-订单管理-工程提货戏详情">【iOS】管理端-订单管理-工程提货戏详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283128</td>
+                <td class="task-name" title="【iOS】工程定金单详情">【iOS】工程定金单详情</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283589</td>
+                <td class="task-name" title="【iOS】待支付订单合并支付调整">【iOS】待支付订单合并支付调整</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283758</td>
+                <td class="task-name" title="【iOS】工程定金单提货单详情">【iOS】工程定金单提货单详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283761</td>
+                <td class="task-name" title="【iOS】订单详情">【iOS】订单详情</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">1.0</td>
+                <td class="num">0.0</td>
+                <td class="num">1.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">16</td>
+            <td class="member-name">黄宇安</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:13%;background:#10b981"></div></div></td>
+            <td class="num">9</td>
+            <td class="num">72.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">72.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×9</span></td>
+            <td class="pf-cell">网批×9</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (9/9 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">283127</td>
+                <td class="task-name" title="【Android】工程定金单-申请退定金">【Android】工程定金单-申请退定金</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-04</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285165</td>
+                <td class="task-name" title="【Android】经销商审核-经营信息查看">【Android】经销商审核-经营信息查看</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285162</td>
+                <td class="task-name" title="【Android】入驻审核-经销商资料审核">【Android】入驻审核-经销商资料审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285161</td>
+                <td class="task-name" title="【Android】注册邀请码">【Android】注册邀请码</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284866</td>
+                <td class="task-name" title="【Android】管理侧-工程备货列表">【Android】管理侧-工程备货列表</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284306</td>
+                <td class="task-name" title="【Android】商用工程备货-重新提交">【Android】商用工程备货-重新提交</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284305</td>
+                <td class="task-name" title="【Android】商用工程备货-新增/代客申请">【Android】商用工程备货-新增/代客申请</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285184</td>
+                <td class="task-name" title="【Android】经营信息变更审核">【Android】经营信息变更审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285150</td>
+                <td class="task-name" title="【Android】购物车商品限制">【Android】购物车商品限制</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">17</td>
+            <td class="member-name">孙元通</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:12%;background:#10b981"></div></div></td>
+            <td class="num">9</td>
+            <td class="num">68.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">68.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×9</span></td>
+            <td class="pf-cell">网批×9</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (9/9 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">280320</td>
+                <td class="task-name" title="【后端】提供新的数据控权接口">【后端】提供新的数据控权接口</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280319</td>
+                <td class="task-name" title="【后端】全部旧的数据控权接口改造（行业并集+授权的业务经理的集合）">【后端】全部旧的数据控权接口改造（行业并集+授权的业务经理的集合）</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">277565</td>
+                <td class="task-name" title="【后端】定金分批提货订单不需要定金--定金支付">【后端】定金分批提货订单不需要定金--定金支付</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>紧急</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">283130</td>
+                <td class="task-name" title="【后端】下单页面需要带行业ID给下游接口">【后端】下单页面需要带行业ID给下游接口</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280496</td>
+                <td class="task-name" title="【后端】【GC43】  1、#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签  2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】【GC43】  1、#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ </td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280321</td>
+                <td class="task-name" title="【后端】员工授权经销商范围数据改造">【后端】员工授权经销商范围数据改造</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">288640</td>
+                <td class="task-name" title="【后端】工程商用工程备货--企业微信消息数据隔离">【后端】工程商用工程备货--企业微信消息数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">288639</td>
+                <td class="task-name" title="【后端】工程商用常规--企业微信消息数据隔离">【后端】工程商用常规--企业微信消息数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280322</td>
+                <td class="task-name" title="【后端】绑定**行业业务经理下拉框组件">【后端】绑定**行业业务经理下拉框组件</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">18</td>
+            <td class="member-name">吴炜欣</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:11%;background:#10b981"></div></div></td>
+            <td class="num">7</td>
+            <td class="num">64.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">64.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×7</span></td>
+            <td class="pf-cell">网批×7</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (7/7 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">283129</td>
+                <td class="task-name" title="【iOS】工程定金单-申请退定金">【iOS】工程定金单-申请退定金</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285519</td>
+                <td class="task-name" title="【iOS】我的提货任务">【iOS】我的提货任务</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285160</td>
+                <td class="task-name" title="【iOS】注册邀请码">【iOS】注册邀请码</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284865</td>
+                <td class="task-name" title="【iOS】管理侧-工程备货列表">【iOS】管理侧-工程备货列表</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284308</td>
+                <td class="task-name" title="【iOS】商用工程备货-重新提交">【iOS】商用工程备货-重新提交</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284307</td>
+                <td class="task-name" title="【iOS】商用工程备货-新增/代客申请">【iOS】商用工程备货-新增/代客申请</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">285225</td>
+                <td class="task-name" title="【iOS】分销商管理">【iOS】分销商管理</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">19</td>
+            <td class="member-name">胡健</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:11%;background:#f59e0b"></div></div></td>
+            <td class="num">3</td>
+            <td class="num">64.0h</td>
+            <td class="num">36.0h</td>
+            <td class="num">31.0h</td>
+            <td><span class="badge-overdue">⚠ 2</span></td>
+            <td class="tags-cell"><span class="tag tag-product">产品×3</span></td>
+            <td class="pf-cell">网批×3</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (3/3 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">282330</td>
+                <td class="task-name" title="【产品】【管理侧】管理侧菜单改造：增加收藏、搜索、收藏排序等能力的产品工作">【产品】【管理侧】管理侧菜单改造：增加收藏、搜索、收藏排序等能力的产品工作</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">32.0</td>
+                <td class="num">16.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-19</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">270633</td>
+                <td class="task-name" title="【产品】管理侧待办事项增加数量及调整刷新机制的产品设计">【产品】管理侧待办事项增加数量及调整刷新机制的产品设计</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>高</td>
+                <td class="num">20.0</td>
+                <td class="num">12.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">275859</td>
+                <td class="task-name" title="【产品】【适用销司/销售公司/所属销司】筛选控件及字段名称优化">【产品】【适用销司/销售公司/所属销司】筛选控件及字段名称优化</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">8.0</td>
+                <td class="num">7.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">20</td>
+            <td class="member-name">刘兰真</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#10b981"></div></div></td>
+            <td class="num">7</td>
+            <td class="num">60.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">60.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×7</span></td>
+            <td class="pf-cell">网批×7</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (7/7 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">280500</td>
+                <td class="task-name" title="【后端】【GC46】  1、#商用 工程备货-列表，数据隔离方式调整为：  ① 当前账号授权 “ 指定行业 + 该行业下的指定商家 ”，且与工程单的 “ 行业 ” 属性相匹配，则能看到工程单数据  举例：  ① 当前账号授权行业 A B ："A-商家①" "B-商家①\商家②"  ② 工程单：商家①  GC01-A  GC02-B ；商家② GC03-A  GC04-B">【后端】【GC46】  1、#商用 工程备货-列表，数据隔离方式调整为：  ① 当前账号授</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280497</td>
+                <td class="task-name" title="【后端】【GC44】  1、#商用 常规工程-列表，数据隔离方式调整为：  ① 当前账号授权 “ 指定行业 + 该行业下的指定商家 ”，且与工程单的 “ 行业 ” 属性相匹配，则能看到工程单数据  举例：  ① 当前账号授权行业 A B ："A-商家①" "B-商家①\商家②"  ② 工程单：商家①  GC01-A  GC02-B ；商家② GC03-A  GC04-B">【后端】【GC44】  1、#商用 常规工程-列表，数据隔离方式调整为：  ① 当前账号授</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280501</td>
+                <td class="task-name" title="【后端】【GC47】数据清洗，无原型  1、原商用，常规工程和工程备货，是只有两种行业“家装”“工装”，现在根据销司已经做好了配置固定了17个类型，现在需要把工程单的行业类型匹配，新增的17个行业的“家装”“工装”，否则历史数据则做不到数据隔离">【后端】【GC47】数据清洗，无原型  1、原商用，常规工程和工程备货，是只有两种行业“家</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280495</td>
+                <td class="task-name" title="【后端】管理测【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，代客申请（登录）2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】管理测【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，代</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280494</td>
+                <td class="task-name" title="【后端】用户侧【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\重新提交（登录被驳回）\申请价格\重新提交（价格被驳回）\二次批价； 2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】用户侧【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，包</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280499</td>
+                <td class="task-name" title="【后端】管理测【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，代客申请2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】管理测【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，代</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280498</td>
+                <td class="task-name" title="【后端】用户侧【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\重新提交（价格被驳回）\二次批价；  2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业">【后端】用户侧【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，包</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>紧急</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">21</td>
+            <td class="member-name">莫世有</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#10b981"></div></div></td>
+            <td class="num">6</td>
+            <td class="num">60.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">60.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×6</span></td>
+            <td class="pf-cell">网批×6</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (6/6 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">279920</td>
+                <td class="task-name" title="【PC管理】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价">【PC管理】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">16.0</td>
+                <td class="num">0.0</td>
+                <td class="num">16.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279924</td>
+                <td class="task-name" title="【PC管理】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；">【PC管理】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279925</td>
+                <td class="task-name" title="【H5】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客申请\重新提交（价格被驳回）\二次批价；">【H5】【GC45】#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\代客</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279923</td>
+                <td class="task-name" title="【H5】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签">【H5】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279922</td>
+                <td class="task-name" title="【PC管理】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签">【PC管理】【GC43】#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279921</td>
+                <td class="task-name" title="【H5】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\代客申请（登录）\重新提交（登录被驳回）\申请价">【H5】【GC42】#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class=" row-high-risk">
+            <td class="rank">22</td>
+            <td class="member-name">范文玉</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#ef4444"></div></div></td>
+            <td class="num">14</td>
+            <td class="num">56.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">56.0h</td>
+            <td><span class="badge-overdue">⚠ 14</span></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×14</span></td>
+            <td class="pf-cell">网批×14</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (14/14 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="row-overdue">
+                <td class="task-id">277516</td>
+                <td class="task-name" title="【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【H5】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277515</td>
+                <td class="task-name" title="【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商返利方案“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277514</td>
+                <td class="task-name" title="【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段">【H5】3.0经销商日销“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277513</td>
+                <td class="task-name" title="【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商日销“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277512</td>
+                <td class="task-name" title="【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【H5】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277511</td>
+                <td class="task-name" title="【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商优惠券“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277510</td>
+                <td class="task-name" title="【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【H5】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277509</td>
+                <td class="task-name" title="【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商买赠活动“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277508</td>
+                <td class="task-name" title="【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【H5】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277507</td>
+                <td class="task-name" title="【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商组合套餐“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277506</td>
+                <td class="task-name" title="【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【H5】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277505</td>
+                <td class="task-name" title="【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商满减件“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277504</td>
+                <td class="task-name" title="【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【H5】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr><tr class="row-overdue">
+                <td class="task-id">277503</td>
+                <td class="task-name" title="【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段">【PC管理】3.0经销商限时特价“销售公司”字段后 新增“行业”字段</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-01</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">23</td>
+            <td class="member-name">徐琦</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:#10b981"></div></div></td>
+            <td class="num">6</td>
+            <td class="num">48.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">48.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×6</span></td>
+            <td class="pf-cell">网批×6</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (6/6 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">280474</td>
+                <td class="task-name" title="【后端】管理侧授权工程定金退款单(大单)  数据隔离">【后端】管理侧授权工程定金退款单(大单)  数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280442</td>
+                <td class="task-name" title="【后端】非空平台仓订单-5.  销售订单-商家退款">【后端】非空平台仓订单-5.  销售订单-商家退款</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279559</td>
+                <td class="task-name" title="【后端】. OMS-网批 售后审批结果">【后端】. OMS-网批 售后审批结果</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">279558</td>
+                <td class="task-name" title="【后端】网批-OMS 拒签退货单">【后端】网批-OMS 拒签退货单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-12</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280476</td>
+                <td class="task-name" title="【后端】管理侧授权零售订单退款单  数据隔离">【后端】管理侧授权零售订单退款单  数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">280475</td>
+                <td class="task-name" title="【后端】管理侧售后单  数据隔离">【后端】管理侧售后单  数据隔离</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>高</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-26</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">24</td>
+            <td class="member-name">陈灿茂</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:#10b981"></div></div></td>
+            <td class="num">8</td>
+            <td class="num">48.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">48.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×8</span></td>
+            <td class="pf-cell">网批×8</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (8/8 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">284284</td>
+                <td class="task-name" title="【Android】商用-常规工程审批">【Android】商用-常规工程审批</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284295</td>
+                <td class="task-name" title="【iOS】商用常规工程-列表">【iOS】商用常规工程-列表</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284294</td>
+                <td class="task-name" title="【Android】商用常规工程-列表">【Android】商用常规工程-列表</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">0.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284925</td>
+                <td class="task-name" title="【Android】数据清洗-无原型">【Android】数据清洗-无原型</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-22</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284088</td>
+                <td class="task-name" title="【Android】管理端-商用常规工程-新建工程单、代客申请">【Android】管理端-商用常规工程-新建工程单、代客申请</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284087</td>
+                <td class="task-name" title="【Android】管理端-商用常规工程-申请价格">【Android】管理端-商用常规工程-申请价格</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284086</td>
+                <td class="task-name" title="【Android】用户端-商用常规工程-重新提交">【Android】用户端-商用常规工程-重新提交</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">284085</td>
+                <td class="task-name" title="【Android】用户端-商用常规工程-新建工程单">【Android】用户端-商用常规工程-新建工程单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-30</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">25</td>
+            <td class="member-name">马腾</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:#10b981"></div></div></td>
+            <td class="num">4</td>
+            <td class="num">47.0h</td>
+            <td class="num">8.0h</td>
+            <td class="num">47.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×4</span></td>
+            <td class="pf-cell">网批×4</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (4/4 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">244606</td>
+                <td class="task-name" title="【测试】销司方案新增上下架功能及逻辑">【测试】销司方案新增上下架功能及逻辑</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">24.0</td>
+                <td class="num">0.0</td>
+                <td class="num">24.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">289697</td>
+                <td class="task-name" title="【测试】销司返利方案新增通补政策关联逻辑改造--政策审核">【测试】销司返利方案新增通补政策关联逻辑改造--政策审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">244605</td>
+                <td class="task-name" title="【测试设计】销司方案新增上下架功能及逻辑">【测试设计】销司方案新增上下架功能及逻辑</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">8.0</td>
+                <td class="num">8.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-07-03</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">289692</td>
+                <td class="task-name" title="【测试设计】销司返利方案新增通补政策关联逻辑改造--政策审核">【测试设计】销司返利方案新增通补政策关联逻辑改造--政策审核</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">26</td>
+            <td class="member-name">许峻嘉</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:4%;background:#f59e0b"></div></div></td>
+            <td class="num">1</td>
+            <td class="num">24.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">24.0h</td>
+            <td><span class="badge-overdue">⚠ 1</span></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×1</span></td>
+            <td class="pf-cell">网批×1</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (1/1 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="row-overdue">
+                <td class="task-id">282307</td>
+                <td class="task-name" title="【后端】销售公司销售方案审批流程、销司查询多选、下载中心任务、分销商品库等代码自测、代码走查文档编写">【后端】销售公司销售方案审批流程、销司查询多选、下载中心任务、分销商品库等代码自测、代码走</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">24.0</td>
+                <td class="num">0.0</td>
+                <td class="num">24.0</td>
+                <td class="deadline">2026-06-02</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">27</td>
+            <td class="member-name">卢鑫</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">5</td>
+            <td class="num">16.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">16.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×5</span></td>
+            <td class="pf-cell">网批×5</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (5/5 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">286395</td>
+                <td class="task-name" title="【后端】经济概况表导出到下载中心并加密">【后端】经济概况表导出到下载中心并加密</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">4.0</td>
+                <td class="num">0.0</td>
+                <td class="num">4.0</td>
+                <td class="deadline">2026-06-08</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286448</td>
+                <td class="task-name" title="|重庆商用销售公司模式绘制审批流程图（关键基础信息、活动方案）|">|重庆商用销售公司模式绘制审批流程图（关键基础信息、活动方案）|</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286447</td>
+                <td class="task-name" title="|重庆商用销售公司模式绘制审批流程图（入驻、关键签约信息）|">|重庆商用销售公司模式绘制审批流程图（入驻、关键签约信息）|</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286440</td>
+                <td class="task-name" title="|海南商用销售公司模式绘制审批流程图（关键基础信息、活动方案）|">|海南商用销售公司模式绘制审批流程图（关键基础信息、活动方案）|</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286439</td>
+                <td class="task-name" title="|海南商用销售公司模式绘制审批流程图（入驻、关键签约信息）|">|海南商用销售公司模式绘制审批流程图（入驻、关键签约信息）|</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">28</td>
+            <td class="member-name">伍镓烨</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">2</td>
+            <td class="num">15.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">15.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×2</span></td>
+            <td class="pf-cell">网批×2</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (2/2 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">289703</td>
+                <td class="task-name" title="【测试】通补不计收入订单部分--字段核对及金蝶对接">【测试】通补不计收入订单部分--字段核对及金蝶对接</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">289701</td>
+                <td class="task-name" title="【测试设计】通补不计收入订单部分--字段核对及金蝶对接">【测试设计】通补不计收入订单部分--字段核对及金蝶对接</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">29</td>
+            <td class="member-name">匡军</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">2</td>
+            <td class="num">15.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">15.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×2</span></td>
+            <td class="pf-cell">网批×2</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (2/2 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">289702</td>
+                <td class="task-name" title="【测试】通补不计收入订单部分--字段核对及OMS对接">【测试】通补不计收入订单部分--字段核对及OMS对接</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">289700</td>
+                <td class="task-name" title="【测试设计】通补不计收入订单部分--字段核对及OMS对接">【测试设计】通补不计收入订单部分--字段核对及OMS对接</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">30</td>
+            <td class="member-name">李文清</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">2</td>
+            <td class="num">15.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">15.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×2</span></td>
+            <td class="pf-cell">网批×2</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (2/2 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">289699</td>
+                <td class="task-name" title="【测试】销司返利方案新增通补政策关联逻辑改造-非销司返利">【测试】销司返利方案新增通补政策关联逻辑改造-非销司返利</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">289694</td>
+                <td class="task-name" title="【测试设计】销司返利方案新增通补政策关联逻辑改造-非销司返利">【测试设计】销司返利方案新增通补政策关联逻辑改造-非销司返利</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">31</td>
+            <td class="member-name">龙泽英</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">2</td>
+            <td class="num">15.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">15.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×2</span></td>
+            <td class="pf-cell">网批×2</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (2/2 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">289698</td>
+                <td class="task-name" title="【测试】销司返利方案新增通补政策关联逻辑改造--销司返利销售方案">【测试】销司返利方案新增通补政策关联逻辑改造--销司返利销售方案</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">289693</td>
+                <td class="task-name" title="【测试设计】销司返利方案新增通补政策关联逻辑改造--销司返利销售方案">【测试设计】销司返利方案新增通补政策关联逻辑改造--销司返利销售方案</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">32</td>
+            <td class="member-name">梁嘉健</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">5</td>
+            <td class="num">14.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">14.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×4</span></td>
+            <td class="pf-cell">网批×5</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (5/5 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">286453</td>
+                <td class="task-name" title="|重庆商用销售公司模式审批流程图（注销账号、服务商创建分销商）|">|重庆商用销售公司模式审批流程图（注销账号、服务商创建分销商）|</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286452</td>
+                <td class="task-name" title="|重庆商用销售公司模式审批流程图（分销商归属变更、分销商资料变更）|">|重庆商用销售公司模式审批流程图（分销商归属变更、分销商资料变更）|</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286444</td>
+                <td class="task-name" title="|海南商用销售公司模式审批流程图（注销账号、服务商创建分销商）|">|海南商用销售公司模式审批流程图（注销账号、服务商创建分销商）|</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">286443</td>
+                <td class="task-name" title="|海南商用销售公司模式审批流程图（分销商归属变更、分销商资料变更）|">|海南商用销售公司模式审批流程图（分销商归属变更、分销商资料变更）|</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-16</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">287691</td>
+                <td class="task-name" title="金蝶排查银行信息异常问题处理">金蝶排查银行信息异常问题处理</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">33</td>
+            <td class="member-name">陈嘉劲</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">2</td>
+            <td class="num">12.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">12.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×2</span></td>
+            <td class="pf-cell">网批×2</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (2/2 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">289705</td>
+                <td class="task-name" title="【测试】金蝶运费补差-传值税率固定值">【测试】金蝶运费补差-传值税率固定值</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">9.0</td>
+                <td class="num">0.0</td>
+                <td class="num">9.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">289704</td>
+                <td class="task-name" title="【测试设计】金蝶运费补差-传值税率固定值">【测试设计】金蝶运费补差-传值税率固定值</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">3.0</td>
+                <td class="num">0.0</td>
+                <td class="num">3.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">34</td>
+            <td class="member-name">江小芳</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">1</td>
+            <td class="num">12.0h</td>
+            <td class="num">4.0h</td>
+            <td class="num">8.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×1</span></td>
+            <td class="pf-cell">网批×1</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (1/1 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">289696</td>
+                <td class="task-name" title="【测试】销司返利方案新增通补政策关联逻辑改造-政策草稿、查询">【测试】销司返利方案新增通补政策关联逻辑改造-政策草稿、查询</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">4.0</td>
+                <td class="num">8.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">35</td>
+            <td class="member-name">罗有文</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#10b981"></div></div></td>
+            <td class="num">1</td>
+            <td class="num">12.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">12.0h</td>
+            <td></td>
+            <td class="tags-cell"><span class="tag tag-test">测试×1</span></td>
+            <td class="pf-cell">网批×1</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (1/1 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">289695</td>
+                <td class="task-name" title="【测试】销司返利方案新增通补政策关联逻辑改造--政策新建、查询">【测试】销司返利方案新增通补政策关联逻辑改造--政策新建、查询</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">12.0</td>
+                <td class="num">0.0</td>
+                <td class="num">12.0</td>
+                <td class="deadline">2026-06-05</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">36</td>
+            <td class="member-name">梁家槐</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:1%;background:#10b981"></div></div></td>
+            <td class="num">4</td>
+            <td class="num">8.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">8.0h</td>
+            <td></td>
+            <td class="tags-cell"></td>
+            <td class="pf-cell">网批×4</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (4/4 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="">
+                <td class="task-id">287692</td>
+                <td class="task-name" title="因总部部分机型已淘汰清库完成，前期湖南经销商订单无货供给；因经销商下单时间过早，现商家退单申请提示"已核算或发放奖励暂不支持退款"申请将商家订单数据做以下处理">因总部部分机型已淘汰清库完成，前期湖南经销商订单无货供给；因经销商下单时间过早，现商家退单</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">287690</td>
+                <td class="task-name" title="新增京东格力经世格新专卖店4月销售任务（店铺ID：15937200），调整内容请见附件。">新增京东格力经世格新专卖店4月销售任务（店铺ID：15937200），调整内容请见附件。</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">287649</td>
+                <td class="task-name" title="重庆商用主体【重庆明辉格力电器销售有限公司】曾在2.0时期作为商用经销商入驻网批，退出后经销商名称、统一社会信用代码、业务负责人手机号未更改，为避免不必要的干扰，申请修改经销商数据">重庆商用主体【重庆明辉格力电器销售有限公司】曾在2.0时期作为商用经销商入驻网批，退出后经</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr><tr class="">
+                <td class="task-id">287590</td>
+                <td class="task-name" title="经销商公司名称：长春欧亚集团股份有限公司营销分公司；商家类型：卖场客户；网批账号：V7400266；PID：65933该商家此入驻信息因网批未合作删除无影响。">经销商公司名称：长春欧亚集团股份有限公司营销分公司；商家类型：卖场客户；网批账号：V740</td>
+                <td><span class="status-badge st-wait">待处理</span></td>
+                <td>中</td>
+                <td class="num">2.0</td>
+                <td class="num">0.0</td>
+                <td class="num">2.0</td>
+                <td class="deadline">2026-06-10</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr><tr class="">
+            <td class="rank">37</td>
+            <td class="member-name">李龙键</td>
+            <td><div class="bar-wrap"><div class="bar-fill" style="width:1%;background:#f59e0b"></div></div></td>
+            <td class="num">1</td>
+            <td class="num">6.0h</td>
+            <td class="num">0.0h</td>
+            <td class="num">6.0h</td>
+            <td><span class="badge-overdue">⚠ 1</span></td>
+            <td class="tags-cell"><span class="tag tag-backend">后端×1</span></td>
+            <td class="pf-cell">网批×1</td>
+        </tr><tr class="task-detail-row"><td colspan="10">
+            <details>
+                <summary>📋 查看任务明细 (1/1 项)</summary>
+                <div class="task-table-wrap">
+                <table class="task-detail-table">
+                    <thead><tr><th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th>
+                    <th>预估</th><th>已耗</th><th>剩余</th><th>截止</th><th>平台</th></tr></thead>
+                    <tbody><tr class="row-overdue">
+                <td class="task-id">284286</td>
+                <td class="task-name" title="【后端】货款资金支付优化（针对支付完成后订单更新失败进行数据状态更新&查询）">【后端】货款资金支付优化（针对支付完成后订单更新失败进行数据状态更新&查询）</td>
+                <td><span class="status-badge st-doing">进行中</span></td>
+                <td>中</td>
+                <td class="num">6.0</td>
+                <td class="num">0.0</td>
+                <td class="num">6.0</td>
+                <td class="deadline">2026-06-03</td>
+                <td>网批2.0</td>
+            </tr></tbody>
+                </table>
+                </div>
+            </details></td></tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<div class="charts-row">
+    <div class="chart-box">
+        <h3>📊 各成员预估工时排名</h3>
+        <div class="chart-wrap"><canvas id="chartEstimate"></canvas></div>
+    </div>
+    <div class="chart-box">
+        <h3>📊 工时消耗对比（预估 vs 已消耗 vs 剩余）</h3>
+        <div class="chart-wrap"><canvas id="chartCompare"></canvas></div>
+    </div>
+</div>
+
+<div class="charts-row">
+    <div class="chart-box">
+        <h3>🍩 任务类型分布</h3>
+        <div class="chart-wrap"><canvas id="chartTypeDist"></canvas></div>
+    </div>
+    <div class="chart-box">
+        <h3>🍩 平台任务分布</h3>
+        <div class="chart-wrap"><canvas id="chartPlatform"></canvas></div>
+    </div>
+</div>
+
+<div class="charts-row">
+    <div class="chart-box">
+        <h3>📊 任务状态分布</h3>
+        <div class="chart-wrap"><canvas id="chartStatus"></canvas></div>
+    </div>
+    <div class="chart-box">
+        <h3>📊 优先级分布</h3>
+        <div class="chart-wrap"><canvas id="chartPRI"></canvas></div>
+    </div>
+</div>
+
+<div class="footer">
+    禅道项目管理系统 · 团队工时负载分析报告 · 数据截止: 2026-06-04 09:38:10
+</div>
+
+</div>
+
+<script>
+// === 预估工时横向柱状图 ===
+new Chart(document.getElementById('chartEstimate'), {
+    type: 'bar',
+    data: {
+        labels: ["李兆杰", "梁庆芬", "周志杰", "王也", "李红燕", "艾思芹", "阳超", "张春杰", "田宇飞", "谢婉扬", "张其辉", "王子尘", "冯澈", "徐良侦", "黄宇安", "孙元通", "吴炜欣", "胡健", "刘兰真", "莫世有", "范文玉", "徐琦", "陈灿茂", "马腾", "许峻嘉", "卢鑫", "伍镓烨", "匡军", "李文清", "龙泽英", "梁嘉健", "陈嘉劲", "江小芳", "罗有文", "梁家槐", "李龙键"],
+        datasets: [{
+            label: '预估工时 (h)',
+            data: [549.0, 285.0, 243.0, 160.5, 152.0, 144.0, 138.0, 104.0, 104.0, 96.0, 86.0, 84.0, 80.0, 75.0, 72.0, 68.0, 64.0, 64.0, 60.0, 60.0, 56.0, 48.0, 48.0, 47.0, 24.0, 16.0, 15.0, 15.0, 15.0, 15.0, 14.0, 12.0, 12.0, 12.0, 8.0, 6.0],
+            backgroundColor: ["#667eea", "#764ba2", "#f093fb", "#4facfe", "#43e97b", "#fa709a", "#feca57", "#ff6348", "#7bed9f", "#70a1ff", "#ffa502", "#2ed573", "#1e90ff", "#eccc68", "#ff6b81", "#a29bfe", "#fd79a8", "#00b894", "#0984e3", "#6c5ce7", "#55efc4", "#fab1a0", "#81ecec", "#dfe6e9", "#ffeaa7", "#dfe6e9", "#888", "#888", "#888", "#888", "#888", "#888", "#888", "#888", "#888", "#888"],
+            borderRadius: 6,
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { title: { display: true, text: '工时 (h)' }, grid: { color: '#f0f0f0' } },
+            y: { ticks: { font: { size: 12 } } }
+        }
+    }
+});
+
+// === 工时对比 ===
+new Chart(document.getElementById('chartCompare'), {
+    type: 'bar',
+    data: {
+        labels: ["李兆杰", "梁庆芬", "周志杰", "王也", "李红燕", "艾思芹", "阳超", "张春杰", "田宇飞", "谢婉扬", "张其辉", "王子尘", "冯澈", "徐良侦", "黄宇安", "孙元通", "吴炜欣", "胡健", "刘兰真", "莫世有", "范文玉", "徐琦", "陈灿茂", "马腾", "许峻嘉", "卢鑫", "伍镓烨", "匡军", "李文清", "龙泽英", "梁嘉健", "陈嘉劲", "江小芳", "罗有文", "梁家槐", "李龙键"],
+        datasets: [
+            { label: '预估', data: [549.0, 285.0, 243.0, 160.5, 152.0, 144.0, 138.0, 104.0, 104.0, 96.0, 86.0, 84.0, 80.0, 75.0, 72.0, 68.0, 64.0, 64.0, 60.0, 60.0, 56.0, 48.0, 48.0, 47.0, 24.0, 16.0, 15.0, 15.0, 15.0, 15.0, 14.0, 12.0, 12.0, 12.0, 8.0, 6.0], backgroundColor: '#4facfe', borderRadius: 4 },
+            { label: '已消耗', data: [504.0, 238.0, 35.0, 4.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 16.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 36.0, 0.0, 0.0, 0.0, 0.0, 0.0, 8.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0], backgroundColor: '#43e97b', borderRadius: 4 },
+            { label: '剩余', data: [86.0, 23.0, 240.0, 160.5, 152.0, 144.0, 138.0, 104.0, 104.0, 96.0, 106.0, 84.0, 80.0, 75.0, 72.0, 68.0, 64.0, 31.0, 60.0, 60.0, 56.0, 48.0, 48.0, 47.0, 24.0, 16.0, 15.0, 15.0, 15.0, 15.0, 14.0, 12.0, 8.0, 12.0, 8.0, 6.0], backgroundColor: '#f093fb', borderRadius: 4 },
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+            x: { ticks: { maxRotation: 45, font: { size: 10 } }, grid: { color: '#f0f0f0' } },
+            y: { title: { display: true, text: '工时 (h)' }, grid: { color: '#f0f0f0' } }
+        }
+    }
+});
+
+// === 任务类型饼图 ===
+new Chart(document.getElementById('chartTypeDist'), {
+    type: 'doughnut',
+    data: {
+        labels: ['产品', '后端', '前端', '移动端', '测试', '其他'],
+        datasets: [{
+            data: [24, 240, 0, 0, 16, 53],
+            backgroundColor: ['#a78bfa','#10b981','#f472b6','#fb923c','#38bdf8','#cbd5e1'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'right', labels: { padding: 16, font: { size: 13 } } } }
+    }
+});
+
+// === 平台分布 ===
+new Chart(document.getElementById('chartPlatform'), {
+    type: 'doughnut',
+    data: {
+        labels: ['网批2.0', '集采', '分销'],
+        datasets: [{
+            data: [333, 0, 0],
+            backgroundColor: ['#667eea','#f093fb','#43e97b'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'right', labels: { padding: 16, font: { size: 13 } } } }
+    }
+});
+
+// === 状态分布 ===
+new Chart(document.getElementById('chartStatus'), {
+    type: 'bar',
+    data: {
+        labels: ['待处理', '进行中', '已暂停'],
+        datasets: [{
+            label: '任务数',
+            data: [208, 99, 0],
+            backgroundColor: ['#fb923c', '#10b981', '#94a3b8'],
+            borderRadius: 6,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { grid: { color: '#f0f0f0' } },
+            y: { title: { display: true, text: '任务数' }, grid: { color: '#f0f0f0' }, beginAtZero: true }
+        }
+    }
+});
+
+// === 优先级分布 ===
+new Chart(document.getElementById('chartPRI'), {
+    type: 'bar',
+    data: {
+        labels: ['紧急(1)', '高(2)', '中(3)', '低(4)'],
+        datasets: [{
+            label: '任务数',
+            data: [10, 33, 290, 0],
+            backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#94a3b8'],
+            borderRadius: 6,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { grid: { color: '#f0f0f0' } },
+            y: { title: { display: true, text: '任务数' }, grid: { color: '#f0f0f0' }, beginAtZero: true }
+        }
+    }
+});
+</script>
+</body>
+</html>
