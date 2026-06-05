@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 329,
-    "total_active": 254,
-    "total_consumed": 2593.5,
+    "total_done": 335,
+    "total_active": 248,
+    "total_consumed": 2633.5,
     "total_estimate": 4533.5,
-    "total_left": 2101.5,
+    "total_left": 2057.5,
     "total_members": 45,
     "total_overdue": 16,
-    "report_time": "2026-06-05 11:33:05",
+    "report_time": "2026-06-05 16:43:49",
     "month": "2026年6月"
   },
   "members": [
@@ -472,6 +472,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 324515,
+          "title": "【QA-PC-管理侧-销司返利】修改政策依据后，关联政策依据名称不改变",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 324481,
           "title": "【QA-PC-管理侧-政策库】编辑修改通补政策信息提交后，驳回，查看驳回政策，结果显示修改后的数据",
           "severity": 3,
@@ -508,16 +517,7 @@
           "openedBy": "龙泽英"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 324515,
-          "title": "【QA-PC-管理侧-销司返利】修改政策依据后，关联政策依据名称不改变",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "梁庆芬",
@@ -905,15 +905,6 @@
       "active_tasks": [],
       "resolved_bugs": [
         {
-          "id": 324376,
-          "title": "【QA/PRD-PC-管理侧-活动销售方案】待办事项-销售方案审核，经销商销售方案页签中，活动方案销售公司显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
           "id": 324550,
           "title": "【QA-PC-管理侧-政策库】返利方案调价关联新政策，然后被驳回，这个新政策变成未关联状态，结果这个政策无法编辑：政策类",
           "severity": 3,
@@ -957,6 +948,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 324376,
+          "title": "【QA/PRD-PC-管理侧-活动销售方案】待办事项-销售方案审核，经销商销售方案页签中，活动方案销售公司显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
         },
         {
           "id": 324140,
@@ -2254,7 +2254,7 @@
           "title": "【PRD-PC-管理侧-待办事项】下滑刷新后，订单审批数量变更为0",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
         },
@@ -4846,22 +4846,22 @@
       },
       "type_backend_hrs": 0.0,
       "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 66.0,
+      "type_mobile_hrs": 74.0,
       "type_product_hrs": 0.0,
       "type_test_hrs": 0.0,
-      "done_count": 7,
-      "done_consumed": 50.0,
-      "done_estimate": 47.0,
-      "active_count": 8,
-      "active_estimate": 39.0,
+      "done_count": 10,
+      "done_consumed": 58.0,
+      "done_estimate": 55.0,
+      "active_count": 5,
+      "active_estimate": 31.0,
       "active_consumed": 16.0,
-      "active_left": 59.0,
+      "active_left": 51.0,
       "total_tasks": 15,
-      "total_consumed": 66.0,
+      "total_consumed": 74.0,
       "total_hours": 125.0,
       "total_estimate": 86.0,
-      "completion_rate": 46.7,
-      "efficiency": 52.8,
+      "completion_rate": 66.7,
+      "efficiency": 59.2,
       "overdue": 0,
       "done_tasks": [
         {
@@ -4915,6 +4915,36 @@
           "finished_date": "2026-06-05"
         },
         {
+          "id": 282218,
+          "name": "【Android】订单列表-延期发货",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "finished_by": "张其辉",
+          "finished_date": "2026-06-05"
+        },
+        {
+          "id": 282343,
+          "name": "【Android】退款售后单详情",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "finished_by": "张其辉",
+          "finished_date": "2026-06-05"
+        },
+        {
+          "id": 282341,
+          "name": "【Android】退款售后单列表",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "finished_by": "张其辉",
+          "finished_date": "2026-06-05"
+        },
+        {
           "id": 282433,
           "name": "【Android】管理端-售后详情",
           "consumed": 1.0,
@@ -4961,18 +4991,6 @@
           "deadline": "2026-06-30"
         },
         {
-          "id": 282218,
-          "name": "【Android】订单列表-延期发货",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "deadline": "2026-06-05"
-        },
-        {
           "id": 285226,
           "name": "【Android】分销商管理",
           "status": "wait",
@@ -4983,30 +5001,6 @@
           "left": 4.0,
           "platform": "网批2.0",
           "deadline": "2026-06-30"
-        },
-        {
-          "id": 282343,
-          "name": "【Android】退款售后单详情",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "deadline": "2026-06-05"
-        },
-        {
-          "id": 282341,
-          "name": "【Android】退款售后单列表",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "deadline": "2026-06-05"
         },
         {
           "id": 283759,
@@ -6274,6 +6268,102 @@
       "active_bugs": []
     },
     {
+      "name": "伍镓烨",
+      "role": "测试",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 6,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 69.0,
+      "done_count": 6,
+      "done_consumed": 69.0,
+      "done_estimate": 69.0,
+      "active_count": 0,
+      "active_estimate": 0.0,
+      "active_consumed": 0.0,
+      "active_left": 0.0,
+      "total_tasks": 6,
+      "total_consumed": 69.0,
+      "total_hours": 69.0,
+      "total_estimate": 69.0,
+      "completion_rate": 100.0,
+      "efficiency": 100.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 284115,
+          "name": "【测试】工程配提资源机订单部分",
+          "consumed": 32.0,
+          "estimate": 32.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "finished_by": "伍镓烨",
+          "finished_date": "2026-06-03"
+        },
+        {
+          "id": 289703,
+          "name": "【测试】通补不计收入订单部分--字段核对及金蝶对接",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "finished_by": "伍镓烨",
+          "finished_date": "2026-06-05"
+        },
+        {
+          "id": 284114,
+          "name": "【测试设计】工程配提资源机订单部分",
+          "consumed": 11.0,
+          "estimate": 11.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "finished_by": "伍镓烨",
+          "finished_date": "2026-06-03"
+        },
+        {
+          "id": 284163,
+          "name": "【测试】总部开单主体推送OMS",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "finished_by": "伍镓烨",
+          "finished_date": "2026-06-03"
+        },
+        {
+          "id": 289701,
+          "name": "【测试设计】通补不计收入订单部分--字段核对及金蝶对接",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "finished_by": "伍镓烨",
+          "finished_date": "2026-06-04"
+        },
+        {
+          "id": 284162,
+          "name": "【测试设计】总部开单主体推送OMS",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "finished_by": "伍镓烨",
+          "finished_date": "2026-06-03"
+        }
+      ],
+      "active_tasks": [],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
       "name": "龙泽英",
       "role": "测试",
       "type_counts": {
@@ -6415,6 +6505,82 @@
       "active_bugs": []
     },
     {
+      "name": "匡军",
+      "role": "测试",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 4,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 63.0,
+      "done_count": 4,
+      "done_consumed": 63.0,
+      "done_estimate": 63.0,
+      "active_count": 0,
+      "active_estimate": 0.0,
+      "active_consumed": 0.0,
+      "active_left": 0.0,
+      "total_tasks": 4,
+      "total_consumed": 63.0,
+      "total_hours": 63.0,
+      "total_estimate": 63.0,
+      "completion_rate": 100.0,
+      "efficiency": 100.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 284133,
+          "name": "【测试】网批系统各模块导出能力对接下载中心，同时文件导出的时候增加导出密码能力--一期",
+          "consumed": 32.0,
+          "estimate": 32.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "finished_by": "匡军",
+          "finished_date": "2026-06-03"
+        },
+        {
+          "id": 284135,
+          "name": "【测试】营销一体化打通-销司订单发货场景补全",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "finished_by": "匡军",
+          "finished_date": "2026-06-03"
+        },
+        {
+          "id": 289702,
+          "name": "【测试】通补不计收入订单部分--字段核对及OMS对接",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "finished_by": "匡军",
+          "finished_date": "2026-06-05"
+        },
+        {
+          "id": 289700,
+          "name": "【测试设计】通补不计收入订单部分--字段核对及OMS对接",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "finished_by": "匡军",
+          "finished_date": "2026-06-03"
+        }
+      ],
+      "active_tasks": [],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
       "name": "陈嘉劲",
       "role": "测试",
       "type_counts": {
@@ -6508,105 +6674,6 @@
           "estimate": 3.0,
           "consumed": 0.0,
           "left": 3.0,
-          "platform": "网批2.0",
-          "deadline": "2026-06-05"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
-      "name": "伍镓烨",
-      "role": "测试",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 6,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 57.0,
-      "done_count": 5,
-      "done_consumed": 57.0,
-      "done_estimate": 57.0,
-      "active_count": 1,
-      "active_estimate": 12.0,
-      "active_consumed": 0.0,
-      "active_left": 12.0,
-      "total_tasks": 6,
-      "total_consumed": 57.0,
-      "total_hours": 69.0,
-      "total_estimate": 69.0,
-      "completion_rate": 83.3,
-      "efficiency": 82.6,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 284115,
-          "name": "【测试】工程配提资源机订单部分",
-          "consumed": 32.0,
-          "estimate": 32.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "finished_by": "伍镓烨",
-          "finished_date": "2026-06-03"
-        },
-        {
-          "id": 284114,
-          "name": "【测试设计】工程配提资源机订单部分",
-          "consumed": 11.0,
-          "estimate": 11.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "finished_by": "伍镓烨",
-          "finished_date": "2026-06-03"
-        },
-        {
-          "id": 284163,
-          "name": "【测试】总部开单主体推送OMS",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "finished_by": "伍镓烨",
-          "finished_date": "2026-06-03"
-        },
-        {
-          "id": 289701,
-          "name": "【测试设计】通补不计收入订单部分--字段核对及金蝶对接",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "finished_by": "伍镓烨",
-          "finished_date": "2026-06-04"
-        },
-        {
-          "id": 284162,
-          "name": "【测试设计】总部开单主体推送OMS",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "finished_by": "伍镓烨",
-          "finished_date": "2026-06-03"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 289703,
-          "name": "【测试】通补不计收入订单部分--字段核对及金蝶对接",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 12.0,
-          "consumed": 0.0,
-          "left": 12.0,
           "platform": "网批2.0",
           "deadline": "2026-06-05"
         }
@@ -6747,85 +6814,6 @@
       "active_bugs": []
     },
     {
-      "name": "匡军",
-      "role": "测试",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 4,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 51.0,
-      "done_count": 3,
-      "done_consumed": 51.0,
-      "done_estimate": 51.0,
-      "active_count": 1,
-      "active_estimate": 12.0,
-      "active_consumed": 0.0,
-      "active_left": 12.0,
-      "total_tasks": 4,
-      "total_consumed": 51.0,
-      "total_hours": 63.0,
-      "total_estimate": 63.0,
-      "completion_rate": 75.0,
-      "efficiency": 81.0,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 284133,
-          "name": "【测试】网批系统各模块导出能力对接下载中心，同时文件导出的时候增加导出密码能力--一期",
-          "consumed": 32.0,
-          "estimate": 32.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "finished_by": "匡军",
-          "finished_date": "2026-06-03"
-        },
-        {
-          "id": 284135,
-          "name": "【测试】营销一体化打通-销司订单发货场景补全",
-          "consumed": 16.0,
-          "estimate": 16.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "finished_by": "匡军",
-          "finished_date": "2026-06-03"
-        },
-        {
-          "id": 289700,
-          "name": "【测试设计】通补不计收入订单部分--字段核对及OMS对接",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "finished_by": "匡军",
-          "finished_date": "2026-06-03"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 289702,
-          "name": "【测试】通补不计收入订单部分--字段核对及OMS对接",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 12.0,
-          "consumed": 0.0,
-          "left": 12.0,
-          "platform": "网批2.0",
-          "deadline": "2026-06-05"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
       "name": "江小芳",
       "role": "测试",
       "type_counts": {
@@ -6955,20 +6943,20 @@
       "type_frontend_hrs": 0.0,
       "type_mobile_hrs": 0.0,
       "type_product_hrs": 0.0,
-      "type_test_hrs": 31.0,
-      "done_count": 2,
-      "done_consumed": 27.0,
-      "done_estimate": 27.0,
-      "active_count": 1,
-      "active_estimate": 12.0,
-      "active_consumed": 4.0,
-      "active_left": 12.0,
+      "type_test_hrs": 39.0,
+      "done_count": 3,
+      "done_consumed": 39.0,
+      "done_estimate": 39.0,
+      "active_count": 0,
+      "active_estimate": 0.0,
+      "active_consumed": 0.0,
+      "active_left": 0.0,
       "total_tasks": 3,
-      "total_consumed": 31.0,
-      "total_hours": 43.0,
+      "total_consumed": 39.0,
+      "total_hours": 39.0,
       "total_estimate": 39.0,
-      "completion_rate": 66.7,
-      "efficiency": 72.1,
+      "completion_rate": 100.0,
+      "efficiency": 100.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -6982,6 +6970,16 @@
           "finished_date": "2026-06-03"
         },
         {
+          "id": 289695,
+          "name": "【测试】销司返利方案新增通补政策关联逻辑改造--政策新建、查询",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "finished_by": "罗有文",
+          "finished_date": "2026-06-05"
+        },
+        {
           "id": 289690,
           "name": "【测试设计】销司返利方案新增通补政策关联逻辑改造--政策新建、查询",
           "consumed": 3.0,
@@ -6992,20 +6990,7 @@
           "finished_date": "2026-06-04"
         }
       ],
-      "active_tasks": [
-        {
-          "id": 289695,
-          "name": "【测试】销司返利方案新增通补政策关联逻辑改造--政策新建、查询",
-          "status": "doing",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 12.0,
-          "consumed": 4.0,
-          "left": 12.0,
-          "platform": "网批2.0",
-          "deadline": "2026-06-05"
-        }
-      ],
+      "active_tasks": [],
       "resolved_bugs": [],
       "active_bugs": []
     },
