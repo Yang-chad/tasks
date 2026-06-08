@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>何嘉宝 - 6月任务详细清单</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+         background:#f0f2f5; color:#1f2937; padding:20px; }
+  .container { max-width:1200px; margin:0 auto; }
+  .header { text-align:center; padding:30px 20px; margin-bottom:24px;
+    background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); border-radius:16px; color:#fff; }
+  .header h1 { font-size:24px; margin-bottom:8px; }
+  .header p { color:#8892b0; font-size:13px; }
+  .back-link { display:inline-block; margin-bottom:16px; color:#667eea; font-size:13px; text-decoration:none; }
+  .back-link:hover { text-decoration:underline; }
+
+  /* Summary cards */
+  .summary { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+  .summary-card { flex:1; min-width:130px; background:#fff; border-radius:12px; padding:18px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06); text-align:center; }
+  .summary-card .num { font-size:28px; font-weight:800; }
+  .summary-card .lbl { font-size:12px; color:#888; margin-top:4px; }
+  .num-green { color:#16a34a; }
+  .num-blue { color:#667eea; }
+  .num-red { color:#ef4444; }
+  .num-orange { color:#f59e0b; }
+
+  /* Section */
+  .section { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); margin-bottom:24px; }
+  .section-header { padding:14px 20px; border-bottom:1px solid #f0f0f0; display:flex; align-items:center; gap:10px; }
+  .section-header h2 { font-size:16px; color:#1f2937; }
+  .section-header .badge { display:inline-block; padding:2px 10px; border-radius:10px; font-size:12px; font-weight:600; }
+  .badge-green { background:#dcfce7; color:#16a34a; }
+
+  /* Table */
+  table { width:100%; border-collapse:collapse; }
+  th { background:#f8f9fc; color:#374151; padding:11px 14px; text-align:left; font-weight:600; font-size:12px; white-space:nowrap; }
+  td { padding:10px 14px; border-bottom:1px solid #f5f5f5; font-size:13px; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover { background:#f8f9fc; }
+
+  .task-id { color:#667eea; font-weight:600; font-size:12px; }
+  .task-hours { font-weight:600; color:#1f2937; text-align:center; }
+  .task-date { color:#888; font-size:12px; white-space:nowrap; }
+  .task-type { display:inline-block; padding:2px 8px; border-radius:8px; font-size:11px; background:#dbeafe; color:#1d4ed8; }
+
+  .bug-severity { display:inline-block; padding:2px 8px; border-radius:8px; font-size:11px; font-weight:600; }
+  .sev-3 { background:#fef3c7; color:#d97706; }
+
+  .footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:30px; padding:16px; }
+
+  @media (max-width:768px) {
+    .summary { flex-direction:column; }
+    .summary-card { min-width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back-link" href="团队产出效率分析_202606.html">← 返回6月产出效率分析</a>
+
+  <div class="header">
+    <h1>何嘉宝 · 6月任务详细清单</h1>
+    <p>后端开发 &nbsp;|&nbsp; 数据来源：禅道三平台（网批2.0/集采/分销）&nbsp;|&nbsp; 2026-06-08 更新</p>
+  </div>
+
+  <div class="summary">
+    <div class="summary-card">
+      <div class="num num-blue">10</div>
+      <div class="lbl">📋 完成任务</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-green">158h</div>
+      <div class="lbl">⏱ 总消耗工时</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-green">158h</div>
+      <div class="lbl">📐 预估工时</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-green">100%</div>
+      <div class="lbl">✅ 完成率</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-orange">100%</div>
+      <div class="lbl">📊 效率比</div>
+    </div>
+    <div class="summary-card">
+      <div class="num num-red">10</div>
+      <div class="lbl">🐛 解决Bug</div>
+    </div>
+  </div>
+
+  <!-- Done Tasks -->
+  <div class="section">
+    <div class="section-header">
+      <h2>✅ 已完成任务</h2>
+      <span class="badge badge-green">10个 · 158h</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px;">任务ID</th>
+          <th>任务名称</th>
+          <th style="width:80px;">工时(h)</th>
+          <th style="width:80px;">预估(h)</th>
+          <th style="width:100px;">完成日期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="task-id">#283131</span></td>
+          <td>【后端】五个活动方案，需要维护行业ID的缓存和推送ES</td>
+          <td class="task-hours">16</td>
+          <td class="task-hours">16</td>
+          <td class="task-date">2026-06-01</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#287163</span></td>
+          <td>【后端】管理侧-返利方案创建、提交、调价的政策保存政策校验逻辑修改</td>
+          <td class="task-hours">8</td>
+          <td class="task-hours">8</td>
+          <td class="task-date">2026-06-03</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#287162</span></td>
+          <td>【后端】管理侧-返利方案创建、提交、调价的政策保存逻辑修改（往政策库打标【除了草稿状态】）</td>
+          <td class="task-hours">8</td>
+          <td class="task-hours">8</td>
+          <td class="task-date">2026-06-03</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#279080</span></td>
+          <td>3.0模式经销商销售方案行业属性优化需求评审、自测文档、走查文档输出</td>
+          <td class="task-hours">8</td>
+          <td class="task-hours">8</td>
+          <td class="task-date">2026-06-01</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#279079</span></td>
+          <td>3.0模式经销商销售方案行业属性优化详细设计文档</td>
+          <td class="task-hours">8</td>
+          <td class="task-hours">8</td>
+          <td class="task-date">2026-06-01</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#287165</span></td>
+          <td>【后端】管理侧-反查返利方案的配置政策引用情况</td>
+          <td class="task-hours">4</td>
+          <td class="task-hours">4</td>
+          <td class="task-date">2026-06-03</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#287164</span></td>
+          <td>【后端】管理侧-提供订单查询政策所需字段（DB查询）</td>
+          <td class="task-hours">4</td>
+          <td class="task-hours">4</td>
+          <td class="task-date">2026-06-03</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#286451</span></td>
+          <td>重庆商用销售公司模式绘制审批流程图（商家类型变更、补录协议、经营信息）</td>
+          <td class="task-hours">3</td>
+          <td class="task-hours">3</td>
+          <td class="task-date">2026-06-01</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#286449</span></td>
+          <td>重庆商用销售公司模式绘制审批流程图（返利充值、工程保证金变更）</td>
+          <td class="task-hours">3</td>
+          <td class="task-hours">3</td>
+          <td class="task-date">2026-06-01</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#286442</span></td>
+          <td>海南商用销售公司模式绘制审批流程图（商家类型变更、补录协议、经营信息）</td>
+          <td class="task-hours">3</td>
+          <td class="task-hours">3</td>
+          <td class="task-date">2026-06-01</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Resolved Bugs -->
+  <div class="section">
+    <div class="section-header">
+      <h2>🐛 已解决Bug</h2>
+      <span class="badge badge-green">10个 · 全部已关闭</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px;">Bug ID</th>
+          <th>Bug 标题</th>
+          <th style="width:80px;">严重度</th>
+          <th style="width:80px;">提交人</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="task-id">#324550</span></td>
+          <td>【QA-PC-管理侧-政策库】返利方案调价关联新政策，然后被驳回，这个新政策变成未关联状态，结果这个政策无法编辑：政策类</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">罗有文</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324493</span></td>
+          <td>【QA-PC-管理侧-政策库】返利方案月度关联两个政策，年度关联一个政策，结果编辑政策的政策类型、是否计收入还是能修改</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">罗有文</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324393</span></td>
+          <td>【QA-PC-管理侧-政策库】政策已被"草稿"状态的销司返利方案引用，编辑时，政策类型/是否计收入，不能修改</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">江小芳</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324392</span></td>
+          <td>【QA-PC-管理侧-销司方案管理】新建非销司返利方案，选择关联政策依据弹窗显示"通补政策"的政策数据</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">李文清</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324384</span></td>
+          <td>【QA-PC-管理侧-销司返利方案】新建方案，选择关联政策依据弹窗政策的政策类型、是否计入收入字段显示为空</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">李文清</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324376</span></td>
+          <td>【QA/PRD-PC-管理侧-活动销售方案】待办事项-销售方案审核，经销商销售方案页签中，活动方案销售公司显示为空</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">龙泽英</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324140</span></td>
+          <td>【QA-PC-管理侧-买赠】复制新增提交时，缺少校验优惠券与买赠活动是否存在相同商品</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">龙泽英</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324125</span></td>
+          <td>【QA-PC-管理侧-优惠券审核】进入优惠券审核页面的定向发券页面，结果提示未查询到数据</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">罗有文</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#324027</span></td>
+          <td>【QA-PC-管理侧-优惠券】部分优惠券查看页报错</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">龙泽英</td>
+        </tr>
+        <tr>
+          <td><span class="task-id">#323872</span></td>
+          <td>【QA-PC-管理侧-组合套餐】组合套餐复制新增中，原方案有多个套餐时，提交失败</td>
+          <td style="text-align:center;"><span class="bug-severity sev-3">等级3</span></td>
+          <td style="color:#888;">龙泽英</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>数据来源：禅道 ztpm.gree.com:8888 &nbsp;|&nbsp; 自动生成于 2026-06-08</p>
+  </div>
+</div>
+</body>
+</html>
