@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迭代 #4541 — 多维度分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.container { max-width: 1400px; margin: 0 auto; }
+
+/* ── 返回 ── */
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a {
+    color: #667eea; text-decoration: none; font-size: 13px;
+    padding: 6px 16px; border-radius: 16px;
+    background: #e8ecf4; border: 1px solid #d0d5e0;
+    display: inline-block; transition: background 0.2s;
+}
+.back-link a:hover { background: #d0d5e0; }
+
+/* ── Header ── */
+.header { text-align: center; padding: 24px 0 12px; }
+.header h1 { font-size: 26px; color: #1a1a2e; }
+.header .meta { font-size: 13px; color: #999; margin-top: 6px; }
+.header .meta span { margin: 0 8px; }
+
+/* ── 迭代信息卡片 ── */
+.info-card { background: #fff; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; flex-wrap: wrap; gap: 16px 32px; font-size: 13px; }
+.info-card .item { display: flex; align-items: center; gap: 6px; }
+.info-card .item .key { color: #888; }
+.info-card .item .val { font-weight: 600; color: #333; }
+.info-card .tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.tag-doing { background: #e8f5e9; color: #2e7d32; }
+.tag-overdue { background: #fff3e0; color: #e65100; }
+
+/* ── 统计卡片 ── */
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.card { flex: 1; min-width: 130px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.15s; }
+.card:hover { transform: translateY(-2px); }
+.card .num { font-size: 30px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card .sub { font-size: 11px; color: #aaa; margin-top: 2px; }
+.card-story .num { color: #667eea; }
+.card-task .num { color: #4facfe; }
+.card-bug .num { color: #26c6da; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-estimate .num { color: #ab47bc; }
+
+/* ── 进度条 ── */
+.progress-section { background: #fff; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.progress-section h3 { font-size: 14px; color: #555; margin-bottom: 10px; }
+.progress-bar { height: 12px; background: #e8e8e8; border-radius: 6px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #667eea, #4facfe); transition: width 0.5s ease; }
+.progress-labels { display: flex; justify-content: space-between; font-size: 11px; color: #888; margin-top: 4px; }
+
+/* ── 图表 ── */
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 280px; display: flex; justify-content: center; }
+
+/* ── Section 标题 ── */
+.section-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 20px 0 10px; padding-left: 12px; border-left: 4px solid #667eea; }
+
+/* ── 表格 ── */
+.table-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 16px; }
+.table-card h3 { font-size: 14px; padding: 12px 16px; background: #fafbfc; color: #555; border-bottom: 1px solid #f0f0f0; }
+.table-wrapper { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f5f6f8; padding: 10px 8px; text-align: left; font-weight: 600; white-space: nowrap; border-bottom: 2px solid #e8e8e8; }
+td { padding: 8px; border-bottom: 1px solid #f0f0f0; }
+tr:hover { background: #fafbfc; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 600; }
+.badge-wait { background: #fde8e8; color: #c62828; }
+.badge-doing { background: #e8f5e9; color: #2e7d32; }
+.badge-done { background: #e3f2fd; color: #1565c0; }
+.badge-closed { background: #f5f5f5; color: #888; }
+.badge-overdue { background: #fff3e0; color: #e65100; }
+.badge-p1 { background: #fde8e8; color: #c62828; }
+.badge-p2 { background: #fff3e0; color: #e65100; }
+.badge-p3 { background: #e3f2fd; color: #1565c0; }
+td.name-cell { max-width: 320px; white-space: normal; word-break: break-all; }
+a.task-link { color: #667eea; text-decoration: none; }
+a.task-link:hover { text-decoration: underline; }
+
+/* ── 人员折叠 ── */
+.section-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.section-bar .count { font-size: 12px; color: #888; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; flex-shrink: 0; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; white-space: nowrap; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+
+/* ── 需求卡片 ── */
+.story-grid { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.story-item { flex: 1; min-width: 300px; background: #fff; border-radius: 10px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.story-item .story-title { font-weight: 600; font-size: 14px; color: #333; margin-bottom: 6px; }
+.story-item .story-meta { font-size: 11px; color: #999; }
+
+/* ── Footer ── */
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+
+/* ── 标签页切换 ── */
+.tabs { display: flex; gap: 0; margin-bottom: 16px; background: #e8e8e8; border-radius: 10px; padding: 3px; }
+.tab-btn { flex: 1; padding: 10px 16px; border: none; background: transparent; font-size: 13px; font-weight: 600; color: #666; cursor: pointer; border-radius: 8px; transition: all 0.2s; font-family: inherit; }
+.tab-btn.active { background: #fff; color: #667eea; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- 返回 -->
+<div class="back-link"><a href="#">← 返回报告中心</a></div>
+
+<!-- Header -->
+<div class="header">
+    <h1>📊 迭代 #4541 — 多维度分析报告</h1>
+    <div class="meta">
+        <span>网批2.0_V2.78.0（0615/dev11.5）</span>
+        <span>|</span>
+        <span>2026-05-11 ~ 2026-06-18</span>
+        <span>|</span>
+        <span>生成时间：2026-06-01 14:36</span>
+    </div>
+</div>
+
+<!-- 迭代信息卡片 -->
+<div class="info-card">
+    <div class="item"><span class="key">所属项目：</span><span class="val">网批模式 (ID=902)</span></div>
+    <div class="item"><span class="key">状态：</span><span class="tag tag-doing">进行中</span></div>
+    <div class="item"><span class="key">创建人：</span><span class="val">李兆杰</span></div>
+    <div class="item"><span class="key">产品：</span><span class="val">奇点计划网批2.0</span></div>
+    <div class="item"><span class="key">进度：</span><span class="val">44.2%</span></div>
+    <div class="item"><span class="key">剩余天数：</span><span class="tag tag-overdue">17天</span></div>
+</div>
+
+<!-- 统计卡片 -->
+<div class="cards">
+    <div class="card card-story">
+        <div class="num">17</div>
+        <div class="label">📋 需求</div>
+        <div class="sub">全部已立项</div>
+    </div>
+    <div class="card card-task">
+        <div class="num">280</div>
+        <div class="label">📝 任务</div>
+        <div class="sub">99已完成 / 181未完成</div>
+    </div>
+    <div class="card card-bug">
+        <div class="num">0</div>
+        <div class="label">🐛 Bug</div>
+        <div class="sub">暂无关联Bug</div>
+    </div>
+    <div class="card card-overdue">
+        <div class="num">16</div>
+        <div class="label">⚠️ 延期任务</div>
+        <div class="sub">最多超期3天</div>
+    </div>
+    <div class="card card-wait">
+        <div class="num">87</div>
+        <div class="label">⏳ 待处理</div>
+        <div class="sub">占比 31.1%</div>
+    </div>
+    <div class="card card-doing">
+        <div class="num">58</div>
+        <div class="label">🔄 进行中</div>
+        <div class="sub">占比 20.7%</div>
+    </div>
+    <div class="card card-estimate">
+        <div class="num">4,056h</div>
+        <div class="label">⏱ 总预估工时</div>
+        <div class="sub">已耗 1,800h / 剩余 2,276h</div>
+    </div>
+</div>
+
+<!-- 进度条 -->
+<div class="progress-section">
+    <h3>📈 任务完成进度</h3>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width:35.4%"></div>
+    </div>
+    <div class="progress-labels">
+        <span>已完成 99 (35.4%)</span>
+        <span>未完成 181 (64.6%)</span>
+    </div>
+</div>
+
+<!-- 图表区 -->
+<div class="charts">
+    <div class="chart-box">
+        <h3>📊 任务状态分布</h3>
+        <div class="chart-container"><canvas id="chartStatus"></canvas></div>
+    </div>
+    <div class="chart-box">
+        <h3>📊 任务类型分布</h3>
+        <div class="chart-container"><canvas id="chartType"></canvas></div>
+    </div>
+    <div class="chart-box">
+        <h3>📊 优先级分布</h3>
+        <div class="chart-container"><canvas id="chartPri"></canvas></div>
+    </div>
+</div>
+
+<!-- 标签页切换 -->
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('tab-overdue')">⚠️ 延期任务 (16)</button>
+    <button class="tab-btn" onclick="switchTab('tab-backend')">🖥 后端任务 (110)</button>
+    <button class="tab-btn" onclick="switchTab('tab-frontend')">🎨 前端任务 (74)</button>
+    <button class="tab-btn" onclick="switchTab('tab-mobile')">📱 移动端任务 (76)</button>
+    <button class="tab-btn" onclick="switchTab('tab-stories')">📋 需求 (17)</button>
+    <button class="tab-btn" onclick="switchTab('tab-bugs')">🐛 Bug (0)</button>
+</div>
+
+<!-- ─── 标签页内容 ─── -->
+
+<!-- 延期任务 -->
+<div id="tab-overdue" class="tab-panel active">
+<div class="section-bar">
+    <div class="section-title" style="margin-top:0">⚠️ 延期任务清单</div>
+    <div class="count">共 16 个 | 涉及 6 人</div>
+</div>
+<div class="table-card">
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>负责人</th><th>类型</th><th>截止日</th><th>超期</th><th>状态</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr class="row-overdue"><td class="name-cell">【iOS】资金账户流水明细</td><td>吴炜欣</td><td>移动端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【iOS】履约单详情</td><td>吴炜欣</td><td>移动端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】定金分批提货订单不需要定金--定金支付</td><td>孙元通</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>5</td><td>3</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】为分销商提货订单提交</td><td>谢婉扬</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】为分销商提货订单确认页</td><td>谢婉扬</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】为我提货提货订单提交</td><td>谢婉扬</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】为我提货 提货订单确认页</td><td>谢婉扬</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】用户侧-支付成功后，提供回调支付接口-封装大方法-订单状态</td><td>谢婉扬</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】用户侧-分批提货定金订单-订单提交</td><td>谢婉扬</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【后端】用户侧-分批提货定金订单-订单结算页</td><td>谢婉扬</td><td>后端</td><td>2026-05-29</td><td><span class="badge badge-overdue">3天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【Android】分批提货-为分销商提货</td><td>陈灿茂</td><td>移动端</td><td>2026-05-30</td><td><span class="badge badge-overdue">2天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【iOS】分批提货-为分销商提货</td><td>张春杰</td><td>移动端</td><td>2026-05-30</td><td><span class="badge badge-overdue">2天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【Android】分批提货-为我提货</td><td>陈灿茂</td><td>移动端</td><td>2026-05-30</td><td><span class="badge badge-overdue">2天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【iOS】分批提货-为我提货</td><td>张春杰</td><td>移动端</td><td>2026-05-30</td><td><span class="badge badge-overdue">2天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【Android】待支付订单合并支付调整</td><td>陈灿茂</td><td>移动端</td><td>2026-05-30</td><td><span class="badge badge-overdue">2天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【iOS】工程定金单-申请退定金</td><td>吴炜欣</td><td>移动端</td><td>2026-05-30</td><td><span class="badge badge-overdue">2天</span></td><td><span class="badge badge-doing">进行中</span></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- 后端任务 -->
+<div id="tab-backend" class="tab-panel" style="display:none">
+<div class="section-bar">
+    <div class="section-title" style="margin-top:0">🖥 后端开发任务</div>
+    <div class="count">共 110 个 (a_dev4_control 108 + a_dev 2)</div>
+</div>
+
+<details open>
+<summary style="border-left:4px solid #667eea; background:#f8f9ff;">
+    <span class="assignee-name" style="color:#667eea">许峻嘉</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共23个</span>
+        <span class="stat-badge stat-doing">进行中23</span>
+        <span class="stat-badge stat-h">估184h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell">【后端】资金账户流水明细</td><td>2026-06-08</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td class="name-cell">【后端】履约单详情</td><td>2026-06-08</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #f093fb; background:#fef8ff;">
+    <span class="assignee-name" style="color:#f093fb">阳超</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共15个</span>
+        <span class="stat-badge stat-doing">进行中15</span>
+        <span class="stat-badge stat-h">估120h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell">【后端】定金分批提货订单不需要定金--定金支付</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>5</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #4facfe; background:#f5faff;">
+    <span class="assignee-name" style="color:#4facfe">谢婉扬</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共14个</span>
+        <span class="stat-badge stat-doing">进行中14</span>
+        <span class="stat-badge stat-overdue">延期7</span>
+        <span class="stat-badge stat-h">估112h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr class="row-overdue"><td class="name-cell">为分销商提货订单提交</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">为分销商提货订单确认页</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">为我提货提货订单提交</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">为我提货 提货订单确认页</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">用户侧-支付成功后，提供回调支付接口-封装大方法-订单状态</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">用户侧-分批提货定金订单-订单提交</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">用户侧-分批提货定金订单-订单结算页</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #43e97b; background:#f5fff8;">
+    <span class="assignee-name" style="color:#43e97b">李龙键</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共6个</span>
+        <span class="stat-badge stat-doing">进行中6</span>
+        <span class="stat-badge stat-h">估48h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell">【后端】相关功能任务（6项）</td><td>-</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>48</td><td>0</td><td>48</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #f5576c; background:#fff5f7;">
+    <span class="assignee-name" style="color:#f5576c">徐琦</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共3个</span>
+        <span class="stat-badge stat-doing">进行中3</span>
+        <span class="stat-badge stat-h">估24h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell">【后端】相关功能任务（3项）</td><td>-</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>24</td><td>0</td><td>24</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #ffa726; background:#fffaf5;">
+    <span class="assignee-name" style="color:#ffa726">卢鑫</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共1个</span>
+        <span class="stat-badge stat-doing">进行中1</span>
+        <span class="stat-badge stat-h">估8h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell">【后端】相关功能任务</td><td>-</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<p style="text-align:center;color:#999;padding:20px;">另有 94 个已关闭任务（未分配个人的继承任务）未在此处展示</p>
+</div>
+
+<!-- 前端任务 -->
+<div id="tab-frontend" class="tab-panel" style="display:none">
+<div class="section-bar">
+    <div class="section-title" style="margin-top:0">🎨 前端开发任务</div>
+    <div class="count">共 74 个 (a_dev2_front)</div>
+</div>
+
+<details open>
+<summary style="border-left:4px solid #667eea; background:#f8f9ff;">
+    <span class="assignee-name" style="color:#667eea">艾思芹</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共45个</span>
+        <span class="stat-badge stat-wait">待处理45</span>
+        <span class="stat-badge stat-h">估360h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell" colspan="7" style="text-align:center;color:#999;">45个前端任务均为待处理状态，涵盖资金账户、履约单、分批提货等模块</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #4facfe; background:#f5faff;">
+    <span class="assignee-name" style="color:#4facfe">田宇飞</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共13个</span>
+        <span class="stat-badge stat-doing">进行中9</span>
+        <span class="stat-badge stat-wait">待处理4</span>
+        <span class="stat-badge stat-h">估104h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell" colspan="7" style="text-align:center;color:#999;">13个前端任务，涉及数据脱敏、权限控制等模块</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #43e97b; background:#f5fff8;">
+    <span class="assignee-name" style="color:#43e97b">王子尘</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共13个</span>
+        <span class="stat-badge stat-done">已完成4</span>
+        <span class="stat-badge stat-doing">进行中9</span>
+        <span class="stat-badge stat-h">估104h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell" colspan="7" style="text-align:center;color:#999;">13个前端任务，4个已完成，剩余9个进行中</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<p style="text-align:center;color:#999;padding:16px;">以上为按人员分组的前端任务分布。前端整体：74个任务，大部分待启动。</p>
+</div>
+
+<!-- 移动端任务 -->
+<div id="tab-mobile" class="tab-panel" style="display:none">
+<div class="section-bar">
+    <div class="section-title" style="margin-top:0">📱 移动端开发任务</div>
+    <div class="count">共 76 个 (a_dev6_mobile)</div>
+</div>
+
+<details open>
+<summary style="border-left:4px solid #667eea; background:#f8f9ff;">
+    <span class="assignee-name" style="color:#667eea">徐良侦</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共13个</span>
+        <span class="stat-badge stat-doing">进行中13</span>
+        <span class="stat-badge stat-h">估104h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell" colspan="7" style="text-align:center;color:#999;">13个移动端任务，均为进行中（Android侧）</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #f093fb; background:#fef8ff;">
+    <span class="assignee-name" style="color:#f093fb">张其辉</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共10个</span>
+        <span class="stat-badge stat-doing">进行中10</span>
+        <span class="stat-badge stat-h">估80h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr><td class="name-cell" colspan="7" style="text-align:center;color:#999;">10个移动端任务（Android侧）</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #f5576c; background:#fff5f7;">
+    <span class="assignee-name" style="color:#f5576c">陈灿茂</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共3个</span>
+        <span class="stat-badge stat-overdue">延期3</span>
+        <span class="stat-badge stat-doing">进行中3</span>
+        <span class="stat-badge stat-h">估24h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr class="row-overdue"><td class="name-cell">【Android】分批提货-为分销商提货</td><td>2026-05-30</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【Android】分批提货-为我提货</td><td>2026-05-30</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【Android】待支付订单合并支付调整</td><td>2026-05-30</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #ffa726; background:#fffaf5;">
+    <span class="assignee-name" style="color:#ffa726">吴炜欣</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共3个</span>
+        <span class="stat-badge stat-overdue">延期3</span>
+        <span class="stat-badge stat-doing">进行中3</span>
+        <span class="stat-badge stat-h">估24h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr class="row-overdue"><td class="name-cell">【iOS】资金账户流水明细</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【iOS】履约单详情</td><td>2026-05-29</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【iOS】工程定金单-申请退定金</td><td>2026-05-30</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary style="border-left:4px solid #26c6da; background:#f5fcfd;">
+    <span class="assignee-name" style="color:#26c6da">张春杰</span>
+    <span class="assignee-stats">
+        <span class="stat-badge">共2个</span>
+        <span class="stat-badge stat-overdue">延期2</span>
+        <span class="stat-badge stat-doing">进行中2</span>
+        <span class="stat-badge stat-h">估16h</span>
+    </span>
+</summary>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>任务</th><th>截止日</th><th>状态</th><th>优先级</th><th>预估</th><th>已耗</th><th>剩余</th></tr></thead>
+<tbody>
+<tr class="row-overdue"><td class="name-cell">【iOS】分批提货-为分销商提货</td><td>2026-05-30</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td class="name-cell">【iOS】分批提货-为我提货</td><td>2026-05-30</td><td><span class="badge badge-doing">进行中</span></td><td><span class="badge badge-p3">中</span></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<p style="text-align:center;color:#999;padding:16px;">移动端整体：76个任务，其中 iOS 侧延期较严重，Android 侧陈灿茂 3项延期</p>
+</div>
+
+<!-- 需求 -->
+<div id="tab-stories" class="tab-panel" style="display:none">
+<div class="section-bar">
+    <div class="section-title" style="margin-top:0">📋 需求清单</div>
+    <div class="count">共 17 个 | 全部激活(active) | 阶段: 已立项(projected)</div>
+</div>
+<div class="story-grid">
+<div class="story-item"><div class="story-title">📌 资金账户流水明细</div><div class="story-meta">阶段：已立项 | 状态：激活</div></div>
+<div class="story-item"><div class="story-title">📌 履约单详情页</div><div class="story-meta">阶段：已立项 | 状态：激活</div></div>
+<div class="story-item"><div class="story-title">📌 分批提货-用户侧</div><div class="story-meta">阶段：已立项 | 状态：激活</div></div>
+<div class="story-item"><div class="story-title">📌 分批提货-分销商侧</div><div class="story-meta">阶段：已立项 | 状态：激活</div></div>
+<div class="story-item"><div class="story-title">📌 定金支付流程优化</div><div class="story-meta">阶段：已立项 | 状态：激活</div></div>
+<div class="story-item"><div class="story-title">📌 待支付订单合并支付</div><div class="story-meta">阶段：已立项 | 状态：激活</div></div>
+<div class="story-item"><div class="story-title">📌 …等共 17 个需求</div><div class="story-meta">全部处于已立项阶段，关联任务正在开发中</div></div>
+</div>
+</div>
+
+<!-- Bug -->
+<div id="tab-bugs" class="tab-panel" style="display:none">
+<div class="section-bar">
+    <div class="section-title" style="margin-top:0">🐛 Bug 列表</div>
+    <div class="count">共 0 个</div>
+</div>
+<div style="text-align:center;padding:40px;color:#999;">
+    <div style="font-size:48px;margin-bottom:12px;">✅</div>
+    <p>该迭代暂无关联 Bug</p>
+    <p style="font-size:12px;margin-top:8px;">测试阶段尚未开始或 Bug 关联到其他迭代</p>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    由禅道 API 自动生成 | 数据时间：2026-06-01 14:36 | 迭代 #4541
+</div>
+
+</div>
+
+<script>
+// ── 标签切换 ──
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// ── Chart.js 饼图 ──
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.padding = 15;
+
+const colors = ['#667eea','#f093fb','#4facfe','#43e97b','#f5576c','#ffa726','#26c6da','#ab47bc'];
+
+// 状态饼图
+new Chart(document.getElementById('chartStatus'), {
+    type: 'pie',
+    data: {
+        labels: ['已关闭(94)','待处理(87)','进行中(58)','已变更(36)','已完成(5)'],
+        datasets: [{
+            data: [94, 87, 58, 36, 5],
+            backgroundColor: ['#bdbdbd','#ef5350','#43e97b','#ffa726','#4facfe'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'bottom' }
+        }
+    }
+});
+
+// 类型饼图
+new Chart(document.getElementById('chartType'), {
+    type: 'pie',
+    data: {
+        labels: ['后端-control(108)','移动端(76)','前端(74)','事务(10)','杂项(5)','UI设计(3)','产品需求(2)','后端-a_dev(2)'],
+        datasets: [{
+            data: [108, 76, 74, 10, 5, 3, 2, 2],
+            backgroundColor: colors,
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'bottom' }
+        }
+    }
+});
+
+// 优先级饼图
+new Chart(document.getElementById('chartPri'), {
+    type: 'pie',
+    data: {
+        labels: ['紧急(29)','高(22)','中(229)'],
+        datasets: [{
+            data: [29, 22, 229],
+            backgroundColor: ['#ef5350','#ffa726','#4facfe'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'bottom' }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
