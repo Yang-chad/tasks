@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>商用销司主体切换流程图</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(160deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%);
+            min-height: 100vh;
+            padding: 30px 20px 40px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 18% 30%, rgba(100,116,139,0.12) 0%, transparent 55%),
+                radial-gradient(circle at 82% 75%, rgba(245,158,11,0.12) 0%, transparent 55%),
+                radial-gradient(circle at 50% 45%, rgba(148,163,184,0.05) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .toolbar { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; position: relative; z-index: 2; }
+        .toolbar-bottom { margin: 40px auto 0; }
+
+        .toolbar button {
+            padding: 12px 26px; border: 1.5px solid rgba(255,255,255,0.2); border-radius: 50px;
+            background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85);
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            backdrop-filter: blur(12px); transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+            letter-spacing: 0.3px; position: relative; overflow: hidden;
+        }
+        .toolbar button::after { content:''; position:absolute; inset:0; background:rgba(255,255,255,0.06); opacity:0; transition:opacity 0.25s; }
+        .toolbar button:hover::after { opacity:1; }
+        .toolbar button:hover { transform:translateY(-2px); border-color:rgba(255,255,255,0.5); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
+        .toolbar button:active { transform:translateY(0); }
+
+        .toolbar button.edit-on { background:linear-gradient(135deg,#ff4757,#ff6b81); border-color:transparent; color:#fff; animation:pulse-edit 2s infinite; }
+        @keyframes pulse-edit { 0%,100%{box-shadow:0 0 0 0 rgba(255,71,87,0.5)} 50%{box-shadow:0 0 0 14px rgba(255,71,87,0)} }
+
+        .toolbar button.save-btn { background:rgba(46,213,115,0.2); border-color:rgba(46,213,115,0.5); }
+        .toolbar button.save-btn:hover { background:rgba(46,213,115,0.35); border-color:rgba(46,213,115,0.7); }
+
+        .header { text-align: center; margin-bottom: 35px; }
+        .header h1 { color:#fff; font-size:42px; font-weight:700; letter-spacing:2px; text-shadow:0 0 40px rgba(102,126,234,0.5); margin-bottom:6px; }
+
+        .merchant-node {
+            background: linear-gradient(135deg, #7c3aed, #6366f1); color: #fff;
+            padding: 22px 48px; border-radius: 60px; font-size: 24px; font-weight: 700;
+            text-align: center; margin: 0 auto 25px; max-width: 260px;
+            box-shadow: 0 8px 35px rgba(124,58,237,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+            cursor: pointer; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); position: relative; z-index: 1;
+        }
+        .merchant-node:hover { transform:scale(1.06); box-shadow:0 12px 45px rgba(124,58,237,0.6), inset 0 1px 0 rgba(255,255,255,0.2); }
+        .merchant-node[contenteditable="true"]:focus { outline:2px dashed rgba(255,255,255,0.7); outline-offset:4px; }
+
+        .bridge-arrows { display:flex; justify-content:center; margin:0 auto; max-width:700px; height:85px; }
+        .bridge-arrows svg { width:100%; height:100%; }
+        .bridge-arrows .arrow-line { stroke-width:2.5; fill:none; stroke-linecap:round; }
+        .bridge-arrows .dash-flow { stroke-dasharray:8 6; animation:arrowFlow 2s linear infinite; }
+        @keyframes arrowFlow { 0%{stroke-dashoffset:0} 100%{stroke-dashoffset:-28} }
+
+        .flow-wrapper { display:grid; grid-template-columns:1fr 1fr; gap:35px; align-items:start; position:relative; }
+        
+        /* 交叉连线：A侧第一个节点 → B侧第一个节点 */
+        .cross-connector {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 3; overflow: visible;
+        }
+        .cross-connector .connector-line {
+            stroke-dasharray: 6 4;
+            stroke: rgba(239, 68, 68, 0.55);
+            stroke-width: 2.5;
+            fill: none;
+            stroke-linecap: round;
+            animation: connectorDashFlow 1.8s linear infinite;
+        }
+        .cross-connector .connector-arrow {
+            fill: rgba(239, 68, 68, 0.7);
+            animation: crossArrowPulse 2s ease-in-out infinite;
+        }
+        @keyframes crossArrowPulse {
+            0%,100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        @keyframes connectorDashFlow {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -20; }
+        }
+
+        .flow-branch {
+            background: rgba(255,255,255,0.06); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 22px; padding: 32px 28px 28px; position: relative;
+            display: flex; flex-direction: column;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .flow-branch::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#6366f1,#8b5cf6,#6366f1); opacity:0.7; }
+        .flow-branch:hover { border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.09); box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+
+        /* Branch A: 现有业务 蓝灰 */
+        .flow-branch.branch-a::before { background:linear-gradient(90deg,#64748b,#94a3b8,#64748b); opacity:0.5; }
+        .flow-branch.branch-a:hover { border-color:rgba(148,163,184,0.3); box-shadow:0 20px 60px rgba(71,85,105,0.25); }
+
+        /* Branch B: 新业务 暖金橙 */
+        .flow-branch.branch-b { border-color:rgba(245,158,11,0.2); background:rgba(255,255,255,0.07); }
+        .flow-branch.branch-b::before { background:linear-gradient(90deg,#f59e0b,#fbbf24,#f59e0b); opacity:0.8; animation:branchBGlow 3s ease-in-out infinite; }
+        @keyframes branchBGlow { 0%,100%{opacity:0.7;box-shadow:0 0 0 0 rgba(245,158,11,0)} 50%{opacity:1;box-shadow:0 2px 20px 2px rgba(245,158,11,0.25)} }
+        .flow-branch.branch-b:hover { border-color:rgba(245,158,11,0.45); box-shadow:0 20px 60px rgba(245,158,11,0.15),0 0 40px rgba(245,158,11,0.08); }
+
+        .branch-label { position:absolute; top:-16px; right:22px; color:#fff; padding:7px 22px; border-radius:30px; font-size:16px; font-weight:700; letter-spacing:1px; z-index:2; }
+        .branch-label.label-a { background:linear-gradient(135deg,#64748b,#94a3b8); box-shadow:0 4px 18px rgba(100,116,139,0.4); }
+        .branch-label.label-b { background:linear-gradient(135deg,#f59e0b,#f97316); box-shadow:0 4px 18px rgba(245,158,11,0.5); animation:labelBPulse 2s ease-in-out infinite; }
+        @keyframes labelBPulse { 0%,100%{box-shadow:0 4px 18px rgba(245,158,11,0.5)} 50%{box-shadow:0 4px 28px rgba(245,158,11,0.75),0 0 30px rgba(245,158,11,0.3)} }
+        .branch-label[contenteditable="true"]:focus { outline:2px dashed rgba(255,255,255,0.8); outline-offset:2px; }
+
+        .branch-title { font-size:22px; font-weight:700; color:rgba(255,255,255,0.9); margin-bottom:24px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); }
+        .branch-title[contenteditable="true"]:focus { background:rgba(255,255,255,0.1); border-radius:6px; padding:2px 6px; outline:none; }
+
+        .node { background:rgba(255,255,255,0.07); border-radius:14px; padding:18px 22px; margin-bottom:14px; position:relative; cursor:pointer; transition:all 0.3s cubic-bezier(0.4,0,0.2,1); border:1px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; justify-content:center; }
+        .node::before { content:''; position:absolute; left:0; top:10%; bottom:10%; width:3px; border-radius:0 3px 3px 0; background:rgba(255,255,255,0.15); transition:all 0.3s; }
+        .node:hover { background:rgba(255,255,255,0.13); border-color:rgba(255,255,255,0.2); transform:translateX(4px); box-shadow:0 8px 30px rgba(0,0,0,0.3); }
+        .node:hover::before { background:linear-gradient(180deg,#6366f1,#8b5cf6); width:4px; }
+        .node.active { border-color:#6366f1; background:rgba(99,102,241,0.15); box-shadow:0 0 20px rgba(99,102,241,0.2); }
+        .node.active::before { background:#6366f1; width:4px; }
+        .node.editing { border-color:#ff4757; box-shadow:0 0 0 2px rgba(255,71,87,0.25); }
+
+        .branch-a .node:hover::before { background:linear-gradient(180deg,#64748b,#94a3b8); }
+        .branch-a .node.active { border-color:#64748b; background:rgba(100,116,139,0.15); box-shadow:0 0 20px rgba(100,116,139,0.2); }
+        .branch-a .node.active::before { background:#64748b; }
+
+        .branch-b .node { border-left:1px solid rgba(245,158,11,0.08); }
+        .branch-b .node:hover { border-color:rgba(245,158,11,0.25); background:rgba(245,158,11,0.08); box-shadow:0 8px 30px rgba(245,158,11,0.12); }
+
+        /* xiaokeB 节点特殊样式 - 浅红色背景标识流程变更 */
+        .node[data-key="xiaokeB"] {
+            background: rgba(239, 68, 68, 0.3) !important;
+            border-color: rgba(239, 68, 68, 0.5) !important;
+            border-left: 3px solid rgba(239, 68, 68, 0.7) !important;
+            font-weight: 500;
+        }
+        .node[data-key="xiaokeB"]::before { background: #ef4444 !important; width: 4px !important; top: 8% !important; bottom: 8% !important; }
+        .node[data-key="xiaokeB"]:hover {
+            background: rgba(239, 68, 68, 0.45) !important;
+            border-color: rgba(239, 68, 68, 0.7) !important;
+            box-shadow: 0 8px 35px rgba(239, 68, 68, 0.3) !important;
+        }
+        .node[data-key="xiaokeB"]:hover::before { background: #ef4444 !important; width: 5px !important; }
+        .node[data-key="xiaokeB"].active {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.45) !important;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.4) !important;
+            border-left: 3px solid #ef4444 !important;
+        }
+        .node[data-key="xiaokeB"].active::before { background: #ef4444 !important; width: 5px !important; }
+        .node[data-key="xiaokeB"].active .node-icon { background: rgba(239, 68, 68, 0.35) !important; border-color: rgba(239, 68, 68, 0.6) !important; box-shadow: 0 0 18px rgba(239, 68, 68, 0.4) !important; }
+        .node[data-key="xiaokeB"] .node-title { color: #fff; }
+        .node[data-key="xiaokeB"] .node-desc { color: rgba(255, 255, 255, 0.75); }
+        .branch-b .node:hover::before { background:linear-gradient(180deg,#f59e0b,#fbbf24); }
+        .branch-b .node.active { border-color:#f59e0b !important; background:rgba(245,158,11,0.15) !important; box-shadow:0 0 24px rgba(245,158,11,0.25) !important; }
+        .branch-b .node.active::before { background:#f59e0b !important; }
+
+        .node-title { font-size:19px; font-weight:700; color:#fff; margin-bottom:5px; line-height:1.4; padding-right:50px; }
+        .node-title[contenteditable="true"]:focus { background:rgba(255,193,7,0.15); border-radius:4px; padding:2px 6px; margin:-2px -6px; outline:none; }
+
+        .node-desc { font-size:15px; color:rgba(255,255,255,0.55); line-height:1.5; padding-right:50px; white-space:pre-line; word-break:break-word; }
+        .node-desc[contenteditable="true"]:focus { background:rgba(255,193,7,0.15); border-radius:4px; padding:2px 6px; margin:-2px -6px; outline:none; }
+
+        .node-icon { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.1); transition:all 0.3s; pointer-events:none; }
+        .node:hover .node-icon { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25); transform:translateY(-50%) scale(1.1); }
+        .node.active .node-icon { background:rgba(99,102,241,0.2); border-color:rgba(99,102,241,0.4); box-shadow:0 0 15px rgba(99,102,241,0.25); }
+        .branch-a .node.active .node-icon { background:rgba(100,116,139,0.2); border-color:rgba(100,116,139,0.4); box-shadow:0 0 15px rgba(100,116,139,0.25); }
+        .branch-b .node.active .node-icon { background:rgba(245,158,11,0.2); border-color:rgba(245,158,11,0.45); box-shadow:0 0 18px rgba(245,158,11,0.3); }
+
+        .arrow { text-align:center; font-size:32px; margin:4px 0; line-height:1.1; font-weight:700; animation:bounce 2.5s ease-in-out infinite; color:rgba(255,255,255,0.25); }
+        .branch-b .arrow { color:rgba(245,158,11,0.45); }
+        @keyframes bounce { 0%,100%{transform:translateY(0);opacity:0.4} 50%{transform:translateY(6px);opacity:1} }
+
+        .toast { position:fixed; top:24px; left:50%; transform:translateX(-50%); background:rgba(46,213,115,0.9); backdrop-filter:blur(10px); color:#fff; padding:12px 30px; border-radius:50px; font-weight:600; font-size:15px; box-shadow:0 10px 35px rgba(46,213,115,0.4); z-index:1000; animation:slideDown 0.3s ease, fadeOut 0.5s ease 1.5s forwards; }
+        @keyframes slideDown { from{transform:translateX(-50%) translateY(-80px);opacity:0} to{transform:translateX(-50%) translateY(0);opacity:1} }
+        @keyframes fadeOut { to{opacity:0} }
+
+        [contenteditable="true"] { cursor: text; }
+        [contenteditable="true"]:focus { cursor: text; }
+
+        /* ── Drag & Drop ── */
+        .node[draggable="true"] { cursor: grab; }
+        .node[draggable="true"]:active { cursor: grabbing; }
+        .node--dragging { opacity: 0.35; }
+        .node--drag-over { border-color: #fbbf24 !important; box-shadow: 0 0 0 3px rgba(251,191,36,0.35) !important; background: rgba(251,191,36,0.08) !important; }
+        .node__drag {
+            position: absolute; right: 34px; top: 50%; transform: translateY(-50%);
+            width: 28px; height: 28px; display: none; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.3); cursor: grab; font-size: 18px; z-index: 1;
+            border-radius: 4px; transition: all 0.2s;
+        }
+        .node__drag:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
+        .node.editing .node__drag, .node[draggable="true"] .node__drag { display: flex; }
+
+        .node__delete {
+            position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+            width: 26px; height: 26px; display: none; align-items: center; justify-content: center;
+            color: rgba(255,100,100,0.5); cursor: pointer; font-size: 16px; z-index: 2;
+            border-radius: 50%; transition: all 0.2s; font-weight: 700;
+        }
+        .node__delete:hover { color: #fff; background: rgba(239,68,68,0.6); }
+        .node.editing .node__delete, .node[draggable="true"] .node__delete { display: flex; }
+
+        @media (max-width:768px) {
+            body { padding:20px 12px 30px; }
+            .header h1 { font-size:28px; }
+            .merchant-node { font-size:20px; padding:18px 36px; }
+            .flow-wrapper { grid-template-columns:1fr; justify-items:center; }
+            .flow-branch { width:100%; max-width:400px; }
+            .toolbar { gap:6px; }
+            .toolbar button { padding:10px 18px; font-size:13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1 id="pageTitle">商用销司主体切换流程图</h1>
+        </div>
+
+        <div class="merchant-node" id="merchantNode" onclick="showMerchantDetail()">
+            原商家
+        </div>
+
+        <div class="bridge-arrows">
+            <svg viewBox="0 0 700 85" preserveAspectRatio="xMidYMid meet">
+                <line x1="350" y1="0" x2="350" y2="28" class="arrow-line" stroke="rgba(255,255,255,0.35)" stroke-width="3" />
+                <line x1="350" y1="28" x2="200" y2="78" class="arrow-line dash-flow" stroke="#64748b" stroke-width="3" />
+                <polygon points="200,78 212,69 203,82" fill="#64748b" />
+                <line x1="350" y1="28" x2="500" y2="78" class="arrow-line dash-flow" stroke="#f59e0b" stroke-width="3" />
+                <polygon points="500,78 488,69 497,82" fill="#f59e0b" />
+                <circle cx="350" cy="28" r="6" fill="rgba(255,255,255,0.5)" />
+                <circle cx="200" cy="78" r="5" fill="#64748b" opacity="0.7" />
+                <circle cx="500" cy="78" r="5" fill="#f59e0b" opacity="0.9" />
+            </svg>
+        </div>
+
+        <div class="flow-wrapper" id="flowWrapper">
+            <!-- 交叉连线：网批A → 网批B，由 JS 动态绘制 -->
+            <svg class="cross-connector" id="crossConnector" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="crossGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="rgba(148,163,184,0.4)" />
+                        <stop offset="50%" stop-color="rgba(239,68,68,0.6)" />
+                        <stop offset="100%" stop-color="rgba(245,158,11,0.4)" />
+                    </linearGradient>
+                    <marker id="crossArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" class="connector-arrow" />
+                    </marker>
+                </defs>
+                <path id="crossPath" class="connector-line" stroke="url(#crossGrad)" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#crossArrow)" />
+            </svg>
+
+            <div class="flow-branch branch-a" id="branchV1">
+                <span class="branch-label label-a" id="labelV1">现存</span>
+                <div class="branch-title" id="titleV1">商用销售公司A</div>
+                
+                <div class="node" onclick="showDetail('xiaokeA')" data-key="xiaokeA">
+                    <div class="node-title">网批&gt;&gt;商用销司A</div>
+                    <div class="node-desc">公司A主体：商家V1、V2、V3 订单1、2、3 工程1、2、3 所有业务可继续开展，消耗A库存。</div>
+                </div>
+                <div class="arrow">⬇</div>
+                
+                <div class="node" onclick="showDetail('cangkuA')" data-key="cangkuA">
+                    <div class="node-title">OTW系统&gt;&gt;商用销司A</div>
+                    <div class="node-desc">供应链履约能力保持不变，所有业务可继续开展</div>
+                </div>
+                <div class="arrow">⬇</div>
+                
+                <div class="node" onclick="showDetail('rms')" data-key="rms">
+                    <div class="node-title">RMS系统&gt;&gt;商用销司A</div>
+                    <div class="node-desc">开单能力保持不变，所有业务可继续开展</div>
+                </div>
+                <div class="arrow">⬇</div>
+                
+                <div class="node" onclick="showDetail('jindieA')" data-key="jindieA">
+                    <div class="node-title">金蝶开票&gt;&gt;商用销司A</div>
+                    <div class="node-desc">开票能力保持不变，所有业务可继续开展</div>
+                </div>
+            </div>
+
+            <div class="flow-branch branch-b" id="branchV2">
+                <span class="branch-label label-b" id="labelV2">新业</span>
+                <div class="branch-title" id="titleV2">商用销售公司B</div>
+                
+                <div class="node" onclick="showDetail('xiaokeB')" data-key="xiaokeB">
+                    <div class="node-title">网批&gt;&gt;商用销司B</div>
+                    <div class="node-desc"><span style="color:#22c55e;font-weight:700">重新入驻，ERP-B（已完成）</span><br><span style="color:#ef4444;font-weight:700">1、新建虚拟地址、销司B重新<br>2、商家V1、V2、V3迁移。效果：一个实体商家在网批有两个网批账号（pid 不变），同时可以向A\B提货<br>3、全新审批流。<br>PS:商家入驻由产研迁移，其他按新销司推广流程执行</span></div>
+                </div>
+                <div class="arrow">⬇</div>
+                
+                <div class="node" onclick="showDetail('cangkuB')" data-key="cangkuB">
+                    <div class="node-title">OTW系统&gt;&gt;商用销司B</div>
+                    <div class="node-desc">新配仓库地址，按新销司推广流程执行</div>
+                </div>
+                <div class="arrow">⬇</div>
+                
+                <div class="node" onclick="showDetail('kaidan')" data-key="kaidan">
+                    <div class="node-title">RMS系统&gt;&gt;商用销司B</div>
+                    <div class="node-desc"><span style="color:#22c55e;font-weight:700">商家只有一个门店（网批两个V账号的PID保持不变）</span></div>
+                </div>
+                <div class="arrow">⬇</div>
+                
+                <div class="node" onclick="showDetail('jindieB')" data-key="jindieB">
+                    <div class="node-title">金蝶开票&gt;&gt;商用销司B</div>
+                    <div class="node-desc">按新销司推广流程执行</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="toolbar toolbar-bottom">
+        <button id="editToggle" onclick="toggleEdit()">✏️ 启用编辑</button>
+        <button class="save-btn" onclick="saveAll()">💾 保存修改</button>
+        <button onclick="addNode('v1')">➕ 添加A节点</button>
+        <button onclick="addNode('v2')">➕ 添加B节点</button>
+        <button onclick="resetAll()">🔄 恢复默认</button>
+    </div>
+
+    <script>
+        let isEditMode = false;
+        let details = {};
+        
+        const staticKeys = new Set(['xiaokeA','cangkuA','rms','jindieA','xiaokeB','cangkuB','kaidan','jindieB']);
+
+        function loadData() {
+            const saved = localStorage.getItem('merchant-flow-data');
+            if (saved) {
+                details = JSON.parse(saved);
+                if (!details.customKeys) details.customKeys = {};
+                if (!details._orderV1) details._orderV1 = ['xiaokeA','cangkuA','rms','jindieA'];
+                if (!details._orderV2) details._orderV2 = ['xiaokeB','cangkuB','kaidan','jindieB'];
+                // 清理旧数据中残留的 <br> 标签文本
+                function cleanBr(v) {
+                    if (typeof v === 'string') return v.replace(/<br\s*\/?>/gi, '\n').replace(/&lt;br\s*\/?&gt;/gi, '\n').replace(/&lt;br&gt;/gi, '\n');
+                    if (typeof v === 'object' && v) {
+                        if (v.content) v.content = cleanBr(v.content);
+                        if (v.title) v.title = cleanBr(v.title);
+                    }
+                    return v;
+                }
+                Object.keys(details).forEach(k => { if (k !== 'customKeys') details[k] = cleanBr(details[k]); });
+                // 仅当数据明确为旧版本时才迁移
+                const isOld = details.labelV1 === 'V1' || details.titleV1 === '传统流程' || (details.xiaokeA && (details.xiaokeA.title === '销可A' || details.xiaokeA.title === '销可系统'));
+                if (isOld) {
+                    let migrated = false;
+                    if (!details.pageTitle || details.pageTitle.includes('商家1')) { details.pageTitle = '商用销司主体切换流程图'; migrated = true; }
+                    if (!details.merchant || details.merchant === '商家1') { details.merchant = '原商家'; migrated = true; }
+                    if (details.labelV1 === 'V1') { details.labelV1 = '现存'; migrated = true; }
+                    if (details.labelV2 === 'V2') { details.labelV2 = '新业'; migrated = true; }
+                    if (details.titleV1 === '传统流程') { details.titleV1 = '商用销售公司A'; migrated = true; }
+                    if (details.titleV2 === '新版流程') { details.titleV2 = '商用销售公司B'; migrated = true; }
+                    if (details.xiaokeA && (details.xiaokeA.title === '销可系统' || details.xiaokeA.title === '销可A')) { details.xiaokeA.title = '网批>>商用销司A'; details.xiaokeA.content = '公司A主体：商家V1、V2、V3 订单1、2、3 工程1、2、3 所有业务可继续开展，消耗A库存。'; migrated = true; }
+                    if (details.cangkuA && details.cangkuA.title === '仓库系统') { details.cangkuA.title = 'OTW系统>>商用销司A'; details.cangkuA.content = '供应链履约能力保持不变，所有业务可继续开展'; migrated = true; }
+                    if (details.rms && details.rms.title === 'RMS开单系统') { details.rms.title = 'RMS系统>>商用销司A'; details.rms.content = '开单能力保持不变，所有业务可继续开展'; migrated = true; }
+                    if (details.jindieA && details.jindieA.title === '金蝶开票系统') { details.jindieA.title = '金蝶开票>>商用销司A'; details.jindieA.content = '开票能力保持不变，所有业务可继续开展'; migrated = true; }
+                    if (details.xiaokeB && details.xiaokeB.title === '销可系统') { details.xiaokeB.title = '网批>>商用销司B'; migrated = true; }
+                    if (details.xiaokeB && details.xiaokeB.content && details.xiaokeB.content.includes('升级版销售订单系统')) {
+                        details.xiaokeB.title = '网批>>商用销司B';
+                        details.xiaokeB.content = '重新入驻，ERP-B（已完成）\n1、新建虚拟地址、销司B重新\n2、商家V1、V2、V3迁移。效果：一个实体商家在网批有两个网批账号（pid 不变），同时可以向A\\B提货\n3、全新审批流。\nPS:商家入驻由产研迁移，其他按新销司推广流程执行';
+                        migrated = true;
+                    }
+                    if (details.cangkuB && details.cangkuB.title === '仓库系统') { details.cangkuB.title = 'OTW系统>>商用销司B'; details.cangkuB.content = '新配仓库地址，按新销司推广流程执行'; migrated = true; }
+                    if (details.kaidan && details.kaidan.title === '开单系统') { details.kaidan.title = 'RMS系统>>商用销司B'; details.kaidan.content = '商家只有一个门店（网批两个V账号的PID保持不变）'; migrated = true; }
+                    if (details.jindieB && details.jindieB.title === '金蝶开票系统') { details.jindieB.title = '金蝶开票>>商用销司B'; details.jindieB.content = '按新销司推广流程执行'; migrated = true; }
+                    if (migrated) localStorage.setItem('merchant-flow-data', JSON.stringify(details));
+                }
+            } else {
+                details = getDefaultDetails();
+            }
+        }
+
+        function getDefaultDetails() {
+            return {
+                customKeys: {}, pageTitle: '商用销司主体切换流程图', pageSubtitle: '',
+                merchant: '原商家', labelV1: '现存', labelV2: '新业',
+                titleV1: '商用销售公司A', titleV2: '商用销售公司B',
+                _orderV1: ['xiaokeA','cangkuA','rms','jindieA'],
+                _orderV2: ['xiaokeB','cangkuB','kaidan','jindieB'],
+                merchantDetail: { title:'原商家', content:'原有业务实体，连接销售、仓储、开票等多个系统的核心节点。主体切换后由商用销售公司A承接现有业务流程，商用销售公司B承载新业务。' },
+                xiaokeA: { title:'网批>>商用销司A', content:'公司A主体：商家V1、V2、V3 订单1、2、3 工程1、2、3 所有业务可继续开展，消耗A库存。' },
+                cangkuA: { title:'OTW系统>>商用销司A', content:'供应链履约能力保持不变，所有业务可继续开展' },
+                rms: { title:'RMS系统>>商用销司A', content:'开单能力保持不变，所有业务可继续开展' },
+                jindieA: { title:'金蝶开票>>商用销司A', content:'开票能力保持不变，所有业务可继续开展' },
+                xiaokeB: { title:'网批>>商用销司B', content:'重新入驻，ERP-B（已完成）\n1、新建虚拟地址、销司B重新\n2、商家V1、V2、V3迁移。效果：一个实体商家在网批有两个网批账号（pid 不变），同时可以向A\\B提货\n3、全新审批流。\nPS:商家入驻由产研迁移，其他按新销司推广流程执行' },
+                cangkuB: { title:'OTW系统>>商用销司B', content:'新配仓库地址，按新销司推广流程执行' },
+                kaidan: { title:'RMS系统>>商用销司B', content:'商家只有一个门店（网批两个V账号的PID保持不变）' },
+                jindieB: { title:'金蝶开票>>商用销司B', content:'按新销司推广流程执行' }
+            };
+        }
+
+        function applyXiaokeBFormat() {
+            const descEl = document.querySelector('.node[data-key="xiaokeB"] .node-desc');
+            if (!descEl) return;
+            const text = descEl.innerText;
+            const lines = text.split('\n');
+            if (lines.length < 2) return;
+            descEl.innerHTML = '<span style="color:#22c55e;font-weight:700">' + lines[0].replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</span><br><span style="color:#ef4444;font-weight:700">' + lines.slice(1).join('<br>').replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</span>';
+        }
+
+        function applyKaidanFormat() {
+            const descEl = document.querySelector('.node[data-key="kaidan"] .node-desc');
+            if (!descEl) return;
+            descEl.innerHTML = '<span style="color:#22c55e;font-weight:700">' + descEl.innerText.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</span>';
+        }
+
+        function syncNodesToDetails() {
+            details.pageTitle = document.getElementById('pageTitle').innerText;
+            details.merchant = document.getElementById('merchantNode').innerText;
+            details.labelV1 = document.getElementById('labelV1').innerText;
+            details.labelV2 = document.getElementById('labelV2').innerText;
+            details.titleV1 = document.getElementById('titleV1').innerText;
+            details.titleV2 = document.getElementById('titleV2').innerText;
+            document.querySelectorAll('.node[data-key]').forEach(node => {
+                const key = node.getAttribute('data-key');
+                const titleEl = node.querySelector('.node-title');
+                const descEl = node.querySelector('.node-desc');
+                if (details[key]) { details[key].title = titleEl.innerText; details[key].content = descEl.innerText; }
+            });
+        }
+
+        function refreshAllFromDetails() {
+            document.getElementById('pageTitle').innerText = details.pageTitle || '';
+            document.getElementById('merchantNode').innerText = details.merchant || '';
+            document.getElementById('labelV1').innerText = details.labelV1 || '';
+            document.getElementById('labelV2').innerText = details.labelV2 || '';
+            document.getElementById('titleV1').innerText = details.titleV1 || '';
+            document.getElementById('titleV2').innerText = details.titleV2 || '';
+            document.querySelectorAll('.node[data-key]').forEach(node => {
+                const key = node.getAttribute('data-key');
+                if (staticKeys.has(key) && details[key]) {
+                    node.querySelector('.node-title').innerText = details[key].title;
+                    node.querySelector('.node-desc').innerText = details[key].content;
+                }
+            });
+            applyXiaokeBFormat();
+            applyKaidanFormat();
+            // 清理并重建自定义节点
+            document.querySelectorAll('.node[data-key^="custom_"]').forEach(n => {
+                if (n.previousElementSibling && n.previousElementSibling.classList.contains('arrow')) n.previousElementSibling.remove();
+                n.remove();
+            });
+            if (details.customKeys) {
+                Object.keys(details.customKeys).forEach(key => {
+                    const branch = details.customKeys[key];
+                    if (details[key]) recreateCustomNode(key, branch, details[key]);
+                });
+            }
+            // 最后恢复顺序（所有节点就位后）
+            restoreOrder('v1');
+            restoreOrder('v2');
+        }
+
+        function recreateCustomNode(key, branch, data) {
+            const branchEl = document.getElementById(branch === 'v1' ? 'branchV1' : 'branchV2');
+            if (!branchEl) return;
+            const arrowDiv = document.createElement('div'); arrowDiv.className = 'arrow'; arrowDiv.textContent = '⬇';
+            const nodeDiv = document.createElement('div'); nodeDiv.className = 'node'; nodeDiv.setAttribute('data-key', key);
+            nodeDiv.onclick = function(evt) { window._clickEvent = evt; showDetail(key); };
+            const editable = isEditMode ? ' contenteditable="true"' : '';
+            nodeDiv.innerHTML = '<div class="node-title"' + editable + '>' + escapeHtml(data.title) + '</div><div class="node-desc"' + editable + '>' + escapeHtml(data.content) + '</div>';
+            branchEl.appendChild(arrowDiv); branchEl.appendChild(nodeDiv);
+        }
+
+        let currentDetailKey = null;
+
+        function showDetail(key) {
+            currentDetailKey = key;
+            document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+            const evt = window.event || window._clickEvent;
+            if (evt && evt.currentTarget && evt.currentTarget.classList.contains('node')) evt.currentTarget.classList.add('active');
+            else { const n = document.querySelector('.node[data-key="'+key+'"]'); if(n)n.classList.add('active'); }
+        }
+
+        function showMerchantDetail() { currentDetailKey = 'merchant'; }
+
+        function escapeHtml(str) { const d = document.createElement('div'); d.innerText = str; return d.innerHTML; }
+        function escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+        /* ── Drag & Drop ── */
+        let dragSrcKey = null;
+
+        function setupDrag() {
+            document.querySelectorAll('.node[data-key]').forEach(node => {
+                // Drag handle
+                if (!node.querySelector('.node__drag')) {
+                    const handle = document.createElement('div');
+                    handle.className = 'node__drag';
+                    handle.textContent = '⠿';
+                    handle.setAttribute('aria-label','拖拽排序');
+                    node.appendChild(handle);
+                }
+                // Delete button
+                if (!node.querySelector('.node__delete')) {
+                    const delBtn = document.createElement('div');
+                    delBtn.className = 'node__delete';
+                    delBtn.textContent = '×';
+                    delBtn.setAttribute('aria-label','删除节点');
+                    delBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        deleteNode(node.getAttribute('data-key'));
+                    };
+                    node.appendChild(delBtn);
+                }
+                node.draggable = true;
+                node.addEventListener('dragstart', onDragStart);
+                node.addEventListener('dragover', onDragOver);
+                node.addEventListener('dragleave', onDragLeave);
+                node.addEventListener('drop', onDrop);
+                node.addEventListener('dragend', onDragEnd);
+            });
+        }
+
+        function onDragStart(e) {
+            dragSrcKey = this.getAttribute('data-key');
+            this.classList.add('node--dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', dragSrcKey);
+        }
+
+        function onDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            if (this.getAttribute('data-key') !== dragSrcKey) {
+                this.classList.add('node--drag-over');
+            }
+        }
+
+        function onDragLeave(e) {
+            this.classList.remove('node--drag-over');
+        }
+
+        function onDrop(e) {
+            e.preventDefault();
+            this.classList.remove('node--drag-over');
+            const targetKey = this.getAttribute('data-key');
+            if (!dragSrcKey || targetKey === dragSrcKey) return;
+
+            const srcNode = document.querySelector('.node[data-key="'+dragSrcKey+'"]');
+            const targetNode = this;
+            const srcBranch = srcNode.closest('.flow-branch');
+            const targetBranch = targetNode.closest('.flow-branch');
+
+            // Only reorder within same branch
+            if (srcBranch !== targetBranch) return;
+
+            // Collect all node elements + arrows in this branch
+            const branchEl = srcBranch;
+            const allNodes = Array.from(branchEl.querySelectorAll('.node[data-key]'));
+            const srcIdx = allNodes.indexOf(srcNode);
+            const tgtIdx = allNodes.indexOf(targetNode);
+
+            // Remove src node + its preceding arrow from DOM
+            const srcArrow = srcNode.previousElementSibling;
+            const tgtArrow = targetNode.previousElementSibling;
+
+            if (srcArrow && srcArrow.classList.contains('arrow')) srcArrow.remove();
+            srcNode.remove();
+
+            // Insert at target position
+            if (srcIdx < tgtIdx) {
+                // Moving down: insert after target's arrow + target
+                if (tgtArrow && tgtArrow.nextElementSibling === targetNode) {
+                    targetNode.after(srcNode);
+                } else {
+                    targetNode.after(srcNode);
+                }
+                // Recreate arrow before src's new position
+                const newArrow = document.createElement('div');
+                newArrow.className = 'arrow';
+                newArrow.textContent = '⬇';
+                srcNode.before(newArrow);
+            } else {
+                // Moving up: insert before target
+                if (tgtArrow && tgtArrow.classList.contains('arrow')) {
+                    tgtArrow.before(srcNode);
+                } else {
+                    targetNode.before(srcNode);
+                }
+                // Re-add arrow before the node that now follows src (if any)
+                // Rebuild all arrows
+                rebuildArrows(branchEl);
+            }
+
+            // Fix arrows for the whole branch
+            rebuildArrows(branchEl);
+
+            // Sync order to data model
+            syncOrderFromDOM(branchEl);
+            syncNodesToDetails();
+            saveAll();
+            syncNodeHeights();
+        }
+
+        function onDragEnd(e) {
+            this.classList.remove('node--dragging');
+            document.querySelectorAll('.node--drag-over').forEach(n => n.classList.remove('node--drag-over'));
+            dragSrcKey = null;
+        }
+
+        function deleteNode(key) {
+            if (!isEditMode) return;
+            if (!confirm('确定要删除该节点吗？')) return;
+            const nodeEl = document.querySelector('.node[data-key="'+key+'"]');
+            if (!nodeEl) return;
+            const branchEl = nodeEl.closest('.flow-branch');
+            // Remove arrow before this node (if any)
+            if (nodeEl.previousElementSibling && nodeEl.previousElementSibling.classList.contains('arrow')) {
+                nodeEl.previousElementSibling.remove();
+            }
+            nodeEl.remove();
+            // Rebuild arrows
+            rebuildArrows(branchEl);
+            // Clean up data
+            delete details[key];
+            if (details.customKeys && details.customKeys[key]) delete details.customKeys[key];
+            // Update order
+            const branch = branchEl.id === 'branchV1' ? 'v1' : 'v2';
+            const orderKey = '_order' + (branch === 'v1' ? 'V1' : 'V2');
+            if (details[orderKey]) {
+                details[orderKey] = details[orderKey].filter(k => k !== key);
+            }
+            syncOrderFromDOM(branchEl);
+            syncNodesToDetails();
+            saveAll();
+            syncNodeHeights();
+            showToast('🗑 节点已删除');
+        }
+
+        function rebuildArrows(branchEl) {
+            // Remove all arrows
+            branchEl.querySelectorAll('.arrow').forEach(a => a.remove());
+            // Re-add arrows between nodes
+            const nodes = Array.from(branchEl.querySelectorAll('.node[data-key]'));
+            nodes.forEach((node, i) => {
+                if (i === 0) return;
+                const arrow = document.createElement('div');
+                arrow.className = 'arrow';
+                arrow.textContent = '⬇';
+                node.before(arrow);
+            });
+        }
+
+        function syncOrderFromDOM(branchEl) {
+            const branch = branchEl.id === 'branchV1' ? 'v1' : 'v2';
+            const key = '_order' + (branch === 'v1' ? 'V1' : 'V2');
+            const nodes = Array.from(branchEl.querySelectorAll('.node[data-key]'));
+            details[key] = nodes.map(n => n.getAttribute('data-key'));
+        }
+
+        function restoreOrder(branch) {
+            const key = '_order' + (branch === 'v1' ? 'V1' : 'V2');
+            const order = details[key];
+            if (!order || !order.length) return;
+            const branchEl = document.getElementById(branch === 'v1' ? 'branchV1' : 'branchV2');
+            if (!branchEl) return;
+            const nodes = Array.from(branchEl.querySelectorAll('.node[data-key]'));
+            const nodeMap = {};
+            nodes.forEach(n => { nodeMap[n.getAttribute('data-key')] = n; });
+            // Check if already in correct order
+            const currentOrder = nodes.map(n => n.getAttribute('data-key'));
+            if (currentOrder.join(',') === order.join(',')) return;
+            // Reorder: remove all, then append in correct order
+            const allArrows = Array.from(branchEl.querySelectorAll('.arrow'));
+            allArrows.forEach(a => a.remove());
+            nodes.forEach(n => n.remove());
+            order.forEach((k, i) => {
+                const node = nodeMap[k];
+                if (!node) return;
+                if (i > 0) {
+                    const arrow = document.createElement('div');
+                    arrow.className = 'arrow'; arrow.textContent = '⬇';
+                    branchEl.appendChild(arrow);
+                }
+                branchEl.appendChild(node);
+            });
+        }
+
+        function toggleEdit() {
+            isEditMode = !isEditMode;
+            const btn = document.getElementById('editToggle');
+            const sel = ['#pageTitle','#merchantNode','#labelV1','#labelV2','#titleV1','#titleV2','.node-title','.node-desc'];
+            if (isEditMode) {
+                btn.textContent = '🔒 退出编辑'; btn.classList.add('edit-on');
+                sel.forEach(s => document.querySelectorAll(s).forEach(e => e.setAttribute('contenteditable','true')));
+                document.querySelectorAll('.node').forEach(n => n.classList.add('editing'));
+                setupDrag();
+            } else {
+                syncNodesToDetails();
+                localStorage.setItem('merchant-flow-data', JSON.stringify(details));
+                btn.textContent = '✏️ 启用编辑'; btn.classList.remove('edit-on');
+                sel.forEach(s => document.querySelectorAll(s).forEach(e => e.setAttribute('contenteditable','false')));
+                document.querySelectorAll('.node').forEach(n => { n.classList.remove('editing','node--drag-over'); n.draggable=false; });
+                document.querySelectorAll('.node__drag, .node__delete').forEach(d => d.remove());
+            }
+        }
+
+        function saveAll() {
+            if (isEditMode) syncNodesToDetails();
+            localStorage.setItem('merchant-flow-data', JSON.stringify(details));
+            showToast('✅ 修改已保存到浏览器本地');
+        }
+
+        function addNode(branch) {
+            if (!isEditMode) { showToast('⚠️ 请先启用编辑模式'); return; }
+            const branchEl = document.getElementById(branch === 'v1' ? 'branchV1' : 'branchV2');
+            const nodeCount = branchEl.querySelectorAll('.node').length + 1;
+            const key = 'custom_' + branch + '_' + Date.now();
+            if (!details.customKeys) details.customKeys = {};
+            details.customKeys[key] = branch;
+            details[key] = { title:'新节点 '+nodeCount, content:'双击此处编辑描述' };
+            // Add to order
+            const orderKey = '_order' + (branch === 'v1' ? 'V1' : 'V2');
+            if (!details[orderKey]) details[orderKey] = [];
+            details[orderKey].push(key);
+            recreateCustomNode(key, branch, details[key]);
+            syncNodesToDetails(); saveAll(); syncNodeHeights();
+            showToast('➕ 新节点已添加并自动保存');
+        }
+
+        function resetAll() {
+            if (confirm('确定要恢复为默认设置吗？所有修改将丢失。')) {
+                localStorage.removeItem('merchant-flow-data');
+                details = getDefaultDetails();
+                refreshAllFromDetails();
+                currentDetailKey = null;
+                document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.node[data-key^="custom_"]').forEach(n => {
+                    if (n.previousElementSibling && n.previousElementSibling.classList.contains('arrow')) n.previousElementSibling.remove();
+                    n.remove();
+                });
+                showToast('🔄 已恢复默认设置');
+                syncNodeHeights();
+            }
+        }
+
+        function showToast(msg) {
+            const existing = document.querySelector('.toast'); if (existing) existing.remove();
+            const toast = document.createElement('div'); toast.className = 'toast'; toast.textContent = msg;
+            document.body.appendChild(toast); setTimeout(() => toast.remove(), 2200);
+        }
+
+        function syncNodeHeights() {
+            const v1Nodes = Array.from(document.querySelectorAll('#branchV1 .node[data-key]'));
+            const v2Nodes = Array.from(document.querySelectorAll('#branchV2 .node[data-key]'));
+            const maxLen = Math.max(v1Nodes.length, v2Nodes.length);
+            for (let i = 0; i < maxLen; i++) { if(v1Nodes[i])v1Nodes[i].style.minHeight=''; if(v2Nodes[i])v2Nodes[i].style.minHeight=''; }
+            requestAnimationFrame(() => {
+                for (let i = 0; i < maxLen; i++) {
+                    const l=v1Nodes[i], r=v2Nodes[i];
+                    if(!l&&!r)continue;
+                    const lh=l?l.getBoundingClientRect().height:0, rh=r?r.getBoundingClientRect().height:0;
+                    const mh=Math.max(lh,rh);
+                    if(l)l.style.minHeight=mh+'px'; if(r)r.style.minHeight=mh+'px';
+                }
+            });
+        }
+
+        loadData();
+        refreshAllFromDetails();
+        window.addEventListener('load', syncNodeHeights);
+        setTimeout(syncNodeHeights, 100);
+
+        // 绘制跨分支连接箭头：网批A → 网批B
+        function drawCrossConnector() {
+            const svg = document.getElementById('crossConnector');
+            const wrapper = document.getElementById('flowWrapper');
+            const nodeA = document.querySelector('.branch-a .node[data-key="xiaokeA"]');
+            const nodeB = document.querySelector('.branch-b .node[data-key="xiaokeB"]');
+            const path = document.getElementById('crossPath');
+
+            if (!svg || !wrapper || !nodeA || !nodeB || !path) return;
+
+            const wr = wrapper.getBoundingClientRect();
+            const rA = nodeA.getBoundingClientRect();
+            const rB = nodeB.getBoundingClientRect();
+
+            // 坐标相对于 flowWrapper
+            const x1 = rA.right - wr.left + 4;
+            const y1 = rA.top + rA.height / 2 - wr.top;
+            const x2 = rB.left - wr.left - 4;
+            const y2 = rB.top + rB.height / 2 - wr.top;
+
+            const cx = (x1 + x2) / 2;
+
+            svg.setAttribute('viewBox', `0 0 ${wr.width} ${wr.height}`);
+            svg.style.width = wr.width + 'px';
+            svg.style.height = wr.height + 'px';
+
+            path.setAttribute('d', `M ${x1} ${y1} C ${cx} ${y1}, ${cx} ${y2}, ${x2} ${y2}`);
+        }
+
+        drawCrossConnector();
+        window.addEventListener('resize', drawCrossConnector);
+        // 编辑完成后重绘
+        const origSaveAll = saveAll;
+        saveAll = function() { origSaveAll(); setTimeout(drawCrossConnector, 100); };
+        const origRefresh = refreshAllFromDetails;
+        refreshAllFromDetails = function() { origRefresh(); setTimeout(drawCrossConnector, 150); };
+    </script>
+</body>
+</html>
