@@ -142,8 +142,8 @@ function switchBugTab(tabId) {
     <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;">0.0%</div>
       <div class="bar-outer"><div class="bar-inner" style="width:0.0%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
       <div class="detail">状态: wait</div></div>
-    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue">9</div>
-      <div class="detail">active: 9 &nbsp; closed: 0</div></div>
+    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue">16</div>
+      <div class="detail">active: 16 &nbsp; closed: 0</div></div>
     <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple">9</div>
       <div class="detail">进行中: 0 &nbsp; 待处理: 9</div></div>
     <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red">0</div>
@@ -151,15 +151,31 @@ function switchBugTab(tabId) {
   </div>
 
   <div class="dual-col">
-    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 0.0% 落后于时间进度 2.7%，存在滞后风险</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>需求规模适中（9个），便于管理</li></ul></div></div></div><div class="charts-row">
+    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 0.0% 落后于时间进度 2.7%，存在滞后风险</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>需求规模适中（16个），便于管理</li></ul></div></div></div><div class="charts-row">
     <div class="chart-card"><h4>📊 需求阶段分布</h4><div class="chart-wrap"><canvas id="chartStage"></canvas></div></div>
     <div class="chart-card"><h4>📊 任务状态分布</h4><div class="chart-wrap"><canvas id="chartStatus"></canvas></div></div>
     <div class="chart-card"><h4>📊 任务类型分布</h4><div class="chart-wrap"><canvas id="chartPie"></canvas></div></div>
-  </div><div class="section"><h2>📋 需求分析（9 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">9</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">9</div><div class="lbl">已立项</div></div></div><h3>需求明细</h3><table><thead><tr><th>ID</th><th>优先级</th><th>标题</th><th>状态</th><th>阶段</th><th>创建人</th></tr></thead><tbody id="storyTbody"><tr onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_0">▶</span>65128</td>
+  </div><div class="section"><h2>📋 需求分析（16 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">16</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">16</div><div class="lbl">已立项</div></div></div><h3>需求明细</h3><table><thead><tr><th>ID</th><th>优先级</th><th>标题</th><th>状态</th><th>阶段</th><th>创建人</th></tr></thead><tbody id="storyTbody"><tr onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_0">▶</span>65150</td>
+            <td>P3</td><td style="max-width:400px;">【大客户】业务单，卸货方式增加类型：不卸货不上楼，GD01</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">钟日健</td></tr><tr onclick="toggleStoryDetail('story_detail_1')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_1">▶</span>65149</td>
+            <td>P3</td><td style="max-width:400px;">【商用和家用】购物车变成表格布局，快速下单，GC08</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">钟日健</td></tr><tr onclick="toggleStoryDetail('story_detail_2')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_2">▶</span>65148</td>
+            <td>P3</td><td style="max-width:400px;">【家用工程】省外跨区登录时间、特批方案上传项目凭证、二次批价增加 原登录数量，GC05~07</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">钟日健</td></tr><tr onclick="toggleStoryDetail('story_detail_3')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_3">▶</span>65147</td>
+            <td>P3</td><td style="max-width:400px;">【商用工程】批量添加商品&amp;amp;二次批价迭代，GC02~03</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">钟日健</td></tr><tr onclick="toggleStoryDetail('story_detail_4')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_4">▶</span>65128</td>
             <td>P3</td><td style="max-width:400px;">员工管理更新销司职能部门与销司两种部门的枚举值展示范围 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_0" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_4" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65128 关联的任务（1个）</div>
@@ -170,11 +186,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291230</td><td style="font-size:12px;">员工管理更新销司职能部门与销司两种部门的枚举值展示范围</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">4h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_1')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_1">▶</span>65125</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291230</td><td style="font-size:12px;">员工管理更新销司职能部门与销司两种部门的枚举值展示范围</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">4h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_5')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_5">▶</span>65125</td>
             <td>P3</td><td style="max-width:400px;">员工管理-编辑-管理区域中的商家列表增加全开/全关按钮、支持筛选多个网批账号 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_1" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_5" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65125 关联的任务（1个）</div>
@@ -185,11 +201,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291221</td><td style="font-size:12px;">员工管理-编辑-管理区域中的商家列表增加全开/全关按钮、支持筛选多个网批账号</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">10h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">10h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_2')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_2">▶</span>65124</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291221</td><td style="font-size:12px;">员工管理-编辑-管理区域中的商家列表增加全开/全关按钮、支持筛选多个网批账号</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">10h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">10h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_6')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_6">▶</span>65124</td>
             <td>P3</td><td style="max-width:400px;">管理侧账号监管--员工管理增加超时未登入筛选与最后登录时间、未登录时长字段 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_2" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_6" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65124 关联的任务（1个）</div>
@@ -200,11 +216,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291276</td><td style="font-size:12px;">员工管理增加超时未登入筛选与最后登录时间、未登录时长字段</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_3')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_3">▶</span>65123</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291276</td><td style="font-size:12px;">员工管理增加超时未登入筛选与最后登录时间、未登录时长字段</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_7')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_7">▶</span>65123</td>
             <td>P3</td><td style="max-width:400px;">批量迁移经销商绑定办事处 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_3" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_7" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65123 关联的任务（1个）</div>
@@ -215,11 +231,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291196</td><td style="font-size:12px;">批量迁移经销商绑定办事处</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">25h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">25h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_4')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_4">▶</span>65122</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291196</td><td style="font-size:12px;">批量迁移经销商绑定办事处</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">25h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">25h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_8')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_8">▶</span>65122</td>
             <td>P3</td><td style="max-width:400px;">销司订货页面商品列表增加“生产状态”及“供货周期”两个字段、隐藏停售、禁用商品 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_4" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_8" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65122 关联的任务（1个）</div>
@@ -230,11 +246,19 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291174</td><td style="font-size:12px;">销司订货页面商品列表增加“生产状态”及“供货周期”两个字段、隐藏停售、禁用商品</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_5')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_5">▶</span>65117</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291174</td><td style="font-size:12px;">销司订货页面商品列表增加“生产状态”及“供货周期”两个字段、隐藏停售、禁用商品</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_9')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_9">▶</span>65119</td>
+            <td>P3</td><td style="max-width:400px;">大客户订单配送不卸货不上楼</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_10')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_10">▶</span>65118</td>
+            <td>P3</td><td style="max-width:400px;">商用库存逻辑调整2606</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_11')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_11">▶</span>65117</td>
             <td>P3</td><td style="max-width:400px;">FMS从网批取ERP业务伙伴编码 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_5" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_11" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65117 关联的任务（1个）</div>
@@ -245,11 +269,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291164</td><td style="font-size:12px;">FMS成哦给你网批取ERP业务伙伴编码</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">15h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">15h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_6')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_6">▶</span>65115</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291164</td><td style="font-size:12px;">FMS成哦给你网批取ERP业务伙伴编码</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">15h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">15h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_12')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_12">▶</span>65115</td>
             <td>P3</td><td style="max-width:400px;">经销商入驻时工程保证金/周转机保证金扣缴方式默认为比例保证金-A <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_6" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_12" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65115 关联的任务（1个）</div>
@@ -260,11 +284,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291130</td><td style="font-size:12px;">经销商入驻时工程保证金/周转机保证金扣缴方式默认为比例保证金-A</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">4h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_7')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_7">▶</span>65114</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291130</td><td style="font-size:12px;">经销商入驻时工程保证金/周转机保证金扣缴方式默认为比例保证金-A</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">4h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_13')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_13">▶</span>65114</td>
             <td>P3</td><td style="max-width:400px;">分销商管理导出增加纳税人/收货地址字段 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_7" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_13" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65114 关联的任务（1个）</div>
@@ -275,11 +299,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291125</td><td style="font-size:12px;">分销商管理导出增加纳税人/收货地址字段</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_8')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_8">▶</span>65113</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291125</td><td style="font-size:12px;">分销商管理导出增加纳税人/收货地址字段</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_14')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_14">▶</span>65113</td>
             <td>P3</td><td style="max-width:400px;">冻结商家爱支持解冻与注销申请 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_8" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_14" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65113 关联的任务（1个）</div>
@@ -290,7 +314,11 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291119</td><td style="font-size:12px;">冻结商家支持解冻与注销申请</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">25h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">25h</td></tr></tbody></table></div></td></tr></tbody></table></div><div class="section" id="person-tab-section"><h2>📦 任务分析明细（9 个活跃 / 按4类分组）</h2><div class="tabs"><button class="tab-btn active" onclick="switchPersonTab('tab_0')" style="background:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,0.08);" id="btn_tab_0">📋 产品任务 <span style="font-size:11px;color:#888;font-weight:400;">(1人/9任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_1')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_1">🖥 后端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_2')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_2">🎨 前端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_3')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_3">📱 移动端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button></div><div id="tab_0" class="tab-panel"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">9</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">0</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">106h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">0h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">106h</div><div class="lbl">剩余工时</div></div></div><div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">291119</td><td style="font-size:12px;">冻结商家支持解冻与注销申请</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">25h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">25h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_15')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_15">▶</span>65044</td>
+            <td>P3</td><td style="max-width:400px;">家用自提订单委托提货信息拆单设置</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">符宏勇</td></tr></tbody></table></div><div class="section" id="person-tab-section"><h2>📦 任务分析明细（9 个活跃 / 按4类分组）</h2><div class="tabs"><button class="tab-btn active" onclick="switchPersonTab('tab_0')" style="background:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,0.08);" id="btn_tab_0">📋 产品任务 <span style="font-size:11px;color:#888;font-weight:400;">(1人/9任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_1')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_1">🖥 后端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_2')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_2">🎨 前端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_3')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_3">📱 移动端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button></div><div id="tab_0" class="tab-panel"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">9</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">0</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">106h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">0h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">106h</div><div class="lbl">剩余工时</div></div></div><div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
             <div onclick="toggleAssignee('tab产品_0')" style="padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;overflow-x:auto;border-left:4px solid #667eea;background:#667eea08;">
               <span class="expand-icon" id="arrow_tab产品_0" style="font-size:10px;color:#9ca3af;flex-shrink:0;">▶</span>
               <span style="font-size:15px;font-weight:600;color:#333;flex-shrink:0;">王也</span>
@@ -300,7 +328,7 @@ function switchBugTab(tabId) {
 Chart.defaults.font.family = '-apple-system, "PingFang SC", "Microsoft YaHei", sans-serif';
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
 var stageLabels = ["已立项"];
-var stageData = [9];
+var stageData = [16];
 var statusLabels = ["已关闭", "已完成", "进行中", "待处理", "已变更", "暂停"];
 var statusData = [0, 0, 0, 9, 0, 0];
 var typeLabels = ["需求设计"];
