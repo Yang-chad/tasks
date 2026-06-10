@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-06-10 | 全平台延期任务追踪 | 共 12 个延期任务 | 网批2.0: 12</p></div>
+<p>数据截止：2026-06-10 | 全平台延期任务追踪 | 共 10 个延期任务 | 网批2.0: 10</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">12</div><div class="label">延期任务总数</div></div>
-<div class="card card-wait"><div class="num">11</div><div class="label">待处理</div></div>
+<div class="card card-total"><div class="num">10</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">9</div><div class="label">待处理</div></div>
 <div class="card card-doing"><div class="num">1</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">12</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">5</div><div class="label">涉及人员</div></div>
+<div class="card card-overdue"><div class="num">10</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">4</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -103,33 +103,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
     <details>
         <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
-            <span class="assignee-name">胡健</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共2个</span>
-                <span class="stat-badge stat-wait">待处理2</span>
-                <span class="stat-badge stat-doing">进行中0</span>
-                <span class="stat-badge stat-overdue">最长5天</span>
-                <span class="stat-badge stat-h">预估9h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余9h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>292154</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】行业属性一期+二期业务评审，与领导汇报原型及讨论PRD">【产品】行业属性一期+二期业务评审，与领导汇报原型及讨论PRD</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>ab2_request_des</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-05</td><td style="color:#ef4444;font-weight:700;">5天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>292149</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】生产问题处理：企微消息通知中的去处理按钮以及仓储费逻辑">【产品】生产问题处理：企微消息通知中的去处理按钮以及仓储费逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab3_request_check</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-05</td><td style="color:#ef4444;font-weight:700;">5天</td><td>4</td><td>0</td><td>4</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">谢婉扬</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -155,7 +128,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">许峻嘉</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -181,7 +154,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
             <span class="assignee-name">卢鑫</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -208,9 +181,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8303\u6587\u7389", "\u80e1\u5065", "\u8c22\u5a49\u626c", "\u8bb8\u5cfb\u5609", "\u5362\u946b"],datasets:[{label:'延期任务数',data:[7, 2, 1, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80", "#f5576c80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[11, 1],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["2-\u9ad8", "3-\u4e2d"],datasets:[{data:[1, 11],backgroundColor:["#ef4444", "#f5576c"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8303\u6587\u7389", "\u8c22\u5a49\u626c", "\u8bb8\u5cfb\u5609", "\u5362\u946b"],datasets:[{label:'延期任务数',data:[7, 1, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[9, 1],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[10],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
