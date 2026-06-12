@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成后端开发任务明细</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header"><h1>未完成后端开发任务明细</h1>
+<p>统计日期: 2026-06-13 | 总计: 128 个未完成任务 | 涉及 12 人 | 类型: a_dev(23) · a_dev4_control(105)</p></div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="cards">
+<div class="card card-total"><div class="num">128</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">107</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">21</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">4</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">12</div><div class="label">负责人</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>负责人任务分布 (Top12)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">阳超</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共28个</span>
+                <span class="stat-badge stat-wait">待处理28</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估122h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余122h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>281634</td><td title="【后端】仓储物流-3.0信模式仓储费-全部导出">【后端】仓储物流-3.0信模式仓储费-全部导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>281633</td><td title="【后端】仓储物流-3.0信模式仓储费-仓储费账单-批量导出">【后端】仓储物流-3.0信模式仓储费-仓储费账单-批量导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>281632</td><td title="【后端】仓储物流-3.0信模式仓储费-仓储费按日计算表-全部导出">【后端】仓储物流-3.0信模式仓储费-仓储费按日计算表-全部导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>281631</td><td title="【后端】仓储物流-3.0信模式仓储费-仓储费按日计算表-批量导出">【后端】仓储物流-3.0信模式仓储费-仓储费按日计算表-批量导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>280473</td><td title="【后端】管理侧授权零售订单  数据隔离">【后端】管理侧授权零售订单  数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>280472</td><td title="【后端】管理侧授权工程提货单  数据隔离">【后端】管理侧授权工程提货单  数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>280471</td><td title="【后端】管理侧-授权工程定金单  数据隔离">【后端】管理侧-授权工程定金单  数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>290968</td><td title="【后端】发票管理销司发票查询-导出">【后端】发票管理销司发票查询-导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290967</td><td title="【后端】发票管理ERP回传发票-导出">【后端】发票管理ERP回传发票-导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290901</td><td title="【后端】部门管理-导出部门员工-下载中心">【后端】部门管理-导出部门员工-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290900</td><td title="【后端】部门管理-导出销司全部员工-下载中心">【后端】部门管理-导出销司全部员工-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290897</td><td title="【后端】3.0信模式仓储费-仓储费账单--下载中心">【后端】3.0信模式仓储费-仓储费账单--下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290896</td><td title="【后端】3.0信模式仓储费--仓储费按日计算表下载中心">【后端】3.0信模式仓储费--仓储费按日计算表下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290894</td><td title="【后端】销司小库订单-下载中心">【后端】销司小库订单-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290890</td><td title="【后端】经销商履约单-下载中心">【后端】经销商履约单-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290888</td><td title="【后端】网批订单-下载中心">【后端】网批订单-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290886</td><td title="【后端】销司订单管理-下载中心">【后端】销司订单管理-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290885</td><td title="【后端】销司订单-导出订货清单-下载中心">【后端】销司订单-导出订货清单-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290884</td><td title="【后端】销司订单-导出订单明细下载中心">【后端】销司订单-导出订单明细下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290880</td><td title="【后端】销司高包资源订单库--下载中心">【后端】销司高包资源订单库--下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290879</td><td title="【后端】经销商高包资源订单库，下载中心">【后端】经销商高包资源订单库，下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292315</td><td title="【后端】接单操作-营销一体化--查询订单是否可以总部履约">【后端】接单操作-营销一体化--查询订单是否可以总部履约</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>292314</td><td title="【后端】接单页面-营销一体化--查询订单是否可以总部履约">【后端】接单页面-营销一体化--查询订单是否可以总部履约</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292151</td><td title="【后端】员工管理查询账号登录时间查询">【后端】员工管理查询账号登录时间查询</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292148</td><td title="【后端】员工管理--经销商查询支持多账号逗号分隔批量搜索，标注命中数量（精准搜索）">【后端】员工管理--经销商查询支持多账号逗号分隔批量搜索，标注命中数量（精准搜索）</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292147</td><td title="【后端】oms对接-大客户订单详情确认修改新增不卸货也不上楼">【后端】oms对接-大客户订单详情确认修改新增不卸货也不上楼</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292146</td><td title="【后端】大客户订单详情新增大客户订单 配送方式为 不卸货也不上楼">【后端】大客户订单详情新增大客户订单 配送方式为 不卸货也不上楼</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292144</td><td title="【后端】oms对接订单快照-新增选项： 不卸货也不上楼">【后端】oms对接订单快照-新增选项： 不卸货也不上楼</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">谢婉扬</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共23个</span>
+                <span class="stat-badge stat-wait">待处理23</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估144h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余144h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>279195</td><td title="【后端】业务经理任务统计按照行业任务攻击">【后端】业务经理任务统计按照行业任务攻击</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-23</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279194</td><td title="【后端】阶段任务计算网批商用新增按行业模式任务统计算法">【后端】阶段任务计算网批商用新增按行业模式任务统计算法</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-23</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>280470</td><td title="【后端】用户侧-工程订单行、工程分批提货订单行 (小单)">【后端】用户侧-工程订单行、工程分批提货订单行 (小单)</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280469</td><td title="【后端】用户侧-工程订单行、工程分批提货订单行 (大单)">【后端】用户侧-工程订单行、工程分批提货订单行 (大单)</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280468</td><td title="【后端】用户侧-经销商下单行和-零售订单行(含 零售、活动、返利)">【后端】用户侧-经销商下单行和-零售订单行(含 零售、活动、返利)</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>290958</td><td title="【后端】工程管理--批量改价-涉及工程单导出-下载中心">【后端】工程管理--批量改价-涉及工程单导出-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290903</td><td title="【后端】岗位管理-岗位管理-导出SKU-下载中心">【后端】岗位管理-岗位管理-导出SKU-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290902</td><td title="【后端】岗位管理-岗位管理-导出经销商-下载中心">【后端】岗位管理-岗位管理-导出经销商-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290899</td><td title="【后端】部门管理-导出SKU-下载中心">【后端】部门管理-导出SKU-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290898</td><td title="【后端】部门管理-导出经销商-下载中心">【后端】部门管理-导出经销商-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290889</td><td title="【后端】	一件代发挂起订单下载中心">【后端】	一件代发挂起订单下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290887</td><td title="【后端】挂起订单-下载中心">【后端】挂起订单-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292313</td><td title="【后端】对接营销一体化--查询订单是否可以总部履约">【后端】对接营销一体化--查询订单是否可以总部履约</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>292162</td><td title="【后端】商用销司-销售方案调价提交订单失败">【后端】商用销司-销售方案调价提交订单失败</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292161</td><td title="【后端】商用销司-销售方案调价购物车失效">【后端】商用销司-销售方案调价购物车失效</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292160</td><td title="【后端】家用4.0-销售方案调价提交订单失败">【后端】家用4.0-销售方案调价提交订单失败</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292159</td><td title="【后端】家用4.0-销售方案调价购物车失效">【后端】家用4.0-销售方案调价购物车失效</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292158</td><td title="【后端】家用2.0 3.0-销售方案调价提交订单失败">【后端】家用2.0 3.0-销售方案调价提交订单失败</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292157</td><td title="【后端】家用2.0 3.0-销售方案调价购物车失效">【后端】家用2.0 3.0-销售方案调价购物车失效</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292156</td><td title="【后端】大客户经销商-销售方案调价提交订单失败">【后端】大客户经销商-销售方案调价提交订单失败</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292155</td><td title="【后端】大客户经销商-销售方案调价购物车失效">【后端】大客户经销商-销售方案调价购物车失效</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292145</td><td title="【后端】大客户订单提交 配送方式为 【需要配送】时 增加 以下单选选择项">【后端】大客户订单提交 配送方式为 【需要配送】时 增加 以下单选选择项</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>279069</td><td title="【后端】订单算法改造（按行业统计）">【后端】订单算法改造（按行业统计）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">刘兰真</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共23个</span>
+                <span class="stat-badge stat-wait">待处理18</span>
+                <span class="stat-badge stat-doing">进行中5</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估142h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余142h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>280500</td><td title="【后端】【GC46】  1、#商用 工程备货-列表，数据隔离方式调整为：  ① 当前账号授权 “ 指定行业 + 该行业下的指定商家 ”，且与工程单的 “ 行业 ” 属性相匹配，则能看到工程单数据  举例：  ① 当前账号授权行业 A B ：&quot;A-商家①&quot; &quot;B-商家①\商家②&quot;  ② 工程单：商家①  GC01-A  GC02-B ；商家② GC03-A  GC04-B">【后端】【GC46】  1、#商用 工程备货-列表，数据隔离方式调整为：  ① 当前账号授权 “ 指定行业 + 该行业下的指定商家 ”，且与工程单的 “ 行业 ” 属性相匹配，则能看到工程单数据  举例：  ① 当前账号授权行业 A B ："A-商家①" "B-商家①\商家②"  ② 工程单：商家①  GC01-A  GC02-B ；商家② GC03-A  GC04-B</td><td><span class="badge-doing">进行中</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>280497</td><td title="【后端】【GC44】  1、#商用 常规工程-列表，数据隔离方式调整为：  ① 当前账号授权 “ 指定行业 + 该行业下的指定商家 ”，且与工程单的 “ 行业 ” 属性相匹配，则能看到工程单数据  举例：  ① 当前账号授权行业 A B ：&quot;A-商家①&quot; &quot;B-商家①\商家②&quot;  ② 工程单：商家①  GC01-A  GC02-B ；商家② GC03-A  GC04-B">【后端】【GC44】  1、#商用 常规工程-列表，数据隔离方式调整为：  ① 当前账号授权 “ 指定行业 + 该行业下的指定商家 ”，且与工程单的 “ 行业 ” 属性相匹配，则能看到工程单数据  举例：  ① 当前账号授权行业 A B ："A-商家①" "B-商家①\商家②"  ② 工程单：商家①  GC01-A  GC02-B ；商家② GC03-A  GC04-B</td><td><span class="badge-doing">进行中</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>290965</td><td title="【后端】工程管理（商）--下载附件-导出">【后端】工程管理（商）--下载附件-导出</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290906</td><td title="【后端】大客户审批业务单审批-下载附件-下载中心">【后端】大客户审批业务单审批-下载附件-下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290905</td><td title="【后端】大客户审批工程单审批-下载附件-下载中心">【后端】大客户审批工程单审批-下载附件-下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290984</td><td title="【后端】管理测登录-用户收藏-查询-带菜单权限的查询">【后端】管理测登录-用户收藏-查询-带菜单权限的查询</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290983</td><td title="【后端】管理测登录-用户收藏-移除">【后端】管理测登录-用户收藏-移除</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>290982</td><td title="【后端】管理测登录-用户收藏-保存">【后端】管理测登录-用户收藏-保存</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>280501</td><td title="【后端】【GC47】数据清洗，无原型  1、原商用，常规工程和工程备货，是只有两种行业“家装”“工装”，现在根据销司已经做好了配置固定了17个类型，现在需要把工程单的行业类型匹配，新增的17个行业的“家装”“工装”，否则历史数据则做不到数据隔离">【后端】【GC47】数据清洗，无原型  1、原商用，常规工程和工程备货，是只有两种行业“家装”“工装”，现在根据销司已经做好了配置固定了17个类型，现在需要把工程单的行业类型匹配，新增的17个行业的“家装”“工装”，否则历史数据则做不到数据隔离</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280499</td><td title="【后端】管理测【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，代客申请2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】管理测【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，代客申请2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>280498</td><td title="【后端】用户侧【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\重新提交（价格被驳回）\二次批价；  2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业">【后端】用户侧【GC45】  1、#商用 工程备货：新增/编辑 行业类型 根据配置获取，包括 新建\重新提交（价格被驳回）\二次批价；  2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>280495</td><td title="【后端】管理测【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，代客申请（登录）2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】管理测【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，代客申请（登录）2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280494</td><td title="【后端】用户侧【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\重新提交（登录被驳回）\申请价格\重新提交（价格被驳回）\二次批价； 2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】用户侧【GC42】  1、#商用 常规工程：新增/编辑 行业类型 根据配置获取，包括 新建-项目登录\重新提交（登录被驳回）\申请价格\重新提交（价格被驳回）\二次批价； 2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>290971</td><td title="【后端】数据分析-历史数据-销售订单明细表">【后端】数据分析-历史数据-销售订单明细表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290970</td><td title="【后端】数据分析-历史数据-收差单据">【后端】数据分析-历史数据-收差单据</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290969</td><td title="【后端】数据分析-历史数据-工程单">【后端】数据分析-历史数据-工程单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290953</td><td title="【后端】工程管理--工程审批-下载附件-下载中心">【后端】工程管理--工程审批-下载附件-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290881</td><td title="【后端】高包资源订单审核-下载中心">【后端】高包资源订单审核-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>292120</td><td title="【后端】【GC08】  1、经销商端工程单提货页面从卡片布局改造成表格布局，新增型号/SKU/申请价/批复价/可提货数量等字段，增加多选和全选功能，-查询返回">【后端】【GC08】  1、经销商端工程单提货页面从卡片布局改造成表格布局，新增型号/SKU/申请价/批复价/可提货数量等字段，增加多选和全选功能，-查询返回</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>292104</td><td title="【【后端】历史数据初始化，GC05】  1、省外跨区审批列表页新增&quot;登录时间&quot;日期筛选和展示列，详情页基本信息区新增只读&quot;登录时间&quot;字段，取值关联工程单的登录时间，便于审批人员快速确认实际登录时间。">【【后端】历史数据初始化，GC05】  1、省外跨区审批列表页新增"登录时间"日期筛选和展示列，详情页基本信息区新增只读"登录时间"字段，取值关联工程单的登录时间，便于审批人员快速确认实际登录时间。</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>292101</td><td title="【后端】excel解析【GC02】  1、销司：代客申请/经销商申请价格，商品信息-新增&quot;批量添加商品&quot;">【后端】excel解析【GC02】  1、销司：代客申请/经销商申请价格，商品信息-新增"批量添加商品"</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>292018</td><td title="【后端】【GD01】重新提交 1、业务单，卸货方式增加类型：不卸货不上楼">【后端】【GD01】重新提交 1、业务单，卸货方式增加类型：不卸货不上楼</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292017</td><td title="【后端】【GD01】新建  1、业务单，卸货方式增加类型：不卸货不上楼">【后端】【GD01】新建  1、业务单，卸货方式增加类型：不卸货不上楼</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">孙元通</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共14个</span>
+                <span class="stat-badge stat-wait">待处理12</span>
+                <span class="stat-badge stat-doing">进行中2</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估71h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余71h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>293296</td><td title="【后端】河南商用销司工程备货9个常规图绘图">【后端】河南商用销司工程备货9个常规图绘图</td><td><span class="badge-doing">进行中</span></td><td>1-紧急</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-15</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+<tr><td>293295</td><td title="【后端】河南商用销司工程11个常规图绘图">【后端】河南商用销司工程11个常规图绘图</td><td><span class="badge-doing">进行中</span></td><td>1-紧急</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>288640</td><td title="【后端】工程商用工程备货--企业微信消息数据隔离">【后端】工程商用工程备货--企业微信消息数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>288639</td><td title="【后端】工程商用常规--企业微信消息数据隔离">【后端】工程商用常规--企业微信消息数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>280496</td><td title="【后端】【GC43】  1、#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签  2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】">【后端】【GC43】  1、#商用 常规工程：登录审批 / 申请价格（非/省内/省外）/ 二次批价 支持变更行业标签  2、获取行业配置路径：系统设置-销司ERP编码-销司-【行业】</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>290883</td><td title="【后端】销司订货4.0-下载中心">【后端】销司订货4.0-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+<tr><td>290882</td><td title="【后端】销司订货-下载中心">【后端】销司订货-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+<tr><td>292310</td><td title="【后端】正向：二层层小单定金支付库存扣减">【后端】正向：二层层小单定金支付库存扣减</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292309</td><td title="【后端】正向：一层小单定金支付库存扣减">【后端】正向：一层小单定金支付库存扣减</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292150</td><td title="【后端】企业微信登录成功更新登录使劲啊">【后端】企业微信登录成功更新登录使劲啊</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>292119</td><td title="【后端】周转机-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在&quot;申请数量&quot;列后新增&quot;原登录数量&quot;列，展示审批时的原始申请数量，便于审批人快速比对数量差异。">【后端】周转机-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在"申请数量"列后新增"原登录数量"列，展示审批时的原始申请数量，便于审批人快速比对数量差异。</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>292118</td><td title="【后端】家用-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在&quot;申请数量&quot;列后新增&quot;原登录数量&quot;列，展示审批时的原始申请数量，便于审批人快速比对数量差异。">【后端】家用-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在"申请数量"列后新增"原登录数量"列，展示审批时的原始申请数量，便于审批人快速比对数量差异。</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>292103</td><td title="【后端】工程备货【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理">【后端】工程备货【GC03】  功能改动点->二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>292102</td><td title="【后端】常规【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理">【后端】常规【GC03】  功能改动点->二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">徐琦</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共13个</span>
+                <span class="stat-badge stat-wait">待处理10</span>
+                <span class="stat-badge stat-doing">进行中3</span>
+                <span class="stat-badge stat-overdue">延期3</span>
+                <span class="stat-badge stat-h">预估76h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余76h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>280442</td><td title="【后端】非空平台仓订单-5.  销售订单-商家退款">【后端】非空平台仓订单-5.  销售订单-商家退款</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-12</td><td>+1天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>279559</td><td title="【后端】. OMS-网批 售后审批结果">【后端】. OMS-网批 售后审批结果</td><td><span class="badge-doing">进行中</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-12</td><td>+1天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>279558</td><td title="【后端】网批-OMS 拒签退货单">【后端】网批-OMS 拒签退货单</td><td><span class="badge-doing">进行中</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-12</td><td>+1天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>280476</td><td title="【后端】管理侧授权零售订单退款单  数据隔离">【后端】管理侧授权零售订单退款单  数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>280475</td><td title="【后端】管理侧售后单  数据隔离">【后端】管理侧售后单  数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>280474</td><td title="【后端】管理侧授权工程定金退款单(大单)  数据隔离">【后端】管理侧授权工程定金退款单(大单)  数据隔离</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-26</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>290955</td><td title="【后端】工程管理--工程额度-财务明细--下载中心">【后端】工程管理--工程额度-财务明细--下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290895</td><td title="【后端】销司小库售后单-下载中心">【后端】销司小库售后单-下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290893</td><td title="【后端】退货退款-销司退款售后单下载中心">【后端】退货退款-销司退款售后单下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290892</td><td title="【后端】退货退款-退货售后单下载中心">【后端】退货退款-退货售后单下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290891</td><td title="【后端】退货退款-退款售后单下载中心">【后端】退货退款-退款售后单下载中心</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-29</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292312</td><td title="【后端】逆向：二层小单定金支付库存扣减">【后端】逆向：二层小单定金支付库存扣减</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292311</td><td title="【后端】逆向：一层小单定金支付库存扣减">【后端】逆向：一层小单定金支付库存扣减</td><td><span class="badge-wait">待处理</span></td><td>2-高</td><td>a_dev4_control</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">冯澈</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共10个</span>
+                <span class="stat-badge stat-wait">待处理10</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估80h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余80h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>283665</td><td title="【后端】3.0商用销司经销商零售首页、活动首页、商详页（零售、活动、工程）等搜索响应">【后端】3.0商用销司经销商零售首页、活动首页、商详页（零售、活动、工程）等搜索响应</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>283664</td><td title="【后端】3.0商用销司经销商零售、返利、活动等方案行业信息同步、索引更新&amp;维护">【后端】3.0商用销司经销商零售、返利、活动等方案行业信息同步、索引更新&维护</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>24</td><td>0</td><td>24</td></tr>
+<tr><td>281559</td><td title="【后端】3.0商用销司-经销商返利方案-行业审批流绘图">【后端】3.0商用销司-经销商返利方案-行业审批流绘图</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>281558</td><td title="【后端】3.0商用销司-经销商返利方案-订单-新增“行业”字段-提供接口">【后端】3.0商用销司-经销商返利方案-订单-新增“行业”字段-提供接口</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>281557</td><td title="【后端】3.0商用销司-经销商返利方案-主页代办&amp;amp;企微推送-支持行业权限逻辑">【后端】3.0商用销司-经销商返利方案-主页代办&amp;企微推送-支持行业权限逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>281556</td><td title="【后端】3.0商用销司-经销商返利方案-方案管理&amp;amp;方案审核-新建&amp;amp;编辑&amp;amp;调价&amp;amp;查看-新增“行业”字段&amp;amp;权限逻辑">【后端】3.0商用销司-经销商返利方案-方案管理&amp;方案审核-新建&amp;编辑&amp;调价&amp;查看-新增“行业”字段&amp;权限逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>281555</td><td title="【后端】3.0商用销司-经销商日销方案-行业审批流绘图">【后端】3.0商用销司-经销商日销方案-行业审批流绘图</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>281554</td><td title="【后端】3.0商用销司-经销商日销方案-订单-新增“行业”字段-提供接口">【后端】3.0商用销司-经销商日销方案-订单-新增“行业”字段-提供接口</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>281553</td><td title="【后端】3.0商用销司-经销商日销方案-主页代办&amp;amp;企微推送-支持行业权限逻辑">【后端】3.0商用销司-经销商日销方案-主页代办&amp;企微推送-支持行业权限逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>281552</td><td title="【后端】3.0商用销司-经销商日销方案-方案管理&amp;amp;方案审核-新建&amp;amp;编辑&amp;amp;调价&amp;amp;查看-新增“行业”字段">【后端】3.0商用销司-经销商日销方案-方案管理&amp;方案审核-新建&amp;编辑&amp;调价&amp;查看-新增“行业”字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
+            <span class="assignee-name">李龙键</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共7个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中7</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估28h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余28h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>290924</td><td title="【后端】系统运维-现金回款入账记录-导出-需要密码&amp;amp;&amp;amp;对接下载中心">【后端】系统运维-现金回款入账记录-导出-需要密码&amp;&amp;对接下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290923</td><td title="【后端】数据分析-历史数据-奖励款流水-导出-需要密码&amp;amp;&amp;amp;对接下载中心">【后端】数据分析-历史数据-奖励款流水-导出-需要密码&amp;&amp;对接下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290922</td><td title="【后端】数据分析-历史数据-货款流水-导出-需要密码&amp;amp;&amp;amp;对接下载中心">【后端】数据分析-历史数据-货款流水-导出-需要密码&amp;&amp;对接下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290921</td><td title="【后端】工程管理-销司工程额度4.0-转出-导出-需要密码&amp;amp;&amp;amp;对接下载中心">【后端】工程管理-销司工程额度4.0-转出-导出-需要密码&amp;&amp;对接下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290920</td><td title="【后端】工程管理-销司工程额度4.0-额度维护审批-转入-导出-需要密码&amp;amp;&amp;amp;对接下载中心">【后端】工程管理-销司工程额度4.0-额度维护审批-转入-导出-需要密码&amp;&amp;对接下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290919</td><td title="【后端】工程管理-销司工程额度-转出-导出-需要密码&amp;amp;&amp;amp;对接下载中心">【后端】工程管理-销司工程额度-转出-导出-需要密码&amp;&amp;对接下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>290918</td><td title="【后端】工程管理-销司工程额度-额度维护审批-转入-导出-需要密码&amp;amp;&amp;amp;对接下载中心">【后端】工程管理-销司工程额度-额度维护审批-转入-导出-需要密码&amp;&amp;对接下载中心</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+            <span class="assignee-name">何嘉宝</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估32h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余32h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>292637</td><td title="|河南商用销售公司模式绘制审批流程图（商家类型变更、补录协议、经营信息、关键签约信息）|">|河南商用销售公司模式绘制审批流程图（商家类型变更、补录协议、经营信息、关键签约信息）|</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292636</td><td title="|河南商用销售公司模式绘制审批流程图（返利充值、工程保证金变更、入驻）|">|河南商用销售公司模式绘制审批流程图（返利充值、工程保证金变更、入驻）|</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292896</td><td title="FMS沟通、联调、测试">FMS沟通、联调、测试</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-07-31</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>292894</td><td title="推送失败重试与告警机制">推送失败重试与告警机制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.80.0（0715/dev11.6）【2026】</td><td>2026-07-31</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ef535015; border-left:4px solid #ef5350;">
+            <span class="assignee-name">未指派</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理1</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估34h</span>
+                <span class="stat-badge stat-h">消耗16h</span>
+                <span class="stat-badge stat-h">剩余54h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>291161</td><td title="【总任务】工程需求">【总任务】工程需求</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev</td><td>网批大前端V1.8（0730）【2026】</td><td>2026-07-30</td><td></td><td>12</td><td>16</td><td>32</td></tr>
+<tr><td>286504</td><td title="【总任务】短信模板调整">【总任务】短信模板调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-30</td><td></td><td>22</td><td>0</td><td>22</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#66bb6a15; border-left:4px solid #66bb6a;">
+            <span class="assignee-name">郑忠</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中2</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估7h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余7h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>292641</td><td title="|河南商用销售公司模式绘制审批流程图（冻结账号、解冻账号、关键基础信息）|">|河南商用销售公司模式绘制审批流程图（冻结账号、解冻账号、关键基础信息）|</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>292640</td><td title="|河南商用销售公司模式绘制审批流程图（常用地址、商家任务合并）|">|河南商用销售公司模式绘制审批流程图（常用地址、商家任务合并）|</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-25</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ff704315; border-left:4px solid #ff7043;">
+            <span class="assignee-name">许峻嘉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理1</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-h">预估2h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余2h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>292816</td><td title="【后端】河南商用销司 资金账户调账单据、经销商市场保证金奖罚单审批流图绘图">【后端】河南商用销司 资金账户调账单据、经销商市场保证金奖罚单审批流图绘图</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0630/dev11.5.1）【2026】</td><td>2026-06-12</td><td>+1天</td><td>2</td><td>0</td><td>2</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#5c6bc015; border-left:4px solid #5c6bc0;">
+            <span class="assignee-name">卢鑫</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估4h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余4h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>286395</td><td title="【后端】经济概况表导出到下载中心并加密">【后端】经济概况表导出到下载中心并加密</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.78.0（0615/dev11.5）【2026】</td><td>2026-06-16</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-06-13</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u9633\u8d85", "\u8c22\u5a49\u626c", "\u5218\u5170\u771f", "\u5b59\u5143\u901a", "\u5f90\u7426", "\u51af\u6f88", "\u674e\u9f99\u952e", "\u4f55\u5609\u5b9d", "\u672a\u6307\u6d3e", "\u90d1\u5fe0", "\u8bb8\u5cfb\u5609", "\u5362\u946b"],datasets:[{label:'未完成任务数',data:[28, 23, 23, 14, 13, 10, 7, 4, 2, 2, 1, 1],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726", "#26c6da", "#ab47bc", "#ef5350", "#66bb6a", "#ff7043", "#5c6bc0"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[107, 21],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[10, 25, 93],backgroundColor:["#f5576c", "#ffa726", "#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
