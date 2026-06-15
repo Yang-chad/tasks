@@ -172,9 +172,11 @@ function liveRefresh(eid){
   }).catch(function(e){
     btn.classList.remove('loading');
     if(window.location.origin.indexOf('github.io')>=0||window.location.protocol==='file:'){
-      // GitHub Pages / 本地文件 → 触发本地管线重跑并跳转到最新报告
-      refreshToast('⚠️ 正在触发本地管线刷新...','ok');
-      setTimeout(function(){window.open('http://localhost:8900/refresh-and-view/'+eid,'_self');},500);
+      // GitHub Pages / 本地文件 → 后台触发本地管线
+      refreshToast('✅ 已触发后台刷新，约 60 秒后刷新此页即可看到最新数据','ok');
+      var w=460,h=300,l=(screen.width-w)/2,t=(screen.height-h)/2;
+      var pw=window.open('http://localhost:8900/trigger-pipeline','_blank','width='+w+',height='+h+',left='+l+',top='+t);
+      if(pw) setTimeout(function(){try{pw.close();}catch(e){}},4000);
     }else{
       refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
     }
