@@ -171,8 +171,10 @@ function liveRefresh(eid){
     refreshToast('✅ 实时刷新完成 — '+now,'ok');
   }).catch(function(e){
     btn.classList.remove('loading');
-    if(window.location.origin.indexOf('github.io')>=0||window.location.origin.indexOf('file:')>=0){
-      refreshToast('⚠️ 请使用本地报告中心: http://localhost:8900/  然后打开报告点击刷新','err');
+    if(window.location.origin.indexOf('github.io')>=0||window.location.protocol==='file:'){
+      // GitHub Pages / 本地文件 → 触发本地管线重跑并跳转到最新报告
+      refreshToast('⚠️ 正在触发本地管线刷新...','ok');
+      setTimeout(function(){window.open('http://localhost:8900/refresh-and-view/'+eid,'_self');},500);
     }else{
       refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
     }
