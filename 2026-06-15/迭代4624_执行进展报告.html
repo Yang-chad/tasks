@@ -83,6 +83,21 @@
   .footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:30px; padding:16px; }
   @media(max-width:768px) { .progress-cards { flex-direction:column; } .prog-card { max-width:100%; }
     .charts-row { flex-direction: column; } }
+  .refresh-btn { display:inline-flex; align-items:center; gap:6px; margin-bottom:12px;
+    padding:8px 18px; border:none; border-radius:20px;
+    background: rgba(255,255,255,0.18); color:#fff; font-size:13px; font-weight:500;
+    cursor:pointer; font-family:inherit; transition:all .3s; border:1px solid rgba(255,255,255,0.25); }
+  .refresh-btn:hover { background:rgba(255,255,255,0.28); transform:scale(1.03); }
+  .refresh-btn.loading { opacity:0.6; pointer-events:none; }
+  .refresh-spin { display:inline-block; transition:transform 0.6s; }
+  .refresh-btn.loading .refresh-spin { animation:spin 0.8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .refresh-toast { position:fixed; top:20px; left:50%; transform:translateX(-50%); z-index:9999;
+    padding:10px 24px; border-radius:10px; font-size:13px; font-weight:500;
+    opacity:0; transition:opacity 0.4s; pointer-events:none; }
+  .refresh-toast.show { opacity:1; }
+  .refresh-toast.ok { background:#10b981; color:#fff; }
+  .refresh-toast.err { background:#ef4444; color:#fff; }
 </style>
 <script>
 function toggleStoryDetail(id) {
@@ -126,6 +141,69 @@ function switchBugTab(tabId) {
     var btn = document.getElementById('bug_btn_' + tabId.split('_').pop());
     if (btn) { btn.style.background = '#fff'; btn.style.boxShadow = '0 1px 4px rgba(0,0,0,0.08)'; }
 }
+function refreshToast(msg,type){
+  var t=document.getElementById('rtoast'); if(!t){t=document.createElement('div');t.id='rtoast';t.className='refresh-toast';document.body.appendChild(t);}
+  t.textContent=msg; t.className='refresh-toast show '+(type||'ok'); setTimeout(function(){t.className='refresh-toast';},3000);
+}
+function liveRefresh(eid){
+  var btn=document.getElementById('refreshBtn'); if(!btn) return;
+  btn.classList.add('loading');
+  var Z='https://ztpm.gree.com:8888/api.php/v1';
+  var creds={account:'A80065',password:'Feide2010'};
+  fetch(Z+'/tokens',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(creds)})
+  .then(function(r){return r.json();}).then(function(tk){
+    var token=tk.token;
+    return Promise.all([
+      fetch(Z+'/executions/'+eid,{headers:{Token:token}}).then(function(r){return r.json();}),
+      fetch(Z+'/executions/'+eid+'/tasks?limit=500',{headers:{Token:token}}).then(function(r){return r.json();}),
+      fetch(Z+'/executions/'+eid+'/stories?limit=200',{headers:{Token:token}}).then(function(r){return r.json();}),
+      fetch(Z+'/executions/'+eid+'/bugs?limit=500',{headers:{Token:token}}).then(function(r){return r.json();})
+    ]);
+  }).then(function(results){
+    var it=results[0], tasks=results[1].tasks||[], stories=results[2].stories||[], bugs=results[3].bugs||[];
+    var today=new Date();
+    var begin=new Date(it.begin), end=new Date(it.end);
+    var totalDays=Math.ceil((end-begin)/86400000);
+    var elapsed=Math.ceil((today-begin)/86400000);
+    var timePct=Math.round(elapsed/Math.max(totalDays,1)*100*10)/10;
+    var prog=parseFloat(it.progress||0);
+    var ts={}; tasks.forEach(function(t){ts[t.status]=(ts[t.status]||0)+1;});
+    var doing=ts.doing||0, wait=ts.wait||0;
+    var ss={}; stories.forEach(function(s){ss[s.status]=(ss[s.status]||0)+1;});
+    var ab=bugs.filter(function(b){return ['closed','resolved','postponed','delay'].indexOf(b.status)<0;}).length;
+    // Update cards
+    var el=document.getElementById; if(el('v_time')){el('v_time').textContent=timePct+'%';el('bar_time').style.width=timePct+'%';el('d_time').textContent='已过 '+elapsed+'/'+totalDays+'天';}
+    if(el('v_prog')){el('v_prog').textContent=prog+'%';el('bar_prog').style.width=prog+'%';el('d_prog').textContent='状态: '+it.status;}
+    if(el('v_story')){el('v_story').textContent=stories.length;el('d_story_a').textContent=ss.active||0;el('d_story_c').textContent=ss.closed||0;}
+    if(el('v_task')){el('v_task').textContent=tasks.length;el('d_task_d').textContent=doing;el('d_task_w').textContent=wait;}
+    if(el('v_bug')){el('v_bug').textContent=bugs.length;el('d_bug_a').textContent=ab;}
+    if(el('reportTime')) el('reportTime').textContent=today.toISOString().slice(0,10);
+    // Update charts
+    var stageDist={}; stories.forEach(function(s){var st=s.stage||'';if(st)stageDist[st]=(stageDist[st]||0)+1;});
+    var SL={projected:'已立项',developing:'开发中',developed:'开发完成',testing:'测试中',tested:'已提测',verified:'已验收',released:'已发布',planned:'已规划'};
+    var sk=['projected','developing','tested','developed','verified','released','planned'];
+    var sl=[],sv=[]; sk.forEach(function(k){if(stageDist[k]){sl.push(SL[k]||k);sv.push(stageDist[k]);}});
+    if(!sl.length){sl=['已立项'];sv=[stories.length];}
+    var ssk=['closed','done','doing','wait','changed','pause'];
+    var ssl=[],ssv=[]; ssk.forEach(function(k){ssl.push({closed:'已关闭',done:'已完成',doing:'进行中',wait:'待处理',changed:'已变更',pause:'暂停'}[k]||k);ssv.push(ts[k]||0);});
+    var tt={}; tasks.forEach(function(t){var tp=t.type||'?';tt[tp]=(tt[tp]||0)+1;});
+    var TYP={a_dev4_control:'后端-control',a_dev:'后端',a_dev2_front:'前端',a_dev6_mobile:'移动端',ab1_needs_research:'产品调研',ab2_request_des:'需求设计',ad1_UI_des:'UI设计',ae1_test_des:'测试设计',ae2_test:'测试',affair:'事务',misc:'杂项'};
+    var ti=Object.entries(tt).sort(function(a,b){return b[1]-a[1];});
+    var tl=[],tv=[]; ti.forEach(function(x){tl.push(TYP[x[0]]||x[0]);tv.push(x[1]);});
+    var sc=Chart.getChart('chartStage'),stc=Chart.getChart('chartStatus'),pc=Chart.getChart('chartPie');
+    if(sc){sc.data.labels=sl;sc.data.datasets[0].data=sv;sc.data.datasets[0].backgroundColor=['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#fa8c16','#d9d9d9'].slice(0,sl.length);sc.update();}
+    if(stc){stc.data.labels=ssl;stc.data.datasets[0].data=ssv;stc.data.datasets[0].backgroundColor=['#d9d9d9','#52c41a','#1890ff','#fa8c16','#faad14','#722ed1'];stc.update();}
+    if(pc){pc.data.labels=tl;pc.data.datasets[0].data=tv;pc.data.datasets[0].backgroundColor=['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#ff4d4f','#eb2f96','#a0d911'].slice(0,tl.length);pc.update();}
+    btn.classList.remove('loading');
+    var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+    var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
+    refreshToast('✅ 实时刷新完成 — '+now,'ok');
+  }).catch(function(e){
+    btn.classList.remove('loading');
+    refreshToast('❌ API调用失败，正在重新加载页面...','err');
+    setTimeout(function(){location.reload();},1000);
+  });
+}
 </script>
 </head>
 <body>
@@ -133,25 +211,27 @@ function switchBugTab(tabId) {
   <a class="back-link" href="迭代总览.html">← 返回总览</a>
   <div class="header">
     <h1>📊 网批2.0_V2.80.0（0715/dev11.6）【2026】 执行进展分析报告</h1>
-    <div class="subtitle">执行ID: 4624 &nbsp;|&nbsp; 2026-06-08 ~ 2026-07-15 &nbsp;|&nbsp; 生成时间: 2026-06-15</div>
+    <div class="subtitle">执行ID: 4624 &nbsp;|&nbsp; 2026-06-08 ~ 2026-07-15 &nbsp;|&nbsp; 生成时间: <span id="reportTime">2026-06-15</span></div>
+    <button class="refresh-btn" onclick="liveRefresh(4624)" id="refreshBtn">
+      <span class="refresh-spin">🔄</span> 实时刷新禅道数据
+      <span class="refresh-time"></span>
+    </button>
   </div>
 
-  <div class="progress-cards">   <div class="prog-card"><div class="label">⏱️ 时间进度</div><div class="value" style="color:#1890ff;">18.9%</div>
-      <div class="bar-outer"><div class="bar-inner" style="width:18.9%;background:linear-gradient(90deg,#1890ff,#60a5fa);"></div></div>
-      <div class="detail">已过 7/37 天</div></div>
-    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;">5.9%</div>
-      <div class="bar-outer"><div class="bar-inner" style="width:5.9%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
-      <div class="detail">状态: doing</div></div>
-    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue">25</div>
-      <div class="detail">active: 25 &nbsp; closed: 0</div></div>
-    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple">166</div>
-      <div class="detail">进行中: 17 &nbsp; 待处理: 139</div></div>
-    <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red">0</div>
-      <div class="detail">未关闭: 0 &nbsp; 已关/已延: 0</div></div>
-  </div>
-
-  <div class="dual-col">
-    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 5.9% 落后于时间进度 18.9%，存在滞后风险</li><li>待处理任务 139 个（占比 83.7%），需关注</li><li>延期任务 1 个，需重点跟进</li><li>林爱冰: 1个任务延期</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>已完成/已关闭任务 5 个（3.0%）</li><li>进行中任务 17 个，团队在推进</li></ul></div></div></div><div class="charts-row">
+  <div class="progress-cards">   <div class="prog-card"><div class="label">⏱️ 时间进度</div><div class="value" style="color:#1890ff;" id="v_time">18.9%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_time" style="width:18.9%;background:linear-gradient(90deg,#1890ff,#60a5fa);"></div></div>
+      <div class="detail" id="d_time">已过 7/37 天</div></div>
+    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;" id="v_prog">7.1%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_prog" style="width:7.1%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
+      <div class="detail" id="d_prog">状态: doing</div></div>
+    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue" id="v_story">25</div>
+      <div class="detail">active: <span id="d_story_a">25</span> &nbsp; closed: <span id="d_story_c">0</span></div></div>
+    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple" id="v_task">166</div>
+      <div class="detail">进行中: <span id="d_task_d">20</span> &nbsp; 待处理: <span id="d_task_w">133</span></div></div>
+    <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red" id="v_bug">0</div>
+      <div class="detail">未关闭: <span id="d_bug_a">0</span> &nbsp; 已关/已延: 0</div></div>
+  </div>  <div class="dual-col">
+    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 7.1% 落后于时间进度 18.9%，存在滞后风险</li><li>待处理任务 133 个（占比 80.1%），需关注</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>已完成/已关闭任务 8 个（4.8%）</li><li>进行中任务 20 个，团队在推进</li></ul></div></div></div><div class="charts-row">
     <div class="chart-card"><h4>📊 需求阶段分布</h4><div class="chart-wrap"><canvas id="chartStage"></canvas></div></div>
     <div class="chart-card"><h4>📊 任务状态分布</h4><div class="chart-wrap"><canvas id="chartStatus"></canvas></div></div>
     <div class="chart-card"><h4>📊 任务类型分布</h4><div class="chart-wrap"><canvas id="chartPie"></canvas></div></div>
@@ -204,7 +284,7 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr class="row-warn"><td style="font-size:12px;color:#888;">293076</td><td style="font-size:12px;">【UI设计】大客户业务单卸货方式增加类型</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">UI设计</td><td style="font-size:12px;color:#888;">林爱冰</td><td style="font-size:12px;color:#888;">2026-06-12 <span style="color:#f5222d;font-size:11px;">(延3天)</span></td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">4h</td></tr><tr><td style="font-size:12px;color:#888;">291808</td><td style="font-size:12px;">【总任务】【大客户】业务单，卸货方式增加类型：不卸货不上楼，GD01</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">12h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_4')" style="cursor:pointer;" data-stage='projected'>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">293076</td><td style="font-size:12px;">【UI设计】大客户业务单卸货方式增加类型</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">UI设计</td><td style="font-size:12px;color:#888;">林爱冰</td><td style="font-size:12px;color:#888;">2026-06-12</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">291808</td><td style="font-size:12px;">【总任务】【大客户】业务单，卸货方式增加类型：不卸货不上楼，GD01</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_4')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_4">▶</span>65149</td>
             <td>P3</td><td style="max-width:400px;">【商用和家用】购物车变成表格布局，快速下单，GC08 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">3个任务</span></td>
             <td>active</td><td>已立项</td>
@@ -219,7 +299,7 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">293078</td><td style="font-size:12px;">【UI设计】工程提货页更改排版布局GC08</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">UI设计</td><td style="font-size:12px;color:#888;">林爱冰</td><td style="font-size:12px;color:#888;">2026-06-15</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">4h</td></tr><tr><td style="font-size:12px;color:#888;">292120</td><td style="font-size:12px;">【后端】【GC08】  1、经销商端工程单提货页面从卡片布局改造成表格布局，新增型号/SKU/申请价/批复价/可提货数量</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">刘兰真</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">291809</td><td style="font-size:12px;">【总任务】【商用和家用】购物车变成表格布局，快速下单，GC08</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">12h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_5')" style="cursor:pointer;" data-stage='projected'>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">293078</td><td style="font-size:12px;">【UI设计】工程提货页更改排版布局GC08</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">UI设计</td><td style="font-size:12px;color:#888;">林爱冰</td><td style="font-size:12px;color:#888;">2026-06-15</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">292120</td><td style="font-size:12px;">【后端】【GC08】  1、经销商端工程单提货页面从卡片布局改造成表格布局，新增型号/SKU/申请价/批复价/可提货数量</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">刘兰真</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">291809</td><td style="font-size:12px;">【总任务】【商用和家用】购物车变成表格布局，快速下单，GC08</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">8h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_5')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_5">▶</span>65148</td>
             <td>P3</td><td style="max-width:400px;">【家用工程】省外跨区登录时间、特批方案上传项目凭证、二次批价增加 原登录数量，GC05~07 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">4个任务</span></td>
             <td>active</td><td>已立项</td>
@@ -249,7 +329,7 @@ function switchBugTab(tabId) {
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">293093</td><td style="font-size:12px;">【UI】工程相关GC02~GC03</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">UI设计</td><td style="font-size:12px;color:#888;">林爱冰</td><td style="font-size:12px;color:#888;">2026-06-15</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">4h</td></tr><tr><td style="font-size:12px;color:#888;">292104</td><td style="font-size:12px;">【【后端】历史数据初始化，GC05】  1、省外跨区审批列表页新增&quot;登录时间&quot;日期筛选和展示列，详情页基本信息区新增只读</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">刘兰真</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">292103</td><td style="font-size:12px;">【后端】工程备货【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">292102</td><td style="font-size:12px;">【后端】常规【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">292101</td><td style="font-size:12px;">【后端】excel解析【GC02】  1、销司：代客申请/经销商申请价格，商品信息-新增&quot;批量添加商品&quot;</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">刘兰真</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">12h</td></tr><tr><td style="font-size:12px;color:#888;">291812</td><td style="font-size:12px;">【总任务】【商用工程】批量添加商品&amp;amp;二次批价迭代，GC02~03</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">32h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">32h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_7')" style="cursor:pointer;" data-stage='projected'>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">293093</td><td style="font-size:12px;">【UI】工程相关GC02~GC03</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">UI设计</td><td style="font-size:12px;color:#888;">林爱冰</td><td style="font-size:12px;color:#888;">2026-06-15</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">292104</td><td style="font-size:12px;">【【后端】历史数据初始化，GC05】  1、省外跨区审批列表页新增&quot;登录时间&quot;日期筛选和展示列，详情页基本信息区新增只读</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">刘兰真</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">292103</td><td style="font-size:12px;">【后端】工程备货【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">292102</td><td style="font-size:12px;">【后端】常规【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">8h</td></tr><tr><td style="font-size:12px;color:#888;">292101</td><td style="font-size:12px;">【后端】excel解析【GC02】  1、销司：代客申请/经销商申请价格，商品信息-新增&quot;批量添加商品&quot;</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">刘兰真</td><td style="font-size:12px;color:#888;">2026-06-30</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">12h</td></tr><tr><td style="font-size:12px;color:#888;">291812</td><td style="font-size:12px;">【总任务】【商用工程】批量添加商品&amp;amp;二次批价迭代，GC02~03</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">32h</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">28h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_7')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_7">▶</span>65128</td>
             <td>P3</td><td style="max-width:400px;">员工管理更新销司职能部门与销司两种部门的枚举值展示范围 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">7个任务</span></td>
             <td>active</td><td>已立项</td>
@@ -581,9 +661,9 @@ Chart.defaults.plugins.legend.labels.usePointStyle = true;
 var stageLabels = ["已立项"];
 var stageData = [25];
 var statusLabels = ["已关闭", "已完成", "进行中", "待处理", "已变更", "暂停"];
-var statusData = [3, 2, 17, 153, 2, 0];
+var statusData = [3, 5, 20, 133, 2, 0];
 var typeLabels = ["dev", "后端-control", "事务", "需求设计", "UI设计", "后端", "前端", "移动端", "测试", "测试设计", "杂项"];
-var typeData = [96, 26, 22, 19, 5, 4, 3, 2, 1, 1, 1];
+var typeData = [82, 26, 22, 19, 5, 4, 3, 2, 1, 1, 1];
 new Chart(document.getElementById('chartStage'),{type:'bar',data:{labels:stageLabels,datasets:[{label:'需求数',data:stageData,backgroundColor:['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#fa8c16','#d9d9d9'].slice(0,stageLabels.length),borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:2}},y:{grid:{display:false}}}}});
 new Chart(document.getElementById('chartStatus'),{type:'bar',data:{labels:statusLabels,datasets:[{label:'任务数',data:statusData,backgroundColor:['#d9d9d9','#52c41a','#1890ff','#fa8c16','#faad14','#722ed1'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'}},y:{grid:{display:false}}}}});
 new Chart(document.getElementById('chartPie'),{type:'pie',data:{labels:typeLabels,datasets:[{data:typeData,backgroundColor:['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#ff4d4f','#eb2f96','#a0d911'].slice(0,typeLabels.length),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});

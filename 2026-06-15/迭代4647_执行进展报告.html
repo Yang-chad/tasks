@@ -83,6 +83,21 @@
   .footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:30px; padding:16px; }
   @media(max-width:768px) { .progress-cards { flex-direction:column; } .prog-card { max-width:100%; }
     .charts-row { flex-direction: column; } }
+  .refresh-btn { display:inline-flex; align-items:center; gap:6px; margin-bottom:12px;
+    padding:8px 18px; border:none; border-radius:20px;
+    background: rgba(255,255,255,0.18); color:#fff; font-size:13px; font-weight:500;
+    cursor:pointer; font-family:inherit; transition:all .3s; border:1px solid rgba(255,255,255,0.25); }
+  .refresh-btn:hover { background:rgba(255,255,255,0.28); transform:scale(1.03); }
+  .refresh-btn.loading { opacity:0.6; pointer-events:none; }
+  .refresh-spin { display:inline-block; transition:transform 0.6s; }
+  .refresh-btn.loading .refresh-spin { animation:spin 0.8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .refresh-toast { position:fixed; top:20px; left:50%; transform:translateX(-50%); z-index:9999;
+    padding:10px 24px; border-radius:10px; font-size:13px; font-weight:500;
+    opacity:0; transition:opacity 0.4s; pointer-events:none; }
+  .refresh-toast.show { opacity:1; }
+  .refresh-toast.ok { background:#10b981; color:#fff; }
+  .refresh-toast.err { background:#ef4444; color:#fff; }
 </style>
 <script>
 function toggleStoryDetail(id) {
@@ -126,6 +141,69 @@ function switchBugTab(tabId) {
     var btn = document.getElementById('bug_btn_' + tabId.split('_').pop());
     if (btn) { btn.style.background = '#fff'; btn.style.boxShadow = '0 1px 4px rgba(0,0,0,0.08)'; }
 }
+function refreshToast(msg,type){
+  var t=document.getElementById('rtoast'); if(!t){t=document.createElement('div');t.id='rtoast';t.className='refresh-toast';document.body.appendChild(t);}
+  t.textContent=msg; t.className='refresh-toast show '+(type||'ok'); setTimeout(function(){t.className='refresh-toast';},3000);
+}
+function liveRefresh(eid){
+  var btn=document.getElementById('refreshBtn'); if(!btn) return;
+  btn.classList.add('loading');
+  var Z='https://ztpm.gree.com:8888/api.php/v1';
+  var creds={account:'A80065',password:'Feide2010'};
+  fetch(Z+'/tokens',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(creds)})
+  .then(function(r){return r.json();}).then(function(tk){
+    var token=tk.token;
+    return Promise.all([
+      fetch(Z+'/executions/'+eid,{headers:{Token:token}}).then(function(r){return r.json();}),
+      fetch(Z+'/executions/'+eid+'/tasks?limit=500',{headers:{Token:token}}).then(function(r){return r.json();}),
+      fetch(Z+'/executions/'+eid+'/stories?limit=200',{headers:{Token:token}}).then(function(r){return r.json();}),
+      fetch(Z+'/executions/'+eid+'/bugs?limit=500',{headers:{Token:token}}).then(function(r){return r.json();})
+    ]);
+  }).then(function(results){
+    var it=results[0], tasks=results[1].tasks||[], stories=results[2].stories||[], bugs=results[3].bugs||[];
+    var today=new Date();
+    var begin=new Date(it.begin), end=new Date(it.end);
+    var totalDays=Math.ceil((end-begin)/86400000);
+    var elapsed=Math.ceil((today-begin)/86400000);
+    var timePct=Math.round(elapsed/Math.max(totalDays,1)*100*10)/10;
+    var prog=parseFloat(it.progress||0);
+    var ts={}; tasks.forEach(function(t){ts[t.status]=(ts[t.status]||0)+1;});
+    var doing=ts.doing||0, wait=ts.wait||0;
+    var ss={}; stories.forEach(function(s){ss[s.status]=(ss[s.status]||0)+1;});
+    var ab=bugs.filter(function(b){return ['closed','resolved','postponed','delay'].indexOf(b.status)<0;}).length;
+    // Update cards
+    var el=document.getElementById; if(el('v_time')){el('v_time').textContent=timePct+'%';el('bar_time').style.width=timePct+'%';el('d_time').textContent='已过 '+elapsed+'/'+totalDays+'天';}
+    if(el('v_prog')){el('v_prog').textContent=prog+'%';el('bar_prog').style.width=prog+'%';el('d_prog').textContent='状态: '+it.status;}
+    if(el('v_story')){el('v_story').textContent=stories.length;el('d_story_a').textContent=ss.active||0;el('d_story_c').textContent=ss.closed||0;}
+    if(el('v_task')){el('v_task').textContent=tasks.length;el('d_task_d').textContent=doing;el('d_task_w').textContent=wait;}
+    if(el('v_bug')){el('v_bug').textContent=bugs.length;el('d_bug_a').textContent=ab;}
+    if(el('reportTime')) el('reportTime').textContent=today.toISOString().slice(0,10);
+    // Update charts
+    var stageDist={}; stories.forEach(function(s){var st=s.stage||'';if(st)stageDist[st]=(stageDist[st]||0)+1;});
+    var SL={projected:'已立项',developing:'开发中',developed:'开发完成',testing:'测试中',tested:'已提测',verified:'已验收',released:'已发布',planned:'已规划'};
+    var sk=['projected','developing','tested','developed','verified','released','planned'];
+    var sl=[],sv=[]; sk.forEach(function(k){if(stageDist[k]){sl.push(SL[k]||k);sv.push(stageDist[k]);}});
+    if(!sl.length){sl=['已立项'];sv=[stories.length];}
+    var ssk=['closed','done','doing','wait','changed','pause'];
+    var ssl=[],ssv=[]; ssk.forEach(function(k){ssl.push({closed:'已关闭',done:'已完成',doing:'进行中',wait:'待处理',changed:'已变更',pause:'暂停'}[k]||k);ssv.push(ts[k]||0);});
+    var tt={}; tasks.forEach(function(t){var tp=t.type||'?';tt[tp]=(tt[tp]||0)+1;});
+    var TYP={a_dev4_control:'后端-control',a_dev:'后端',a_dev2_front:'前端',a_dev6_mobile:'移动端',ab1_needs_research:'产品调研',ab2_request_des:'需求设计',ad1_UI_des:'UI设计',ae1_test_des:'测试设计',ae2_test:'测试',affair:'事务',misc:'杂项'};
+    var ti=Object.entries(tt).sort(function(a,b){return b[1]-a[1];});
+    var tl=[],tv=[]; ti.forEach(function(x){tl.push(TYP[x[0]]||x[0]);tv.push(x[1]);});
+    var sc=Chart.getChart('chartStage'),stc=Chart.getChart('chartStatus'),pc=Chart.getChart('chartPie');
+    if(sc){sc.data.labels=sl;sc.data.datasets[0].data=sv;sc.data.datasets[0].backgroundColor=['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#fa8c16','#d9d9d9'].slice(0,sl.length);sc.update();}
+    if(stc){stc.data.labels=ssl;stc.data.datasets[0].data=ssv;stc.data.datasets[0].backgroundColor=['#d9d9d9','#52c41a','#1890ff','#fa8c16','#faad14','#722ed1'];stc.update();}
+    if(pc){pc.data.labels=tl;pc.data.datasets[0].data=tv;pc.data.datasets[0].backgroundColor=['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#ff4d4f','#eb2f96','#a0d911'].slice(0,tl.length);pc.update();}
+    btn.classList.remove('loading');
+    var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+    var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
+    refreshToast('✅ 实时刷新完成 — '+now,'ok');
+  }).catch(function(e){
+    btn.classList.remove('loading');
+    refreshToast('❌ API调用失败，正在重新加载页面...','err');
+    setTimeout(function(){location.reload();},1000);
+  });
+}
 </script>
 </head>
 <body>
@@ -133,24 +211,26 @@ function switchBugTab(tabId) {
   <a class="back-link" href="迭代总览.html">← 返回总览</a>
   <div class="header">
     <h1>📊 集采平台_V1.30.0（0715/集采dev4.0）【2026】 执行进展分析报告</h1>
-    <div class="subtitle">执行ID: 4647 &nbsp;|&nbsp; 2026-06-12 ~ 2026-07-15 &nbsp;|&nbsp; 生成时间: 2026-06-15</div>
+    <div class="subtitle">执行ID: 4647 &nbsp;|&nbsp; 2026-06-12 ~ 2026-07-15 &nbsp;|&nbsp; 生成时间: <span id="reportTime">2026-06-15</span></div>
+    <button class="refresh-btn" onclick="liveRefresh(4647)" id="refreshBtn">
+      <span class="refresh-spin">🔄</span> 实时刷新禅道数据
+      <span class="refresh-time"></span>
+    </button>
   </div>
 
-  <div class="progress-cards">   <div class="prog-card"><div class="label">⏱️ 时间进度</div><div class="value" style="color:#1890ff;">9.1%</div>
-      <div class="bar-outer"><div class="bar-inner" style="width:9.1%;background:linear-gradient(90deg,#1890ff,#60a5fa);"></div></div>
-      <div class="detail">已过 3/33 天</div></div>
-    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;">0.0%</div>
-      <div class="bar-outer"><div class="bar-inner" style="width:0.0%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
-      <div class="detail">状态: wait</div></div>
-    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue">2</div>
-      <div class="detail">active: 2 &nbsp; closed: 0</div></div>
-    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple">3</div>
-      <div class="detail">进行中: 0 &nbsp; 待处理: 3</div></div>
-    <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red">0</div>
-      <div class="detail">未关闭: 0 &nbsp; 已关/已延: 0</div></div>
-  </div>
-
-  <div class="dual-col">
+  <div class="progress-cards">   <div class="prog-card"><div class="label">⏱️ 时间进度</div><div class="value" style="color:#1890ff;" id="v_time">9.1%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_time" style="width:9.1%;background:linear-gradient(90deg,#1890ff,#60a5fa);"></div></div>
+      <div class="detail" id="d_time">已过 3/33 天</div></div>
+    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;" id="v_prog">0.0%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_prog" style="width:0.0%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
+      <div class="detail" id="d_prog">状态: wait</div></div>
+    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue" id="v_story">2</div>
+      <div class="detail">active: <span id="d_story_a">2</span> &nbsp; closed: <span id="d_story_c">0</span></div></div>
+    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple" id="v_task">3</div>
+      <div class="detail">进行中: <span id="d_task_d">0</span> &nbsp; 待处理: <span id="d_task_w">3</span></div></div>
+    <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red" id="v_bug">0</div>
+      <div class="detail">未关闭: <span id="d_bug_a">0</span> &nbsp; 已关/已延: 0</div></div>
+  </div>  <div class="dual-col">
     <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 0.0% 落后于时间进度 9.1%，存在滞后风险</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>需求规模适中（2个），便于管理</li></ul></div></div></div><div class="charts-row">
     <div class="chart-card"><h4>📊 需求阶段分布</h4><div class="chart-wrap"><canvas id="chartStage"></canvas></div></div>
     <div class="chart-card"><h4>📊 任务状态分布</h4><div class="chart-wrap"><canvas id="chartStatus"></canvas></div></div>
