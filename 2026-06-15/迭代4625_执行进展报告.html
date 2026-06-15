@@ -148,8 +148,8 @@ function refreshToast(msg,type){
 function liveRefresh(eid){
   var btn=document.getElementById('refreshBtn'); if(!btn) return;
   btn.classList.add('loading');
-  // 通过本地中转服务刷新（绕过浏览器CORS限制）
-  var RELAY='http://localhost:8900';
+  // 通过本地中转服务刷新（需先启动 _live_refresh_server.py）
+  var RELAY=window.location.origin;
   fetch(RELAY+'/api/refresh/'+eid)
   .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
   .then(function(d){ if(d.error) throw new Error(d.error); return d; })
