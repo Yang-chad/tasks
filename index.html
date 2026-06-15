@@ -238,6 +238,23 @@ body {
     .card { padding: 28px 16px 22px; }
     .card .icon { font-size: 34px; }
 }
+.refresh-btn { display:inline-flex; align-items:center; gap:6px; margin-top:10px;
+  padding:8px 18px; border:none; border-radius:20px;
+  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18);
+  color:rgba(255,255,255,0.8); font-size:13px; font-weight:500; cursor:pointer;
+  font-family:inherit; transition:all .3s; }
+.refresh-btn:hover { background:rgba(255,255,255,0.18); transform:scale(1.03); }
+.refresh-btn.loading { opacity:0.6; pointer-events:none; }
+.refresh-spin { display:inline-block; transition:transform 0.6s; }
+.refresh-btn.loading .refresh-spin { animation:spin 0.8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.refresh-time { font-size:11px; opacity:0.7; }
+.refresh-toast { position:fixed; top:20px; left:50%; transform:translateX(-50%); z-index:9999;
+  padding:10px 24px; border-radius:10px; font-size:13px; font-weight:500;
+  opacity:0; transition:opacity 0.4s; pointer-events:none; }
+.refresh-toast.show { opacity:1; }
+.refresh-toast.ok { background:#10b981; color:#fff; }
+.refresh-toast.err { background:#ef4444; color:#fff; }
 </style>
 </head>
 <body>
@@ -247,6 +264,10 @@ body {
     <div class="header">
         <span class="logo">📊</span>
         <h1>禅道任务报告中心</h1>
+        <button class="refresh-btn" onclick="liveRefreshRoot()" id="refreshBtn">
+          <span class="refresh-spin">🔄</span> 实时刷新禅道数据
+          <span class="refresh-time"></span>
+        </button>
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
@@ -480,5 +501,51 @@ body {
 
 </div>
 
+<script>
+function rtoast(msg,type){
+  var t=document.getElementById('rtoast');
+  if(!t){t=document.createElement('div');t.id='rtoast';t.className='refresh-toast';document.body.appendChild(t);}
+  t.textContent=msg; t.className='refresh-toast show '+(type||'ok');
+  setTimeout(function(){t.className='refresh-toast';},4000);
+}
+function liveRefreshRoot(){
+  var btn=document.getElementById('refreshBtn'); if(!btn) return;
+  var isGH=window.location.origin.indexOf('github.io')>=0;
+  if(isGH || window.location.protocol==='file:'){
+    // GitHub Pages → 后台触发管线
+    btn.classList.add('loading');
+    rtoast('已触发后台刷新，约60秒后刷新此页面','ok');
+    var w=460,h=200,l=(screen.width-w)/2,t=(screen.height-h)/2;
+    var pw=window.open('http://localhost:8900/trigger-pipeline','_blank','width='+w+',height='+h+',left='+l+',top='+t);
+    if(pw) setTimeout(function(){try{pw.close();}catch(e){}},3500);
+    setTimeout(function(){btn.classList.remove('loading');},2000);
+    return;
+  }
+  // 本地 localhost → 同源API刷新
+  btn.classList.add('loading');
+  fetch(window.location.origin+'/api/refresh-root')
+  .then(function(r){return r.json();}).then(function(d){
+    if(d.error) throw new Error(d.error);
+    // 更新摘要栏数字
+    var sumItems=document.querySelectorAll('.summary-item .num');
+    if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
+    if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
+    if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
+    if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
+    if(sumItems[4]) sumItems[4].textContent=d.overdue_count||0;
+    // 更新时间标签
+    var dt=document.querySelector('.date-tag span');
+    if(dt){ var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+      dt.textContent=document.querySelector('.date-tag span').textContent.replace(/\d+:\d+/,'')+' '+now+' 更新';}
+    btn.classList.remove('loading');
+    var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+    var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
+    rtoast('实时刷新完成 — '+now,'ok');
+  }).catch(function(e){
+    btn.classList.remove('loading');
+    rtoast('本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
+  });
+}
+</script>
 </body>
 </html>
