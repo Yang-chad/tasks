@@ -171,7 +171,11 @@ function liveRefresh(eid){
     refreshToast('✅ 实时刷新完成 — '+now,'ok');
   }).catch(function(e){
     btn.classList.remove('loading');
-    refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
+    if(window.location.origin.indexOf('github.io')>=0||window.location.origin.indexOf('file:')>=0){
+      refreshToast('⚠️ 请使用本地报告中心: http://localhost:8900/  然后打开报告点击刷新','err');
+    }else{
+      refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
+    }
   });
 }
 </script>
