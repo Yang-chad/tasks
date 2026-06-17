@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 518,
-    "total_active": 397,
-    "total_consumed": 5143.0,
+    "total_done": 522,
+    "total_active": 393,
+    "total_consumed": 5153.0,
     "total_estimate": 7807.0,
-    "total_left": 3035.0,
+    "total_left": 3025.0,
     "total_members": 48,
-    "total_overdue": 10,
-    "report_time": "2026-06-17 14:27:11",
+    "total_overdue": 9,
+    "report_time": "2026-06-17 14:48:51",
     "month": "2026年6月"
   },
   "members": [
@@ -2501,7 +2501,7 @@
         {
           "id": 292147,
           "name": "【后端】oms对接-大客户订单详情确认修改新增不卸货也不上楼",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 4.0,
@@ -2513,7 +2513,7 @@
         {
           "id": 292146,
           "name": "【后端】大客户订单详情新增大客户订单 配送方式为 不卸货也不上楼",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 4.0,
@@ -8158,26 +8158,46 @@
         "测试": 0,
         "其他": 0
       },
-      "type_backend_hrs": 11.0,
+      "type_backend_hrs": 21.0,
       "type_frontend_hrs": 0.0,
       "type_mobile_hrs": 0.0,
       "type_product_hrs": 0.0,
       "type_test_hrs": 0.0,
-      "done_count": 4,
-      "done_consumed": 11.0,
-      "done_estimate": 12.0,
-      "active_count": 27,
-      "active_estimate": 109.0,
+      "done_count": 8,
+      "done_consumed": 21.0,
+      "done_estimate": 22.0,
+      "active_count": 23,
+      "active_estimate": 99.0,
       "active_consumed": 0.0,
-      "active_left": 109.0,
+      "active_left": 99.0,
       "total_tasks": 31,
-      "total_consumed": 11.0,
+      "total_consumed": 21.0,
       "total_hours": 120.0,
       "total_estimate": 121.0,
-      "completion_rate": 12.9,
-      "efficiency": 9.2,
-      "overdue": 1,
+      "completion_rate": 25.8,
+      "efficiency": 17.5,
+      "overdue": 0,
       "done_tasks": [
+        {
+          "id": 286395,
+          "name": "【后端】经济概况表导出到下载中心并加密",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "finished_by": "卢鑫",
+          "finished_date": "2026-06-16"
+        },
+        {
+          "id": 293347,
+          "name": "修复客户库商家数据导出销售区域数据缺失问题",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "dev",
+          "platform": "网批2.0",
+          "finished_by": "卢鑫",
+          "finished_date": "2026-06-16"
+        },
         {
           "id": 286448,
           "name": "|重庆商用销售公司模式绘制审批流程图（关键基础信息、活动方案）|",
@@ -8209,6 +8229,16 @@
           "finished_date": "2026-06-03"
         },
         {
+          "id": 293348,
+          "name": "处理经销商常用地址变更审批流程报错问题，经排查是由于审批单据次数超过数据库字段上限，已调整字段类型",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "dev",
+          "platform": "网批2.0",
+          "finished_by": "卢鑫",
+          "finished_date": "2026-06-15"
+        },
+        {
           "id": 286439,
           "name": "|海南商用销售公司模式绘制审批流程图（入驻、关键签约信息）|",
           "consumed": 2.0,
@@ -8217,6 +8247,16 @@
           "platform": "网批2.0",
           "finished_by": "卢鑫",
           "finished_date": "2026-06-03"
+        },
+        {
+          "id": 293350,
+          "name": "帮助实施排查分销商PID更改记录",
+          "consumed": 1.0,
+          "estimate": 1.0,
+          "type": "dev",
+          "platform": "网批2.0",
+          "finished_by": "卢鑫",
+          "finished_date": "2026-06-15"
         }
       ],
       "active_tasks": [
@@ -8327,18 +8367,6 @@
           "left": 4.0,
           "platform": "",
           "deadline": "2026-06-30"
-        },
-        {
-          "id": 286395,
-          "name": "【后端】经济概况表导出到下载中心并加密",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "",
-          "deadline": "2026-06-16"
         },
         {
           "id": 294081,
@@ -8473,18 +8501,6 @@
           "deadline": "2026-06-30"
         },
         {
-          "id": 293347,
-          "name": "修复客户库商家数据导出销售区域数据缺失问题",
-          "status": "wait",
-          "pri": 3,
-          "type": "dev",
-          "estimate": 3.0,
-          "consumed": 0.0,
-          "left": 3.0,
-          "platform": "",
-          "deadline": "2026-06-18"
-        },
-        {
           "id": 293562,
           "name": "单元测试mock、联调",
           "status": "wait",
@@ -8519,30 +8535,6 @@
           "left": 2.0,
           "platform": "",
           "deadline": "2026-06-30"
-        },
-        {
-          "id": 293348,
-          "name": "处理经销商常用地址变更审批流程报错问题，经排查是由于审批单据次数超过数据库字段上限，已调整字段类型",
-          "status": "wait",
-          "pri": 3,
-          "type": "dev",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "",
-          "deadline": "2026-06-18"
-        },
-        {
-          "id": 293350,
-          "name": "帮助实施排查分销商PID更改记录",
-          "status": "wait",
-          "pri": 3,
-          "type": "dev",
-          "estimate": 1.0,
-          "consumed": 0.0,
-          "left": 1.0,
-          "platform": "",
-          "deadline": "2026-06-18"
         }
       ],
       "resolved_bugs": [
