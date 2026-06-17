@@ -84,7 +84,7 @@ body {
 /* ── Card Grid ── */
 .grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
@@ -238,9 +238,6 @@ body {
     .card { padding: 28px 16px 22px; }
     .card .icon { font-size: 34px; }
 }
-@media (max-width: 1100px) {
-    .grid { grid-template-columns: repeat(3, 1fr); }
-}}
 .refresh-btn { display:inline-flex; align-items:center; gap:6px; margin-top:10px;
   padding:8px 18px; border:none; border-radius:20px;
   background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18);
