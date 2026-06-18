@@ -676,7 +676,7 @@ a:hover{{text-decoration:underline}}
 <script>
 var REFRESH_TOKEN='GITHUB_PAT_PLACEHOLDER';
 function toast(msg,type){{var t=document.getElementById('rtoast');t.textContent=msg;t.className='refresh-toast show '+(type||'ok');setTimeout(function(){{t.className='refresh-toast'}},5000)}}
-function triggerGithubRefresh(){{var btn=document.getElementById('refreshBtn');if(!btn)return;if(REFRESH_TOKEN==='GITHUB_PAT_PLACEHOLDER'){{toast('请先配置 GitHub Personal Access Token','err');return}}btn.classList.add('loading');toast('已触发云端刷新...','info');fetch('https://api.github.com/repos/Yang-chad/tasks/dispatches',{{method:'POST',headers:{{'Authorization':'token '+REFRESH_TOKEN,'Accept':'application/vnd.github.v3+json'}},body:JSON.stringify({{event_type:'refresh-data'}})}}).then(function(r){{if(r.status===204){{toast('刷新已触发！约90秒后页面自动刷新','ok');var c=90;var iv=setInterval(function(){{c--;if(c<=0){{clearInterval(iv);location.reload()}}else toast('刷新中... '+c+'秒','info')}},1000)}}else{{btn.classList.remove('loading');toast('触发失败: HTTP '+r.status,'err')}}}}).catch(function(e){{btn.classList.remove('loading');toast('网络错误','err')}})}}
+function triggerGithubRefresh(){{var btn=document.getElementById('refreshBtn');if(!btn)return;if(REFRESH_TOKEN==='GITHUB_PAT_PLACEHOLDER'){{toast('请先配置 GitHub Personal Access Token','err');return}}btn.classList.add('loading');toast('触发云端刷新...','info');var API='https://api.github.com/repos/Yang-chad/tasks';var H={{'Authorization':'token '+REFRESH_TOKEN,'Accept':'application/vnd.github.v3+json'}};fetch(API+'/commits/main?per_page=1',{{headers:H}}).then(function(r){{return r.json()}}).then(function(d){{var oldSha=d.sha;return fetch(API+'/dispatches',{{method:'POST',headers:H,body:JSON.stringify({{event_type:'refresh-data'}})}}).then(function(r){{if(r.status!==204)throw new Error('HTTP '+r.status);var s=0,poll=setInterval(function(){{s+=3;fetch(API+'/commits/main?per_page=1',{{headers:H}}).then(function(rr){{return rr.json()}}).then(function(dd){{if(dd.sha!==oldSha){{clearInterval(poll);btn.classList.remove('loading');toast('数据已刷新，页面更新中...','ok');setTimeout(function(){{location.reload()}},800)}}else if(s>=120){{clearInterval(poll);btn.classList.remove('loading');location.reload()}}else{{var remain=Math.max(0,120-s);toast('生成中... 预计'+remain+'秒','info')}}}}).catch(function(){{if(s>=120){{clearInterval(poll);btn.classList.remove('loading');location.reload()}}}})}},3000)}})}}).catch(function(e){{btn.classList.remove('loading');toast('失败: '+e.message,'err')}})}}
 </script>
 </body></html>'''
 
@@ -760,45 +760,55 @@ def main():
     # Step 2: Fetch all data
     cats, overdue_tasks = fetch_all_platforms()
 
-    # Step 3: Generate task reports (parallel)
-    print("\n[Generate] Task reports...")
-    def gen_cat_html(cat_key):
-        tasks = cats.get(cat_key, [])
-        cfg = CAT_CONFIG[cat_key]
-        output = build_output(cat_key, tasks)
-        json_root = WORKSPACE / f"未完成{cfg['label']}_统计.json"
-        json_today = OUTPUT_DIR / f"未完成{cfg['label']}_统计.json"
-        for p in [json_root, json_today]:
-            with open(p, "w", encoding="utf-8") as f:
-                json.dump(output, f, ensure_ascii=False, indent=2)
-        html_path = OUTPUT_DIR / cfg["html_name"]
-        generate_528_html(cfg["label"], len(tasks), output["summary"],
-            output["by_assignee"], output.get("type_breakdown"), str(html_path))
-        s = output["summary"]
-        print(f"  {cfg['label']}: {len(tasks)} (wait:{s['wait']}/doing:{s['doing']}/overdue:{s['overdue']})")
-
-    with ThreadPoolExecutor(max_workers=5) as pool:
-        futures = {pool.submit(gen_cat_html, ck): ck for ck in CAT_CONFIG}
-        for f in as_completed(futures):
-            try: f.result()
-            except Exception as e: print(f"  [Error] {futures[f]}: {e}")
-
-    # Step 4: Overdue report
-    print(f"\n[Overdue] {len(overdue_tasks)} tasks")
+    # Step 3: Generate task reports (parallel) + Step 4: Overdue + Step 5: Iterations
+    # ── 并行：报告生成 || 迭代数据 ──
+    print("\n[Generate] Task reports & iteration data (parallel)...")
     by_a = defaultdict(list)
     for t in overdue_tasks: by_a[t["_assignee_name"]].append(t)
-    od_json = {"check_date": TODAY, "total_overdue": len(overdue_tasks), "tasks_by_assignee": {}}
-    for a, tl in sorted(by_a.items(), key=lambda x: -len(x[1])):
-        od_json["tasks_by_assignee"][a] = {
-            "count": len(tl), "max_overdue_days": max(t.get("_days_overdue",0) for t in tl),
-            "tasks": [_task_to_dict(t) for t in tl]}
-    for p in [WORKSPACE / "延期任务统计.json", OUTPUT_DIR / "延期任务统计.json"]:
-        with open(p, "w", encoding="utf-8") as f:
-            json.dump(od_json, f, ensure_ascii=False, indent=2)
-    generate_overdue_html(overdue_tasks, str(OUTPUT_DIR / "延期任务统计报告.html"))
+    iteration_summaries_ref = [None]
 
-    # Step 5: Iteration summaries
-    iteration_summaries = fetch_iterations_and_generate_reports()
+    def gen_all_reports():
+        """生成所有任务报告 + 延期报告"""
+        def gen_cat_html(cat_key):
+            tasks = cats.get(cat_key, [])
+            cfg = CAT_CONFIG[cat_key]
+            output = build_output(cat_key, tasks)
+            json_root = WORKSPACE / f"未完成{cfg['label']}_统计.json"
+            json_today = OUTPUT_DIR / f"未完成{cfg['label']}_统计.json"
+            for p in [json_root, json_today]:
+                with open(p, "w", encoding="utf-8") as f:
+                    json.dump(output, f, ensure_ascii=False, indent=2)
+            html_path = OUTPUT_DIR / cfg["html_name"]
+            generate_528_html(cfg["label"], len(tasks), output["summary"],
+                output["by_assignee"], output.get("type_breakdown"), str(html_path))
+            s = output["summary"]
+            print(f"  {cfg['label']}: {len(tasks)} (wait:{s['wait']}/doing:{s['doing']}/overdue:{s['overdue']})")
+
+        with ThreadPoolExecutor(max_workers=5) as pool:
+            futures = {pool.submit(gen_cat_html, ck): ck for ck in CAT_CONFIG}
+            for f in as_completed(futures):
+                try: f.result()
+                except Exception as e: print(f"  [Error] {futures[f]}: {e}")
+
+        # Overdue report
+        print(f"\n[Overdue] {len(overdue_tasks)} tasks")
+        od_json = {"check_date": TODAY, "total_overdue": len(overdue_tasks), "tasks_by_assignee": {}}
+        for a, tl in sorted(by_a.items(), key=lambda x: -len(x[1])):
+            od_json["tasks_by_assignee"][a] = {
+                "count": len(tl), "max_overdue_days": max(t.get("_days_overdue",0) for t in tl),
+                "tasks": [_task_to_dict(t) for t in tl]}
+        for p in [WORKSPACE / "延期任务统计.json", OUTPUT_DIR / "延期任务统计.json"]:
+            with open(p, "w", encoding="utf-8") as f:
+                json.dump(od_json, f, ensure_ascii=False, indent=2)
+        generate_overdue_html(overdue_tasks, str(OUTPUT_DIR / "延期任务统计报告.html"))
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        f_reports = pool.submit(gen_all_reports)
+        f_iter = pool.submit(lambda: iteration_summaries_ref.__setitem__(0, fetch_iterations_and_generate_reports()))
+        f_reports.result()
+        f_iter.result()
+
+    iteration_summaries = iteration_summaries_ref[0]
     overdue_people_count = len(by_a)
 
     # Step 6: Root overview page
