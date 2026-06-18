@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-06-18 | 全平台延期任务追踪 | 共 9 个延期任务 | 网批2.0: 9</p></div>
+<p>数据截止：2026-06-18 | 全平台延期任务追踪 | 共 8 个延期任务 | 网批2.0: 8</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">9</div><div class="label">延期任务总数</div></div>
-<div class="card card-wait"><div class="num">9</div><div class="label">待处理</div></div>
+<div class="card card-total"><div class="num">8</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">8</div><div class="label">待处理</div></div>
 <div class="card card-doing"><div class="num">0</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">9</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">3</div><div class="label">涉及人员</div></div>
+<div class="card card-overdue"><div class="num">8</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">2</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -103,32 +103,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
     <details>
         <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
-            <span class="assignee-name">许峻嘉</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共1个</span>
-                <span class="stat-badge stat-wait">待处理1</span>
-                <span class="stat-badge stat-doing">进行中0</span>
-                <span class="stat-badge stat-overdue">最长1天</span>
-                <span class="stat-badge stat-h">预估8h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余8h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>294163</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】下载中心一期、二期、三期涉及的导出能力取消密码&amp;amp;下载中心密码功能（资金、销售方案等）-需求变更">【后端】下载中心一期、二期、三期涉及的导出能力取消密码&amp;下载中心密码功能（资金、销售方案等）-需求变更</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批2.0_V2.79.0（0702/dev11.5.1）【2026】</td><td>2026-06-17</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">钟爽</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -155,9 +129,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8303\u6587\u7389", "\u8bb8\u5cfb\u5609", "\u949f\u723d"],datasets:[{label:'延期任务数',data:[7, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[9, 0],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[9],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8303\u6587\u7389", "\u949f\u723d"],datasets:[{label:'延期任务数',data:[7, 1],backgroundColor:["#667eea80", "#f093fb80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[8, 0],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[8],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
