@@ -732,16 +732,35 @@ def git_commit_and_push():
     import subprocess
     print("\n[Git] Committing and pushing...")
     os.chdir(str(WORKSPACE))
+
+    # 用 GITHUB_PAT 设置 HTTPS 远程地址，确保有写入权限
+    if GITHUB_PAT:
+        remote_url = f"https://x-access-token:{GITHUB_PAT}@github.com/Yang-chad/tasks.git"
+        subprocess.run(["git", "remote", "set-url", "origin", remote_url], capture_output=True)
+        print("  Remote set to HTTPS (GITHUB_PAT)")
+
     subprocess.run(["git", "config", "user.name", "GitHub Actions"], capture_output=True)
     subprocess.run(["git", "config", "user.email", "actions@github.com"], capture_output=True)
     subprocess.run(["git", "add", "."], capture_output=True)
+
     r = subprocess.run(["git", "commit", "-m", f"auto: {TODAY} 禅道数据刷新 (GitHub Actions)"],
                        capture_output=True, text=True)
-    out = r.stdout.strip() + r.stderr.strip()
-    print(f"  Commit: {out[:200]}")
+    if r.returncode == 0:
+        print(f"  Commit OK: {r.stdout.strip()[:150]}")
+    elif "nothing to commit" in (r.stdout + r.stderr):
+        print("  Commit: nothing to commit (no changes)")
+        return
+    else:
+        print(f"  Commit FAILED: {r.stdout} {r.stderr}")
+
     r = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True)
-    out = r.stdout.strip() + r.stderr.strip()
-    print(f"  Push: {out[:200]}")
+    if r.returncode == 0:
+        print(f"  Push OK")
+    else:
+        print(f"  Push FAILED:\n  STDOUT: {r.stdout.strip()[:300]}\n  STDERR: {r.stderr.strip()[:300]}")
+        # Fallback: try with force
+        r2 = subprocess.run(["git", "push", "origin", "main", "--force"], capture_output=True, text=True)
+        print(f"  Force Push: {'OK' if r2.returncode == 0 else r2.stderr.strip()[:200]}")
 
 def main():
     dry_run = "--dry-run" in sys.argv
