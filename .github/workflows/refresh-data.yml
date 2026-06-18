@@ -34,7 +34,7 @@ jobs:
         env:
           ZENTAO_ACCOUNT: ${{ secrets.ZENTAO_ACCOUNT }}
           ZENTAO_PASSWORD: ${{ secrets.ZENTAO_PASSWORD }}
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
         run: python scripts/pipeline.py
 
       - name: Summary
