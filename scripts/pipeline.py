@@ -32,6 +32,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 ZENTAO_BASE = os.environ.get('ZENTAO_BASE', 'https://ztpm.gree.com:8888')
 ZENTAO_ACCOUNT = os.environ.get('ZENTAO_ACCOUNT', 'A80065')
 ZENTAO_PASSWORD = os.environ.get('ZENTAO_PASSWORD', '')
+GITHUB_PAT = os.environ.get('GITHUB_PAT', '')
 
 print(f"  Workspace : {WORKSPACE}")
 print(f"  Output    : {OUTPUT_DIR}")
@@ -806,6 +807,9 @@ def main():
         if d.is_dir() and re.match(r'\d{4}-\d{2}-\d{2}', d.name)])
     overview_html = generate_overview_html(cats, len(overdue_tasks), overdue_people_count,
                                            history_dates, iteration_summaries)
+    if GITHUB_PAT:
+        overview_html = overview_html.replace("GITHUB_PAT_PLACEHOLDER", GITHUB_PAT)
+        print("  GITHUB_PAT injected into index.html")
     with open(WORKSPACE / "index.html", "w", encoding="utf-8") as f:
         f.write(overview_html)
     print(f"  index.html written ({len(overview_html)} bytes)")
