@@ -838,15 +838,6 @@ def main():
     if r.returncode != 0:
         print(f"  compute_trend ERROR: {r.stderr.strip()[:300]}")
 
-    # Step 6b: Replace refresh button to page reload (data auto-refreshed by cron)
-    index_path = WORKSPACE / "index.html"
-    if index_path.exists():
-        content = index_path.read_text(encoding="utf-8")
-        # Replace onclick: old API call → simple page reload
-        content = content.replace('onclick="liveRefreshRoot()"', 'onclick="location.reload()"')
-        index_path.write_text(content, encoding="utf-8")
-        print("  Refresh button updated (page reload)")
-
     # Step 7: Git push
     if not dry_run and not skip_push:
         git_commit_and_push()
