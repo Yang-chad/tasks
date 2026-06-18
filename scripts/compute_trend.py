@@ -400,8 +400,9 @@ def update_index_html(today_str, data, index_path):
     if pruned:
         print(f"  [prune] Removed {pruned} old row(s) older than {cutoff}")
 
-    # ── Step 4: Update timestamp ──
-    now = tmod.strftime("%H:%M", tmod.localtime())
+    # ── Step 4: Update timestamp (Beijing time UTC+8) ──
+    from datetime import datetime, timezone, timedelta
+    now = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%H:%M")
     new_content = re.sub(
         r'(<div class="date-tag"><span>)\d{4}-\d{2}-\d{2} \d{2}:\d{2}( 更新</span></div>)',
         rf'\g<1>{today_str} {now}\g<2>',
