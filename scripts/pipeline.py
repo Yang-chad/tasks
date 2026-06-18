@@ -838,14 +838,59 @@ def main():
     if r.returncode != 0:
         print(f"  compute_trend ERROR: {r.stderr.strip()[:300]}")
 
-    # Step 6b: Ensure refresh button uses liveRefreshRoot() (not stale triggerGithubRefresh or location.reload)
+    # Step 6b: Restore original liveRefreshRoot() script (no token, calls local server)
     index_path = WORKSPACE / "index.html"
     if index_path.exists():
         content = index_path.read_text(encoding="utf-8")
+        # Ensure onclick is liveRefreshRoot
         content = content.replace('onclick="triggerGithubRefresh()"', 'onclick="liveRefreshRoot()"')
         content = content.replace('onclick="location.reload()"', 'onclick="liveRefreshRoot()"')
+        # Replace the entire script block with original local-server version (no token)
+        orig_script = '''<script>
+function rtoast(msg,type){
+  var t=document.getElementById('rtoast');
+  if(!t){t=document.createElement('div');t.id='rtoast';t.className='refresh-toast';document.body.appendChild(t);}
+  t.textContent=msg; t.className='refresh-toast show '+(type||'ok');
+  setTimeout(function(){t.className='refresh-toast';},4000);
+}
+function liveRefreshRoot(){
+  var btn=document.getElementById('refreshBtn'); if(!btn) return;
+  var isGH=window.location.origin.indexOf('github.io')>=0;
+  if(isGH || window.location.protocol==='file:'){
+    btn.classList.add('loading');
+    var SVR='http://172.28.52.91:8900';
+    fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
+    .then(function(){ rtoast('已触发后台刷新，约40秒后自动刷新','ok'); })
+    .catch(function(){ btn.classList.remove('loading'); rtoast('自动刷新中(每30分钟)，或在本机运行 _live_refresh_server.py','ok'); location.reload(); });
+    return;
+  }
+  btn.classList.add('loading');
+  fetch(window.location.origin+'/api/refresh-root')
+  .then(function(r){return r.json();}).then(function(d){
+    if(d.error) throw new Error(d.error);
+    var sumItems=document.querySelectorAll('.summary-item .num');
+    if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
+    if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
+    if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
+    if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
+    if(sumItems[4]) sumItems[4].textContent=d.overdue_count||0;
+    var dt=document.querySelector('.date-tag span');
+    if(dt){ var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+      dt.textContent=document.querySelector('.date-tag span').textContent.replace(/\\d+:\\d+/,'')+' '+now+' 更新';}
+    btn.classList.remove('loading');
+    var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+    var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
+    rtoast('实时刷新完成 - '+now,'ok');
+  }).catch(function(e){
+    btn.classList.remove('loading');
+    rtoast('本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
+  });
+}
+</script>'''
+        import re
+        content = re.sub(r'<script>.*?</script>', orig_script, content, flags=re.DOTALL)
         index_path.write_text(content, encoding="utf-8")
-        print("  Refresh button restored to liveRefreshRoot()")
+        print("  Script restored to original liveRefreshRoot()")
 
     # Step 7: Git push
     if not dry_run and not skip_push:
