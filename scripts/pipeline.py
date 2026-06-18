@@ -830,18 +830,27 @@ def main():
     iteration_summaries = iteration_summaries_ref[0]
     overdue_people_count = len(by_a)
 
-    # Step 6: Root overview page
-    print("\n[Overview] Generating index.html...")
-    history_dates = sorted([d.name for d in WORKSPACE.iterdir()
-        if d.is_dir() and re.match(r'\d{4}-\d{2}-\d{2}', d.name)])
-    overview_html = generate_overview_html(cats, len(overdue_tasks), overdue_people_count,
-                                           history_dates, iteration_summaries)
-    if GITHUB_PAT:
-        overview_html = overview_html.replace("GITHUB_PAT_PLACEHOLDER", GITHUB_PAT)
-        print("  GITHUB_PAT injected into index.html")
-    with open(WORKSPACE / "index.html", "w", encoding="utf-8") as f:
-        f.write(overview_html)
-    print(f"  index.html written ({len(overview_html)} bytes)")
+    # Step 6: Update root index.html using compute_trend.py (保持本地格式)
+    print("\n[Overview] Updating root index.html with compute_trend.py...")
+    import subprocess as sp
+    r = sp.run([sys.executable, str(WORKSPACE / "scripts" / "compute_trend.py"), "--update-index"],
+               capture_output=True, text=True, cwd=str(WORKSPACE))
+    print(f"  compute_trend: {r.stdout.strip()[:300]}")
+    if r.returncode != 0:
+        print(f"  compute_trend ERROR: {r.stderr.strip()[:300]}")
+
+    # Step 6b: Replace refresh button JS (liveRefreshRoot → triggerGithubRefresh)
+    index_path = WORKSPACE / "index.html"
+    if index_path.exists():
+        content = index_path.read_text(encoding="utf-8")
+        # Replace onclick
+        content = content.replace('onclick="liveRefreshRoot()"', 'onclick="triggerGithubRefresh()"')
+        # Replace the old JS with new smart polling JS
+        old_js = "function liveRefreshRoot(){"
+        new_js = f'''var REFRESH_TOKEN='{GITHUB_PAT or "GITHUB_PAT_PLACEHOLDER"}';
+function liveRefreshRoot(){{triggerGithubRefresh()}}
+function triggerGithubRefresh(){{var btn=document.getElementById('refreshBtn');if(!btn)return;if(REFRESH_TOKEN==='GITHUB_PAT_PLACEHOLDER'){{var t=document.getElementById('rtoast');t.textContent='请先配置 GitHub Personal Access Token';t.className='refresh-toast show err';setTimeout(function(){{t.className='refresh-toast'}},5000);return}}btn.classList.add('loading');var toast=function(m,t){{var el=document.getElementById('rtoast');el.textContent=m;el.className='refresh-toast show '+(t||'ok');setTimeout(function(){{el.className='refresh-toast'}},5000)}};toast('触发云端刷新...','info');var API='https://api.github.com/repos/Yang-chad/tasks';var H={{'Authorization':'token '+REFRESH_TOKEN,'Accept':'application/vnd.github.v3+json'}};fetch(API+'/commits/main?per_page=1',{{headers:H}}).then(function(r){{return r.json()}}).then(function(d){{var oldSha=d.sha;return fetch(API+'/dispatches',{{method:'POST',headers:H,body:JSON.stringify({{event_type:'refresh-data'}})}}).then(function(r){{if(r.status!==204)throw new Error('HTTP '+r.status);var s=0,poll=setInterval(function(){{s+=3;fetch(API+'/commits/main?per_page=1',{{headers:H}}).then(function(rr){{return rr.json()}}).then(function(dd){{if(dd.sha!==oldSha){{clearInterval(poll);btn.classList.remove('loading');toast('数据已刷新! 更新中...','ok');setTimeout(function(){{location.reload()}},800)}}else if(s>=120){{clearInterval(poll);btn.classList.remove('loading');location.reload()}}else{{var remain=Math.max(0,120-s);toast('生成中... 预计'+remain+'秒','info')}}}}).catch(function(){{if(s>=120){{clearInterval(poll);btn.classList.remove('loading');location.reload()}}}})}},3000)}})}}).catch(function(e){{btn.classList.remove('loading');toast('失败: '+e.message,'err')}})}}
+function {old_js}
 
     # Step 7: Git push
     if not dry_run and not skip_push:
