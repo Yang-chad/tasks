@@ -4,11 +4,6 @@ on:
   repository_dispatch:
     types: [refresh-data]
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: '仅拉取不推送'
-        required: false
-        default: 'false'
 
 permissions:
   contents: write
@@ -16,13 +11,11 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -33,16 +26,22 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run pipeline
+      - name: Run pipeline (generate only)
         env:
           ZENTAO_ACCOUNT: ${{ secrets.ZENTAO_ACCOUNT }}
           ZENTAO_PASSWORD: ${{ secrets.ZENTAO_PASSWORD }}
           GITHUB_PAT: ${{ secrets.GH_PAT }}
-        run: python scripts/pipeline.py
+        run: python scripts/pipeline.py --skip-push
 
-      - name: Summary
-        if: always()
+      - name: Publish to GitHub
         run: |
-          echo "## 禅道数据刷新完成" >> $GITHUB_STEP_SUMMARY
-          echo "- 日期: $(date +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
-          echo "- 状态: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "auto: $(date +%Y-%m-%d) 禅道数据刷新"
+            git push origin HEAD:main
+            echo "Pushed successfully"
+          fi
