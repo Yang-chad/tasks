@@ -32,7 +32,6 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 ZENTAO_BASE = os.environ.get('ZENTAO_BASE', 'https://ztpm.gree.com:8888')
 ZENTAO_ACCOUNT = os.environ.get('ZENTAO_ACCOUNT', 'A80065')
 ZENTAO_PASSWORD = os.environ.get('ZENTAO_PASSWORD', '')
-GITHUB_PAT = os.environ.get('GITHUB_PAT', '')
 
 print(f"  Workspace : {WORKSPACE}")
 print(f"  Output    : {OUTPUT_DIR}")
@@ -839,58 +838,14 @@ def main():
     if r.returncode != 0:
         print(f"  compute_trend ERROR: {r.stderr.strip()[:300]}")
 
-    # Step 6b: Replace refresh button JS (liveRefreshRoot → triggerGithubRefresh)
+    # Step 6b: Replace refresh button to page reload (data auto-refreshed by cron)
     index_path = WORKSPACE / "index.html"
     if index_path.exists():
         content = index_path.read_text(encoding="utf-8")
-        # Replace onclick
-        content = content.replace('onclick="liveRefreshRoot()"', 'onclick="triggerGithubRefresh()"')
-        # Inject token + new smart polling JS (replaces old liveRefreshRoot function)
-        token_val = GITHUB_PAT or "GITHUB_PAT_PLACEHOLDER"
-        old_js_start = "function liveRefreshRoot(){"
-        new_js = 'var REFRESH_TOKEN=\'' + token_val + '\';' + (
-            'function liveRefreshRoot(){triggerGithubRefresh()}'
-            'function triggerGithubRefresh(){var btn=document.getElementById("refreshBtn");'
-            'if(!btn)return;if(REFRESH_TOKEN==="GITHUB_PAT_PLACEHOLDER"){'
-            'var t=document.getElementById("rtoast");if(!t){t=document.createElement("div");'
-            't.id="rtoast";t.className="refresh-toast";document.body.appendChild(t)}'
-            't.textContent="请先配置 GitHub Personal Access Token";'
-            't.className="refresh-toast show err";setTimeout(function(){t.className="refresh-toast"},5000);return}'
-            'btn.classList.add("loading");'
-            'function toast(m,ty){var el=document.getElementById("rtoast");'
-            'if(!el){el=document.createElement("div");el.id="rtoast";el.className="refresh-toast";document.body.appendChild(el)}'
-            'el.textContent=m;el.className="refresh-toast show "+(ty||"ok");'
-            'setTimeout(function(){el.className="refresh-toast"},5000)};'
-            'toast("触发云端刷新...","info");'
-            'var API="https://api.github.com/repos/Yang-chad/tasks";'
-            'var H={"Authorization":"token "+REFRESH_TOKEN,"Accept":"application/vnd.github.v3+json"};'
-            'fetch(API+"/commits/main?per_page=1",{headers:H}).then(function(r){return r.json()})'
-            '.then(function(d){var oldSha=d.sha;return fetch(API+"/dispatches",{method:"POST",headers:H,'
-            'body:JSON.stringify({event_type:"refresh-data"})}).then(function(r){'
-            'if(r.status!==204)throw new Error("HTTP "+r.status);'
-            'var s=0,poll=setInterval(function(){s+=3;'
-            'fetch(API+"/commits/main?per_page=1",{headers:H}).then(function(rr){return rr.json()})'
-            '.then(function(dd){if(dd.sha!==oldSha){clearInterval(poll);btn.classList.remove("loading");'
-            'toast("数据已刷新! 更新中...","ok");setTimeout(function(){location.reload()},800)}'
-            'else if(s>=120){clearInterval(poll);btn.classList.remove("loading");location.reload()}'
-            'else{toast("生成中... 预计"+(120-s)+"秒","info")}}).catch(function(){'
-            'if(s>=120){clearInterval(poll);btn.classList.remove("loading");location.reload()}})},3000)})})'
-            '.catch(function(e){btn.classList.remove("loading");toast("失败: "+e.message,"err")})}')
-        # Find the old function start and replace everything after it until the old function ends
-        idx = content.find(old_js_start)
-        if idx >= 0:
-            # Find end of old function (matching closing brace)
-            old_end = content.find("function rtoast", idx)
-            if old_end < 0:
-                old_end = content.find("</script>", idx)
-            if old_end > idx:
-                content = content[:idx] + new_js + content[old_end:]
-                index_path.write_text(content, encoding="utf-8")
-                print("  Refresh button JS replaced")
-            else:
-                print("  [WARN] Could not find end of old JS block")
-        else:
-            print("  [WARN] liveRefreshRoot function not found in index.html")
+        # Replace onclick: old API call → simple page reload
+        content = content.replace('onclick="liveRefreshRoot()"', 'onclick="location.reload()"')
+        index_path.write_text(content, encoding="utf-8")
+        print("  Refresh button updated (page reload)")
 
     # Step 7: Git push
     if not dry_run and not skip_push:
