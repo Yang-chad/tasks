@@ -838,6 +838,15 @@ def main():
     if r.returncode != 0:
         print(f"  compute_trend ERROR: {r.stderr.strip()[:300]}")
 
+    # Step 6b: Ensure refresh button uses liveRefreshRoot() (not stale triggerGithubRefresh or location.reload)
+    index_path = WORKSPACE / "index.html"
+    if index_path.exists():
+        content = index_path.read_text(encoding="utf-8")
+        content = content.replace('onclick="triggerGithubRefresh()"', 'onclick="liveRefreshRoot()"')
+        content = content.replace('onclick="location.reload()"', 'onclick="liveRefreshRoot()"')
+        index_path.write_text(content, encoding="utf-8")
+        print("  Refresh button restored to liveRefreshRoot()")
+
     # Step 7: Git push
     if not dry_run and not skip_push:
         git_commit_and_push()
