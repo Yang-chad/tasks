@@ -55,17 +55,17 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </head>
 <body>
 <div class="header"><h1>未完成前端开发任务明细</h1>
-<p>统计日期: 2026-06-22 | 总计: 21 个未完成任务 | 涉及 5 人 | 类型: a_dev2_front(21)</p></div>
+<p>统计日期: 2026-06-22 | 总计: 28 个未完成任务 | 涉及 6 人 | 类型: a_dev2_front(28)</p></div>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="cards">
-<div class="card card-total"><div class="num">21</div><div class="label">任务总数</div></div>
-<div class="card card-wait"><div class="num">18</div><div class="label">待处理</div></div>
-<div class="card card-doing"><div class="num">3</div><div class="label">进行中</div></div>
+<div class="card card-total"><div class="num">28</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">23</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">5</div><div class="label">进行中</div></div>
 <div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">5</div><div class="label">负责人</div></div>
+<div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
 </div>
 <div class="charts">
-<div class="chart-box"><h3>负责人任务分布 (Top5)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>负责人任务分布 (Top6)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
 <div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
 <div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
 </div>
@@ -110,6 +110,39 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
     <details>
         <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">王子尘</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共8个</span>
+                <span class="stat-badge stat-wait">待处理5</span>
+                <span class="stat-badge stat-doing">进行中3</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估52h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余52h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>296217</td><td title="【PC管理】修改为下载中心导出">【PC管理】修改为下载中心导出</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>294247</td><td title="【PC用户】活动专区搜索页">【PC用户】活动专区搜索页</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>294246</td><td title="【PC用户】活动页面支持搜索">【PC用户】活动页面支持搜索</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>296188</td><td title="【PC管理】商详页增加满额减活动商品">【PC管理】商详页增加满额减活动商品</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>296187</td><td title="【PC管理】活动专区增加满额减活动">【PC管理】活动专区增加满额减活动</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>296186</td><td title="【PC管理】商品卡片增加满额减活动">【PC管理】商品卡片增加满额减活动</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>296185</td><td title="【PC管理】活动首页增加满额减活动入口">【PC管理】活动首页增加满额减活动入口</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>294473</td><td title="【PC管理】操作日志增加导出">【PC管理】操作日志增加导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">艾思芹</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共4个</span>
@@ -138,16 +171,16 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
-            <span class="assignee-name">王子尘</span>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">李红燕</span>
             <span class="assignee-stats">
-                <span class="stat-badge">共3个</span>
+                <span class="stat-badge">共2个</span>
                 <span class="stat-badge stat-wait">待处理1</span>
-                <span class="stat-badge stat-doing">进行中2</span>
+                <span class="stat-badge stat-doing">进行中1</span>
                 <span class="stat-badge stat-overdue">延期0</span>
-                <span class="stat-badge stat-h">预估20h</span>
+                <span class="stat-badge stat-h">预估12h</span>
                 <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余20h</span>
+                <span class="stat-badge stat-h">剩余12h</span>
             </span>
         </summary>
 <div class="table-wrapper">
@@ -158,15 +191,14 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>294247</td><td title="【PC用户】活动专区搜索页">【PC用户】活动专区搜索页</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>294246</td><td title="【PC用户】活动页面支持搜索">【PC用户】活动页面支持搜索</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>294473</td><td title="【PC管理】操作日志增加导出">【PC管理】操作日志增加导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.80.0（0715/dev11.7）【2026】</td><td>2026-07-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>293742</td><td title="【PC管理】3.0经销商组合套餐新增复制功能">【PC管理】3.0经销商组合套餐新增复制功能</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>296218</td><td title="【PC管理】修改为下载中心导出2">【PC管理】修改为下载中心导出2</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
 </tbody>
 </table>
 </div>
 </details>
     <details>
-        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
             <span class="assignee-name">田宇飞</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -192,8 +224,8 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
-            <span class="assignee-name">李红燕</span>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">莫世有</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
                 <span class="stat-badge stat-wait">待处理0</span>
@@ -212,7 +244,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>293742</td><td title="【PC管理】3.0经销商组合套餐新增复制功能">【PC管理】3.0经销商组合套餐新增复制功能</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>296199</td><td title="【PC管理】业务单，卸货方式增加类型：不卸货不上楼">【PC管理】业务单，卸货方式增加类型：不卸货不上楼</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批2.0_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
 </tbody>
 </table>
 </div>
@@ -220,9 +252,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 <div class="footer">禅道项目管理系统 · 自动生成于 2026-06-22</div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8303\u6587\u7389", "\u827e\u601d\u82b9", "\u738b\u5b50\u5c18", "\u7530\u5b87\u98de", "\u674e\u7ea2\u71d5"],datasets:[{label:'未完成任务数',data:[12, 4, 3, 1, 1],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[18, 3],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[21],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8303\u6587\u7389", "\u738b\u5b50\u5c18", "\u827e\u601d\u82b9", "\u674e\u7ea2\u71d5", "\u7530\u5b87\u98de", "\u83ab\u4e16\u6709"],datasets:[{label:'未完成任务数',data:[12, 8, 4, 2, 1, 1],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[23, 5],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[28],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
