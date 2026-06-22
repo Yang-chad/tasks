@@ -1,13 +1,13 @@
 {
   "summary": {
     "total_done": 647,
-    "total_active": 425,
+    "total_active": 458,
     "total_consumed": 6483.5,
-    "total_estimate": 9928.0,
-    "total_left": 3845.5,
+    "total_estimate": 10172.0,
+    "total_left": 4089.5,
     "total_members": 52,
     "total_overdue": 7,
-    "report_time": "2026-06-22 12:27:03",
+    "report_time": "2026-06-22 15:01:00",
     "month": "2026年6月"
   },
   "members": [
@@ -887,6 +887,15 @@
         }
       ],
       "resolved_bugs": [
+        {
+          "id": 326582,
+          "title": "【QA-PC-管理侧-复制经销商】分销商未复制",
+          "severity": 3,
+          "pri": 3,
+          "status": "postponed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
         {
           "id": 326500,
           "title": "【QA-PC-管理侧-复制经销商】复制待发起合同状态的商家，登录后直接进入了网批一级页面",
@@ -3630,7 +3639,7 @@
         {
           "id": 296336,
           "name": "【后端】揭阳商用工程地址解绑增加安装地址4个图",
-          "status": "wait",
+          "status": "doing",
           "pri": 2,
           "type": "a_dev4_control",
           "estimate": 2.0,
@@ -3693,7 +3702,7 @@
           "title": "【QA-PC-管理侧-主页】管理侧主页点击我的收藏后面的编辑按钮，直接保存提示参数非法",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -4383,16 +4392,6 @@
           "finished_date": "2026-06-17"
         },
         {
-          "id": 295659,
-          "name": "【后端】下载中心对接操作日志实现联动",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "finished_by": "冯澈",
-          "finished_date": "2026-06-18"
-        },
-        {
           "id": 293964,
           "name": "【后端】下载中心加密导出功能取消-需求变更（各个服务，如商品、资金、营销等导出excel加密取消）-需求紧急变更",
           "consumed": 4.0,
@@ -4401,6 +4400,16 @@
           "platform": "网批2.0",
           "finished_by": "冯澈",
           "finished_date": "2026-06-15"
+        },
+        {
+          "id": 295659,
+          "name": "【后端】下载中心对接操作日志实现联动",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "finished_by": "冯澈",
+          "finished_date": "2026-06-18"
         },
         {
           "id": 293963,
@@ -4660,7 +4669,16 @@
           "openedBy": "陈嘉劲"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 326830,
+          "title": "【QA-PC-管理侧-日常销售方案】运营模式选择品类后，无法新建方案",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "许峻嘉",
@@ -5707,7 +5725,7 @@
       "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 54,
+        "后端": 52,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
@@ -5721,16 +5739,16 @@
       "done_count": 25,
       "done_consumed": 103.0,
       "done_estimate": 103.0,
-      "active_count": 29,
-      "active_estimate": 118.0,
+      "active_count": 27,
+      "active_estimate": 102.0,
       "active_consumed": 0.0,
-      "active_left": 118.0,
-      "total_tasks": 54,
+      "active_left": 102.0,
+      "total_tasks": 52,
       "total_consumed": 103.0,
-      "total_hours": 221.0,
-      "total_estimate": 221.0,
-      "completion_rate": 46.3,
-      "efficiency": 46.6,
+      "total_hours": 205.0,
+      "total_estimate": 205.0,
+      "completion_rate": 48.1,
+      "efficiency": 50.2,
       "overdue": 0,
       "done_tasks": [
         {
@@ -5994,30 +6012,6 @@
           "estimate": 12.0,
           "consumed": 0.0,
           "left": 12.0,
-          "platform": "",
-          "deadline": "2026-07-15"
-        },
-        {
-          "id": 293552,
-          "name": "关联政策名称实时查询改造",
-          "status": "wait",
-          "pri": 0,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "",
-          "deadline": "2026-07-15"
-        },
-        {
-          "id": 293551,
-          "name": "调价时关联政策权限控制",
-          "status": "wait",
-          "pri": 0,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
           "platform": "",
           "deadline": "2026-07-15"
         },
@@ -6460,7 +6454,7 @@
       "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 44,
+        "后端": 46,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
@@ -6474,16 +6468,16 @@
       "done_count": 18,
       "done_consumed": 89.0,
       "done_estimate": 89.0,
-      "active_count": 26,
-      "active_estimate": 137.0,
+      "active_count": 28,
+      "active_estimate": 153.0,
       "active_consumed": 0.0,
-      "active_left": 137.0,
-      "total_tasks": 44,
+      "active_left": 153.0,
+      "total_tasks": 46,
       "total_consumed": 89.0,
-      "total_hours": 226.0,
-      "total_estimate": 226.0,
-      "completion_rate": 40.9,
-      "efficiency": 39.4,
+      "total_hours": 242.0,
+      "total_estimate": 242.0,
+      "completion_rate": 39.1,
+      "efficiency": 36.8,
       "overdue": 0,
       "done_tasks": [
         {
@@ -6705,6 +6699,30 @@
           "deadline": "2026-07-31"
         },
         {
+          "id": 293552,
+          "name": "关联政策名称实时查询改造",
+          "status": "wait",
+          "pri": 0,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 293551,
+          "name": "调价时关联政策权限控制",
+          "status": "wait",
+          "pri": 0,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
           "id": 293555,
           "name": "联调多个方案",
           "status": "wait",
@@ -6715,18 +6733,6 @@
           "left": 8.0,
           "platform": "",
           "deadline": "2026-06-30"
-        },
-        {
-          "id": 296213,
-          "name": "销售方案行业字段接口开发",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 6.0,
-          "consumed": 0.0,
-          "left": 6.0,
-          "platform": "",
-          "deadline": "2026-07-03"
         },
         {
           "id": 293558,
@@ -6765,26 +6771,14 @@
           "deadline": "2026-07-31"
         },
         {
-          "id": 296215,
-          "name": "运营模式条件控制逻辑",
+          "id": 296213,
+          "name": "销售方案行业字段接口开发",
           "status": "wait",
           "pri": 3,
           "type": "a_dev4_control",
-          "estimate": 5.0,
+          "estimate": 6.0,
           "consumed": 0.0,
-          "left": 5.0,
-          "platform": "",
-          "deadline": "2026-07-03"
-        },
-        {
-          "id": 296214,
-          "name": "行业驱动审批流改造",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 5.0,
-          "consumed": 0.0,
-          "left": 5.0,
+          "left": 6.0,
           "platform": "",
           "deadline": "2026-07-03"
         },
@@ -6813,14 +6807,26 @@
           "deadline": "2026-07-31"
         },
         {
-          "id": 296216,
-          "name": "审核列表行业权限过滤",
+          "id": 296215,
+          "name": "运营模式条件控制逻辑",
           "status": "wait",
           "pri": 3,
           "type": "a_dev4_control",
-          "estimate": 4.0,
+          "estimate": 5.0,
           "consumed": 0.0,
-          "left": 4.0,
+          "left": 5.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296214,
+          "name": "行业驱动审批流改造",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 5.0,
+          "consumed": 0.0,
+          "left": 5.0,
           "platform": "",
           "deadline": "2026-07-03"
         },
@@ -6835,6 +6841,18 @@
           "left": 4.0,
           "platform": "",
           "deadline": "2026-06-30"
+        },
+        {
+          "id": 296216,
+          "name": "审核列表行业权限过滤",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "",
+          "deadline": "2026-07-03"
         },
         {
           "id": 294189,
@@ -6883,18 +6901,6 @@
           "left": 4.0,
           "platform": "",
           "deadline": "2026-06-25"
-        },
-        {
-          "id": 296212,
-          "name": "销司/客户字典表新增运营模式字段",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 3.0,
-          "consumed": 0.0,
-          "left": 3.0,
-          "platform": "",
-          "deadline": "2026-07-03"
         },
         {
           "id": 296211,
@@ -6955,6 +6961,18 @@
           "left": 3.0,
           "platform": "",
           "deadline": "2026-07-31"
+        },
+        {
+          "id": 296212,
+          "name": "销司/客户字典表新增运营模式字段",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "",
+          "deadline": "2026-07-03"
         },
         {
           "id": 293565,
@@ -7513,15 +7531,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 326582,
-          "title": "【QA-PC-管理侧-复制经销商】分销商未复制",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 326588,
           "title": "【QA-PC-管理侧-复制经销商】无法导入100条数据，提示“导入的数据超过10条”",
           "severity": 3,
@@ -7549,6 +7558,24 @@
           "openedBy": "邹娟"
         },
         {
+          "id": 326532,
+          "title": "【QA-PC-管理侧-复制经销商】入驻审核详情页面，销售区域显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 326530,
+          "title": "【QA-PC-管理侧-复制经销商】注册邀请码状态仍为待使用，且业务经理错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 326529,
           "title": "【QA-PC-管理侧-复制经销商】经销商列表业务经理账号、业务经理姓名显示为空",
           "severity": 3,
@@ -7567,24 +7594,7 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 326532,
-          "title": "【QA-PC-管理侧-复制经销商】入驻审核详情页面，销售区域显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 326530,
-          "title": "【QA-PC-管理侧-复制经销商】注册邀请码状态仍为待使用，且业务经理错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "徐琦",
@@ -8642,8 +8652,32 @@
       ],
       "active_bugs": [
         {
-          "id": 326771,
-          "title": "【QA-PC-管理侧-销售任务行业属性优化】设置业务经理任务创建关联年度任务筛选没有过滤数据",
+          "id": 326841,
+          "title": "【QA-PC-用户侧-我的提货任务】任务下达时间显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 326837,
+          "title": "【QA-PC-管理侧-销售任务行业属性优化】客户年度任务设置新增按行业分类，会显示类目值",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 326833,
+          "title": "【QA-PC-管理侧-销售任务行业属性优化】客户年度任务设置导出查看新增项，没有新字段显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 326813,
+          "title": "【QA-PC-管理侧-销售任务行业属性优化】设置业务经理任务查看没有 显示新增字段的数据",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -9098,6 +9132,30 @@
       ],
       "active_bugs": [
         {
+          "id": 326845,
+          "title": "【QA-PC-管理侧-行业数据隔离】查看/编辑客户库，授权业务线的业务经理不显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 326810,
+          "title": "【QA-PC-管理侧-行业数据隔离-入驻审核】入驻审核页面，授权业务线字段也是空的",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 326801,
+          "title": "【QA-PC-管理侧-行业数据隔离-分销商管理】分销商修改资料，审批最后节点审批报错",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 326788,
           "title": "【QA-PC-管理侧-行业数据隔离-邀请码】新建邀请码行业跟员工授权指定行业不一致",
           "severity": 3,
@@ -9108,14 +9166,6 @@
         {
           "id": 326787,
           "title": "【QA-PC-管理侧-行业数据隔离】注册邀请码列表，通过业务线查询，系统报错",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 326783,
-          "title": "【QA-PC-管理侧-行业数据隔离】查看/编辑客户库，授权业务线显示空",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -9523,6 +9573,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 326783,
+          "title": "【QA-PC-管理侧-行业数据隔离】查看/编辑客户库，授权业务线显示空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 324636,
           "title": "【QA-PC-管理侧-政策库】选择了100条/页，点击重置后，回到了10条/页，但是下方还是显示100条/页",
           "severity": 3,
@@ -9621,7 +9680,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 50,
+        "前端": 56,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -9634,16 +9693,16 @@
       "done_count": 34,
       "done_consumed": 148.0,
       "done_estimate": 152.0,
-      "active_count": 16,
-      "active_estimate": 116.0,
+      "active_count": 22,
+      "active_estimate": 164.0,
       "active_consumed": 0.0,
-      "active_left": 116.0,
-      "total_tasks": 50,
+      "active_left": 164.0,
+      "total_tasks": 56,
       "total_consumed": 148.0,
-      "total_hours": 264.0,
-      "total_estimate": 268.0,
-      "completion_rate": 68.0,
-      "efficiency": 56.1,
+      "total_hours": 312.0,
+      "total_estimate": 316.0,
+      "completion_rate": 60.7,
+      "efficiency": 47.4,
       "overdue": 0,
       "done_tasks": [
         {
@@ -9988,6 +10047,78 @@
         }
       ],
       "active_tasks": [
+        {
+          "id": 296420,
+          "name": "【PC用户】经销商履约单详情-自提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296419,
+          "name": "【PC用户】经销商订单详情-自提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296414,
+          "name": "【H5】经销商履约单详情-自提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296413,
+          "name": "【H5】经销商订单详情-自提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296412,
+          "name": "【PC管理】经销商履约单详情-自提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296411,
+          "name": "【PC管理】经销商订单详情-自提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
         {
           "id": 296296,
           "name": "【H5】退款单管理满额减详情",
@@ -11109,7 +11240,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 36,
+        "前端": 39,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -11122,16 +11253,16 @@
       "done_count": 28,
       "done_consumed": 136.0,
       "done_estimate": 136.0,
-      "active_count": 8,
-      "active_estimate": 52.0,
+      "active_count": 11,
+      "active_estimate": 72.0,
       "active_consumed": 0.0,
-      "active_left": 52.0,
-      "total_tasks": 36,
+      "active_left": 72.0,
+      "total_tasks": 39,
       "total_consumed": 136.0,
-      "total_hours": 188.0,
-      "total_estimate": 188.0,
-      "completion_rate": 77.8,
-      "efficiency": 72.3,
+      "total_hours": 208.0,
+      "total_estimate": 208.0,
+      "completion_rate": 71.8,
+      "efficiency": 65.4,
       "overdue": 0,
       "done_tasks": [
         {
@@ -11417,6 +11548,30 @@
       ],
       "active_tasks": [
         {
+          "id": 296423,
+          "name": "【H5】经销商管理解冻申请",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296422,
+          "name": "【PC管理】经销商管理解冻申请",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
           "id": 296188,
           "name": "【PC管理】商详页增加满额减活动商品",
           "status": "wait",
@@ -11473,6 +11628,18 @@
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296427,
+          "name": "【PC管理】分销商管理-收获地址导出",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
           "platform": "",
           "deadline": "2026-07-15"
         },
@@ -11706,6 +11873,30 @@
       ],
       "active_bugs": [
         {
+          "id": 326821,
+          "title": "【qa-pc-管理侧-限时特价】业务模式为业务线，新建方案时选择关联年度任务，查询任务模式和业务线分类，结果查询数据有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 326804,
+          "title": "【QA-PC-管理侧-主页】管理侧我的收藏暂无收藏时点击展开按钮，效果与UX不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 326771,
+          "title": "【QA-PC-管理侧-销售任务行业属性优化】设置业务经理任务创建关联年度任务筛选没有过滤数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 326770,
           "title": "【QA-PC-管理侧-菜单搜索】管理侧搜索菜单名称后点击收藏按钮，提示传参异常",
           "severity": 3,
@@ -11729,7 +11920,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 15,
+        "前端": 19,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -11742,16 +11933,16 @@
       "done_count": 13,
       "done_consumed": 116.0,
       "done_estimate": 112.0,
-      "active_count": 2,
-      "active_estimate": 16.0,
+      "active_count": 6,
+      "active_estimate": 48.0,
       "active_consumed": 0.0,
-      "active_left": 16.0,
-      "total_tasks": 15,
+      "active_left": 48.0,
+      "total_tasks": 19,
       "total_consumed": 116.0,
-      "total_hours": 132.0,
-      "total_estimate": 128.0,
-      "completion_rate": 86.7,
-      "efficiency": 87.9,
+      "total_hours": 164.0,
+      "total_estimate": 160.0,
+      "completion_rate": 68.4,
+      "efficiency": 70.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -11886,6 +12077,54 @@
         }
       ],
       "active_tasks": [
+        {
+          "id": 296418,
+          "name": "【PC用户】新增履约单-为分销商下单-自提订单",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296417,
+          "name": "【PC用户】新增履约单-为我下单-自提订单",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296416,
+          "name": "【PC用户】下单结算页-为分销商下单-自提订单",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296415,
+          "name": "【PC用户】下单结算页-为我下单-自提订单",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
         {
           "id": 296284,
           "name": "【PC用户】3.0提交订单支持满额减",
@@ -12436,7 +12675,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 27,
+        "前端": 35,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -12449,16 +12688,16 @@
       "done_count": 8,
       "done_consumed": 62.0,
       "done_estimate": 36.0,
-      "active_count": 19,
-      "active_estimate": 148.0,
+      "active_count": 27,
+      "active_estimate": 196.0,
       "active_consumed": 0.0,
-      "active_left": 148.0,
-      "total_tasks": 27,
+      "active_left": 196.0,
+      "total_tasks": 35,
       "total_consumed": 62.0,
-      "total_hours": 210.0,
-      "total_estimate": 184.0,
-      "completion_rate": 29.6,
-      "efficiency": 29.5,
+      "total_hours": 258.0,
+      "total_estimate": 232.0,
+      "completion_rate": 22.9,
+      "efficiency": 24.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -12543,6 +12782,54 @@
         }
       ],
       "active_tasks": [
+        {
+          "id": 296403,
+          "name": "【PC管理】网批3.0/网批4.0/4.0测算模式-限时特价方案商品列表导出",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296402,
+          "name": "【PC管理】网批3.0/网批4.0/4.0测算模式-限时特价方案商品列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296399,
+          "name": "【PC管理】网批3.0/网批4.0/4.0测算模式-日常方案商品列表导出",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296398,
+          "name": "【PC管理】网批3.0/网批4.0/4.0测算模式-日常方案商品列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
         {
           "id": 296305,
           "name": "【H5】3.0满额减方案审核",
@@ -12760,6 +13047,54 @@
           "deadline": "2026-06-30"
         },
         {
+          "id": 296406,
+          "name": "【H5】网批3.0/网批4.0/4.0测算模式-限时特价方案商品列表导出",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296404,
+          "name": "【H5】网批3.0/网批4.0/4.0测算模式-限时特价方案商品列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296401,
+          "name": "【H5】网批3.0/网批4.0/4.0测算模式-日常方案商品列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
+          "id": 296400,
+          "name": "【H5】网批3.0/网批4.0/4.0测算模式-日常方案商品列表导出",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "",
+          "deadline": "2026-07-15"
+        },
+        {
           "id": 296304,
           "name": "【PC管理】首页待办事项跳转",
           "status": "wait",
@@ -12810,7 +13145,7 @@
         "产品": 0,
         "后端": 0,
         "前端": 0,
-        "移动端": 23,
+        "移动端": 25,
         "测试": 0,
         "其他": 0
       },
@@ -12822,16 +13157,16 @@
       "done_count": 15,
       "done_consumed": 98.0,
       "done_estimate": 98.0,
-      "active_count": 8,
-      "active_estimate": 8.0,
+      "active_count": 10,
+      "active_estimate": 24.0,
       "active_consumed": 0.0,
-      "active_left": 8.0,
-      "total_tasks": 23,
+      "active_left": 24.0,
+      "total_tasks": 25,
       "total_consumed": 98.0,
-      "total_hours": 106.0,
-      "total_estimate": 106.0,
-      "completion_rate": 65.2,
-      "efficiency": 92.5,
+      "total_hours": 122.0,
+      "total_estimate": 122.0,
+      "completion_rate": 60.0,
+      "efficiency": 80.3,
       "overdue": 0,
       "done_tasks": [
         {
@@ -12986,6 +13321,30 @@
         }
       ],
       "active_tasks": [
+        {
+          "id": 296542,
+          "name": "【iOS】家用-订单详情（自提）-用户侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296522,
+          "name": "【iOS】家用订单详情（自提）-管理侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-02"
+        },
         {
           "id": 296354,
           "name": "【iOS】售后单详情-管理端满额减",
@@ -13490,7 +13849,7 @@
         "产品": 0,
         "后端": 0,
         "前端": 0,
-        "移动端": 13,
+        "移动端": 14,
         "测试": 0,
         "其他": 0
       },
@@ -13502,16 +13861,16 @@
       "done_count": 7,
       "done_consumed": 96.0,
       "done_estimate": 88.0,
-      "active_count": 6,
-      "active_estimate": 48.0,
+      "active_count": 7,
+      "active_estimate": 56.0,
       "active_consumed": 0.0,
-      "active_left": 48.0,
-      "total_tasks": 13,
+      "active_left": 56.0,
+      "total_tasks": 14,
       "total_consumed": 96.0,
-      "total_hours": 144.0,
-      "total_estimate": 136.0,
-      "completion_rate": 53.8,
-      "efficiency": 66.7,
+      "total_hours": 152.0,
+      "total_estimate": 144.0,
+      "completion_rate": 50.0,
+      "efficiency": 63.2,
       "overdue": 0,
       "done_tasks": [
         {
@@ -13607,6 +13966,18 @@
           "estimate": 16.0,
           "consumed": 0.0,
           "left": 16.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296539,
+          "name": "【Android】家用-下单页面（自提）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
           "platform": "",
           "deadline": "2026-07-03"
         },
@@ -13886,7 +14257,7 @@
         "产品": 0,
         "后端": 0,
         "前端": 0,
-        "移动端": 24,
+        "移动端": 26,
         "测试": 0,
         "其他": 0
       },
@@ -13898,16 +14269,16 @@
       "done_count": 14,
       "done_consumed": 77.0,
       "done_estimate": 74.0,
-      "active_count": 10,
-      "active_estimate": 28.0,
+      "active_count": 12,
+      "active_estimate": 44.0,
       "active_consumed": 16.0,
-      "active_left": 48.0,
-      "total_tasks": 24,
+      "active_left": 64.0,
+      "total_tasks": 26,
       "total_consumed": 93.0,
-      "total_hours": 141.0,
-      "total_estimate": 102.0,
-      "completion_rate": 58.3,
-      "efficiency": 66.0,
+      "total_hours": 157.0,
+      "total_estimate": 118.0,
+      "completion_rate": 53.8,
+      "efficiency": 59.2,
       "overdue": 0,
       "done_tasks": [
         {
@@ -14065,9 +14436,33 @@
           "deadline": "2026-07-24"
         },
         {
+          "id": 296543,
+          "name": "【Android】家用-订单详情（自提）-用户侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296523,
+          "name": "【Android】家用订单详情（自提）-管理侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-02"
+        },
+        {
           "id": 296247,
           "name": "【Android】满额减活动商品详情",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 8.0,
@@ -14079,7 +14474,7 @@
         {
           "id": 296353,
           "name": "【Android】售后单详情-管理端满额减",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 1.0,
@@ -14091,7 +14486,7 @@
         {
           "id": 296352,
           "name": "【Android】售后单列表-管理端满额减",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 1.0,
@@ -14103,7 +14498,7 @@
         {
           "id": 296349,
           "name": "【Android】订单详情-管理端满额减",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 1.0,
@@ -14115,7 +14510,7 @@
         {
           "id": 296348,
           "name": "【Android】订单列表-管理端满额减",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 1.0,
@@ -14151,7 +14546,7 @@
         {
           "id": 296275,
           "name": "【Android】订单详情-满额减",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 1.0,
@@ -14163,7 +14558,7 @@
         {
           "id": 296274,
           "name": "【Android】订单列表-满额减",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 1.0,
@@ -14652,7 +15047,7 @@
         "产品": 0,
         "后端": 0,
         "前端": 0,
-        "移动端": 15,
+        "移动端": 18,
         "测试": 0,
         "其他": 0
       },
@@ -14664,16 +15059,16 @@
       "done_count": 8,
       "done_consumed": 80.0,
       "done_estimate": 64.0,
-      "active_count": 7,
-      "active_estimate": 72.0,
+      "active_count": 10,
+      "active_estimate": 96.0,
       "active_consumed": 0.0,
-      "active_left": 72.0,
-      "total_tasks": 15,
+      "active_left": 96.0,
+      "total_tasks": 18,
       "total_consumed": 80.0,
-      "total_hours": 152.0,
-      "total_estimate": 136.0,
-      "completion_rate": 53.3,
-      "efficiency": 52.6,
+      "total_hours": 176.0,
+      "total_estimate": 160.0,
+      "completion_rate": 44.4,
+      "efficiency": 45.5,
       "overdue": 0,
       "done_tasks": [
         {
@@ -14737,16 +15132,6 @@
           "finished_date": "2026-06-17"
         },
         {
-          "id": 285150,
-          "name": "【Android】购物车商品限制",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "finished_by": "黄宇安",
-          "finished_date": "2026-06-16"
-        },
-        {
           "id": 282434,
           "name": "【Android】管理端-履约售后单列表",
           "consumed": 4.0,
@@ -14755,6 +15140,16 @@
           "platform": "网批2.0",
           "finished_by": "黄宇安",
           "finished_date": "2026-06-01"
+        },
+        {
+          "id": 285150,
+          "name": "【Android】购物车商品限制",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "finished_by": "黄宇安",
+          "finished_date": "2026-06-16"
         }
       ],
       "active_tasks": [
@@ -14791,6 +15186,42 @@
           "estimate": 12.0,
           "consumed": 0.0,
           "left": 12.0,
+          "platform": "",
+          "deadline": "2026-07-02"
+        },
+        {
+          "id": 296544,
+          "name": "【Android】家用-履约单详情（自提）-用户侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296540,
+          "name": "【Android】家用-新增履约单（自提）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296524,
+          "name": "【Android】家用履约单单详情（自提）-管理侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
           "platform": "",
           "deadline": "2026-07-02"
         },
@@ -15070,7 +15501,7 @@
         "产品": 0,
         "后端": 0,
         "前端": 0,
-        "移动端": 15,
+        "移动端": 16,
         "测试": 0,
         "其他": 0
       },
@@ -15082,16 +15513,16 @@
       "done_count": 4,
       "done_consumed": 68.0,
       "done_estimate": 68.0,
-      "active_count": 11,
-      "active_estimate": 76.0,
+      "active_count": 12,
+      "active_estimate": 84.0,
       "active_consumed": 0.0,
-      "active_left": 76.0,
-      "total_tasks": 15,
+      "active_left": 84.0,
+      "total_tasks": 16,
       "total_consumed": 68.0,
-      "total_hours": 144.0,
-      "total_estimate": 144.0,
-      "completion_rate": 26.7,
-      "efficiency": 47.2,
+      "total_hours": 152.0,
+      "total_estimate": 152.0,
+      "completion_rate": 25.0,
+      "efficiency": 44.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -15159,6 +15590,18 @@
           "left": 12.0,
           "platform": "",
           "deadline": "2026-06-30"
+        },
+        {
+          "id": 296538,
+          "name": "【iOS】家用-下单页面（自提）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-03"
         },
         {
           "id": 296246,
@@ -15649,7 +16092,7 @@
         "产品": 0,
         "后端": 0,
         "前端": 0,
-        "移动端": 12,
+        "移动端": 15,
         "测试": 0,
         "其他": 0
       },
@@ -15661,16 +16104,16 @@
       "done_count": 6,
       "done_consumed": 52.0,
       "done_estimate": 52.0,
-      "active_count": 6,
-      "active_estimate": 52.0,
+      "active_count": 9,
+      "active_estimate": 76.0,
       "active_consumed": 0.0,
-      "active_left": 52.0,
-      "total_tasks": 12,
+      "active_left": 76.0,
+      "total_tasks": 15,
       "total_consumed": 52.0,
-      "total_hours": 104.0,
-      "total_estimate": 104.0,
-      "completion_rate": 50.0,
-      "efficiency": 50.0,
+      "total_hours": 128.0,
+      "total_estimate": 128.0,
+      "completion_rate": 40.0,
+      "efficiency": 40.6,
       "overdue": 0,
       "done_tasks": [
         {
@@ -15758,6 +16201,42 @@
           "left": 12.0,
           "platform": "",
           "deadline": "2026-06-30"
+        },
+        {
+          "id": 296545,
+          "name": "【Android】家用-履约单详情（自提）-用户侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296541,
+          "name": "【iOS】家用-新增履约单（自提）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-03"
+        },
+        {
+          "id": 296526,
+          "name": "【iOS】家用履约单单详情（自提）-管理侧",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "",
+          "deadline": "2026-07-02"
         },
         {
           "id": 285160,
@@ -16837,7 +17316,16 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 326825,
+          "title": "【qa-pc-管理侧-3.0限时特价】运营模式为业务线，编辑草稿方案提交，结果方案状态仍是草稿状态",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "邹娟",
