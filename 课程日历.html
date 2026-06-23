@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暑期课程日历 — 2026年7-8月</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #f5f5f5;
+    padding: 30px;
+    color: #333;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  h1 { text-align: center; font-size: 22px; font-weight: 600; margin-bottom: 8px; color: #1a1a1a; }
+  .subtitle { text-align: center; font-size: 13px; color: #888; margin-bottom: 24px; }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    margin-bottom: 24px; padding: 14px 20px; background: #fff;
+    border-radius: 10px; border: 1px solid #e8e8e8;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+  .legend-dot.dance { background: #D85A30; }
+  .legend-dot.exam  { background: #E24B4A; }
+  .legend-dot.chinese { background: #185FA5; }
+  .legend-dot.math  { background: #1D9E75; }
+  .legend-dot.swim  { background: #639922; }
+
+  .months { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+  .month-card {
+    flex: 1; min-width: 460px; max-width: 530px;
+    background: #fff; border-radius: 12px;
+    border: 1px solid #e8e8e8; overflow: hidden;
+  }
+  .month-header {
+    background: #2C2C2A; color: #fff; text-align: center;
+    padding: 12px; font-size: 17px; font-weight: 600; letter-spacing: 2px;
+  }
+
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  th {
+    padding: 10px 4px; font-size: 12px; font-weight: 500;
+    color: #888; border-bottom: 1px solid #eee;
+  }
+  th:first-child, th:last-child { color: #D85A30; }
+
+  td {
+    height: 86px; vertical-align: top; padding: 4px;
+    border: 1px solid #f0f0f0; font-size: 12px; position: relative;
+  }
+  td.empty { background: #fafafa; color: #ccc; }
+  .day-num { font-weight: 500; color: #666; margin-bottom: 2px; }
+  td:first-child .day-num, td:last-child .day-num { color: #D85A30; }
+
+  .course-block {
+    border-radius: 3px; padding: 1px 4px; margin-bottom: 2px;
+    font-size: 10px; line-height: 1.45;
+  }
+  .course-block .c-name { font-weight: 500; }
+  .course-block .c-time { opacity: 0.75; }
+  .c-dance  { background: #FAECE7; color: #712B13; border-left: 3px solid #D85A30; }
+  .c-exam   { background: #FCEBEB; color: #791F1F; border-left: 3px solid #E24B4A; }
+  .c-chinese { background: #E6F1FB; color: #0C447C; border-left: 3px solid #185FA5; }
+  .c-math   { background: #E1F5EE; color: #085041; border-left: 3px solid #1D9E75; }
+  .c-swim   { background: #EAF3DE; color: #27500A; border-left: 3px solid #639922; }
+
+  .notes {
+    margin-top: 24px; padding: 16px 20px; background: #fff;
+    border-radius: 10px; border: 1px solid #e8e8e8; font-size: 13px;
+  }
+  .notes h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .notes ul { padding-left: 20px; }
+  .notes li { margin-bottom: 4px; line-height: 1.8; }
+
+  @media print {
+    body { background: #fff; padding: 10px; }
+    .month-card { border: 1px solid #ccc; break-inside: avoid; }
+    .notes { border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>暑期课程日历</h1>
+  <p class="subtitle">2026年7月 — 8月</p>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot dance"></span> 舞蹈考级（7/13-7/24 下午2:00-5:00）</div>
+    <div class="legend-item"><span class="legend-dot exam"></span> 考级考试（7/25 早上9:00）</div>
+    <div class="legend-item"><span class="legend-dot chinese"></span> 语文（7/20-7/31 上午9:30-11:40）</div>
+    <div class="legend-item"><span class="legend-dot math"></span> 数学（8/3-8/14 上午9:30-11:40）</div>
+    <div class="legend-item"><span class="legend-dot swim"></span> 游泳暂定（8/1-8/10 下午4:00-5:00）</div>
+  </div>
+
+  <div class="months" id="calendars"></div>
+
+  <div class="notes">
+    <h3>课程汇总</h3>
+    <ul>
+      <li><b>舞蹈考级</b>：7月13日 — 7月24日，共12天，每日下午 2:00-5:00</li>
+      <li><b>考级考试</b>：7月25日（周六），早上 9:00</li>
+      <li><b>语文</b>：7月20日 — 7月31日，每日上午 9:30-11:40</li>
+      <li><b>数学</b>：8月3日 — 8月14日，每日上午 9:30-11:40</li>
+      <li><b>游泳（暂定）</b>：8月1日 — 8月10日，每日下午 4:00-5:00</b></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function buildCalendars() {
+  const months = [
+    { year: 2026, month: 7, label: '2026年7月' },
+    { year: 2026, month: 8, label: '2026年8月' }
+  ];
+
+  const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
+
+  const courses = [
+    { name: '舞蹈考级', cls: 'c-dance',  start: [2026,7,13], end: [2026,7,24], time: '下午2:00-5:00' },
+    { name: '考级考试', cls: 'c-exam',   start: [2026,7,25], end: [2026,7,25], time: '早上9:00' },
+    { name: '语文',    cls: 'c-chinese', start: [2026,7,20], end: [2026,7,31], time: '上午9:30-11:40' },
+    { name: '数学',    cls: 'c-math',    start: [2026,8,3],  end: [2026,8,14], time: '上午9:30-11:40' },
+    { name: '游泳暂定', cls: 'c-swim',    start: [2026,8,1],  end: [2026,8,10], time: '下午4:00-5:00' },
+  ];
+
+  function getCoursesForDate(year, month, day) {
+    const result = [];
+    for (const c of courses) {
+      const sd = new Date(c.start[0], c.start[1]-1, c.start[2]);
+      const ed = new Date(c.end[0], c.end[1]-1, c.end[2]);
+      const cd = new Date(year, month-1, day);
+      if (cd >= sd && cd <= ed) result.push(c);
+    }
+    return result;
+  }
+
+  const container = document.getElementById('calendars');
+
+  for (const m of months) {
+    const firstDay = new Date(m.year, m.month-1, 1);
+    const lastDay = new Date(m.year, m.month, 0);
+    const daysInMonth = lastDay.getDate();
+    const startDow = firstDay.getDay();
+
+    let html = '<div class="month-card">';
+    html += `<div class="month-header">${m.label}</div>`;
+    html += '<table><thead><tr>';
+    for (const d of weekDays) {
+      html += `<th>${d}</th>`;
+    }
+    html += '</tr></thead><tbody>';
+
+    let day = 1;
+    const totalWeeks = Math.ceil((startDow + daysInMonth) / 7);
+
+    for (let w = 0; w < totalWeeks; w++) {
+      html += '<tr>';
+      for (let d = 0; d < 7; d++) {
+        if ((w === 0 && d < startDow) || day > daysInMonth) {
+          html += '<td class="empty"></td>';
+        } else {
+          const coursesToday = getCoursesForDate(m.year, m.month, day);
+          html += '<td>';
+          html += `<div class="day-num">${day}</div>`;
+          for (const c of coursesToday) {
+            html += `<div class="course-block ${c.cls}"><span class="c-name">${c.name}</span><br><span class="c-time">${c.time}</span></div>`;
+          }
+          html += '</td>';
+          day++;
+        }
+      }
+      html += '</tr>';
+    }
+
+    html += '</tbody></table></div>';
+    container.innerHTML += html;
+  }
+}
+
+buildCalendars();
+</script>
+</body>
+</html>
