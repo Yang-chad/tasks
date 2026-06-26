@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>2026-06-26 后端新增任务明细</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#f0f2f5;color:#333;padding:20px}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);color:#fff;padding:28px 32px;border-radius:12px;margin-bottom:20px}
+.header h1{font-size:22px;margin-bottom:6px}
+.header .meta{font-size:13px;opacity:.75}
+.summary-bar{display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.summary-card{flex:1;min-width:120px;background:#fff;border-radius:10px;padding:16px 20px;box-shadow:0 1px 4px rgba(0,0,0,.06);text-align:center}
+.summary-card .num{font-size:28px;font-weight:700}
+.summary-card .label{font-size:12px;color:#888;margin-top:4px}
+.card{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:16px;overflow:hidden}
+.card-header{padding:14px 20px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0f0}
+.card-header .badge{font-size:12px;font-weight:400;padding:2px 10px;border-radius:10px;color:#fff}
+table{width:100%;border-collapse:collapse}
+th{background:#fafafa;font-size:12px;color:#888;font-weight:500;padding:10px 12px;text-align:left;border-bottom:1px solid #eee}
+td{padding:9px 12px;font-size:13px;border-bottom:1px solid #f5f5f5}
+td.id{color:#1890ff;font-weight:500}
+td.est{text-align:right;font-weight:600}
+.badge-wait{background:#fff7e6;color:#d48806;font-size:11px;padding:2px 6px;border-radius:4px;border:1px solid #ffd591}
+.badge-doing{background:#e6f7ff;color:#1890ff;font-size:11px;padding:2px 6px;border-radius:4px;border:1px solid #91d5ff}
+tfoot td{font-weight:600;background:#fafafa}
+.back-link{display:inline-block;color:#1890ff;text-decoration:none;font-size:13px;margin-bottom:16px}
+</style>
+</head>
+<body>
+<a class="back-link" href="index.html">← 返回报告中心</a>
+<div class="header">
+<h1>2026年06月26日 后端新增任务明细</h1>
+<div class="meta">网批模式 V2.80.0（0716/dev11.7）+ V2.81.0（0803/dev11.8） · 共 
+34
+ 个任务 · 合计预估 
+213
+h</div>
+</div>
+<div class="summary-bar">
+
+<div class="summary-card"><div class="num" style="color:#667eea">23</div><div class="label">郑忠</div></div>
+
+<div class="summary-card"><div class="num" style="color:#66eea6">1</div><div class="label">梁嘉健</div></div>
+
+<div class="summary-card"><div class="num" style="color:#f093fb">4</div><div class="label">谢婉扬</div></div>
+
+<div class="summary-card"><div class="num" style="color:#ffa726">1</div><div class="label">卢鑫</div></div>
+
+<div class="summary-card"><div class="num" style="color:#ef5350">3</div><div class="label">阳超</div></div>
+
+<div class="summary-card"><div class="num" style="color:#667eea">2</div><div class="label">徐琦</div></div>
+
+</div>
+
+<div class="card">
+<div class="card-header" style="border-left:4px solid #667eea">
+<span>郑忠 <span class="badge" style="background:#667eea">23个</span></span>
+<span style="font-size:13px;font-weight:400">预估合计: 143h</span>
+</div>
+<table><thead><tr><th>任务ID</th><th>任务名称</th><th>所属迭代</th><th>截止日期</th><th>状态</th><th>预估</th></tr></thead><tbody>
+<tr><td class="id">299187</td><td>测试联调（单元+端到端+验证）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">20h</td></tr>
+<tr><td class="id">299186</td><td>定时任务+审批待办+工作流配置</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">299185</td><td>导入导出改造</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">5h</td></tr>
+<tr><td class="id">299184</td><td>跨模块适配：交易+订单+财务</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">12h</td></tr>
+<tr><td class="id">299183</td><td>Controller层：20个REST接口</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">16h</td></tr>
+<tr><td class="id">299182</td><td>商品查询服务</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">2h</td></tr>
+<tr><td class="id">299181</td><td>Diff更新（商品+奖励+客户+调价）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">7h</td></tr>
+<tr><td class="id">299180</td><td>活动编码生成+版本号递增</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">2h</td></tr>
+<tr><td class="id">299179</td><td>校验规则（保存+提交+阶梯+SKU+底价）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">299178</td><td>ES推送（手动+构建+定时）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">299177</td><td>查询服务（分页+详情+客户+商品）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">299176</td><td>状态机（定时任务+实时校准）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">299175</td><td>终止（发起+通过+驳回）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">4h</td></tr>
+<tr><td class="id">299174</td><td>调价（提交+数据更新）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">3h</td></tr>
+<tr><td class="id">299173</td><td>审批流程（发起+通过+驳回）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">5h</td></tr>
+<tr><td class="id">299172</td><td>活动删除</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">3h</td></tr>
+<tr><td class="id">299171</td><td>活动编辑（4种状态分支）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">5h</td></tr>
+<tr><td class="id">299170</td><td>活动创建（草稿+提交+核心方法）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">8h</td></tr>
+<tr><td class="id">299169</td><td>Domain层Service：4个Service+Impl（marketing-center）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">4h</td></tr>
+<tr><td class="id">299168</td><td>OpenAPI DTO层：18个DTO + Feign接口（open-api）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">299167</td><td>PO实体类 + Mapper接口 + Mapper XML（4组）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">299166</td><td>数据库DDL：新建4张表（marketing-center）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">3h</td></tr>
+<tr><td class="id">299165</td><td>枚举与常量定义（gsale-base）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">2h</td></tr>
+</tbody><tfoot><tr><td colspan="5">小计</td><td class="est">143h</td></tr></tfoot></table></div>
+<div class="card">
+<div class="card-header" style="border-left:4px solid #66eea6">
+<span>梁嘉健 <span class="badge" style="background:#66eea6">1个</span></span>
+<span style="font-size:13px;font-weight:400">预估合计: 8h</span>
+</div>
+<table><thead><tr><th>任务ID</th><th>任务名称</th><th>所属迭代</th><th>截止日期</th><th>状态</th><th>预估</th></tr></thead><tbody>
+<tr><td class="id">299188</td><td>企业微信推送</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">8h</td></tr>
+</tbody><tfoot><tr><td colspan="5">小计</td><td class="est">8h</td></tr></tfoot></table></div>
+<div class="card">
+<div class="card-header" style="border-left:4px solid #f093fb">
+<span>谢婉扬 <span class="badge" style="background:#f093fb">4个</span></span>
+<span style="font-size:13px;font-weight:400">预估合计: 28h</span>
+</div>
+<table><thead><tr><th>任务ID</th><th>任务名称</th><th>所属迭代</th><th>截止日期</th><th>状态</th><th>预估</th></tr></thead><tbody>
+<tr><td class="id">298561</td><td>【后端】自提函逻辑调整自提短信调整</td><td style="font-size:11px;color:#666">网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-07-28</td><td><span class="badge-wait">待处理</span></td><td class="est">8h</td></tr>
+<tr><td class="id">298549</td><td>【后端】自提-订单是待自提、部分自提状态 自提短信调整</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">8h</td></tr>
+<tr><td class="id">298544</td><td>【后端】订单提供小库库存，统计不同类型订单</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">8h</td></tr>
+<tr><td class="id">298543</td><td>【后端】工程小单下单默认总部履约0，销司履约就是下单数量</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">4h</td></tr>
+</tbody><tfoot><tr><td colspan="5">小计</td><td class="est">28h</td></tr></tfoot></table></div>
+<div class="card">
+<div class="card-header" style="border-left:4px solid #ffa726">
+<span>卢鑫 <span class="badge" style="background:#ffa726">1个</span></span>
+<span style="font-size:13px;font-weight:400">预估合计: 4h</span>
+</div>
+<table><thead><tr><th>任务ID</th><th>任务名称</th><th>所属迭代</th><th>截止日期</th><th>状态</th><th>预估</th></tr></thead><tbody>
+<tr><td class="id">299189</td><td>奖励政策（绑定+状态）</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-15</td><td><span class="badge-wait">待处理</span></td><td class="est">4h</td></tr>
+</tbody><tfoot><tr><td colspan="5">小计</td><td class="est">4h</td></tr></tfoot></table></div>
+<div class="card">
+<div class="card-header" style="border-left:4px solid #ef5350">
+<span>阳超 <span class="badge" style="background:#ef5350">3个</span></span>
+<span style="font-size:13px;font-weight:400">预估合计: 22h</span>
+</div>
+<table><thead><tr><th>任务ID</th><th>任务名称</th><th>所属迭代</th><th>截止日期</th><th>状态</th><th>预估</th></tr></thead><tbody>
+<tr><td class="id">298546</td><td>【后端】管理测订单详情--仓库--数量保存</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">6h</td></tr>
+<tr><td class="id">298545</td><td>【后端】管理测订单接单--仓库--数量保存</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">12h</td></tr>
+<tr><td class="id">298542</td><td>【后端】oms对接发货账仓代码商用3.0 经销商订单：  订单销司模式是商用 则填写 订单行快照 - 指定仓库代码</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">4h</td></tr>
+</tbody><tfoot><tr><td colspan="5">小计</td><td class="est">22h</td></tr></tfoot></table></div>
+<div class="card">
+<div class="card-header" style="border-left:4px solid #667eea">
+<span>徐琦 <span class="badge" style="background:#667eea">2个</span></span>
+<span style="font-size:13px;font-weight:400">预估合计: 8h</span>
+</div>
+<table><thead><tr><th>任务ID</th><th>任务名称</th><th>所属迭代</th><th>截止日期</th><th>状态</th><th>预估</th></tr></thead><tbody>
+<tr><td class="id">298616</td><td>【后端】商用代办事件订单+售后单数量统计列表</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">4h</td></tr>
+<tr><td class="id">298615</td><td>【后端】商用标签默认值+配置值新增</td><td style="font-size:11px;color:#666">网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-14</td><td><span class="badge-wait">待处理</span></td><td class="est">4h</td></tr>
+</tbody><tfoot><tr><td colspan="5">小计</td><td class="est">8h</td></tr></tfoot></table></div>
+<div style="text-align:center;padding:20px;color:#aaa;font-size:12px">数据来源：禅道API · 生成时间：2026-06-26 16:59 · 自动拉取</div>
+</body></html>
