@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>延期任务统计报告 — 2026-06-28</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #c62828; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #ef4444; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="header"><h1>🚨 延期任务统计报告</h1>
+<p>数据截止：2026-06-28 | 全平台延期任务追踪 | 共 13 个延期任务 | 网批2.0: 13</p></div>
+<div class="cards">
+<div class="card card-total"><div class="num">13</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">11</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">1</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">13</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">4</div><div class="label">涉及人员</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">钟日健</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共6个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">最长9天</span>
+                <span class="stat-badge stat-h">预估168h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余168h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>295320</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】需求设计">【产品】需求设计</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-06-19</td><td style="color:#ef4444;font-weight:700;">9天</td><td>34</td><td>0</td><td>34</td></tr>
+<tr class="row-overdue"><td>295318</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】调研">【产品】调研</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-06-19</td><td style="color:#ef4444;font-weight:700;">9天</td><td>34</td><td>0</td><td>34</td></tr>
+<tr class="row-overdue"><td>296334</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【商用揭阳推广】工程板块22个流程以及审批权限">【商用揭阳推广】工程板块22个流程以及审批权限</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>x_extension</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-06-22</td><td style="color:#ef4444;font-weight:700;">6天</td><td>3</td><td>0</td><td>3</td></tr>
+<tr class="row-overdue"><td>296335</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【商用行业数据隔离】重新准备80个审批流以及权限控制">【商用行业数据隔离】重新准备80个审批流以及权限控制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>x_extension</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-06-23</td><td style="color:#ef4444;font-weight:700;">5天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>295323</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】调研设计评审验收">【产品】调研设计评审验收</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-06-26</td><td style="color:#ef4444;font-weight:700;">2天</td><td>77</td><td>0</td><td>77</td></tr>
+<tr class="row-overdue"><td>295321</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】业务评审和技术评审">【产品】业务评审和技术评审</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-06-26</td><td style="color:#ef4444;font-weight:700;">2天</td><td>12</td><td>0</td><td>12</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">钟爽</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共5个</span>
+                <span class="stat-badge stat-wait">待处理5</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">最长12天</span>
+                <span class="stat-badge stat-h">预估105h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余105h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>292290</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【UI设计】关联的工单，可以在关联界面取消">【UI设计】关联的工单，可以在关联界面取消</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ad1_UI_des</td><td>网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-16</td><td style="color:#ef4444;font-weight:700;">12天</td><td>5</td><td>0</td><td>5</td></tr>
+<tr class="row-overdue"><td>296271</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【UI设计】商家自提函-管理端 APP">【UI设计】商家自提函-管理端 APP</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ad1_UI_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-06-26</td><td style="color:#ef4444;font-weight:700;">2天</td><td>30</td><td>0</td><td>30</td></tr>
+<tr class="row-overdue"><td>296270</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【UI设计】商家自提函-管理端H5">【UI设计】商家自提函-管理端H5</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ad1_UI_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-06-26</td><td style="color:#ef4444;font-weight:700;">2天</td><td>30</td><td>0</td><td>30</td></tr>
+<tr class="row-overdue"><td>296269</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【UI设计】商家自提函-管理端PC">【UI设计】商家自提函-管理端PC</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ad1_UI_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-06-26</td><td style="color:#ef4444;font-weight:700;">2天</td><td>30</td><td>0</td><td>30</td></tr>
+<tr class="row-overdue"><td>296266</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【UI设计】销售方案行业属性改造新增运营模式控制">【UI设计】销售方案行业属性改造新增运营模式控制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ad1_UI_des</td><td>网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-26</td><td style="color:#ef4444;font-weight:700;">2天</td><td>10</td><td>0</td><td>10</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">梁庆芬</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">最长9天</span>
+                <span class="stat-badge stat-h">预估120h</span>
+                <span class="stat-badge stat-h">消耗160h</span>
+                <span class="stat-badge stat-h">剩余24h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>292891</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】商用零售分批发货 需求调研、需求设计">【产品】商用零售分批发货 需求调研、需求设计</td><td><span class="badge-wait">changed</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0817/dev11.9）【2026】</td><td>2026-06-19</td><td style="color:#ef4444;font-weight:700;">9天</td><td>120</td><td>160</td><td>24</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">胡健</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">最长2天</span>
+                <span class="stat-badge stat-h">预估7h</span>
+                <span class="stat-badge stat-h">消耗6h</span>
+                <span class="stat-badge stat-h">剩余3h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>295277</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】商用财务版块需求调研分析会议：多层级、专款专用、信用赊销、项目赊销等">【产品】商用财务版块需求调研分析会议：多层级、专款专用、信用赊销、项目赊销等</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-26</td><td style="color:#ef4444;font-weight:700;">2天</td><td>7</td><td>6</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u949f\u65e5\u5065", "\u949f\u723d", "\u6881\u5e86\u82ac", "\u80e1\u5065"],datasets:[{label:'延期任务数',data:[6, 5, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[11, 1],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[13],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
