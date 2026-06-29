@@ -144,13 +144,31 @@ function refreshToast(msg,type){
 }
 function liveRefresh(eid){
   var btn=document.getElementById('refreshBtn'); if(!btn) return;
-  // GitHub Pages 无法使用实时刷新
-  if(window.location.origin.indexOf('github.io')>=0){
-    refreshToast('⚠ 实时刷新仅支持本地版，请访问 http://localhost:8900','err');
+  var isGH=window.location.origin.indexOf('github.io')>=0;
+  if(isGH || window.location.protocol==='file:'){
+    btn.classList.add('loading');
+    var SVR='http://172.28.52.91:8900';
+    // 触发本地管线重新拉取禅道数据
+    fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
+    .then(function(){ refreshToast('已触发后台刷新，约40秒后自动更新','ok'); })
+    .catch(function(){ refreshToast('已触发后台刷新（请确认本地服务已启动）','ok'); });
+    // 40秒后轮询管线是否完成
+    setTimeout(function(){
+      fetch(SVR+'/health',{mode:'cors'})
+      .then(function(){
+        btn.classList.remove('loading');
+        refreshToast('刷新完成，页面即将自动更新...','ok');
+        setTimeout(function(){location.reload();},2000);
+      })
+      .catch(function(){
+        btn.classList.remove('loading');
+        refreshToast('后台刷新中，约60秒后请手动刷新页面','ok');
+      });
+    },40000);
     return;
   }
+  // 本地 localhost → 同源API刷新，直接更新页面数据
   btn.classList.add('loading');
-  // 通过本地中转服务刷新（需先启动 _live_refresh_server.py）
   fetch('/api/refresh/'+eid)
   .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
   .then(function(d){ if(d.error) throw new Error(d.error); return d; })
