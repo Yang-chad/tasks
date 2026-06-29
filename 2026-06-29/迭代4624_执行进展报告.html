@@ -144,6 +144,11 @@ function refreshToast(msg,type){
 }
 function liveRefresh(eid){
   var btn=document.getElementById('refreshBtn'); if(!btn) return;
+  // GitHub Pages 无法使用实时刷新
+  if(window.location.origin.indexOf('github.io')>=0){
+    refreshToast('⚠ 实时刷新仅支持本地版，请访问 http://localhost:8900','err');
+    return;
+  }
   btn.classList.add('loading');
   // 通过本地中转服务刷新（需先启动 _live_refresh_server.py）
   fetch('/api/refresh/'+eid)
@@ -167,12 +172,7 @@ function liveRefresh(eid){
     refreshToast('✅ 实时刷新完成 — '+now,'ok');
   }).catch(function(e){
     btn.classList.remove('loading');
-    if(window.location.origin.indexOf('github.io')>=0||window.location.protocol==='file:'){
-      // GitHub Pages / 本地文件 → 提示本地启动服务
-      refreshToast('⚠ GitHub Pages 不支持实时刷新，请访问本地版本: http://localhost:8900','err');
-    }else{
-      refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
-    }
+    refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
   });
 }
 </script>
