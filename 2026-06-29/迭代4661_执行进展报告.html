@@ -145,32 +145,26 @@ function refreshToast(msg,type){
 function liveRefresh(eid){
   var btn=document.getElementById('refreshBtn'); if(!btn) return;
   btn.classList.add('loading');
-  var REPO='Yang-chad/tasks', WF='refresh-data.yml';
-  var PAT='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'; // 由部署脚本注入 GitHub PAT
-  // Step 1: 触发 GitHub Actions → 创建 trigger 文件
-  var initSha='';
+  var REPO='Yang-chad/tasks';
+  // 记录当前最新 commit SHA，用于检测刷新是否完成
+  var initSha='', start=Date.now(), maxWait=180000;
   fetch('https://api.github.com/repos/'+REPO+'/commits?per_page=1',{
     headers:{'Accept':'application/vnd.github.v3+json'}
   }).then(function(r){return r.json();}).then(function(d){
     initSha=d[0]&&d[0].sha||'';
-    // Step 2: 触发 workflow_dispatch（创建 trigger 文件）
-    return fetch('https://api.github.com/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{
-      method:'POST',
-      headers:{'Authorization':'Bearer '+PAT,'Accept':'application/vnd.github.v3+json'},
-      body:JSON.stringify({ref:'main'})
-    });
-  }).then(function(r){
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    refreshToast('🔄 刷新请求已发出，等待后台处理...','ok');
-    // Step 3: 轮询新 commit（表示 pipeline 已完成）
-    var start=Date.now(), maxWait=180000;
+    // 打开 GitHub Actions 页面（用户点击 Run workflow 即可触发）
+    refreshToast('🔗 请在弹出的页面中点击 Run workflow 触发刷新','ok');
+    var w=500,h=400,l=(screen.width-w)/2,t=(screen.height-h)/2;
+    var pw=window.open('https://github.com/'+REPO+'/actions/workflows/refresh-data.yml','_blank',
+      'width='+w+',height='+h+',left='+l+',top='+t');
+    // 轮询新 commit（含 "update:" 的为数据更新）
     function pollCommit(){
       fetch('https://api.github.com/repos/'+REPO+'/commits?per_page=1',{
         headers:{'Accept':'application/vnd.github.v3+json'}
       }).then(function(r){return r.json();}).then(function(d){
         var curSha=d[0]&&d[0].sha||'';
         var msg=d[0]&&d[0].commit&&d[0].commit.message||'';
-        if(curSha!==initSha&&msg.indexOf('update:')>=0){
+        if(curSha!==initSha&&msg.indexOf('update: 20')===0){
           btn.classList.remove('loading');
           refreshToast('✅ 数据已更新，页面即将刷新...','ok');
           setTimeout(function(){location.reload();},2000);
@@ -181,18 +175,13 @@ function liveRefresh(eid){
           refreshToast('⏱ 等待超时（3min），请稍后手动刷新','err');
         }
       }).catch(function(){
-        btn.classList.remove('loading');
-        refreshToast('⚠ 网络异常，请稍后手动刷新页面','err');
+        if(Date.now()-start<maxWait) setTimeout(pollCommit,3000);
       });
     }
     setTimeout(pollCommit,5000);
-  }).catch(function(e){
+  }).catch(function(){
     btn.classList.remove('loading');
-    // 降级：打开 GitHub Actions 页面手动触发
-    refreshToast('🔗 自动触发失败，请手动运行 Workflow','err');
-    var w=500,h=400,l=(screen.width-w)/2,t=(screen.height-h)/2;
-    window.open('https://github.com/'+REPO+'/actions/workflows/'+WF,'_blank',
-      'width='+w+',height='+h+',left='+l+',top='+t');
+    refreshToast('⚠ 网络异常，请稍后手动刷新页面','err');
   });
 }
 </script>
