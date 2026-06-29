@@ -145,38 +145,49 @@ function refreshToast(msg,type){
 function liveRefresh(eid){
   var btn=document.getElementById('refreshBtn'); if(!btn) return;
   btn.classList.add('loading');
-  // 通过本地中转服务刷新（需先启动 _live_refresh_server.py）
-  var RELAY=window.location.origin;
-  fetch(RELAY+'/api/refresh/'+eid)
-  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-  .then(function(d){ if(d.error) throw new Error(d.error); return d; })
-  .then(function(d){
-    var it=d.it, cs=d.charts, ss=d.story_stats||{}, today=d.today;
-    var el=document.getElementById;
-    if(el('v_time')){el('v_time').textContent=it.time_pct+'%';el('bar_time').style.width=it.time_pct+'%';el('d_time').textContent=it.elapsed+'/'+it.total_days;}
-    if(el('v_prog')){el('v_prog').textContent=it.progress+'%';el('bar_prog').style.width=it.progress+'%';el('d_prog').textContent=it.status;}
-    if(el('v_story')){el('v_story').textContent=it.story_count;el('d_story_a').textContent=ss.active||0;el('d_story_c').textContent=ss.closed||0;}
-    if(el('v_task')){el('v_task').textContent=it.task_total;el('d_task_d').textContent=it.doing;el('d_task_w').textContent=it.wait;}
-    if(el('v_bug')){el('v_bug').textContent=it.bug_total;el('d_bug_a').textContent=it.active_bugs;}
-    if(el('reportTime')) el('reportTime').textContent=today;
-    if(cs&&cs.stage){(function(sl,sv,sc){var c=Chart.getChart('chartStage');if(c){c.data.labels=sl;c.data.datasets[0].data=sv;c.update();}})(cs.stage.labels,cs.stage.data);}
-    if(cs&&cs.status){(function(sl,sv){var c=Chart.getChart('chartStatus');if(c){c.data.labels=sl;c.data.datasets[0].data=sv;c.update();}})(cs.status.labels,cs.status.data);}
-    if(cs&&cs.type){(function(tl,tv){var c=Chart.getChart('chartPie');if(c){c.data.labels=tl;c.data.datasets[0].data=tv;c.update();}})(cs.type.labels,cs.type.data);}
-    btn.classList.remove('loading');
-    var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
-    var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
-    refreshToast('✅ 实时刷新完成 — '+now,'ok');
+  // 触发 GitHub Actions 全管线刷新（self-hosted runner）
+  var REPO='Yang-chad/tasks', WF='refresh-data.yml';
+  var PAT=''; // 由部署脚本注入 GitHub PAT（actions:write scope on public repo）
+  fetch('https://api.github.com/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{
+    method:'POST',
+    headers:{'Authorization':'Bearer '+PAT,'Accept':'application/vnd.github.v3+json'},
+    body:JSON.stringify({ref:'main'})
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  }).then(function(){
+    refreshToast('🔄 已触发后台刷新，约 30 秒后自动更新...','ok');
+    // 轮询最新 workflow run 状态
+    var start=Date.now(), maxWait=120000;
+    function poll(){
+      fetch('https://api.github.com/repos/'+REPO+'/actions/runs?per_page=1&event=workflow_dispatch',{
+        headers:{'Authorization':'Bearer '+PAT,'Accept':'application/vnd.github.v3+json'}
+      }).then(function(r){return r.json();}).then(function(d){
+        var run=d.workflow_runs&&d.workflow_runs[0];
+        if(!run || run.status==='completed'){
+          btn.classList.remove('loading');
+          if(run&&run.conclusion==='success'){
+            refreshToast('✅ 刷新完成，页面即将更新...','ok');
+            setTimeout(function(){location.reload();},2000);
+          }else{
+            refreshToast('⚠ 刷新未完成，请稍后手动刷新页面','err');
+          }
+        }else if(Date.now()-start<maxWait){
+          setTimeout(poll,3000);
+        }else{
+          btn.classList.remove('loading');
+          refreshToast('⏱ 等待超时，请稍后手动刷新页面','err');
+        }
+      });
+    }
+    setTimeout(poll,2000);
   }).catch(function(e){
     btn.classList.remove('loading');
-    if(window.location.origin.indexOf('github.io')>=0||window.location.protocol==='file:'){
-      // GitHub Pages / 本地文件 → 后台触发本地管线
-      refreshToast('✅ 已触发后台刷新，约 60 秒后刷新此页即可看到最新数据','ok');
-      var w=460,h=300,l=(screen.width-w)/2,t=(screen.height-h)/2;
-      var pw=window.open('http://localhost:8900/trigger-pipeline','_blank','width='+w+',height='+h+',left='+l+',top='+t);
-      if(pw) setTimeout(function(){try{pw.close();}catch(e){}},4000);
-    }else{
-      refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
-    }
+    // 降级：打开 GitHub Actions 页面手动触发
+    refreshToast('🔗 请点击下方按钮手动触发刷新','err');
+    var w=500,h=400,l=(screen.width-w)/2,t=(screen.height-h)/2;
+    window.open('https://github.com/'+REPO+'/actions/workflows/'+WF,'_blank',
+      'width='+w+',height='+h+',left='+l+',top='+t');
   });
 }
 </script>
