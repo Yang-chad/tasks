@@ -147,7 +147,7 @@ function liveRefresh(eid){
   btn.classList.add('loading');
   // 触发 GitHub Actions 全管线刷新（self-hosted runner）
   var REPO='Yang-chad/tasks', WF='refresh-data.yml';
-  var PAT=''; // 由部署脚本注入 GitHub PAT（actions:write scope on public repo）
+  var PAT='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'; // 由部署脚本注入 GitHub PAT（actions:write scope on public repo）
   fetch('https://api.github.com/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{
     method:'POST',
     headers:{'Authorization':'Bearer '+PAT,'Accept':'application/vnd.github.v3+json'},
