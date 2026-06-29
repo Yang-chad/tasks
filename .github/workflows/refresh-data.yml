@@ -12,16 +12,22 @@ permissions:
 
 jobs:
   refresh:
-    runs-on: self-hosted
-    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Run full pipeline
-        env:
-          ZENTAO_ACCOUNT: ${{ secrets.ZENTAO_ACCOUNT }}
-          ZENTAO_PASSWORD: ${{ secrets.ZENTAO_PASSWORD }}
+      - name: Create trigger file
         run: |
-          python C:/Users/gree/Desktop/AI工作场景/项目管理/_run_full_parallel.py
+          mkdir -p .triggers
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > .triggers/$(date +%s).json
+
+      - name: Commit & push trigger
+        run: |
+          git config user.name "Refresh Bot"
+          git config user.email "bot@refresh.local"
+          git add .triggers/
+          git commit -m "trigger: refresh $(date +%Y-%m-%dT%H:%M:%SZ)" || true
+          git push origin HEAD:main || true
