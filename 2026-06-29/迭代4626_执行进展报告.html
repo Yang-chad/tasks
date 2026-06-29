@@ -144,19 +144,18 @@ function refreshToast(msg,type){
 }
 function liveRefresh(eid){
   var btn=document.getElementById('refreshBtn'); if(!btn) return;
-  btn.classList.add('loading');
+  btn.classList.add('loading'); btn.textContent='⏳ 处理中...';
   var REPO='Yang-chad/tasks';
-  // 用 <a> 模拟点击打开新窗口（比 window.open 更不容易被拦截）
-  var a=document.createElement('a');
-  a.href='https://github.com/'+REPO+'/actions/workflows/refresh-data.yml';
-  a.target='_blank'; a.rel='noopener'; a.click();
-  // 记录当前最新 commit SHA
+  // 打开 GitHub Actions 页面
+  window.open('https://github.com/'+REPO+'/actions/workflows/refresh-data.yml','_blank','noopener');
+  // 显示提示
+  refreshToast('🔗 请在弹出的页面中点击 Run workflow 触发刷新','ok');
+  // 轮询新 commit
   var initSha='', start=Date.now(), maxWait=180000;
   fetch('https://api.github.com/repos/'+REPO+'/commits?per_page=1',{
     headers:{'Accept':'application/vnd.github.v3+json'}
   }).then(function(r){return r.json();}).then(function(d){
     initSha=d[0]&&d[0].sha||'';
-    refreshToast('🔗 请在弹出的页面中点击 Run workflow 触发刷新','ok');
     function pollCommit(){
       fetch('https://api.github.com/repos/'+REPO+'/commits?per_page=1',{
         headers:{'Accept':'application/vnd.github.v3+json'}
