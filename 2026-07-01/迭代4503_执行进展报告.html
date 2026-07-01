@@ -266,6 +266,12 @@ var typeData = [6, 5, 3, 3, 1, 1];
 new Chart(document.getElementById('chartStage'),{type:'bar',data:{labels:stageLabels,datasets:[{label:'需求数',data:stageData,backgroundColor:['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#fa8c16','#d9d9d9'].slice(0,stageLabels.length),borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:2}},y:{grid:{display:false}}}}});
 new Chart(document.getElementById('chartStatus'),{type:'bar',data:{labels:statusLabels,datasets:[{label:'任务数',data:statusData,backgroundColor:['#d9d9d9','#52c41a','#1890ff','#fa8c16','#faad14','#722ed1'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'}},y:{grid:{display:false}}}}});
 new Chart(document.getElementById('chartPie'),{type:'pie',data:{labels:typeLabels,datasets:[{data:typeData,backgroundColor:['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#ff4d4f','#eb2f96','#a0d911'].slice(0,typeLabels.length),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
+var bugOpenerLabels = [];
+var bugOpenerData = [];
+var bugAssigneeLabels = [];
+var bugAssigneeData = [];
+if(bugOpenerLabels.length>0){new Chart(document.getElementById('chartBugOpener'),{type:'bar',data:{labels:bugOpenerLabels,datasets:[{label:'Bug数',data:bugOpenerData,backgroundColor:'#f5576c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false}}}}});}
+if(bugAssigneeLabels.length>0){new Chart(document.getElementById('chartBugAssignee'),{type:'bar',data:{labels:bugAssigneeLabels,datasets:[{label:'Bug数',data:bugAssigneeData,backgroundColor:'#ea580c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false}}}}});}
 </script>
 </body>
 </html>
