@@ -273,21 +273,21 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-01 16:08 更新</span></div>
+    <div class="date-tag"><span>2026-07-01 16:19 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
         <div class="summary-item">
-            <div class="num" style="color:#a5b4fc;">57</div>
-            <div class="label">📋 产品 (待13/做43)</div>
+            <div class="num" style="color:#a5b4fc;">58</div>
+            <div class="label">📋 产品 (待13/做44)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#66eea6;">272</div>
-            <div class="label">⚙️ 后端 (待221/做19)</div>
+            <div class="num" style="color:#66eea6;">271</div>
+            <div class="label">⚙️ 后端 (待221/做18)</div>
         </div>
         <div class="summary-item">
             <div class="num" style="color:#f093fb;">114</div>
-            <div class="label">🎨 前端 (待74/做32)</div>
+            <div class="label">🎨 前端 (待73/做33)</div>
         </div>
         <div class="summary-item">
             <div class="num" style="color:#ffa726;">35</div>
@@ -309,14 +309,14 @@ body {
         <a href="2026-07-01/未完成ab类型任务_详细任务.html" class="card product" target="_blank">
             <span class="icon">📋</span>
             <span class="name">产品任务</span>
-            <span class="desc">需求 / AB 类型<br>57个未完成 · 6人</span>
+            <span class="desc">需求 / AB 类型<br>58个未完成 · 6人</span>
         </a>
 
         <!-- 后端开发 -->
         <a href="2026-07-01/未完成后端开发任务_详细任务.html" class="card backend" target="_blank">
             <span class="icon">⚙️</span>
             <span class="name">后端开发</span>
-            <span class="desc">后端开发任务<br>272个未完成 · 14人</span>
+            <span class="desc">后端开发任务<br>271个未完成 · 13人</span>
         </a>
 
         <!-- 前端开发 -->
@@ -505,10 +505,10 @@ body {
                         <td class="trend-c-m">35 <span class="trend-delta trend-up">+9</span> <span class="trend-delta trend-down">-1</span></td>
                         <td>485 <span class="trend-delta trend-up">+102</span> <span class="trend-delta trend-down">-22</span></td>
                     </tr>
-                                                                                                                                                                                                                                                                                        <tr class="today">
+                                                                                                                                                                                                                                                                                                            <tr class="today">
                         <td>2026-07-01 ⬅</td>
-                        <td class="trend-c-p">57 <span class="trend-delta trend-down">-2</span></td>
-                        <td class="trend-c-b">272 <span class="trend-delta trend-up">+5</span> <span class="trend-delta trend-down">-7</span></td>
+                        <td class="trend-c-p">58 <span class="trend-delta trend-up">+1</span> <span class="trend-delta trend-down">-2</span></td>
+                        <td class="trend-c-b">271 <span class="trend-delta trend-up">+4</span> <span class="trend-delta trend-down">-7</span></td>
                         <td class="trend-c-f">114 <span class="trend-delta trend-down">-3</span></td>
                         <td class="trend-c-m">35 <span class="trend-delta trend-flat">--</span></td>
                         <td>478 <span class="trend-delta trend-up">+5</span> <span class="trend-delta trend-down">-12</span></td>
@@ -548,16 +548,56 @@ function liveRefreshRoot(){
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
     var SVR='http://172.28.52.91:8900';
-    // 方法1: fetch no-cors → 不弹窗，不被拦截，响应被忽略但请求已发出（管线已触发）
+    // 触发管线
     fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
-    .then(function(){ rtoast('已触发后台刷新，约40秒后自动刷新','ok'); })
+    .then(function(){ rtoast('已触发后台刷新，正在拉取数据...','ok'); })
     .catch(function(){ rtoast('已触发后台刷新（请确认服务已启动）','ok'); });
-    // 轮询：30秒后检查管线是否完成
-    setTimeout(function(){
-      fetch(SVR+'/health',{mode:'cors'})
-      .then(function(){ btn.classList.remove('loading'); rtoast('刷新完成，页面即将自动刷新...','ok'); setTimeout(function(){location.reload();},2000); })
-      .catch(function(){ btn.classList.remove('loading'); rtoast('后台刷新中，约60秒后手动刷新页面','ok'); });
-    },35000);
+    // 智能轮询管线状态
+    var pollCount=0;
+    var pollTimer=setInterval(function(){
+      pollCount++;
+      fetch(SVR+'/api/pipeline-status',{mode:'cors'})
+      .then(function(r){return r.json();})
+      .then(function(s){
+        var elapsed=s.elapsed||0;
+        // 更新按钮文字显示进度
+        var tsEl=btn.querySelector('.refresh-time');
+        if(tsEl) tsEl.textContent='已运行'+Math.round(elapsed)+'s';
+
+        if(s.running){
+          // 仍在运行
+          if(pollCount%5===0) rtoast('数据拉取中... '+Math.round(elapsed)+'s','ok');
+        } else if(s.git_push_time && !s.error){
+          // 管线完成，git已推送，等待 GitHub Pages 部署
+          clearInterval(pollTimer);
+          var pushAgo=Math.round(Date.now()/1000 - s.git_push_time);
+          var ghWait=Math.max(30, 60 - pushAgo); // GitHub Pages 通常需要30-60s
+          rtoast('管线完成('+Math.round(elapsed)+'s)，Git 已推送，等待GitHub Pages部署 '+ghWait+'s...','ok');
+          btn.classList.remove('loading');
+          var cdEl=document.createElement('span');
+          cdEl.style.cssText='display:inline-block;margin-left:6px;font-size:12px;color:#f59e0b;font-weight:500';
+          btn.parentNode.appendChild(cdEl);
+          var cd=ghWait;
+          var cdTimer=setInterval(function(){
+            cd--;cdEl.textContent='⏳ '+cd+'s 后刷新';
+            if(cd<=0){clearInterval(cdTimer);cdEl.remove();location.reload();}
+          },1000);
+        } else if(s.error){
+          clearInterval(pollTimer);
+          btn.classList.remove('loading');
+          rtoast('刷新失败: '+s.error,'err');
+        } else {
+          // 管线结束但 git 还没推送（异常）
+          clearInterval(pollTimer);
+          btn.classList.remove('loading');
+          rtoast('管线完成，等待Git推送...','ok');
+          setTimeout(function(){location.reload();},15000);
+        }
+      }).catch(function(){
+        // 服务器不可达
+        if(pollCount>30){clearInterval(pollTimer);btn.classList.remove('loading');rtoast('刷新服务未响应，请手动刷新','err');}
+      });
+    },2000); // 每2秒轮询
     return;
   }
   // 本地 localhost → 同源API刷新
