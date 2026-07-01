@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-07-01 | 全平台延期任务追踪 | 共 34 个延期任务 | 网批2.0: 34</p></div>
+<p>数据截止：2026-07-01 | 全平台延期任务追踪 | 共 31 个延期任务 | 网批2.0: 31</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">34</div><div class="label">延期任务总数</div></div>
+<div class="card card-total"><div class="num">31</div><div class="label">延期任务总数</div></div>
 <div class="card card-wait"><div class="num">18</div><div class="label">待处理</div></div>
-<div class="card card-doing"><div class="num">7</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">34</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">8</div><div class="label">涉及人员</div></div>
+<div class="card card-doing"><div class="num">4</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">31</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">7</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -225,34 +225,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
     <details>
         <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
-            <span class="assignee-name">胡健</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共3个</span>
-                <span class="stat-badge stat-wait">待处理0</span>
-                <span class="stat-badge stat-doing">进行中3</span>
-                <span class="stat-badge stat-overdue">最长1天</span>
-                <span class="stat-badge stat-h">预估32h</span>
-                <span class="stat-badge stat-h">消耗23h</span>
-                <span class="stat-badge stat-h">剩余11h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>299267</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】5-6月产品组AI提效总结">【产品】5-6月产品组AI提效总结</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>affair</td><td>网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>3</td><td>5</td></tr>
-<tr class="row-overdue"><td>295302</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】佛山大小库管理诉求，履约信息告别导单问题调研及梳理">【产品】佛山大小库管理诉求，履约信息告别导单问题调研及梳理</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td style="color:#ef4444;font-weight:700;">1天</td><td>18</td><td>12</td><td>1</td></tr>
-<tr class="row-overdue"><td>292884</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】分销联通订单及分销诉求调研及对接">【产品】分销联通订单及分销诉求调研及对接</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</td><td>2026-06-30</td><td style="color:#ef4444;font-weight:700;">1天</td><td>9</td><td>8</td><td>5</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
             <span class="assignee-name">梁庆芬</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -278,7 +250,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
             <span class="assignee-name">黄宇安</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -305,9 +277,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u949f\u65e5\u5065", "\u8c22\u5a49\u626c", "\u5362\u946b", "\u7b26\u5b8f\u52c7", "\u5468\u5fd7\u6770", "\u80e1\u5065", "\u6881\u5e86\u82ac", "\u9ec4\u5b87\u5b89"],datasets:[{label:'延期任务数',data:[8, 8, 6, 4, 3, 3, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80", "#f5576c80", "#ffa72680", "#26c6da80", "#ab47bc80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[18, 7],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["0", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[6, 1, 27],backgroundColor:["#ef4444", "#f5576c", "#ffa726"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u949f\u65e5\u5065", "\u8c22\u5a49\u626c", "\u5362\u946b", "\u7b26\u5b8f\u52c7", "\u5468\u5fd7\u6770", "\u6881\u5e86\u82ac", "\u9ec4\u5b87\u5b89"],datasets:[{label:'延期任务数',data:[8, 8, 6, 4, 3, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80", "#f5576c80", "#ffa72680", "#26c6da80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[18, 4],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["0", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[6, 1, 24],backgroundColor:["#ef4444", "#f5576c", "#ffa726"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
