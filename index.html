@@ -567,22 +567,13 @@ function liveRefreshRoot(){
         if(s.running){
           // 仅按钮文字显示进度，不弹toast
         } else if(s.git_push_time && !s.error){
-          // 管线完成，git已推送，等待 GitHub Pages 部署
+          // 管线完成，git已推送，立刻通过本地服务查看最新数据
           clearInterval(pollTimer);
-          var pushAgo=Math.round(Date.now()/1000 - s.git_push_time);
-          var ghWait=Math.max(45, 75 - pushAgo); // 留出充足时间给 GitHub Pages 部署
-          rtoast('管线完成，'+ghWait+'s后自动刷新页面','ok');
           btn.classList.remove('loading');
           if(tsEl) tsEl.textContent='';
-          var cd=ghWait;
-          var cdTimer=setInterval(function(){
-            cd--;
-            if(cd<=0){clearInterval(cdTimer);
-              // 带时间戳强刷，绕过浏览器和CDN缓存
-              var url=location.href.split('?')[0];
-              location.href=url+'?t='+Date.now();
-            }
-          },1000);
+          rtoast('管线完成，即将刷新最新数据','ok');
+          // 本地服务已有最新数据，直接跳转（绕过 GitHub Pages CDN 延迟）
+          location.href = SVR+'/dashboard?t='+Date.now();
         } else if(s.error){
           clearInterval(pollTimer);
           btn.classList.remove('loading');
