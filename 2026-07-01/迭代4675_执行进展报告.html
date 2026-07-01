@@ -181,9 +181,6 @@ function liveRefresh(eid){
     if(el('v_task')){el('v_task').textContent=it.task_total;el('d_task_d').textContent=it.doing;el('d_task_w').textContent=it.wait;}
     if(el('v_bug')){el('v_bug').textContent=it.bug_total;el('d_bug_a').textContent=it.active_bugs;}
     if(el('reportTime')) el('reportTime').textContent=today;
-    if(cs&&cs.stage){(function(sl,sv,sc){var c=Chart.getChart('chartStage');if(c){c.data.labels=sl;c.data.datasets[0].data=sv;c.update();}})(cs.stage.labels,cs.stage.data);}
-    if(cs&&cs.status){(function(sl,sv){var c=Chart.getChart('chartStatus');if(c){c.data.labels=sl;c.data.datasets[0].data=sv;c.update();}})(cs.status.labels,cs.status.data);}
-    if(cs&&cs.type){(function(tl,tv){var c=Chart.getChart('chartPie');if(c){c.data.labels=tl;c.data.datasets[0].data=tv;c.update();}})(cs.type.labels,cs.type.data);}
     btn.classList.remove('loading');
     var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
     var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
@@ -219,11 +216,7 @@ function liveRefresh(eid){
     <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red" id="v_bug">0</div>
       <div class="detail">未关闭: <span id="d_bug_a">0</span> &nbsp; 已关/已延: 0</div></div>
   </div>  <div class="dual-col">
-    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>已完成/已关闭任务 2 个（100.0%）</li><li>需求规模适中（1个），便于管理</li></ul></div></div></div><div class="charts-row">
-    <div class="chart-card"><h4>📊 需求阶段分布</h4><div class="chart-wrap"><canvas id="chartStage"></canvas></div></div>
-    <div class="chart-card"><h4>📊 任务状态分布</h4><div class="chart-wrap"><canvas id="chartStatus"></canvas></div></div>
-    <div class="chart-card"><h4>📊 任务类型分布</h4><div class="chart-wrap"><canvas id="chartPie"></canvas></div></div>
-  </div><div class="section"><h2>📋 需求分析（1 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">1</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">1</div><div class="lbl">已立项</div></div></div><h3>需求明细</h3><table><thead><tr><th>ID</th><th>优先级</th><th>标题</th><th>状态</th><th>阶段</th><th>创建人</th></tr></thead><tbody id="storyTbody"><tr onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-stage='projected'>
+    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>已完成/已关闭任务 2 个（100.0%）</li><li>需求规模适中（1个），便于管理</li></ul></div></div></div><div class="section"><h2>📋 需求分析（1 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">1</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">1</div><div class="lbl">已立项</div></div></div><h3>需求明细</h3><table><thead><tr><th>ID</th><th>优先级</th><th>标题</th><th>状态</th><th>阶段</th><th>创建人</th></tr></thead><tbody id="storyTbody"><tr onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_0">▶</span>65648</td>
             <td>P3</td><td style="max-width:400px;">【商家退款配置】平台新增选项2606 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">2个任务</span></td>
             <td>active</td><td>已立项</td>
@@ -242,15 +235,6 @@ function liveRefresh(eid){
 <script>
 Chart.defaults.font.family = '-apple-system, "PingFang SC", "Microsoft YaHei", sans-serif';
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
-var stageLabels = ["已立项"];
-var stageData = [1];
-var statusLabels = ["已关闭", "已完成", "进行中", "待处理", "已变更", "暂停"];
-var statusData = [0, 2, 0, 0, 0, 0];
-var typeLabels = ["前端", "事务"];
-var typeData = [1, 1];
-new Chart(document.getElementById('chartStage'),{type:'bar',data:{labels:stageLabels,datasets:[{label:'需求数',data:stageData,backgroundColor:['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#fa8c16','#d9d9d9'].slice(0,stageLabels.length),borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:2}},y:{grid:{display:false}}}}});
-new Chart(document.getElementById('chartStatus'),{type:'bar',data:{labels:statusLabels,datasets:[{label:'任务数',data:statusData,backgroundColor:['#d9d9d9','#52c41a','#1890ff','#fa8c16','#faad14','#722ed1'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'}},y:{grid:{display:false}}}}});
-new Chart(document.getElementById('chartPie'),{type:'pie',data:{labels:typeLabels,datasets:[{data:typeData,backgroundColor:['#1890ff','#52c41a','#faad14','#722ed1','#13c2c2','#ff4d4f','#eb2f96','#a0d911'].slice(0,typeLabels.length),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10,usePointStyle:true}}}}});
 var bugOpenerLabels = [];
 var bugOpenerData = [];
 var bugAssigneeLabels = [];
