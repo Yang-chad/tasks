@@ -270,11 +270,11 @@ var bugOpenerLabels = [];
 var bugOpenerData = [];
 var bugAssigneeLabels = [];
 var bugAssigneeData = [];
-if(bugOpenerLabels.length>0){new Chart(document.getElementById('chartBugOpener'),{type:'bar',data:{labels:bugOpenerLabels,datasets:[{label:'Bug数',data:bugOpenerData,backgroundColor:'#f5576c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false}}}}});}
-if(bugAssigneeLabels.length>0){new Chart(document.getElementById('chartBugAssignee'),{type:'bar',data:{labels:bugAssigneeLabels,datasets:[{label:'Bug数',data:bugAssigneeData,backgroundColor:'#ea580c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false}}}}});}
+if(bugOpenerLabels.length>0){new Chart(document.getElementById('chartBugOpener'),{type:'bar',data:{labels:bugOpenerLabels,datasets:[{label:'Bug数',data:bugOpenerData,backgroundColor:'#f5576c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',barPercentage:0.75,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false},ticks:{font:{size:12}}}}}});}
+if(bugAssigneeLabels.length>0){new Chart(document.getElementById('chartBugAssignee'),{type:'bar',data:{labels:bugAssigneeLabels,datasets:[{label:'Bug数',data:bugAssigneeData,backgroundColor:'#ea580c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',barPercentage:0.75,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false},ticks:{font:{size:12}}}}}});}
 var bugResolverLabels = [];
 var bugResolverData = [];
-if(bugResolverLabels.length>0){new Chart(document.getElementById('chartBugResolver'),{type:'bar',data:{labels:bugResolverLabels,datasets:[{label:'已关闭Bug',data:bugResolverData,backgroundColor:'#10b981',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false}}}}});}
+if(bugResolverLabels.length>0){new Chart(document.getElementById('chartBugResolver'),{type:'bar',data:{labels:bugResolverLabels,datasets:[{label:'已关闭Bug',data:bugResolverData,backgroundColor:'#10b981',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',barPercentage:0.75,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false},ticks:{font:{size:12}}}}}});}
 </script>
 </body>
 </html>
