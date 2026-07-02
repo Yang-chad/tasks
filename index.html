@@ -273,7 +273,12 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-02 10:06 更新</span></div>
+    <!-- 本地预览提示条，仅本地访问时显示 -->
+    <div id="localPreviewBar" style="display:none;background:#fef3c7;color:#92400e;text-align:center;padding:6px 16px;font-size:13px;border-radius:6px;margin-bottom:8px;">
+      📍 当前查看本地最新数据 · <a href="https://yang-chad.github.io/tasks/" style="color:#92400e;font-weight:600;">回到线上版本 →</a>
+    </div>
+
+    <div class="date-tag"><span>2026-07-02 10:12 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -572,8 +577,9 @@ function liveRefreshRoot(){
           clearInterval(pollTimer);
           btn.classList.remove('loading');
           if(tsEl) tsEl.textContent='';
-          rtoast('数据已推送至 GitHub，1-2分钟后CDN生效，届时手动刷新页面','ok');
-          // GitHub Pages CDN 有1-3分钟缓存延迟，不自动reload
+          rtoast('数据已更新，跳转本地查看最新数据','ok');
+          // CDN 延迟不可控，直接跳本地服务器（本地零延迟）
+          setTimeout(function(){ location.href = SVR+'/dashboard?t='+Date.now(); }, 800);
         } else if(s.error){
           clearInterval(pollTimer);
           btn.classList.remove('loading');
@@ -618,6 +624,14 @@ function liveRefreshRoot(){
     rtoast('本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
   });
 }
+// 本地访问时显示提示条
+(function(){
+  var isGH=location.origin.indexOf('github.io')>=0;
+  if(!isGH && location.protocol!=='file:'){
+    var bar=document.getElementById('localPreviewBar');
+    if(bar) bar.style.display='block';
+  }
+})();
 </script>
 </body>
 </html>
