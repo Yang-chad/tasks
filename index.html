@@ -273,7 +273,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-02 10:41 更新</span></div>
+    <div class="date-tag"><span>2026-07-02 10:43 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -549,54 +549,34 @@ function liveRefreshRoot(){
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
     var SVR='http://172.28.52.91:8900';
-    var tsEl=btn.querySelector('.refresh-time');
-    if(tsEl) tsEl.textContent='启动中...';
-
-    // 触发管线（no-cors，只发请求，不读取响应）
-    fetch(SVR+'/trigger-pipeline',{mode:'no-cors'}).catch(function(){});
-
-    // 智能轮询：最多90秒
-    var pollCount=0;
-    var pollTimer=setInterval(function(){
-      pollCount++;
-      fetch(SVR+'/api/pipeline-status',{mode:'cors'})
-      .then(function(r){return r.json();})
-      .then(function(s){
-        var elapsed=Math.round(s.elapsed||0);
-        if(tsEl) tsEl.textContent='已运行'+elapsed+'s';
-
-        if(s.running){
-          // 仅按钮文字显示进度
-        } else if(s.git_push_time && !s.error){
-          clearInterval(pollTimer);
-          btn.classList.remove('loading');
-          if(tsEl) tsEl.textContent='';
-          rtoast('管线完成，等待GitHub同步...','ok');
-          // raw.githubusercontent.com 通常 10-30s 内同步
-          setTimeout(function(){ syncFromRaw(true); }, 5000);
-        } else if(s.error){
-          clearInterval(pollTimer);
-          btn.classList.remove('loading');
-          if(tsEl) tsEl.textContent='失败';
-          rtoast('刷新失败: '+s.error,'err');
-        } else {
-          clearInterval(pollTimer);
-          btn.classList.remove('loading');
-          if(tsEl) tsEl.textContent='异常';
-          rtoast('刷新状态异常，请手动检查','err');
-        }
-      }).catch(function(){
-        if(tsEl) tsEl.textContent='连接中...';
-        if(pollCount>45){clearInterval(pollTimer);btn.classList.remove('loading');if(tsEl)tsEl.textContent='超时';rtoast('刷新服务未响应','err');}
-      });
-    },2000);
+    // 方法1: fetch no-cors → 不弹窗，不被拦截，响应被忽略但请求已发出（管线已触发）
+    fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
+    .then(function(){ rtoast('已触发后台刷新，约40秒后自动刷新','ok'); })
+    .catch(function(){ rtoast('已触发后台刷新（请确认服务已启动）','ok'); });
+    // 轮询：30秒后检查管线是否完成
+    setTimeout(function(){
+      fetch(SVR+'/health',{mode:'cors'})
+      .then(function(){ btn.classList.remove('loading'); rtoast('刷新完成，页面即将自动刷新...','ok'); setTimeout(function(){location.reload();},2000); })
+      .catch(function(){ btn.classList.remove('loading'); rtoast('后台刷新中，约60秒后手动刷新页面','ok'); });
+    },35000);
     return;
   }
   // 本地 localhost → 同源API刷新
   btn.classList.add('loading');
   fetch(window.location.origin+'/api/refresh-root')
   .then(function(r){return r.json();}).then(function(d){
-    updateUI(d);
+    if(d.error) throw new Error(d.error);
+    // 更新摘要栏数字
+    var sumItems=document.querySelectorAll('.summary-item .num');
+    if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
+    if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
+    if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
+    if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
+    if(sumItems[4]) sumItems[4].textContent=d.overdue_count||0;
+    // 更新时间标签
+    var dt=document.querySelector('.date-tag span');
+    if(dt){ var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+      dt.textContent=document.querySelector('.date-tag span').textContent.replace(/\d+:\d+/,'')+' '+now+' 更新';}
     btn.classList.remove('loading');
     var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
     var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
@@ -606,31 +586,6 @@ function liveRefreshRoot(){
     rtoast('本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
   });
 }
-function updateUI(d){
-  var sumItems=document.querySelectorAll('.summary-item .num');
-  if(!sumItems.length) return;
-  if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
-  if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
-  if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
-  if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
-  if(sumItems[4]) sumItems[4].textContent=d.overdue_count||0;
-  var dt=document.querySelector('.date-tag span');
-  if(dt && d.updated) dt.textContent=d.updated+' 更新';
-}
-function syncFromRaw(showToast){
-  var today=new Date().toISOString().slice(0,10);
-  var url='https://raw.githubusercontent.com/Yang-chad/tasks/main/'+today+'/dashboard_summary.json?t='+Date.now();
-  fetch(url)
-  .then(function(r){return r.json();})
-  .then(function(d){
-    updateUI(d);
-    if(showToast) rtoast('数据已刷新 — '+d.updated+' 更新','ok');
-  }).catch(function(e){
-    if(showToast) rtoast('GitHub同步中，请稍后F5刷新','warn');
-  });
-}
-// 页面加载时自动同步最新数据（绕过CDN）
-(function(){ syncFromRaw(false); })();
 </script>
 </body>
 </html>
