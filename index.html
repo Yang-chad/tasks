@@ -278,7 +278,7 @@ body {
       📍 当前查看本地最新数据 · <a href="https://yang-chad.github.io/tasks/" style="color:#92400e;font-weight:600;">回到线上版本 →</a>
     </div>
 
-    <div class="date-tag"><span>2026-07-02 10:18 更新</span></div>
+    <div class="date-tag"><span>2026-07-02 10:26 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -646,6 +646,29 @@ function liveRefreshRoot(){
   if(!isGH && location.protocol!=='file:'){
     var bar=document.getElementById('localPreviewBar');
     if(bar) bar.style.display='block';
+  }
+})();
+// F5 / 页面加载时自动从本地服务器同步最新数据（绕过CDN）
+(function(){
+  var isGH=location.origin.indexOf('github.io')>=0;
+  var SVR='http://172.28.52.91:8900';
+  function updateUI(d){
+    var sumItems=document.querySelectorAll('.summary-item .num');
+    if(!sumItems.length) return;
+    if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
+    if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
+    if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
+    if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
+    if(sumItems[4]) sumItems[4].textContent=d.overdue_count||0;
+    var dt=document.querySelector('.date-tag span');
+    if(dt){ var now=new Date(); dt.textContent=now.toISOString().slice(0,10)+' '+now.toLocaleTimeString('zh-CN',{hour12:false})+' 更新'; }
+  }
+  if(isGH || location.protocol==='file:'){
+    fetch(SVR+'/api/refresh-root',{mode:'cors'})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.error) updateUI(d);
+    }).catch(function(){});
   }
 })();
 </script>
