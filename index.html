@@ -73,15 +73,18 @@ body {
     display: flex; flex-wrap: nowrap; gap: 8px;
     justify-content: center; margin-bottom: 24px;
     overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
 }
+.summary-bar::-webkit-scrollbar { display: none; } /* Chrome/Safari/Edge */
 .summary-item {
-    background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px;
+    background: rgba(255,255,255,0.04); border-radius: 10px; padding: 8px 10px;
     border: 1px solid rgba(255,255,255,0.06); text-align: center;
-    min-width: 80px;
+    min-width: 74px;
     flex-shrink: 0;
 }
 .summary-item .num { font-size: 20px; font-weight: 700; }
-.summary-item .label { font-size: 11px; color: #666; margin-top: 4px; }
+.summary-item .label { font-size: 10px; color: #999; margin-top: 4px; }
 
 /* ── Card Grid ── */
 .grid {
