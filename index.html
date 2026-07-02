@@ -273,7 +273,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-02 09:53 更新</span></div>
+    <div class="date-tag"><span>2026-07-02 09:58 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -572,9 +572,8 @@ function liveRefreshRoot(){
           clearInterval(pollTimer);
           btn.classList.remove('loading');
           if(tsEl) tsEl.textContent='';
-          rtoast('管线完成，数据已推送，5秒后刷新页面','ok');
-          // 等待 GitHub Pages CDN 生效后刷新当前页面
-          setTimeout(function(){ location.reload(true); }, 5000);
+          rtoast('数据已推送至 GitHub，1-2分钟后CDN生效，届时手动刷新页面','ok');
+          // GitHub Pages CDN 有1-3分钟缓存延迟，不自动reload
         } else if(s.error){
           clearInterval(pollTimer);
           btn.classList.remove('loading');
