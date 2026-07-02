@@ -273,7 +273,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-02 13:43 更新</span></div>
+    <div class="date-tag"><span>2026-07-02 13:54 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -568,17 +568,12 @@ function liveRefreshRoot(){
         if(s.running){
           // 运行中，仅更新按钮文字
         } else if(s.git_push_time && !s.error){
-          // 管线完成，git已推送，等GitHub Pages部署后自动刷新页面
+          // 管线完成，git已推送，等raw文件同步后拉取数据
           clearInterval(pollTimer);
           if(tsEl) tsEl.textContent='同步中...';
-          rtoast('管线完成，等待GitHub部署新数据...','ok');
-          // GitHub Pages 通常 15-30s 内完成部署
-          setTimeout(function(){
-            btn.classList.remove('loading');
-            if(tsEl) tsEl.textContent='刷新中...';
-            rtoast('数据已更新，即将自动刷新页面','ok');
-            setTimeout(function(){location.reload();},1500);
-          }, 20000);
+          rtoast('管线完成，等待GitHub同步数据...','ok');
+          // raw.githubusercontent.com 通常 10-30s 内同步
+          setTimeout(function(){ syncFromRaw(true); }, 15000);
         } else if(s.error){
           clearInterval(pollTimer);
           btn.classList.remove('loading');
