@@ -278,7 +278,7 @@ body {
       📍 当前查看本地最新数据 · <a href="https://yang-chad.github.io/tasks/" style="color:#92400e;font-weight:600;">回到线上版本 →</a>
     </div>
 
-    <div class="date-tag"><span>2026-07-02 10:17 更新</span></div>
+    <div class="date-tag"><span>2026-07-02 10:18 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -573,13 +573,29 @@ function liveRefreshRoot(){
         if(s.running){
           // 仅按钮文字显示进度，不弹toast
         } else if(s.git_push_time && !s.error){
-          // 管线完成，git已推送，立刻通过本地服务查看最新数据
+          // 管线完成，从本地服务器拉最新数据更新页面（不依赖CDN）
           clearInterval(pollTimer);
           btn.classList.remove('loading');
           if(tsEl) tsEl.textContent='';
-          rtoast('数据已更新，跳转本地查看最新数据','ok');
-          // CDN 延迟不可控，直接跳本地服务器（本地零延迟）
-          setTimeout(function(){ location.href = SVR+'/dashboard?t='+Date.now(); }, 800);
+          rtoast('管线完成，正在更新数据...','ok');
+          // 从本地服务器获取最新摘要，动态更新页面DOM
+          fetch(SVR+'/api/refresh-root',{mode:'cors'})
+          .then(function(r){return r.json();})
+          .then(function(d){
+            if(d.error) throw new Error(d.error);
+            var sumItems=document.querySelectorAll('.summary-item .num');
+            if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
+            if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
+            if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
+            if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
+            if(sumItems[4]) sumItems[4].textContent=d.overdue_count||0;
+            var dt=document.querySelector('.date-tag span');
+            if(dt){ var now=new Date(); dt.textContent=now.toISOString().slice(0,10)+' '+now.toLocaleTimeString('zh-CN',{hour12:false})+' 更新'; }
+            rtoast('数据已刷新 — 当前为最新数据','ok');
+          }).catch(function(){
+            // 兜底：本地服务器不可达时提示手动刷新
+            rtoast('数据已推送至 GitHub，请手动F5刷新页面查看','warn');
+          });
         } else if(s.error){
           clearInterval(pollTimer);
           btn.classList.remove('loading');
