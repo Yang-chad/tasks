@@ -278,27 +278,27 @@ body {
     <!-- 今日摘要 -->
     <div class="summary-bar">
         <div class="summary-item">
-            <div class="num" style="color:#a5b4fc;">40</div>
+            <div class="num" id="summary-product" style="color:#a5b4fc;">40</div>
             <div class="label">📋 产品 (待13/做26)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#66eea6;">227</div>
+            <div class="num" id="summary-backend" style="color:#66eea6;">227</div>
             <div class="label">⚙️ 后端 (待204/做8)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#f093fb;">104</div>
+            <div class="num" id="summary-frontend" style="color:#f093fb;">104</div>
             <div class="label">🎨 前端 (待65/做31)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#ffa726;">34</div>
+            <div class="num" id="summary-mobile" style="color:#ffa726;">34</div>
             <div class="label">📱 移动端 (待16/做18)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#26c6da;">24</div>
+            <div class="num" id="summary-test" style="color:#26c6da;">24</div>
             <div class="label">🧪 测试 (待8/做16)</div>
         </div>
         <div class="summary-item">
-            <div class="num" style="color:#ef5350;">10</div>
+            <div class="num" id="summary-overdue" style="color:#ef5350;">10</div>
             <div class="label">🚨 延期任务 (3人)</div>
         </div>
     </div>
@@ -618,14 +618,27 @@ function liveRefreshRoot(){
   });
 }
 function updateUI(d){
-  var sumItems=document.querySelectorAll('.summary-item .num');
-  if(!sumItems.length) return;
-  if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
-  if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
-  if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
-  if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
-  if(sumItems[4]) sumItems[4].textContent=d.test_count||0;
-  if(sumItems[5]) sumItems[5].textContent=d.overdue_count||0;
+  // ID-based（精确）
+  var p=document.getElementById('summary-product'); if(p) p.textContent=d.product_count||0;
+  var b=document.getElementById('summary-backend'); if(b) b.textContent=d.backend_count||0;
+  var f=document.getElementById('summary-frontend'); if(f) f.textContent=d.frontend_count||0;
+  var m=document.getElementById('summary-mobile'); if(m) m.textContent=d.mobile_count||0;
+  var t=document.getElementById('summary-test'); if(t) t.textContent=d.test_count||0;
+  var o=document.getElementById('summary-overdue'); if(o) o.textContent=d.overdue_count||0;
+  // Fallback：按 label 文本匹配（兼容旧HTML无ID的情况）
+  var items=document.querySelectorAll('.summary-item');
+  for(var i=0;i<items.length;i++){
+    var label=items[i].querySelector('.label');
+    var num=items[i].querySelector('.num');
+    if(!label||!num) continue;
+    var txt=label.textContent||'';
+    if(txt.indexOf('📋')>=0) num.textContent=d.product_count||0;
+    else if(txt.indexOf('⚙️')>=0) num.textContent=d.backend_count||0;
+    else if(txt.indexOf('🎨')>=0) num.textContent=d.frontend_count||0;
+    else if(txt.indexOf('📱')>=0) num.textContent=d.mobile_count||0;
+    else if(txt.indexOf('🧪')>=0) num.textContent=d.test_count||0;
+    else if(txt.indexOf('🚨')>=0) num.textContent=d.overdue_count||0;
+  }
   var dt=document.querySelector('.date-tag span');
   if(dt && d.updated) dt.textContent=d.updated+' 更新';
 }
