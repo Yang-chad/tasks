@@ -276,7 +276,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-03 10:37 更新</span></div>
+    <div class="date-tag"><span>2026-07-03 10:47 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -615,26 +615,8 @@ function updateUI(d){
   var dt=document.querySelector('.date-tag span');
   if(dt && d.updated) dt.textContent=d.updated+' 更新';
 }
-function syncFromRaw(showToast){
-  var btn=document.getElementById('refreshBtn');
-  var tsEl=btn?btn.querySelector('.refresh-time'):null;
-  var today=new Date().toISOString().slice(0,10);
-  var url='https://raw.githubusercontent.com/Yang-chad/tasks/main/'+today+'/dashboard_summary.json?t='+Date.now();
-  fetch(url)
-  .then(function(r){return r.json();})
-  .then(function(d){
-    updateUI(d);
-    if(btn) btn.classList.remove('loading');
-    if(tsEl){ var t=new Date().toLocaleTimeString('zh-CN',{hour12:false}); tsEl.textContent=t; }
-    if(showToast) rtoast('数据已刷新 — '+d.updated+' 更新','ok');
-  }).catch(function(e){
-    if(btn) btn.classList.remove('loading');
-    if(tsEl) tsEl.textContent='离线';
-    if(showToast) rtoast('GitHub同步较慢，请稍后F5刷新','warn');
-  });
-}
-// 页面加载时自动同步最新数据
-(function(){ syncFromRaw(false); })();
+// 已移除 raw.githubusercontent.com 动态加载逻辑，数据由静态HTML提供
+// 点击刷新按钮 → 触发本地管线 → 推送后自动更新
 </script>
 </body>
 </html>
