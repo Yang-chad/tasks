@@ -629,10 +629,10 @@ function updateUI(d){
 // 已移除 raw.githubusercontent.com 动态加载逻辑，数据由静态HTML提供
 // 点击刷新按钮 → 触发本地管线 → 推送后自动更新
 
-// ── 自动修正：从 dashboard_summary.json 拉取最新数据修正静态值 ──
+// ── 自动修正：从 raw.githubusercontent.com 拉取最新数据，绕过 GitHub Pages CDN 缓存 ──
 (function(){
   var today = new Date().toISOString().slice(0,10);
-  var url = today+'/dashboard_summary.json';
+  var url = 'https://raw.githubusercontent.com/Yang-chad/tasks/main/'+today+'/dashboard_summary.json';
   fetch(url).then(function(r){return r.json();}).then(function(d){
     if(!d.updated) return;
     var statics = {
