@@ -628,6 +628,27 @@ function updateUI(d){
 }
 // 已移除 raw.githubusercontent.com 动态加载逻辑，数据由静态HTML提供
 // 点击刷新按钮 → 触发本地管线 → 推送后自动更新
+
+// ── 自动修正：从 dashboard_summary.json 拉取最新数据修正静态值 ──
+(function(){
+  var today = new Date().toISOString().slice(0,10);
+  var url = today+'/dashboard_summary.json';
+  fetch(url).then(function(r){return r.json();}).then(function(d){
+    if(!d.updated) return;
+    var statics = {
+      product: document.getElementById('summary-product'),
+      backend: document.getElementById('summary-backend'),
+      frontend: document.getElementById('summary-frontend'),
+      mobile: document.getElementById('summary-mobile'),
+      overdue: document.getElementById('summary-overdue')
+    };
+    var needUpdate = false;
+    if(statics.product && statics.product.textContent != String(d.product_count||0)) needUpdate = true;
+    if(statics.backend && statics.backend.textContent != String(d.backend_count||0)) needUpdate = true;
+    if(statics.overdue && statics.overdue.textContent != String(d.overdue_count||0)) needUpdate = true;
+    if(needUpdate) updateUI(d);
+  }).catch(function(){});
+})();
 </script>
 </body>
 </html>
