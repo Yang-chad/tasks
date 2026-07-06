@@ -276,7 +276,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-06 08:36 更新</span></div>
+    <div class="date-tag"><span>2026-07-06 09:06 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -553,7 +553,7 @@ function liveRefreshRoot(){
   var isGH=window.location.origin.indexOf('github.io')>=0;
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
-    var SVR='http://172.28.52.91:8900';
+    var SVR='http://172.28.52.94:8900';
     // no-cors 触发管线（请求已发出，响应忽略）
     fetch(SVR+'/trigger-pipeline',{mode:'no-cors'}).catch(function(){});
     rtoast('已触发后台刷新...','ok');
