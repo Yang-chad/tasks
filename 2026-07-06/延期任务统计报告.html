@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-07-06 | 全平台延期任务追踪 | 共 13 个延期任务 | 网批2.0: 13</p></div>
+<p>数据截止：2026-07-06 | 全平台延期任务追踪 | 共 5 个延期任务 | 网批2.0: 5</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">13</div><div class="label">延期任务总数</div></div>
-<div class="card card-wait"><div class="num">6</div><div class="label">待处理</div></div>
-<div class="card card-doing"><div class="num">2</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">13</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">4</div><div class="label">涉及人员</div></div>
+<div class="card card-total"><div class="num">5</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">2</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">0</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">5</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">3</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -71,39 +71,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
     <details open>
         <summary style="background:#667eea15; border-left:4px solid #667eea;">
-            <span class="assignee-name">冯澈</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共8个</span>
-                <span class="stat-badge stat-wait">待处理4</span>
-                <span class="stat-badge stat-doing">进行中0</span>
-                <span class="stat-badge stat-overdue">最长3天</span>
-                <span class="stat-badge stat-h">预估79h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余79h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>294413</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商销售方案（返利、工程、满减件、买赠、组合套餐、优惠券）调价后不可售卖（调价、驳回）搜索引擎搜索">【后端】经销商销售方案（返利、工程、满减件、买赠、组合套餐、优惠券）调价后不可售卖（调价、驳回）搜索引擎搜索</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>16</td><td>0</td><td>16</td></tr>
-<tr class="row-overdue"><td>294412</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商销售方案（返利、工程、满减件、买赠、组合套餐、优惠券）调价后不可售卖（调价、驳回）搜索引擎同步">【后端】经销商销售方案（返利、工程、满减件、买赠、组合套餐、优惠券）调价后不可售卖（调价、驳回）搜索引擎同步</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>16</td><td>0</td><td>16</td></tr>
-<tr class="row-overdue"><td>301776</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】下载中心对接操作日志-枚举关系梳理&amp;对齐&amp;维护（资金、方案、库存等）">【后端】下载中心对接操作日志-枚举关系梳理&对齐&维护（资金、方案、库存等）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>3</td><td>0</td><td>3</td></tr>
-<tr class="row-overdue"><td>294411</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎搜索">【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎搜索</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>294410</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎同步">【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎同步</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>294395</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销司订货-零售、工程特价搜索引擎历史数据清洗">【后端】销司订货-零售、工程特价搜索引擎历史数据清洗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>294394</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销司订货-销司工程特价方案-生产状态、供货周期同步与搜索">【后端】销司订货-销司工程特价方案-生产状态、供货周期同步与搜索</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>12</td><td>0</td><td>12</td></tr>
-<tr class="row-overdue"><td>294393</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销司订货-销司日销方案-生产状态、供货周期同步与搜索">【后端】销司订货-销司日销方案-生产状态、供货周期同步与搜索</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>12</td><td>0</td><td>12</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
             <span class="assignee-name">许峻嘉</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共2个</span>
@@ -130,16 +97,16 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
-            <span class="assignee-name">林爱冰</span>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">蒋志军</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共2个</span>
                 <span class="stat-badge stat-wait">待处理0</span>
-                <span class="stat-badge stat-doing">进行中2</span>
-                <span class="stat-badge stat-overdue">最长4天</span>
-                <span class="stat-badge stat-h">预估40h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余40h</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">最长3天</span>
+                <span class="stat-badge stat-h">预估16h</span>
+                <span class="stat-badge stat-h">消耗16h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
             </span>
         </summary>
 <div class="table-wrapper">
@@ -150,14 +117,14 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr class="row-overdue"><td>301361</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【UI设计】PC商用订单指定发货仓发货">【UI设计】PC商用订单指定发货仓发货</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ad1_UI_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-02</td><td style="color:#ef4444;font-weight:700;">4天</td><td>20</td><td>0</td><td>20</td></tr>
-<tr class="row-overdue"><td>301360</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【UI设计】APP/H5商用订单指定发货仓发货">【UI设计】APP/H5商用订单指定发货仓发货</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ad1_UI_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-02</td><td style="color:#ef4444;font-weight:700;">4天</td><td>20</td><td>0</td><td>20</td></tr>
+<tr class="row-overdue"><td>294411</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎搜索">【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎搜索</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>8</td><td>8</td><td>0</td></tr>
+<tr class="row-overdue"><td>294410</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎同步">【后端】经销商销售方案（日销、经销商限时特价）调价后不可售卖（调价、驳回）搜索引擎同步</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-03</td><td style="color:#ef4444;font-weight:700;">3天</td><td>8</td><td>8</td><td>0</td></tr>
 </tbody>
 </table>
 </div>
 </details>
     <details>
-        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">梁庆芬</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -184,9 +151,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u51af\u6f88", "\u8bb8\u5cfb\u5609", "\u6797\u7231\u51b0", "\u6881\u5e86\u82ac"],datasets:[{label:'延期任务数',data:[8, 2, 2, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[6, 2],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[13],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8bb8\u5cfb\u5609", "\u848b\u5fd7\u519b", "\u6881\u5e86\u82ac"],datasets:[{label:'延期任务数',data:[2, 2, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[2, 0],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[5],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
