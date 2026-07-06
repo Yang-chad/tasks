@@ -260,6 +260,34 @@ body {
 .refresh-toast.show { opacity:1; }
 .refresh-toast.ok { background:#10b981; color:#fff; }
 .refresh-toast.err { background:#ef4444; color:#fff; }
+
+/* ── Settings Gear ── */
+.settings-wrap { position:relative; display:inline-block; vertical-align:middle; margin-left:8px; }
+.settings-btn { background:none; border:1px solid rgba(255,255,255,0.15); border-radius:50%; width:28px; height:28px;
+  display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:rgba(255,255,255,0.5);
+  font-size:14px; transition:all .2s; padding:0; }
+.settings-btn:hover { background:rgba(255,255,255,0.12); color:#fff; border-color:rgba(255,255,255,0.3); }
+.settings-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:10000;
+  display:none; align-items:center; justify-content:center; }
+.settings-modal-overlay.show { display:flex; }
+.settings-modal { background:#1e1e2e; border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:28px; width:340px; max-width:90vw;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.settings-modal h3 { color:#fff; font-size:15px; margin:0 0 16px; font-weight:600; }
+.settings-modal label { color:rgba(255,255,255,0.6); font-size:12px; display:block; margin-bottom:5px; }
+.settings-modal input { width:100%; padding:8px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.06); color:#fff; font-size:13px; font-family:inherit; margin-bottom:14px; }
+.settings-modal input:focus { outline:none; border-color:#667eea; }
+.settings-modal .hint { color:rgba(255,255,255,0.35); font-size:11px; margin:-10px 0 14px; }
+.settings-modal .btn-row { display:flex; gap:8px; justify-content:flex-end; }
+.settings-modal .btn-cancel { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.7);
+  padding:6px 16px; border-radius:8px; font-size:12px; cursor:pointer; font-family:inherit; }
+.settings-modal .btn-save { background:linear-gradient(135deg,#667eea,#764ba2); border:none; color:#fff;
+  padding:6px 16px; border-radius:8px; font-size:12px; cursor:pointer; font-family:inherit; }
+.settings-modal .btn-test { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.7);
+  padding:6px 16px; border-radius:8px; font-size:12px; cursor:pointer; font-family:inherit; margin-right:auto; }
+.settings-modal .test-result { font-size:12px; margin-top:10px; min-height:18px; }
+.settings-modal .test-result.ok { color:#10b981; }
+.settings-modal .test-result.fail { color:#ef4444; }
 </style>
 </head>
 <body>
@@ -273,6 +301,9 @@ body {
           <span class="refresh-spin">🔄</span> 实时刷新禅道数据
           <span class="refresh-time"></span>
         </button>
+        <span class="settings-wrap">
+          <button class="settings-btn" onclick="openSettings()" title="设置服务器地址">⚙</button>
+        </span>
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
@@ -553,7 +584,7 @@ function liveRefreshRoot(){
   var isGH=window.location.origin.indexOf('github.io')>=0;
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
-    var SVR='http://172.28.52.94:8900';
+    var SVR = localStorage.getItem('zentao_svr') || 'http://172.28.52.94:8900';
     // fetch no-cors → 不弹窗，不被拦截，响应被忽略但请求已发出（管线已触发）
     fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
     .then(function(){ rtoast('已触发后台刷新，约50秒后自动刷新页面','ok'); })
@@ -640,5 +671,64 @@ function updateUI(d){
   }).catch(function(){});
 })();
 </script>
+
+<!-- Settings Modal -->
+<div class="settings-modal-overlay" id="settingsOverlay">
+  <div class="settings-modal">
+    <h3>⚙ 设置服务器地址</h3>
+    <label>服务器地址 (IP:端口)</label>
+    <input type="text" id="settingsIP" placeholder="例: 172.28.52.94:8900" spellcheck="false">
+    <div class="hint">用于从 GitHub Pages 触发本地刷新，留空则使用默认地址</div>
+    <div class="btn-row">
+      <button class="btn-test" onclick="testConnection()">测试连接</button>
+      <button class="btn-cancel" onclick="closeSettings()">取消</button>
+      <button class="btn-save" onclick="saveSettings()">保存</button>
+    </div>
+    <div class="test-result" id="testResult"></div>
+  </div>
+</div>
+
+<script>
+function openSettings(){
+  var overlay = document.getElementById('settingsOverlay');
+  var input = document.getElementById('settingsIP');
+  var saved = localStorage.getItem('zentao_svr') || '';
+  input.value = saved.replace(/^https?:\/\//, '');
+  document.getElementById('testResult').textContent = '';
+  overlay.classList.add('show');
+  input.focus();
+}
+function closeSettings(){ document.getElementById('settingsOverlay').classList.remove('show'); }
+function saveSettings(){
+  var v = document.getElementById('settingsIP').value.trim();
+  if(v){
+    localStorage.setItem('zentao_svr', v.indexOf('://')>=0 ? v : 'http://'+v);
+  } else {
+    localStorage.removeItem('zentao_svr');
+  }
+  closeSettings();
+  if(typeof rtoast==='function') rtoast('服务器地址已保存','ok');
+}
+function testConnection(){
+  var v = document.getElementById('settingsIP').value.trim();
+  var url = v.indexOf('://')>=0 ? v : 'http://'+v;
+  var resultEl = document.getElementById('testResult');
+  resultEl.textContent = '正在测试...';
+  resultEl.className = 'test-result';
+  // 先试 no-cors（HTTPS 页面必须用这个模式访问 HTTP）
+  fetch(url+'/health', {mode:'no-cors', cache:'no-store'}).then(function(){
+    resultEl.textContent = '✓ 请求已发出（no-cors 模式，无法读取响应）';
+    resultEl.className = 'test-result ok';
+  }).catch(function(){
+    resultEl.textContent = '✗ 连接失败：无法访问 ' + url + '（请确认服务已启动）';
+    resultEl.className = 'test-result fail';
+  });
+}
+// 点击遮罩关闭
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id==='settingsOverlay') closeSettings();
+});
+</script>
+
 </body>
 </html>
