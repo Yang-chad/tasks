@@ -554,27 +554,26 @@ function liveRefreshRoot(){
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
     var SVR='http://172.28.52.94:8900';
-    // no-cors 触发管线（请求已发出，响应忽略）
-    fetch(SVR+'/trigger-pipeline',{mode:'no-cors'}).catch(function(){});
+    // 用 window.open 弹窗触发管线（避免 HTTPS→HTTP Mixed Content 被 Chrome 拦截）
+    var w = window.open(SVR+'/trigger-pipeline','pipeline_refresh','width=420,height=300');
+    if(!w || w.closed){
+      // 弹窗被拦截，降级方案：提示用户允许弹窗
+      btn.classList.remove('loading');
+      rtoast('弹窗被拦截，请允许此站点弹窗后重试','err');
+      return;
+    }
     rtoast('已触发后台刷新...','ok');
-    // 智能轮询：等管线真正完成后才刷新
-    var pollTimer=setInterval(function(){
-      fetch(SVR+'/api/pipeline-status',{mode:'cors'})
-      .then(function(r){return r.json();})
-      .then(function(s){
-        if(!s.running && s.git_push_time){
-          clearInterval(pollTimer);
-          btn.classList.remove('loading');
-          rtoast('刷新完成，等 GitHub Pages 部署（15s）...','ok');
-          setTimeout(function(){location.reload();},15000);
-        }else if(s.error){
-          clearInterval(pollTimer); btn.classList.remove('loading');
-          rtoast('刷新失败: '+s.error,'err');
-        }
-      }).catch(function(){});
-    },3000);
-    // 超时保护: 90s 后强制停止
-    setTimeout(function(){clearInterval(pollTimer);btn.classList.remove('loading');},90000);
+    // 轮询弹窗状态：管线完成后弹窗自动关闭
+    var checkTimer = setInterval(function(){
+      if(w.closed){
+        clearInterval(checkTimer);
+        btn.classList.remove('loading');
+        rtoast('管线完成，等待 GitHub Pages 部署（约15秒）...','ok');
+        setTimeout(function(){location.reload();},15000);
+      }
+    }, 1000);
+    // 超时保护: 180s 后强制停止
+    setTimeout(function(){clearInterval(checkTimer);btn.classList.remove('loading');},180000);
     return;
   }
   // 本地 localhost → 同源API刷新
