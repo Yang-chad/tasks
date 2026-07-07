@@ -652,11 +652,20 @@ function updateUI(d){
 // 点击刷新按钮 → 触发本地管线 → 推送后自动更新
 
 // ── 自动修正：从 raw.githubusercontent.com 拉取最新数据，绕过 GitHub Pages CDN 缓存 ──
+// 注意：raw.githubusercontent.com 有 max-age=300 缓存延迟，JSON 可能比页面 HTML 旧
+// 时间戳保护：JSON 数据 <= 页面数据 → 不覆盖（防止旧数据覆盖新数据）
 (function(){
   var today = new Date().toISOString().slice(0,10);
   var url = 'https://raw.githubusercontent.com/Yang-chad/tasks/main/'+today+'/dashboard_summary.json?t='+Date.now();
   fetch(url).then(function(r){return r.json();}).then(function(d){
     if(!d.updated) return;
+    // 时间戳保护：raw.githubusercontent.com CDN 缓存(300s)可能导致 JSON 比页面旧
+    var pageEl = document.querySelector('.date-tag span');
+    if (pageEl) {
+      var pageTs = pageEl.textContent.replace(/\s*更新\s*$/, '').trim();
+      var jsonTs = (d.updated || '').trim();
+      if (jsonTs <= pageTs) return;  // JSON <= 页面 → 页面数据更新，不覆盖
+    }
     var statics = {
       product: document.getElementById('summary-product'),
       backend: document.getElementById('summary-backend'),
