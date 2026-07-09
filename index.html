@@ -310,7 +310,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-09 15:55 更新</span></div>
+    <div class="date-tag"><span>2026-07-09 15:56 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -604,42 +604,40 @@ function liveRefreshRoot(){
     var SVR = localStorage.getItem('zentao_svr') || 'http://172.28.52.94:8900';
     // fetch no-cors → 不弹窗，不被拦截，响应被忽略但请求已发出（管线已触发）
     fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
-    .then(function(){ rtoast('已触发后台刷新，约50秒后自动刷新页面','ok'); })
+    .then(function(){ rtoast('已触发后台刷新，约95秒后自动刷新页面','ok'); })
     .catch(function(){ rtoast('已触发后台刷新（请确认服务已启动）','ok'); });
-    // 轮询管线状态，完成后自动刷新
-    var pollCount = 0, maxPolls = 60;  // 最多5分钟
-    function pollStatus(){
-      pollCount++;
-      if(pollCount > maxPolls){ rtoast('管线超时，请手动刷新页面','err'); btn.classList.remove('loading'); return; }
-      var elapsed = pollCount * 5;
+    // 固定95s兜底刷新（HTTPS→HTTP fetch常被浏览器拦截，不依赖轮询）
+    var fallbackTs = setTimeout(function(){
+      btn.classList.remove('loading');
+      rtoast('正在刷新页面...','ok');
+      var sep = location.search ? '&' : '?';
+      location.href = location.origin + location.pathname + sep + 't=' + Date.now();
+    }, 95000);
+    // 同时尝试轮询（本地同源时有效，GitHub Pages跨域时会静默失败）
+    var startTs = Date.now();
+    function tryPoll(){
       fetch(SVR+'/api/pipeline-status')
       .then(function(r){ return r.json(); }).then(function(s){
         if(s.running){
-          var btn2=document.getElementById('refreshBtn');
-          var ts=btn2.querySelector('.refresh-time'); if(ts) ts.textContent='⏳'+Math.round(s.elapsed)+'s';
-          setTimeout(pollStatus, 5000);
+          var ts = (document.getElementById('refreshBtn')||{}).querySelector ? document.getElementById('refreshBtn').querySelector('.refresh-time') : null;
+          if(ts) ts.textContent = '⏳'+Math.round(s.elapsed)+'s';
+          setTimeout(tryPoll, 5000);
         } else {
+          clearTimeout(fallbackTs);
           btn.classList.remove('loading');
           rtoast('管线完成('+Math.round(s.elapsed)+'s)，正在刷新...','ok');
           setTimeout(function(){
-            // 加时间戳参数绕过CDN缓存
             var sep = location.search ? '&' : '?';
             location.href = location.origin + location.pathname + sep + 't=' + Date.now();
           }, 1500);
         }
-      }).catch(function(){
-        // fallback: 无法轮询时按固定延时
-        setTimeout(function(){
-          btn.classList.remove('loading');
-          rtoast('正在刷新页面，如数据未更新请再等2分钟','ok');
-          setTimeout(function(){
-            var sep = location.search ? '&' : '?';
-            location.href = location.origin + location.pathname + sep + 't=' + Date.now();
-          },2000);
-        }, 120000);
+      }).catch(function(e){
+        var ts = (document.getElementById('refreshBtn')||{}).querySelector ? document.getElementById('refreshBtn').querySelector('.refresh-time') : null;
+        if(ts) ts.textContent = '⏳' + Math.round((Date.now() - startTs) / 1000) + 's';
+        setTimeout(tryPoll, 5000);
       });
     }
-    setTimeout(pollStatus, 8000);  // 等管线启动后再开始轮询
+    setTimeout(tryPoll, 10000);
     return;
   }
   // 本地 localhost → 同源API刷新
