@@ -70,18 +70,15 @@ body {
 
 /* ── Summary ── */
 .summary-bar {
-    display: flex; flex-wrap: nowrap; gap: 8px;
+    display: flex; flex-wrap: wrap; gap: 10px;
     justify-content: center; margin-bottom: 24px;
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
+    max-width: 1000px; margin-left: auto; margin-right: auto;
 }
-.summary-bar::-webkit-scrollbar { display: none; } /* Chrome/Safari/Edge */
+.summary-bar::-webkit-scrollbar { display: none; }
 .summary-item {
-    background: rgba(255,255,255,0.04); border-radius: 10px; padding: 8px 10px;
+    background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px;
     border: 1px solid rgba(255,255,255,0.06); text-align: center;
-    min-width: 74px;
-    flex-shrink: 0;
+    min-width: 90px; flex: 1 1 0; max-width: 150px;
 }
 .summary-item .num { font-size: 20px; font-weight: 700; }
 .summary-item .label { font-size: 10px; color: #999; margin-top: 4px; }
@@ -89,8 +86,8 @@ body {
 /* ── Card Grid ── */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
 }
 
 /* ── Card ── */
@@ -238,11 +235,14 @@ body {
 .history-links a:hover { border-color: #667eea; color: #667eea; }
 
 /* ── Responsive ── */
+@media (max-width: 768px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .card { padding: 28px 16px 22px; }
+    .card .icon { font-size: 34px; }
+}
 @media (max-width: 500px) {
     .header h1 { font-size: 22px; }
     .header .logo { font-size: 32px; }
-    .card { padding: 28px 16px 22px; }
-    .card .icon { font-size: 34px; }
 }
 .refresh-btn { display:inline-flex; align-items:center; gap:6px; margin-top:10px;
   padding:8px 18px; border:none; border-radius:20px;
