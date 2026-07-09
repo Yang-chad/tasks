@@ -310,7 +310,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-09 13:40 更新</span></div>
+    <div class="date-tag"><span>2026-07-09 13:50 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -561,7 +561,7 @@ body {
                         <td class="trend-c-m">13 <span class="trend-delta trend-up">+1</span> <span class="trend-delta trend-down">-4</span></td>
                         <td>206 <span class="trend-delta trend-up">+12</span> <span class="trend-delta trend-down">-55</span></td>
                     </tr>
-                                                                                                                                                                                                                                                                                                            <tr class="today">
+                                                                                                                                                                                                                                                                                                                                <tr class="today">
                         <td>2026-07-09 ⬅</td>
                         <td class="trend-c-p">43 <span class="trend-delta trend-flat">--</span></td>
                         <td class="trend-c-b">139 <span class="trend-delta trend-up">+5</span> <span class="trend-delta trend-down">-4</span></td>
@@ -606,12 +606,33 @@ function liveRefreshRoot(){
     fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
     .then(function(){ rtoast('已触发后台刷新，约50秒后自动刷新页面','ok'); })
     .catch(function(){ rtoast('已触发后台刷新（请确认服务已启动）','ok'); });
-    // 直接延时刷新：不依赖健康检查（HTTPS→HTTP 会被浏览器拦截）
-    setTimeout(function(){
-      btn.classList.remove('loading');
-      rtoast('正在刷新页面，如数据未更新请再等1分钟','ok');
-      setTimeout(function(){ location.reload(true); },2000);
-    },50000);
+    // 轮询管线状态，完成后自动刷新
+    var pollCount = 0, maxPolls = 60;  // 最多5分钟
+    function pollStatus(){
+      pollCount++;
+      if(pollCount > maxPolls){ rtoast('管线超时，请手动刷新页面','err'); btn.classList.remove('loading'); return; }
+      var elapsed = pollCount * 5;
+      fetch(SVR+'/api/pipeline-status')
+      .then(function(r){ return r.json(); }).then(function(s){
+        if(s.running){
+          var btn2=document.getElementById('refreshBtn');
+          var ts=btn2.querySelector('.refresh-time'); if(ts) ts.textContent='⏳'+Math.round(s.elapsed)+'s';
+          setTimeout(pollStatus, 5000);
+        } else {
+          btn.classList.remove('loading');
+          rtoast('管线完成('+Math.round(s.elapsed)+'s)，正在刷新...','ok');
+          setTimeout(function(){ location.reload(true); }, 1500);
+        }
+      }).catch(function(){
+        // fallback: 无法轮询时按固定延时
+        setTimeout(function(){
+          btn.classList.remove('loading');
+          rtoast('正在刷新页面，如数据未更新请再等2分钟','ok');
+          setTimeout(function(){ location.reload(true); },2000);
+        }, 120000);
+      });
+    }
+    setTimeout(pollStatus, 8000);  // 等管线启动后再开始轮询
     return;
   }
   // 本地 localhost → 同源API刷新
@@ -625,7 +646,9 @@ function liveRefreshRoot(){
     if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
     if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
     if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
-    if(sumItems[4]) sumItems[4].textContent=d.overdue_count||0;
+    if(sumItems[4]) sumItems[4].textContent=d.test_count||0;
+    if(sumItems[5]) sumItems[5].textContent=d.overdue_count||0;
+    if(sumItems[6]) sumItems[6].textContent=d.daily_done||0;
     // 更新时间标签
     var dt=document.querySelector('.date-tag span');
     if(dt){ var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
