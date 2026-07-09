@@ -610,8 +610,7 @@ function liveRefreshRoot(){
     var fallbackTs = setTimeout(function(){
       btn.classList.remove('loading');
       rtoast('正在刷新页面...','ok');
-      var sep = location.search ? '&' : '?';
-      location.href = location.origin + location.pathname + sep + 't=' + Date.now();
+      location.href = location.origin + location.pathname + '?t=' + Date.now();
     }, 95000);
     // 同时尝试轮询（本地同源时有效，GitHub Pages跨域时会静默失败）
     var startTs = Date.now();
@@ -627,8 +626,7 @@ function liveRefreshRoot(){
           btn.classList.remove('loading');
           rtoast('管线完成('+Math.round(s.elapsed)+'s)，正在刷新...','ok');
           setTimeout(function(){
-            var sep = location.search ? '&' : '?';
-            location.href = location.origin + location.pathname + sep + 't=' + Date.now();
+            location.href = location.origin + location.pathname + '?t=' + Date.now();
           }, 1500);
         }
       }).catch(function(e){
