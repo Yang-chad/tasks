@@ -121,6 +121,7 @@ body {
 .card:nth-child(4)::before { background: linear-gradient(135deg, rgba(255,167,38,0.20), rgba(239,83,80,0.12)); }
 .card:nth-child(5)::before { background: linear-gradient(135deg, rgba(38,198,218,0.20), rgba(79,172,254,0.12)); }
 .card:nth-child(8)::before { background: linear-gradient(135deg, rgba(251,191,36,0.22), rgba(245,158,11,0.12)); }
+.card:nth-child(9)::before { background: linear-gradient(135deg, rgba(16,185,129,0.20), rgba(52,211,153,0.12)); }
 .card:hover::before { opacity: 1; }
 .card:hover {
     transform: translateY(-6px);
@@ -307,7 +308,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-09 09:48 更新</span></div>
+    <div class="date-tag"><span>2026-07-09 10:29 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -334,6 +335,10 @@ body {
         <div class="summary-item">
             <div class="num" id="summary-overdue" style="color:#ef5350;">4</div>
             <div class="label">🚨 延期任务 (3人)</div>
+        </div>
+        <div class="summary-item">
+            <div class="num" id="summary-daily-done" style="color:#10b981;">-</div>
+            <div class="label">✅ 今日完成</div>
         </div>
     </div>
 
@@ -393,6 +398,13 @@ body {
             <span class="icon">💪</span>
             <span class="name" style="color:#fbbf24;">员工负载</span>
             <span class="desc">按角色分组工时分析<br>完成/进行中负载对比</span>
+        </a>
+
+        <!-- 每日流水 -->
+        <a href="2026-07-09/团队每日任务流水清单.html" class="card daily-log" target="_blank" style="border-color: rgba(16,185,129,0.3);">
+            <span class="icon">📝</span>
+            <span class="name" style="color:#10b981;">每日流水</span>
+            <span class="desc">每人每天完成任务清单<br>按日期查看完成明细</span>
         </a>
 
     </div>
@@ -547,7 +559,7 @@ body {
                         <td class="trend-c-m">13 <span class="trend-delta trend-up">+1</span> <span class="trend-delta trend-down">-4</span></td>
                         <td>206 <span class="trend-delta trend-up">+12</span> <span class="trend-delta trend-down">-55</span></td>
                     </tr>
-                                                                                <tr class="today">
+                                                                                                    <tr class="today">
                         <td>2026-07-09 ⬅</td>
                         <td class="trend-c-p">43 <span class="trend-delta trend-flat">--</span></td>
                         <td class="trend-c-b">136 <span class="trend-delta trend-down">-2</span></td>
