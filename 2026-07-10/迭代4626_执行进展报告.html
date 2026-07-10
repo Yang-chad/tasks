@@ -249,6 +249,15 @@ if(bugAssigneeLabels.length>0){new Chart(document.getElementById('chartBugAssign
 var bugResolverLabels = [];
 var bugResolverData = [];
 if(bugResolverLabels.length>0){new Chart(document.getElementById('chartBugResolver'),{type:'bar',data:{labels:bugResolverLabels,datasets:[{label:'已关闭Bug',data:bugResolverData,backgroundColor:'#10b981',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',barPercentage:0.75,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1}},y:{grid:{display:false},ticks:{font:{size:12}}}}}});}
+// ── Bug Trend Charts ──
+if (false){
+var bugTrendLabels = [];
+var bugNewData = [];
+var bugResolvedData = [];
+var bugCumulativeData = [];
+if(bugTrendLabels.length>0){new Chart(document.getElementById('chartBugTrend'),{type:'bar',data:{labels:bugTrendLabels,datasets:[{label:'每日新增Bug',data:bugNewData,backgroundColor:'#f5576c',borderRadius:3,borderSkipped:false},{label:'每日解决Bug',data:bugResolvedData,backgroundColor:'#10b981',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,padding:15,font:{size:12}}},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11},maxRotation:45,autoSkip:true,maxTicksLimit:15}},y:{grid:{color:'#f0f0f0'},ticks:{stepSize:1,font:{size:11}},beginAtZero:true}}}});}
+if(bugTrendLabels.length>0){new Chart(document.getElementById('chartCumulativeBugs'),{type:'line',data:{labels:bugTrendLabels,datasets:[{label:'累计未关闭Bug',data:bugCumulativeData,borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,0.1)',fill:true,tension:0.3,pointRadius:2,pointHoverRadius:5,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,padding:15,font:{size:12}}},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11},maxRotation:45,autoSkip:true,maxTicksLimit:15}},y:{grid:{color:'#f0f0f0'},ticks:{font:{size:11}},beginAtZero:true}}}});}
+}
 </script>
 </body>
 </html>
