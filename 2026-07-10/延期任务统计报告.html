@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-07-10 | 全平台延期任务追踪 | 共 2 个延期任务 | 网批2.0: 2</p></div>
+<p>数据截止：2026-07-10 | 全平台延期任务追踪 | 共 3 个延期任务 | 网批2.0: 3</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">2</div><div class="label">延期任务总数</div></div>
+<div class="card card-total"><div class="num">3</div><div class="label">延期任务总数</div></div>
 <div class="card card-wait"><div class="num">1</div><div class="label">待处理</div></div>
 <div class="card card-doing"><div class="num">1</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">2</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">2</div><div class="label">涉及人员</div></div>
+<div class="card card-overdue"><div class="num">3</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">3</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -121,11 +121,37 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </table>
 </div>
 </details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">符宏勇</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">最长10天</span>
+                <span class="stat-badge stat-h">预估20h</span>
+                <span class="stat-badge stat-h">消耗16h</span>
+                <span class="stat-badge stat-h">剩余0h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>295642</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】网批订单新增发货账仓展示">【产品】网批订单新增发货账仓展示</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-06-30</td><td style="color:#ef4444;font-weight:700;">10天</td><td>20</td><td>16</td><td>0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u949f\u65e5\u5065", "\u80e1\u5065"],datasets:[{label:'延期任务数',data:[1, 1],backgroundColor:["#667eea80", "#f093fb80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u949f\u65e5\u5065", "\u80e1\u5065", "\u7b26\u5b8f\u52c7"],datasets:[{label:'延期任务数',data:[1, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
 new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[1, 1],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[2],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[3],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
