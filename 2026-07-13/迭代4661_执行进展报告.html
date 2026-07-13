@@ -206,56 +206,129 @@ function liveRefresh(eid){
   <div class="progress-cards">   <div class="prog-card"><div class="label">⏱️ 时间进度</div><div class="value" style="color:#1890ff;" id="v_time">34.2%</div>
       <div class="bar-outer"><div class="bar-inner" id="bar_time" style="width:34.2%;background:linear-gradient(90deg,#1890ff,#60a5fa);"></div></div>
       <div class="detail" id="d_time">已过 25/73 天</div></div>
-    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;" id="v_prog">17.1%</div>
-      <div class="bar-outer"><div class="bar-inner" id="bar_prog" style="width:17.1%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
+    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;" id="v_prog">16.2%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_prog" style="width:16.2%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
       <div class="detail" id="d_prog">状态: doing</div></div>
-    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue" id="v_story">15</div>
-      <div class="detail">active: <span id="d_story_a">15</span> &nbsp; closed: <span id="d_story_c">0</span></div></div>
-    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple" id="v_task">12</div>
-      <div class="detail">进行中: <span id="d_task_d">3</span> &nbsp; 待处理: <span id="d_task_w">4</span></div></div>
+    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue" id="v_story">18</div>
+      <div class="detail">active: <span id="d_story_a">18</span> &nbsp; closed: <span id="d_story_c">0</span></div></div>
+    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple" id="v_task">23</div>
+      <div class="detail">进行中: <span id="d_task_d">3</span> &nbsp; 待处理: <span id="d_task_w">15</span></div></div>
     <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red" id="v_bug">0</div>
       <div class="detail">未关闭: <span id="d_bug_a">0</span> &nbsp; 已关/已延: 0</div></div>
   </div>  <div class="dual-col">
-    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 17.1% 落后于时间进度 34.2%，存在滞后风险</li><li>延期任务 1 个，需重点跟进</li><li>孙元通: 1个任务延期</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>已完成/已关闭任务 4 个（33.3%）</li><li>进行中任务 3 个，团队在推进</li><li>需求规模适中（15个），便于管理</li></ul></div></div></div><div class="section"><h2>📋 需求分析（15 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">15</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">15</div><div class="lbl">已立项</div></div></div><h3>需求明细</h3><table><thead><tr><th>ID</th><th>优先级</th><th>标题</th><th>状态</th><th>阶段</th><th>创建人</th></tr></thead><tbody id="storyTbody"><tr onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-stage='projected'>
+    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 16.2% 落后于时间进度 34.2%，存在滞后风险</li><li>延期任务 1 个，需重点跟进</li><li>孙元通: 1个任务延期</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>Bug 数量为 0，质量可控</li><li>已完成/已关闭任务 4 个（17.4%）</li><li>进行中任务 3 个，团队在推进</li><li>需求规模适中（18个），便于管理</li></ul></div></div></div><div class="section"><h2>📋 需求分析（18 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">18</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">18</div><div class="lbl">已立项</div></div></div><h3>需求明细</h3><table><thead><tr><th>ID</th><th>优先级</th><th>标题</th><th>状态</th><th>阶段</th><th>创建人</th></tr></thead><tbody id="storyTbody"><tr onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_0">▶</span>66955</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融订单-销司字典+接单审批配置</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融订单-销司字典+接单审批配置 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_1')" style="cursor:pointer;" data-stage='projected'>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_0" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66955 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305422</td><td style="font-size:12px;">【总任务】供应链金融订单-销司字典+接单审批配置</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_1')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_1">▶</span>66954</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融订单、售后单-企微提醒+待办事项</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融订单、售后单-企微提醒+待办事项 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_2')" style="cursor:pointer;" data-stage='projected'>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_1" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66954 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305423</td><td style="font-size:12px;">【总任务】供应链金融订单、售后单-企微提醒+待办事项</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_2')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_2">▶</span>66953</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融解押订单合并支付免运费正逆向</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融解押订单合并支付免运费正逆向 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_3')" style="cursor:pointer;" data-stage='projected'>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_2" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66953 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305424</td><td style="font-size:12px;">【总任务】供应链金融解押订单合并支付免运费正逆向</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_3')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_3">▶</span>66952</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融两层订单支付、退款对接FMS</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融两层订单支付、退款对接FMS <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_4')" style="cursor:pointer;" data-stage='projected'>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_3" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66952 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305425</td><td style="font-size:12px;">【总任务】供应链金融两层订单支付、退款对接FMS</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_4')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_4">▶</span>66950</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融两层订单对接金蝶、OMS</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融两层订单对接金蝶、OMS <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_5')" style="cursor:pointer;" data-stage='projected'>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_4" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66950 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305426</td><td style="font-size:12px;">【总任务】供应链金融两层订单对接金蝶、OMS</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_5')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_5">▶</span>66949</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融订单-解押订单售后(小单)</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融订单-解押订单售后(小单) <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_6')" style="cursor:pointer;" data-stage='projected'>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_5" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66949 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305427</td><td style="font-size:12px;">【总任务】供应链金融订单-解押订单售后(小单)</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_6')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_6">▶</span>66948</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融订单-解押订单(小单)</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融订单-解押订单(小单) <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_7')" style="cursor:pointer;" data-stage='projected'>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_6" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66948 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305428</td><td style="font-size:12px;">【总任务】供应链金融订单-解押订单(小单)</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_7')" style="cursor:pointer;" data-stage='projected'>
             <td><span class="expand-icon" id="arrow_story_detail_7">▶</span>66947</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融订单-贷款订单售后(大单)</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融订单-贷款订单售后(大单) <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr onclick="toggleStoryDetail('story_detail_8')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_8">▶</span>66858</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融-钱包开通 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
-            <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_8" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_7" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
-            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66858 关联的任务（1个）</div>
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66947 关联的任务（1个）</div>
             <table style="width:100%;border-collapse:collapse;font-size:12px;">
             <thead><tr style="background:#e8ecf3;">
             <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
@@ -263,14 +336,18 @@ function liveRefresh(eid){
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">304453</td><td style="font-size:12px;">需求调研、需求设计、需求评审、测试用例评审、发版验收</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-08-21</td><td style="font-size:12px;color:#888;">30h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">30h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_9')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_9">▶</span>66799</td>
-            <td>P3</td><td style="max-width:400px;">供应链金融订单-贷款订单(大单) <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305429</td><td style="font-size:12px;">【总任务】供应链金融订单-贷款订单售后(大单)</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_8')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_8">▶</span>66903</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融经销商资金账户改造</td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_9" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">周志杰</td></tr><tr onclick="toggleStoryDetail('story_detail_9')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_9">▶</span>66902</td>
+            <td>P2</td><td style="max-width:400px;">供应链金融经销商任务统计逻辑改造 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">周志杰</td></tr><tr id="story_detail_9" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
-            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66799 关联的任务（1个）</div>
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66902 关联的任务（1个）</div>
             <table style="width:100%;border-collapse:collapse;font-size:12px;">
             <thead><tr style="background:#e8ecf3;">
             <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
@@ -278,11 +355,41 @@ function liveRefresh(eid){
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">303844</td><td style="font-size:12px;">【产品】供应链金融-订单部分</td><td><span class="st-wait" style="font-size:11px;">📝 已变更</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">梁庆芬</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">120h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">120h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_10')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_10">▶</span>65792</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305421</td><td style="font-size:12px;">【总任务】供应链金融经销商任务统计逻辑改造</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_10')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_10">▶</span>66858</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融-钱包开通 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">2个任务</span></td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">王也</td></tr><tr id="story_detail_10" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66858 关联的任务（2个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305430</td><td style="font-size:12px;">【总任务】供应链金融-钱包开通</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr><tr><td style="font-size:12px;color:#888;">304453</td><td style="font-size:12px;">需求调研、需求设计、需求评审、测试用例评审、发版验收</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">王也</td><td style="font-size:12px;color:#888;">2026-08-21</td><td style="font-size:12px;color:#888;">30h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">30h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_11')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_11">▶</span>66799</td>
+            <td>P3</td><td style="max-width:400px;">供应链金融订单-贷款订单(大单) <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">2个任务</span></td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_11" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #66799 关联的任务（2个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">305431</td><td style="font-size:12px;">【总任务】供应链金融订单-贷款订单(大单)</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-10-01</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr><tr><td style="font-size:12px;color:#888;">303844</td><td style="font-size:12px;">【产品】供应链金融-订单部分</td><td><span class="st-wait" style="font-size:11px;">📝 已变更</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">需求设计</td><td style="font-size:12px;color:#888;">梁庆芬</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">120h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">120h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_12')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_12">▶</span>65792</td>
             <td>P0</td><td style="max-width:400px;">26年8月产品经理其他任务工时（业务模式调研、推广协助、材料准备与汇报、生产问题协助） <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_10" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_12" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65792 关联的任务（1个）</div>
@@ -293,11 +400,11 @@ function liveRefresh(eid){
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295981</td><td style="font-size:12px;">【总任务】26年8月产品经理其他任务工时（业务模式调研、推广协助、材料准备与汇报、生产问题协助）</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_11')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_11">▶</span>65791</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295981</td><td style="font-size:12px;">【总任务】26年8月产品经理其他任务工时（业务模式调研、推广协助、材料准备与汇报、生产问题协助）</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_13')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_13">▶</span>65791</td>
             <td>P0</td><td style="max-width:400px;">26年8月研发测试其他任务工时（工单处理与数据处理） <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_11" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_13" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65791 关联的任务（1个）</div>
@@ -308,11 +415,11 @@ function liveRefresh(eid){
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295980</td><td style="font-size:12px;">【总任务】26年8月研发测试其他任务工时（工单处理与数据处理）</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_12')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_12">▶</span>65790</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295980</td><td style="font-size:12px;">【总任务】26年8月研发测试其他任务工时（工单处理与数据处理）</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_14')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_14">▶</span>65790</td>
             <td>P0</td><td style="max-width:400px;">26年8月研发测试其他任务工时（推广协助） <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_12" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_14" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65790 关联的任务（1个）</div>
@@ -323,11 +430,11 @@ function liveRefresh(eid){
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295979</td><td style="font-size:12px;">【总任务】26年8月研发测试其他任务工时（推广协助）</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_13')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_13">▶</span>65789</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295979</td><td style="font-size:12px;">【总任务】26年8月研发测试其他任务工时（推广协助）</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_15')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_15">▶</span>65789</td>
             <td>P0</td><td style="max-width:400px;">26年8月研发测试其他任务工时（需求评审、技术评审、用例评审等） <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">6个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_13" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_15" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65789 关联的任务（6个）</div>
@@ -338,11 +445,11 @@ function liveRefresh(eid){
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">304440</td><td style="font-size:12px;">【后端】0708供应链金融订单大单小单oms交互-金蝶，订单展示</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">304439</td><td style="font-size:12px;">【后端】0708供应链金融订单大单小单逆向需求评审</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">304438</td><td style="font-size:12px;">【后端】0708供应链金融订单大单小单正向需求评审</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr class="row-warn"><td style="font-size:12px;color:#888;">304437</td><td style="font-size:12px;">【后端】0707-0709 家用供应链金融需求评审</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-10 <span style="color:#f5222d;font-size:11px;">(延3天)</span></td><td style="font-size:12px;color:#888;">16h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">16h</td></tr><tr><td style="font-size:12px;color:#888;">304436</td><td style="font-size:12px;">【后端】0707 下午家用供应链金融技术评审</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">295977</td><td style="font-size:12px;">【总任务】26年8月研发测试其他任务工时（需求评审、技术评审、用例评审等）</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">44h</td><td style="font-size:12px;color:#888;">28h</td><td style="font-size:12px;color:#888;">16h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_14')" style="cursor:pointer;" data-stage='projected'>
-            <td><span class="expand-icon" id="arrow_story_detail_14">▶</span>65788</td>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">304440</td><td style="font-size:12px;">【后端】0708供应链金融订单大单小单oms交互-金蝶，订单展示</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">304439</td><td style="font-size:12px;">【后端】0708供应链金融订单大单小单逆向需求评审</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">304438</td><td style="font-size:12px;">【后端】0708供应链金融订单大单小单正向需求评审</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr class="row-warn"><td style="font-size:12px;color:#888;">304437</td><td style="font-size:12px;">【后端】0707-0709 家用供应链金融需求评审</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-10 <span style="color:#f5222d;font-size:11px;">(延3天)</span></td><td style="font-size:12px;color:#888;">16h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">16h</td></tr><tr><td style="font-size:12px;color:#888;">304436</td><td style="font-size:12px;">【后端】0707 下午家用供应链金融技术评审</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-09</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">295977</td><td style="font-size:12px;">【总任务】26年8月研发测试其他任务工时（需求评审、技术评审、用例评审等）</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">44h</td><td style="font-size:12px;color:#888;">28h</td><td style="font-size:12px;color:#888;">16h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_16')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_16">▶</span>65788</td>
             <td>P0</td><td style="max-width:400px;">8月份实施日常运维需求 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_14" class="detail-row" style="display:none;">
+            <td style="font-size:12px;color:#888;">李兆杰</td></tr><tr id="story_detail_16" class="detail-row" style="display:none;">
             <td colspan="6" style="padding:0;background:#f8f9fc;">
             <div style="padding:10px 16px;">
             <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65788 关联的任务（1个）</div>
@@ -353,7 +460,11 @@ function liveRefresh(eid){
             <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
             <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
             <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
-            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295976</td><td style="font-size:12px;">【总任务】8月份实施日常运维需求</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr></tbody></table></div><div class="section" id="person-tab-section"><h2>📦 任务分析明细（3 个活跃 / 按5类分组）</h2><div class="tabs"><button class="tab-btn active" onclick="switchPersonTab('tab_0')" style="background:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,0.08);" id="btn_tab_0">📋 产品任务 <span style="font-size:11px;color:#888;font-weight:400;">(2人/2任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_1')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_1">🖥 后端任务 <span style="font-size:11px;color:#888;font-weight:400;">(1人/1任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_2')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_2">🎨 前端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_3')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_3">📱 移动端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_4')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_4">🧪 测试任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button></div><div id="tab_0" class="tab-panel"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">1</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">150h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">8h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">150h</div><div class="lbl">剩余工时</div></div></div><div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">295976</td><td style="font-size:12px;">【总任务】8月份实施日常运维需求</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-08-31</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_17')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_17">▶</span>65781</td>
+            <td>P0</td><td style="max-width:400px;">26年7月研发测试其他任务工时（需求评审、技术评审、用例评审等）</td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">李兆杰</td></tr></tbody></table></div><div class="section" id="person-tab-section"><h2>📦 任务分析明细（3 个活跃 / 按5类分组）</h2><div class="tabs"><button class="tab-btn active" onclick="switchPersonTab('tab_0')" style="background:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,0.08);" id="btn_tab_0">📋 产品任务 <span style="font-size:11px;color:#888;font-weight:400;">(2人/2任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_1')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_1">🖥 后端任务 <span style="font-size:11px;color:#888;font-weight:400;">(1人/1任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_2')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_2">🎨 前端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_3')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_3">📱 移动端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_4')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_4">🧪 测试任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button></div><div id="tab_0" class="tab-panel"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">1</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">150h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">8h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">150h</div><div class="lbl">剩余工时</div></div></div><div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
             <div onclick="toggleAssignee('tab产品_0')" style="padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;overflow-x:auto;border-left:4px solid #667eea;background:#667eea08;">
               <span class="expand-icon" id="arrow_tab产品_0" style="font-size:10px;color:#9ca3af;flex-shrink:0;">▶</span>
               <span style="font-size:15px;font-weight:600;color:#333;flex-shrink:0;">王也</span>
