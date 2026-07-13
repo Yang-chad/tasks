@@ -608,17 +608,37 @@ function liveRefreshRoot(){
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
     var SVR = localStorage.getItem('zentao_svr') || 'http://172.28.52.94:8900';
-    // fetch no-cors → 不弹窗，不被拦截，响应被忽略但请求已发出（管线已触发）
-    fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
-    .then(function(){ rtoast('已触发后台刷新，约95秒后自动刷新页面','ok'); })
-    .catch(function(){ rtoast('已触发后台刷新（请确认服务已启动）','ok'); });
-    // 固定95s兜底刷新（HTTPS→HTTP fetch常被浏览器拦截，不依赖轮询）
+    // 主通道: window.open 导航（HTTPS→HTTP导航不被浏览器拦截，不同于fetch子资源）
+    var triggered = false;
+    var triggerWindow = window.open(SVR + '/trigger-pipeline', '_zentao_refresh',
+      'width=1,height=1,left=9999,top=9999');
+    if(triggerWindow) {
+      triggered = true;
+      rtoast('已触发后台刷新，约90秒后自动刷新页面', 'ok');
+      // 1秒后关闭触发窗口
+      setTimeout(function(){
+        try { triggerWindow.close(); } catch(e) {}
+      }, 1500);
+    }
+    // 备用通道: fetch no-cors（本地文件时可能生效）
+    if(!triggered) {
+      fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
+      .then(function(){ triggered=true; rtoast('已触发后台刷新，约90秒后自动刷新页面','ok'); })
+      .catch(function(){});
+    }
+    // 两通道都失败 → 提示用户本地服务不可达
+    if(!triggered) {
+      btn.classList.remove('loading');
+      rtoast('本地刷新服务不可达，请确认 _live_refresh_server.py 已启动', 'err');
+      return;
+    }
+    // 90s 兜底刷新
     var fallbackTs = setTimeout(function(){
       btn.classList.remove('loading');
       rtoast('正在刷新页面...','ok');
       location.href = location.origin + location.pathname + '?t=' + Date.now();
-    }, 95000);
-    // 同时尝试轮询（本地同源时有效，GitHub Pages跨域时会静默失败）
+    }, 90000);
+    // 尝试轮询管线状态（仅本地同源时有效，跨域会静默失败）
     var startTs = Date.now();
     function tryPoll(){
       fetch(SVR+'/api/pipeline-status')
@@ -627,13 +647,15 @@ function liveRefreshRoot(){
           var ts = (document.getElementById('refreshBtn')||{}).querySelector ? document.getElementById('refreshBtn').querySelector('.refresh-time') : null;
           if(ts) ts.textContent = '⏳'+Math.round(s.elapsed)+'s';
           setTimeout(tryPoll, 5000);
-        } else {
+        } else if(s.elapsed > 10) {
           clearTimeout(fallbackTs);
           btn.classList.remove('loading');
           rtoast('管线完成('+Math.round(s.elapsed)+'s)，正在刷新...','ok');
           setTimeout(function(){
             location.href = location.origin + location.pathname + '?t=' + Date.now();
           }, 1500);
+        } else {
+          setTimeout(tryPoll, 5000);
         }
       }).catch(function(e){
         var ts = (document.getElementById('refreshBtn')||{}).querySelector ? document.getElementById('refreshBtn').querySelector('.refresh-time') : null;
@@ -641,7 +663,7 @@ function liveRefreshRoot(){
         setTimeout(tryPoll, 5000);
       });
     }
-    setTimeout(tryPoll, 10000);
+    setTimeout(tryPoll, 8000);
     return;
   }
   // 本地 localhost → 同源API刷新
