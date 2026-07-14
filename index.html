@@ -609,40 +609,36 @@ function liveRefreshRoot(){
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
     var SVR = localStorage.getItem('zentao_svr') || 'https://172.28.52.94:8900';
-    // 主通道: window.open 导航（HTTPS→HTTP导航不被浏览器拦截，不同于fetch子资源）
-    var triggered = false;
-    var triggerWindow = window.open(SVR + '/trigger-pipeline', '_zentao_refresh',
-      'width=1,height=1,left=9999,top=9999');
-    if(triggerWindow) {
-      triggered = true;
-      rtoast('已触发后台刷新，约90秒后自动刷新页面', 'ok');
-      // 1秒后关闭触发窗口
-      setTimeout(function(){
-        try { triggerWindow.close(); } catch(e) {}
-      }, 1500);
-    }
-    // 备用通道: fetch no-cors（本地文件时可能生效）
-    if(!triggered) {
-      fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
-      .then(function(){ triggered=true; rtoast('已触发后台刷新，约90秒后自动刷新页面','ok'); })
-      .catch(function(){});
-    }
-    // 两通道都失败 → 提示用户本地服务不可达
-    if(!triggered) {
-      btn.classList.remove('loading');
-      rtoast('本地刷新服务不可达，请确认 _live_refresh_server.py 已启动', 'err');
-      return;
-    }
+    // 主通道: fetch cors（自签证书已导入信任库，HTTPS→HTTPS 同协议无混合内容问题）
+    fetch(SVR+'/trigger-pipeline', {mode:'cors', cache:'no-store'})
+    .then(function(r){
+      rtoast('已触发后台刷新，正在拉取最新禅道数据...', 'ok');
+      startPoll();
+    })
+    .catch(function(e){
+      // 备用通道: window.open 导航
+      var triggerWindow = window.open(SVR + '/trigger-pipeline', '_zentao_refresh',
+        'width=400,height=200,left=200,top=200');
+      if(triggerWindow) {
+        rtoast('已触发后台刷新（弹窗模式），约90秒后自动刷新页面', 'ok');
+        setTimeout(function(){ try { triggerWindow.close(); } catch(e) {} }, 3000);
+        startPoll();
+      } else {
+        btn.classList.remove('loading');
+        rtoast('本地刷新服务不可达 — 请确认: 1)服务已启动 2)已访问 https://172.28.52.94:8900/health 信任证书', 'err');
+      }
+    });
     // 90s 兜底刷新
     var fallbackTs = setTimeout(function(){
       btn.classList.remove('loading');
       rtoast('正在刷新页面...','ok');
       location.href = location.origin + location.pathname + '?t=' + Date.now();
     }, 90000);
-    // 尝试轮询管线状态（仅本地同源时有效，跨域会静默失败）
+    // 轮询管线状态
     var startTs = Date.now();
+    function startPoll(){ setTimeout(tryPoll, 5000); }
     function tryPoll(){
-      fetch(SVR+'/api/pipeline-status')
+      fetch(SVR+'/api/pipeline-status', {mode:'cors', cache:'no-store'})
       .then(function(r){ return r.json(); }).then(function(s){
         if(s.running){
           var ts = (document.getElementById('refreshBtn')||{}).querySelector ? document.getElementById('refreshBtn').querySelector('.refresh-time') : null;
@@ -664,7 +660,6 @@ function liveRefreshRoot(){
         setTimeout(tryPoll, 5000);
       });
     }
-    setTimeout(tryPoll, 8000);
     return;
   }
   // 本地 localhost → 同源API刷新
