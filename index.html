@@ -310,7 +310,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-14 11:35 更新</span></div>
+    <div class="date-tag"><span>2026-07-14 11:43 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -608,7 +608,7 @@ function liveRefreshRoot(){
   var isGH=window.location.origin.indexOf('github.io')>=0;
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
-    var SVR = localStorage.getItem('zentao_svr') || 'http://172.28.52.94:8900';
+    var SVR = localStorage.getItem('zentao_svr') || 'https://172.28.52.94:8900';
     // 主通道: window.open 导航（HTTPS→HTTP导航不被浏览器拦截，不同于fetch子资源）
     var triggered = false;
     var triggerWindow = window.open(SVR + '/trigger-pipeline', '_zentao_refresh',
@@ -783,7 +783,7 @@ function closeSettings(){ document.getElementById('settingsOverlay').classList.r
 function saveSettings(){
   var v = document.getElementById('settingsIP').value.trim();
   if(v){
-    localStorage.setItem('zentao_svr', v.indexOf('://')>=0 ? v : 'http://'+v);
+    localStorage.setItem('zentao_svr', v.indexOf('://')>=0 ? v : 'https://'+v);
   } else {
     localStorage.removeItem('zentao_svr');
   }
@@ -792,16 +792,22 @@ function saveSettings(){
 }
 function testConnection(){
   var v = document.getElementById('settingsIP').value.trim();
-  var url = v.indexOf('://')>=0 ? v : 'http://'+v;
+  var url = v.indexOf('://')>=0 ? v : 'https://'+v;
   var resultEl = document.getElementById('testResult');
   resultEl.textContent = '正在测试...';
   resultEl.className = 'test-result';
-  // 先试 no-cors（HTTPS 页面必须用这个模式访问 HTTP）
-  fetch(url+'/health', {mode:'no-cors', cache:'no-store'}).then(function(){
-    resultEl.textContent = '✓ 请求已发出（no-cors 模式，无法读取响应）';
-    resultEl.className = 'test-result ok';
+  // HTTPS 自签证书：fetch 需要 cors 模式才能验证，但自签证书未信任时会失败
+  fetch(url+'/health', {mode:'cors', cache:'no-store'}).then(function(r){
+    return r.json();
+  }).then(function(d){
+    if(d.status === 'ok'){
+      resultEl.textContent = '✓ 连接成功 — 服务正常运行';
+      resultEl.className = 'test-result ok';
+    } else {
+      throw new Error('bad response');
+    }
   }).catch(function(){
-    resultEl.textContent = '✗ 连接失败：无法访问 ' + url + '（请确认服务已启动）';
+    resultEl.textContent = '✗ 连接失败：请先在浏览器打开 ' + url + '/health 信任自签证书，再重试';
     resultEl.className = 'test-result fail';
   });
 }
