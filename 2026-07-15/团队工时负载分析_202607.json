@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 469,
-    "total_active": 496,
-    "total_month_hours": 4881.3,
-    "total_estimate": 8368.5,
+    "total_done": 470,
+    "total_active": 536,
+    "total_month_hours": 4885.3,
+    "total_estimate": 8588.5,
     "total_members": 49,
     "total_overdue": 4,
     "reference_hours": 184,
-    "report_time": "2026-07-15 14:49:03",
+    "report_time": "2026-07-15 15:58:37",
     "month": "2026年7月"
   },
   "members": [
@@ -1548,6 +1548,15 @@
           "openedBy": "刘孝亮"
         },
         {
+          "id": 330670,
+          "title": "【qa-pc-管理侧-满金额减审批】审批满金额减时存在未管理的类目商品，结果未脱敏展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
           "id": 330449,
           "title": "【QA-PC-管理侧-组合套餐】销司组合套餐方案系列内商品均为下架状态，在新建、编辑、调价提交时未校验",
           "severity": 3,
@@ -1656,16 +1665,7 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 330670,
-          "title": "【qa-pc-管理侧-满金额减审批】审批满金额减时存在未管理的类目商品，结果未脱敏展示",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "王也",
@@ -2046,7 +2046,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 52,
+        "前端": 58,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -2060,14 +2060,14 @@
       "done_estimate": 256.0,
       "done_consumed": 220.0,
       "month_done_hours": 220.0,
-      "active_count": 15,
-      "active_estimate": 104.0,
+      "active_count": 21,
+      "active_estimate": 128.0,
       "active_consumed": 0.0,
-      "active_left": 104.0,
-      "total_tasks": 52,
-      "total_estimate": 360.0,
-      "completion_rate": 71.2,
-      "efficiency": 71.2,
+      "active_left": 128.0,
+      "total_tasks": 58,
+      "total_estimate": 384.0,
+      "completion_rate": 63.8,
+      "efficiency": 63.8,
       "overdue": 0,
       "done_tasks": [
         {
@@ -2725,6 +2725,90 @@
           "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
           "opened_date": "2026-07-15",
           "deadline": "2026-08-17"
+        },
+        {
+          "id": 307089,
+          "name": "【PC用户】赊销账户展示",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307090,
+          "name": "【PC用户】流水详情赊销账户展示",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307091,
+          "name": "【PC用户】流水详情赊销账户页签展示",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307116,
+          "name": "【PC管理】4.0销司订货购物车增加保证金配提机",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307117,
+          "name": "【PC管理】4.0销司订货购物车增加保证金特价机",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307118,
+          "name": "【PC管理】4.0销司订货购物车增加保证金资源机",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
         }
       ],
       "resolved_bugs": [
@@ -3160,16 +3244,7 @@
           "openedBy": "李文清"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 330641,
-          "title": "【QA-PC-用户侧-工程机】新建工程单，批量导入表格存在500条数据，提示&quot;上传失败,文件超过100条记录。",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "许峻嘉",
@@ -3797,15 +3872,6 @@
           "openedBy": "李学鹍"
         },
         {
-          "id": 329571,
-          "title": "【QA-PC-管理侧-销司库存信息拆分】导出的总可用库存，没有去掉机型档次字段，新字段也没有加",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
           "id": 330244,
           "title": "【QA-PC-管理侧-销售方案】经销商销售方案，商品为“停止生产”状态，添加商品弹窗不显示该状态商品",
           "severity": 3,
@@ -3910,6 +3976,14 @@
           "severity": 3,
           "pri": 3,
           "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 329571,
+          "title": "【QA-PC-管理侧-销司库存信息拆分】导出的总可用库存，没有去掉机型档次字段，新字段也没有加",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -4637,90 +4711,6 @@
           "deadline": "2026-08-17"
         },
         {
-          "id": 306881,
-          "name": "【PC用户】我的售后页签改造",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-17"
-        },
-        {
-          "id": 306882,
-          "name": "【PC用户】我的售后退款大单列表",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-17"
-        },
-        {
-          "id": 306883,
-          "name": "【PC用户】我的售后退款大单列表",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-17"
-        },
-        {
-          "id": 306884,
-          "name": "【PC用户】我的售后退款大单详情",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-17"
-        },
-        {
-          "id": 306885,
-          "name": "【PC用户】我的售后退款小单列表",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-17"
-        },
-        {
-          "id": 306886,
-          "name": "【PC用户】我的售后退款小单列表",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-17"
-        },
-        {
           "id": 306892,
           "name": "【PC管理】网批订单页签改造",
           "status": "wait",
@@ -4833,8 +4823,8 @@
           "deadline": "2026-08-17"
         },
         {
-          "id": 306900,
-          "name": "【PC管理】退货退款页签改造",
+          "id": 307094,
+          "name": "【H5】零售大单列表",
           "status": "wait",
           "pri": 3,
           "type": "a_dev2_front",
@@ -4847,8 +4837,8 @@
           "deadline": "2026-08-17"
         },
         {
-          "id": 306901,
-          "name": "【PC管理】退货退款大单列表",
+          "id": 307095,
+          "name": "【H5】零售大单详情",
           "status": "wait",
           "pri": 3,
           "type": "a_dev2_front",
@@ -4861,8 +4851,8 @@
           "deadline": "2026-08-17"
         },
         {
-          "id": 306902,
-          "name": "【PC管理】退货退款大单详情",
+          "id": 307096,
+          "name": "【H5】零售大单申请退款",
           "status": "wait",
           "pri": 3,
           "type": "a_dev2_front",
@@ -4875,8 +4865,8 @@
           "deadline": "2026-08-17"
         },
         {
-          "id": 306903,
-          "name": "【PC管理】退货退款小单详情",
+          "id": 307098,
+          "name": "【H5】零售小单列表",
           "status": "wait",
           "pri": 3,
           "type": "a_dev2_front",
@@ -4889,8 +4879,92 @@
           "deadline": "2026-08-17"
         },
         {
-          "id": 306904,
-          "name": "【PC管理】退货退款小单列表",
+          "id": 307099,
+          "name": "【H5】零售小单详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307100,
+          "name": "【H5】零售小单详情取消发货",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307101,
+          "name": "【H5】工程大单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307102,
+          "name": "【H5】工程大单详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307103,
+          "name": "【H5】工程大单详情申请退定金",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307110,
+          "name": "【H5】一层订单接单详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307111,
+          "name": "【PC管理】商用订单审批待办事项",
           "status": "wait",
           "pri": 3,
           "type": "a_dev2_front",
@@ -5400,7 +5474,16 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 330708,
+          "title": "【QA-PC-管理侧-销司库存信息拆分】销司库存，搜索对应的sku下单，零售和工程，待发货和待自提状态完全不扣减小库库存",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "胡健",
@@ -6235,7 +6318,16 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 330641,
+          "title": "【QA-PC-用户侧-工程机】新建工程单，批量导入表格存在500条数据，提示&quot;上传失败,文件超过100条记录。",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "伍镓烨",
@@ -7168,7 +7260,16 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 330660,
+          "title": "【QA-安卓-管理侧-待办事项】待办事项商用零售订单审批页签查看列表最后一条数据详情后返回，刷新后页签显示暂无数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "江小芳",
@@ -8350,14 +8451,6 @@
       ],
       "active_bugs": [
         {
-          "id": 330708,
-          "title": "【QA-PC-管理侧-销司库存信息拆分】销司库存，搜索对应的sku下单，零售和工程，待发货和待自提状态完全不扣减小库库存",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
           "id": 330706,
           "title": "【QA-PC-管理侧-岗位管理】岗位选中全行业线，授权管理区域结果区域的商家显示为空",
           "severity": 3,
@@ -8935,7 +9028,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 10,
+        "前端": 37,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -8949,14 +9042,14 @@
       "done_estimate": 74.0,
       "done_consumed": 100.0,
       "month_done_hours": 100.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 27,
+      "active_estimate": 164.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 10,
-      "total_estimate": 74.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 164.0,
+      "total_tasks": 37,
+      "total_estimate": 238.0,
+      "completion_rate": 27.0,
+      "efficiency": 27.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -9080,7 +9173,386 @@
           "finished_date": "2026-07-13"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 306881,
+          "name": "【PC用户】我的售后页签改造",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306882,
+          "name": "【PC用户】我的售后退款大单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306883,
+          "name": "【PC用户】我的售后退款大单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306884,
+          "name": "【PC用户】我的售后退款大单详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306885,
+          "name": "【PC用户】我的售后退款小单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306886,
+          "name": "【PC用户】我的售后退款小单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306900,
+          "name": "【PC管理】退货退款页签改造",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306901,
+          "name": "【PC管理】退货退款大单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306902,
+          "name": "【PC管理】退货退款大单详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306903,
+          "name": "【PC管理】退货退款小单详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 306904,
+          "name": "【PC管理】退货退款小单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307104,
+          "name": "【H5】零售小单售后列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307105,
+          "name": "【H5】零售小单售后详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307112,
+          "name": "【PC管理】商用退款单审批待办事项",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307119,
+          "name": "【PC管理】4.0销司订货提交订单增加保证金-工程特批",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307120,
+          "name": "【PC管理】4.0销司订货提交订单增加保证金-工程特批机",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307121,
+          "name": "【PC管理】4.0销司订货提交订单增加保证金-工程资源机",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307122,
+          "name": "【PC管理】4.0销司订货提交订单增加保证金-工程特价机",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307123,
+          "name": "【PC管理】4.0销司订单特批方案订单退款",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307124,
+          "name": "【PC管理】4.0销司订单特批方案详情-特批工程",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307125,
+          "name": "【PC管理】4.0销司订单特批方案详情-配提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307126,
+          "name": "【PC管理】4.0销司退款单特批方案详情-特批工程",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307127,
+          "name": "【PC管理】4.0销司退款单特批方案详情-配提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307128,
+          "name": "【PC管理】供应链管理销司订单详情-特批方案",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307129,
+          "name": "【PC管理】供应链管理销司订单详情-配提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307130,
+          "name": "【PC管理】销司退款单详情-配提",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307131,
+          "name": "【PC管理】销司退款单详情-工程特批",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        }
+      ],
       "resolved_bugs": [
         {
           "id": 330350,
@@ -9221,6 +9693,24 @@
       ],
       "resolved_bugs": [
         {
+          "id": 330711,
+          "title": "【QA-安卓-管理侧-待办事项】待办事项商用零售退款单显示有非商用经销商的订单数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 330697,
+          "title": "【QA-安卓-管理侧-指定发货仓】修改总部履约数量后，缺少确认改总部履约二次确认弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 330430,
           "title": "【QA-安卓-管理侧-指定发货仓】订单接单指定发货仓后，查看订单详情，未展示指定发货仓",
           "severity": 3,
@@ -9347,32 +9837,7 @@
           "openedBy": "伍镓烨"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 330711,
-          "title": "【QA-安卓-管理侧-待办事项】待办事项商用零售退款单显示有非商用经销商的订单数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 330697,
-          "title": "【QA-安卓-管理侧-指定发货仓】修改总部履约数量后，缺少确认改总部履约二次确认弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 330660,
-          "title": "【QA-安卓-管理侧-待办事项】待办事项商用零售订单审批页签查看列表最后一条数据详情后返回，刷新后页签显示暂无数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "何嘉宝",
@@ -11352,6 +11817,578 @@
       "active_bugs": []
     },
     {
+      "name": "徐琦",
+      "role": "后端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 39,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 61.5,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 10,
+      "done_estimate": 54.0,
+      "done_consumed": 53.5,
+      "month_done_hours": 61.5,
+      "active_count": 29,
+      "active_estimate": 204.0,
+      "active_consumed": 8.0,
+      "active_left": 197.0,
+      "total_tasks": 39,
+      "total_estimate": 258.0,
+      "completion_rate": 25.6,
+      "efficiency": 25.6,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 296127,
+          "name": "【后端】用户侧--满额减订单列表申请退款",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-22",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-01"
+        },
+        {
+          "id": 296135,
+          "name": "【后端】管理侧--满额减退款详情】",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-22",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-06"
+        },
+        {
+          "id": 296134,
+          "name": "【后端】管理侧--满额减退款列表导出",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-22",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-06"
+        },
+        {
+          "id": 296131,
+          "name": "【后端】用户侧--满额减退款详情】",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-22",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-06"
+        },
+        {
+          "id": 296130,
+          "name": "【后端】用户侧--满额减退款列表导出",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-22",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-06"
+        },
+        {
+          "id": 303588,
+          "name": "【后端】工程3.0资料提交，线下资料提交需求评审",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-07",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-08"
+        },
+        {
+          "id": 304439,
+          "name": "【后端】0708供应链金融订单大单小单逆向需求评审",
+          "consumed": 7.5,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-08",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-09"
+        },
+        {
+          "id": 304567,
+          "name": "【后端】下单中心售后相关导出操作日志",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-07-09",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-13"
+        },
+        {
+          "id": 305232,
+          "name": "【后端】【GC10】  1、区分4.0的补交资料逻辑，如果工程类型为“兼容”的，则走3.0的特价方案的补交资料逻辑：  4.0-销司批价工程（兼容）  4.0-总部特价工程（兼容）  4.0-额度特价工程（兼容）  4.0-总部&额度特价工程（兼容）",
+          "consumed": 13.0,
+          "estimate": 12.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-10",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-14"
+        },
+        {
+          "id": 305233,
+          "name": "【后端】【GC11】  1、增加按钮【补交资料】，满足以下条件才可显示该按钮：  ①工程状态为“资料审核完结”  ②补交资料状态为“线上-未上传”的工程单  ③授权【新建-工程补交资料】按钮的账号",
+          "consumed": 7.0,
+          "estimate": 8.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-10",
+          "finished_by": "徐琦",
+          "finished_date": "2026-07-15"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 305757,
+          "name": "【后端】金蝶对接新功能-销售订单-商家退款  零售大单申请部分退款 审批通过后 推送金蝶  详细字段传值说明见API文档",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305760,
+          "name": "【后端】金蝶对接新功能-费用应收单接口（运费补回）  零售小单 取消发货 审批通过后 产生补差运费时：调用",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305762,
+          "name": "【后端】OMS API 对接新功能 创建采销退款单",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305763,
+          "name": "【后端】OMS API 对接新功能B-OMS创建及更新订单(经销商订单)  零售小单 审批通过后 推送OMS  用【履约单】方式推送OMS，详细字段传值说明见API文档",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305765,
+          "name": "【后端】OMS API 对接新功能--小单逆向退款",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305768,
+          "name": "【后端】营销一体化系统 API 对接-营销一体化-网批】网批订单行查询  3. 【网批-营销一体化】网批经销商退款售后单 退款成功后，凡是有  行总部履约数量>0 的售后单行 都要推送给 营销一体化",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 6.0,
+          "consumed": 0.0,
+          "left": 6.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305787,
+          "name": "【后端】用户侧大单处于「待发货」状态，商家对未履约部分发起退款申请页面",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305788,
+          "name": "【后端】用户侧大单处于「待发货」状态，商家对未履约部分发起退款提交-发起审批",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 12.0,
+          "consumed": 8.0,
+          "left": 5.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305789,
+          "name": "【后端】用户侧新增售大单退款单列表",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305790,
+          "name": "【后端】用户侧新增售大单退款单详情",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305791,
+          "name": "【后端】管理侧新增售大单退款单列表",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305792,
+          "name": "【后端】管理侧新增售大单退款单详情",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305793,
+          "name": "【后端】【后端】管理侧新增售大单退款单审批",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305810,
+          "name": "【后端】用户侧新增小单处于「待发货」或「待自提」状态时，商家发起取消发货申请-结算",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305811,
+          "name": "【后端】用户侧新增小单处于「待发货」或「待自提」状态时，商家发起取消发货申请-提交",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305812,
+          "name": "【后端】用户侧商用零售退款单列表查询",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305813,
+          "name": "【后端】用户侧商用零售退款单列表详情",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305814,
+          "name": "【后端】管理侧商用零售退款单列表查询",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305815,
+          "name": "【后端】管理侧商用零售退款单列表详情",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305816,
+          "name": "【后端】管理侧商用零售退款单审批",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 12.0,
+          "consumed": 0.0,
+          "left": 12.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305825,
+          "name": "【后端】用户商用工程+零售多次退款-结算页",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305826,
+          "name": "【后端】用户商用工程+零售多次退款-提交",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305827,
+          "name": "【后端】用户商用工程+零售多次退款-审批退款",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305828,
+          "name": "【后端】运费补差计算-商用零售小单-补差运费计算-审批指定节点提示金额不足，不够扣减运费",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 6.0,
+          "consumed": 0.0,
+          "left": 6.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305840,
+          "name": "【后端】小单拒单-合并支付后--多个订单（存在小单，一层订单）推送oms，金蝶区分，拒单售后",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305841,
+          "name": "【后端】大单拒单-商用零售大单接单区分，推送金蝶，oms区分拒单售后",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 306853,
+          "name": "【后端】供应链管理\t商用退款售后单 （大单、小单）",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-21"
+        },
+        {
+          "id": 306863,
+          "name": "【后端】供应链管理\t退货退款\t商用退款售后单\t退定金审批",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-21"
+        },
+        {
+          "id": 306864,
+          "name": "【后端】供应链管理\t退货退款\t商用退款售后单\t退款审批",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-21"
+        }
+      ],
+      "resolved_bugs": [
+        {
+          "id": 326964,
+          "title": "【QA/PRD-PC-管理侧/用户侧-商用分批提货-定金单售后】定金单拒单和退定金后没有返还工程单可提货数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        }
+      ],
+      "active_bugs": []
+    },
+    {
       "name": "李龙键",
       "role": "后端",
       "type_counts": {
@@ -12088,7 +13125,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 17,
+        "前端": 25,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -12102,14 +13139,14 @@
       "done_estimate": 60.0,
       "done_consumed": 60.0,
       "month_done_hours": 60.0,
-      "active_count": 8,
-      "active_estimate": 52.0,
+      "active_count": 16,
+      "active_estimate": 84.0,
       "active_consumed": 0.0,
-      "active_left": 52.0,
-      "total_tasks": 17,
-      "total_estimate": 112.0,
-      "completion_rate": 52.9,
-      "efficiency": 52.9,
+      "active_left": 84.0,
+      "total_tasks": 25,
+      "total_estimate": 144.0,
+      "completion_rate": 36.0,
+      "efficiency": 36.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -12307,6 +13344,104 @@
           "deadline": "2026-07-31"
         },
         {
+          "id": 307151,
+          "name": "【PC管理】总部销司退款售后单订单类型为【常规工程】及【特价工程】类型的手动发起的售后单审批按钮展示",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-07-31"
+        },
+        {
+          "id": 307152,
+          "name": "【PC管理】总部销司退款售后单订单类型为【常规工程】及【特价工程】类型的手动发起的售后详情单添加审批流程",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-07-31"
+        },
+        {
+          "id": 307153,
+          "name": "【PC管理】销司订单管理申请退款入口",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-07-31"
+        },
+        {
+          "id": 307154,
+          "name": "【PC管理】销司订单管理申请是广播记录",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-07-31"
+        },
+        {
+          "id": 307155,
+          "name": "【PC管理】网批订单的增加筛选以及列头",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-02"
+        },
+        {
+          "id": 307156,
+          "name": "【PC管理】网批订单详情展示字段",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-02"
+        },
+        {
+          "id": 307132,
+          "name": "【PC管理】销司ERP编码增加字段",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-03"
+        },
+        {
           "id": 306878,
           "name": "【PC用户】待发货商品清单",
           "status": "wait",
@@ -12329,6 +13464,20 @@
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-17"
+        },
+        {
+          "id": 307092,
+          "name": "【PC用户】新增零售小单扣款退款逻辑，新增运费扣款/运费退款/运费补差 类型流水",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
           "platform": "网批2.0",
           "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
           "opened_date": "2026-07-15",
@@ -12371,580 +13520,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
-        }
-      ],
-      "active_bugs": []
-    },
-    {
-      "name": "徐琦",
-      "role": "后端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 39,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 57.5,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 9,
-      "done_estimate": 46.0,
-      "done_consumed": 46.5,
-      "month_done_hours": 57.5,
-      "active_count": 30,
-      "active_estimate": 212.0,
-      "active_consumed": 11.0,
-      "active_left": 202.0,
-      "total_tasks": 39,
-      "total_estimate": 258.0,
-      "completion_rate": 23.1,
-      "efficiency": 23.1,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 296127,
-          "name": "【后端】用户侧--满额减订单列表申请退款",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-22",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-01"
-        },
-        {
-          "id": 296135,
-          "name": "【后端】管理侧--满额减退款详情】",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-22",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-06"
-        },
-        {
-          "id": 296134,
-          "name": "【后端】管理侧--满额减退款列表导出",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-22",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-06"
-        },
-        {
-          "id": 296131,
-          "name": "【后端】用户侧--满额减退款详情】",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-22",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-06"
-        },
-        {
-          "id": 296130,
-          "name": "【后端】用户侧--满额减退款列表导出",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-22",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-06"
-        },
-        {
-          "id": 303588,
-          "name": "【后端】工程3.0资料提交，线下资料提交需求评审",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-07",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-08"
-        },
-        {
-          "id": 304439,
-          "name": "【后端】0708供应链金融订单大单小单逆向需求评审",
-          "consumed": 7.5,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-08",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-09"
-        },
-        {
-          "id": 304567,
-          "name": "【后端】下单中心售后相关导出操作日志",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-07-09",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-13"
-        },
-        {
-          "id": 305232,
-          "name": "【后端】【GC10】  1、区分4.0的补交资料逻辑，如果工程类型为“兼容”的，则走3.0的特价方案的补交资料逻辑：  4.0-销司批价工程（兼容）  4.0-总部特价工程（兼容）  4.0-额度特价工程（兼容）  4.0-总部&额度特价工程（兼容）",
-          "consumed": 13.0,
-          "estimate": 12.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-10",
-          "finished_by": "徐琦",
-          "finished_date": "2026-07-14"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 305233,
-          "name": "【后端】【GC11】  1、增加按钮【补交资料】，满足以下条件才可显示该按钮：  ①工程状态为“资料审核完结”  ②补交资料状态为“线上-未上传”的工程单  ③授权【新建-工程补交资料】按钮的账号",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev",
-          "estimate": 8.0,
-          "consumed": 3.0,
-          "left": 5.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-10",
-          "deadline": "2026-07-31"
-        },
-        {
-          "id": 305757,
-          "name": "【后端】金蝶对接新功能-销售订单-商家退款  零售大单申请部分退款 审批通过后 推送金蝶  详细字段传值说明见API文档",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305760,
-          "name": "【后端】金蝶对接新功能-费用应收单接口（运费补回）  零售小单 取消发货 审批通过后 产生补差运费时：调用",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305762,
-          "name": "【后端】OMS API 对接新功能 创建采销退款单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305763,
-          "name": "【后端】OMS API 对接新功能B-OMS创建及更新订单(经销商订单)  零售小单 审批通过后 推送OMS  用【履约单】方式推送OMS，详细字段传值说明见API文档",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305765,
-          "name": "【后端】OMS API 对接新功能--小单逆向退款",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305768,
-          "name": "【后端】营销一体化系统 API 对接-营销一体化-网批】网批订单行查询  3. 【网批-营销一体化】网批经销商退款售后单 退款成功后，凡是有  行总部履约数量>0 的售后单行 都要推送给 营销一体化",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 6.0,
-          "consumed": 0.0,
-          "left": 6.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305787,
-          "name": "【后端】用户侧大单处于「待发货」状态，商家对未履约部分发起退款申请页面",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305788,
-          "name": "【后端】用户侧大单处于「待发货」状态，商家对未履约部分发起退款提交-发起审批",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 12.0,
-          "consumed": 8.0,
-          "left": 5.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305789,
-          "name": "【后端】用户侧新增售大单退款单列表",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305790,
-          "name": "【后端】用户侧新增售大单退款单详情",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305791,
-          "name": "【后端】管理侧新增售大单退款单列表",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305792,
-          "name": "【后端】管理侧新增售大单退款单详情",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305793,
-          "name": "【后端】【后端】管理侧新增售大单退款单审批",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305810,
-          "name": "【后端】用户侧新增小单处于「待发货」或「待自提」状态时，商家发起取消发货申请-结算",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305811,
-          "name": "【后端】用户侧新增小单处于「待发货」或「待自提」状态时，商家发起取消发货申请-提交",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305812,
-          "name": "【后端】用户侧商用零售退款单列表查询",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305813,
-          "name": "【后端】用户侧商用零售退款单列表详情",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305814,
-          "name": "【后端】管理侧商用零售退款单列表查询",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305815,
-          "name": "【后端】管理侧商用零售退款单列表详情",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305816,
-          "name": "【后端】管理侧商用零售退款单审批",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 12.0,
-          "consumed": 0.0,
-          "left": 12.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305825,
-          "name": "【后端】用户商用工程+零售多次退款-结算页",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305826,
-          "name": "【后端】用户商用工程+零售多次退款-提交",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305827,
-          "name": "【后端】用户商用工程+零售多次退款-审批退款",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305828,
-          "name": "【后端】运费补差计算-商用零售小单-补差运费计算-审批指定节点提示金额不足，不够扣减运费",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 6.0,
-          "consumed": 0.0,
-          "left": 6.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305840,
-          "name": "【后端】小单拒单-合并支付后--多个订单（存在小单，一层订单）推送oms，金蝶区分，拒单售后",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305841,
-          "name": "【后端】大单拒单-商用零售大单接单区分，推送金蝶，oms区分拒单售后",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 306853,
-          "name": "【后端】供应链管理\t商用退款售后单 （大单、小单）",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-21"
-        },
-        {
-          "id": 306863,
-          "name": "【后端】供应链管理\t退货退款\t商用退款售后单\t退定金审批",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-21"
-        },
-        {
-          "id": 306864,
-          "name": "【后端】供应链管理\t退货退款\t商用退款售后单\t退款审批",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-21"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 326964,
-          "title": "【QA/PRD-PC-管理侧/用户侧-商用分批提货-定金单售后】定金单拒单和退定金后没有返还工程单可提货数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
         }
       ],
       "active_bugs": [
@@ -13363,24 +13938,6 @@
           "openedBy": "陈嘉劲"
         },
         {
-          "id": 330397,
-          "title": "【QA-IOS-用户侧-满额减】满额减方案商品，活动专区，展示的优惠金额精度与PC和安卓不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 330388,
-          "title": "【QA-IOS-用户侧-满额减】满额减方案商品，购物车加减商品数量后，全选勾选对应方案，没有显示到手活动价",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
           "id": 330291,
           "title": "【RPD/QA-iOS-用户侧-工程机】商用工程申请价格没有显示业务线",
           "severity": 3,
@@ -13388,15 +13945,6 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "李文清"
-        },
-        {
-          "id": 330097,
-          "title": "【QA-IOS-用户侧-满额减】满额减方案商品，活动专区，展示的优惠金额错误，当前梯位的价格显示为优惠了多少的价格",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
         },
         {
           "id": 330496,
@@ -13424,6 +13972,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 330397,
+          "title": "【QA-IOS-用户侧-满额减】满额减方案商品，活动专区，展示的优惠金额精度与PC和安卓不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
         },
         {
           "id": 330382,
@@ -13469,6 +14026,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 330097,
+          "title": "【QA-IOS-用户侧-满额减】满额减方案商品，活动专区，展示的优惠金额错误，当前梯位的价格显示为优惠了多少的价格",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
         },
         {
           "id": 330093,
@@ -13851,6 +14417,14 @@
       ],
       "active_bugs": [
         {
+          "id": 330388,
+          "title": "【QA-IOS-用户侧-满额减】满额减方案商品，购物车加减商品数量后，全选勾选对应方案，没有显示到手活动价",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
           "id": 330367,
           "title": "【QA-iOS-用户侧-工程机】新建工程备货，业务线字段无法点击",
           "severity": 3,
@@ -14162,28 +14736,30 @@
           "status": "postponed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 330534,
-          "title": "【QA-PC-管理侧-限时特价】限时特价方案已停售的商品，详情界面仍可加购",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
         },
         {
           "id": 330095,
           "title": "【qa-pc-管理侧-满金额减方案】审批满金额方案搜索商品后导出，结果导出的内容是全部商品数据",
           "severity": 3,
           "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
+          "status": "postponed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
         },
         {
           "id": 330084,
           "title": "【QA-PC-管理侧-满件减】方案选择的全部客户，在列表根据这个客户搜不到方案",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        }
+      ],
+      "active_bugs": [
+        {
+          "id": 330534,
+          "title": "【QA-PC-管理侧-限时特价】限时特价方案已停售的商品，详情界面仍可加购",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -15413,6 +15989,33 @@
       ],
       "resolved_bugs": [
         {
+          "id": 330712,
+          "title": "【QA-IOS-管理侧-待办事项】待办事项商用零售退款单显示有非商用经销商的售后订单数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 330665,
+          "title": "【QA-IOS-管理侧-待办事项】待办事项商用零售订单审批、商用工程定金单审批、商用工程提货单审批未按原型要求只展示待我",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 330696,
+          "title": "【QA-IOS-管理侧-指定发货仓】修改总部履约数量后，缺少确认改总部履约二次确认弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 330431,
           "title": "【QA-安卓-管理侧-指定发货仓】订单接单指定发货仓后，查看订单详情，未展示指定发货仓",
           "severity": 3,
@@ -15530,32 +16133,7 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 330712,
-          "title": "【QA-IOS-管理侧-待办事项】待办事项商用零售退款单显示有非商用经销商的售后订单数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 330696,
-          "title": "【QA-IOS-管理侧-指定发货仓】修改总部履约数量后，缺少确认改总部履约二次确认弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 330665,
-          "title": "【QA-IOS-管理侧-待办事项】待办事项商用零售订单审批、商用工程定金单审批、商用工程提货单审批未按原型要求只展示待我",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "黄宇安",
