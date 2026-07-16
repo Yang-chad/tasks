@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 477,
-    "total_active": 544,
-    "total_month_hours": 5066.5,
-    "total_estimate": 8646.0,
+    "total_done": 478,
+    "total_active": 545,
+    "total_month_hours": 5085.5,
+    "total_estimate": 8662.0,
     "total_members": 48,
-    "total_overdue": 15,
+    "total_overdue": 14,
     "reference_hours": 184,
-    "report_time": "2026-07-16 08:32:03",
+    "report_time": "2026-07-16 08:42:39",
     "month": "2026年7月"
   },
   "members": [
@@ -552,15 +552,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 329810,
-          "title": "【qa-PC-管理侧-返利组合套餐】添加商品后批量导入商品进行填写商品金额等字段，结果提示导入成功，但商品数据仍显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
           "id": 330348,
           "title": "【QA-PC-管理侧-组合套餐】销司组合套餐方案批量导入设置上下架上传文件后进度条一直卡在50%",
           "severity": 3,
@@ -658,6 +649,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 329810,
+          "title": "【qa-PC-管理侧-返利组合套餐】添加商品后批量导入商品进行填写商品金额等字段，结果提示导入成功，但商品数据仍显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
         },
         {
           "id": 329792,
@@ -2087,7 +2087,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 58,
+        "前端": 60,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -2101,14 +2101,14 @@
       "done_estimate": 256.0,
       "done_consumed": 220.0,
       "month_done_hours": 220.0,
-      "active_count": 21,
-      "active_estimate": 128.0,
+      "active_count": 23,
+      "active_estimate": 144.0,
       "active_consumed": 0.0,
-      "active_left": 128.0,
-      "total_tasks": 58,
-      "total_estimate": 384.0,
-      "completion_rate": 63.8,
-      "efficiency": 63.8,
+      "active_left": 144.0,
+      "total_tasks": 60,
+      "total_estimate": 400.0,
+      "completion_rate": 61.7,
+      "efficiency": 61.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -2558,6 +2558,34 @@
       ],
       "active_tasks": [
         {
+          "id": 307245,
+          "name": "【PC管理】核查导出改为异步导出",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0730分销/dev4.4）【2026】",
+          "opened_date": "2026-07-16",
+          "deadline": "2026-07-30"
+        },
+        {
+          "id": 307246,
+          "name": "【PC用户】我的店铺支持编辑",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0730分销/dev4.4）【2026】",
+          "opened_date": "2026-07-16",
+          "deadline": "2026-07-30"
+        },
+        {
           "id": 305678,
           "name": "【PC管理】商品库导出增加“体积”字段",
           "status": "wait",
@@ -2867,7 +2895,7 @@
           "title": "【QA-PC-管理侧-待办事项】待办事项商用订单审批、商用退款审批未只显示待我审批的数据",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -5801,6 +5829,106 @@
       "active_bugs": []
     },
     {
+      "name": "刘孝亮",
+      "role": "测试",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 5,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 132.0,
+      "done_count": 3,
+      "done_estimate": 85.0,
+      "done_consumed": 85.0,
+      "month_done_hours": 132.0,
+      "active_count": 2,
+      "active_estimate": 64.0,
+      "active_consumed": 47.0,
+      "active_left": 17.0,
+      "total_tasks": 5,
+      "total_estimate": 149.0,
+      "completion_rate": 60.0,
+      "efficiency": 60.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 295483,
+          "name": "【测试】行业数据隔离订单部分",
+          "consumed": 64.0,
+          "estimate": 64.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】",
+          "opened_date": "2026-06-17",
+          "finished_by": "刘孝亮",
+          "finished_date": "2026-07-02"
+        },
+        {
+          "id": 304296,
+          "name": "【测试设计】商用订单接单、退款-待办事项-PC",
+          "consumed": 6.0,
+          "estimate": 13.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-07-08",
+          "finished_by": "刘孝亮",
+          "finished_date": "2026-07-06"
+        },
+        {
+          "id": 244605,
+          "name": "【测试设计】销司方案新增上下架功能及逻辑",
+          "consumed": 15.0,
+          "estimate": 8.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-01-22",
+          "finished_by": "刘孝亮",
+          "finished_date": "2026-07-07"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 244606,
+          "name": "【测试】销司方案新增上下架功能及逻辑",
+          "status": "doing",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 24.0,
+          "consumed": 22.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-01-22",
+          "deadline": "2026-07-17"
+        },
+        {
+          "id": 304297,
+          "name": "【测试】商用订单接单、退款-待办事项-PC",
+          "status": "doing",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 40.0,
+          "consumed": 25.0,
+          "left": 15.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-07-08",
+          "deadline": "2026-07-17"
+        }
+      ],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
       "name": "江小芳",
       "role": "测试",
       "type_counts": {
@@ -8530,106 +8658,6 @@
       "active_bugs": []
     },
     {
-      "name": "刘孝亮",
-      "role": "测试",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 5,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 116.0,
-      "done_count": 3,
-      "done_estimate": 85.0,
-      "done_consumed": 85.0,
-      "month_done_hours": 116.0,
-      "active_count": 2,
-      "active_estimate": 64.0,
-      "active_consumed": 31.0,
-      "active_left": 33.0,
-      "total_tasks": 5,
-      "total_estimate": 149.0,
-      "completion_rate": 60.0,
-      "efficiency": 60.0,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 295483,
-          "name": "【测试】行业数据隔离订单部分",
-          "consumed": 64.0,
-          "estimate": 64.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】",
-          "opened_date": "2026-06-17",
-          "finished_by": "刘孝亮",
-          "finished_date": "2026-07-02"
-        },
-        {
-          "id": 304296,
-          "name": "【测试设计】商用订单接单、退款-待办事项-PC",
-          "consumed": 6.0,
-          "estimate": 13.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-07-08",
-          "finished_by": "刘孝亮",
-          "finished_date": "2026-07-06"
-        },
-        {
-          "id": 244605,
-          "name": "【测试设计】销司方案新增上下架功能及逻辑",
-          "consumed": 15.0,
-          "estimate": 8.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-01-22",
-          "finished_by": "刘孝亮",
-          "finished_date": "2026-07-07"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 244606,
-          "name": "【测试】销司方案新增上下架功能及逻辑",
-          "status": "doing",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 24.0,
-          "consumed": 14.0,
-          "left": 10.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-01-22",
-          "deadline": "2026-07-17"
-        },
-        {
-          "id": 304297,
-          "name": "【测试】商用订单接单、退款-待办事项-PC",
-          "status": "doing",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 40.0,
-          "consumed": 17.0,
-          "left": 23.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-07-08",
-          "deadline": "2026-07-17"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
       "name": "龙泽英",
       "role": "测试",
       "type_counts": {
@@ -8738,6 +8766,364 @@
       ],
       "resolved_bugs": [],
       "active_bugs": []
+    },
+    {
+      "name": "孙元通",
+      "role": "后端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 22,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 104.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 16,
+      "done_estimate": 104.0,
+      "done_consumed": 104.0,
+      "month_done_hours": 104.0,
+      "active_count": 6,
+      "active_estimate": 37.0,
+      "active_consumed": 0.0,
+      "active_left": 37.0,
+      "total_tasks": 22,
+      "total_estimate": 141.0,
+      "completion_rate": 72.7,
+      "efficiency": 72.7,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 299444,
+          "name": "【后端】22个销司，每个销司7个流程（商用工程行业绘图）",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-06-29",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-01"
+        },
+        {
+          "id": 300292,
+          "name": "【后端】22个销售公司节点权限定义--表格讨论，产品讨论，生产节点标识定义",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-06-30",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-02"
+        },
+        {
+          "id": 292150,
+          "name": "【后端】企业微信登录成功更新登录使劲啊",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-10",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-02"
+        },
+        {
+          "id": 292103,
+          "name": "【后端】工程备货【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-10",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-06"
+        },
+        {
+          "id": 292102,
+          "name": "【后端】常规【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-10",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-06"
+        },
+        {
+          "id": 292119,
+          "name": "【后端】周转机-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在&quot;申请数量&quot;列后新增&quot;原登录数量&quot;列，展示审批时的原始申请数量，便于审批人快速比对数量差异。",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-10",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-07"
+        },
+        {
+          "id": 292118,
+          "name": "【后端】家用-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在&quot;申请数量&quot;列后新增&quot;原登录数量&quot;列，展示审批时的原始申请数量，便于审批人快速比对数量差异。",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-06-10",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-07"
+        },
+        {
+          "id": 303593,
+          "name": "【后端】产品钟日健工程+胡健订单需求任务拆分",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-07",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-08"
+        },
+        {
+          "id": 303592,
+          "name": "【后端】产品钟日健工程+胡健订单需求评审",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-07",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-08"
+        },
+        {
+          "id": 304436,
+          "name": "【后端】0707 下午家用供应链金融技术评审",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-08",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-09"
+        },
+        {
+          "id": 304347,
+          "name": "【后端】0708揭阳销司组织架构变动，销司工程10个图审批变更",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-08",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-09"
+        },
+        {
+          "id": 304572,
+          "name": "【后端】销司订单3.0，4.0销司订货购物车导出日志管理",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-07-09",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-09"
+        },
+        {
+          "id": 304853,
+          "name": "【后端】商用工程小单提货--提交订单0元定金发货仓订单提交",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-07-09",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-10"
+        },
+        {
+          "id": 304437,
+          "name": "【后端】0707-0709 家用供应链金融需求评审",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-08",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-13"
+        },
+        {
+          "id": 305755,
+          "name": "【后端】各个系统按照模板梳理  权限梳理--网批，分销，集采",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-13",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-15"
+        },
+        {
+          "id": 306865,
+          "name": "【后端】审批流可视化改造-技术方案，样板编写",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-15",
+          "finished_by": "孙元通",
+          "finished_date": "2026-07-16"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 306767,
+          "name": "【后端】销司返利购物车返利销售方案上下架提交限制",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 1.0,
+          "consumed": 0.0,
+          "left": 1.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
+          "opened_date": "2026-07-14",
+          "deadline": "2026-07-16"
+        },
+        {
+          "id": 307219,
+          "name": "【后端】销司订单购物车工程特批方案商品行 增加 保证金",
+          "status": "doing",
+          "pri": 1,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-07-30"
+        },
+        {
+          "id": 303594,
+          "name": "【后端】零售小单订单支付0元支付--运费重算，-订单金额",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 16.0,
+          "consumed": 0.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-07",
+          "deadline": "2026-08-03"
+        },
+        {
+          "id": 305799,
+          "name": "【后端】分批提货支付--提供订单信息",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 305800,
+          "name": "【后端】分批提货支付--支付成功提供订单信息--库存扣减",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-14"
+        },
+        {
+          "id": 306847,
+          "name": "【后端】企业微信登录菜单配置-添加/编辑元素，类型-增加【字段】返回判断",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-15",
+          "deadline": "2026-08-21"
+        }
+      ],
+      "resolved_bugs": [
+        {
+          "id": 329956,
+          "title": "【QA-PC-管理侧-批量迁移经销商】经销商进行迁移后，绑定的办事处无法看到这个商家",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 329875,
+          "title": "【QA-安卓-用户侧-工程机】工程商品，进行购买，提示您所选的部分商品已失效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 329729,
+          "title": "【QA-安卓-管理侧-工程管理】工程单二次审批详情页，商品没有显示原申请数量字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 329726,
+          "title": "【QA-PC-管理侧-工程管理】工程单二次审批详情页，商品没有显示原申请数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        }
+      ],
+      "active_bugs": [
+        {
+          "id": 329820,
+          "title": "【QA-PC-管理侧-购物车】已下架的商品在购物车界面仍显示为在售，且可以正常下单并提交",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "冯澈",
@@ -9220,15 +9606,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 330411,
-          "title": "【QA-PC-管理侧-限时特价】3.0限时特价方案在销司订货活动专区不展示",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 330596,
           "title": "【QA-PC-管理侧-销司订货】从停止生产状态编辑商品库商品的生产状态和供货周期为空值，销司订货页，没有展示商品",
           "severity": 3,
@@ -9236,6 +9613,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 330411,
+          "title": "【QA-PC-管理侧-限时特价】3.0限时特价方案在销司订货活动专区不展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 330326,
@@ -9287,366 +9673,6 @@
         {
           "id": 330534,
           "title": "【QA-PC-管理侧-限时特价】限时特价方案已停售的商品，详情界面不是停售状态仍可加购",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
-    },
-    {
-      "name": "孙元通",
-      "role": "后端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 22,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 101.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 15,
-      "done_estimate": 101.0,
-      "done_consumed": 101.0,
-      "month_done_hours": 101.0,
-      "active_count": 7,
-      "active_estimate": 40.0,
-      "active_consumed": 0.0,
-      "active_left": 40.0,
-      "total_tasks": 22,
-      "total_estimate": 141.0,
-      "completion_rate": 68.2,
-      "efficiency": 68.2,
-      "overdue": 1,
-      "done_tasks": [
-        {
-          "id": 299444,
-          "name": "【后端】22个销司，每个销司7个流程（商用工程行业绘图）",
-          "consumed": 16.0,
-          "estimate": 16.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-06-29",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-01"
-        },
-        {
-          "id": 300292,
-          "name": "【后端】22个销售公司节点权限定义--表格讨论，产品讨论，生产节点标识定义",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-06-30",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-02"
-        },
-        {
-          "id": 292150,
-          "name": "【后端】企业微信登录成功更新登录使劲啊",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-10",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-02"
-        },
-        {
-          "id": 292103,
-          "name": "【后端】工程备货【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-10",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-06"
-        },
-        {
-          "id": 292102,
-          "name": "【后端】常规【GC03】  功能改动点-&gt;二次批价：  1、展示上一份商品的批价通过且完结的数据（允许多次批价），增加【原申请数量】【原申请价格】；  2、二次批价-审批时，对【上一份的商品数据进行对比】，若 新增SKU、申请价格、申请数量 存在差异则标红出路：  ① 新增sku，则 SKU 标注【新增】标签  ② 申请数量，与【原申请数量】对比，若≠则标红处理  ③ 申请价格，与【原申请价格】对比，若≠则标红处理",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-10",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-06"
-        },
-        {
-          "id": 292119,
-          "name": "【后端】周转机-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在&quot;申请数量&quot;列后新增&quot;原登录数量&quot;列，展示审批时的原始申请数量，便于审批人快速比对数量差异。",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-10",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-07"
-        },
-        {
-          "id": 292118,
-          "name": "【后端】家用-【GC07】  1、价格审批→工程单详情页→商品信息表格（一次/二次批价）中，在&quot;申请数量&quot;列后新增&quot;原登录数量&quot;列，展示审批时的原始申请数量，便于审批人快速比对数量差异。",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-06-10",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-07"
-        },
-        {
-          "id": 303593,
-          "name": "【后端】产品钟日健工程+胡健订单需求任务拆分",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-07",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-08"
-        },
-        {
-          "id": 303592,
-          "name": "【后端】产品钟日健工程+胡健订单需求评审",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-07",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-08"
-        },
-        {
-          "id": 304436,
-          "name": "【后端】0707 下午家用供应链金融技术评审",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-08",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-09"
-        },
-        {
-          "id": 304347,
-          "name": "【后端】0708揭阳销司组织架构变动，销司工程10个图审批变更",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-08",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-09"
-        },
-        {
-          "id": 304572,
-          "name": "【后端】销司订单3.0，4.0销司订货购物车导出日志管理",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-07-09",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-09"
-        },
-        {
-          "id": 304853,
-          "name": "【后端】商用工程小单提货--提交订单0元定金发货仓订单提交",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-07-09",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-10"
-        },
-        {
-          "id": 304437,
-          "name": "【后端】0707-0709 家用供应链金融需求评审",
-          "consumed": 16.0,
-          "estimate": 16.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-08",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-13"
-        },
-        {
-          "id": 305755,
-          "name": "【后端】各个系统按照模板梳理  权限梳理--网批，分销，集采",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-13",
-          "finished_by": "孙元通",
-          "finished_date": "2026-07-15"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 306767,
-          "name": "【后端】销司返利购物车返利销售方案上下架提交限制",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 1.0,
-          "consumed": 0.0,
-          "left": 1.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.80.0（0716/dev11.7）【2026】",
-          "opened_date": "2026-07-14",
-          "deadline": "2026-07-15"
-        },
-        {
-          "id": 307219,
-          "name": "【后端】销司订单购物车工程特批方案商品行 增加 保证金",
-          "status": "wait",
-          "pri": 1,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-07-30"
-        },
-        {
-          "id": 303594,
-          "name": "【后端】零售小单订单支付0元支付--运费重算，-订单金额",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 16.0,
-          "consumed": 0.0,
-          "left": 16.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-07",
-          "deadline": "2026-08-03"
-        },
-        {
-          "id": 305799,
-          "name": "【后端】分批提货支付--提供订单信息",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 305800,
-          "name": "【后端】分批提货支付--支付成功提供订单信息--库存扣减",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0817/dev11.9）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-14"
-        },
-        {
-          "id": 306847,
-          "name": "【后端】企业微信登录菜单配置-添加/编辑元素，类型-增加【字段】返回判断",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-21"
-        },
-        {
-          "id": 306865,
-          "name": "【后端】审批流可视化改造-技术方案，样板编写",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 3.0,
-          "consumed": 0.0,
-          "left": 3.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-15",
-          "deadline": "2026-08-21"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 329956,
-          "title": "【QA-PC-管理侧-批量迁移经销商】经销商进行迁移后，绑定的办事处无法看到这个商家",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 329875,
-          "title": "【QA-安卓-用户侧-工程机】工程商品，进行购买，提示您所选的部分商品已失效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 329729,
-          "title": "【QA-安卓-管理侧-工程管理】工程单二次审批详情页，商品没有显示原申请数量字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 329726,
-          "title": "【QA-PC-管理侧-工程管理】工程单二次审批详情页，商品没有显示原申请数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 329820,
-          "title": "【QA-PC-管理侧-购物车】已下架的商品在购物车界面仍显示为在售，且可以正常下单并提交",
           "severity": 3,
           "pri": 3,
           "status": "active",
