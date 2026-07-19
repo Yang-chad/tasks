@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>禅道迭代报告总览 — 2026-07-19</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+         background: #f0f2f5; color: #1f2937; padding:20px; }
+  .container { max-width: 1400px; margin:0 auto; }
+  .header { text-align:center; padding:30px 20px; margin-bottom:24px;
+    background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); border-radius:16px; color:#fff; }
+  .header h1 { font-size:26px; margin-bottom:8px; }
+  .header p { color:#8892b0; font-size:13px; }
+  .summary { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; justify-content:center; }
+  .summary-card { background:#fff; border-radius:12px; padding:20px 24px; text-align:center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-width:160px; }
+  .summary-card .num { font-size:32px; font-weight:800; color:#667eea; }
+  .summary-card .lbl { font-size:12px; color:#888; margin-top:4px; }
+  .table-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  table { width:100%; border-collapse:collapse; }
+  th { background:#f3f4f6; color:#374151; padding:12px 16px; text-align:left; font-weight:600; font-size:13px; }
+  td { padding:12px 16px; border-bottom:1px solid #f0f0f0; font-size:13px; }
+  tr:hover { background:#f8f9fc; }
+  a { color:#667eea; text-decoration:none; font-weight:600; }
+  a:hover { text-decoration:underline; }
+  .progress-bar { width:120px; height:8px; background:#e5e7eb; border-radius:4px; overflow:hidden; display:inline-block; vertical-align:middle; }
+  .progress-fill { height:100%; border-radius:4px; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:8px; font-size:11px; margin-right:4px; }
+  .tag-wp { background:#dbeafe; color:#1d4ed8; }
+  .tag-jc { background:#dcfce7; color:#16a34a; }
+  .tag-fx { background:#fef3c7; color:#d97706; }
+  .stat-num { font-weight:700; font-size:13px; }
+  .stat-num.tasks { color:#667eea; }
+  .stat-num.stories { color:#16a34a; }
+  .stat-num.bugs { color:#ef4444; }
+  .platform-sep { background:#f3f4f6; }
+  .platform-sep td { padding:8px 16px; font-size:12px; font-weight:700; color:#6b7280; letter-spacing:1px; border-bottom:2px solid #d1d5db; }
+  .footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:30px; padding:16px; }
+  .back-link { display:inline-block; margin-bottom:16px; color:#667eea; font-size:13px; text-decoration:none; }
+  .back-link:hover { text-decoration:underline; }
+  .nav-links { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+  .nav-link { padding:6px 14px; border-radius:20px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); font-size:13px; text-decoration:none; color:#a5b4fc; transition:all .2s; }
+  .nav-link:hover { border-color:#667eea; color:#667eea; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back-link" href="https://yang-chad.github.io/tasks/">← 返回报告中心</a>
+  <div class="header">
+    <h1>禅道迭代执行进展总览</h1>
+    <p>2026-07-19 更新 &nbsp;|&nbsp; 三平台进行中迭代共 6 个</p>
+  </div>
+
+  <div class="summary">
+    <div class="summary-card"><div class="num">4</div><div class="lbl">网批2.0 迭代</div></div>
+    <div class="summary-card"><div class="num">1</div><div class="lbl">集采平台 迭代</div></div>
+    <div class="summary-card"><div class="num">1</div><div class="lbl">分销平台 迭代</div></div>
+    <div class="summary-card"><div class="num">600</div><div class="lbl">总任务数</div></div>
+    <div class="summary-card"><div class="num">65</div><div class="lbl">总需求数</div></div>
+    <div class="summary-card"><div class="num">0</div><div class="lbl">总Bug数</div></div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead><tr>
+        <th>迭代</th><th>平台</th><th>版本</th><th>时间</th><th>任务|需求|Bug</th><th>进度</th><th>报告</th>
+      </tr></thead>
+      <tbody>
+        <tr class="platform-sep"><td colspan="7"> 网批2.0（4个迭代）</td></tr>
+        <tr>
+          <td><a href="迭代4661_执行进展报告.html">#4661</a></td>
+          <td><span class="tag tag-wp">网批2.0</span></td>
+          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批模式_V2.83.0（0830/dev12.0）【2026】">网批模式_V2.83.0（0830/dev12.0）【2026】</td>
+          <td style="font-size:12px;color:#888;">2026-06-18 ~ 2026-08-30</td>
+          <td>
+            <span class="stat-num tasks">73</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num stories">15</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num bugs">0</span>
+          </td>
+          <td>
+            <div class="progress-bar"><div class="progress-fill" style="width:45.9%;background:#f5222d;"></div></div>
+            <span style="font-size:12px;color:#666;margin-left:6px;">45.9%</span>
+          </td>
+          <td><a href="迭代4661_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
+        </tr>
+        <tr>
+          <td><a href="迭代4626_执行进展报告.html">#4626</a></td>
+          <td><span class="tag tag-wp">网批2.0</span></td>
+          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批大前端V1.8（0730）【2026】">网批大前端V1.8（0730）【2026】</td>
+          <td style="font-size:12px;color:#888;">2026-06-08 ~ 2026-07-30</td>
+          <td>
+            <span class="stat-num tasks">5</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num stories">2</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num bugs">0</span>
+          </td>
+          <td>
+            <div class="progress-bar"><div class="progress-fill" style="width:75.9%;background:#faad14;"></div></div>
+            <span style="font-size:12px;color:#666;margin-left:6px;">75.9%</span>
+          </td>
+          <td><a href="迭代4626_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
+        </tr>
+        <tr>
+          <td><a href="迭代4625_执行进展报告.html">#4625</a></td>
+          <td><span class="tag tag-wp">网批2.0</span></td>
+          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批模式_V2.81.0（0803/dev11.8）【2026】">网批模式_V2.81.0（0803/dev11.8）【2026】</td>
+          <td style="font-size:12px;color:#888;">2026-06-08 ~ 2026-08-03</td>
+          <td>
+            <span class="stat-num tasks">443</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num stories">38</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num bugs">0</span>
+          </td>
+          <td>
+            <div class="progress-bar"><div class="progress-fill" style="width:44.2%;background:#f5222d;"></div></div>
+            <span style="font-size:12px;color:#666;margin-left:6px;">44.2%</span>
+          </td>
+          <td><a href="迭代4625_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
+        </tr>
+        <tr>
+          <td><a href="迭代4503_执行进展报告.html">#4503</a></td>
+          <td><span class="tag tag-wp">网批2.0</span></td>
+          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="网批AI需求研究开发【2026】">网批AI需求研究开发【2026】</td>
+          <td style="font-size:12px;color:#888;">2026-07-08 ~ 2026-07-31</td>
+          <td>
+            <span class="stat-num tasks">24</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num stories">3</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num bugs">0</span>
+          </td>
+          <td>
+            <div class="progress-bar"><div class="progress-fill" style="width:100.0%;background:#52c41a;"></div></div>
+            <span style="font-size:12px;color:#666;margin-left:6px;">100.0%</span>
+          </td>
+          <td><a href="迭代4503_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
+        </tr>
+        <tr class="platform-sep"><td colspan="7"> 集采平台（1个迭代）</td></tr>
+        <tr>
+          <td><a href="迭代4647_执行进展报告.html">#4647</a></td>
+          <td><span class="tag tag-jc">集采平台</span></td>
+          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="集采平台_V1.30.0（0730/集采dev3.9）【2026】">集采平台_V1.30.0（0730/集采dev3.9）【2026】</td>
+          <td style="font-size:12px;color:#888;">2026-06-12 ~ 2026-07-31</td>
+          <td>
+            <span class="stat-num tasks">33</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num stories">2</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num bugs">0</span>
+          </td>
+          <td>
+            <div class="progress-bar"><div class="progress-fill" style="width:65.7%;background:#faad14;"></div></div>
+            <span style="font-size:12px;color:#666;margin-left:6px;">65.7%</span>
+          </td>
+          <td><a href="迭代4647_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
+        </tr>
+        <tr class="platform-sep"><td colspan="7"> 分销平台（1个迭代）</td></tr>
+        <tr>
+          <td><a href="迭代4675_执行进展报告.html">#4675</a></td>
+          <td><span class="tag tag-fx">分销平台</span></td>
+          <td style="font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="分销平台_V1.38.0（0730分销/dev4.4）【2026】">分销平台_V1.38.0（0730分销/dev4.4）【2026】</td>
+          <td style="font-size:12px;color:#888;">2026-06-30 ~ 2026-08-04</td>
+          <td>
+            <span class="stat-num tasks">22</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num stories">5</span>
+            <span style="color:#ccc;margin:0 2px;">|</span>
+            <span class="stat-num bugs">0</span>
+          </td>
+          <td>
+            <div class="progress-bar"><div class="progress-fill" style="width:6.2%;background:#f5222d;"></div></div>
+            <span style="font-size:12px;color:#666;margin-left:6px;">6.2%</span>
+          </td>
+          <td><a href="迭代4675_执行进展报告.html" style="font-size:12px;">查看报告</a></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>数据来源：禅道 ztpm.gree.com:8888 &nbsp;|&nbsp; 自动生成于 2026-07-19</p>
+  </div>
+</div>
+</body>
+</html>
