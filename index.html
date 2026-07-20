@@ -736,7 +736,7 @@ function updateUI(d){
     if (pageEl) {
       var pageTs = pageEl.textContent.replace(/\s*更新\s*$/, '').trim();
       var jsonTs = (d.updated || '').trim();
-      if (jsonTs <= pageTs) return;  // JSON <= 页面 → 页面数据更新，不覆盖
+      if (jsonTs < pageTs) return;  // JSON < 页面 → JSON较旧，不覆盖；相等时允许覆盖(CDN同步延迟)
     }
     var statics = {
       product: document.getElementById('summary-product'),
