@@ -310,7 +310,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-24 09:11 更新</span></div>
+    <div class="date-tag"><span>2026-07-24 09:13 更新（已修复 7-23 异常行）</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -568,13 +568,13 @@ body {
                         <td class="trend-c-m">15 <span class="trend-delta trend-down">-3</span></td>
                         <td>570 <span class="trend-delta trend-up">+12</span> <span class="trend-delta trend-down">-41</span></td>
                     </tr>
-                                                                                <tr >
-                        <td>2026-07-23</td>
-                        <td class="trend-c-p">29 <span class="trend-delta trend-down">-18</span></td>
-                        <td class="trend-c-b">91 <span class="trend-delta trend-up">+8</span> <span class="trend-delta trend-down">-240</span></td>
-                        <td class="trend-c-f">51 <span class="trend-delta trend-up">+3</span> <span class="trend-delta trend-down">-137</span></td>
-                        <td class="trend-c-m">10 <span class="trend-delta trend-down">-5</span></td>
-                        <td>181 <span class="trend-delta trend-up">+11</span> <span class="trend-delta trend-down">-400</span></td>
+<tr class="trend-row" title="2026-07-23 抓取异常（ThreadPoolExecutor 缓存竞态导致 assignee 丢失），已用 7-22→7-24 线性插值重算" style="background:rgba(239,83,80,0.08);">
+                        <td>2026-07-23 ⚠️</td>
+                        <td class="trend-c-p">48 <span class="trend-delta trend-flat" style="opacity:0.5;">+0</span></td>
+                        <td class="trend-c-b">310 <span class="trend-delta trend-up" style="opacity:0.5;">+0</span> <span class="trend-delta trend-down" style="opacity:0.5;">-13</span></td>
+                        <td class="trend-c-f">172 <span class="trend-delta trend-down" style="opacity:0.5;">-13</span></td>
+                        <td class="trend-c-m">14 <span class="trend-delta trend-flat" style="opacity:0.5;">-1</span></td>
+                        <td>544 <span class="trend-delta trend-down" style="opacity:0.5;">-26</span></td>
                     </tr>
                                                             <tr class="today">
                         <td>2026-07-24 ⬅</td>
@@ -602,6 +602,9 @@ body {
         </div>
         数据来源：禅道管理系统 &nbsp;|&nbsp;
         <a href="https://github.com/Yang-chad/tasks" target="_blank">GitHub Tasks</a>
+        <div style="margin-top:8px;font-size:11px;color:#ff9090;">
+            ⚠️ 2026-07-23 行因抓取异常已线性插值重算（ThreadPoolExecutor 并发缓存竞态导致 assignee 缺失）。当前 7-24 数据已校正。
+        </div>
     </div>
 
 </div>
