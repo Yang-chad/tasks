@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成测试任务任务明细</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header"><h1>未完成测试任务任务明细</h1>
+<p>统计日期: 2026-07-27 | 总计: 66 个未完成任务 | 涉及 12 人 | 类型: ae1_test_des(32) · ae2_test(34)</p></div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="cards">
+<div class="card card-total"><div class="num">66</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">66</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">0</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">1</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">12</div><div class="label">负责人</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>负责人任务分布 (Top12)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">罗有文</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共9个</span>
+                <span class="stat-badge stat-wait">待处理9</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估61h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余61h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310476</td><td title="【测试】网批订单物流轨迹查询 for RMS">【测试】网批订单物流轨迹查询 for RMS</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>310475</td><td title="【测试设计】网批订单物流轨迹查询 for RMS">【测试设计】网批订单物流轨迹查询 for RMS</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+<tr><td>310468</td><td title="【测试】特批方案新增工程保证金账户">【测试】特批方案新增工程保证金账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>24</td><td>0</td><td>24</td></tr>
+<tr><td>310467</td><td title="【测试设计】特批方案新增工程保证金账户">【测试设计】特批方案新增工程保证金账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>310452</td><td title="【测试】销司销售方案优化">【测试】销司销售方案优化</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310451</td><td title="【测试设计】销司销售方案优化">【测试设计】销司销售方案优化</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>310434</td><td title="【测试】销司工程保证金配置-销司ERP编码增加字段">【测试】销司工程保证金配置-销司ERP编码增加字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310433</td><td title="【测试设计】销司工程保证金配置-销司ERP编码增加字段">【测试设计】销司工程保证金配置-销司ERP编码增加字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>310432</td><td title="【测试】家用订单列表筛选优化">【测试】家用订单列表筛选优化</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">马腾</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共9个</span>
+                <span class="stat-badge stat-wait">待处理9</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期1</span>
+                <span class="stat-badge stat-h">预估78h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余78h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>310321</td><td title="【测试】销司库存导出问题QA和生产验证">【测试】销司库存导出问题QA和生产验证</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-07-24</td><td>+3天</td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310307</td><td title="【测试】天津冰洗多层级资金账户兼容-马腾">【测试】天津冰洗多层级资金账户兼容-马腾</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>310306</td><td title="【测试设计】天津冰洗多层级资金账户兼容-马腾">【测试设计】天津冰洗多层级资金账户兼容-马腾</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310464</td><td title="【测试】商家下单页面选择地址的toast调整">【测试】商家下单页面选择地址的toast调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>310463</td><td title="【测试设计】商家下单页面选择地址的toast调整">【测试设计】商家下单页面选择地址的toast调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>5</td><td>0</td><td>5</td></tr>
+<tr><td>310460</td><td title="【测试】自提逾期短信发送人调整">【测试】自提逾期短信发送人调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>24</td><td>0</td><td>24</td></tr>
+<tr><td>310459</td><td title="【测试设计】自提逾期短信发送人调整">【测试设计】自提逾期短信发送人调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>310456</td><td title="【测试】货款流水新增展示银企充值备注">【测试】货款流水新增展示银企充值备注</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>310455</td><td title="【测试设计】货款流水新增展示银企充值备注">【测试设计】货款流水新增展示银企充值备注</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">伍镓烨</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共8个</span>
+                <span class="stat-badge stat-wait">待处理8</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估79h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余79h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310315</td><td title="【测试】天津冰洗多层级订单--销司非工程订单正向">【测试】天津冰洗多层级订单--销司非工程订单正向</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>10</td><td>0</td><td>10</td></tr>
+<tr><td>310314</td><td title="【测试设计】天津冰洗多层级订单--销司非工程订单正向">【测试设计】天津冰洗多层级订单--销司非工程订单正向</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>310474</td><td title="【测试】家用自提订单委托提货信息拆单设置">【测试】家用自提订单委托提货信息拆单设置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>40</td><td>0</td><td>40</td></tr>
+<tr><td>310473</td><td title="【测试设计】家用自提订单委托提货信息拆单设置">【测试设计】家用自提订单委托提货信息拆单设置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>13</td><td>0</td><td>13</td></tr>
+<tr><td>310462</td><td title="【测试】商品库导出优化">【测试】商品库导出优化</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310461</td><td title="【测试设计】商品库导出优化">【测试设计】商品库导出优化</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>310438</td><td title="【测试】商家端全部订单添加已取消的订单">【测试】商家端全部订单添加已取消的订单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310437</td><td title="【测试设计】商家端全部订单添加已取消的订单">【测试设计】商家端全部订单添加已取消的订单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>1</td><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">李文清</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共6个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估69h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余69h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310482</td><td title="【测试】RMS工程订单推送接口增加字段">【测试】RMS工程订单推送接口增加字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310481</td><td title="【测试设计】RMS工程订单推送接口增加字段">【测试设计】RMS工程订单推送接口增加字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>310470</td><td title="【测试】销司特批方案保证金-方案部分">【测试】销司特批方案保证金-方案部分</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>44</td><td>0</td><td>44</td></tr>
+<tr><td>310469</td><td title="【测试设计】销司特批方案保证金-方案部分">【测试设计】销司特批方案保证金-方案部分</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>15</td><td>0</td><td>15</td></tr>
+<tr><td>310436</td><td title="【测试】管理侧工程订单添加工程单号">【测试】管理侧工程订单添加工程单号</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>310435</td><td title="【测试设计】管理侧工程订单添加工程单号">【测试设计】管理侧工程订单添加工程单号</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>1</td><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">匡军</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共6个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估80h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余80h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310313</td><td title="【测试】天津冰洗多层级订单--销司工程和转单订单正向">【测试】天津冰洗多层级订单--销司工程和转单订单正向</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>10</td><td>0</td><td>10</td></tr>
+<tr><td>310312</td><td title="【测试设计】天津冰洗多层级订单--销司工程和转单订单正向">【测试设计】天津冰洗多层级订单--销司工程和转单订单正向</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>310478</td><td title="【测试】网批订单新增发货账仓展示">【测试】网批订单新增发货账仓展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>310477</td><td title="【测试设计】网批订单新增发货账仓展示">【测试设计】网批订单新增发货账仓展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+<tr><td>310472</td><td title="【测试】销司工程特批保证金-订单部分">【测试】销司工程特批保证金-订单部分</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>40</td><td>0</td><td>40</td></tr>
+<tr><td>310471</td><td title="【测试设计】销司工程特批保证金-订单部分">【测试设计】销司工程特批保证金-订单部分</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>13</td><td>0</td><td>13</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">刘孝亮</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共6个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估91h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余91h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310309</td><td title="【测试】天津冰洗多层级订单--OMS API对接">【测试】天津冰洗多层级订单--OMS API对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>10</td><td>0</td><td>10</td></tr>
+<tr><td>310308</td><td title="【测试设计】天津冰洗多层级订单--OMS API对接">【测试设计】天津冰洗多层级订单--OMS API对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>310450</td><td title="【测试】经销商销售方案新增上下架功能--刘孝亮">【测试】经销商销售方案新增上下架功能--刘孝亮</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>44</td><td>0</td><td>44</td></tr>
+<tr><td>310449</td><td title="【测试设计】经销商销售方案新增上下架功能--限时、满件减、满额减、买赠、组合套餐、活动审核列表">【测试设计】经销商销售方案新增上下架功能--限时、满件减、满额减、买赠、组合套餐、活动审核列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>10</td><td>0</td><td>10</td></tr>
+<tr><td>310442</td><td title="【测试】家用-特批方案关联工程单的配提机取消关联绑定GC09&amp;amp;12">【测试】家用-特批方案关联工程单的配提机取消关联绑定GC09&amp;12</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>310441</td><td title="【测试设计】家用-特批方案关联工程单的配提机取消关联绑定GC09&amp;amp;12">【测试设计】家用-特批方案关联工程单的配提机取消关联绑定GC09&amp;12</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>5</td><td>0</td><td>5</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
+            <span class="assignee-name">李学鹍</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共5个</span>
+                <span class="stat-badge stat-wait">待处理5</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估120h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余120h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>304313</td><td title="【测试】集采调拨价设置添加审批流">【测试】集采调拨价设置添加审批流</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>集采平台_V1.30.0（0803/集采dev4.0）【2026】</td><td>2026-07-30</td><td></td><td>40</td><td>0</td><td>40</td></tr>
+<tr><td>304312</td><td title="【测试设计】集采调拨价设置添加审批流">【测试设计】集采调拨价设置添加审批流</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>集采平台_V1.30.0（0803/集采dev4.0）【2026】</td><td>2026-07-30</td><td></td><td>18</td><td>0</td><td>18</td></tr>
+<tr><td>310333</td><td title="【测试设计】参与网批分销集采7月份需求评审">【测试设计】参与网批分销集采7月份需求评审</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>30</td><td>0</td><td>30</td></tr>
+<tr><td>310332</td><td title="【测试设计】网批0716、0803版本测试任务分配和测试计划整理">【测试设计】网批0716、0803版本测试任务分配和测试计划整理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>310331</td><td title="【测试设计】网批0716、0803版本测试用例评审">【测试设计】网批0716、0803版本测试用例评审</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+            <span class="assignee-name">邹娟</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估59h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余59h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310311</td><td title="【测试】天津冰洗多层级订单--FMS和金蝶API对接">【测试】天津冰洗多层级订单--FMS和金蝶API对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>10</td><td>0</td><td>10</td></tr>
+<tr><td>310310</td><td title="【测试设计】天津冰洗多层级订单--FMS和金蝶API对接">【测试设计】天津冰洗多层级订单--FMS和金蝶API对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>310466</td><td title="【测试】V账号发货前修改收货地址时间限制调整">【测试】V账号发货前修改收货地址时间限制调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>32</td><td>0</td><td>32</td></tr>
+<tr><td>310465</td><td title="【测试设计】V账号发货前修改收货地址时间限制调整">【测试设计】V账号发货前修改收货地址时间限制调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>11</td><td>0</td><td>11</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ef535015; border-left:4px solid #ef5350;">
+            <span class="assignee-name">龙泽英</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估64h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余64h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310454</td><td title="【测试】经销商销售方案底价为空新增错误原因列表">【测试】经销商销售方案底价为空新增错误原因列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>40</td><td>0</td><td>40</td></tr>
+<tr><td>310453</td><td title="【测试设计】经销商销售方案底价为空新增错误原因列表">【测试设计】经销商销售方案底价为空新增错误原因列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>13</td><td>0</td><td>13</td></tr>
+<tr><td>310446</td><td title="【测试】家用-工程补交资料-补充4.0兼容版本GC10">【测试】家用-工程补交资料-补充4.0兼容版本GC10</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>310445</td><td title="【测试设计】家用-工程补交资料-补充4.0兼容版本GC10">【测试设计】家用-工程补交资料-补充4.0兼容版本GC10</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#66bb6a15; border-left:4px solid #66bb6a;">
+            <span class="assignee-name">陈嘉劲</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估70h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余70h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310317</td><td title="【测试】天津冰洗多层级订单--销司订单逆向">【测试】天津冰洗多层级订单--销司订单逆向</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>10</td><td>0</td><td>10</td></tr>
+<tr><td>310316</td><td title="【测试设计】天津冰洗多层级订单--销司订单逆向">【测试设计】天津冰洗多层级订单--销司订单逆向</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>310448</td><td title="【测试】经销商销售方案新增上下架功能--陈嘉劲">【测试】经销商销售方案新增上下架功能--陈嘉劲</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>44</td><td>0</td><td>44</td></tr>
+<tr><td>310447</td><td title="【测试设计】经销商销售方案新增上下架功能--优惠券、优惠券审核、返利、返利审核、经销商查看下架商品">【测试设计】经销商销售方案新增上下架功能--优惠券、优惠券审核、返利、返利审核、经销商查看下架商品</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>10</td><td>0</td><td>10</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ff704315; border-left:4px solid #ff7043;">
+            <span class="assignee-name">江小芳</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共3个</span>
+                <span class="stat-badge stat-wait">待处理3</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估56h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余56h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310480</td><td title="【测试】工程原因退款添加审批流">【测试】工程原因退款添加审批流</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>24</td><td>0</td><td>24</td></tr>
+<tr><td>310444</td><td title="【测试】家用-补交资料列表页：增加补交入口&amp;amp;获取线上-未上传单据信息GC11">【测试】家用-补交资料列表页：增加补交入口&amp;获取线上-未上传单据信息GC11</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>310440</td><td title="【测试】商用二次批价，管理端导入导出功能 GC13">【测试】商用二次批价，管理端导入导出功能 GC13</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#5c6bc015; border-left:4px solid #5c6bc0;">
+            <span class="assignee-name">李成斌</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估64h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余64h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>310458</td><td title="【测试】经销商返利/活动方案新增逻辑限制商品调价时不可见/不可下单">【测试】经销商返利/活动方案新增逻辑限制商品调价时不可见/不可下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>48</td><td>0</td><td>48</td></tr>
+<tr><td>310457</td><td title="【测试设计】经销商返利/活动方案新增逻辑限制商品调价时不可见/不可下单">【测试设计】经销商返利/活动方案新增逻辑限制商品调价时不可见/不可下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-04</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-07-27</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u7f57\u6709\u6587", "\u9a6c\u817e", "\u4f0d\u9553\u70e8", "\u674e\u6587\u6e05", "\u5321\u519b", "\u5218\u5b5d\u4eae", "\u674e\u5b66\u9e4d", "\u90b9\u5a1f", "\u9f99\u6cfd\u82f1", "\u9648\u5609\u52b2", "\u6c5f\u5c0f\u82b3", "\u674e\u6210\u658c"],datasets:[{label:'未完成任务数',data:[9, 9, 8, 6, 6, 6, 5, 4, 4, 4, 3, 2],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726", "#26c6da", "#ab47bc", "#ef5350", "#66bb6a", "#ff7043", "#5c6bc0"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[66, 0],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[66],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
