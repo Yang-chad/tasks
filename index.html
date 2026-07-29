@@ -121,6 +121,8 @@ body {
 .card:nth-child(7)::before { background: linear-gradient(135deg, rgba(79,172,254,0.22), rgba(79,172,254,0.12)); }
 .card:nth-child(8)::before { background: linear-gradient(135deg, rgba(251,191,36,0.22), rgba(245,158,11,0.12)); }
 .card:nth-child(9)::before { background: linear-gradient(135deg, rgba(16,185,129,0.20), rgba(52,211,153,0.12)); }
+.card:nth-child(10)::before { background: linear-gradient(135deg, rgba(239,83,80,0.25), rgba(245,158,11,0.18)); }
+.card:nth-child(11)::before { background: linear-gradient(135deg, rgba(245,158,11,0.25), rgba(239,83,80,0.15)); }
 .card:hover::before { opacity: 1; }
 .card:hover {
     transform: translateY(-6px);
@@ -151,6 +153,8 @@ body {
 .card.frontend .name { color: #f093fb; }
 .card.mobile   .name { color: #ffa726; }
 .card.test     .name { color: #26c6da; }
+.card.risk     .name { color: #ef5350; }
+.card.capacity .name { color: #f59e0b; }
 
 /* ── Trend Table ── */
 .trend-section {
@@ -310,7 +314,7 @@ body {
         <p class="subtitle">Zentao Task Dashboard</p>
     </div>
 
-    <div class="date-tag"><span>2026-07-29 13:41 更新</span></div>
+    <div class="date-tag"><span>2026-07-29 14:10 更新</span></div>
 
     <!-- 今日摘要 -->
     <div class="summary-bar">
@@ -341,6 +345,14 @@ body {
         <div class="summary-item">
             <div class="num" id="summary-daily-done" style="color:#10b981;">18</div>
             <div class="label">✅ 每日完成 (6人)</div>
+        </div>
+        <div class="summary-item">
+            <div class="num" id="summary-risk" style="color:#ef5350;">21</div>
+            <div class="label">🔴 风险 (高5/中15)</div>
+        </div>
+        <div class="summary-item">
+            <div class="num" id="summary-capacity" style="color:#f59e0b;">2</div>
+            <div class="label">⚡ 超载迭代 (2/6)</div>
         </div>
     </div>
 
@@ -407,6 +419,20 @@ body {
             <span class="icon">📝</span>
             <span class="name" style="color:#10b981;">每日流水</span>
             <span class="desc">每人每天完成任务清单<br>18个完成 · 6人</span>
+        </a>
+
+        <!-- 风险登记册 -->
+        <a href="2026-07-29/风险登记册.html" class="card risk" target="_blank" style="border-color: rgba(239,83,80,0.3);">
+            <span class="icon">🛡️</span>
+            <span class="name" style="color:#ef5350;">风险登记册</span>
+            <span class="desc">6类风险自动检测<br>21个风险 · 高危5</span>
+        </a>
+
+        <!-- 容量规划 -->
+        <a href="2026-07-29/容量规划报告.html" class="card capacity" target="_blank" style="border-color: rgba(245,158,11,0.3);">
+            <span class="icon">⚡</span>
+            <span class="name" style="color:#f59e0b;">容量规划</span>
+            <span class="desc">Velocity分析与超载预警<br>2个迭代超载 · 6个活跃</span>
         </a>
 
     </div>
@@ -581,7 +607,7 @@ body {
                         <td class="trend-c-m">6 <span class="trend-delta trend-flat">--</span></td>
                         <td>483 <span class="trend-delta trend-up">+1</span> <span class="trend-delta trend-down">-8</span></td>
                     </tr>
-                                                                                                                                                                                                        <tr class="today">
+                                                                                                                                                                                                                            <tr class="today">
                         <td>2026-07-29 ⬅</td>
                         <td class="trend-c-p">46 <span class="trend-delta trend-flat">--</span></td>
                         <td class="trend-c-b">301 <span class="trend-delta trend-up">+19</span> <span class="trend-delta trend-down">-18</span></td>
@@ -694,6 +720,18 @@ function liveRefreshRoot(){
     if(sumItems[4]) sumItems[4].textContent=d.test_count||0;
     if(sumItems[5]) sumItems[5].textContent=d.overdue_count||0;
     if(sumItems[6]) sumItems[6].textContent=d.daily_done||0;
+    if(d.risk_high !== undefined) {
+      var riskEl = document.getElementById('summary-risk');
+      if(riskEl) riskEl.textContent = d.risk_total||0;
+      var riskLabel = riskEl ? riskEl.parentElement.querySelector('.label') : null;
+      if(riskLabel) riskLabel.textContent = '\u{1F534} \u{98CE}\u{9669} (\u{9AD8}'+(d.risk_high||0)+'/\u{4E2D}'+(d.risk_medium||0)+')';
+    }
+    if(d.cap_danger !== undefined) {
+      var capEl = document.getElementById('summary-capacity');
+      if(capEl) capEl.textContent = d.cap_danger||0;
+      var capLabel = capEl ? capEl.parentElement.querySelector('.label') : null;
+      if(capLabel) capLabel.textContent = '\u{26A1} \u{8D85}\u{8F7D}\u{8FED}\u{4EE3} ('+(d.cap_danger||0)+'/'+(d.cap_total||0)+')';
+    }
     // 更新时间标签
     var dt=document.querySelector('.date-tag span');
     if(dt){ var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
@@ -715,6 +753,8 @@ function updateUI(d){
   var m=document.getElementById('summary-mobile'); if(m) m.textContent=d.mobile_count||0;
   var t=document.getElementById('summary-test'); if(t) t.textContent=d.test_count||0;
   var o=document.getElementById('summary-overdue'); if(o) o.textContent=d.overdue_count||0;
+  var r=document.getElementById('summary-risk'); if(r&&d.risk_total!==undefined) r.textContent=d.risk_total||0;
+  var c=document.getElementById('summary-capacity'); if(c&&d.cap_danger!==undefined) c.textContent=d.cap_danger||0;
   // Fallback：按 label 文本匹配（兼容旧HTML无ID的情况）
   var items=document.querySelectorAll('.summary-item');
   for(var i=0;i<items.length;i++){
@@ -728,6 +768,8 @@ function updateUI(d){
     else if(txt.indexOf('📱')>=0) num.textContent=d.mobile_count||0;
     else if(txt.indexOf('🧪')>=0) num.textContent=d.test_count||0;
     else if(txt.indexOf('🚨')>=0) num.textContent=d.overdue_count||0;
+    else if(txt.indexOf('🔴')>=0&&d.risk_total!==undefined) num.textContent=d.risk_total||0;
+    else if(txt.indexOf('⚡')>=0&&d.cap_danger!==undefined) num.textContent=d.cap_danger||0;
   }
   var dt=document.querySelector('.date-tag span');
   if(dt && d.updated) dt.textContent=d.updated+' 更新';
