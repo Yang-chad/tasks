@@ -7,7 +7,7 @@
     "total_members": 53,
     "total_overdue": 11,
     "reference_hours": 184,
-    "report_time": "2026-07-29 11:26:26",
+    "report_time": "2026-07-29 11:45:10",
     "month": "2026年7月"
   },
   "members": [
@@ -757,15 +757,6 @@
           "openedBy": "李成斌"
         },
         {
-          "id": 332465,
-          "title": "【QA-PC-管理侧-组合套餐】编辑方案后再调价，在方案审核详情界面不显示商品信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 332460,
           "title": "【QA-PC-管理侧-组合套餐】返利组合套餐调价时批量导入设置上下架菜单被置灰",
           "severity": 3,
@@ -1063,7 +1054,16 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 332465,
+          "title": "【QA-PC-管理侧-组合套餐】编辑方案后再调价，在方案审核详情界面不显示商品信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "王子尘",
@@ -5779,6 +5779,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 332397,
+          "title": "【QA-PC-管理侧-销司特批方案工程保证金-订单部分】销司特批方案工程订单详情，字段展示有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
           "id": 330350,
           "title": "【QA-PC-管理侧-员工管理】修改多个业务线下相同商家的授权，保存时只传了其中一个业务线的传参，导致保存后其他业务线授",
           "severity": 3,
@@ -5806,16 +5815,7 @@
           "openedBy": "陈嘉劲"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 332397,
-          "title": "【QA-PC-管理侧-销司特批方案工程保证金-订单部分】销司特批方案工程订单详情，字段展示有误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "钟日健",
@@ -5847,30 +5847,6 @@
       "efficiency": 68.8,
       "overdue": 4,
       "done_tasks": [
-        {
-          "id": 296335,
-          "name": "【商用行业数据隔离】重新准备80个审批流以及权限控制",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "x_extension",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-06-22",
-          "finished_by": "钟日健",
-          "finished_date": "2026-07-01"
-        },
-        {
-          "id": 296334,
-          "name": "【商用揭阳推广】工程板块22个流程以及审批权限",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "x_extension",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-06-22",
-          "finished_by": "钟日健",
-          "finished_date": "2026-07-01"
-        },
         {
           "id": 301313,
           "name": "【家用变更流程】2个",
@@ -5904,6 +5880,30 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】",
           "opened_date": "2026-07-01",
+          "finished_by": "钟日健",
+          "finished_date": "2026-07-01"
+        },
+        {
+          "id": 296335,
+          "name": "【商用行业数据隔离】重新准备80个审批流以及权限控制",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "x_extension",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-06-22",
+          "finished_by": "钟日健",
+          "finished_date": "2026-07-01"
+        },
+        {
+          "id": 296334,
+          "name": "【商用揭阳推广】工程板块22个流程以及审批权限",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "x_extension",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-06-22",
           "finished_by": "钟日健",
           "finished_date": "2026-07-01"
         },
@@ -14734,15 +14734,6 @@
           "openedBy": "陈嘉劲"
         },
         {
-          "id": 332466,
-          "title": "【QA-PC-管理侧-4.0优惠券】提交调价优惠券方案审核通过后，方案销售类型变成了：请选择",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
           "id": 332036,
           "title": "【QA-PC-管理侧-4.0限时特价】同时点击打开调价tab，编辑tab，调价添加商品审核后，编辑页无刷新，提交，会删除",
           "severity": 3,
@@ -14754,6 +14745,15 @@
         {
           "id": 332474,
           "title": "【QA-PC-管理侧-4.0买赠】点击调价，加载页面页面显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 332466,
+          "title": "【QA-PC-管理侧-4.0优惠券】提交调价优惠券方案审核通过后，方案销售类型变成了：请选择",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -17373,7 +17373,16 @@
           "openedBy": "龙泽英"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 332556,
+          "title": "【QA-PC-管理侧-销司特批保证金-订单部分】销司特批工程方案订单，退款，审核完执行退款任务成功后，未进行退款",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "胡健",
@@ -20452,15 +20461,6 @@
           "openedBy": "李文清"
         },
         {
-          "id": 332498,
-          "title": "【QA-PC-管理侧-工程机】工程备货无商品修改权限审批节点，审批通过失败，弹出提示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
           "id": 332194,
           "title": "【QA-PC-管理侧-下单页提示文案调整】满件减在订单页修改商品数量，前端可以去请求新的接口",
           "severity": 3,
@@ -20468,6 +20468,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "马腾"
+        },
+        {
+          "id": 332498,
+          "title": "【QA-PC-管理侧-工程机】工程备货无商品修改权限审批节点，审批通过失败，弹出提示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
         },
         {
           "id": 332321,
@@ -21400,6 +21409,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 332515,
+          "title": "【QA-PC-管理侧-一件代发】网批底价为空时，缺少弹窗提示",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 332143,
           "title": "【QA-PC-管理侧-工程退款】销司【常规工程】订单，申请退款的退款原因下拉框缺少工程原因退款",
           "severity": 3,
@@ -21472,16 +21490,7 @@
           "openedBy": "龙泽英"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 332515,
-          "title": "【QA-PC-管理侧-一件代发】网批底价为空时，缺少弹窗提示",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "蒋志军",
