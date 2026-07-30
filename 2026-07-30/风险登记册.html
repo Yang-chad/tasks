@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风险登记册 — 2026-07-30</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Microsoft YaHei","PingFang SC",sans-serif; background:#f0f2f5; color:#333; }
+.container { max-width:1100px; margin:0 auto; padding:20px; }
+
+.header {
+    background:linear-gradient(135deg,#1a73e8,#4a9af5,#7ec8f7);
+    color:white; padding:28px 32px; border-radius:12px; margin-bottom:24px;
+}
+.header h1 { font-size:20px; font-weight:600; }
+.header .subtitle { font-size:13px; opacity:0.9; margin-top:4px; }
+
+.summary-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
+.card {
+    background:white; border-radius:10px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,0.06);
+}
+.card.high { border-left:3px solid #ef4444; }
+.card.high .value { color:#ef4444; }
+.card.medium { border-left:3px solid #f59e0b; }
+.card.medium .value { color:#f59e0b; }
+.card.low { border-left:3px solid #10b981; }
+.card.low .value { color:#10b981; }
+.card.info { border-left:3px solid #3b82f6; }
+.card.info .value { color:#3b82f6; }
+.card .label { font-size:12px; color:#888; margin-bottom:6px; }
+.card .value { font-size:28px; font-weight:600; }
+
+.section { background:white; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.06); margin-bottom:20px; overflow:hidden; }
+.section-title {
+    font-size:15px; font-weight:600; padding:16px 20px;
+    border-bottom:1px solid #f0f0f0; display:flex; align-items:center; gap:8px;
+}
+.section-body { padding:20px; }
+
+/* Heatmap */
+.heatmap-table { border-collapse:collapse; }
+.heatmap-table td {
+    width:80px; height:48px; text-align:center; font-size:18px; font-weight:600;
+    border:1px solid #e0e0e0; position:relative;
+}
+.heatmap-table td.hm-0 { background:#f8f9fa; color:#aaa; }
+.heatmap-table td.hm-1 { background:#dbeafe; }
+.heatmap-table td.hm-2 { background:#fef9c3; }
+.heatmap-table td.hm-3 { background:#fed7aa; }
+.heatmap-table td.hm-4 { background:#fca5a5; color:white; }
+.heatmap-table th { font-size:11px; color:#888; font-weight:400; text-align:center; padding:4px; }
+.heatmap-table .axis-label { font-size:12px; font-weight:500; color:#666; }
+
+/* Risk list */
+.risk-item {
+    padding:14px 18px; border-radius:8px; margin-bottom:10px;
+    border-left:4px solid #ccc; background:#fafafa;
+}
+.risk-item.high { border-left-color:#ef4444; background:#fff5f5; }
+.risk-item.medium { border-left-color:#f59e0b; background:#fffbeb; }
+.risk-item.low { border-left-color:#10b981; background:#f0fdf4; }
+.risk-item .ri-header { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.risk-item .ri-title { font-size:14px; font-weight:600; flex:1; }
+.risk-item .ri-tag { padding:2px 8px; border-radius:10px; font-size:11px; font-weight:500; }
+.risk-item .ri-detail { font-size:12px; color:#666; line-height:1.7; margin-bottom:6px; }
+.risk-item .ri-meta { display:flex; gap:16px; font-size:11px; color:#999; }
+.risk-item .ri-mitigation {
+    margin-top:8px; padding:8px 12px; background:white; border-radius:6px;
+    font-size:12px; color:#3b82f6;
+}
+
+.score-badge {
+    display:inline-block; min-width:28px; text-align:center; padding:2px 6px;
+    border-radius:4px; font-size:13px; font-weight:700;
+}
+.score-high { background:#fee2e2; color:#ef4444; }
+.score-medium { background:#fef3c7; color:#d97706; }
+.score-low { background:#dcfce7; color:#10b981; }
+
+/* Manual add area */
+.manual-risk {
+    border:2px dashed #ccc; border-radius:8px; padding:14px; background:#fafafa;
+}
+.manual-risk .fill-line {
+    font-size:12px; color:#aaa; padding:6px 0; border-bottom:1px dashed #e0e0e0;
+}
+.manual-risk .fill-line:last-child { border-bottom:none; }
+
+.footer { text-align:center; padding:24px; color:#999; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>🚨 风险登记册</h1>
+    <div class="subtitle">2026-07-30 · 自动扫描 22 个风险 · 6类检测规则</div>
+</div>
+
+<div class="summary-cards">
+    <div class="card high">
+        <div class="label">🔴 高危</div><div class="value">5</div>
+    </div>
+    <div class="card medium">
+        <div class="label">🟡 中危</div><div class="value">16</div>
+    </div>
+    <div class="card low">
+        <div class="label">🟢 低危</div><div class="value">1</div>
+    </div>
+    <div class="card info">
+        <div class="label">📊 总风险等级</div>
+        <div class="value">🔴</div>
+    </div>
+</div>
+
+<div class="section">
+<div class="section-title">🎯 风险矩阵（概率 × 影响）</div>
+<div class="section-body" style="display:flex;align-items:center;justify-content:center;">
+<table class="heatmap-table">
+<tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th class="axis-label">影响 →</th></tr>
+<tr><td class="axis-label">5</td><td class="hm-1">·</td><td class="hm-3">·</td><td class="hm-4">·</td><td class="hm-4">·</td><td class="hm-4">·</td><td class="axis-label">5</td></tr><tr><td class="axis-label">4</td><td class="hm-1">·</td><td class="hm-2">·</td><td class="hm-3">4</td><td class="hm-4">1</td><td class="hm-4">·</td><td class="axis-label">4</td></tr><tr><td class="axis-label">3</td><td class="hm-1">·</td><td class="hm-2">·</td><td class="hm-2">16</td><td class="hm-3">1</td><td class="hm-4">·</td><td class="axis-label">3</td></tr><tr><td class="axis-label">2</td><td class="hm-0">·</td><td class="hm-1">·</td><td class="hm-2">·</td><td class="hm-2">·</td><td class="hm-3">·</td><td class="axis-label">2</td></tr><tr><td class="axis-label">1</td><td class="hm-0">·</td><td class="hm-0">·</td><td class="hm-1">·</td><td class="hm-1">·</td><td class="hm-1">·</td><td class="axis-label">1</td></tr><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th class="axis-label">影响 →</th></tr></table><div style="margin-left:24px;font-size:11px;color:#888;line-height:1.8"><div>🟥 红区 (≥15): 立即应对</div><div>🟧 橙区 (10-14): 制定计划</div><div>🟨 黄区 (6-9): 持续监控</div><div>🟦 蓝区 (3-5): 保持关注</div><div>⬜ 灰区 (1-2): 可接受</div></div></div></div>
+
+<div class="section">
+<div class="section-title">📋 风险清单（按风险分排序）</div>
+<div class="section-body">
+
+<div class="risk-item high">
+    <div class="ri-header">
+        <span>📅</span>
+        <span class="ri-title">[网批2.0] 网批模式_V2.82.0（0820/dev11.9.1）【2026】 负载过高</span>
+        <span class="ri-tag" style="background:#fee2e2;color:#ef4444">进度风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[网批2.0]</span>
+        <span class="score-badge score-high">P4×I4=16</span>
+    </div>
+    <div class="ri-detail">计划工时 4902h，进度仅 22%。后端 824h / 前端 900h / 移动端 256h。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★★☆</span>
+        <span>影响: ★★★★☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>拆分需求、调整范围或增加临时资源
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>📅</span>
+        <span class="ri-title">[网批2.0] 网批模式_V2.83.0（0830/dev12.0）【2026】 负载过高</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">进度风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[网批2.0]</span>
+        <span class="score-badge score-medium">P3×I4=12</span>
+    </div>
+    <div class="ri-detail">计划工时 2268h，进度仅 30%。后端 606h / 前端 112h / 移动端 0h。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★★☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>拆分需求、调整范围或增加临时资源
+    </div>
+</div>
+<div class="risk-item high">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 卢鑫 负载过重</span>
+        <span class="ri-tag" style="background:#fee2e2;color:#ef4444">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-medium">P4×I3=12</span>
+    </div>
+    <div class="ri-detail">跨 3 个迭代共 66 个任务 (341h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★★☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 卢鑫 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item high">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 李兆杰 负载过重</span>
+        <span class="ri-tag" style="background:#fee2e2;color:#ef4444">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-medium">P4×I3=12</span>
+    </div>
+    <div class="ri-detail">跨 6 个迭代共 50 个任务 (4474h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★★☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 李兆杰 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item high">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 徐琦 负载过重</span>
+        <span class="ri-tag" style="background:#fee2e2;color:#ef4444">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-medium">P4×I3=12</span>
+    </div>
+    <div class="ri-detail">跨 2 个迭代共 42 个任务 (258h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★★☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 徐琦 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item high">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 王子尘 负载过重</span>
+        <span class="ri-tag" style="background:#fee2e2;color:#ef4444">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-medium">P4×I3=12</span>
+    </div>
+    <div class="ri-detail">跨 5 个迭代共 48 个任务 (334h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★★☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 王子尘 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>📋</span>
+        <span class="ri-title">[网批2.0] 网批模式_V2.83.0（0830/dev12.0）【2026】 中途新增任务</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">范围风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[网批2.0]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">迭代开始后新增 165 个任务，可能影响原计划交付。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估新增任务优先级，必要时重新规划迭代范围
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>📋</span>
+        <span class="ri-title">[网批2.0] 网批模式_V2.82.0（0820/dev11.9.1）【2026】 中途新增任务</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">范围风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[网批2.0]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">迭代开始后新增 311 个任务，可能影响原计划交付。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估新增任务优先级，必要时重新规划迭代范围
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>⏰</span>
+        <span class="ri-title">[网批2.0] 网批模式_V2.81.0（0803/dev11.8）【2026】 延期任务堆积</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">延期风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[网批2.0]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">当前有 8 个任务已逾截止日期。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>逐项评估延期原因，重新排期或调整优先级
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>📋</span>
+        <span class="ri-title">[网批2.0] 网批模式_V2.81.0（0803/dev11.8）【2026】 中途新增任务</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">范围风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[网批2.0]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">迭代开始后新增 150 个任务，可能影响原计划交付。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估新增任务优先级，必要时重新规划迭代范围
+    </div>
+</div>
+<div class="risk-item low">
+    <div class="ri-header">
+        <span>📋</span>
+        <span class="ri-title">[集采] 集采平台_V1.30.0（0803/集采dev4.0）【2026】 中途新增任务</span>
+        <span class="ri-tag" style="background:#dcfce7;color:#10b981">范围风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[集采]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">迭代开始后新增 11 个任务，可能影响原计划交付。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估新增任务优先级，必要时重新规划迭代范围
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>📋</span>
+        <span class="ri-title">[分销] 分销平台_V1.38.0（0730分销/dev4.4）【2026】 中途新增任务</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">范围风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[分销]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">迭代开始后新增 20 个任务，可能影响原计划交付。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估新增任务优先级，必要时重新规划迭代范围
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 周志杰 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 3 个迭代共 13 个任务 (207h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 周志杰 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 王也 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 5 个迭代共 19 个任务 (250h)，其中延期 1 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 王也 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 梁家槐 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 3 个迭代共 32 个任务 (98h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 梁家槐 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 何嘉宝 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 2 个迭代共 21 个任务 (86h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 何嘉宝 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 许峻嘉 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 2 个迭代共 28 个任务 (116h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 许峻嘉 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 孙元通 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 5 个迭代共 26 个任务 (135h)，其中延期 2 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 孙元通 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 阳超 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 2 个迭代共 24 个任务 (128h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 阳超 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 谢婉扬 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 4 个迭代共 29 个任务 (183h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 谢婉扬 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 李红燕 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 2 个迭代共 22 个任务 (168h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 李红燕 的工作分配，考虑任务转移或增加备份
+    </div>
+</div>
+<div class="risk-item medium">
+    <div class="ri-header">
+        <span>👤</span>
+        <span class="ri-title">关键人 艾思芹 负载过重</span>
+        <span class="ri-tag" style="background:#fef3c7;color:#d97706">资源风险</span>
+        <span class="ri-tag" style="background:#e8e8e8;color:#666">[跨平台]</span>
+        <span class="score-badge score-low">P3×I3=9</span>
+    </div>
+    <div class="ri-detail">跨 2 个迭代共 31 个任务 (236h)，其中延期 0 个。</div>
+    <div class="ri-meta">
+        <span>概率: ★★★☆☆</span>
+        <span>影响: ★★★☆☆</span>
+        <span>来源: 自动检测</span>
+    </div>
+    <div class="ri-mitigation">
+        <b>💡 建议应对：</b>评估 艾思芹 的工作分配，考虑任务转移或增加备份
+    </div>
+</div></div></div>
+
+<div class="section">
+<div class="section-title">✏️ 手动添加风险</div>
+<div class="section-body">
+    <p style="font-size:12px;color:#888;margin-bottom:12px;">以下区域用于记录自动检测无法覆盖的风险（如干系人变动、外部依赖、合规问题等）</p>
+<div class="manual-risk" style="margin-bottom:8px;">
+    <div class="fill-line" contenteditable="true">风险 #1：标题...</div>
+    <div class="fill-line" contenteditable="true">描述：...</div>
+    <div class="fill-line" contenteditable="true">类型：[进度/资源/质量/延期/范围/依赖] · 概率：_/5 · 影响：_/5 · 应对：...</div>
+</div>
+<div class="manual-risk" style="margin-bottom:8px;">
+    <div class="fill-line" contenteditable="true">风险 #2：标题...</div>
+    <div class="fill-line" contenteditable="true">描述：...</div>
+    <div class="fill-line" contenteditable="true">类型：[进度/资源/质量/延期/范围/依赖] · 概率：_/5 · 影响：_/5 · 应对：...</div>
+</div>
+<div class="manual-risk" style="margin-bottom:8px;">
+    <div class="fill-line" contenteditable="true">风险 #3：标题...</div>
+    <div class="fill-line" contenteditable="true">描述：...</div>
+    <div class="fill-line" contenteditable="true">类型：[进度/资源/质量/延期/范围/依赖] · 概率：_/5 · 影响：_/5 · 应对：...</div>
+</div>
+</div></div>
+
+<div class="footer">
+    禅道风险登记册 v1.0 · 6类自动检测 + 手动登记 · 2026-07-30
+</div>
+</div>
+</body>
+</html>
