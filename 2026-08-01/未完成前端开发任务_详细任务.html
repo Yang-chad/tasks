@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成前端开发任务明细</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header"><h1>未完成前端开发任务明细</h1>
+<p>统计日期: 2026-08-01 | 总计: 128 个未完成任务 | 涉及 6 人 | 类型: a_dev2_front(128)</p></div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="cards">
+<div class="card card-total"><div class="num">128</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">118</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">10</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>负责人任务分布 (Top6)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">王子尘</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共41个</span>
+                <span class="stat-badge stat-wait">待处理40</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估292h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余292h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>305687</td><td title="【PC管理】审批流通用组件改造">【PC管理】审批流通用组件改造</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305721</td><td title="【PC用户】我的帝订单赊销账户">【PC用户】我的帝订单赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305720</td><td title="【PC用户】我的账户详情赊销账户">【PC用户】我的账户详情赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305719</td><td title="【PC管理】经销商账户详情赊销账户">【PC管理】经销商账户详情赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305718</td><td title="【PC管理】经销商账户详情赊销账户">【PC管理】经销商账户详情赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305717</td><td title="【PC管理】赊销账户额度管理配置审核列表详情查看">【PC管理】赊销账户额度管理配置审核列表详情查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305716</td><td title="【PC管理】赊销账户额度管理配置审核列表详情">【PC管理】赊销账户额度管理配置审核列表详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305715</td><td title="【PC管理】赊销账户额度管理配置审核列表">【PC管理】赊销账户额度管理配置审核列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305714</td><td title="【PC管理】赊销账户额度管理配置列表查看额度">【PC管理】赊销账户额度管理配置列表查看额度</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305713</td><td title="【PC管理】赊销账户额度管理配置列表设置额度">【PC管理】赊销账户额度管理配置列表设置额度</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305712</td><td title="【PC管理】赊销账户额度管理配置列表">【PC管理】赊销账户额度管理配置列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305689</td><td title="【PC管理】功能菜单的审批流弹窗参数调整">【PC管理】功能菜单的审批流弹窗参数调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305688</td><td title="【PC管理】功能菜单的审批流弹窗替换通用组件">【PC管理】功能菜单的审批流弹窗替换通用组件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307410</td><td title="【PC用户】经销账户流水">【PC用户】经销账户流水</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307409</td><td title="【PC用户】贷款解押账户">【PC用户】贷款解押账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307408</td><td title="【PC用户】经销账户列表">【PC用户】经销账户列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307407</td><td title="【PC管理】贷款解押账户">【PC管理】贷款解押账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307406</td><td title="【PC管理】经销账户列表详情">【PC管理】经销账户列表详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307405</td><td title="【PC管理】经销账户列表">【PC管理】经销账户列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307404</td><td title="【PC管理】解押还款额度审核详情">【PC管理】解押还款额度审核详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307403</td><td title="【PC管理】解押还款额度审核列表">【PC管理】解押还款额度审核列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307402</td><td title="【PC管理】解押还款管理配置详情">【PC管理】解押还款管理配置详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307401</td><td title="【PC管理】解押还款管理配置">【PC管理】解押还款管理配置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307400</td><td title="【PC管理】解押还款管理配置列表">【PC管理】解押还款管理配置列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307399</td><td title="【PC管理】贷款账户额度管理审核详情">【PC管理】贷款账户额度管理审核详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307398</td><td title="【PC管理】贷款账户额度管理审核列表">【PC管理】贷款账户额度管理审核列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307397</td><td title="【PC管理】贷款账户额度管理配置">【PC管理】贷款账户额度管理配置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307396</td><td title="【PC管理】贷款账户额度管理配置列表">【PC管理】贷款账户额度管理配置列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307386</td><td title="【PC管理】绑定记录查询工具">【PC管理】绑定记录查询工具</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307111</td><td title="【PC管理】商用订单审批待办事项">【PC管理】商用订单审批待办事项</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307091</td><td title="【PC用户】流水详情赊销账户页签展示">【PC用户】流水详情赊销账户页签展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307090</td><td title="【PC用户】流水详情赊销账户展示">【PC用户】流水详情赊销账户展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307089</td><td title="【PC用户】赊销账户展示">【PC用户】赊销账户展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307066</td><td title="【PC管理】经销商账户详情增加赊销账户明细">【PC管理】经销商账户详情增加赊销账户明细</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307065</td><td title="【PC管理】经销商账户详情增加赊销账户">【PC管理】经销商账户详情增加赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307064</td><td title="【PC管理】经销商账户增加赊销账户总额">【PC管理】经销商账户增加赊销账户总额</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307245</td><td title="【PC管理】核查导出改为异步导出">【PC管理】核查导出改为异步导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>分销平台_V1.38.0（0730分销/dev4.4）【2026】</td><td>2026-08-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307387</td><td title="【PC管理】新增贷款解押账户">【PC管理】新增贷款解押账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307371</td><td title="【PC管理】接单审批">【PC管理】接单审批</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307344</td><td title="【PC用户】增加 【我的订单】入口">【PC用户】增加 【我的订单】入口</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307343</td><td title="【PC管理】订单审批代办事项">【PC管理】订单审批代办事项</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">艾思芹</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共29个</span>
+                <span class="stat-badge stat-wait">待处理29</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估228h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余228h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>307096</td><td title="【H5】零售大单申请退款">【H5】零售大单申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306899</td><td title="【PC管理】网批订单接单">【PC管理】网批订单接单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306898</td><td title="【PC管理】网批订单页工程小单详情">【PC管理】网批订单页工程小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306897</td><td title="【PC管理】网批订单页工程大单详情">【PC管理】网批订单页工程大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306896</td><td title="【PC管理】网批订单页小单详情">【PC管理】网批订单页小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306895</td><td title="【PC管理】网批订单页大单详情">【PC管理】网批订单页大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306894</td><td title="【PC管理】网批订单页工程订单">【PC管理】网批订单页工程订单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306893</td><td title="【PC管理】网批订单页零售订单">【PC管理】网批订单页零售订单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306892</td><td title="【PC管理】网批订单页签改造">【PC管理】网批订单页签改造</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306877</td><td title="【PC用户】我的订单小单详情">【PC用户】我的订单小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306876</td><td title="【PC用户】我的订单小单列表">【PC用户】我的订单小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306875</td><td title="【PC用户】工程订单大单申请退定金">【PC用户】工程订单大单申请退定金</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306874</td><td title="【PC用户】我的订单大单申请退款">【PC用户】我的订单大单申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306873</td><td title="【PC用户】我的订单大单详情">【PC用户】我的订单大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306872</td><td title="【PC用户】我的订单大单列表">【PC用户】我的订单大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306871</td><td title="【PC用户】我的订单页签改造">【PC用户】我的订单页签改造</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307370</td><td title="【PC管理】网批订单小单详情">【PC管理】网批订单小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307369</td><td title="【PC管理】网批订单小单列表">【PC管理】网批订单小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307368</td><td title="【PC管理】网批订单大单详情">【PC管理】网批订单大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307367</td><td title="【PC管理】网批订单大单列表">【PC管理】网批订单大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307362</td><td title="【PC用户】待付款订单合并发货">【PC用户】待付款订单合并发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307361</td><td title="【PC用户】待付款订单列表">【PC用户】待付款订单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307360</td><td title="【PC用户】分批发货小单取消发货">【PC用户】分批发货小单取消发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307359</td><td title="【PC用户】分批发货小单详情">【PC用户】分批发货小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307358</td><td title="【PC用户】分批发货小单列表">【PC用户】分批发货小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307351</td><td title="【PC用户】我的订单分批提货大单申请退款">【PC用户】我的订单分批提货大单申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307350</td><td title="【PC用户】我的订单分批提货大单详情">【PC用户】我的订单分批提货大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307349</td><td title="【PC用户】我的订单分批提货大单列表">【PC用户】我的订单分批提货大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307348</td><td title="【PC用户】我的订单交互调整">【PC用户】我的订单交互调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">李红燕</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共21个</span>
+                <span class="stat-badge stat-wait">待处理12</span>
+                <span class="stat-badge stat-doing">进行中9</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估164h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余164h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>307375</td><td title="【PC管理】小单退款详情">【PC管理】小单退款详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307374</td><td title="【PC管理】小单退款列表">【PC管理】小单退款列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307373</td><td title="【PC管理】大单退款详情">【PC管理】大单退款详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307372</td><td title="【PC管理】大单退款列表">【PC管理】大单退款列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307366</td><td title="【PC用户】售后分批发货小单详情">【PC用户】售后分批发货小单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307365</td><td title="【PC用户】售后分批发货小单列表">【PC用户】售后分批发货小单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307364</td><td title="【PC用户】售后分批发货大单详情">【PC用户】售后分批发货大单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307363</td><td title="【PC用户】售后分批发货大单列表">【PC用户】售后分批发货大单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307345</td><td title="【PC管理】退款审批待办事项">【PC管理】退款审批待办事项</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307112</td><td title="【PC管理】商用退款单审批待办事项">【PC管理】商用退款单审批待办事项</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306904</td><td title="【PC管理】退货退款小单列表">【PC管理】退货退款小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306903</td><td title="【PC管理】退货退款小单详情">【PC管理】退货退款小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306902</td><td title="【PC管理】退货退款大单详情">【PC管理】退货退款大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306901</td><td title="【PC管理】退货退款大单列表">【PC管理】退货退款大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306900</td><td title="【PC管理】退货退款页签改造">【PC管理】退货退款页签改造</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306886</td><td title="【PC用户】我的售后退款小单列表">【PC用户】我的售后退款小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306885</td><td title="【PC用户】我的售后退款小单列表">【PC用户】我的售后退款小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306884</td><td title="【PC用户】我的售后退款大单详情">【PC用户】我的售后退款大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306883</td><td title="【PC用户】我的售后退款大单列表">【PC用户】我的售后退款大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306882</td><td title="【PC用户】我的售后退款大单列表">【PC用户】我的售后退款大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306881</td><td title="【PC用户】我的售后页签改造">【PC用户】我的售后页签改造</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">范文玉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共15个</span>
+                <span class="stat-badge stat-wait">待处理15</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估120h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余120h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>307110</td><td title="【H5】一层订单接单详情">【H5】一层订单接单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307103</td><td title="【H5】工程大单详情申请退定金">【H5】工程大单详情申请退定金</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307102</td><td title="【H5】工程大单详情">【H5】工程大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307101</td><td title="【H5】工程大单列表">【H5】工程大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307100</td><td title="【H5】零售小单详情取消发货">【H5】零售小单详情取消发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307099</td><td title="【H5】零售小单详情">【H5】零售小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307098</td><td title="【H5】零售小单列表">【H5】零售小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307095</td><td title="【H5】零售大单详情">【H5】零售大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307094</td><td title="【H5】零售大单列表">【H5】零售大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307385</td><td title="【H5】小单订单详情接单">【H5】小单订单详情接单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307384</td><td title="【H5】小单订单详情">【H5】小单订单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307383</td><td title="【H5】小单订单列表">【H5】小单订单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307382</td><td title="【H5】大单订单详情接单">【H5】大单订单详情接单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307381</td><td title="【H5】大单订单详情">【H5】大单订单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307380</td><td title="【H5】大单订单列表">【H5】大单订单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">田宇飞</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共12个</span>
+                <span class="stat-badge stat-wait">待处理12</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估140h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余140h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>305722</td><td title="【PC用户】收银台">【PC用户】收银台</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306880</td><td title="【PC用户】零售分批发货为分销商发货">【PC用户】零售分批发货为分销商发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>306879</td><td title="【PC用户】零售分批发货为我发货">【PC用户】零售分批发货为我发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>306870</td><td title="【PC用户】提交订单为分销商下单分批发货">【PC用户】提交订单为分销商下单分批发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>306869</td><td title="【PC用户】提交订单为我下单分批发货">【PC用户】提交订单为我下单分批发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>307357</td><td title="【PC用户】专属收银台">【PC用户】专属收银台</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>307356</td><td title="【PC用户】新增分批发货为分销商发货">【PC用户】新增分批发货为分销商发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>307355</td><td title="【PC用户】新增分批发货为我发货">【PC用户】新增分批发货为我发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307354</td><td title="【PC用户】新增分批发货为分销商下单">【PC用户】新增分批发货为分销商下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>307353</td><td title="【PC用户】新增分批发货为我下单">【PC用户】新增分批发货为我下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307347</td><td title="【PC用户】家用分批提货为分销商下单">【PC用户】家用分批提货为分销商下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>307346</td><td title="【PC用户】家用分批提货为我下单">【PC用户】家用分批提货为我下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">李漫嘉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共10个</span>
+                <span class="stat-badge stat-wait">待处理10</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估76h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余76h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>307105</td><td title="【H5】零售小单售后详情">【H5】零售小单售后详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307104</td><td title="【H5】零售小单售后列表">【H5】零售小单售后列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307092</td><td title="【PC用户】新增零售小单扣款退款逻辑，新增运费扣款/运费退款/运费补差 类型流水">【PC用户】新增零售小单扣款退款逻辑，新增运费扣款/运费退款/运费补差 类型流水</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>307067</td><td title="【PC管理】货款账户增加费扣款/运费退款/运费补差 类型流水">【PC管理】货款账户增加费扣款/运费退款/运费补差 类型流水</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>306878</td><td title="【PC用户】待发货商品清单">【PC用户】待发货商品清单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-17</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307379</td><td title="【H5】小单退款单列表详情">【H5】小单退款单列表详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307378</td><td title="【H5】小单退款单列表">【H5】小单退款单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307377</td><td title="【H5】大单退款单列表详情">【H5】大单退款单列表详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307376</td><td title="【H5】大单退款单列表">【H5】大单退款单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>307352</td><td title="【PC用户】待发货商品清单">【PC用户】待发货商品清单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-08-01</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u738b\u5b50\u5c18", "\u827e\u601d\u82b9", "\u674e\u7ea2\u71d5", "\u8303\u6587\u7389", "\u7530\u5b87\u98de", "\u674e\u6f2b\u5609"],datasets:[{label:'未完成任务数',data:[41, 29, 21, 15, 12, 10],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[118, 10],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[128],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
