@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>团队每日完成任务流水清单 — 2026-08-01~2026-08-03</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Microsoft YaHei","微软雅黑",PingFang SC,sans-serif; background:#f0f2f5; color:#333; font-size:14px; padding:20px; }
+.container { max-width:1400px; margin:0 auto; }
+
+/* 头部 */
+.header { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); color:white; padding:32px 40px; border-radius:14px; margin-bottom:24px; }
+.header h1 { font-size:26px; font-weight:700; }
+.header .sub { margin-top:6px; font-size:13px; color:#8892b0; }
+
+/* 摘要卡片 */
+.summary { display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+.scard { background:white; border-radius:12px; padding:18px 22px; box-shadow:0 2px 8px rgba(0,0,0,.08); flex:1; min-width:130px; text-align:center; }
+.scard .num { font-size:34px; font-weight:800; }
+.scard .label { font-size:13px; color:#999; margin-top:4px; }
+
+/* 视图切换 */
+.view-tabs { display:flex;gap:4px;margin-bottom:20px; }
+.view-tab { padding:10px 22px;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;background:#fff;color:#94a3b8;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.06);font-family:inherit; }
+.view-tab:hover { color:#475569;background:rgba(99,102,241,.06); }
+.view-tab.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 12px rgba(99,102,241,.3); }
+
+/* 胶囊角色标签（跟员工负载一致） */
+.tab-bar { display:flex;gap:0;margin-bottom:20px;flex-wrap:wrap;background:#fff;border-radius:14px;padding:6px 8px;box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.tab-btn { background:transparent;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;font-family:inherit;color:#94a3b8;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden; }
+.tab-btn:hover { color:#475569;background:rgba(99,102,241,.06); }
+.tab-btn.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);box-shadow:0 4px 14px rgba(99,102,241,0.35),0 1px 3px rgba(0,0,0,0.12); }
+
+/* 面板切换 */
+.view-panel { display:none; }
+.view-panel.show { display:block; }
+.role-section { display:none; }
+.role-section.show { display:block; }
+
+/* 表格 */
+.table-wrap { background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.07); overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th { background:#f8f9fa; padding:10px 8px; text-align:center; font-weight:600; border-bottom:2px solid #e8e8e8; white-space:nowrap; position:sticky; top:0; z-index:1; }
+td { padding:7px 8px; text-align:center; border-bottom:1px solid #f0f0f0; white-space:nowrap; }
+tr:hover td { background:#f8f9ff; }
+td.name { text-align:left; font-weight:600; }
+td.total { font-weight:700; color:#1a73e8; }
+td.hours { color:#888; }
+td.has-task { background:#e8f5e9; color:#2e7d32; font-weight:600; border-radius:4px; }
+th.date-col { min-width:44px; font-size:11px; }
+.date-weekend { background:#fff3e0; }
+
+/* 任务类型标签 */
+.task-item { display:flex;align-items:flex-start;padding:5px 0;border-bottom:1px dashed #eee;font-size:12px; }
+.task-item:last-child { border:none; }
+.task-type { display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;margin-right:6px;flex-shrink:0;font-weight:500; }
+.type-产品 { background:#ede9fe; color:#7c3aed; }
+.type-后端 { background:#d1fae5; color:#059669; }
+.type-前端 { background:#fce7f3; color:#be185d; }
+.type-移动端 { background:#ffedd5; color:#c2410c; }
+.type-测试 { background:#f3e8ff; color:#7c3aed; }
+.type-UI设计 { background:#ccfbf1; color:#0d9488; }
+.type-其他 { background:#f3f4f6; color:#6b7280; }
+
+/* 日期折叠 */
+.person-section { margin-bottom:6px; }
+.person-summary { display:flex;align-items:center;gap:10px;padding:10px 16px;background:white;border-radius:10px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:.2s; }
+.person-summary:hover { box-shadow:0 2px 8px rgba(0,0,0,.1); }
+
+.footer { text-align:center;padding:24px;color:#bbb;font-size:12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>团队每日完成任务流水清单</h1>
+  <div class="sub">2026-08-01 ~ 2026-08-03 | 60 个已完成任务 | 5 人 | 覆盖 3 天</div>
+</div>
+
+<div class="summary">
+  <div class="scard"><div class="num" style=color:#10b981>60</div><div class="label">已完成任务</div></div>
+  <div class="scard"><div class="num" style=color:#6366f1>5</div><div class="label">参与人数</div></div>
+  <div class="scard"><div class="num" style=color:#f59e0b>3</div><div class="label">覆盖天数</div></div>
+  <div class="scard"><div class="num" style=color:#ea580c>231h</div><div class="label">预估工时</div></div>
+</div>
+
+<!-- 视图切换 -->
+<div class="view-tabs">
+  <button class="view-tab active" onclick="switchView('matrix')">人员×日期矩阵</button>
+  <button class="view-tab" onclick="switchView('daily')">按日期明细</button>
+</div>
+
+<!-- ═══ 矩阵视图 ═══ -->
+<div class="view-panel show" id="view-matrix">
+
+<!-- 角色标签 -->
+<div class="tab-bar matrix-tabs">
+<button class=tab-btn active onclick=switchMatrixTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(4人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+</div>
+<div class="role-section show" data-role="后端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#10b981;border-left:4px solid #10b981;padding-left:8px;">后端</span>
+<span style="font-size:12px;color:#999;">58 个任务 · 215h · 4 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">08-03</th>
+<th class="date-col date-weekend">08-02</th>
+<th class="date-col date-weekend">08-01</th>
+</tr></thead><tbody>
+<tr><td class=name>梁家槐</td><td class=total>30</td><td class=hours>94</td><td class=has-task>30</td><td></td><td></td></tr>
+<tr><td class=name>梁嘉健</td><td class=total>25</td><td class=hours>105</td><td></td><td class=has-task>25</td><td></td></tr>
+<tr><td class=name>徐琦</td><td class=total>2</td><td class=hours>8</td><td class=has-task>2</td><td></td><td></td></tr>
+<tr><td class=name>刘兰真</td><td class=total>1</td><td class=hours>8</td><td class=has-task>1</td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="移动端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#ea580c;border-left:4px solid #ea580c;padding-left:8px;">移动端</span>
+<span style="font-size:12px;color:#999;">2 个任务 · 16h · 1 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">08-03</th>
+<th class="date-col date-weekend">08-02</th>
+<th class="date-col date-weekend">08-01</th>
+</tr></thead><tbody>
+<tr><td class=name>徐良侦</td><td class=total>2</td><td class=hours>16</td><td></td><td></td><td class=has-task>2</td></tr>
+</tbody></table></div></div>
+</div><!-- /view-matrix -->
+
+<!-- ═══ 按日期明细视图 ═══ -->
+<div class="view-panel" id="view-daily">
+
+<!-- 角色标签 -->
+<div class="tab-bar daily-tabs">
+<button class=tab-btn active onclick=switchDailyTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(4人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+</div>
+<div class="role-section show" data-daily-role="后端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
+<span style="font-weight:700;font-size:13px;">2026-08-03 (周一)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">33个任务 · 3人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">梁家槐</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(30个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#305882 满数量减-调价/审核配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305881 满数量减-调整记录+查看/编辑页配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305880 满数量减-列表查询+导出改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305879 满数量减-计算引擎改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305878 满数量减-ES索引同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305877 满数量减-缓存同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305876 满数量减-DB字段+上下架API开发</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305875 满金额减-调价/审核配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305874 满金额减-调整记录+查看/编辑页配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305873 满金额减-列表查询+导出改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310500 【后端】江苏扬州分销商“扬州玥群电器有限公司”，申请分销转直营，因业务操作失误，从注册邀请码直接操作入驻并已使用，应从分销商管理进行邀请入驻，导致商家无法正常入驻，现申请由技术开发从后台操作【删除】邀请码记录和入驻驳回记录</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310499 【后端】【陕西】删除已下发的年度任务</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310496 【后端】第三批洛阳商家迁移河南销司提出旗下历史客户需要隐藏不可见，所有功能、组件都要适配</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310495 【后端】由于前期下发年度任务时，还没创建好销售模式，但年度任务已下发，需要删除该已下发任务，重新下发</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310399 【后端】方案的上下架-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310398 【后端】销司会签客户资料变更技术评审、需求评审、数据库表设计评审、任务拆分</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310397 【后端】供应链金融账户、赊销账户、工程保证金技术评审、需求评审、数据库表设计评审、任务拆分</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310396 【后端】审批和数据控权显示下个审批人、供应链金融账户、经销商活动销售方案上下架功能迭代、销司会签客户资料变更需求评审、走查文档和自测文档输出</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309379 【后端】河北分销商霸州市胜芳镇华兴电器商店现要转变为直营商，由于网批平台不能录入相同的营业执照</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309092 【后端】后台导出全国商家的名称，编号，及对应的最近一次签约经销协议的日期</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309091 【后端】经销商为洛阳商用迁移经销商，河南商用 CA326020 刘晓丹 编辑经销商 2026年度市场保证金为1万提交+执行成功，网批只记录洛阳商用销售公司 李流涛  2026-05-21 15:16:24 的设置记录</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309090 【后端】福建新建返利填报单据，导入经销商成功，提交提示【系统发生异常,请稍后再试!】</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309089 【后端】河南新睿新能源科技有限公司 V7300638 河南商用反馈该商家为迁移商家</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309087 【后端】结合前期双方销司提交的书面说明函件及沟通确认，以下17个商家未与洛阳商用销售公司产生过订单且无历史账余，与洛阳销司沟通后无异议，满足迁移条件。1位商家邀请码已使用但是未入驻，需要删除</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309086 【后端】四川空调销司经销商资料变更失误，错误操作成邀请入驻，现申请删除安岳县兴洪鑫电器经营部的入驻信息</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309084 【后端】重庆新时通电器有限公司只有一个分销商身份，业务经理误操作注册邀请码邀请入驻为经销商，导致两个身份冲突，服务商无法维护分销商资料</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309083 【后端】第三批洛阳商家迁移河南销司</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309067 【后端】请求数据变更，涉及系统数据修改 申请表2026.7.7.docx，变更原因包括长沙儒尔乐贸易有限公司为湖南格力恒信智远贸易有限公司网批直营客户</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309066 【后端】新增快手格力旗舰店1-4月销售任务（店铺ID：5004561165），调整内容请见附件，调整原因：该店铺为河南经世代运营，原本计划于去年12月转为电商公司自营，但实际运营中没有切换，且按照运营反馈后续也将继续由河南经世代运营，核对信息台账与分销系统时发现此店铺并未设置1-4月销售任务，故申请以下数据变更。</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#309065 【后端】广佛商用需要使用【韶关弘格贸易有限公司】主体为发起人，之前的法大大主体已删除，麻烦帮忙为网批经销商【韶关弘格贸易有限公司 V5500012】【韶关弘格贸易有限公司 V2108888】关联新的认证主体，新主体法大大信息如下</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐琦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#307810 【后端】用户侧-分批发货订单售后 列表改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.82.0（0820/dev11.9.1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#307809 【后端】用户侧-分批发货订单--申请售后提交审批创建</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.82.0（0820/dev11.9.1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">刘兰真</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#313745 【后端】需要增加“申请价格”，涉及页面： 1、管理端-常规-新建代客申请 2、管理端-常规-新建申请价格 3、管理端-常规-再次申请工程批价 4、管理端-工程备货-新建代客申请 5、管理端-工程备货-再次申请工程批价 6、用户端-常规-新建工程单 7、用户端-常规-新建申请价格 8、用户端-常规-再次申请工程批价 9、用户端-工程备货-新建工程备货 10、用户端-工程备货-再次申请工程批价</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
+<span style="font-weight:700;font-size:13px;">2026-08-02 (周日)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">25个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">梁嘉健</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(25个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#305865 限时特价-计算引擎改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305862 限时特价-DB字段+上下架API开发</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305860 买赠-列表查询+导出改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305859 买赠-计算引擎改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305858 买赠-ES索引同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305857 买赠-缓存同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305856 买赠-DB字段+上下架API开发</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305855 组合套餐-调价/审核配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305854 组合套餐-调整记录+查看/编辑页配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305853 组合套餐-列表查询+导出改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305850 组合套餐-ES索引同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305849 组合套餐-缓存同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305848 组合套餐-DB字段+上下架API开发</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305847 优惠券-调价/审核配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305846 优惠券-调整记录+查看/编辑页配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305845 优惠券-列表查询+导出改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305844 优惠券-计算引擎改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305843 优惠券-ES索引同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305842 优惠券-DB字段+上下架API开发</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305832 企微商品导出适配</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305831 买赠-调整记录+查看/编辑页配合</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305830 组合套餐-计算引擎改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#305829 优惠券-缓存同步</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.81.0（0803/dev11.8）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310401 【后端】经销商限时特价调价不可售不可见-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#310395 【后端】审批和数据控权显示下个审批人、分销账单计算迭代优化、经销商活动销售方案上下架功能迭代、需求评审、走查文档和自测文档输出</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0830/dev12.0）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="移动端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #ea580c;">
+<span style="font-weight:700;font-size:13px;">2026-08-01 (周六)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">2个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐良侦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#313625 【iOS】用户侧-零售订单大单详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.82.0（0820/dev11.9.1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#313622 【iOS】用户侧-零售订单大单列表</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.82.0（0820/dev11.9.1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+</div><!-- /view-daily -->
+
+<div class="footer">禅道数据 · 自动生成于 2026-08-03 · WorkBuddy</div>
+
+<script>
+function switchView(v) {
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById('view-' + v).classList.add('show');
+  document.querySelectorAll('.view-tab').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function switchMatrixTab(r) {
+  // 切换矩阵面板内的角色标签
+  document.querySelectorAll('#view-matrix .tab-bar.matrix-tabs .tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().startsWith(r));
+  });
+  document.querySelectorAll('#view-matrix .role-section').forEach(s => {
+    s.classList.toggle('show', s.getAttribute('data-role') === r);
+  });
+}
+
+function switchDailyTab(r) {
+  document.querySelectorAll('#view-daily .tab-bar.daily-tabs .tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().startsWith(r));
+  });
+  document.querySelectorAll('#view-daily .role-section').forEach(s => {
+    s.classList.toggle('show', s.getAttribute('data-daily-role') === r);
+  });
+}
+</script>
+</div>
+</body></html>
