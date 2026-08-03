@@ -7,7 +7,7 @@
     "total_members": 46,
     "total_overdue": 30,
     "reference_hours": 168,
-    "report_time": "2026-08-03 13:53:04",
+    "report_time": "2026-08-03 14:13:25",
     "month": "2026年8月"
   },
   "members": [
@@ -717,6 +717,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 333042,
+          "title": "【QA-PC-用户侧-组合套餐】满减和组合套餐在调价修改非商品列表字段后审核未通过时就会在用户侧生效",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 333000,
           "title": "【QA-PC-管理侧-4.0测算组合】点击已有方案的进行调价，审核页面提示404",
           "severity": 3,
@@ -730,14 +739,6 @@
         {
           "id": 333049,
           "title": "【QA-PC-管理侧-4.0测算限时特价】4.0限时特价测算方案编辑、调价时商品上下架未记录到调整记录",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 333042,
-          "title": "【QA-PC-用户侧-组合套餐】满减和组合套餐在调价修改非商品列表字段后审核未通过时就会在用户侧生效",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -1016,16 +1017,7 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": [
-        {
-          "id": 332956,
-          "title": "【QA-PC-管理侧-合并上线库存】导入销司库存的sku在供应链数据为空，导入成功后，未在供应链数据生成数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "郑忠",
@@ -3062,7 +3054,7 @@
           "title": "【QA-PC-管理侧-优惠券】4.0测算调价修改后返奖励字段驳回后没有回退",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         }
@@ -5642,7 +5634,16 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 332578,
+          "title": "【QA-PC-用户侧-我的订单】OMS订单行不属于可修改地址状态，点击修改地址按钮仍跳转至修改地址弹窗页面",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "卢鑫",
@@ -7346,7 +7347,16 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 332956,
+          "title": "【QA-PC-管理侧-合并上线库存】导入销司库存的sku在供应链数据为空，导入成功后，未在供应链数据生成数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "阳超",
@@ -8304,7 +8314,17 @@
           "deadline": "2026-08-14"
         }
       ],
-      "resolved_bugs": [],
+      "resolved_bugs": [
+        {
+          "id": 333046,
+          "title": "【QA-安卓-用户侧-我的订单】OMS订单行是不可修改地址状态，履约单仍能修改地址",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        }
+      ],
       "active_bugs": []
     },
     {
@@ -8816,16 +8836,7 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": [
-        {
-          "id": 333046,
-          "title": "【QA-安卓-用户侧-我的订单】OMS订单行是不可修改地址状态，履约单仍能修改地址",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "范文玉",
@@ -10270,6 +10281,14 @@
       ],
       "resolved_bugs": [],
       "active_bugs": [
+        {
+          "id": 333061,
+          "title": "【QA-PC-管理侧-4.0测算返利方案】经销商4.0测算返利方案提交后未保存商品上下架状态",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 333025,
           "title": "【QA-H5-管理侧-工程方案】审核导出缺少货权来源和仓库代码列",
