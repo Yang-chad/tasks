@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集采平台_V1.30.0（0803/集采dev4.0）【2026】 执行进展分析报告 — 2026-08-05</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+         background: #f0f2f5; color: #1f2937; line-height:1.6; padding:20px; }
+  .container { max-width: 1400px; margin: 0 auto; }
+  .header { text-align:center; margin-bottom:30px; padding:30px 20px;
+              background: linear-gradient(135deg, #1a73e8 0%, #4a9af5 60%, #7ec8f7 100%);
+              border-radius:16px; color:#fff; box-shadow: 0 4px 20px rgba(26,115,232,0.25); }
+  .header h1 { font-size:28px; color:#fff; margin-bottom:8px; letter-spacing:1px; }
+  .header .subtitle { color:rgba(255,255,255,0.85); font-size:14px; }
+  .progress-cards { display:flex; gap:20px; margin-bottom:30px; flex-wrap:wrap; justify-content:center; }
+  .prog-card { flex:1; min-width:200px; max-width:300px; background:#fff; border-radius:14px;
+                 padding:22px 20px; text-align:center; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+                 transition: transform 0.2s; }
+  .prog-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.10); }
+  .prog-card .label { font-size:13px; color:#6b7280; margin-bottom:8px; font-weight:500; }
+  .prog-card .value { font-size:38px; font-weight:800; }
+  .prog-card .bar-outer { margin-top:14px; height:8px; background:#e5e7eb; border-radius:6px; overflow:hidden; }
+  .prog-card .bar-inner { height:100%; border-radius:6px; transition:width 0.8s ease; }
+  .prog-card .detail { font-size:12px; color:#9ca3af; margin-top:10px; }
+  .alert-box { background:#fff5f5; border:1px solid #fca5a5; border-radius:14px; padding:18px 24px;
+                 box-shadow: 0 2px 12px rgba(245,34,45,0.08); }
+  .alert-box h3 { color:#dc2626; font-size:15px; margin-bottom:10px; }
+  .alert-box ul { padding-left:20px; color:#b91c1c; font-size:13px; }
+  .alert-box li { margin-bottom:5px; }
+  .info-box { background:#f0fdf4; border:1px solid #86efac; border-radius:14px; padding:18px 24px;
+                 box-shadow: 0 2px 12px rgba(82,196,26,0.08); }
+  .info-box h3 { color:#16a34a; font-size:15px; margin-bottom:10px; }
+  .info-box ul { padding-left:20px; color:#15803d; font-size:13px; }
+  .info-box li { margin-bottom:5px; }
+  .dual-col { display: flex; gap: 20px; margin-bottom: 24px; }
+  .dual-col .col { flex: 1; }
+  @media(max-width:768px) { .dual-col { flex-direction: column; } }
+  .charts-row { display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+  .chart-card { flex: 1; min-width: 300px; background: #fff; border-radius: 14px;
+                 padding: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .chart-card h4 { text-align: center; font-size: 14px; color: #374151; margin-bottom: 10px; }
+  .chart-wrap { height: 240px; position: relative; }
+  .section { background:#fff; border-radius:14px; padding:24px; margin-bottom:24px;
+               box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .section h2 { font-size:18px; color:#1f2937; margin-bottom:16px; padding-bottom:12px;
+                  border-bottom:2px solid #e5e7eb; }
+  .section h3 { font-size:15px; color:#374151; margin:18px 0 10px; font-weight:600; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { background:#f3f4f6; color:#374151; padding:10px 12px; text-align:left;
+         position:sticky; top:0; z-index:1; font-weight:600; font-size:12px;
+         border-bottom:2px solid #d1d5db; }
+  td { padding:9px 12px; border-bottom:1px solid #f0f0f0; font-size:13px; }
+  tbody tr:hover { background:#f8f9fc; }
+  .row-warn { background:#fff2f0; }
+  .detail-row td { border-bottom: 2px solid #dbeafe; }
+  .detail-row table { margin:4px 0; }
+  .detail-row th { background:#e8ecf3 !important; font-size:11px !important; padding:5px 8px !important; }
+  .detail-row td { font-size:12px !important; padding:4px 8px !important; border-bottom:1px solid #e5e7eb; }
+  .expand-icon { display:inline-block; transition: transform 0.2s; font-size:10px; color:#9ca3af; }
+  .expand-icon.open { transform: rotate(90deg); }
+  .st-wait { color:#d97706; background:#fef3c7; padding:2px 8px; border-radius:10px; font-size:11px; }
+  .st-doing { color:#1d4ed8; background:#dbeafe; padding:2px 8px; border-radius:10px; font-size:11px; }
+  .st-done { color:#16a34a; background:#dcfce7; padding:2px 8px; border-radius:10px; font-size:11px; }
+  .st-closed { color:#6b7280; background:#f3f4f6; padding:2px 8px; border-radius:10px; font-size:11px; }
+  .st-pause { color:#9333ea; background:#f3e8ff; padding:2px 8px; border-radius:10px; font-size:11px; }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:14px;
+                margin-bottom:18px; }
+  .stat-item { background:#f9fafb; border-radius:10px; padding:14px; text-align:center;
+                border:1px solid #e5e7eb; }
+  .stat-item .num { font-size:26px; font-weight:800; }
+  .stat-item .lbl { font-size:11px; color:#6b7280; margin-top:4px; font-weight:500; }
+  .num-blue { color:#1d4ed8; } .num-green { color:#16a34a; } .num-orange { color:#d97706; }
+  .num-red { color:#dc2626; } .num-purple { color:#7c3aed; }
+  .tabs { display:flex; gap:0; margin:16px 0; background:#e5e7eb; border-radius:10px; padding:3px; }
+  .tab-btn { flex:1; padding:10px 16px; border:none; font-size:13px; font-weight:600;
+              cursor:pointer; border-radius:8px; transition:all 0.2s; font-family:inherit; }
+  .tab-btn.active { background:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+  .footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:30px; padding:16px; }
+  @media(max-width:768px) { .progress-cards { flex-direction:column; } .prog-card { max-width:100%; }
+    .charts-row { flex-direction: column; } }
+  .refresh-btn { display:inline-flex; align-items:center; gap:6px; margin-bottom:12px;
+    padding:8px 18px; border:none; border-radius:20px;
+    background: rgba(255,255,255,0.18); color:#fff; font-size:13px; font-weight:500;
+    cursor:pointer; font-family:inherit; transition:all .3s; border:1px solid rgba(255,255,255,0.25); }
+  .refresh-btn:hover { background:rgba(255,255,255,0.28); transform:scale(1.03); }
+  .refresh-btn.loading { opacity:0.6; pointer-events:none; }
+  .refresh-spin { display:inline-block; transition:transform 0.6s; }
+  .refresh-btn.loading .refresh-spin { animation:spin 0.8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .refresh-toast { position:fixed; top:20px; left:50%; transform:translateX(-50%); z-index:9999;
+    padding:10px 24px; border-radius:10px; font-size:13px; font-weight:500;
+    opacity:0; transition:opacity 0.4s; pointer-events:none; }
+  .refresh-toast.show { opacity:1; }
+  .refresh-toast.ok { background:#10b981; color:#fff; }
+  .refresh-toast.err { background:#ef4444; color:#fff; }
+</style>
+<script>
+function toggleStoryDetail(id) {
+    var row = document.getElementById(id);
+    var arrow = document.getElementById('arrow_' + id);
+    if (row.style.display === 'none') { row.style.display = 'table-row'; arrow.classList.add('open'); }
+    else { row.style.display = 'none'; arrow.classList.remove('open'); }
+}
+function toggleAssignee(id) {
+    var el = document.getElementById(id);
+    if (el.style.display === 'none') { el.style.display = ''; }
+    else { el.style.display = 'none'; }
+}
+function switchPersonTab(tabId) {
+    var section = document.getElementById('person-tab-section');
+    var panels = section.querySelectorAll('.tab-panel');
+    for (var i = 0; i < panels.length; i++) panels[i].style.display = 'none';
+    var btns = section.querySelectorAll('.tab-btn');
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].style.background = 'transparent';
+        btns[i].style.color = '#666';
+        btns[i].style.boxShadow = 'none';
+    }
+    var panel = document.getElementById(tabId);
+    if (panel) panel.style.display = '';
+    var btn = document.getElementById('btn_' + tabId);
+    if (btn) { btn.style.background = '#fff'; btn.style.boxShadow = '0 1px 4px rgba(0,0,0,0.08)'; }
+}
+function switchBugTab(tabId) {
+    var section = document.getElementById('bug-tab-section');
+    var panels = section.querySelectorAll('.tab-panel');
+    for (var i = 0; i < panels.length; i++) panels[i].style.display = 'none';
+    var btns = section.querySelectorAll('.tab-btn');
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].style.background = 'transparent';
+        btns[i].style.color = '#666';
+        btns[i].style.boxShadow = 'none';
+    }
+    var panel = document.getElementById(tabId);
+    if (panel) panel.style.display = '';
+    var btn = document.getElementById('bug_btn_' + tabId.split('_').pop());
+    if (btn) { btn.style.background = '#fff'; btn.style.boxShadow = '0 1px 4px rgba(0,0,0,0.08)'; }
+}
+function refreshToast(msg,type){
+  var t=document.getElementById('rtoast'); if(!t){t=document.createElement('div');t.id='rtoast';t.className='refresh-toast';document.body.appendChild(t);}
+  t.textContent=msg; t.className='refresh-toast show '+(type||'ok'); setTimeout(function(){t.className='refresh-toast';},3000);
+}
+function liveRefresh(eid){
+  var btn=document.getElementById('refreshBtn'); if(!btn) return;
+  var isGH=window.location.origin.indexOf('github.io')>=0;
+  if(isGH || window.location.protocol==='file:'){
+    btn.classList.add('loading');
+    var SVR='http://172.28.52.91:8900';
+    // 触发本地管线重新拉取禅道数据
+    fetch(SVR+'/trigger-pipeline',{mode:'no-cors'})
+    .then(function(){ refreshToast('已触发后台刷新，约40秒后自动更新','ok'); })
+    .catch(function(){ refreshToast('已触发后台刷新（请确认本地服务已启动）','ok'); });
+    // 40秒后轮询管线是否完成
+    setTimeout(function(){
+      fetch(SVR+'/health',{mode:'cors'})
+      .then(function(){
+        btn.classList.remove('loading');
+        refreshToast('刷新完成，页面即将自动更新...','ok');
+        setTimeout(function(){location.reload();},2000);
+      })
+      .catch(function(){
+        btn.classList.remove('loading');
+        refreshToast('后台刷新中，约60秒后请手动刷新页面','ok');
+      });
+    },40000);
+    return;
+  }
+  // 本地 localhost → 同源API刷新，直接更新页面数据
+  btn.classList.add('loading');
+  fetch('/api/refresh/'+eid)
+  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(function(d){ if(d.error) throw new Error(d.error); return d; })
+  .then(function(d){
+    var it=d.it, cs=d.charts, ss=d.story_stats||{}, today=d.today;
+    var el=document.getElementById;
+    if(el('v_time')){el('v_time').textContent=it.time_pct+'%';el('bar_time').style.width=it.time_pct+'%';el('d_time').textContent=it.elapsed+'/'+it.total_days;}
+    if(el('v_prog')){el('v_prog').textContent=it.progress+'%';el('bar_prog').style.width=it.progress+'%';el('d_prog').textContent=it.status;}
+    if(el('v_story')){el('v_story').textContent=it.story_count;el('d_story_a').textContent=ss.active||0;el('d_story_c').textContent=ss.closed||0;}
+    if(el('v_task')){el('v_task').textContent=it.task_total;el('d_task_d').textContent=it.doing;el('d_task_w').textContent=it.wait;}
+    if(el('v_bug')){el('v_bug').textContent=it.bug_total;el('d_bug_a').textContent=it.active_bugs;}
+    if(el('reportTime')) el('reportTime').textContent=today;
+    btn.classList.remove('loading');
+    var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+    var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
+    refreshToast('✅ 实时刷新完成 — '+now,'ok');
+  }).catch(function(e){
+    btn.classList.remove('loading');
+    refreshToast('❌ 本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
+  });
+}
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📊 集采平台_V1.30.0（0803/集采dev4.0）【2026】 执行进展分析报告</h1>
+    <div class="subtitle">执行ID: 4647 &nbsp;|&nbsp; 2026-06-12 ~ 2026-08-07 &nbsp;|&nbsp; 生成时间: <span id="reportTime">2026-08-05</span></div>
+    <button class="refresh-btn" onclick="liveRefresh(4647)" id="refreshBtn">
+      <span class="refresh-spin">🔄</span> 实时刷新禅道数据
+      <span class="refresh-time"></span>
+    </button>
+  </div>
+
+  <div class="progress-cards">   <div class="prog-card"><div class="label">⏱️ 时间进度</div><div class="value" style="color:#1890ff;" id="v_time">96.4%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_time" style="width:96.4%;background:linear-gradient(90deg,#1890ff,#60a5fa);"></div></div>
+      <div class="detail" id="d_time">已过 54/56 天</div></div>
+    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;" id="v_prog">73.9%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_prog" style="width:73.9%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
+      <div class="detail" id="d_prog">状态: doing</div></div>
+    <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue" id="v_story">2</div>
+      <div class="detail">active: <span id="d_story_a">2</span> &nbsp; closed: <span id="d_story_c">0</span></div></div>
+    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple" id="v_task">37</div>
+      <div class="detail">进行中: <span id="d_task_d">1</span> &nbsp; 待处理: <span id="d_task_w">2</span></div></div>
+    <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red" id="v_bug">2</div>
+      <div class="detail">未关闭: <span id="d_bug_a">0</span> &nbsp; 已关/已延: 2</div></div>
+  </div>  <div class="dual-col">
+    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul><li>系统进度 73.9% 落后于时间进度 96.4%，存在滞后风险</li><li>延期任务 3 个，需重点跟进</li><li>李学鹍: 2个任务延期</li><li>: 1个任务延期</li></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>已完成/已关闭任务 34 个（91.9%）</li><li>进行中任务 1 个，团队在推进</li><li>需求规模适中（2个），便于管理</li></ul></div></div></div><div class="section"><h2>📋 需求分析（2 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">2</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">2</div><div class="lbl">已立项</div></div></div><h3>需求明细</h3><table><thead><tr><th>ID</th><th>优先级</th><th>标题</th><th>状态</th><th>阶段</th><th>创建人</th></tr></thead><tbody id="storyTbody"><tr onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_0">▶</span>67238</td>
+            <td>P3</td><td style="max-width:400px;">集采-预约信息允许空数据提交以及退货售后单接受数据优化-GC01&amp;amp;02 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">9个任务</span></td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">钟日健</td></tr><tr id="story_detail_0" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #67238 关联的任务（9个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">311762</td><td style="font-size:12px;">【后端】订单导入卸货到仓，预约号 为空处理</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-29</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">309144</td><td style="font-size:12px;">【后端】订单导入--预约信息：卸货到仓日期、预约号，允许空数据提交</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-28</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">309105</td><td style="font-size:12px;">【PC管理】JC02退货售后单，查看页增加“入库数量、理赔数量”</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;">王子尘</td><td style="font-size:12px;color:#888;">2026-07-30</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">309097</td><td style="font-size:12px;">【PC管理】预约信息：卸货到仓日期、预约号，允许空数据提交</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;">王子尘</td><td style="font-size:12px;color:#888;">2026-07-30</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">308533</td><td style="font-size:12px;">【后端】退货售后单，查看页增加“入库数量、理赔数量② 增加“理赔数量”数据回显</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-28</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">308532</td><td style="font-size:12px;">【后端】生成拒签退货① 拒签erp单号，非必填，由于入库数量为0时，则没有erp单号  ② 增加“理赔数量”数据回显</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-28</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">308531</td><td style="font-size:12px;">【后端】oms对接--【JC02】  1、退货售后单，查看页增加“入库数量、理赔数量”，触发通过“入库完成”阶段不变；</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-28</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">3h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">308530</td><td style="font-size:12px;">【后端】【JC01】  1、预约信息：卸货到仓日期、预约号，允许空数据提交</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟠 P2</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">孙元通</td><td style="font-size:12px;color:#888;">2026-07-28</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">3h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">307948</td><td style="font-size:12px;">【总任务】集采-预约信息允许空数据提交以及退货售后单接受数据优化-GC01&amp;amp;02</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">杂项</td><td style="font-size:12px;color:#888;">李兆杰</td><td style="font-size:12px;color:#888;">2026-07-31</td><td style="font-size:12px;color:#888;">32h</td><td style="font-size:12px;color:#888;">26h</td><td style="font-size:12px;color:#888;">0h</td></tr></tbody></table></div></td></tr><tr onclick="toggleStoryDetail('story_detail_1')" style="cursor:pointer;" data-stage='projected'>
+            <td><span class="expand-icon" id="arrow_story_detail_1">▶</span>65039</td>
+            <td>P3</td><td style="max-width:400px;">集采调拨价添加审批流程 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">28个任务</span></td>
+            <td>active</td><td>已立项</td>
+            <td style="font-size:12px;color:#888;">符宏勇</td></tr><tr id="story_detail_1" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #65039 关联的任务（28个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr class="row-warn"><td style="font-size:12px;color:#888;">304313</td><td style="font-size:12px;">【测试】集采调拨价设置添加审批流</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">测试</td><td style="font-size:12px;color:#888;">李学鹍</td><td style="font-size:12px;color:#888;">2026-07-30 <span style="color:#f5222d;font-size:11px;">(延6天)</span></td><td style="font-size:12px;color:#888;">40h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">40h</td></tr><tr class="row-warn"><td style="font-size:12px;color:#888;">304312</td><td style="font-size:12px;">【测试设计】集采调拨价设置添加审批流</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">测试设计</td><td style="font-size:12px;color:#888;">李学鹍</td><td style="font-size:12px;color:#888;">2026-07-30 <span style="color:#f5222d;font-size:11px;">(延6天)</span></td><td style="font-size:12px;color:#888;">18h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">18h</td></tr><tr><td style="font-size:12px;color:#888;">297434</td><td style="font-size:12px;">【PC管理】设置调拨价格设置审批流程</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297433</td><td style="font-size:12px;">【PC管理】设置调拨价格设置审批详情</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297432</td><td style="font-size:12px;">【PC管理】设置调拨价格设置审批</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297431</td><td style="font-size:12px;">【PC管理】设置调拨价格设置查看</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297430</td><td style="font-size:12px;">【PC管理】设置调拨价格设置修改</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297429</td><td style="font-size:12px;">【PC管理】设置调拨价格设置记录</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297428</td><td style="font-size:12px;">【PC管理】设置调拨价格详情添加商品</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297427</td><td style="font-size:12px;">【PC管理】设置调拨价格详情</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">297426</td><td style="font-size:12px;">【PC管理】调拨价列表调整</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">前端</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294436</td><td style="font-size:12px;">【后端】调拨价-审批记录</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294435</td><td style="font-size:12px;">【后端】调拨价-审批驳回</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294434</td><td style="font-size:12px;">【后端】调拨价-审批通过</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">12h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294433</td><td style="font-size:12px;">【后端】调拨价-审批列表</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294432</td><td style="font-size:12px;">【后端】调拨价-查看</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294431</td><td style="font-size:12px;">【后端】调拨价-修改</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294430</td><td style="font-size:12px;">【后端】调拨价设置审批流绘图</td><td><span class="st-done" style="font-size:11px;">✅ 已完成</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;">蒋志军</td><td style="font-size:12px;color:#888;">2026-07-15</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294429</td><td style="font-size:12px;">【后端】调拨价-设置记录-查看</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294428</td><td style="font-size:12px;">【后端】调拨价-设置记录-终止</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">2h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294427</td><td style="font-size:12px;">【后端】调拨价-设置记录-审批流程</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294426</td><td style="font-size:12px;">【后端】调拨价-设置记录-列表&amp;amp;查询</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294425</td><td style="font-size:12px;">【后端】调拨价-设置-批量导入</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">6h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294424</td><td style="font-size:12px;">【后端】调拨价-设置-添加商品组件</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">4h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294423</td><td style="font-size:12px;">【后端】调拨价-设置</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294422</td><td style="font-size:12px;">【后端】调拨价-价格计划</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr><td style="font-size:12px;color:#888;">294421</td><td style="font-size:12px;">【后端】调拨价-查看历史价格</td><td><span class="st-closed" style="font-size:11px;">✅ 已关闭</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">后端-control</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-03</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">8h</td><td style="font-size:12px;color:#888;">0h</td></tr><tr class="row-warn"><td style="font-size:12px;color:#888;">293225</td><td style="font-size:12px;">【总任务】集采调拨价添加审批流程</td><td><span class="st-doing" style="font-size:11px;">🔄 进行中</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-07-30 <span style="color:#f5222d;font-size:11px;">(延6天)</span></td><td style="font-size:12px;color:#888;">224h</td><td style="font-size:12px;color:#888;">138h</td><td style="font-size:12px;color:#888;">58h</td></tr></tbody></table></div></td></tr></tbody></table></div><div class="section" id="person-tab-section"><h2>📦 任务分析明细（2 个活跃 / 按5类分组）</h2><div class="tabs"><button class="tab-btn active" onclick="switchPersonTab('tab_0')" style="background:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,0.08);" id="btn_tab_0">📋 产品任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_1')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_1">🖥 后端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_2')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_2">🎨 前端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_3')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_3">📱 移动端任务 <span style="font-size:11px;color:#888;font-weight:400;">(0人/0任务)</span></button><button class="tab-btn" onclick="switchPersonTab('tab_4')" style="background:transparent;color:#666;box-shadow:none;" id="btn_tab_4">🧪 测试任务 <span style="font-size:11px;color:#888;font-weight:400;">(1人/2任务)</span></button></div><div id="tab_0" class="tab-panel"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">0</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">0h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">0h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">0h</div><div class="lbl">剩余工时</div></div></div></div><div id="tab_1" class="tab-panel" style="display:none;"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">0</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">0h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">0h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">0h</div><div class="lbl">剩余工时</div></div></div></div><div id="tab_2" class="tab-panel" style="display:none;"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">0</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">0h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">0h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">0h</div><div class="lbl">剩余工时</div></div></div></div><div id="tab_3" class="tab-panel" style="display:none;"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">0</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">0h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">0h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">0h</div><div class="lbl">剩余工时</div></div></div></div><div id="tab_4" class="tab-panel" style="display:none;"><div class="stat-grid"><div class="stat-item"><div class="num num-orange">2</div><div class="lbl">待处理</div></div><div class="stat-item"><div class="num num-blue">0</div><div class="lbl">进行中</div></div><div class="stat-item"><div class="num num-red">2</div><div class="lbl">延期</div></div><div class="stat-item"><div class="num num-green">58h</div><div class="lbl">预估工时</div></div><div class="stat-item"><div class="num num-purple">0h</div><div class="lbl">已耗工时</div></div><div class="stat-item"><div class="num num-blue">58h</div><div class="lbl">剩余工时</div></div></div><div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+            <div onclick="toggleAssignee('tab测试_0')" style="padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;overflow-x:auto;border-left:4px solid #667eea;background:#667eea08;">
+              <span class="expand-icon" id="arrow_tab测试_0" style="font-size:10px;color:#9ca3af;flex-shrink:0;">▶</span>
+              <span style="font-size:15px;font-weight:600;color:#333;flex-shrink:0;">李学鹍</span>
+              <span style="display:flex;gap:6px;flex-wrap:nowrap;margin-left:auto;flex-shrink:0;">
+                <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#eee;color:#555;white-space:nowrap;">共2个</span><span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#fde8e8;color:#c62828;white-space:nowrap;">待处理2</span><span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#fff3e0;color:#e65100;white-space:nowrap;">延期2</span><span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#e3f2fd;color:#1565c0;white-space:nowrap;">估58h</span><span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#e3f2fd;color:#1565c0;white-space:nowrap;">耗0h</span><span style="font-size:11px;padding:2px 8px;border-radius:10px;background:#e3f2fd;color:#1565c0;white-space:nowrap;">剩58h</span></span></div><div id="tab测试_0" style="display:none;"><div style="overflow-x:auto;padding:0;"><table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="background:#f3f4f6;"><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">ID</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">任务名称</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">状态</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">优先级</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">类型</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">截止日</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">预估</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">消耗</th><th style="padding:8px 10px;text-align:left;font-weight:600;font-size:12px;border-bottom:2px solid #d1d5db;">剩余</th></tr></thead><tbody><tr class="row-warn"><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">304313</td><td style="font-size:12px;padding:7px 10px;border-bottom:1px solid #f0f0f0;max-width:350px;white-space:normal;word-break:break-all;">【测试】集采调拨价设置添加审批流</td><td style="padding:7px 10px;border-bottom:1px solid #f0f0f0;"><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">🟡 P3</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">测试</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">2026-07-30 <span style="color:#f5222d;font-size:11px;">(延6天)</span></td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">40h</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">0h</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">40h</td></tr><tr class="row-warn"><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">304312</td><td style="font-size:12px;padding:7px 10px;border-bottom:1px solid #f0f0f0;max-width:350px;white-space:normal;word-break:break-all;">【测试设计】集采调拨价设置添加审批流</td><td style="padding:7px 10px;border-bottom:1px solid #f0f0f0;"><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">🟡 P3</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">测试设计</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">2026-07-30 <span style="color:#f5222d;font-size:11px;">(延6天)</span></td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">18h</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">0h</td><td style="font-size:12px;color:#888;padding:7px 10px;border-bottom:1px solid #f0f0f0;">18h</td></tr></tbody></table></div></div></div></div></div><div class="charts-row" style="margin-bottom:24px;"><div class="chart-card"><h4>🐛 Bug 提交人分布</h4><div class="chart-wrap" style="height:300px"><canvas id="chartBugOpener"></canvas></div></div><div class="chart-card"><h4>🐛 Bug 负责人分布 (未关闭)</h4><div class="chart-wrap" style="height:300px"><canvas id="chartBugAssignee"></canvas></div></div><div class="chart-card"><h4>✅ Bug 解决者分布 (已关闭)</h4><div class="chart-wrap" style="height:300px"><canvas id="chartBugResolver"></canvas></div></div></div><div class="section" style="margin-bottom:24px;"><h2>📈 Bug 趋势变化</h2><div class="charts-row" style="margin-bottom:0;"><div class="chart-card" style="flex:2;min-width:500px;"><h4>📊 每日新增 Bug vs 每日解决 Bug（柱状图）</h4><div class="chart-wrap" style="height:300px"><canvas id="chartBugTrend"></canvas></div></div><div class="chart-card"><h4>📉 累计未关闭 Bug 变化趋势（折线图）</h4><div class="chart-wrap" style="height:300px"><canvas id="chartCumulativeBugs"></canvas></div></div></div></div><div class="section" id="bug-tab-section"><h2>🐛 Bug 分析（2 个）</h2><div class="tabs"><button class="tab-btn active" onclick="switchBugTab('bug_tab_0')" style="background:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,0.08);" id="bug_btn_0">🔴 未关闭 Bug <span style="font-size:11px;color:#888;font-weight:400;">(0)</span></button><button class="tab-btn" onclick="switchBugTab('bug_tab_1')" style="background:transparent;color:#666;box-shadow:none;" id="bug_btn_1">📋 全部 Bug <span style="font-size:11px;color:#888;font-weight:400;">(2)</span></button></div><div id="bug_tab_0" class="tab-panel"><p style="text-align:center;color:#9ca3af;padding:20px;font-size:14px;">✅ 无未关闭 Bug</p></div><div id="bug_tab_1" class="tab-panel" style="display:none;"><table><thead><tr><th>ID</th><th>标题</th><th>状态</th><th>严重程度</th><th>负责人</th><th>创建人</th></tr></thead><tbody><tr><td>332948</td><td>【QA-PC-管理侧-供应链管理】退货售后单新增字段理赔数量未显示出来</td><td>已关闭</td><td>🟡 一般</td><td>closed</td><td>李学鹍</td></tr><tr><td>331918</td><td>【QA-PC-管理侧-价格管理-调拨价设置-审批列表】调拨价设置审核页面报500</td><td>已关闭</td><td>🟠 严重</td><td>closed</td><td>李学鹍</td></tr></tbody></table></div></div><div class="footer">由禅道 API 自动生成 &nbsp;|&nbsp; 2026-08-05 &nbsp;|&nbsp; 迭代 #4647 &nbsp;|&nbsp; 集采平台_V1.30.0（0803/集采dev4.0）【2026】</div></div><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script>
+Chart.register(ChartDataLabels);
+Chart.defaults.font.family = '-apple-system, "PingFang SC", "Microsoft YaHei", sans-serif';
+Chart.defaults.plugins.datalabels.font = {size: 11, weight: 'bold'};
+Chart.defaults.plugins.datalabels.color = '#333';
+const labelOpts = {anchor:'end',align:'end',offset:2,clamp:true,font:{size:11,weight:'bold'}};
+// 横向柱状图：标签贴柱子右端，但 max 上限留余量避免贴边裁切
+const labelOptsH = {anchor:'end',align:'right',offset:4,clamp:true,color:'#333',font:{size:11,weight:'bold'},padding:6};
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+var bugOpenerLabels = ["李学鹍"];
+var bugOpenerData = [2];
+var bugAssigneeLabels = [];
+var bugAssigneeData = [];
+if(bugOpenerLabels.length>0){new Chart(document.getElementById('chartBugOpener'),{type:'bar',data:{labels:bugOpenerLabels,datasets:[{label:'Bug数',data:bugOpenerData,backgroundColor:'#f5576c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',barPercentage:0.75,layout:{padding:{right:28}},plugins:{legend:{display:false},datalabels:labelOptsH},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1},beginAtZero:true,suggestedMax:Math.max(1,Math.max(...bugOpenerData))*1.12},y:{grid:{display:false},ticks:{font:{size:12}}}}}});}
+if(bugAssigneeLabels.length>0){new Chart(document.getElementById('chartBugAssignee'),{type:'bar',data:{labels:bugAssigneeLabels,datasets:[{label:'Bug数',data:bugAssigneeData,backgroundColor:'#ea580c',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',barPercentage:0.75,layout:{padding:{right:28}},plugins:{legend:{display:false},datalabels:labelOptsH},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1},beginAtZero:true,suggestedMax:Math.max(1,Math.max(...bugAssigneeData))*1.12},y:{grid:{display:false},ticks:{font:{size:12}}}}}});}
+var bugResolverLabels = ["王子尘", "许峻嘉"];
+var bugResolverData = [1, 1];
+if(bugResolverLabels.length>0){new Chart(document.getElementById('chartBugResolver'),{type:'bar',data:{labels:bugResolverLabels,datasets:[{label:'已关闭Bug',data:bugResolverData,backgroundColor:'#10b981',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',barPercentage:0.75,layout:{padding:{right:28}},plugins:{legend:{display:false},datalabels:labelOptsH},scales:{x:{grid:{color:'#f0f0f0'},ticks:{stepSize:1},beginAtZero:true,suggestedMax:Math.max(1,Math.max(...bugResolverData))*1.12},y:{grid:{display:false},ticks:{font:{size:12}}}}}});}
+// ── Bug Trend Charts ──
+if (true){
+var bugTrendLabels = ["07-27", "07-28", "07-29", "07-30", "07-31", "08-01", "08-02", "08-03", "08-04", "08-05"];
+var bugNewData = [1, 0, 0, 0, 1, 0, 0, 0, 0, 0];
+var bugResolvedData = [1, 0, 0, 0, 1, 0, 0, 0, 0, 0];
+var bugCumulativeData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+if(bugTrendLabels.length>0){new Chart(document.getElementById('chartBugTrend'),{type:'bar',data:{labels:bugTrendLabels,datasets:[{label:'每日新增Bug',data:bugNewData,backgroundColor:'#f5576c',borderRadius:3,borderSkipped:false,datalabels:{display:ctx=>ctx.dataset.data[ctx.dataIndex]>0}},{label:'每日解决Bug',data:bugResolvedData,backgroundColor:'#10b981',borderRadius:3,borderSkipped:false,datalabels:{display:ctx=>ctx.dataset.data[ctx.dataIndex]>0}}]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:18}},plugins:{legend:{position:'top',labels:{usePointStyle:true,padding:15,font:{size:12}}},tooltip:{mode:'index',intersect:false},datalabels:labelOpts},scales:{x:{grid:{display:false},ticks:{font:{size:11},maxRotation:45,autoSkip:true,maxTicksLimit:15}},y:{grid:{color:'#f0f0f0'},ticks:{stepSize:1,font:{size:11}},beginAtZero:true,suggestedMax:Math.max(1,Math.max(...bugNewData,...bugResolvedData))*1.15}}}});}
+if(bugTrendLabels.length>0){new Chart(document.getElementById('chartCumulativeBugs'),{type:'line',data:{labels:bugTrendLabels,datasets:[{label:'累计未关闭Bug',data:bugCumulativeData,borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,0.1)',fill:true,tension:0.3,pointRadius:3,pointHoverRadius:5,borderWidth:2,datalabels:{display:'auto'}}]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:18}},plugins:{legend:{position:'top',labels:{usePointStyle:true,padding:15,font:{size:12}}},tooltip:{mode:'index',intersect:false},datalabels:{anchor:'end',align:'top',offset:6,color:'#6366f1',font:{size:11,weight:'bold'},clamp:true}},scales:{x:{grid:{display:false},ticks:{font:{size:11},maxRotation:45,autoSkip:true,maxTicksLimit:15}},y:{grid:{color:'#f0f0f0'},ticks:{font:{size:11}},beginAtZero:true,suggestedMax:Math.max(1,Math.max(...bugCumulativeData))*1.15}}}});}
+}
+</script>
+</body>
+</html>
