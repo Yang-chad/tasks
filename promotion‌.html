@@ -1012,15 +1012,12 @@ function showToast(msg) {
 })();
 
 function exportForPublish() {
-  const data = {
-    checkState: getCheckState(),
-    meta: getMeta(),
-    sections: getSections(),
-    timestamp: new Date().toISOString()
-  };
-  // 过滤掉空值减小编码体积
+  const state = getCheckState();
+  const meta = getMeta();
+  
+  // 过滤空值
   const cleanState = {};
-  Object.entries(data.checkState).forEach(([k, v]) => {
+  Object.entries(state).forEach(([k, v]) => {
     const clean = {};
     if (v.status) clean.status = v.status;
     if (v.owner) clean.owner = v.owner;
@@ -1028,9 +1025,27 @@ function exportForPublish() {
     if (v.remark) clean.remark = v.remark;
     if (Object.keys(clean).length) cleanState[k] = clean;
   });
-  const payload = { checkState: cleanState, meta: data.meta };
-  document.getElementById('publishJson').value = JSON.stringify(payload, null, 2);
-  document.getElementById('publishModal').classList.add('open');
+  const payload = { checkState: cleanState, meta: meta };
+  
+  // 尝试自动推送（内网可达172.28.52.94）
+  fetch('https://172.28.52.94:8900/api/promotion-sync', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {'Content-Type': 'application/json'}
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      showToast('✅ 已发布！全团队 CDN 同步中...');
+    } else {
+      throw new Error(data.error || '未知错误');
+    }
+  })
+  .catch(() => {
+    // 自动推送失败，显示手动复制弹窗
+    document.getElementById('publishJson').value = JSON.stringify(payload, null, 2);
+    document.getElementById('publishModal').classList.add('open');
+  });
 }
 
 render();
