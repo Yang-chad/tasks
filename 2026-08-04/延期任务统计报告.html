@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-08-04 | 全平台延期任务追踪 | 共 72 个延期任务 | 网批2.0: 69 · 集采平台: 3</p></div>
+<p>数据截止：2026-08-04 | 全平台延期任务追踪 | 共 55 个延期任务 | 网批2.0: 52 · 集采平台: 3</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">72</div><div class="label">延期任务总数</div></div>
-<div class="card card-wait"><div class="num">24</div><div class="label">待处理</div></div>
-<div class="card card-doing"><div class="num">48</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">72</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">13</div><div class="label">涉及人员</div></div>
+<div class="card card-total"><div class="num">55</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">8</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">47</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">55</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">12</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -71,48 +71,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
     <details open>
         <summary style="background:#667eea15; border-left:4px solid #667eea;">
-            <span class="assignee-name">卢鑫</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共17个</span>
-                <span class="stat-badge stat-wait">待处理16</span>
-                <span class="stat-badge stat-doing">进行中1</span>
-                <span class="stat-badge stat-overdue">最长1天</span>
-                <span class="stat-badge stat-h">预估89h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余89h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>312060</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】fms联调、自测、对接">【后端】fms联调、自测、对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>6</td><td>0</td><td>6</td></tr>
-<tr class="row-overdue"><td>312059</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】信用（赊销）钱包绑定记录查询页(筛选+列表)">【后端】信用（赊销）钱包绑定记录查询页(筛选+列表)</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312058</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】工具栏菜单入口(权限控制)">【后端】工具栏菜单入口(权限控制)</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312057</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】主体变更通过-新钱包进件">【后端】主体变更通过-新钱包进件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312056</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】主体变更通过-旧记录失效">【后端】主体变更通过-旧记录失效</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312055</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】FMS接口不可用容错">【后端】FMS接口不可用容错</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312054</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】主体变更审批节点复查">【后端】主体变更审批节点复查</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312053</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】主体变更提交校验">【后端】主体变更提交校验</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312052</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】信用（赊销）账户绑定记录写入服务">【后端】信用（赊销）账户绑定记录写入服务</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312051</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】二级信用（赊销）账户进件逻辑">【后端】二级信用（赊销）账户进件逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312050</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】一级信用（赊销）钱包进件逻辑">【后端】一级信用（赊销）钱包进件逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312049</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】wallet_bindings、信用（赊销）钱包建表">【后端】wallet_bindings、信用（赊销）钱包建表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>5</td><td>0</td><td>5</td></tr>
-<tr class="row-overdue"><td>312032</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】关键资料变更：校验有无进行审批中的信用账户额度开通和对接">【后端】关键资料变更：校验有无进行审批中的信用账户额度开通和对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>312031</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】校验有无客户关键信息资料变更情况和对接">【后端】校验有无客户关键信息资料变更情况和对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>312030</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商信用账户二级账户开通和对接">【后端】经销商信用账户二级账户开通和对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>312029</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】经销商信用账户一级钱包开通和对接">【后端】经销商信用账户一级钱包开通和对接</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>309040</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销司新增FMS工程保证金账户（对接、开发、联调）">【后端】销司新增FMS工程保证金账户（对接、开发、联调）</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-08-03</td><td style="color:#ef4444;font-weight:700;">1天</td><td>12</td><td>0</td><td>12</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
             <span class="assignee-name">李兆杰</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共15个</span>
@@ -152,7 +110,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
             <span class="assignee-name">王也</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共13个</span>
@@ -190,7 +148,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">钟日健</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共5个</span>
@@ -220,7 +178,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
             <span class="assignee-name">王子木</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共4个</span>
@@ -249,7 +207,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
             <span class="assignee-name">未指派</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共4个</span>
@@ -278,7 +236,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
             <span class="assignee-name">周志杰</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共4个</span>
@@ -307,7 +265,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
             <span class="assignee-name">梁庆芬</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共3个</span>
@@ -335,7 +293,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#ef535015; border-left:4px solid #ef5350;">
+        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
             <span class="assignee-name">孙元通</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共2个</span>
@@ -362,7 +320,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#66bb6a15; border-left:4px solid #66bb6a;">
+        <summary style="background:#ef535015; border-left:4px solid #ef5350;">
             <span class="assignee-name">李学鹍</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共2个</span>
@@ -389,7 +347,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#ff704315; border-left:4px solid #ff7043;">
+        <summary style="background:#66bb6a15; border-left:4px solid #66bb6a;">
             <span class="assignee-name">蒋志军</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -415,7 +373,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#5c6bc015; border-left:4px solid #5c6bc0;">
+        <summary style="background:#ff704315; border-left:4px solid #ff7043;">
             <span class="assignee-name">江小芳</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -441,7 +399,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#29b6f615; border-left:4px solid #29b6f6;">
+        <summary style="background:#5c6bc015; border-left:4px solid #5c6bc0;">
             <span class="assignee-name">钟爽</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -468,9 +426,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u5362\u946b", "\u674e\u5146\u6770", "\u738b\u4e5f", "\u949f\u65e5\u5065", "\u738b\u5b50\u6728", "\u672a\u6307\u6d3e", "\u5468\u5fd7\u6770", "\u6881\u5e86\u82ac", "\u5b59\u5143\u901a", "\u674e\u5b66\u9e4d", "\u848b\u5fd7\u519b", "\u6c5f\u5c0f\u82b3", "\u949f\u723d"],datasets:[{label:'延期任务数',data:[17, 15, 13, 5, 4, 4, 4, 3, 2, 2, 1, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80", "#f5576c80", "#ffa72680", "#26c6da80", "#ab47bc80", "#ef535080", "#66bb6a80", "#ff704380", "#5c6bc080", "#29b6f680"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[24, 48],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[1, 4, 67],backgroundColor:["#ef4444", "#f5576c", "#ffa726"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u674e\u5146\u6770", "\u738b\u4e5f", "\u949f\u65e5\u5065", "\u738b\u5b50\u6728", "\u672a\u6307\u6d3e", "\u5468\u5fd7\u6770", "\u6881\u5e86\u82ac", "\u5b59\u5143\u901a", "\u674e\u5b66\u9e4d", "\u848b\u5fd7\u519b", "\u6c5f\u5c0f\u82b3", "\u949f\u723d"],datasets:[{label:'延期任务数',data:[15, 13, 5, 4, 4, 4, 3, 2, 2, 1, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80", "#f5576c80", "#ffa72680", "#26c6da80", "#ab47bc80", "#ef535080", "#66bb6a80", "#ff704380", "#5c6bc080"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[8, 47],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[1, 4, 50],backgroundColor:["#ef4444", "#f5576c", "#ffa726"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
