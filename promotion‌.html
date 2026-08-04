@@ -612,14 +612,25 @@ const defaultSections = [
 ];
 
 // ======== 数据存取 ========
+const DATA_VERSION = '2026-08-04-v1'; // 修改 defaultSections 后递增此版本号，浏览器自动清旧缓存
 function getSections() {
   try {
-    const d = JSON.parse(localStorage.getItem('launch_checklist_sections'));
-    if (Array.isArray(d) && d.length > 0) return d;
+    const savedVer = localStorage.getItem('launch_checklist_version');
+    if (savedVer === DATA_VERSION) {
+      const d = JSON.parse(localStorage.getItem('launch_checklist_sections'));
+      if (Array.isArray(d) && d.length > 0) return d;
+    } else {
+      // 版本不匹配，清除旧数据使用新模板
+      localStorage.removeItem('launch_checklist_sections');
+      localStorage.removeItem('launch_checklist_state');
+    }
   } catch(e) {}
   return JSON.parse(JSON.stringify(defaultSections));
 }
-function saveSections(s) { localStorage.setItem('launch_checklist_sections', JSON.stringify(s)); }
+function saveSections(s) {
+  localStorage.setItem('launch_checklist_version', DATA_VERSION);
+  localStorage.setItem('launch_checklist_sections', JSON.stringify(s));
+}
 function getCheckState() {
   try { return JSON.parse(localStorage.getItem('launch_checklist_state') || '{}'); }
   catch(e) { return {}; }
@@ -964,6 +975,7 @@ document.getElementById('version').addEventListener('input', saveMeta);
 function resetToDefault() {
   if (!confirm('确定要恢复为默认模板吗？你自定义的分类和检查项将被覆盖，但状态/责任人/备注会保留。')) return;
   localStorage.removeItem('launch_checklist_sections');
+  localStorage.setItem('launch_checklist_version', DATA_VERSION);
   render();
   showToast('已恢复默认模板');
 }
