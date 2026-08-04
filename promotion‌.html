@@ -539,80 +539,27 @@
 <script>
 // ======== 默认模板 ========
 const defaultSections = [
-  { id: 's0', title: '1. 环境与基础设施检查', priority: 'critical', items: [
-    { item: '服务器资源确认', desc: 'CPU、内存、磁盘空间满足上线要求，预留30%以上余量', priority: 'critical' },
-    { item: '网络连通性检查', desc: '各环境之间网络互通，防火墙/安全组策略已配置', priority: 'critical' },
-    { item: '中间件就绪检查', desc: 'Nginx/Tomcat/Redis/RabbitMQ 等中间件已安装配置完成', priority: 'critical' },
-    { item: '域名与SSL证书', desc: '域名解析正确，SSL证书有效且到期时间 > 30天', priority: 'important' },
-    { item: '负载均衡配置', desc: '负载均衡策略已配置，健康检查路径正常', priority: 'important' },
-    { item: '操作系统参数调优', desc: '文件句柄数、内核参数、时区等已按规范调整', priority: 'normal' },
+  { id: 's0', title: '1. 上线前系统能力支撑开发', priority: 'critical', items: [
+    { item: '【临时方案】-支持河北上架小风管&小多联品类销售（满足推广）', desc: '根据业务提供sku。把采购余量设置999999，保证订单不转单', priority: 'critical' },
+    { item: '【中期方案】-系统按销司+类目配置，自定义不转单品类', desc: '满足其他销司只卖现货诉求', priority: 'important' },
+    { item: '【长期方案】-网批与一体化打通，销司订单下单转化成网批的可售库存', desc: '销司圈货>>货权转移>>商家下单履约全链路打通', priority: 'normal' },
+    { item: 'OMS:河北恒信的营销一体化订单处理', desc: '此类订单支持货权转移能力', priority: 'critical' },
   ]},
-  { id: 's1', title: '2. 数据库检查', priority: 'critical', items: [
-    { item: '数据库备份完成', desc: '上线前已执行全量备份，备份文件已验证可恢复', priority: 'critical' },
-    { item: 'DDL/DML脚本审核', desc: '所有变更SQL已评审、已在测试环境验证', priority: 'critical' },
-    { item: '索引检查', desc: '关键查询语句索引已创建，执行计划正常', priority: 'important' },
-    { item: '连接池配置', desc: '最大连接数、超时时间等参数合理，无连接泄漏风险', priority: 'important' },
-    { item: '数据迁移验证', desc: '历史数据迁移/初始化完成，数据量及抽样核对正确', priority: 'critical' },
-    { item: '主从/集群状态', desc: '主从同步延迟正常，集群节点全部在线', priority: 'important' },
+  { id: 's1', title: '2. 真单测试链路', priority: 'critical', items: [
+    { item: '小风管&小多联商品维护检查', desc: '相关品类通过中台推送网批系统', priority: 'critical' },
+    { item: '河北销售公司授权品类', desc: '小风管&小多联授权河北销司', priority: 'critical' },
+    { item: '上架销售方案', desc: '上架小风管小多联商品销售', priority: 'critical' },
+    { item: '商家下单', desc: '与家用空调混合下单等多种场景', priority: 'critical' },
+    { item: '订单履约', desc: '保证系统自动寻源成功', priority: 'critical' },
   ]},
-  { id: 's2', title: '3. 代码与构建检查', priority: 'critical', items: [
-    { item: '代码合并完成', desc: '所有功能分支已合并到发布分支，无未解决的冲突', priority: 'critical' },
-    { item: '构建成功', desc: 'CI/CD流水线构建通过，无编译错误和警告', priority: 'critical' },
-    { item: '单元测试通过', desc: '单元测试覆盖率达标（建议 > 60%），所有case通过', priority: 'important' },
-    { item: '配置文件检查', desc: '生产环境配置文件已核对，无开发/测试环境配置残留', priority: 'critical' },
-    { item: '依赖版本锁定', desc: '第三方依赖版本已锁定，无已知CVE安全漏洞', priority: 'important' },
-    { item: '日志级别配置', desc: '生产环境日志级别设为INFO/WARN，避免DEBUG日志过多', priority: 'normal' },
-  ]},
-  { id: 's3', title: '4. 安全合规检查', priority: 'critical', items: [
-    { item: '敏感信息脱敏', desc: '日志、接口返回中不含密码、手机号、身份证等敏感信息', priority: 'critical' },
-    { item: '认证鉴权验证', desc: '登录、权限校验、Session/Token机制正常', priority: 'critical' },
-    { item: 'SQL注入/XSS防护', desc: '参数化查询、输出编码等安全措施已落实', priority: 'critical' },
-    { item: 'HTTPS强制启用', desc: '全站启用HTTPS，HTTP请求自动跳转', priority: 'important' },
-    { item: '文件上传安全检查', desc: '文件类型、大小限制，上传目录不可执行', priority: 'important' },
-    { item: 'API接口鉴权', desc: '对外API已配置鉴权和频率限制', priority: 'important' },
-    { item: '密钥/证书管理', desc: '密钥不硬编码，使用密钥管理服务或环境变量', priority: 'critical' },
-  ]},
-  { id: 's4', title: '5. 性能测试检查', priority: 'important', items: [
-    { item: '接口响应时间', desc: '核心接口P99响应时间在目标范围内（如 < 500ms）', priority: 'important' },
-    { item: '并发压测通过', desc: '目标QPS下系统稳定，无超时和错误', priority: 'important' },
-    { item: '缓存策略验证', desc: '热点数据缓存命中率达标，缓存穿透/击穿已防护', priority: 'important' },
-    { item: '慢查询优化', desc: '数据库慢查询已优化，执行时间在阈值内', priority: 'important' },
-    { item: '资源使用率', desc: '压测期间 CPU < 70%，内存无泄漏，GC正常', priority: 'normal' },
-  ]},
-  { id: 's5', title: '6. 备份与回滚方案', priority: 'critical', items: [
-    { item: '数据库回滚脚本', desc: '已准备DDL/DML逆向回滚脚本并验证', priority: 'critical' },
-    { item: '应用回滚方案', desc: '上一版本安装包/War包/Docker镜像已保留', priority: 'critical' },
-    { item: '配置文件备份', desc: '上线前配置已备份，可快速恢复', priority: 'important' },
-    { item: '回滚流程确认', desc: '回滚步骤已文档化，相关人员知晓操作流程', priority: 'critical' },
-    { item: '回滚时间评估', desc: '预估回滚耗时在可接受范围内（建议 < 30分钟）', priority: 'important' },
-  ]},
-  { id: 's6', title: '7. 监控与告警检查', priority: 'important', items: [
-    { item: '应用健康检查', desc: '健康检查接口正常，K8s/负载均衡探活配置正确', priority: 'important' },
-    { item: '日志采集就绪', desc: '日志已接入ELK/CLS等平台，可正常检索', priority: 'important' },
-    { item: 'APM监控配置', desc: 'SkyWalking/Pinpoint等链路追踪已部署', priority: 'normal' },
-    { item: '告警规则配置', desc: 'CPU、内存、磁盘、接口错误率等告警阈值已设置', priority: 'critical' },
-    { item: '告警通知渠道', desc: '企业微信/短信/邮件告警通知已验证可送达', priority: 'important' },
-    { item: '业务指标监控', desc: '核心业务指标（订单量/成功率等）监控大盘已配置', priority: 'normal' },
-  ]},
-  { id: 's7', title: '8. 功能验证检查', priority: 'critical', items: [
-    { item: '核心业务流程回归', desc: '主流程端到端测试通过，无阻塞性缺陷', priority: 'critical' },
-    { item: '兼容性测试', desc: '主流浏览器、移动端适配正常', priority: 'normal' },
-    { item: '第三方集成验证', desc: '短信/支付/消息推送等外部服务接口正常', priority: 'critical' },
-    { item: '异常场景测试', desc: '超时、断网、服务不可用等异常场景处理正确', priority: 'important' },
-    { item: '数据一致性验证', desc: '关键数据在上下游系统间一致', priority: 'important' },
-  ]},
-  { id: 's8', title: '9. 上线流程与通知', priority: 'important', items: [
-    { item: '上线审批完成', desc: '上线申请已通过相关负责人审批', priority: 'critical' },
-    { item: '上线窗口确认', desc: '上线时间窗口已确认，避开业务高峰期', priority: 'important' },
-    { item: '干系人通知', desc: '业务方、运营、客服等相关方已收到上线通知', priority: 'important' },
-    { item: '上线步骤文档', desc: '详细上线步骤（含时间安排）已编写，各角色分工明确', priority: 'important' },
-    { item: '值班人员安排', desc: '上线期间开发、运维值班人员已安排到位', priority: 'important' },
-    { item: '用户通知/公告', desc: '如需停服，用户公告已提前发出', priority: 'normal' },
+  { id: 's2', title: '3. 费用规则确认', priority: 'critical', items: [
+    { item: '总部代管仓储费用洽谈', desc: '-------', priority: 'critical' },
+    { item: '运费规则', desc: '--------', priority: 'critical' },
   ]},
 ];
 
 // ======== 数据存取 ========
-const DATA_VERSION = '2026-08-04-v1'; // 修改 defaultSections 后递增此版本号，浏览器自动清旧缓存
+const DATA_VERSION = '2026-08-04-v2'; // 修改 defaultSections 后递增此版本号，浏览器自动清旧缓存
 function getSections() {
   try {
     const savedVer = localStorage.getItem('launch_checklist_version');
