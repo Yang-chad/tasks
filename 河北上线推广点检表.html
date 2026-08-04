@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<!-- saved from url=(0138)file:///C:/Users/gree/WorkBuddy/2026-08-04-13-34-36/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%BA%BF%E7%82%B9%E6%A3%80%E8%A1%A8.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>河北上线推广点检表</title>
+<style>
+  :root {
+    --primary: #1a73e8;
+    --danger: #ea4335;
+    --warning: #f9ab00;
+    --success: #34a853;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #202124;
+    --text-secondary: #5f6368;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  .header {
+    background: linear-gradient(135deg, #1a73e8, #1557b0);
+    color: #fff; padding: 40px 36px; border-radius: 16px;
+    margin-bottom: 28px; box-shadow: 0 4px 24px rgba(26,115,232,0.2);
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  .header .subtitle { opacity: 0.85; font-size: 14px; }
+  .header .meta { margin-top: 16px; display: flex; gap: 24px; font-size: 13px; opacity: 0.8; flex-wrap: wrap; }
+  .header .meta span { display: flex; align-items: center; gap: 4px; }
+
+  .stats-bar { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat-card {
+    flex: 1; min-width: 160px; background: var(--card-bg); border-radius: 12px;
+    padding: 16px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .stat-card .icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .stat-card .num { font-size: 26px; font-weight: 700; }
+  .stat-card .label { font-size: 12px; color: var(--text-secondary); }
+  .icon-total { background: #e8f0fe; color: var(--primary); }
+  .icon-done { background: #e6f4ea; color: var(--success); }
+  .icon-pending { background: #fef7e0; color: var(--warning); }
+  .icon-fail { background: #fce8e6; color: var(--danger); }
+
+  .section {
+    background: var(--card-bg); border-radius: 12px; margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;
+  }
+  .section-header {
+    padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; gap: 12px;
+  }
+  .section-header:hover { background: #f8f9fa; }
+  .section-header h2 { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 10px; flex: 1; }
+  .section-badge { font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .badge-critical { background: #fce8e6; color: var(--danger); }
+  .badge-important { background: #fef7e0; color: #e37400; }
+  .badge-normal { background: #e8f0fe; color: var(--primary); }
+  .section-count { font-size: 13px; color: var(--text-secondary); }
+  .section-actions { display: flex; gap: 6px; align-items: center; }
+  .icon-btn {
+    width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--border);
+    background: #fff; cursor: pointer; font-size: 14px; display: flex; align-items: center;
+    justify-content: center; transition: all 0.15s; color: var(--text-secondary);
+  }
+  .icon-btn:hover { border-color: #999; background: #f5f5f5; }
+  .icon-btn.danger:hover { border-color: var(--danger); color: var(--danger); background: #fce8e6; }
+  .icon-btn.primary:hover { border-color: var(--primary); color: var(--primary); background: #e8f0fe; }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: #f8f9fa; font-size: 12px; font-weight: 600;
+    color: var(--text-secondary); text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 10px 12px; text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  thead th:last-child { width: 72px; text-align: center; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; font-size: 13px; vertical-align: middle; }
+  tbody tr:hover { background: #fafafa; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .check-seq { font-weight: 600; color: var(--primary); min-width: 44px; font-size: 13px; }
+  .check-item { font-weight: 500; font-size: 13px; }
+  .check-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+  .priority { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+  .pri-critical { background: #fce8e6; color: var(--danger); }
+  .pri-important { background: #fef7e0; color: #e37400; }
+  .pri-normal { background: #e8f0fe; color: var(--primary); }
+
+  .status-cell { text-align: center; }
+  .status-select { display: inline-flex; gap: 3px; }
+  .status-btn {
+    width: 28px; height: 28px; border-radius: 5px; border: 2px solid var(--border);
+    background: #fff; cursor: pointer; font-size: 13px; display: flex;
+    align-items: center; justify-content: center; transition: all 0.12s;
+  }
+  .status-btn:hover { border-color: #999; }
+  .status-btn.pass.active { background: var(--success); border-color: var(--success); color: #fff; }
+  .status-btn.fail.active { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+  .row-input {
+    border: 1px solid var(--border); border-radius: 5px; padding: 4px 8px;
+    font-size: 12px; width: 100%; font-family: inherit;
+  }
+  .row-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(26,115,232,0.12); }
+  .row-select {
+    border: 1px solid var(--border); border-radius: 5px; padding: 4px 6px;
+    font-size: 11px; font-family: inherit; background: #fff;
+  }
+  .row-select:focus { outline: none; border-color: var(--primary); }
+
+  .row-actions { display: flex; gap: 4px; justify-content: center; }
+  .row-action-btn {
+    width: 26px; height: 26px; border-radius: 5px; border: 1px solid transparent;
+    background: transparent; cursor: pointer; font-size: 13px; display: flex;
+    align-items: center; justify-content: center; transition: all 0.12s; color: var(--text-secondary);
+  }
+  .row-action-btn:hover { border-color: var(--border); background: #f0f0f0; }
+  .row-action-btn.del:hover { border-color: var(--danger); color: var(--danger); background: #fce8e6; }
+  .row-action-btn.save:hover { border-color: var(--success); color: var(--success); background: #e6f4ea; }
+  .row-action-btn.cancel:hover { border-color: #999; color: #999; }
+
+  .add-item-row td {
+    padding: 8px 12px; background: #fafafa; border-top: 1px dashed var(--border);
+  }
+  .add-btn {
+    padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    cursor: pointer; border: 1.5px dashed var(--border); background: #fff;
+    color: var(--primary); transition: all 0.15s; font-family: inherit;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .add-btn:hover { border-color: var(--primary); background: #e8f0fe; }
+  .add-section-wrap { text-align: center; margin-bottom: 20px; }
+  .add-section-btn {
+    padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500;
+    cursor: pointer; border: 2px dashed var(--border); background: #fff;
+    color: var(--primary); transition: all 0.15s; font-family: inherit;
+  }
+  .add-section-btn:hover { border-color: var(--primary); background: #e8f0fe; }
+
+  .actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+  .btn { padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all 0.15s; font-family: inherit; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: #1557b0; }
+  .btn-outline { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+  .btn-outline:hover { background: #e8f0fe; }
+  .btn-danger { background: #fff; color: var(--danger); border: 1.5px solid var(--danger); }
+  .btn-danger:hover { background: #fce8e6; }
+
+  .modal-overlay {
+    position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.4);
+    z-index: 200; display: flex; align-items: center; justify-content: center;
+  }
+  .modal {
+    background: #fff; border-radius: 12px; padding: 28px; min-width: 400px;
+    max-width: 520px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+  .modal h3 { font-size: 18px; margin-bottom: 16px; }
+  .modal label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; margin-top: 12px; }
+  .modal input, .modal select {
+    width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px;
+    font-size: 14px; font-family: inherit;
+  }
+  .modal input:focus, .modal select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(26,115,232,0.12); }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+
+  @media print {
+    body { background: #fff; }
+    .container { max-width: 100%; padding: 0; }
+    .header { border-radius: 0; box-shadow: none; }
+    .section { box-shadow: none; break-inside: avoid; }
+    .actions, .add-item-row, .add-section-wrap, .row-actions, .section-actions, .modal-overlay { display: none !important; }
+    .status-btn { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .status-btn.pass.active { background: #34a853 !important; border-color: #34a853 !important; color: #fff !important; }
+    .status-btn.fail.active { background: #ea4335 !important; border-color: #ea4335 !important; color: #fff !important; }
+  }
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    background: #323232; color: #fff; padding: 10px 24px; border-radius: 8px;
+    font-size: 13px; opacity: 0; transition: opacity 0.3s; z-index: 300; pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>河北上线推广点检表</h1>
+    <div class="subtitle">河北网批项目上线推广逐项检查，确保系统稳定、安全、可恢复</div>
+    <div class="meta">
+      <span>项目名称：<input type="text" id="projectName" placeholder="请输入项目名称" style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.4);color:#fff;padding:2px 4px;width:180px;font-size:13px;"></span>
+      <span>上线日期：<input type="date" id="launchDate" style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.4);color:#fff;padding:2px 4px;font-size:13px;"></span>
+      <span>版本号：<input type="text" id="version" placeholder="v1.0.0" style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.4);color:#fff;padding:2px 4px;width:90px;font-size:13px;"></span>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="icon icon-total">☰</div>
+      <div><div class="num" id="countTotal">11</div><div class="label">检查项总数</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon icon-done">✓</div>
+      <div><div class="num" id="countPass">1</div><div class="label">已通过</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon icon-fail">✗</div>
+      <div><div class="num" id="countFail">0</div><div class="label">未通过</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon icon-pending">●</div>
+      <div><div class="num" id="countPending">10</div><div class="label">待检查</div></div>
+    </div>
+  </div>
+
+  <div id="checklist"><div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>
+          <span class="section-badge badge-critical">关键</span>
+          1. 上线前系统能力支撑开发
+        </h2>
+        <div class="section-actions" onclick="event.stopPropagation()">
+          <span class="section-count">4 项</span>
+          <button class="icon-btn" title="重命名分类" onclick="openEditSection(0)">✎</button>
+          <button class="icon-btn danger" title="删除分类" onclick="deleteSection(0)">✕</button>
+        </div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr>
+            <th style="width:44px">序号</th>
+            <th>检查项</th>
+            <th style="width:72px">优先级</th>
+            <th style="width:120px">状态</th>
+            <th style="width:90px">责任人</th>
+            <th style="width:110px">完成时间</th>
+            <th>备注</th>
+            <th style="width:72px;text-align:center">操作</th>
+          </tr></thead>
+          <tbody><tr>
+          <td class="check-seq">1</td>
+          <td>
+            <div class="check-item">【临时方案】-支持河北上架小风管&amp;小多联品类销售（满足推广）</div>
+            <div class="check-desc">根据业务提供sku。把采购余量设置999999，保证订单不转单</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass active" data-idx="s0-0" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s0-0" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s0-0" placeholder="责任人" value="杨除德" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s0-0" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s0-0" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s0-0&#39;,0,0)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(0,0)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">2</td>
+          <td>
+            <div class="check-item">【中期方案】-系统按销司+类目配置，自定义不转单品类</div>
+            <div class="check-desc">满足其他销司只卖现货诉求</div>
+          </td>
+          <td><span class="priority pri-important">重要</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s0-1" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s0-1" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s0-1" placeholder="责任人" value="梁庆芬" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s0-1" value="2026-08-07" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s0-1" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s0-1&#39;,0,1)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(0,1)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">3</td>
+          <td>
+            <div class="check-item">【长期方案】-网批与一体化打通，销司订单下单转化成网批的可售库存</div>
+            <div class="check-desc">销司圈货&gt;&gt;货权转移&gt;&gt;商家下单履约全链路打通</div>
+          </td>
+          <td><span class="priority pri-normal">普通</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s0-2" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s0-2" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s0-2" placeholder="责任人" value="孙艳艳" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s0-2" value="2026-08-15" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s0-2" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s0-2&#39;,0,2)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(0,2)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">4</td>
+          <td>
+            <div class="check-item">OMS:河北恒信的营销一体化订单处理</div>
+            <div class="check-desc">此类订单支持货权转移能力</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s0-3" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s0-3" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s0-3" placeholder="责任人" value="蒙耀" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s0-3" value="2026-08-04" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s0-3" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s0-3&#39;,0,3)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(0,3)">✕</button>
+          </div></td>
+        </tr><tr class="add-item-row">
+      <td colspan="8"><button class="add-btn" onclick="addItem(0)">+ 添加检查项</button></td>
+    </tr></tbody></table></div></div><div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>
+          <span class="section-badge badge-critical">关键</span>
+          2. 真单测试链路
+        </h2>
+        <div class="section-actions" onclick="event.stopPropagation()">
+          <span class="section-count">5 项</span>
+          <button class="icon-btn" title="重命名分类" onclick="openEditSection(1)">✎</button>
+          <button class="icon-btn danger" title="删除分类" onclick="deleteSection(1)">✕</button>
+        </div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr>
+            <th style="width:44px">序号</th>
+            <th>检查项</th>
+            <th style="width:72px">优先级</th>
+            <th style="width:120px">状态</th>
+            <th style="width:90px">责任人</th>
+            <th style="width:110px">完成时间</th>
+            <th>备注</th>
+            <th style="width:72px;text-align:center">操作</th>
+          </tr></thead>
+          <tbody><tr>
+          <td class="check-seq">1</td>
+          <td>
+            <div class="check-item">小风管&amp;小多联商品维护检查</div>
+            <div class="check-desc">相关品类通过中台推送网批系统</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s1-0" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s1-0" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s1-0" placeholder="责任人" value="" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s1-0" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s1-0" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s1-0&#39;,1,0)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(1,0)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">2</td>
+          <td>
+            <div class="check-item">河北销售公司授权品类</div>
+            <div class="check-desc">小风管&amp;小多联授权河北销司</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s1-1" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s1-1" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s1-1" placeholder="责任人" value="" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s1-1" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s1-1" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s1-1&#39;,1,1)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(1,1)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">3</td>
+          <td>
+            <div class="check-item">上架销售方案</div>
+            <div class="check-desc">上架小风管小多联商品销售</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s1-2" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s1-2" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s1-2" placeholder="责任人" value="" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s1-2" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s1-2" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s1-2&#39;,1,2)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(1,2)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">4</td>
+          <td>
+            <div class="check-item">商家下单</div>
+            <div class="check-desc">与家用空调混合下单等多种场景</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s1-3" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s1-3" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s1-3" placeholder="责任人" value="" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s1-3" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s1-3" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s1-3&#39;,1,3)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(1,3)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">5</td>
+          <td>
+            <div class="check-item">订单履约</div>
+            <div class="check-desc">保证系统自动寻源成功</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s1-4" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s1-4" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s1-4" placeholder="责任人" value="" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s1-4" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s1-4" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s1-4&#39;,1,4)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(1,4)">✕</button>
+          </div></td>
+        </tr><tr class="add-item-row">
+      <td colspan="8"><button class="add-btn" onclick="addItem(1)">+ 添加检查项</button></td>
+    </tr></tbody></table></div></div><div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>
+          <span class="section-badge badge-critical">关键</span>
+          3. 推广上线
+        </h2>
+        <div class="section-actions" onclick="event.stopPropagation()">
+          <span class="section-count">2 项</span>
+          <button class="icon-btn" title="重命名分类" onclick="openEditSection(2)">✎</button>
+          <button class="icon-btn danger" title="删除分类" onclick="deleteSection(2)">✕</button>
+        </div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr>
+            <th style="width:44px">序号</th>
+            <th>检查项</th>
+            <th style="width:72px">优先级</th>
+            <th style="width:120px">状态</th>
+            <th style="width:90px">责任人</th>
+            <th style="width:110px">完成时间</th>
+            <th>备注</th>
+            <th style="width:72px;text-align:center">操作</th>
+          </tr></thead>
+          <tbody><tr>
+          <td class="check-seq">1</td>
+          <td>
+            <div class="check-item">总部代管仓储费用洽谈</div>
+            <div class="check-desc">-------</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s2-0" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s2-0" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s2-0" placeholder="责任人" value="" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s2-0" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s2-0" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s2-0&#39;,2,0)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(2,0)">✕</button>
+          </div></td>
+        </tr><tr>
+          <td class="check-seq">2</td>
+          <td>
+            <div class="check-item">运费规则</div>
+            <div class="check-desc">--------</div>
+          </td>
+          <td><span class="priority pri-critical">关键</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="s2-1" data-status="pass" onclick="setStatus(this)" title="通过">✓</button>
+              <button class="status-btn fail" data-idx="s2-1" data-status="fail" onclick="setStatus(this)" title="不通过">✗</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="s2-1" placeholder="责任人" value="" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="s2-1" value="" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="s2-1" placeholder="备注" value="" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit(&#39;s2-1&#39;,2,1)">✎</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(2,1)">✕</button>
+          </div></td>
+        </tr><tr class="add-item-row">
+      <td colspan="8"><button class="add-btn" onclick="addItem(2)">+ 添加检查项</button></td>
+    </tr></tbody></table></div></div></div>
+  <div class="add-section-wrap">
+    <button class="add-section-btn" onclick="openAddSection()">+ 添加新分类</button>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="resetToDefault()">恢复默认模板</button>
+    <button class="btn btn-outline" onclick="exportData()">导出 CSV</button>
+    <button class="btn btn-outline" onclick="window.print()">打印点检表</button>
+    <button class="btn btn-danger" onclick="markAllPending()">全部标记待检查</button>
+  </div>
+
+</div>
+<div class="toast" id="toast">已删除「新检查项」</div>
+<div id="modalContainer"></div>
+
+<script>
+// ======== 默认模板 ========
+const defaultSections = [
+  { id: 's0', title: '1. 环境与基础设施检查', priority: 'critical', items: [
+    { item: '服务器资源确认', desc: 'CPU、内存、磁盘空间满足上线要求，预留30%以上余量', priority: 'critical' },
+    { item: '网络连通性检查', desc: '各环境之间网络互通，防火墙/安全组策略已配置', priority: 'critical' },
+    { item: '中间件就绪检查', desc: 'Nginx/Tomcat/Redis/RabbitMQ 等中间件已安装配置完成', priority: 'critical' },
+    { item: '域名与SSL证书', desc: '域名解析正确，SSL证书有效且到期时间 > 30天', priority: 'important' },
+    { item: '负载均衡配置', desc: '负载均衡策略已配置，健康检查路径正常', priority: 'important' },
+    { item: '操作系统参数调优', desc: '文件句柄数、内核参数、时区等已按规范调整', priority: 'normal' },
+  ]},
+  { id: 's1', title: '2. 数据库检查', priority: 'critical', items: [
+    { item: '数据库备份完成', desc: '上线前已执行全量备份，备份文件已验证可恢复', priority: 'critical' },
+    { item: 'DDL/DML脚本审核', desc: '所有变更SQL已评审、已在测试环境验证', priority: 'critical' },
+    { item: '索引检查', desc: '关键查询语句索引已创建，执行计划正常', priority: 'important' },
+    { item: '连接池配置', desc: '最大连接数、超时时间等参数合理，无连接泄漏风险', priority: 'important' },
+    { item: '数据迁移验证', desc: '历史数据迁移/初始化完成，数据量及抽样核对正确', priority: 'critical' },
+    { item: '主从/集群状态', desc: '主从同步延迟正常，集群节点全部在线', priority: 'important' },
+  ]},
+  { id: 's2', title: '3. 代码与构建检查', priority: 'critical', items: [
+    { item: '代码合并完成', desc: '所有功能分支已合并到发布分支，无未解决的冲突', priority: 'critical' },
+    { item: '构建成功', desc: 'CI/CD流水线构建通过，无编译错误和警告', priority: 'critical' },
+    { item: '单元测试通过', desc: '单元测试覆盖率达标（建议 > 60%），所有case通过', priority: 'important' },
+    { item: '配置文件检查', desc: '生产环境配置文件已核对，无开发/测试环境配置残留', priority: 'critical' },
+    { item: '依赖版本锁定', desc: '第三方依赖版本已锁定，无已知CVE安全漏洞', priority: 'important' },
+    { item: '日志级别配置', desc: '生产环境日志级别设为INFO/WARN，避免DEBUG日志过多', priority: 'normal' },
+  ]},
+  { id: 's3', title: '4. 安全合规检查', priority: 'critical', items: [
+    { item: '敏感信息脱敏', desc: '日志、接口返回中不含密码、手机号、身份证等敏感信息', priority: 'critical' },
+    { item: '认证鉴权验证', desc: '登录、权限校验、Session/Token机制正常', priority: 'critical' },
+    { item: 'SQL注入/XSS防护', desc: '参数化查询、输出编码等安全措施已落实', priority: 'critical' },
+    { item: 'HTTPS强制启用', desc: '全站启用HTTPS，HTTP请求自动跳转', priority: 'important' },
+    { item: '文件上传安全检查', desc: '文件类型、大小限制，上传目录不可执行', priority: 'important' },
+    { item: 'API接口鉴权', desc: '对外API已配置鉴权和频率限制', priority: 'important' },
+    { item: '密钥/证书管理', desc: '密钥不硬编码，使用密钥管理服务或环境变量', priority: 'critical' },
+  ]},
+  { id: 's4', title: '5. 性能测试检查', priority: 'important', items: [
+    { item: '接口响应时间', desc: '核心接口P99响应时间在目标范围内（如 < 500ms）', priority: 'important' },
+    { item: '并发压测通过', desc: '目标QPS下系统稳定，无超时和错误', priority: 'important' },
+    { item: '缓存策略验证', desc: '热点数据缓存命中率达标，缓存穿透/击穿已防护', priority: 'important' },
+    { item: '慢查询优化', desc: '数据库慢查询已优化，执行时间在阈值内', priority: 'important' },
+    { item: '资源使用率', desc: '压测期间 CPU < 70%，内存无泄漏，GC正常', priority: 'normal' },
+  ]},
+  { id: 's5', title: '6. 备份与回滚方案', priority: 'critical', items: [
+    { item: '数据库回滚脚本', desc: '已准备DDL/DML逆向回滚脚本并验证', priority: 'critical' },
+    { item: '应用回滚方案', desc: '上一版本安装包/War包/Docker镜像已保留', priority: 'critical' },
+    { item: '配置文件备份', desc: '上线前配置已备份，可快速恢复', priority: 'important' },
+    { item: '回滚流程确认', desc: '回滚步骤已文档化，相关人员知晓操作流程', priority: 'critical' },
+    { item: '回滚时间评估', desc: '预估回滚耗时在可接受范围内（建议 < 30分钟）', priority: 'important' },
+  ]},
+  { id: 's6', title: '7. 监控与告警检查', priority: 'important', items: [
+    { item: '应用健康检查', desc: '健康检查接口正常，K8s/负载均衡探活配置正确', priority: 'important' },
+    { item: '日志采集就绪', desc: '日志已接入ELK/CLS等平台，可正常检索', priority: 'important' },
+    { item: 'APM监控配置', desc: 'SkyWalking/Pinpoint等链路追踪已部署', priority: 'normal' },
+    { item: '告警规则配置', desc: 'CPU、内存、磁盘、接口错误率等告警阈值已设置', priority: 'critical' },
+    { item: '告警通知渠道', desc: '企业微信/短信/邮件告警通知已验证可送达', priority: 'important' },
+    { item: '业务指标监控', desc: '核心业务指标（订单量/成功率等）监控大盘已配置', priority: 'normal' },
+  ]},
+  { id: 's7', title: '8. 功能验证检查', priority: 'critical', items: [
+    { item: '核心业务流程回归', desc: '主流程端到端测试通过，无阻塞性缺陷', priority: 'critical' },
+    { item: '兼容性测试', desc: '主流浏览器、移动端适配正常', priority: 'normal' },
+    { item: '第三方集成验证', desc: '短信/支付/消息推送等外部服务接口正常', priority: 'critical' },
+    { item: '异常场景测试', desc: '超时、断网、服务不可用等异常场景处理正确', priority: 'important' },
+    { item: '数据一致性验证', desc: '关键数据在上下游系统间一致', priority: 'important' },
+  ]},
+  { id: 's8', title: '9. 上线流程与通知', priority: 'important', items: [
+    { item: '上线审批完成', desc: '上线申请已通过相关负责人审批', priority: 'critical' },
+    { item: '上线窗口确认', desc: '上线时间窗口已确认，避开业务高峰期', priority: 'important' },
+    { item: '干系人通知', desc: '业务方、运营、客服等相关方已收到上线通知', priority: 'important' },
+    { item: '上线步骤文档', desc: '详细上线步骤（含时间安排）已编写，各角色分工明确', priority: 'important' },
+    { item: '值班人员安排', desc: '上线期间开发、运维值班人员已安排到位', priority: 'important' },
+    { item: '用户通知/公告', desc: '如需停服，用户公告已提前发出', priority: 'normal' },
+  ]},
+];
+
+// ======== 数据存取 ========
+function getSections() {
+  try {
+    const d = JSON.parse(localStorage.getItem('launch_checklist_sections'));
+    if (Array.isArray(d) && d.length > 0) return d;
+  } catch(e) {}
+  return JSON.parse(JSON.stringify(defaultSections));
+}
+function saveSections(s) { localStorage.setItem('launch_checklist_sections', JSON.stringify(s)); }
+function getCheckState() {
+  try { return JSON.parse(localStorage.getItem('launch_checklist_state') || '{}'); }
+  catch(e) { return {}; }
+}
+function saveCheckState(s) { localStorage.setItem('launch_checklist_state', JSON.stringify(s)); }
+
+function getPriorityLabel(p) {
+  if (p === 'critical') return '关键';
+  if (p === 'important') return '重要';
+  return '普通';
+}
+function getPriorityClass(p) {
+  if (p === 'critical') return 'pri-critical';
+  if (p === 'important') return 'pri-important';
+  return 'pri-normal';
+}
+function getBadgeClass(p) {
+  if (p === 'critical') return 'badge-critical';
+  if (p === 'important') return 'badge-important';
+  return 'badge-normal';
+}
+
+let nextId = 100;
+let editingRows = {};
+
+// ======== 渲染 ========
+function render() {
+  const sections = getSections();
+  const state = getCheckState();
+  const checklistEl = document.getElementById('checklist');
+  let html = '';
+
+  sections.forEach((section, si) => {
+    html += `<div class="section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h2>
+          <span class="section-badge ${getBadgeClass(section.priority)}">${getPriorityLabel(section.priority)}</span>
+          ${escHtml(section.title)}
+        </h2>
+        <div class="section-actions" onclick="event.stopPropagation()">
+          <span class="section-count">${section.items.length} 项</span>
+          <button class="icon-btn" title="重命名分类" onclick="openEditSection(${si})">&#9998;</button>
+          <button class="icon-btn danger" title="删除分类" onclick="deleteSection(${si})">&#10005;</button>
+        </div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead><tr>
+            <th style="width:44px">序号</th>
+            <th>检查项</th>
+            <th style="width:72px">优先级</th>
+            <th style="width:120px">状态</th>
+            <th style="width:90px">责任人</th>
+            <th style="width:110px">完成时间</th>
+            <th>备注</th>
+            <th style="width:72px;text-align:center">操作</th>
+          </tr></thead>
+          <tbody>`;
+
+    section.items.forEach((item, ii) => {
+      const idx = `${section.id}-${ii}`;
+      const s = state[idx] || {};
+      const editing = editingRows[idx];
+
+      if (editing) {
+        html += `<tr>
+          <td class="check-seq"><input class="row-input" value="${escHtml(item.seq || '')}" data-field="seq" style="width:44px"></td>
+          <td>
+            <input class="row-input" value="${escHtml(item.item)}" data-field="item" style="margin-bottom:3px">
+            <input class="row-input" value="${escHtml(item.desc)}" data-field="desc" style="font-size:11px;color:var(--text-secondary)">
+          </td>
+          <td><select class="row-select" data-field="priority">
+            <option value="critical" ${item.priority==='critical'?'selected':''}>关键</option>
+            <option value="important" ${item.priority==='important'?'selected':''}>重要</option>
+            <option value="normal" ${item.priority==='normal'?'selected':''}>普通</option>
+          </select></td>
+          <td class="status-cell" colspan="4" style="color:var(--text-secondary);font-size:12px">编辑模式下暂不可选</td>
+          <td class="row-actions">
+            <button class="row-action-btn save" title="保存" onclick="saveEdit(${si},${ii})">&#10003;</button>
+            <button class="row-action-btn cancel" title="取消" onclick="cancelEdit('${idx}')">&#10005;</button>
+          </td>
+        </tr>`;
+      } else {
+        html += `<tr>
+          <td class="check-seq">${escHtml(item.seq || (ii+1))}</td>
+          <td>
+            <div class="check-item">${escHtml(item.item)}</div>
+            <div class="check-desc">${escHtml(item.desc)}</div>
+          </td>
+          <td><span class="priority ${getPriorityClass(item.priority)}">${getPriorityLabel(item.priority)}</span></td>
+          <td class="status-cell">
+            <div class="status-select">
+              <button class="status-btn pass" data-idx="${idx}" data-status="pass" onclick="setStatus(this)" title="通过">&#10003;</button>
+              <button class="status-btn fail" data-idx="${idx}" data-status="fail" onclick="setStatus(this)" title="不通过">&#10007;</button>
+            </div>
+          </td>
+          <td><input type="text" class="row-input owner-input" data-idx="${idx}" placeholder="责任人" value="${escHtml(s.owner||'')}" oninput="saveOwner(this)"></td>
+          <td><input type="date" class="row-input complete-input" data-idx="${idx}" value="${escHtml(s.completeDate||'')}" onchange="saveComplete(this)"></td>
+          <td><input type="text" class="row-input remark-input" data-idx="${idx}" placeholder="备注" value="${escHtml(s.remark||'')}" oninput="saveRemark(this)"></td>
+          <td><div class="row-actions">
+            <button class="row-action-btn" title="编辑" onclick="startEdit('${idx}',${si},${ii})">&#9998;</button>
+            <button class="row-action-btn del" title="删除" onclick="deleteItem(${si},${ii})">&#10005;</button>
+          </div></td>
+        </tr>`;
+      }
+    });
+
+    // 添加按钮行
+    html += `<tr class="add-item-row">
+      <td colspan="8"><button class="add-btn" onclick="addItem(${si})">+ 添加检查项</button></td>
+    </tr>`;
+
+    html += '</tbody></table></div></div>';
+  });
+
+  checklistEl.innerHTML = html;
+  renderStatuses();
+  updateStats();
+}
+
+function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ======== 编辑行 ========
+function startEdit(idx, si, ii) {
+  editingRows[idx] = true;
+  render();
+}
+function cancelEdit(idx) {
+  delete editingRows[idx];
+  render();
+}
+function saveEdit(si, ii) {
+  const sections = getSections();
+  const section = sections[si];
+  const item = section.items[ii];
+  const row = document.querySelectorAll('.section-body tbody')[si];
+  const tr = row.querySelectorAll('tr')[ii];
+  const inputs = tr.querySelectorAll('[data-field]');
+  const updates = {};
+  inputs.forEach(inp => { updates[inp.dataset.field] = inp.value; });
+  item.item = updates.item || item.item;
+  item.desc = updates.desc || item.desc;
+  item.priority = updates.priority || item.priority;
+  item.seq = updates.seq || item.seq;
+  const idx = `${section.id}-${ii}`;
+  delete editingRows[idx];
+  saveSections(sections);
+  render();
+  showToast('已保存');
+}
+
+// ======== 删除检查项 ========
+function deleteItem(si, ii) {
+  const sections = getSections();
+  const section = sections[si];
+  const name = section.items[ii].item;
+  if (!confirm(`确定要删除检查项「${name}」吗？`)) return;
+  section.items.splice(ii, 1);
+  // 清理对应状态
+  const state = getCheckState();
+  const idx = `${section.id}-${ii}`;
+  delete state[idx];
+  // 重排后续项的 idx
+  const newState = {};
+  Object.keys(state).forEach(k => {
+    const [sid, i] = k.split('-');
+    if (sid === section.id) {
+      const ni = parseInt(i);
+      if (ni > ii) newState[`${sid}-${ni-1}`] = state[k];
+      else newState[k] = state[k];
+    } else {
+      newState[k] = state[k];
+    }
+  });
+  saveCheckState(newState);
+  saveSections(sections);
+  render();
+  showToast(`已删除「${name}」`);
+}
+
+// ======== 添加检查项 ========
+function addItem(si) {
+  const sections = getSections();
+  const section = sections[si];
+  section.items.push({ item: '新检查项', desc: '请编辑描述', priority: 'normal' });
+  saveSections(sections);
+  render();
+  showToast('已添加新检查项，点击编辑按钮修改内容');
+}
+
+// ======== 分类操作 ========
+function openEditSection(si) {
+  const sections = getSections();
+  const section = sections[si];
+  const title = prompt('修改分类名称：', section.title);
+  if (title === null) return;
+  if (!title.trim()) { showToast('名称不能为空'); return; }
+  section.title = title.trim();
+  saveSections(sections);
+  render();
+  showToast('分类已重命名');
+}
+
+function deleteSection(si) {
+  const sections = getSections();
+  const name = sections[si].title;
+  if (!confirm(`确定要删除整个分类「${name}」及其所有检查项吗？此操作不可恢复。`)) return;
+  const section = sections[si];
+  // 清理该分类的状态
+  const state = getCheckState();
+  Object.keys(state).forEach(k => {
+    if (k.startsWith(section.id + '-')) delete state[k];
+  });
+  saveCheckState(state);
+  sections.splice(si, 1);
+  saveSections(sections);
+  render();
+  showToast(`已删除分类「${name}」`);
+}
+
+function openAddSection() {
+  const modal = document.getElementById('modalContainer');
+  modal.innerHTML = `<div class="modal-overlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h3>添加新分类</h3>
+      <label>分类名称</label>
+      <input id="newSectionTitle" placeholder="例：10. 数据安全审查">
+      <label>默认优先级</label>
+      <select id="newSectionPriority">
+        <option value="critical">关键</option>
+        <option value="important">重要</option>
+        <option value="normal" selected>普通</option>
+      </select>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">取消</button>
+        <button class="btn btn-primary" onclick="doAddSection()">确认添加</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function doAddSection() {
+  const title = document.getElementById('newSectionTitle').value.trim();
+  const priority = document.getElementById('newSectionPriority').value;
+  if (!title) { showToast('请输入分类名称'); return; }
+  const sections = getSections();
+  sections.push({
+    id: 's' + (nextId++),
+    title,
+    priority,
+    items: []
+  });
+  saveSections(sections);
+  closeModal();
+  render();
+  showToast('新分类已添加');
+}
+
+function closeModal() {
+  document.getElementById('modalContainer').innerHTML = '';
+}
+
+// ======== 状态勾选 ========
+function setStatus(btn) {
+  const idx = btn.dataset.idx;
+  const status = btn.dataset.status;
+  const state = getCheckState();
+  if (state[idx] && state[idx].status === status) {
+    delete state[idx];
+  } else {
+    state[idx] = { ...(state[idx] || {}), status };
+  }
+  saveCheckState(state);
+  renderStatuses();
+  updateStats();
+}
+
+function saveOwner(input) {
+  const idx = input.dataset.idx;
+  const state = getCheckState();
+  state[idx] = { ...(state[idx] || {}), owner: input.value };
+  saveCheckState(state);
+}
+function saveComplete(input) {
+  const idx = input.dataset.idx;
+  const state = getCheckState();
+  state[idx] = { ...(state[idx] || {}), completeDate: input.value };
+  saveCheckState(state);
+}
+function saveRemark(input) {
+  const idx = input.dataset.idx;
+  const state = getCheckState();
+  state[idx] = { ...(state[idx] || {}), remark: input.value };
+  saveCheckState(state);
+}
+
+function renderStatuses() {
+  const state = getCheckState();
+  document.querySelectorAll('.status-btn').forEach(btn => {
+    const idx = btn.dataset.idx;
+    const s = state[idx]?.status;
+    btn.classList.toggle('active', s === btn.dataset.status);
+  });
+}
+
+function updateStats() {
+  const sections = getSections();
+  const state = getCheckState();
+  let total = 0, pass = 0, fail = 0, pending = 0;
+  sections.forEach(section => {
+    section.items.forEach((item, ii) => {
+      total++;
+      const s = state[`${section.id}-${ii}`]?.status;
+      if (s === 'pass') pass++;
+      else if (s === 'fail') fail++;
+      else pending++;
+    });
+  });
+  document.getElementById('countTotal').textContent = total;
+  document.getElementById('countPass').textContent = pass;
+  document.getElementById('countFail').textContent = fail;
+  document.getElementById('countPending').textContent = pending;
+}
+
+// ======== 元数据 ========
+function getMeta() {
+  try { return JSON.parse(localStorage.getItem('launch_checklist_meta') || '{}'); }
+  catch(e) { return {}; }
+}
+function saveMeta() {
+  localStorage.setItem('launch_checklist_meta', JSON.stringify({
+    projectName: document.getElementById('projectName').value,
+    launchDate: document.getElementById('launchDate').value,
+    version: document.getElementById('version').value,
+  }));
+}
+document.getElementById('projectName').addEventListener('input', saveMeta);
+document.getElementById('launchDate').addEventListener('input', saveMeta);
+document.getElementById('version').addEventListener('input', saveMeta);
+
+// ======== 全局操作 ========
+function resetToDefault() {
+  if (!confirm('确定要恢复为默认模板吗？你自定义的分类和检查项将被覆盖，但状态/责任人/备注会保留。')) return;
+  localStorage.removeItem('launch_checklist_sections');
+  render();
+  showToast('已恢复默认模板');
+}
+
+function markAllPending() {
+  if (!confirm('确定要将所有检查项标记为"待检查"吗？')) return;
+  localStorage.removeItem('launch_checklist_state');
+  render();
+  showToast('已全部标记为待检查');
+}
+
+function exportData() {
+  const sections = getSections();
+  const state = getCheckState();
+  const meta = getMeta();
+  let csv = '\uFEFF项目名称,上线日期,版本号\n';
+  csv += `${meta.projectName || '-'},${meta.launchDate || '-'},${meta.version || '-'}\n\n`;
+  csv += '分类,检查项,描述,优先级,状态,责任人,完成时间,备注\n';
+  sections.forEach(section => {
+    section.items.forEach((item, ii) => {
+      const s = state[`${section.id}-${ii}`] || {};
+      const statusLabel = s.status === 'pass' ? '通过' : s.status === 'fail' ? '不通过' : '未检查';
+      csv += `"${section.title}","${item.item}","${item.desc}","${getPriorityLabel(item.priority)}","${statusLabel}","${s.owner||''}","${s.completeDate||''}","${s.remark||''}"\n`;
+    });
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `河北上线推广点检表_${meta.projectName||'未命名'}_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('导出成功');
+}
+
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  if (body) body.style.display = body.style.display === 'none' ? '' : 'none';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// 加载元数据
+(function loadMeta() {
+  const meta = getMeta();
+  if (meta.projectName) document.getElementById('projectName').value = meta.projectName;
+  if (meta.launchDate) document.getElementById('launchDate').value = meta.launchDate;
+  if (meta.version) document.getElementById('version').value = meta.version;
+})();
+
+render();
+</script>
+
+
+</body></html>
