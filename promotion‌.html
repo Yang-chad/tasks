@@ -188,6 +188,22 @@
     font-size: 13px; opacity: 0; transition: opacity 0.3s; z-index: 300; pointer-events: none;
   }
   .toast.show { opacity: 1; }
+  .pub-btn {
+    padding: 8px 18px; border-radius: 8px; border: none; font-size: 13px;
+    cursor: pointer; font-weight: 500; transition: all 0.15s;
+  }
+  .pub-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+  .pub-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 200; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+  .pub-modal.open { display: flex; }
+  .pub-modal .modal-box {
+    background: #fff; border-radius: 16px; padding: 28px; max-width: 700px; width: 95%;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2); max-height: 80vh; display: flex; flex-direction: column;
+  }
+  .pub-modal textarea {
+    flex: 1; min-height: 200px; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 12px; font-family: monospace; font-size: 12px; resize: vertical; margin: 12px 0;
+  }
+  .pub-modal .instructions { color: #666; font-size: 12px; line-height: 1.6; margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -220,6 +236,12 @@
       <div class="icon icon-pending">●</div>
       <div><div class="num" id="countPending">10</div><div class="label">待检查</div></div>
     </div>
+  </div>
+
+  <div style="display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px">
+    <button class="pub-btn" onclick="resetToDefault()" style="background:#fff;color:#666;border:1px solid #ddd">恢复默认</button>
+    <button class="pub-btn" onclick="markAllPending()" style="background:#fff;color:#666;border:1px solid #ddd">全部重置</button>
+    <button class="pub-btn" onclick="exportForPublish()" style="background:var(--success);color:#fff;box-shadow:0 2px 8px rgba(52,168,83,0.3)">📤 发布更新到GitHub</button>
   </div>
 
   <div id="checklist"><div class="section">
@@ -560,6 +582,11 @@ const defaultSections = [
 
 // ======== 数据存取 ========
 const DATA_VERSION = '2026-08-04-v2'; // 修改 defaultSections 后递增此版本号，浏览器自动清旧缓存
+
+// 初始共享状态（所有人打开页面看到的默认值，由发布流程更新）
+const defaultCheckState = {};
+const defaultMeta = {};
+
 function getSections() {
   try {
     const savedVer = localStorage.getItem('launch_checklist_version');
@@ -579,8 +606,11 @@ function saveSections(s) {
   localStorage.setItem('launch_checklist_sections', JSON.stringify(s));
 }
 function getCheckState() {
-  try { return JSON.parse(localStorage.getItem('launch_checklist_state') || '{}'); }
-  catch(e) { return {}; }
+  try {
+    const local = JSON.parse(localStorage.getItem('launch_checklist_state') || '{}');
+    return { ...defaultCheckState, ...local }; // 本地覆盖默认
+  }
+  catch(e) { return JSON.parse(JSON.stringify(defaultCheckState)); }
 }
 function saveCheckState(s) { localStorage.setItem('launch_checklist_state', JSON.stringify(s)); }
 
@@ -904,8 +934,11 @@ function updateStats() {
 
 // ======== 元数据 ========
 function getMeta() {
-  try { return JSON.parse(localStorage.getItem('launch_checklist_meta') || '{}'); }
-  catch(e) { return {}; }
+  try {
+    const local = JSON.parse(localStorage.getItem('launch_checklist_meta') || '{}');
+    return { ...defaultMeta, ...local };
+  }
+  catch(e) { return JSON.parse(JSON.stringify(defaultMeta)); }
 }
 function saveMeta() {
   localStorage.setItem('launch_checklist_meta', JSON.stringify({
@@ -978,8 +1011,42 @@ function showToast(msg) {
   if (meta.version) document.getElementById('version').value = meta.version;
 })();
 
+function exportForPublish() {
+  const data = {
+    checkState: getCheckState(),
+    meta: getMeta(),
+    sections: getSections(),
+    timestamp: new Date().toISOString()
+  };
+  // 过滤掉空值减小编码体积
+  const cleanState = {};
+  Object.entries(data.checkState).forEach(([k, v]) => {
+    const clean = {};
+    if (v.status) clean.status = v.status;
+    if (v.owner) clean.owner = v.owner;
+    if (v.completeDate) clean.completeDate = v.completeDate;
+    if (v.remark) clean.remark = v.remark;
+    if (Object.keys(clean).length) cleanState[k] = clean;
+  });
+  const payload = { checkState: cleanState, meta: data.meta };
+  document.getElementById('publishJson').value = JSON.stringify(payload, null, 2);
+  document.getElementById('publishModal').classList.add('open');
+}
+
 render();
 </script>
 
+
+<div class="pub-modal" id="publishModal">
+  <div class="modal-box">
+    <h3 style="margin:0 0 4px">📤 发布更新到 GitHub</h3>
+    <p style="margin:0;color:#666;font-size:13px">你当前的编辑内容已生成。复制下方内容发送给 WorkBuddy，我来帮你更新 HTML 并推送到 GitHub。</p>
+    <textarea id="publishJson" readonly></textarea>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="pub-btn" onclick="document.getElementById('publishModal').classList.remove('open')" style="background:#fff;color:#666;border:1px solid#ddd">关闭</button>
+      <button class="pub-btn" onclick="navigator.clipboard.writeText(document.getElementById('publishJson').value);showToast('已复制到剪贴板')" style="background:var(--primary);color:#fff">📋 复制内容</button>
+    </div>
+  </div>
+</div>
 
 </body></html>
