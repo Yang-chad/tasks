@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成产品任务任务明细</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header"><h1>未完成产品任务任务明细</h1>
+<p>统计日期: 2026-08-10 | 总计: 45 个未完成任务 | 涉及 6 人 | 类型: ab1_needs_research(9) · ab2_request_des(35) · ab3_request_check(1)</p></div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="cards">
+<div class="card card-total"><div class="num">45</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">11</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">34</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">21</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">6</div><div class="label">负责人</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>负责人任务分布 (Top6)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">王也</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共17个</span>
+                <span class="stat-badge stat-wait">待处理5</span>
+                <span class="stat-badge stat-doing">进行中12</span>
+                <span class="stat-badge stat-overdue">延期13</span>
+                <span class="stat-badge stat-h">预估236.0h</span>
+                <span class="stat-badge stat-h">消耗101.0h</span>
+                <span class="stat-badge stat-h">剩余236.0h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>297805</td><td title="需求调研、需求设计、需求评审、测试用例评审、生产验收">需求调研、需求设计、需求评审、测试用例评审、生产验收</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>15</td><td>7</td><td>15</td></tr>
+<tr class="row-overdue"><td>294453</td><td title="操作日志增加场景及导出功能">操作日志增加场景及导出功能</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>15</td><td>12</td><td>15</td></tr>
+<tr class="row-overdue"><td>291276</td><td title="员工管理增加超时未登入筛选与最后登录时间、未登录时长字段">员工管理增加超时未登入筛选与最后登录时间、未登录时长字段</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>7.5</td><td>6</td><td>7.5</td></tr>
+<tr class="row-overdue"><td>291230</td><td title="员工管理更新销司职能部门与销司两种部门的枚举值展示范围">员工管理更新销司职能部门与销司两种部门的枚举值展示范围</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>4.5</td><td>3</td><td>4.5</td></tr>
+<tr class="row-overdue"><td>291221</td><td title="员工管理-编辑-管理区域中的商家列表增加全开/全关按钮、支持筛选多个网批账号">员工管理-编辑-管理区域中的商家列表增加全开/全关按钮、支持筛选多个网批账号</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>10</td><td>5</td><td>10</td></tr>
+<tr class="row-overdue"><td>291196</td><td title="批量迁移经销商绑定办事处">批量迁移经销商绑定办事处</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>25</td><td>18</td><td>25</td></tr>
+<tr class="row-overdue"><td>291174</td><td title="销司订货页面商品列表增加“生产状态”及“供货周期”两个字段、隐藏停售、禁用商品">销司订货页面商品列表增加“生产状态”及“供货周期”两个字段、隐藏停售、禁用商品</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>7.5</td><td>5</td><td>7.5</td></tr>
+<tr class="row-overdue"><td>291164</td><td title="FMS成哦给你网批取ERP业务伙伴编码">FMS成哦给你网批取ERP业务伙伴编码</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>15</td><td>10</td><td>15</td></tr>
+<tr class="row-overdue"><td>291130</td><td title="经销商入驻时工程保证金/周转机保证金扣缴方式默认为比例保证金-A">经销商入驻时工程保证金/周转机保证金扣缴方式默认为比例保证金-A</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>4.5</td><td>3</td><td>4.5</td></tr>
+<tr class="row-overdue"><td>291125</td><td title="分销商管理导出增加纳税人/收货地址字段">分销商管理导出增加纳税人/收货地址字段</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>7.5</td><td>5.5</td><td>7.5</td></tr>
+<tr class="row-overdue"><td>291119</td><td title="冻结商家支持解冻与注销申请">冻结商家支持解冻与注销申请</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-07-31</td><td>+10天</td><td>25</td><td>19</td><td>25</td></tr>
+<tr><td>304453</td><td title="需求调研、需求设计、需求评审、测试用例评审、发版验收">需求调研、需求设计、需求评审、测试用例评审、发版验收</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-21</td><td></td><td>30</td><td>7.5</td><td>30</td></tr>
+<tr class="row-overdue"><td>306960</td><td title="需求调研、需求设计、需求评审">需求调研、需求设计、需求评审</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-07-15</td><td>+26天</td><td>7.5</td><td>0</td><td>7.5</td></tr>
+<tr class="row-overdue"><td>313365</td><td title="需求调研、需求设计、需求评审、测试用例评审">需求调研、需求设计、需求评审、测试用例评审</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-07-30</td><td>+11天</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>295333</td><td title="商用-满额减-用户侧商城建设">商用-满额减-用户侧商城建设</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.80.0（0716/dev11.7）【2026】</td><td>2026-08-26</td><td></td><td>24</td><td>0</td><td>24</td></tr>
+<tr><td>305530</td><td title="需求调研、需求设计、需求评审、测试用例评审、发版验收">需求调研、需求设计、需求评审、测试用例评审、发版验收</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-03</td><td></td><td>30</td><td>0</td><td>30</td></tr>
+<tr><td>306221</td><td title="需求调研、需求设计、需求评审、测试用例评审、发版验收">需求调研、需求设计、需求评审、测试用例评审、发版验收</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-16</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">胡健</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共9个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中7</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估142h</span>
+                <span class="stat-badge stat-h">消耗46.5h</span>
+                <span class="stat-badge stat-h">剩余103.5h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>315110</td><td title="【产品】家用河北销售公司上线商用品类">【产品】家用河北销售公司上线商用品类</td><td><span class="badge-doing">进行中</span></td><td>1-紧急</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-25</td><td></td><td>20</td><td>12.5</td><td>15</td></tr>
+<tr><td>315676</td><td title="【产品】企微审批流可视化改造设计审核及任务安排">【产品】企微审批流可视化改造设计审核及任务安排</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-31</td><td></td><td>12</td><td>3</td><td>8.5</td></tr>
+<tr><td>315654</td><td title="【产品】商用天津多层级&amp;赊销需求调研及产品方案研讨">【产品】商用天津多层级&赊销需求调研及产品方案研讨</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-31</td><td></td><td>16</td><td>1</td><td>16</td></tr>
+<tr><td>313424</td><td title="【产品】集采平台结构及总提货计划需求调研及产品方案">【产品】集采平台结构及总提货计划需求调研及产品方案</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-31</td><td></td><td>16</td><td>1</td><td>15</td></tr>
+<tr><td>309054</td><td title="【产品】外仓推广方案研讨">【产品】外仓推广方案研讨</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-31</td><td></td><td>20</td><td>4</td><td>16</td></tr>
+<tr><td>306156</td><td title="【产品】管理侧菜单新增关闭全部页签能力">【产品】管理侧菜单新增关闭全部页签能力</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-31</td><td></td><td>16</td><td>11</td><td>5</td></tr>
+<tr><td>292617</td><td title="【产品】审批流可视化改造【PC端-非工程类审批流【当前节点】可显示审批人账号和姓名】 -一期，先完成PC端产品工作">【产品】审批流可视化改造【PC端-非工程类审批流【当前节点】可显示审批人账号和姓名】 -一期，先完成PC端产品工作</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-31</td><td></td><td>24</td><td>14</td><td>10</td></tr>
+<tr><td>317493</td><td title="【产品】9月版本需求规划和分析审核">【产品】9月版本需求规划和分析审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-13</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>317235</td><td title="【产品】网批4.0的销司可销售数量对接营销一体化，需按品类、销司划分">【产品】网批4.0的销司可销售数量对接营销一体化，需按品类、销司划分</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-14</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">周志杰</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共9个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中9</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估149h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余149h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>292885</td><td title="【产品】北京销售公司新增赊销账户模式">【产品】北京销售公司新增赊销账户模式</td><td><span class="badge-doing">进行中</span></td><td>2-高</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-31</td><td></td><td>30</td><td>0</td><td>30</td></tr>
+<tr><td>305978</td><td title="【产品】供应链金融经销商任务统计逻辑改造">【产品】供应链金融经销商任务统计逻辑改造</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>9</td><td>0</td><td>9</td></tr>
+<tr><td>305975</td><td title="【产品】供应链金融经销商资金账户">【产品】供应链金融经销商资金账户</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-31</td><td></td><td>24</td><td>0</td><td>24</td></tr>
+<tr><td>314722</td><td title="【产品】组合套餐专区新增检索条件">【产品】组合套餐专区新增检索条件</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-01</td><td></td><td>5</td><td>0</td><td>5</td></tr>
+<tr><td>312832</td><td title="【产品】特批工程方案二期资金账户改造">【产品】特批工程方案二期资金账户改造</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-01</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>312350</td><td title="【产品】4.0经销商活动方案新增错位经营逻辑">【产品】4.0经销商活动方案新增错位经营逻辑</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-01</td><td></td><td>24</td><td>0</td><td>24</td></tr>
+<tr><td>310258</td><td title="【产品】经销商方案审批新增已审数据/限购数导出">【产品】经销商方案审批新增已审数据/限购数导出</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-01</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>315145</td><td title="【产品】经销商销售方案提交校验/提示逻辑改造">【产品】经销商销售方案提交校验/提示逻辑改造</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-02</td><td></td><td>22</td><td>0</td><td>22</td></tr>
+<tr><td>309221</td><td title="【产品】经销商方案新增批量删除/取消商品预售">【产品】经销商方案新增批量删除/取消商品预售</td><td><span class="badge-doing">进行中</span></td><td>2-高</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-09-02</td><td></td><td>11</td><td>0</td><td>11</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">钟日健</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共5个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中3</span>
+                <span class="stat-badge stat-overdue">延期5</span>
+                <span class="stat-badge stat-h">预估128h</span>
+                <span class="stat-badge stat-h">消耗83h</span>
+                <span class="stat-badge stat-h">剩余46h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>295324</td><td title="【产品】调研设计评审验收">【产品】调研设计评审验收</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-07-15</td><td>+26天</td><td>21</td><td>21</td><td>1</td></tr>
+<tr class="row-overdue"><td>295323</td><td title="【产品】调研设计评审验收">【产品】调研设计评审验收</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-07-15</td><td>+26天</td><td>77</td><td>57</td><td>20</td></tr>
+<tr class="row-overdue"><td>295326</td><td title="【产品】一期-调研设计评审验收">【产品】一期-调研设计评审验收</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab3_request_check</td><td>网批模式_V2.81.0（0803/dev11.8）【2026】</td><td>2026-07-15</td><td>+26天</td><td>12</td><td>5</td><td>7</td></tr>
+<tr class="row-overdue"><td>295321</td><td title="【产品】业务评审和技术评审">【产品】业务评审和技术评审</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-07-15</td><td>+26天</td><td>12</td><td>0</td><td>12</td></tr>
+<tr class="row-overdue"><td>295322</td><td title="【产品】验收">【产品】验收</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-07-31</td><td>+10天</td><td>6</td><td>0</td><td>6</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">梁庆芬</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共3个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中3</span>
+                <span class="stat-badge stat-overdue">延期3</span>
+                <span class="stat-badge stat-h">预估152h</span>
+                <span class="stat-badge stat-h">消耗110h</span>
+                <span class="stat-badge stat-h">剩余42h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>303844</td><td title="【产品】供应链金融-订单部分">【产品】供应链金融-订单部分</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-07-31</td><td>+10天</td><td>120</td><td>110</td><td>10</td></tr>
+<tr class="row-overdue"><td>293451</td><td title="【产品】商用零售分批发货账户流水逻辑改造">【产品】商用零售分批发货账户流水逻辑改造</td><td><span class="badge-doing">进行中</span></td><td>2-高</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-07-31</td><td>+10天</td><td>17</td><td>0</td><td>17</td></tr>
+<tr class="row-overdue"><td>293370</td><td title="【产品】商用零售分批发货销售任务统计逻辑改造">【产品】商用零售分批发货销售任务统计逻辑改造</td><td><span class="badge-doing">进行中</span></td><td>2-高</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-07-31</td><td>+10天</td><td>15</td><td>0</td><td>15</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">未指派</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估14h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余14h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>317053</td><td title="【产品】FMS在分销入账方式调整需求">【产品】FMS在分销入账方式调整需求</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>316796</td><td title="【产品】零售分销认款能力诉求沟通">【产品】零售分销认款能力诉求沟通</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-08-10</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u738b\u4e5f", "\u80e1\u5065", "\u5468\u5fd7\u6770", "\u949f\u65e5\u5065", "\u6881\u5e86\u82ac", "\u672a\u6307\u6d3e"],datasets:[{label:'未完成任务数',data:[17, 9, 9, 5, 3, 2],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[11, 34],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[1, 4, 40],backgroundColor:["#f5576c", "#ffa726", "#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
