@@ -7,7 +7,7 @@
     "total_members": 44,
     "total_overdue": 37,
     "reference_hours": 168,
-    "report_time": "2026-08-15 07:49:14",
+    "report_time": "2026-08-15 16:13:32",
     "month": "2026年8月"
   },
   "members": [
@@ -926,15 +926,6 @@
           "openedBy": "刘孝亮"
         },
         {
-          "id": 334397,
-          "title": "【QA-用户侧-分批发货】可多次退款的订单（零售、限时特价、返利）有关联小单出库后，申请退款弹窗界面不显示相关商品信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 334253,
           "title": "【QA-PC-用户侧-零售多次退款】满件减和满额减，小单去发货以后，订购数量和待发货数量不相等，依然申请退款可以看到商品",
           "severity": 3,
@@ -960,6 +951,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
+        },
+        {
+          "id": 334397,
+          "title": "【QA-用户侧-分批发货】可多次退款的订单（零售、限时特价、返利）有关联小单出库后，申请退款弹窗界面不显示相关商品信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 334326,
@@ -1151,7 +1151,16 @@
           "openedBy": "匡军"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 334637,
+          "title": "【QA-PC-用户侧-商用零售分批发货大单退款】组合套餐的退款数量不等于待发货数量，仍能成功提交申请",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "胡健",
@@ -4488,7 +4497,32 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 334664,
+          "title": "【QA-iOS-管理侧-商用零售分批提货小单】列表页筛选发货单退款后没有普通一层订单的退款单",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 334657,
+          "title": "【QA-iOS-用户侧-商用零售分批发货小单】售后单列表页普通一层订单的售后单无法点击进入详情",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 334630,
+          "title": "【QA-IOS-管理侧-退款管理商用】查看任意零售退款详情，结果缺少标题和标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "梁嘉健",
@@ -5929,7 +5963,24 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 334653,
+          "title": "【QA-PC-管理侧-分批提货小单】管理侧接单小单详情页面，没有展示关联支付单号，显示为了经销商公司名称",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 334651,
+          "title": "【QA-PC-用户侧-商用工程订单提货单】在工程订单提货单页面，点击分批提货待付尾款订单支付，结果支付尾款金额错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "李漫嘉",
@@ -6443,6 +6494,14 @@
       ],
       "active_bugs": [
         {
+          "id": 334625,
+          "title": "【QA-PC-用户侧-零售大单】待发货商品清单弹窗，没有把大单订单行申请退款待审核的订单行剔除掉",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 334572,
           "title": "【QA-PC-用户侧-零售大单】待发货商品清单列表，为我下单和为分销商下单以及不同的分销商之间都可以同时勾选商品去发货",
           "severity": 3,
@@ -6837,15 +6896,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334540,
-          "title": "【QA-PC-用户侧-分批提货】分批发货返利订单售后单退款审批到最终节点提示 “订单明细不存在”",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 334498,
           "title": "【QA-PC-用户侧-零售大单】零售大单，第一次部分发货发，第二次退款部分，第三次在发货全部，小单全部签收/自提，但大单",
           "severity": 3,
@@ -6853,6 +6903,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "匡军"
+        },
+        {
+          "id": 334540,
+          "title": "【QA-PC-用户侧-分批提货】分批发货返利订单售后单退款审批到最终节点提示 “订单明细不存在”",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 334511,
@@ -7159,6 +7218,14 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 334649,
+          "title": "【QA-安卓-用户侧-分批提货大单】管理侧接单大单后，推送站内信到安卓，点击查看提示数据越权",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 334438,
           "title": "【QA-PC-管理侧-工程定金单】待办事项-工程定金单中、工程提货单，提交时间应为支付时间",
@@ -8084,20 +8151,56 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334428,
-          "title": "【QA-安卓-用户侧-分批发货】分批发货活动类型订单售后单详情界面部分内容与UI要求不一致",
+          "id": 334680,
+          "title": "【QA-安卓-管理侧-商用零售分批提货小单】售后单列表页筛选申请时间选择开始时间后点击结束时间闪退",
           "severity": 3,
           "pri": 3,
           "status": "resolved",
           "platform": "网批2.0",
-          "openedBy": "刘孝亮"
+          "openedBy": "李成斌"
         },
         {
-          "id": 334214,
-          "title": "【QA-安卓-用户侧-商用零售分批提货小单】售后单列表页筛选零售小单售后单后切换状态页签会重置筛选条件",
+          "id": 334661,
+          "title": "【QA-安卓-管理侧-商用零售分批提货小单】列表页筛选发货单退款后没有普通一层订单的退款单",
           "severity": 3,
           "pri": 3,
           "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 334602,
+          "title": "【QA-安卓-管理侧-商用订单管理】分批提货订单列表，订单 部分发货 状态显示为 部分履约",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 334627,
+          "title": "【QA-安卓-管理侧-退款管理商用】查看零售大单退款详情，结果填写退款原因备注显示不全",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334622,
+          "title": "【QA-安卓-管理侧-订单管理商用】查看分批发货的暂存前置仓订单详情页面，结果标签重叠",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334604,
+          "title": "【QA-安卓-管理侧-商用零售分批提货小单】退款详情页退款原因备注显示不完全",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
@@ -8199,6 +8302,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "罗有文"
+        },
+        {
+          "id": 334428,
+          "title": "【QA-安卓-用户侧-分批发货】分批发货活动类型订单售后单详情界面部分内容与UI要求不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 334426,
@@ -8311,6 +8423,15 @@
         {
           "id": 334217,
           "title": "【QA-安卓-用户侧-商用零售分批发货小单】无补差运费时售后单详情页也显示了运费规则",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 334214,
+          "title": "【QA-安卓-用户侧-商用零售分批提货小单】售后单列表页筛选零售小单售后单后切换状态页签会重置筛选条件",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -8442,26 +8563,18 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 334604,
-          "title": "【QA-安卓-管理侧-商用零售分批提货小单】退款详情页退款原因备注显示不完全",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
         },
         {
-          "id": 334602,
-          "title": "【QA-安卓-管理侧-商用订单管理】分批提货订单列表，订单 部分发货 状态显示为 部分履约",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
+          "id": 334646,
+          "title": "【QA-安卓-用户侧-商用零售分批提货小单】售后单详情页商品详情弹层字段名称错误",
+          "severity": 4,
+          "pri": 4,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
         }
-      ]
+      ],
+      "active_bugs": []
     },
     {
       "name": "陈灿茂",
@@ -8804,13 +8917,13 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334539,
-          "title": "【QA-安卓-用户侧-商用零售分批发货小单】通过小单详情页进入关联的售后单详情页显示信息错误",
+          "id": 334676,
+          "title": "【QA-安卓-用户侧-分批提货小单】下单小单，暂存前置仓，备注200字提交，提示400错误",
           "severity": 3,
           "pri": 3,
           "status": "resolved",
           "platform": "网批2.0",
-          "openedBy": "李成斌"
+          "openedBy": "陈嘉劲"
         },
         {
           "id": 334463,
@@ -9038,7 +9151,16 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 334539,
+          "title": "【QA-安卓-用户侧-商用零售分批发货小单】通过小单详情页进入关联的售后单详情页显示信息错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "黄宇安",
@@ -9480,31 +9602,49 @@
           "openedBy": "邹娟"
         },
         {
-          "id": 334456,
-          "title": "【QA-安卓-用户侧-分批发货】分批发货大单在待接单状态下申请退款，仍显示有勾选框",
+          "id": 334636,
+          "title": "【QA-安卓-用户侧-分批提货定金订单】分批提货工程定金单待接单状态，申请退款，结果没有显示退款数量",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334620,
+          "title": "【QA-安卓-用户侧-分批提货工程大单售后单】分批提货工程大单申请退款界面，待发货数量为0",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334598,
+          "title": "【QA-安卓-用户侧-分批提货】返利分批提货大单申请退款界面显示有使用返利明细按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
         {
-          "id": 334219,
-          "title": "【QA-安卓-用户侧-商用零售分批发货小单】合并支付场景申请取消发货查看运费明细弹层与设计不符",
+          "id": 334527,
+          "title": "【QA-安卓-用户侧-分批发货】分批发货大单申请退款界面活动优惠明细点击无作用",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "李成斌"
+          "openedBy": "刘孝亮"
         },
         {
-          "id": 333975,
-          "title": "【QA-安卓-用户侧-分批提货工程大单售后单】分批提货工程大单申请退款界面，缺少多次退款数量功能",
+          "id": 334456,
+          "title": "【QA-安卓-用户侧-分批发货】分批发货大单在待接单状态下申请退款，仍显示有勾选框",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "罗有文"
+          "openedBy": "刘孝亮"
         },
         {
           "id": 334369,
@@ -9552,6 +9692,15 @@
           "openedBy": "刘孝亮"
         },
         {
+          "id": 334219,
+          "title": "【QA-安卓-用户侧-商用零售分批发货小单】合并支付场景申请取消发货查看运费明细弹层与设计不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 334198,
           "title": "【QA-安卓-用户侧-资金账户流水逻辑改造】运费退款的详情显示多了个字段",
           "severity": 3,
@@ -9581,6 +9730,15 @@
         {
           "id": 334004,
           "title": "【QA-安卓-用户侧-分批提货资金账户流水】运费补差流水详情商品信息字段跟原型不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333975,
+          "title": "【QA-安卓-用户侧-分批提货工程大单售后单】分批提货工程大单申请退款界面，缺少多次退款数量功能",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -9662,16 +9820,16 @@
       ],
       "active_bugs": [
         {
-          "id": 334598,
-          "title": "【QA-安卓-用户侧-分批提货】返利分批提货大单申请退款界面显示有使用返利明细按钮",
+          "id": 334674,
+          "title": "【QA-安卓-管理侧-待办事项】待办事项-商用工程提货单审批列表缺少普通工程提货单数据",
           "severity": 3,
           "pri": 3,
           "status": "active",
           "platform": "网批2.0"
         },
         {
-          "id": 334527,
-          "title": "【QA-安卓-用户侧-分批发货】分批发货大单申请退款界面活动优惠明细点击无作用",
+          "id": 334638,
+          "title": "【QA-安卓-用户侧-商用零售分批发货大单退款】组合套餐申请退款缺少代发货数量和退款数量字段",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -11990,76 +12148,13 @@
           "openedBy": "邹娟"
         },
         {
-          "id": 334597,
-          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】退款原因备注不可断行且能超过100个字符",
+          "id": 334628,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】待接单订单申请退款页面退款数量、退款金额为0",
           "severity": 3,
           "pri": 3,
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "邹娟"
-        },
-        {
-          "id": 334590,
-          "title": "【QA-iOS-用户侧-商用零售分批发货小单】取消发货原因选择其他后填入的自定义原因没有提交成功",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 334587,
-          "title": "【QA-iOS-用户侧-商用零售分批发货小单】申请取消发货页不产生运费/产生退还运费时确认取消发货缺少二次确认弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 334512,
-          "title": "【QA-IOS-用户侧-分批提货大单售后单】大单申请部分退款未审批，再次申请退款，结果待发货数量剔除退款未审批通过商品数",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 334487,
-          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】零售日常、返利日常、优惠券、限时特价退款数量默认不是空值",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 334481,
-          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】申请退款未勾选任意商品，退款金额显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 334479,
-          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】进入申请退款弹层，默认勾选所有商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 334372,
-          "title": "【QA-IOS-管理侧-零售发货单】待办事项-零售发货单中，零售小单的订单金额应为：- -",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
         },
         {
           "id": 334368,
@@ -12071,11 +12166,110 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 334634,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】组合套餐申请退款退款数量字段显示不完整",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334633,
+          "title": "【QA-IOS-用户侧-分批提货工程大单售后单】分批提货工程大单申请退款界面，待发货数量为0",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334629,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】未填写退款数量提交退款申请提示文案不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334597,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】退款原因备注不可断行且能超过100个字符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334590,
+          "title": "【QA-iOS-用户侧-商用零售分批发货小单】取消发货原因选择其他后填入的自定义原因没有提交成功",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 334587,
+          "title": "【QA-iOS-用户侧-商用零售分批发货小单】申请取消发货页不产生运费/产生退还运费时确认取消发货缺少二次确认弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 334512,
+          "title": "【QA-IOS-用户侧-分批提货大单售后单】大单申请部分退款未审批，再次申请退款，结果待发货数量剔除退款未审批通过商品数",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334487,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】零售日常、返利日常、优惠券、限时特价退款数量默认不是空值",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334481,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】申请退款未勾选任意商品，退款金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334479,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】进入申请退款弹层，默认勾选所有商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334372,
+          "title": "【QA-IOS-管理侧-零售发货单】待办事项-零售发货单中，零售小单的订单金额应为：- -",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 334311,
           "title": "【QA-IOS-管理侧-零售分批提货订单】待办事项-零售分批提货订单中，提交时间应获取支付时间",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
         },
@@ -12109,6 +12303,15 @@
         {
           "id": 334130,
           "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】活动商品申请退款不显示划线价和活动价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334044,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】组合套餐申请退款不显示套餐名称、退款套数，订购数量显示错误",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -12325,11 +12528,43 @@
       ],
       "active_bugs": [
         {
-          "id": 334044,
-          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】组合套餐申请退款不显示套餐名称、退款套数，订购数量显示错误",
+          "id": 334667,
+          "title": "【QA-IOS-管理侧-待办事项】待办事项-商用零售发货单审批列表普通零售订单的订单金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 334666,
+          "title": "【QA-IOS-管理侧-待办事项】待办事项-商用工程提货单中普通工程单的订单金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 334660,
+          "title": "【QA-IOS-管理侧-待办事项】待办事项-商用零售发货单普通零售订单的订单金额及订单详情显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 334647,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】返利限时特价、返利组合套餐申请退款不限时划线价、优惠价",
           "severity": 3,
           "pri": 3,
           "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 334635,
+          "title": "【QA-IOS-用户侧-分批提货工程定金单】分批提货工程定金单待接单状态，申请退款，结果退款数量可以填写",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
           "platform": "网批2.0"
         }
       ]
