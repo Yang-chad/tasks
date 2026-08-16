@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成测试任务任务明细</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header"><h1>未完成测试任务任务明细</h1>
+<p>统计日期: 2026-08-17 | 总计: 48 个未完成任务 | 涉及 12 人 | 类型: ae1_test_des(20) · ae2_test(28)</p></div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="cards">
+<div class="card card-total"><div class="num">48</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">46</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">2</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">12</div><div class="label">负责人</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>负责人任务分布 (Top12)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">匡军</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共6个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估73h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余73h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318415</td><td title="【测试设计】场景2">【测试设计】场景2</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+<tr><td>318414</td><td title="【测试设计】场景2">【测试设计】场景2</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>318391</td><td title="【测试】商用零售两层订单对接金蝶、OMS--大单">【测试】商用零售两层订单对接金蝶、OMS--大单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318390</td><td title="【测试设计】商用零售两层订单对接金蝶、OMS--大单">【测试设计】商用零售两层订单对接金蝶、OMS--大单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>318359</td><td title="【测试】商用零售分批发货-零售大单--PC、安卓">【测试】商用零售分批发货-零售大单--PC、安卓</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>36</td><td>0</td><td>36</td></tr>
+<tr><td>318358</td><td title="【测试设计】商用零售分批发货-零售大单--匡军">【测试设计】商用零售分批发货-零售大单--匡军</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">马腾</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共6个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估59h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余59h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318395</td><td title="【测试】商用零售与工程大单支持多次部分退款--PC">【测试】商用零售与工程大单支持多次部分退款--PC</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318394</td><td title="【测试设计】商用零售与工程大单支持多次部分退款--马腾">【测试设计】商用零售与工程大单支持多次部分退款--马腾</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>318379</td><td title="【测试】商用零售分批发货销售任务统计逻辑改造--PC">【测试】商用零售分批发货销售任务统计逻辑改造--PC</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318378</td><td title="【测试设计】商用零售分批发货销售任务统计逻辑改造--马腾">【测试设计】商用零售分批发货销售任务统计逻辑改造--马腾</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>318375</td><td title="【测试】商用零售分批发货账户流水逻辑改造--PC">【测试】商用零售分批发货账户流水逻辑改造--PC</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>20</td><td>0</td><td>20</td></tr>
+<tr><td>318374</td><td title="【测试设计】商用零售分批发货账户流水逻辑改造--马腾">【测试设计】商用零售分批发货账户流水逻辑改造--马腾</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">伍镓烨</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共6个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估66h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余66h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318393</td><td title="【测试】商用零售两层订单对接金蝶、OMS--小单">【测试】商用零售两层订单对接金蝶、OMS--小单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318392</td><td title="【测试设计】商用零售两层订单对接金蝶、OMS--小单">【测试设计】商用零售两层订单对接金蝶、OMS--小单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>318385</td><td title="【测试】商用零售小单合并支付免运费正逆向--PC、H5">【测试】商用零售小单合并支付免运费正逆向--PC、H5</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>18</td><td>0</td><td>18</td></tr>
+<tr><td>318384</td><td title="【测试设计】商用零售小单合并支付免运费正逆向--伍镓烨">【测试设计】商用零售小单合并支付免运费正逆向--伍镓烨</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+<tr><td>318373</td><td title="【测试】商用零售分批发货-零售小单售后--PC、H5">【测试】商用零售分批发货-零售小单售后--PC、H5</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>18</td><td>0</td><td>18</td></tr>
+<tr><td>318372</td><td title="【测试设计】商用零售分批发货-零售小单售后--伍镓烨">【测试设计】商用零售分批发货-零售小单售后--伍镓烨</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">龙泽英</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共5个</span>
+                <span class="stat-badge stat-wait">待处理5</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估28h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余28h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318438</td><td title="【测试】退款审批代办事项（PC+APP）">【测试】退款审批代办事项（PC+APP）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>318437</td><td title="【测试】订单审批代办事项（PC+APP）">【测试】订单审批代办事项（PC+APP）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>318436</td><td title="【测试】商用接单、退款企微提醒">【测试】商用接单、退款企微提醒</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>318411</td><td title="【测试】销司/客户字典">【测试】销司/客户字典</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>318410</td><td title="【测试设计】销司/客户字典">【测试设计】销司/客户字典</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">刘孝亮</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估46h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余46h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318413</td><td title="【测试】场景1和场景3">【测试】场景1和场景3</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+<tr><td>318412</td><td title="【测试设计】场景1和场景3">【测试设计】场景1和场景3</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>318363</td><td title="【测试】商用零售分批发货-零售大单售后--日常返利、日常限时、买赠、满额减、日常组合">【测试】商用零售分批发货-零售大单售后--日常返利、日常限时、买赠、满额减、日常组合</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>28</td><td>0</td><td>28</td></tr>
+<tr><td>318362</td><td title="【测试设计】商用零售分批发货-零售大单售后--日常返利、日常限时、买赠、满额减、日常组合">【测试设计】商用零售分批发货-零售大单售后--日常返利、日常限时、买赠、满额减、日常组合</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>9</td><td>0</td><td>9</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">陈嘉劲</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估59h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余59h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318389</td><td title="【测试】商用零售与工程小单接单、合并支付接单审批--陈嘉劲">【测试】商用零售与工程小单接单、合并支付接单审批--陈嘉劲</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318388</td><td title="【测试设计】商用零售与工程小单接单、合并支付接单审批--陈嘉劲">【测试设计】商用零售与工程小单接单、合并支付接单审批--陈嘉劲</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>318369</td><td title="【测试】商用零售分批发货-零售小单--PC、安卓">【测试】商用零售分批发货-零售小单--PC、安卓</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>32</td><td>0</td><td>32</td></tr>
+<tr><td>318368</td><td title="【测试设计】商用零售分批发货-零售小单--陈嘉劲">【测试设计】商用零售分批发货-零售小单--陈嘉劲</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>11</td><td>0</td><td>11</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
+            <span class="assignee-name">江小芳</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理3</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估63h</span>
+                <span class="stat-badge stat-h">消耗28h</span>
+                <span class="stat-badge stat-h">剩余39h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318367</td><td title="【测试】商用零售分批发货-零售小单--IOS、H5、零售自提小单备货短信通知任务">【测试】商用零售分批发货-零售小单--IOS、H5、零售自提小单备货短信通知任务</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>36</td><td>28</td><td>12</td></tr>
+<tr><td>318387</td><td title="【测试】商用零售与工程小单接单、合并支付接单审批--江小芳">【测试】商用零售与工程小单接单、合并支付接单审批--江小芳</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318386</td><td title="【测试设计】商用零售与工程小单接单、合并支付接单审批--江小芳">【测试设计】商用零售与工程小单接单、合并支付接单审批--江小芳</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>318366</td><td title="【测试设计】商用零售分批发货-零售小单--江小芳">【测试设计】商用零售分批发货-零售小单--江小芳</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>11</td><td>0</td><td>11</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+            <span class="assignee-name">李成斌</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估54h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余54h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318383</td><td title="【测试】商用零售小单合并支付免运费正逆向--安卓、IOS">【测试】商用零售小单合并支付免运费正逆向--安卓、IOS</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>20</td><td>0</td><td>20</td></tr>
+<tr><td>318382</td><td title="【测试设计】商用零售小单合并支付免运费正逆向--李成斌">【测试设计】商用零售小单合并支付免运费正逆向--李成斌</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+<tr><td>318371</td><td title="【测试】商用零售分批发货-零售小单售后--安卓、IOS">【测试】商用零售分批发货-零售小单售后--安卓、IOS</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>20</td><td>0</td><td>20</td></tr>
+<tr><td>318370</td><td title="【测试设计】商用零售分批发货-零售小单售后--李成斌">【测试设计】商用零售分批发货-零售小单售后--李成斌</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>7</td><td>0</td><td>7</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ef535015; border-left:4px solid #ef5350;">
+            <span class="assignee-name">罗有文</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共3个</span>
+                <span class="stat-badge stat-wait">待处理3</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估44h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余44h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318397</td><td title="【测试】商用零售与工程大单支持多次部分退款--APP">【测试】商用零售与工程大单支持多次部分退款--APP</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318381</td><td title="【测试】商用零售分批发货销售任务统计逻辑改造--APP">【测试】商用零售分批发货销售任务统计逻辑改造--APP</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>318377</td><td title="【测试】商用零售分批发货账户流水逻辑改造--APP">【测试】商用零售分批发货账户流水逻辑改造--APP</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>20</td><td>0</td><td>20</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#66bb6a15; border-left:4px solid #66bb6a;">
+            <span class="assignee-name">李学鹍</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共3个</span>
+                <span class="stat-badge stat-wait">待处理3</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估64h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余64h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318544</td><td title="【测试】集采-预约信息允许空数据提交以及退货售后单接受数据优化-GC01&amp;02">【测试】集采-预约信息允许空数据提交以及退货售后单接受数据优化-GC01&02</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>集采平台_V1.30.0（0812/集采dev4.0）【2026】</td><td>2026-08-20</td><td></td><td>18</td><td>0</td><td>18</td></tr>
+<tr><td>318543</td><td title="【测试设计】集采-预约信息允许空数据提交以及退货售后单接受数据优化-GC01&amp;02">【测试设计】集采-预约信息允许空数据提交以及退货售后单接受数据优化-GC01&02</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>集采平台_V1.30.0（0812/集采dev4.0）【2026】</td><td>2026-08-20</td><td></td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>304313</td><td title="【测试】集采调拨价设置添加审批流">【测试】集采调拨价设置添加审批流</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>集采平台_V1.30.0（0812/集采dev4.0）【2026】</td><td>2026-08-20</td><td></td><td>40</td><td>0</td><td>40</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ff704315; border-left:4px solid #ff7043;">
+            <span class="assignee-name">邹娟</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估37h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余37h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318365</td><td title="【测试】商用零售分批发货-零售大单售后--零售、返利限时、优惠券、满减、返利组合">【测试】商用零售分批发货-零售大单售后--零售、返利限时、优惠券、满减、返利组合</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>28</td><td>0</td><td>28</td></tr>
+<tr><td>318364</td><td title="【测试设计】商用零售分批发货-零售大单售后--零售、返利限时、优惠券、满减、返利组合">【测试设计】商用零售分批发货-零售大单售后--零售、返利限时、优惠券、满减、返利组合</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>ae1_test_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>9</td><td>0</td><td>9</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#5c6bc015; border-left:4px solid #5c6bc0;">
+            <span class="assignee-name">李文清</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共1个</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估36h</span>
+                <span class="stat-badge stat-h">消耗28h</span>
+                <span class="stat-badge stat-h">剩余8h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>318361</td><td title="【测试】商用零售分批发货-零售大单--IOS、H5">【测试】商用零售分批发货-零售大单--IOS、H5</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>ae2_test</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-20</td><td></td><td>36</td><td>28</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-08-17</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u5321\u519b", "\u9a6c\u817e", "\u4f0d\u9553\u70e8", "\u9f99\u6cfd\u82f1", "\u5218\u5b5d\u4eae", "\u9648\u5609\u52b2", "\u6c5f\u5c0f\u82b3", "\u674e\u6210\u658c", "\u7f57\u6709\u6587", "\u674e\u5b66\u9e4d", "\u90b9\u5a1f", "\u674e\u6587\u6e05"],datasets:[{label:'未完成任务数',data:[6, 6, 6, 5, 4, 4, 4, 4, 3, 3, 2, 1],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726", "#26c6da", "#ab47bc", "#ef5350", "#66bb6a", "#ff7043", "#5c6bc0"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[46, 2],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[48],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
