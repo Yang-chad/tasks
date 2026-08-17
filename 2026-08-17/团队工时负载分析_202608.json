@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 488,
-    "total_active": 424,
-    "total_month_hours": 3864.8,
+    "total_done": 495,
+    "total_active": 417,
+    "total_month_hours": 3930.8,
     "total_estimate": 7040.0,
     "total_members": 44,
     "total_overdue": 47,
     "reference_hours": 168,
-    "report_time": "2026-08-17 10:39:21",
+    "report_time": "2026-08-17 14:25:42",
     "month": "2026年8月"
   },
   "members": [
@@ -917,15 +917,6 @@
           "openedBy": "罗有文"
         },
         {
-          "id": 334731,
-          "title": "【QA-PC-用户侧-分批提货】组合套餐分批提货大单有订单行已关联小单，大单申请退款提示语错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 334727,
           "title": "【QA-PC-用户侧-商用零售分批提货小单】申请取消发货经销商货款账户不够钱扣补收运费时仍在oms产生了退款单",
           "severity": 3,
@@ -935,11 +926,20 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 334731,
+          "title": "【QA-PC-用户侧-分批提货】组合套餐分批提货大单有订单行已关联小单，大单申请退款提示语错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 334637,
           "title": "【QA-PC-用户侧-商用零售分批发货大单退款】组合套餐的退款数量不等于待发货数量，仍能成功提交申请",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
         },
@@ -5747,6 +5747,24 @@
           "openedBy": "陈嘉劲"
         },
         {
+          "id": 334822,
+          "title": "【QA-PC-用户侧-分批提货小单】小单列表，搜索仓库发货单号，其余搜索框置灰",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334777,
+          "title": "【QA-PC-用户侧-零售大单】组合套餐的零售大单，下小单后，下单没有在大单里展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
           "id": 334711,
           "title": "【QA-PC-用户侧-商用零售小单合并支付】商用零售小单合并支付免邮，没有弹出支付成功提示语： 合并支付成功，您的订单已",
           "severity": 3,
@@ -6064,8 +6082,8 @@
       ],
       "active_bugs": [
         {
-          "id": 334777,
-          "title": "【QA-PC-用户侧-零售大单】组合套餐的零售大单，下小单后，下单没有在大单里展示",
+          "id": 334851,
+          "title": "【QA-PC-用户侧-分批提货小单】暂存前置仓订单小单，下单后进行修改地址，弹出界面地址与下单地址不一致",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -6583,16 +6601,500 @@
           "openedBy": "马腾"
         }
       ],
-      "active_bugs": [
+      "active_bugs": []
+    },
+    {
+      "name": "田宇飞",
+      "role": "前端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 20,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 114.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 11,
+      "done_estimate": 132.0,
+      "done_consumed": 114.0,
+      "month_done_hours": 114.0,
+      "active_count": 9,
+      "active_estimate": 68.0,
+      "active_consumed": 0.0,
+      "active_left": 68.0,
+      "total_tasks": 20,
+      "total_estimate": 200.0,
+      "completion_rate": 55.0,
+      "efficiency": 55.0,
+      "overdue": 1,
+      "done_tasks": [
+        {
+          "id": 306880,
+          "name": "【PC用户】零售分批发货为分销商发货",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-15",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 306879,
+          "name": "【PC用户】零售分批发货为我发货",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-15",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 306870,
+          "name": "【PC用户】提交订单为分销商下单分批发货",
+          "consumed": 12.0,
+          "estimate": 16.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-15",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 306869,
+          "name": "【PC用户】提交订单为我下单分批发货",
+          "consumed": 12.0,
+          "estimate": 16.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-15",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 307357,
+          "name": "【PC用户】专属收银台",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-16",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 307356,
+          "name": "【PC用户】新增分批发货为分销商发货",
+          "consumed": 8.0,
+          "estimate": 12.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-16",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 307355,
+          "name": "【PC用户】新增分批发货为我发货",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-16",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 307354,
+          "name": "【PC用户】新增分批发货为分销商下单",
+          "consumed": 10.0,
+          "estimate": 12.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-16",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 307353,
+          "name": "【PC用户】新增分批发货为我下单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-16",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 307347,
+          "name": "【PC用户】家用分批提货为分销商下单",
+          "consumed": 8.0,
+          "estimate": 12.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-16",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 307346,
+          "name": "【PC用户】家用分批提货为我下单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-16",
+          "finished_by": "田宇飞",
+          "finished_date": "2026-08-17"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 305722,
+          "name": "【PC用户】收银台",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-07-13",
+          "deadline": "2026-08-15"
+        },
+        {
+          "id": 319182,
+          "name": "【PC管理】免邮模板查询条件",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        },
+        {
+          "id": 319183,
+          "name": "【PC管理】添加免邮模板新增指定商家类型",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        },
+        {
+          "id": 319184,
+          "name": "【PC管理】指定商家类型对应配置改造",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        },
+        {
+          "id": 319185,
+          "name": "【PC管理】编辑免邮模板指定商家类型",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        },
+        {
+          "id": 319186,
+          "name": "【PC管理】查看免邮模板指定商家类型",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        },
+        {
+          "id": 319259,
+          "name": "【PC用户】企业管理企业信息增加变更记录",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        },
+        {
+          "id": 319260,
+          "name": "【PC用户】审批详情展示签署信息",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        },
+        {
+          "id": 319261,
+          "name": "【PC管理】审批流配置",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
+          "opened_date": "2026-08-13",
+          "deadline": "2026-09-03"
+        }
+      ],
+      "resolved_bugs": [
         {
           "id": 334802,
           "title": "【QA-PC-用户侧-分批提货小单】去发货，选择添加发货商品，选择下单时间进行筛选，无效",
           "severity": 3,
           "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334816,
+          "title": "【QA-PC-管理侧-分批提货小单】接单列表，没有显示订单来源为中文",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334560,
+          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单列表勾选为分销商下单的商品，去发货，发货单提交界面，没有自动选择对应分销",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334558,
+          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单弹窗中勾选商品，去发货，进入发货单提交界面，默认商品订购数量为1，但提交",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334421,
+          "title": "【QA-PC-用户侧-商用工程小单】经销商没有分销商，结果点击工程定金去提货，结果跳转提交订单页面，显示为分销商下单信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334261,
+          "title": "【QA-PC-用户侧-零售大单】零售大单和零售一层订单，支付页，金额字段有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334177,
+          "title": "【QA-PC-用户侧-分批提货小单】小单支付页，显示的不是运费金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334092,
+          "title": "【QA-PC-用户侧-分批提货小单】去发货，选择100商品，没有提示最多选择99，",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333859,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，为分销商下单，提示：订单行【3582026081100014701】",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333848,
+          "title": "【QA-PC-用户侧-分批提货小单】新增分批发货页，为分销商下单，找不到对应商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333798,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，下单达到免邮，提交后，显示404",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333793,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，商品列表能全部删除",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333788,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货小单，下自提单，结果提示请选择期望自提仓库",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333784,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，没有做重复校验，能勾选相同订单添加到商品列表",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333700,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单类型筛选无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333693,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单时间筛选无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333662,
+          "title": "【QA-PC-用户侧-分批提货小单】为分销商下小单，选择分销商后，没有加载分销商地址",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333654,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，加载数据上限为100，加载数据依旧为10",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333651,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，数据没有变动，仅序号变动了",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333648,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，缺少字段：订单号  订单行号  下单时间  订单类型",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333632,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，搜索SKU无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333607,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，勾选有相同SKU的商品时，会把其他SKU同步勾选上",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
         }
-      ]
+      ],
+      "active_bugs": []
     },
     {
       "name": "阳超",
@@ -8227,6 +8729,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 334755,
+          "title": "【QA-安卓-用户侧-分批提货小单】已签收订单，没有展示查看物流按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
           "id": 334740,
           "title": "【QA-安卓-管理侧-工程机】工程提货列表小单订单接单，订单为合并支付订单，接单进入界面，没有展示所有合并支付订单信息",
           "severity": 3,
@@ -8236,15 +8747,6 @@
           "openedBy": "陈嘉劲"
         },
         {
-          "id": 334702,
-          "title": "【QA-安卓-管理侧-商用零售分批提货小单】售后单列表页筛选申请时间后筛选结果有时间范围之外的售后单",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
           "id": 334710,
           "title": "【QA-安卓-用户侧-分批提货】退款售后单筛选界面大单退款、小单退款使用关联订单查询，不能筛选到相应数据",
           "severity": 3,
@@ -8252,6 +8754,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334702,
+          "title": "【QA-安卓-管理侧-商用零售分批提货小单】售后单列表页筛选申请时间后筛选结果有时间范围之外的售后单",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
         },
         {
           "id": 334680,
@@ -8677,24 +9188,7 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 334785,
-          "title": "【QA-安卓-管理侧-待办事项】管理侧首页，待办事项进入接单界面，没有展示指定发货仓",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 334755,
-          "title": "【QA-安卓-用户侧-分批提货小单】已签收订单，没有展示查看物流按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "陈灿茂",
@@ -9740,6 +10234,15 @@
           "openedBy": "邹娟"
         },
         {
+          "id": 334785,
+          "title": "【QA-安卓-管理侧-待办事项】管理侧首页，待办事项进入接单界面，没有展示指定发货仓",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
           "id": 334775,
           "title": "【QA-安卓-用户侧-分批提货小单】已接单订单，取消发货，没有全选按钮勾选",
           "severity": 3,
@@ -9749,11 +10252,38 @@
           "openedBy": "陈嘉劲"
         },
         {
+          "id": 334773,
+          "title": "【QA-安卓-用户侧-商用零售分批发货大单退款】返利限时特价、返利组合套餐申请退款返利提货价/活动价显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334810,
+          "title": "【QA-安卓-管理侧-待办事项】商用零售发货单合并支付订单在待办事项进入接单详情页面内容错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334780,
+          "title": "【QA-安卓-用户侧-商用零售分批发货大单退款】日常零售订单申请退款显示了划线价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 334722,
           "title": "【QA-安卓-用户侧-商用零售分批发货大单退款】活动订单为待发货状态，点击申请退款，结果满减活动无法单独勾选进行退款",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "罗有文"
         },
@@ -9762,7 +10292,7 @@
           "title": "【QA-安卓-管理侧-待办事项】待办事项-商用工程提货单审批列表缺少普通工程提货单数据",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -10002,30 +10532,6 @@
         }
       ],
       "active_bugs": [
-        {
-          "id": 334797,
-          "title": "【QA-安卓-用户侧-商用零售分批发货大单退款】满额减申请退款不显示划线价",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 334780,
-          "title": "【QA-安卓-用户侧-商用零售分批发货大单退款】日常零售订单申请退款显示了划线价",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 334773,
-          "title": "【QA-安卓-用户侧-商用零售分批发货大单退款】返利限时特价、返利组合套餐申请退款返利提货价/活动价显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
         {
           "id": 334649,
           "title": "【QA-安卓-用户侧-分批提货大单】管理侧接单大单后，推送站内信到安卓，点击查看提示数据越权",
@@ -10913,8 +11419,26 @@
           "openedBy": "刘孝亮"
         },
         {
+          "id": 334712,
+          "title": "【QA-IOS-用户侧-分批提货小单】为分销商发货，选择暂存前置仓，提交发货失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 334721,
           "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，复制订单行号，提示：供货方复制成功",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334699,
+          "title": "【QA-IOS-用户侧-工程机】工程提货列表数据为空",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -11111,24 +11635,7 @@
           "openedBy": "李文清"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 334712,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，添加多个商品，同SKU订单行出现多个，提交提示语与原型不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 334699,
-          "title": "【QA-IOS-用户侧-工程机】工程提货列表数据为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "孙元通",
@@ -11726,15 +12233,6 @@
           "openedBy": "邹娟"
         },
         {
-          "id": 334666,
-          "title": "【QA-IOS-管理侧-待办事项】待办事项-商用工程提货单中普通工程单的订单金额显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 334368,
           "title": "【QA-iOS-用户侧-商用零售分批发货小单】未接单的零售单申请取消发货页也可勾选商品行",
           "severity": 3,
@@ -11744,8 +12242,26 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 334794,
+          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】满额减申请退款不显示划线价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 334667,
           "title": "【QA-IOS-管理侧-待办事项】待办事项-商用零售发货单审批列表普通零售订单的订单金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334666,
+          "title": "【QA-IOS-管理侧-待办事项】待办事项-商用工程提货单中普通工程单的订单金额显示错误",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -12149,16 +12665,7 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 334794,
-          "title": "【QA-iOS-用户侧-商用零售分批发货大单退款】满额减申请退款不显示划线价",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "范文玉",
@@ -12534,6 +13041,15 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 334799,
+          "title": "【QA-H5-管理侧-分批提货小单】待接单状态的零售小单接单页，订单状态显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 334515,
           "title": "【QA-H5-管理侧-分批提货小单】合并支付接单页，商品详情弹框显示暂无数据",
           "severity": 3,
@@ -12804,16 +13320,7 @@
           "openedBy": "李文清"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 334799,
-          "title": "【QA-H5-管理侧-分批提货小单】待接单状态的零售小单接单页，订单状态显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "伍镓烨",
@@ -14017,6 +14524,24 @@
           "openedBy": "江小芳"
         },
         {
+          "id": 334625,
+          "title": "【QA-PC-用户侧-零售大单】待发货商品清单弹窗，没有把大单订单行申请退款待审核的订单行剔除掉",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334572,
+          "title": "【QA-PC-用户侧-零售大单】待发货商品清单列表，为我下单和为分销商下单以及不同的分销商之间都可以同时勾选商品去发货",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
           "id": 334350,
           "title": "【QA-PC-用户侧-任务统计逻辑改造】大单如果可以多次退款的情况下，第一次退款，审核成功，不会影响任务统计的数据",
           "severity": 3,
@@ -14071,24 +14596,7 @@
           "openedBy": "罗有文"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 334625,
-          "title": "【QA-PC-用户侧-零售大单】待发货商品清单弹窗，没有把大单订单行申请退款待审核的订单行剔除掉",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 334572,
-          "title": "【QA-PC-用户侧-零售大单】待发货商品清单列表，为我下单和为分销商下单以及不同的分销商之间都可以同时勾选商品去发货",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "李成斌",
@@ -14700,494 +15208,6 @@
       ],
       "resolved_bugs": [],
       "active_bugs": []
-    },
-    {
-      "name": "田宇飞",
-      "role": "前端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 20,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 48.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 4,
-      "done_estimate": 56.0,
-      "done_consumed": 48.0,
-      "month_done_hours": 48.0,
-      "active_count": 16,
-      "active_estimate": 144.0,
-      "active_consumed": 0.0,
-      "active_left": 144.0,
-      "total_tasks": 20,
-      "total_estimate": 200.0,
-      "completion_rate": 20.0,
-      "efficiency": 20.0,
-      "overdue": 1,
-      "done_tasks": [
-        {
-          "id": 306880,
-          "name": "【PC用户】零售分批发货为分销商发货",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "a_dev2_front",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "田宇飞",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 306879,
-          "name": "【PC用户】零售分批发货为我发货",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "a_dev2_front",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "田宇飞",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 306870,
-          "name": "【PC用户】提交订单为分销商下单分批发货",
-          "consumed": 12.0,
-          "estimate": 16.0,
-          "type": "a_dev2_front",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "田宇飞",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 306869,
-          "name": "【PC用户】提交订单为我下单分批发货",
-          "consumed": 12.0,
-          "estimate": 16.0,
-          "type": "a_dev2_front",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "田宇飞",
-          "finished_date": "2026-08-07"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 305722,
-          "name": "【PC用户】收银台",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-07-13",
-          "deadline": "2026-08-15"
-        },
-        {
-          "id": 307346,
-          "name": "【PC用户】家用分批提货为我下单",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-16",
-          "deadline": "2026-08-31"
-        },
-        {
-          "id": 307347,
-          "name": "【PC用户】家用分批提货为分销商下单",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 12.0,
-          "consumed": 0.0,
-          "left": 12.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-16",
-          "deadline": "2026-08-31"
-        },
-        {
-          "id": 307353,
-          "name": "【PC用户】新增分批发货为我下单",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-16",
-          "deadline": "2026-08-31"
-        },
-        {
-          "id": 307354,
-          "name": "【PC用户】新增分批发货为分销商下单",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 12.0,
-          "consumed": 0.0,
-          "left": 12.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-16",
-          "deadline": "2026-08-31"
-        },
-        {
-          "id": 307355,
-          "name": "【PC用户】新增分批发货为我发货",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-16",
-          "deadline": "2026-08-31"
-        },
-        {
-          "id": 307356,
-          "name": "【PC用户】新增分批发货为分销商发货",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 12.0,
-          "consumed": 0.0,
-          "left": 12.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-16",
-          "deadline": "2026-08-31"
-        },
-        {
-          "id": 307357,
-          "name": "【PC用户】专属收银台",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 16.0,
-          "consumed": 0.0,
-          "left": 16.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-16",
-          "deadline": "2026-08-31"
-        },
-        {
-          "id": 319182,
-          "name": "【PC管理】免邮模板查询条件",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        },
-        {
-          "id": 319183,
-          "name": "【PC管理】添加免邮模板新增指定商家类型",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        },
-        {
-          "id": 319184,
-          "name": "【PC管理】指定商家类型对应配置改造",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        },
-        {
-          "id": 319185,
-          "name": "【PC管理】编辑免邮模板指定商家类型",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        },
-        {
-          "id": 319186,
-          "name": "【PC管理】查看免邮模板指定商家类型",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        },
-        {
-          "id": 319259,
-          "name": "【PC用户】企业管理企业信息增加变更记录",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        },
-        {
-          "id": 319260,
-          "name": "【PC用户】审批详情展示签署信息",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        },
-        {
-          "id": 319261,
-          "name": "【PC管理】审批流配置",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0830/dev12.0）【2026】",
-          "opened_date": "2026-08-13",
-          "deadline": "2026-09-03"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 334421,
-          "title": "【QA-PC-用户侧-商用工程小单】经销商没有分销商，结果点击工程定金去提货，结果跳转提交订单页面，显示为分销商下单信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 334261,
-          "title": "【QA-PC-用户侧-零售大单】零售大单和零售一层订单，支付页，金额字段有误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334177,
-          "title": "【QA-PC-用户侧-分批提货小单】小单支付页，显示的不是运费金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334092,
-          "title": "【QA-PC-用户侧-分批提货小单】去发货，选择100商品，没有提示最多选择99，",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333859,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，为分销商下单，提示：订单行【3582026081100014701】",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333848,
-          "title": "【QA-PC-用户侧-分批提货小单】新增分批发货页，为分销商下单，找不到对应商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333798,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，下单达到免邮，提交后，显示404",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333793,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，商品列表能全部删除",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333788,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货小单，下自提单，结果提示请选择期望自提仓库",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 333784,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，没有做重复校验，能勾选相同订单添加到商品列表",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333700,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单类型筛选无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333693,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单时间筛选无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333662,
-          "title": "【QA-PC-用户侧-分批提货小单】为分销商下小单，选择分销商后，没有加载分销商地址",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333654,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，加载数据上限为100，加载数据依旧为10",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333651,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，数据没有变动，仅序号变动了",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333648,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，缺少字段：订单号  订单行号  下单时间  订单类型",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333632,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，搜索SKU无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333607,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，勾选有相同SKU的商品时，会把其他SKU同步勾选上",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 334560,
-          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单列表勾选为分销商下单的商品，去发货，发货单提交界面，没有自动选择对应分销",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 334558,
-          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单弹窗中勾选商品，去发货，进入发货单提交界面，默认商品订购数量为1，但提交",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
     },
     {
       "name": "江小芳",
