@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迭代容量规划报告 — 2026-08-19</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f0f2f5; color: #333; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+.header {
+    background: linear-gradient(135deg, #1a73e8, #4a9af5, #7ec8f7);
+    color: white; padding: 28px 32px; border-radius: 12px; margin-bottom: 24px;
+}
+.header h1 { font-size: 22px; font-weight: 600; }
+.header .subtitle { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+
+.summary-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.card {
+    background: white; border-radius: 12px; padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.card .label { font-size: 12px; color: #888; margin-bottom: 8px; }
+.card .value { font-size: 28px; font-weight: 600; }
+.card.danger { border-left: 3px solid #ef4444; }
+.card.danger .value { color: #ef4444; }
+.card.warning { border-left: 3px solid #f59e0b; }
+.card.warning .value { color: #f59e0b; }
+.card.success { border-left: 3px solid #10b981; }
+.card.success .value { color: #10b981; }
+.card.info { border-left: 3px solid #3b82f6; }
+.card.info .value { color: #3b82f6; }
+
+.section { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 24px; overflow: hidden; }
+.section-title {
+    font-size: 16px; font-weight: 600; padding: 18px 24px;
+    border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px;
+}
+.section-body { padding: 24px; }
+
+.chart-row { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+.chart-box { min-height: 300px; }
+.chart-box canvas { max-height: 300px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f8f9fa; padding: 10px 12px; text-align: left; font-weight: 500; color: #666; border-bottom: 2px solid #e0e0e0; white-space: nowrap; }
+td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; }
+tr:hover { background: #f8faff; }
+
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; }
+.badge-danger { background: #fef2f2; color: #ef4444; }
+.badge-warning { background: #fffbeb; color: #f59e0b; }
+.badge-success { background: #f0fdf4; color: #10b981; }
+.badge-info { background: #eff6ff; color: #3b82f6; }
+.badge-unknown { background: #f8f9fa; color: #999; }
+
+.role-bar {
+    display: inline-block; height: 20px; border-radius: 4px;
+    vertical-align: middle; margin-right: 6px;
+}
+
+.ratio-bar-container {
+    width: 100%; height: 24px; background: #f0f0f0; border-radius: 4px; overflow: hidden; position: relative;
+}
+.ratio-bar-fill {
+    height: 100%; border-radius: 4px; transition: width 0.3s;
+}
+.ratio-bar-text { position: absolute; top: 50%; transform: translateY(-50%); font-size: 11px; font-weight: 500; padding: 0 8px; }
+
+.velocity-legend { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; }
+.velocity-legend-item { display: flex; align-items: center; gap: 4px; }
+.velocity-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+.footer { text-align: center; padding: 24px; color: #999; font-size: 12px; }
+
+.platform-tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; margin-right: 4px; }
+.platform-902 { background: #ede9fe; color: #7c3aed; }
+.platform-1244 { background: #dcfce7; color: #10b981; }
+.platform-1245 { background: #fff7ed; color: #ea580c; }
+
+details { margin-bottom: 16px; }
+details:last-child { margin-bottom: 0; }
+summary {
+    cursor: pointer; padding: 10px 14px; background: #f8f9fa; border-radius: 8px;
+    font-weight: 500; font-size: 13px; user-select: none;
+}
+summary:hover { background: #f0f1f3; }
+details[open] summary { background: #e8f0fe; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📊 迭代容量规划报告</h1>
+    <div class="subtitle">2026-08-19 · 基于历史 Velocity 的产能评估 · Story Points 系统 v1.0</div>
+</div>
+
+<div class="summary-cards">
+    <div class="card success">
+        <div class="label">🔴 超载迭代</div>
+        <div class="value">0</div>
+    </div>
+    <div class="card warning">
+        <div class="label">🟡 偏多迭代</div>
+        <div class="value">0</div>
+    </div>
+    <div class="card success">
+        <div class="label">🟢 正常迭代</div>
+        <div class="value">6</div>
+    </div>
+    <div class="card info">
+        <div class="label">📈 历史基线 (总体)</div>
+        <div class="value">1782h</div>
+    </div>
+</div>
+
+<div class="section">
+<div class="section-title">📈 历史 Velocity（按角色，已完成迭代的 done 任务工时）</div>
+<div class="section-body">
+<div class="chart-row">
+<div class="chart-box"><canvas id="velocityChart"></canvas></div>
+<div style="font-size: 13px;">
+    <table>
+        <tr><th>角色</th><th>推算均值(h/迭代)</th><th>占比</th><th>累计工时</th><th>样本迭代数</th></tr>
+        <tr>
+            <td><span class="role-bar" style="width:12px;background:#7c3aed"></span>产品</td>
+            <td><b>89</b></td>
+            <td>5.0%</td>
+            <td>446h</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td><span class="role-bar" style="width:12px;background:#10b981"></span>后端</td>
+            <td><b>621</b></td>
+            <td>34.9%</td>
+            <td>3107h</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td><span class="role-bar" style="width:12px;background:#db2777"></span>前端</td>
+            <td><b>265</b></td>
+            <td>14.9%</td>
+            <td>1324h</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td><span class="role-bar" style="width:12px;background:#ea580c"></span>移动端</td>
+            <td><b>243</b></td>
+            <td>13.6%</td>
+            <td>1214h</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td><span class="role-bar" style="width:12px;background:#0284c7"></span>测试</td>
+            <td><b>307</b></td>
+            <td>17.2%</td>
+            <td>1533h</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td><span class="role-bar" style="width:12px;background:#64748b"></span>其他</td>
+            <td><b>258</b></td>
+            <td>14.5%</td>
+            <td>1288h</td>
+            <td>5</td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">🔍 活跃迭代容量检查</div>
+<div class="section-body">
+<table>
+<tr><th>平台</th><th>迭代</th><th>进度</th><th>计划工时</th><th>基线(h)</th><th>负载率</th><th>任务数</th><th>产品</th><th>后端</th><th>前端</th><th>移动端</th><th>测试</th><th>状态</th></tr>
+<tr>
+    <td><span class="platform-tag platform-902">网批2.0</span></td>
+    <td><b>网批模式_V2.83.0（0830/dev12.0）【2026】</b> <span style="font-size:11px;color:#999">(eid=4661)</span></td>
+    <td>36%</td>
+    <td><b>1454h</b></td>
+    <td>1782h</td>
+    <td><b style="color:#10b981">82%</b></td>
+    <td>229</td>
+    <td><span style="color:#ef4444;font-weight:500">284h</span></td>
+    <td><span style="color:#10b981;font-weight:500">539h</span></td>
+    <td><span style="color:#ef4444;font-weight:500">496h</span></td>
+    <td><span style="color:#10b981;font-weight:500">135h</span></td>
+    <td>-</td>
+    <td><span class="badge badge-success">正常</span></td>
+</tr>
+<tr>
+    <td><span class="platform-tag platform-902">网批2.0</span></td>
+    <td><b>网批模式_V2.82.0（0820/dev11.9.1）【2026】</b> <span style="font-size:11px;color:#999">(eid=4660)</span></td>
+    <td>82%</td>
+    <td><b>871h</b></td>
+    <td>1782h</td>
+    <td><b style="color:#10b981">49%</b></td>
+    <td>99</td>
+    <td><span style="color:#ef4444;font-weight:500">215h</span></td>
+    <td><span style="color:#10b981;font-weight:500">126h</span></td>
+    <td><span style="color:#10b981;font-weight:500">148h</span></td>
+    <td><span style="color:#f59e0b;font-weight:500">354h</span></td>
+    <td><span style="color:#10b981;font-weight:500">28h</span></td>
+    <td><span class="badge badge-success">正常</span></td>
+</tr>
+<tr>
+    <td><span class="platform-tag platform-902">网批2.0</span></td>
+    <td><b>网批模式_V2.85.0（0930/dev12.2）【2026】</b> <span style="font-size:11px;color:#999">(eid=4764)</span></td>
+    <td>26%</td>
+    <td><b>209h</b></td>
+    <td>1782h</td>
+    <td><b style="color:#10b981">12%</b></td>
+    <td>20</td>
+    <td><span style="color:#10b981;font-weight:500">93h</span></td>
+    <td><span style="color:#10b981;font-weight:500">116h</span></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td><span class="badge badge-success">正常</span></td>
+</tr>
+<tr>
+    <td><span class="platform-tag platform-902">网批2.0</span></td>
+    <td><b>网批AI需求研究开发【2026】</b> <span style="font-size:11px;color:#999">(eid=4503)</span></td>
+    <td>87%</td>
+    <td><b>64h</b></td>
+    <td>1782h</td>
+    <td><b style="color:#10b981">4%</b></td>
+    <td>6</td>
+    <td>-</td>
+    <td><span style="color:#10b981;font-weight:500">64h</span></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td><span class="badge badge-success">正常</span></td>
+</tr>
+<tr>
+    <td><span class="platform-tag platform-1244">集采</span></td>
+    <td><b>集采平台_V1.30.0（0812/集采dev4.0）【2026】</b> <span style="font-size:11px;color:#999">(eid=4647)</span></td>
+    <td>74%</td>
+    <td><b>64h</b></td>
+    <td>1782h</td>
+    <td><b style="color:#10b981">4%</b></td>
+    <td>3</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td><span style="color:#10b981;font-weight:500">64h</span></td>
+    <td><span class="badge badge-success">正常</span></td>
+</tr>
+<tr>
+    <td><span class="platform-tag platform-902">网批2.0</span></td>
+    <td><b>网批模式_V2.81.0（0803/dev11.8）【2026】</b> <span style="font-size:11px;color:#999">(eid=4625)</span></td>
+    <td>100%</td>
+    <td><b>8h</b></td>
+    <td>1782h</td>
+    <td><b style="color:#10b981">0%</b></td>
+    <td>2</td>
+    <td><span style="color:#10b981;font-weight:500">8h</span></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td><span class="badge badge-success">正常</span></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="section">
+<div class="section-title">💡 规划建议</div>
+<div class="section-body" style="font-size:13px;line-height:1.8">
+<p>🟢 所有活跃迭代负载正常，当前规划合理。</p><p style="margin-top: 16px; color: #888;">📐 方法论说明：</p>
+<ul style="color: #888;">
+<li>历史 Velocity = 已完成迭代中 done 任务的 estimate 工时均值</li>
+<li>负载率 = 当前迭代计划工时 / 对应角色历史 Velocity</li>
+<li>阈值：&gt;150% 超载 🔴 | 120-150% 偏多 🟡 | 50-120% 正常 🟢 | &lt;50% 不足</li>
+</ul>
+</div>
+</div>
+<div class="footer">禅道容量规划系统 v1.1 · 数据来源: ztpm.gree.com:8888 · 生成时间: 2026-08-19</div></div><script>
+const ctx = document.getElementById('velocityChart').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["\u4ea7\u54c1", "\u540e\u7aef", "\u524d\u7aef", "\u79fb\u52a8\u7aef", "\u6d4b\u8bd5", "\u5176\u4ed6"],
+        datasets: [{
+            label: '平均工时 (h)',
+            data: [89.2, 621.4, 264.8, 242.8, 306.6, 257.6],
+            backgroundColor: ["#7c3aed", "#10b981", "#db2777", "#ea580c", "#0284c7", "#64748b"],
+            borderRadius: 6,
+            borderSkipped: false,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true, title: { display: true, text: '工时 (h)' }, grid: { color: '#f0f0f0' } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+</script></body></html>
