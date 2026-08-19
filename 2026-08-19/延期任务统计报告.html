@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-08-19 | 全平台延期任务追踪 | 共 36 个延期任务 | 网批2.0: 36</p></div>
+<p>数据截止：2026-08-19 | 全平台延期任务追踪 | 共 14 个延期任务 | 网批2.0: 14</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">36</div><div class="label">延期任务总数</div></div>
-<div class="card card-wait"><div class="num">23</div><div class="label">待处理</div></div>
-<div class="card card-doing"><div class="num">13</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">36</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">10</div><div class="label">涉及人员</div></div>
+<div class="card card-total"><div class="num">14</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">3</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">11</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">14</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">6</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -71,105 +71,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
     <details open>
         <summary style="background:#667eea15; border-left:4px solid #667eea;">
-            <span class="assignee-name">陈灿茂</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共10个</span>
-                <span class="stat-badge stat-wait">待处理10</span>
-                <span class="stat-badge stat-doing">进行中0</span>
-                <span class="stat-badge stat-overdue">最长9天</span>
-                <span class="stat-badge stat-h">预估80h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余80h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>316496</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】分批发货小单详情">【Android】分批发货小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316241</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】合并支付-待付款订单">【Android】合并支付-待付款订单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316232</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】组合套餐-为分销商发货">【Android】组合套餐-为分销商发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316231</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】组合套餐发货-为我发货">【Android】组合套餐发货-为我发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316230</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】分批发货-为分销商发货">【Android】分批发货-为分销商发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316229</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】分批发货-为我发货">【Android】分批发货-为我发货</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316158</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】分批发货-为经销商下单">【Android】分批发货-为经销商下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316157</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】分批发货-为我下单">【Android】分批发货-为我下单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>315439</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】分配发货大单详情">【Android】分配发货大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>315438</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【Android】分配发货大单列表">【Android】分配发货大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
-            <span class="assignee-name">许峻嘉</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共7个</span>
-                <span class="stat-badge stat-wait">待处理7</span>
-                <span class="stat-badge stat-doing">进行中0</span>
-                <span class="stat-badge stat-overdue">最长1天</span>
-                <span class="stat-badge stat-h">预估28h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余28h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>310298</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】内容运营-榜单推荐审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）">【后端】内容运营-榜单推荐审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>310297</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】内容运营-热搜词审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）">【后端】内容运营-热搜词审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>310296</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】内容运营-轮播图审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）">【后端】内容运营-轮播图审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>310295</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】内容运营-公告审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）">【后端】内容运营-公告审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>310294</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销售方案3.0-工程销售方案审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）">【后端】销售方案3.0-工程销售方案审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>310293</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销售方案3.0-返利销售方案审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）">【后端】销售方案3.0-返利销售方案审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>310292</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】销售方案3.0-日常销售方案审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）">【后端】销售方案3.0-日常销售方案审批流可视化改造（根据审批和数据控权显示下个审批人【部门，岗位，业务经理，人员四个维度】）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
-            <span class="assignee-name">吴炜欣</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共7个</span>
-                <span class="stat-badge stat-wait">待处理4</span>
-                <span class="stat-badge stat-doing">进行中3</span>
-                <span class="stat-badge stat-overdue">最长9天</span>
-                <span class="stat-badge stat-h">预估68h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余68h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>316236</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】小单取消发货（申请取消发货）">【iOS】小单取消发货（申请取消发货）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316209</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】大单申请退款-用户侧">【iOS】大单申请退款-用户侧</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316162</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】支付成功页">【iOS】支付成功页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>315441</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】分配发货大单详情申请退款">【iOS】分配发货大单详情申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>313782</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】供应链金融资金账户流水明细">【iOS】供应链金融资金账户流水明细</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>12</td><td>0</td><td>12</td></tr>
-<tr class="row-overdue"><td>313781</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】供应链金融资金账户流水列表">【iOS】供应链金融资金账户流水列表</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>12</td><td>0</td><td>12</td></tr>
-<tr class="row-overdue"><td>313778</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】供应链金融资金账户">【iOS】供应链金融资金账户</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>12</td><td>0</td><td>12</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
             <span class="assignee-name">张春杰</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共4个</span>
@@ -189,16 +90,45 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr class="row-overdue"><td>316234</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】收银台">【iOS】收银台</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316159</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】支付收银台">【iOS】支付收银台</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316156</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】分批发货-为经销商下单">【iOS】分批发货-为经销商下单</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>316155</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】分批发货-为我下单">【iOS】分批发货-为我下单</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>316234</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】收银台">【iOS】收银台</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>316159</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】支付收银台">【iOS】支付收银台</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>316156</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】分批发货-为经销商下单">【iOS】分批发货-为经销商下单</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>316155</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】分批发货-为我下单">【iOS】分批发货-为我下单</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
 </tbody>
 </table>
 </div>
 </details>
     <details>
-        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">吴炜欣</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理1</span>
+                <span class="stat-badge stat-doing">进行中3</span>
+                <span class="stat-badge stat-overdue">最长9天</span>
+                <span class="stat-badge stat-h">预估44h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余44h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>316162</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】支付成功页">【iOS】支付成功页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>8</td><td>0</td><td>8</td></tr>
+<tr class="row-overdue"><td>313782</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】供应链金融资金账户流水明细">【iOS】供应链金融资金账户流水明细</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>12</td><td>0</td><td>12</td></tr>
+<tr class="row-overdue"><td>313781</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】供应链金融资金账户流水列表">【iOS】供应链金融资金账户流水列表</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>12</td><td>0</td><td>12</td></tr>
+<tr class="row-overdue"><td>313778</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【iOS】供应链金融资金账户">【iOS】供应链金融资金账户</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>a_dev6_mobile</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-10</td><td style="color:#ef4444;font-weight:700;">9天</td><td>12</td><td>0</td><td>12</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">未指派</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共2个</span>
@@ -225,7 +155,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
             <span class="assignee-name">王也</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共2个</span>
@@ -252,33 +182,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
-            <span class="assignee-name">孙元通</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共1个</span>
-                <span class="stat-badge stat-wait">待处理0</span>
-                <span class="stat-badge stat-doing">进行中1</span>
-                <span class="stat-badge stat-overdue">最长1天</span>
-                <span class="stat-badge stat-h">预估4h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余4h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>320436</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】需求技术评审河北家用卖商用品类的需求，涉及供应链数据、需求计划板块">【后端】需求技术评审河北家用卖商用品类的需求，涉及供应链数据、需求计划板块</td><td><span class="badge-wait">进行中</span></td><td>2-高</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>4</td><td>0</td><td>4</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
             <span class="assignee-name">钟日健</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -298,39 +202,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr class="row-overdue"><td>320431</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】西商用销司也需要切换业务线模式，领导在企微已经审批完毕，相关的日销、返利、活动也需要重新安排绘制了。工程7个图">【后端】西商用销司也需要切换业务线模式，领导在企微已经审批完毕，相关的日销、返利、活动也需要重新安排绘制了。工程7个图</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>2</td><td>0</td><td>2</td></tr>
+<tr class="row-overdue"><td>320431</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】西商用销司也需要切换业务线模式，领导在企微已经审批完毕，相关的日销、返利、活动也需要重新安排绘制了。工程7个图">【后端】西商用销司也需要切换业务线模式，领导在企微已经审批完毕，相关的日销、返利、活动也需要重新安排绘制了。工程7个图</td><td><span class="badge-wait">待处理</span></td><td>1-紧急</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>2</td><td>0</td><td>2</td></tr>
 </tbody>
 </table>
 </div>
 </details>
     <details>
-        <summary style="background:#ef535015; border-left:4px solid #ef5350;">
-            <span class="assignee-name">胡健</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共1个</span>
-                <span class="stat-badge stat-wait">待处理0</span>
-                <span class="stat-badge stat-doing">进行中1</span>
-                <span class="stat-badge stat-overdue">最长1天</span>
-                <span class="stat-badge stat-h">预估8h</span>
-                <span class="stat-badge stat-h">消耗4h</span>
-                <span class="stat-badge stat-h">剩余4h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>317053</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】FMS在分销入账方式调整需求">【产品】FMS在分销入账方式调整需求</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ab1_needs_research</td><td>网批模式_V2.83.0（0830/dev12.0）【2026】</td><td>2026-08-18</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>4</td><td>4</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#66bb6a15; border-left:4px solid #66bb6a;">
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
             <span class="assignee-name">梁庆芬</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -350,16 +228,16 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr class="row-overdue"><td>303844</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】供应链金融-订单部分">【产品】供应链金融-订单部分</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.82.0（0820/dev11.9.1）【2026】</td><td>2026-07-31</td><td style="color:#ef4444;font-weight:700;">19天</td><td>120</td><td>110</td><td>10</td></tr>
+<tr class="row-overdue"><td>303844</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【产品】供应链金融-订单部分">【产品】供应链金融-订单部分</td><td><span class="badge-wait">进行中</span></td><td>3-中</td><td>ab2_request_des</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-07-31</td><td style="color:#ef4444;font-weight:700;">19天</td><td>120</td><td>110</td><td>10</td></tr>
 </tbody>
 </table>
 </div>
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u9648\u707f\u8302", "\u8bb8\u5cfb\u5609", "\u5434\u709c\u6b23", "\u5f20\u6625\u6770", "\u672a\u6307\u6d3e", "\u738b\u4e5f", "\u5b59\u5143\u901a", "\u949f\u65e5\u5065", "\u80e1\u5065", "\u6881\u5e86\u82ac"],datasets:[{label:'延期任务数',data:[10, 7, 7, 4, 2, 2, 1, 1, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80", "#f5576c80", "#ffa72680", "#26c6da80", "#ab47bc80", "#ef535080", "#66bb6a80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[23, 13],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[1, 1, 34],backgroundColor:["#ef4444", "#f5576c", "#ffa726"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u5f20\u6625\u6770", "\u5434\u709c\u6b23", "\u672a\u6307\u6d3e", "\u738b\u4e5f", "\u949f\u65e5\u5065", "\u6881\u5e86\u82ac"],datasets:[{label:'延期任务数',data:[4, 4, 2, 2, 1, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80", "#f5576c80", "#ffa72680"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[3, 11],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "3-\u4e2d"],datasets:[{data:[1, 13],backgroundColor:["#ef4444", "#f5576c"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
