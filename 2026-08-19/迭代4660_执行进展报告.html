@@ -245,25 +245,47 @@ function liveRefresh(eid){
   <div class="progress-cards">   <div class="prog-card"><div class="label">⏱️ 时间进度</div><div class="value" style="color:#1890ff;" id="v_time">96.9%</div>
       <div class="bar-outer"><div class="bar-inner" id="bar_time" style="width:96.9%;background:linear-gradient(90deg,#1890ff,#60a5fa);"></div></div>
       <div class="detail" id="d_time">已过 62/64 天</div></div>
-    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;" id="v_prog">98.6%</div>
-      <div class="bar-outer"><div class="bar-inner" id="bar_prog" style="width:98.6%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
+    <div class="prog-card"><div class="label">🚀 系统进度</div><div class="value" style="color:#faad14;" id="v_prog">98.5%</div>
+      <div class="bar-outer"><div class="bar-inner" id="bar_prog" style="width:98.5%;background:linear-gradient(90deg,#faad14,#fb923c);"></div></div>
       <div class="detail" id="d_prog">状态: doing</div></div>
     <div class="prog-card"><div class="label">📋 需求总数</div><div class="value num-blue" id="v_story">29</div>
       <div class="detail">active: <span id="d_story_a">29</span> &nbsp; closed: <span id="d_story_c">0</span></div></div>
-    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple" id="v_task">284</div>
-      <div class="detail">进行中: <span id="d_task_d">4</span> &nbsp; 待处理: <span id="d_task_w">1</span></div></div>
+    <div class="prog-card"><div class="label">📦 任务总数</div><div class="value num-purple" id="v_task">286</div>
+      <div class="detail">进行中: <span id="d_task_d">4</span> &nbsp; 待处理: <span id="d_task_w">3</span></div></div>
     <div class="prog-card"><div class="label">🐛 Bug总数</div><div class="value num-red" id="v_bug">449</div>
       <div class="detail">未关闭: <span id="d_bug_a">0</span> &nbsp; 已关闭: 449</div></div>
   </div>  <div class="dual-col">
-    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>已完成/已关闭任务 279 个（98.2%）</li><li>进行中任务 4 个，团队在推进</li></ul></div></div></div><div class="section"><h2>📋 需求分析（29 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">29</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">29</div><div class="lbl">已立项</div></div></div><h3>需求明细（点击表头可排序）</h3><table id="storyTable"><thead><tr><th class="sortable" data-col="0" onclick="sortStoryTable(0,this)">ID<span class="sort-arrow"></span></th><th class="sortable" data-col="1" onclick="sortStoryTable(1,this)">优先级<span class="sort-arrow"></span></th><th class="sortable" data-col="2" onclick="sortStoryTable(2,this)">标题<span class="sort-arrow"></span></th><th class="sortable" data-col="3" onclick="sortStoryTable(3,this)">状态<span class="sort-arrow"></span></th><th class="sortable" data-col="4" onclick="sortStoryTable(4,this)">阶段<span class="sort-arrow"></span></th><th class="sortable" data-col="5" onclick="sortStoryTable(5,this)">创建人<span class="sort-arrow"></span></th></tr></thead><tbody id="storyTbody"><tr class="story-row" onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-id="68870" data-pri="3" data-status="active" data-stage="projected" data-stage-label="已立项" data-openedby="梁庆芬" data-title="零售配送小单合并支付免运费优化">
+    <div class="col"><div class="alert-box"><h3>⚠️ 风险预警</h3><ul></ul></div></div><div class="col"><div class="info-box"><h3>✅ 进展亮点</h3><ul><li>已完成/已关闭任务 279 个（97.6%）</li><li>进行中任务 4 个，团队在推进</li></ul></div></div></div><div class="section"><h2>📋 需求分析（29 个）</h2><div class="stat-grid"><div class="stat-item"><div class="num num-blue">29</div><div class="lbl">active</div></div><div class="stat-item"><div class="num num-green">0</div><div class="lbl">closed</div></div><div class="stat-item"><div class="num num-orange">0</div><div class="lbl">changed</div></div><div class="stat-item"><div class="num num-red">0</div><div class="lbl">draft</div></div><div class="stat-item"><div class="num num-purple">29</div><div class="lbl">已立项</div></div></div><h3>需求明细（点击表头可排序）</h3><table id="storyTable"><thead><tr><th class="sortable" data-col="0" onclick="sortStoryTable(0,this)">ID<span class="sort-arrow"></span></th><th class="sortable" data-col="1" onclick="sortStoryTable(1,this)">优先级<span class="sort-arrow"></span></th><th class="sortable" data-col="2" onclick="sortStoryTable(2,this)">标题<span class="sort-arrow"></span></th><th class="sortable" data-col="3" onclick="sortStoryTable(3,this)">状态<span class="sort-arrow"></span></th><th class="sortable" data-col="4" onclick="sortStoryTable(4,this)">阶段<span class="sort-arrow"></span></th><th class="sortable" data-col="5" onclick="sortStoryTable(5,this)">创建人<span class="sort-arrow"></span></th></tr></thead><tbody id="storyTbody"><tr class="story-row" onclick="toggleStoryDetail('story_detail_0')" style="cursor:pointer;" data-id="68870" data-pri="3" data-status="active" data-stage="projected" data-stage-label="已立项" data-openedby="梁庆芬" data-title="零售配送小单合并支付免运费优化">
             <td><span class="expand-icon" id="arrow_story_detail_0">▶</span>68870</td>
-            <td>P3</td><td style="max-width:400px;">零售配送小单合并支付免运费优化</td>
+            <td>P3</td><td style="max-width:400px;">零售配送小单合并支付免运费优化 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr class="story-row" onclick="toggleStoryDetail('story_detail_1')" style="cursor:pointer;" data-id="68869" data-pri="3" data-status="active" data-stage="projected" data-stage-label="已立项" data-openedby="梁庆芬" data-title="商用合并支付接单页展示运费方量短期方案">
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_0" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #68870 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">321081</td><td style="font-size:12px;">【总任务】零售配送小单合并支付免运费优化</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-08-20</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr class="story-row" onclick="toggleStoryDetail('story_detail_1')" style="cursor:pointer;" data-id="68869" data-pri="3" data-status="active" data-stage="projected" data-stage-label="已立项" data-openedby="梁庆芬" data-title="商用合并支付接单页展示运费方量短期方案">
             <td><span class="expand-icon" id="arrow_story_detail_1">▶</span>68869</td>
-            <td>P3</td><td style="max-width:400px;">商用合并支付接单页展示运费方量短期方案</td>
+            <td>P3</td><td style="max-width:400px;">商用合并支付接单页展示运费方量短期方案 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">1个任务</span></td>
             <td>active</td><td>已立项</td>
-            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr class="story-row" onclick="toggleStoryDetail('story_detail_2')" style="cursor:pointer;" data-id="68257" data-pri="3" data-status="active" data-stage="projected" data-stage-label="已立项" data-openedby="符宏勇" data-title="家用自提函修改放宽状态限制">
+            <td style="font-size:12px;color:#888;">梁庆芬</td></tr><tr id="story_detail_1" class="detail-row" style="display:none;">
+            <td colspan="6" style="padding:0;background:#f8f9fc;">
+            <div style="padding:10px 16px;">
+            <div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:600;">🔗 需求 #68869 关联的任务（1个）</div>
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead><tr style="background:#e8ecf3;">
+            <th style="padding:3px 6px;text-align:left;">ID</th><th style="padding:3px 6px;text-align:left;">任务名称</th>
+            <th style="padding:3px 6px;text-align:left;">状态</th><th style="padding:3px 6px;text-align:left;">优先级</th>
+            <th style="padding:3px 6px;text-align:left;">类型</th><th style="padding:3px 6px;text-align:left;">负责人</th>
+            <th style="padding:3px 6px;text-align:left;">截止</th><th style="padding:3px 6px;text-align:left;">预估</th>
+            <th style="padding:3px 6px;text-align:left;">消耗</th><th style="padding:3px 6px;text-align:left;">剩余</th>
+            </tr></thead><tbody><tr><td style="font-size:12px;color:#888;">321082</td><td style="font-size:12px;">【总任务】商用合并支付接单页展示运费方量短期方案</td><td><span class="st-wait" style="font-size:11px;">⏳ 待处理</span></td><td style="font-size:12px;color:#888;">🟡 P3</td><td style="font-size:12px;color:#888;">事务</td><td style="font-size:12px;color:#888;"></td><td style="font-size:12px;color:#888;">2026-08-20</td><td style="font-size:12px;color:#888;">1h</td><td style="font-size:12px;color:#888;">0h</td><td style="font-size:12px;color:#888;">1h</td></tr></tbody></table></div></td></tr><tr class="story-row" onclick="toggleStoryDetail('story_detail_2')" style="cursor:pointer;" data-id="68257" data-pri="3" data-status="active" data-stage="projected" data-stage-label="已立项" data-openedby="符宏勇" data-title="家用自提函修改放宽状态限制">
             <td><span class="expand-icon" id="arrow_story_detail_2">▶</span>68257</td>
             <td>P3</td><td style="max-width:400px;">家用自提函修改放宽状态限制 <span style="font-size:11px;color:#3b82f6;background:#dbeafe;padding:1px 6px;border-radius:8px;margin-left:4px;">7个任务</span></td>
             <td>active</td><td>已立项</td>
