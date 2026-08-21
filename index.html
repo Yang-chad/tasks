@@ -668,7 +668,7 @@ function liveRefreshRoot(){
   var isGH=window.location.origin.indexOf('github.io')>=0;
   if(isGH || window.location.protocol==='file:'){
     btn.classList.add('loading');
-    var SVR = localStorage.getItem('zentao_svr') || 'https://172.28.52.94:8900';
+    var SVR = localStorage.getItem('zentao_svr') || 'https://localhost:8900';
     // 主通道: fetch cors（自签证书已导入信任库，HTTPS→HTTPS 同协议无混合内容问题）
     fetch(SVR+'/trigger-pipeline', {mode:'cors', cache:'no-store'})
     .then(function(r){
@@ -685,7 +685,7 @@ function liveRefreshRoot(){
         startPoll();
       } else {
         btn.classList.remove('loading');
-        rtoast('本地刷新服务不可达 — 请确认: 1)服务已启动 2)已访问 https://172.28.52.94:8900/health 信任证书', 'err');
+        rtoast('本地刷新服务不可达 — 请确认: 1)服务已启动 2)已访问 https://localhost:8900/health 信任证书', 'err');
       }
     });
     // 90s 兜底刷新
@@ -829,7 +829,7 @@ function updateUI(d){
   <div class="settings-modal">
     <h3>⚙ 设置服务器地址</h3>
     <label>服务器地址 (IP:端口)</label>
-    <input type="text" id="settingsIP" placeholder="例: 172.28.52.94:8900" spellcheck="false">
+    <input type="text" id="settingsIP" placeholder="例: localhost:8900" spellcheck="false">
     <div class="hint">用于从 GitHub Pages 触发本地刷新，留空则使用默认地址</div>
     <div class="btn-row">
       <button class="btn-test" onclick="testConnection()">测试连接</button>
