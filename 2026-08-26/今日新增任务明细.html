@@ -15,9 +15,14 @@ body { font-family:'Microsoft YaHei','微软雅黑',sans-serif; background:#f0f2
 .summary .card .num { font-size:26px; font-weight:700; }
 .summary .card .label { font-size:12px; color:#888; margin-top:4px; }
 .section { background:#fff; border-radius:10px; padding:20px; margin-bottom:16px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
-.section h2 { font-size:16px; margin-bottom:14px; padding-left:10px; border-left:4px solid #667eea; }
-.section h2 .week { font-weight:400; color:#888; font-size:13px; margin-left:6px; }
-.section h2 .cnt { float:right; font-weight:400; color:#667eea; font-size:13px; }
+details.day-details { background:#fff; border-radius:10px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); overflow:hidden; }
+details.day-details summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:8px; padding:14px 20px; font-size:15px; font-weight:600; color:#333; border-left:4px solid #667eea; user-select:none; }
+details.day-details summary::-webkit-details-marker { display:none; }
+details.day-details summary::before { content:"▸"; color:#667eea; font-size:12px; transition:transform 0.2s; flex-shrink:0; }
+details.day-details[open] > summary::before { transform:rotate(90deg); }
+details.day-details summary .day-week { font-weight:400; color:#888; font-size:13px; }
+details.day-details summary .day-count { margin-left:auto; font-weight:600; color:#667eea; font-size:13px; }
+.day-content { padding:0 20px 20px; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th, td { padding:8px 10px; text-align:left; border-bottom:1px solid #f0f0f0; }
 th { background:#f8f9fa; color:#555; font-weight:600; white-space:nowrap; }
@@ -51,8 +56,7 @@ tr:hover { background:#f8f9ff; }
   <div class="card"><div class="num">0</div><div class="label">08-23</div></div>
   <div class="card"><div class="num">22</div><div class="label">08-22</div></div>
 </div>
-<div class="section">
-  <h2>2026-08-26<span class="week">周三</span><span class="cnt">2 个</span></h2>
+<details class="day-details"><summary><span class="day-date">2026-08-26</span><span class="day-week">周三</span><span class="day-count">2 个</span></summary><div class="day-content">
   <table>
     <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
     <tbody>
@@ -61,8 +65,8 @@ tr:hover { background:#f8f9ff; }
     </tbody>
   </table>
 </div>
-<div class="section">
-  <h2>2026-08-25<span class="week">周二</span><span class="cnt">254 个</span></h2>
+</details>
+<details class="day-details"><summary><span class="day-date">2026-08-25</span><span class="day-week">周二</span><span class="day-count">254 个</span></summary><div class="day-content">
   <table>
     <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
     <tbody>
@@ -323,8 +327,8 @@ tr:hover { background:#f8f9ff; }
     </tbody>
   </table>
 </div>
-<div class="section">
-  <h2>2026-08-24<span class="week">周一</span><span class="cnt">39 个</span></h2>
+</details>
+<details class="day-details"><summary><span class="day-date">2026-08-24</span><span class="day-week">周一</span><span class="day-count">39 个</span></summary><div class="day-content">
   <table>
     <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
     <tbody>
@@ -370,9 +374,9 @@ tr:hover { background:#f8f9ff; }
     </tbody>
   </table>
 </div>
-<div class="section"><h2>2026-08-23<span class="week">周日</span><span class="cnt">0 个</span></h2><p class="empty">当日无新建任务</p></div>
-<div class="section">
-  <h2>2026-08-22<span class="week">周六</span><span class="cnt">22 个</span></h2>
+</details>
+<details class="day-details"><summary><span class="day-date">2026-08-23</span><span class="day-week">周日</span><span class="day-count">0 个</span></summary><div class="day-content"><p class="empty">当日无新建任务</p></div></details>
+<details class="day-details"><summary><span class="day-date">2026-08-22</span><span class="day-week">周六</span><span class="day-count">22 个</span></summary><div class="day-content">
   <table>
     <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
     <tbody>
@@ -401,5 +405,6 @@ tr:hover { background:#f8f9ff; }
     </tbody>
   </table>
 </div>
+</details>
 </body>
 </html>
