@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成前端开发任务明细</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header"><h1>未完成前端开发任务明细</h1>
+<p>统计日期: 2026-08-26 | 总计: 148 个未完成任务 | 涉及 8 人 | 类型: a_dev2_front(148)</p></div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="cards">
+<div class="card card-total"><div class="num">148</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">122</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">26</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">8</div><div class="label">负责人</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>负责人任务分布 (Top8)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">莫世有</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共41个</span>
+                <span class="stat-badge stat-wait">待处理34</span>
+                <span class="stat-badge stat-doing">进行中7</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估308h</span>
+                <span class="stat-badge stat-h">消耗11h</span>
+                <span class="stat-badge stat-h">剩余305h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>319271</td><td title="【PC管理】新增展示“工程保证金账户”明细列表数据">【PC管理】新增展示“工程保证金账户”明细列表数据</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>3</td><td>5</td></tr>
+<tr><td>319294</td><td title="【PC管理】2.0、3.0、4.0、4.0测算模式下各类经销商销售方案审核列表增加筛选过滤">【PC管理】2.0、3.0、4.0、4.0测算模式下各类经销商销售方案审核列表增加筛选过滤</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321638</td><td title="【PC管理】【GC17】“周转机-工程资料”，新增上传类型“安装现场证明材料”">【PC管理】【GC17】“周转机-工程资料”，新增上传类型“安装现场证明材料”</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321637</td><td title="【PC管理】【GC16】“常规工程-免交资料”，新增上传类型“安装现场证明材料”">【PC管理】【GC16】“常规工程-免交资料”，新增上传类型“安装现场证明材料”</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321635</td><td title="【PC管理】【GC14】常规工程 &amp; 周转机  的工程资料、免交资料上传入口， 支持上传视频（可预览）、压缩包">【PC管理】【GC14】常规工程 & 周转机  的工程资料、免交资料上传入口， 支持上传视频（可预览）、压缩包</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321547</td><td title="【PC管理】【SY05】新增 工程参数配置 板块">【PC管理】【SY05】新增 工程参数配置 板块</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td>321546</td><td title="【PC管理】【SY04】新增 关联项目单 板块">【PC管理】【SY04】新增 关联项目单 板块</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td>319272</td><td title="【PC管理】新增“销司工程保证金收差”、“销司工程保证金返还”流水类型">【PC管理】新增“销司工程保证金收差”、“销司工程保证金返还”流水类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321644</td><td title="【H5】【GC18】“周转机-免交资料”，新增上传类型“安装现场证明材料”">【H5】【GC18】“周转机-免交资料”，新增上传类型“安装现场证明材料”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321643</td><td title="【H5】【GC17】“周转机-工程资料”，新增上传类型“安装现场证明材料”">【H5】【GC17】“周转机-工程资料”，新增上传类型“安装现场证明材料”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321642</td><td title="【H5】【GC16】“常规工程-免交资料”，新增上传类型“安装现场证明材料”">【H5】【GC16】“常规工程-免交资料”，新增上传类型“安装现场证明材料”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321641</td><td title="【H5】【GC15】“常规工程-工程资料”，新增上传类型“安装现场证明材料”">【H5】【GC15】“常规工程-工程资料”，新增上传类型“安装现场证明材料”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321640</td><td title="【H5】【GC14】常规工程 &amp; 周转机  的工程资料、免交资料上传入口， 支持上传视频（可预览）、压缩包">【H5】【GC14】常规工程 & 周转机  的工程资料、免交资料上传入口， 支持上传视频（可预览）、压缩包</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321639</td><td title="【PC管理】【GC18】“周转机-免交资料”，新增上传类型“安装现场证明材料”">【PC管理】【GC18】“周转机-免交资料”，新增上传类型“安装现场证明材料”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321632</td><td title="【H5】【SY01】工程单列表-板块-审批进度以及其4种类型单据详情">【H5】【SY01】工程单列表-板块-审批进度以及其4种类型单据详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321631</td><td title="【H5】【SY01】工程单列表-板块-工程单列表">【H5】【SY01】工程单列表-板块-工程单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321630</td><td title="【H5】【SY01】工程单列表-板块-工程单列表">【H5】【SY01】工程单列表-板块-工程单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321629</td><td title="【H5】【SY01】工程单列表-板块-新建-作废">【H5】【SY01】工程单列表-板块-新建-作废</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321628</td><td title="【H5】【SY01】工程单列表-板块-新建-代客申请">【H5】【SY01】工程单列表-板块-新建-代客申请</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321627</td><td title="【PC管理】【SY01】工程单列表-板块-审批进度以及其4种类型单据详情">【PC管理】【SY01】工程单列表-板块-审批进度以及其4种类型单据详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321626</td><td title="【PC管理】【SY01】工程单列表-板块-工程单列表">【PC管理】【SY01】工程单列表-板块-工程单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321625</td><td title="【PC管理】【SY01】工程单列表-板块-工程单列表">【PC管理】【SY01】工程单列表-板块-工程单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321624</td><td title="【PC管理】【SY01】工程单列表-板块-新建-作废">【PC管理】【SY01】工程单列表-板块-新建-作废</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321623</td><td title="【PC管理】【SY01】工程单列表-板块-新建-代客申请">【PC管理】【SY01】工程单列表-板块-新建-代客申请</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321604</td><td title="【H5】【SY03】登录审批-解除地址限制-审批&amp;amp;查看">【H5】【SY03】登录审批-解除地址限制-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321603</td><td title="【H5】【SY03】登录审批-作废-审批&amp;amp;查看">【H5】【SY03】登录审批-作废-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321602</td><td title="【H5】【SY03】登录审批-登录延期-审批&amp;amp;查看">【H5】【SY03】登录审批-登录延期-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321601</td><td title="【H5】【SY03】登录审批-省外跨区登录-审批&amp;amp;查看">【H5】【SY03】登录审批-省外跨区登录-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321600</td><td title="【H5】【SY03】登录审批-非跨区登录-审批&amp;amp;查看">【H5】【SY03】登录审批-非跨区登录-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321599</td><td title="【PC管理】【SY03】登录审批-解除地址限制-审批&amp;amp;查看">【PC管理】【SY03】登录审批-解除地址限制-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321598</td><td title="【PC管理】【SY03】登录审批-作废-审批&amp;amp;查看">【PC管理】【SY03】登录审批-作废-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321597</td><td title="【PC管理】【SY03】登录审批-登录延期-审批&amp;amp;查看">【PC管理】【SY03】登录审批-登录延期-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321596</td><td title="【PC管理】【SY03】登录审批-省外跨区登录-审批&amp;amp;查看">【PC管理】【SY03】登录审批-省外跨区登录-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321595</td><td title="【PC管理】【SY03】登录审批-非跨区登录-审批&amp;amp;查看">【PC管理】【SY03】登录审批-非跨区登录-审批&amp;查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321548</td><td title="【PC管理】【SY06】销司/客户字典 - 增加商用新模式开关配置">【PC管理】【SY06】销司/客户字典 - 增加商用新模式开关配置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321457</td><td title="【PC用户】工程单列表-板块-审批进度以及其4种类型单据详情">【PC用户】工程单列表-板块-审批进度以及其4种类型单据详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321456</td><td title="【PC用户】工程单列表-板块-工程项目单详情页">【PC用户】工程单列表-板块-工程项目单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321455</td><td title="【PC用户】工程单列表-板块-新建-解除地址限制">【PC用户】工程单列表-板块-新建-解除地址限制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321454</td><td title="【PC用户】工程单列表-板块-新建-解除地址限制">【PC用户】工程单列表-板块-新建-解除地址限制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321453</td><td title="【PC用户】工程单列表-板块-新建-登录延期">【PC用户】工程单列表-板块-新建-登录延期</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321452</td><td title="【PC用户】工程单列表-板块- 新建-工程项目单">【PC用户】工程单列表-板块- 新建-工程项目单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">田宇飞</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共35个</span>
+                <span class="stat-badge stat-wait">待处理32</span>
+                <span class="stat-badge stat-doing">进行中3</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估268h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余268h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>319261</td><td title="【PC管理】审批流配置">【PC管理】审批流配置</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319260</td><td title="【PC用户】审批详情展示签署信息">【PC用户】审批详情展示签署信息</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319259</td><td title="【PC用户】企业管理企业信息增加变更记录">【PC用户】企业管理企业信息增加变更记录</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319186</td><td title="【PC管理】查看免邮模板指定商家类型">【PC管理】查看免邮模板指定商家类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319185</td><td title="【PC管理】编辑免邮模板指定商家类型">【PC管理】编辑免邮模板指定商家类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319184</td><td title="【PC管理】指定商家类型对应配置改造">【PC管理】指定商家类型对应配置改造</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319183</td><td title="【PC管理】添加免邮模板新增指定商家类型">【PC管理】添加免邮模板新增指定商家类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319182</td><td title="【PC管理】免邮模板查询条件">【PC管理】免邮模板查询条件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>305722</td><td title="【PC用户】收银台">【PC用户】收银台</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321564</td><td title="【H5】审核详情增加审批节点展示">【H5】审核详情增加审批节点展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321622</td><td title="【H5】【SY02】批价单列表-板块- 审批进度以及其4种类型单据详情">【H5】【SY02】批价单列表-板块- 审批进度以及其4种类型单据详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321621</td><td title="【H5】【SY02】批价单列表-板块-批价单详情页">【H5】【SY02】批价单列表-板块-批价单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321620</td><td title="【H5】【SY02】批价单列表-板块- 批价单列表">【H5】【SY02】批价单列表-板块- 批价单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321619</td><td title="【H5】【SY02】批价单列表-板块-新建-作废">【H5】【SY02】批价单列表-板块-新建-作废</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321618</td><td title="【H5】【SY02】批价单列表-板块-新建-代客申请">【H5】【SY02】批价单列表-板块-新建-代客申请</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321617</td><td title="【PC管理】【SY02】批价单列表-板块- 审批进度以及其4种类型单据详情">【PC管理】【SY02】批价单列表-板块- 审批进度以及其4种类型单据详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321616</td><td title="【PC管理】【SY02】批价单列表-板块-批价单详情页">【PC管理】【SY02】批价单列表-板块-批价单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321615</td><td title="【PC管理】【SY02】批价单列表-板块- 批价单列表">【PC管理】【SY02】批价单列表-板块- 批价单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321614</td><td title="【PC管理】【SY02】批价单列表-板块-新建-作废">【PC管理】【SY02】批价单列表-板块-新建-作废</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321613</td><td title="【PC管理】【SY02】批价单列表-板块-新建-代客申请">【PC管理】【SY02】批价单列表-板块-新建-代客申请</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321612</td><td title="【H5】【SY03】价格审批-作废-审批&amp;查看">【H5】【SY03】价格审批-作废-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321611</td><td title="【H5】【SY03】价格审批-提货延期-审批&amp;查看">【H5】【SY03】价格审批-提货延期-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321610</td><td title="【H5】【SY03】价格审批-二次批价-审批&amp;查看">【H5】【SY03】价格审批-二次批价-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321609</td><td title="【H5】【SY03】价格审批-工程批价-审批&amp;查看">【H5】【SY03】价格审批-工程批价-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321608</td><td title="【PC管理】【SY03】价格审批-作废-审批&amp;查看">【PC管理】【SY03】价格审批-作废-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321607</td><td title="【PC管理】【SY03】价格审批-提货延期-审批&amp;查看">【PC管理】【SY03】价格审批-提货延期-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321606</td><td title="【PC管理】【SY03】价格审批-二次批价-审批&amp;查看">【PC管理】【SY03】价格审批-二次批价-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321605</td><td title="【PC管理】【SY03】价格审批-工程批价-审批&amp;查看">【PC管理】【SY03】价格审批-工程批价-审批&查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321450</td><td title="【PC用户】【SY09】批价单列表-板块-审批进度以及其4种类型单据详情">【PC用户】【SY09】批价单列表-板块-审批进度以及其4种类型单据详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321449</td><td title="【PC用户】【SY09】批价单列表-板块-批价单详情页">【PC用户】【SY09】批价单列表-板块-批价单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321448</td><td title="【PC用户】【SY09】批价单列表-板块-批价单列表">【PC用户】【SY09】批价单列表-板块-批价单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321447</td><td title="【PC用户】【SY09】批价单列表-板块-新建-提货延期">【PC用户】【SY09】批价单列表-板块-新建-提货延期</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321446</td><td title="【PC用户】【SY09】批价单列表-板块新建-二次批价">【PC用户】【SY09】批价单列表-板块新建-二次批价</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321445</td><td title="【PC用户】【SY09】批价单列表-板块-新建-批价单">【PC用户】【SY09】批价单列表-板块-新建-批价单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321441</td><td title="【PC用户】订单确认页展示工程批价单号">【PC用户】订单确认页展示工程批价单号</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">李漫嘉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共21个</span>
+                <span class="stat-badge stat-wait">待处理16</span>
+                <span class="stat-badge stat-doing">进行中5</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估120h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余120h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>322671</td><td title="【PC管理】钱包开通记录查询工具箱">【PC管理】钱包开通记录查询工具箱</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321903</td><td title="【PC管理】接口同步数据筛查">【PC管理】接口同步数据筛查</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321437</td><td title="【PC管理】入驻审核增加销售公司筛选条件">【PC管理】入驻审核增加销售公司筛选条件</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319178</td><td title="【PC管理】冻结\注销增加【办事处】查询条件">【PC管理】冻结\注销增加【办事处】查询条件</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319177</td><td title="【PC管理】资料变更增加【签署状态】筛选条件">【PC管理】资料变更增加【签署状态】筛选条件</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319266</td><td title="【PC管理】4.0测算全部方案提交增加弹窗">【PC管理】4.0测算全部方案提交增加弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319265</td><td title="【PC管理】4.0全部方案提交增加弹窗">【PC管理】4.0全部方案提交增加弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319264</td><td title="【PC管理】3.0全部方案提交增加弹窗">【PC管理】3.0全部方案提交增加弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319263</td><td title="【PC管理】2.0全部方案提交增加弹窗">【PC管理】2.0全部方案提交增加弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319262</td><td title="【PC管理】通用弹窗文案修改">【PC管理】通用弹窗文案修改</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319252</td><td title="【PC管理】部门管理详情增加授权业务域">【PC管理】部门管理详情增加授权业务域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319251</td><td title="【PC管理】部门管理树形组件操作置灰">【PC管理】部门管理树形组件操作置灰</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319188</td><td title="【PC管理】批量修改部门授权商家记录">【PC管理】批量修改部门授权商家记录</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319187</td><td title="【PC管理】批量修改部门授权商家">【PC管理】批量修改部门授权商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321662</td><td title="【PC管理】【GC12】工程特批方案，若关联历史工程单，展示对应的工程单信息">【PC管理】【GC12】工程特批方案，若关联历史工程单，展示对应的工程单信息</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321661</td><td title="【PC管理】【GC11】工程特批方案，新增 批量关联历史工程单 功能">【PC管理】【GC11】工程特批方案，新增 批量关联历史工程单 功能</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321660</td><td title="【PC管理】【GC10】3.0工程销售方案增加提交方案的校验提示">【PC管理】【GC10】3.0工程销售方案增加提交方案的校验提示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321659</td><td title="【PC管理】【GC10】3.0工程销售方案增加提交方案的校验提示">【PC管理】【GC10】3.0工程销售方案增加提交方案的校验提示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321440</td><td title="【PC用户】购物车支持工程商品">【PC用户】购物车支持工程商品</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321439</td><td title="【PC用户】工程保证金账户-比例保证金兼容改造，需支持查询/显示“批价单号”、“批价单状态”、“项目名称”">【PC用户】工程保证金账户-比例保证金兼容改造，需支持查询/显示“批价单号”、“批价单状态”、“项目名称”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321438</td><td title="【PC管理】工程保证金账户-比例保证金兼容改造，需支持查询/显示“批价单号”、“批价单状态”、“项目名称”">【PC管理】工程保证金账户-比例保证金兼容改造，需支持查询/显示“批价单号”、“批价单状态”、“项目名称”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">王子尘</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共18个</span>
+                <span class="stat-badge stat-wait">待处理11</span>
+                <span class="stat-badge stat-doing">进行中7</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估144h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余144h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>319683</td><td title="【H5】资料变更添加审批流程入口">【H5】资料变更添加审批流程入口</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319682</td><td title="【H5】通用组件封装">【H5】通用组件封装</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319257</td><td title="【PC管理】导航配置查询异界展示调整">【PC管理】导航配置查询异界展示调整</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319199</td><td title="【PC管理】销司商城4.0限时特价增加搜索条件组件">【PC管理】销司商城4.0限时特价增加搜索条件组件</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305689</td><td title="【PC管理】功能菜单的审批流弹窗参数调整">【PC管理】功能菜单的审批流弹窗参数调整</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305688</td><td title="【PC管理】功能菜单的审批流弹窗替换通用组件">【PC管理】功能菜单的审批流弹窗替换通用组件</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305687</td><td title="【PC管理】审批流通用组件改造">【PC管理】审批流通用组件改造</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305721</td><td title="【PC用户】我的帝订单赊销账户">【PC用户】我的帝订单赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305720</td><td title="【PC用户】我的账户详情赊销账户">【PC用户】我的账户详情赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305719</td><td title="【PC管理】经销商账户详情赊销账户">【PC管理】经销商账户详情赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305718</td><td title="【PC管理】经销商账户详情赊销账户">【PC管理】经销商账户详情赊销账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305717</td><td title="【PC管理】赊销账户额度管理配置审核列表详情查看">【PC管理】赊销账户额度管理配置审核列表详情查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305716</td><td title="【PC管理】赊销账户额度管理配置审核列表详情">【PC管理】赊销账户额度管理配置审核列表详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305715</td><td title="【PC管理】赊销账户额度管理配置审核列表">【PC管理】赊销账户额度管理配置审核列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305714</td><td title="【PC管理】赊销账户额度管理配置列表查看额度">【PC管理】赊销账户额度管理配置列表查看额度</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305713</td><td title="【PC管理】赊销账户额度管理配置列表设置额度">【PC管理】赊销账户额度管理配置列表设置额度</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>305712</td><td title="【PC管理】赊销账户额度管理配置列表">【PC管理】赊销账户额度管理配置列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321633</td><td title="【PC管理】通用组件表格列头排序以及显示功能开发">【PC管理】通用组件表格列头排序以及显示功能开发</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">艾思芹</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共12个</span>
+                <span class="stat-badge stat-wait">待处理12</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估68h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余68h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>319307</td><td title="【PC管理】销司退款售后单详情增肌审批流展示">【PC管理】销司退款售后单详情增肌审批流展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319306</td><td title="【PC管理】销司退款售后单(总部)详情">【PC管理】销司退款售后单(总部)详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319305</td><td title="【PC管理】销司退款售后单审批逻辑展示">【PC管理】销司退款售后单审批逻辑展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319198</td><td title="【PC管理】工程小单接单页面">【PC管理】工程小单接单页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319197</td><td title="【PC管理】零售小单接单页面">【PC管理】零售小单接单页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319196</td><td title="【PC管理】工程大单接单页面">【PC管理】工程大单接单页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319195</td><td title="【PC管理】零售大单接单页面">【PC管理】零售大单接单页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319561</td><td title="【PC管理】售后单详情展示信用相关信息">【PC管理】售后单详情展示信用相关信息</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319560</td><td title="【PC管理】订单详情展示信用相关信息">【PC管理】订单详情展示信用相关信息</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>321444</td><td title="【H5】工程订单、定金单、提货单详情展示批价单号">【H5】工程订单、定金单、提货单详情展示批价单号</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321443</td><td title="【PC管理】工程订单、定金单、提货单详情展示批价单号">【PC管理】工程订单、定金单、提货单详情展示批价单号</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>321442</td><td title="【PC用户】工程订单、定金单、提货单详情展示批价单号">【PC用户】工程订单、定金单、提货单详情展示批价单号</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-30</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">李红燕</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共10个</span>
+                <span class="stat-badge stat-wait">待处理6</span>
+                <span class="stat-badge stat-doing">进行中4</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估52h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余52h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>321902</td><td title="【PC管理】供应链数据说明弹窗">【PC管理】供应链数据说明弹窗</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319175</td><td title="【PC管理】员工管理账号、手机号、姓名支持多个查询">【PC管理】员工管理账号、手机号、姓名支持多个查询</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319174</td><td title="【PC管理】岗位管理权限编码搜索条件">【PC管理】岗位管理权限编码搜索条件</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319173</td><td title="【PC管理】岗位管理导出权限集合">【PC管理】岗位管理导出权限集合</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319256</td><td title="【PC管理】岗位管理详情授权业务域">【PC管理】岗位管理详情授权业务域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319255</td><td title="【PC管理】岗位管理授权业务域">【PC管理】岗位管理授权业务域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319254</td><td title="【PC管理】员工管理授权详情业务域">【PC管理】员工管理授权详情业务域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319253</td><td title="【PC管理】员工管理授权业务域">【PC管理】员工管理授权业务域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319250</td><td title="【PC管理】管理员授权配置">【PC管理】管理员授权配置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319249</td><td title="【PC管理】管理员授权列表">【PC管理】管理员授权列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
+            <span class="assignee-name">范文玉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共9个</span>
+                <span class="stat-badge stat-wait">待处理9</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估60h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余60h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>319293</td><td title="【PC管理】4.0测算经销商限时特价销售方案调价页面新增“导出经销商限购数”功能">【PC管理】4.0测算经销商限时特价销售方案调价页面新增“导出经销商限购数”功能</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319292</td><td title="【PC管理】4.0经销商限时特价销售方案调价页面新增“导出经销商限购数”功能">【PC管理】4.0经销商限时特价销售方案调价页面新增“导出经销商限购数”功能</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319291</td><td title="【PC管理】3.0经销商限时特价销售方案调价页面新增“导出经销商限购数”功能">【PC管理】3.0经销商限时特价销售方案调价页面新增“导出经销商限购数”功能</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319288</td><td title="【PC管理】4.0组合套餐方案审核新增批量屏蔽商家">【PC管理】4.0组合套餐方案审核新增批量屏蔽商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319287</td><td title="【PC管理】4.0买赠方案审核新增批量屏蔽商家">【PC管理】4.0买赠方案审核新增批量屏蔽商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319286</td><td title="【PC管理】4.0满减审核新增批量屏蔽商家">【PC管理】4.0满减审核新增批量屏蔽商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>319285</td><td title="【PC管理】4.0组合套餐方案新增批量屏蔽商家">【PC管理】4.0组合套餐方案新增批量屏蔽商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319284</td><td title="【PC管理】4.0买赠方案新增批量屏蔽商家">【PC管理】4.0买赠方案新增批量屏蔽商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>319283</td><td title="【PC管理】4.0满减方案新增批量屏蔽商家">【PC管理】4.0满减方案新增批量屏蔽商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-03</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+            <span class="assignee-name">蒋志军</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共2个</span>
+                <span class="stat-badge stat-wait">待处理2</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估24h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余24h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>323835</td><td title="【后端】运费计算-订单-单件商品收运费计算">【后端】运费计算-订单-单件商品收运费计算</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-04</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+<tr><td>323834</td><td title="【后端】运费计算-订单-订单方量计算">【后端】运费计算-订单-订单方量计算</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</td><td>2026-09-04</td><td></td><td>12</td><td>0</td><td>12</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-08-26</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u83ab\u4e16\u6709", "\u7530\u5b87\u98de", "\u674e\u6f2b\u5609", "\u738b\u5b50\u5c18", "\u827e\u601d\u82b9", "\u674e\u7ea2\u71d5", "\u8303\u6587\u7389", "\u848b\u5fd7\u519b"],datasets:[{label:'未完成任务数',data:[41, 35, 21, 18, 12, 10, 9, 2],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726", "#26c6da", "#ab47bc"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[122, 26],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[148],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
