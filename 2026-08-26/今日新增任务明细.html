@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日新增任务明细 — 2026-08-26</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Microsoft YaHei','微软雅黑',sans-serif; background:#f0f2f5; color:#333; padding:20px; }
+.header { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); color:#fff; padding:28px 32px; border-radius:12px; margin-bottom:20px; }
+.header h1 { font-size:22px; margin-bottom:6px; }
+.header .sub { font-size:13px; opacity:0.75; }
+.summary { display:flex; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+.summary .card { background:#fff; border-radius:10px; padding:16px 20px; min-width:120px; text-align:center; box-shadow:0 1px 4px rgba(0,0,0,0.06); flex:1; }
+.summary .card .num { font-size:28px; font-weight:700; }
+.summary .card .label { font-size:12px; color:#888; margin-top:4px; }
+.section { background:#fff; border-radius:10px; padding:20px; margin-bottom:16px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+.section h2 { font-size:16px; margin-bottom:14px; padding-left:10px; border-left:4px solid #667eea; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th, td { padding:8px 10px; text-align:left; border-bottom:1px solid #f0f0f0; }
+th { background:#f8f9fa; color:#555; font-weight:600; white-space:nowrap; }
+tr:hover { background:#f8f9ff; }
+.badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; }
+.badge-wait { background:#fff3e0; color:#e65100; }
+.badge-doing { background:#e8f5e9; color:#2e7d32; }
+.badge-done { background:#e3f2fd; color:#1565c0; }
+.badge-pause { background:#fce4ec; color:#c62828; }
+.pri-1 { color:#f5576c; font-weight:700; }
+.pri-2 { color:#ffa726; font-weight:600; }
+.pri-3 { color:#888; }
+.back-btn { display:inline-block; margin-bottom:16px; color:#667eea; text-decoration:none; font-size:13px; }
+.back-btn:hover { text-decoration:underline; }
+.role-bar { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+.platform-tag { display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; background:#f0f0f0; color:#666; }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-btn">← 返回报告中心</a>
+<div class="header">
+  <h1>📋 今日新增任务明细</h1>
+  <div class="sub">2026-08-26 | 共 2 个新增任务</div>
+</div>
+
+<div class="summary">
+  <div class="card">
+    <div class="num" style="color:#7c3aed">0</div>
+    <div class="label">产品</div>
+  </div>
+  <div class="card">
+    <div class="num" style="color:#10b981">2</div>
+    <div class="label">后端</div>
+  </div>
+  <div class="card">
+    <div class="num" style="color:#db2777">0</div>
+    <div class="label">前端</div>
+  </div>
+  <div class="card">
+    <div class="num" style="color:#ea580c">0</div>
+    <div class="label">移动端</div>
+  </div>
+  <div class="card">
+    <div class="num" style="color:#0284c7">0</div>
+    <div class="label">测试</div>
+  </div>
+  <div class="card">
+    <div class="num" style="color:#64748b">0</div>
+    <div class="label">其他</div>
+  </div>
+</div>
+<div class="section">
+  <h2 style="border-left-color:#10b981">后端任务 <span style="font-weight:400;color:#888;font-size:14px;">(2 个)</span></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>任务名称</th>
+        <th>优先级</th>
+        <th>负责人</th>
+        <th>状态</th>
+        <th>预估</th>
+        <th>所属迭代</th>
+        <th>平台</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>323859</td>
+        <td>【后端】深圳】可以清洗历史订单数据了，订单信息规则如下。  历史订单数据清洗，及所有工程单、工程备货单业务线，按以下规则： ①日常/活动/返利销售方案对应的订单，全部标记为家装。 ②工程订单中，原家装订单标记为家装，原工装订单标记为工装。</td>
+        <td class="pri-1">1-紧急</td>
+        <td>孙元通</td>
+        <td><span class="badge badge-doing">进行中</span></td>
+        <td>3h</td>
+        <td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td>
+        <td><span class="platform-tag">网批2.0</span></td>
+      </tr>
+      <tr>
+        <td>323860</td>
+        <td>【后端】工程深圳商用销司也需要切换业务线模式，领导在企微已经审批完毕，相关的日销、返利、活动也需要重新安排绘制了。注意：深圳商用销司有 4 个业务线，需要看线上文档绘制</td>
+        <td class="pri-2">2-高</td>
+        <td>孙元通</td>
+        <td><span class="badge badge-doing">进行中</span></td>
+        <td>3h</td>
+        <td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td>
+        <td><span class="platform-tag">网批2.0</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){ });
+</script>
+</body>
+</html>
