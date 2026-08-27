@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 832,
-    "total_active": 688,
-    "total_month_hours": 6565.8,
+    "total_done": 837,
+    "total_active": 683,
+    "total_month_hours": 6698.8,
     "total_estimate": 12744.0,
     "total_members": 49,
     "total_overdue": 2,
     "reference_hours": 168,
-    "report_time": "2026-08-27 09:49:02",
+    "report_time": "2026-08-27 11:04:09",
     "month": "2026年8月"
   },
   "members": [
@@ -328,6 +328,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 332956,
+          "title": "【QA-PC-管理侧-合并上线库存】导入销司库存的sku在供应链数据为空，导入成功后，未在供应链数据生成数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 336716,
           "title": "【QA-PC-管理侧-主体关联变更审核】第三个节点已审批通过，超管账号列表和详情页面仍显示审批按钮",
           "severity": 3,
@@ -344,15 +353,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 332956,
-          "title": "【QA-PC-管理侧-合并上线库存】导入销司库存的sku在供应链数据为空，导入成功后，未在供应链数据生成数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
         }
       ],
       "active_bugs": [
@@ -1593,6 +1593,15 @@
           "openedBy": "罗有文"
         },
         {
+          "id": 336769,
+          "title": "【QA-PC-用户侧-供应链金融小单】分批发货单合并支付，订单1已拒单，订单2接单后，再取消发货失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 336608,
           "title": "【QA-PC-用户侧-供应链金融小单】组合套餐小单售后详情页，报500",
           "severity": 3,
@@ -1881,16 +1890,7 @@
           "openedBy": "匡军"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 336749,
-          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单驳回，填写驳回原因，驳回成功后，显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "艾思芹",
@@ -3738,15 +3738,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 336219,
-          "title": "【QA-IOS-管理侧-销司字典】关闭分批发货功能，APP没有进行隐藏",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
           "id": 336615,
           "title": "【QA-iOS-用户侧-供应链金融】分批发货订单售后详情，活动优惠字段金额显示错误",
           "severity": 3,
@@ -3808,6 +3799,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 336219,
+          "title": "【QA-IOS-管理侧-销司字典】关闭分批发货功能，APP没有进行隐藏",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
         },
         {
           "id": 336197,
@@ -5503,22 +5503,40 @@
           "openedBy": "李文清"
         },
         {
-          "id": 336706,
-          "title": "【QA-H5-管理侧-资料变更】进入已发起合同的关联主体变更审批数据，查看详情，结果少了公司名称字段",
+          "id": 333072,
+          "title": "【qa/PRD-pc-管理侧-组合方案】复制组合套餐方案删除系列后，修改套餐商品购买数等于系列限购数之和，结果提交提示套",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "罗有文"
+          "openedBy": "伍镓烨"
         },
         {
-          "id": 336542,
-          "title": "【QA-PC-管理侧-经销商贷款额度】审核列表应根据查询条件-审核状态进行展示数据",
+          "id": 332969,
+          "title": "【QA-PC-用户侧-工程机】工程“收差待扣缴”状态，切换审批进度后切换工程单详情页后商品缺失",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "龙泽英"
+          "openedBy": "李文清"
+        },
+        {
+          "id": 332914,
+          "title": "【QA-PC-用户侧-我的订单】履约单修改地址页面点击确认修改按钮无反应",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 332578,
+          "title": "【QA-PC-用户侧-我的订单】OMS订单行不属于可修改地址状态，点击修改地址按钮仍跳转至修改地址弹窗页面",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 335998,
@@ -5528,6 +5546,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
+        },
+        {
+          "id": 336706,
+          "title": "【QA-H5-管理侧-资料变更】进入已发起合同的关联主体变更审批数据，查看详情，结果少了公司名称字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
         },
         {
           "id": 336609,
@@ -5546,6 +5573,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
+        },
+        {
+          "id": 336542,
+          "title": "【QA-PC-管理侧-经销商贷款额度】审核列表应根据查询条件-审核状态进行展示数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
         },
         {
           "id": 336526,
@@ -5710,42 +5746,6 @@
           "openedBy": "龙泽英"
         },
         {
-          "id": 333072,
-          "title": "【qa/PRD-pc-管理侧-组合方案】复制组合套餐方案删除系列后，修改套餐商品购买数等于系列限购数之和，结果提交提示套",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 332969,
-          "title": "【QA-PC-用户侧-工程机】工程“收差待扣缴”状态，切换审批进度后切换工程单详情页后商品缺失",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 332914,
-          "title": "【QA-PC-用户侧-我的订单】履约单修改地址页面点击确认修改按钮无反应",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 332578,
-          "title": "【QA-PC-用户侧-我的订单】OMS订单行不属于可修改地址状态，点击修改地址按钮仍跳转至修改地址弹窗页面",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 335263,
           "title": "【PRD-PC-管理侧-分批提货小单】合并支付接单页，按订单方量收运费，运费明细方量没有合计",
           "severity": 3,
@@ -5801,6 +5801,22 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 336803,
+          "title": "【QA-PC-管理侧-经销商解押还款】提交设置还款金额后，缺少二次确认",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336782,
+          "title": "【QA-H5-管理侧-资料变更】进入关联主体变更审批数据，查看列表，结果单据类型错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 336770,
           "title": "【QA-PC-管理侧-资料变更】资料变更页面，经销商资料变更审核列表，签署状态点击切换和查询，没有成功查询显示对应状态",
@@ -6538,6 +6554,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 333007,
+          "title": "【QA-PC-用户侧-买赠方案】4.0测算除调价删除和下架的商品外调价中的商品仍然可见可搜索可下单",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 336733,
           "title": "【QA-PC-用户侧-主体信息变更】申请入驻商家，使用邀请码入驻有相同名字的商家，商家资料页面，提示：message :",
           "severity": 3,
@@ -6545,24 +6570,6 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 336640,
-          "title": "【QA-PC-管理侧-销司字典】钱包绑定记录工具失效的订单，钱包ID显示字典取值错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 336506,
-          "title": "【QA-IOS-用户侧-企业信息变更记录】关联主体信息变更卡片列表字段跟UX不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
         },
         {
           "id": 336344,
@@ -6601,8 +6608,26 @@
           "openedBy": "罗有文"
         },
         {
+          "id": 336640,
+          "title": "【QA-PC-管理侧-销司字典】钱包绑定记录工具失效的订单，钱包ID显示字典取值错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
           "id": 336532,
           "title": "【QA-PC-管理侧-主体关联变更审核】已配置三方协议，结果审批通过还是提示请配等销司关联主体信息委重协议模版",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336506,
+          "title": "【QA-IOS-用户侧-企业信息变更记录】关联主体信息变更卡片列表字段跟UX不一致",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -6761,18 +6786,17 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
-        },
-        {
-          "id": 333007,
-          "title": "【QA-PC-用户侧-买赠方案】4.0测算除调价删除和下架的商品外调价中的商品仍然可见可搜索可下单",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
         }
       ],
       "active_bugs": [
+        {
+          "id": 336766,
+          "title": "【QA-安卓-管理侧-主体关联变更审核】管理侧已发起签约，用户侧不显示签署协议按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 336765,
           "title": "【QA-PC-用户侧-主体关联变更审核】用户侧实名认证后去签署协议，结果提示关键字定位异常 ==&gt;[乙方盖章位置-",
@@ -7299,6 +7323,33 @@
         }
       ],
       "resolved_bugs": [
+        {
+          "id": 336775,
+          "title": "【QA-安卓-用户侧-主体关联变更】用户侧已发起签约和变更，用户侧类型显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 336714,
+          "title": "【QA-安卓-用户侧-供应链金融】提交订单页，返利订单显示“分批发货”类型配送方式",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336709,
+          "title": "【QA-安卓-用户侧-主体信息变更】申请变更主体信息驳回后重新提交，提示500报错",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
         {
           "id": 336702,
           "title": "【QA-安卓-用户侧-供应链金融】分批发货订单“待付款”状态，列表没有显示 再来一单 按钮",
@@ -7878,32 +7929,8 @@
       ],
       "active_bugs": [
         {
-          "id": 336775,
-          "title": "【QA-安卓-管理侧-主体关联变更审核】管理侧已发起签约，用户侧类型显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336766,
-          "title": "【QA-安卓-管理侧-主体关联变更审核】管理侧已发起签约，用户侧不显示签署协议按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336714,
-          "title": "【QA-安卓-用户侧-供应链金融】提交订单页，返利订单显示“分批发货”类型配送方式",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336709,
-          "title": "【QA-安卓-用户侧-主体信息变更】申请变更主体信息驳回后重新提交，提示500报错",
+          "id": 336813,
+          "title": "【QA-安卓-用户侧-供应链金融小单】为我发货页商品信息弹窗缺少订单行号和供货方",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -9121,7 +9148,24 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 336818,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单交易关闭状态详情页，页面显示驳回-经销商备注字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336812,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，订单存在关联发货单，但页面不显示 发货单 按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "黄宇安",
@@ -9672,6 +9716,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 333046,
+          "title": "【QA-安卓-用户侧-我的订单】OMS订单行是不可修改地址状态，履约单仍能修改地址",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 336070,
           "title": "【QA-安卓-用户侧-贷款解押账户】点击可用贷款余额、可用解押余额，提示：获取不到钱包信息",
           "severity": 3,
@@ -9706,15 +9759,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
-        },
-        {
-          "id": 333046,
-          "title": "【QA-安卓-用户侧-我的订单】OMS订单行是不可修改地址状态，履约单仍能修改地址",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
         },
         {
           "id": 334941,
@@ -10511,6 +10555,930 @@
       "active_bugs": []
     },
     {
+      "name": "张春杰",
+      "role": "移动端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 23,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 182.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 19,
+      "done_estimate": 182.0,
+      "done_consumed": 182.0,
+      "month_done_hours": 182.0,
+      "active_count": 4,
+      "active_estimate": 12.0,
+      "active_consumed": 0.0,
+      "active_left": 12.0,
+      "total_tasks": 23,
+      "total_estimate": 194.0,
+      "completion_rate": 82.6,
+      "efficiency": 82.6,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 313749,
+          "name": "【iOS】零用分批发货小单-提交发货（为分销商发货）",
+          "consumed": 24.0,
+          "estimate": 24.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-30",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-05"
+        },
+        {
+          "id": 313746,
+          "name": "【iOS】零用分批发货小单-提交发货（为我发货）",
+          "consumed": 24.0,
+          "estimate": 24.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-30",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-05"
+        },
+        {
+          "id": 313603,
+          "name": "【iOS】提交订单-大单（为分销商下单）",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-30",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 313600,
+          "name": "【iOS】提交订单-大单（为我下单）",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-30",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 313604,
+          "name": "【iOS】订单支付成功页",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-30",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-09"
+        },
+        {
+          "id": 313547,
+          "name": "【iOS】大小单收银台",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-30",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-09"
+        },
+        {
+          "id": 313420,
+          "name": "【iOS】合并支付收银台",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-07-30",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-09"
+        },
+        {
+          "id": 316228,
+          "name": "【iOS】组合套餐-为分销商发货",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-18"
+        },
+        {
+          "id": 316227,
+          "name": "【iOS】组合套餐发货-为我发货",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-18"
+        },
+        {
+          "id": 316226,
+          "name": "【iOS】分批发货-为分销商发货",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-18"
+        },
+        {
+          "id": 316225,
+          "name": "【iOS】分批发货-为我发货",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-18"
+        },
+        {
+          "id": 316234,
+          "name": "【iOS】收银台",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-19"
+        },
+        {
+          "id": 316159,
+          "name": "【iOS】支付收银台",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-19"
+        },
+        {
+          "id": 316156,
+          "name": "【iOS】分批发货-为经销商下单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-19"
+        },
+        {
+          "id": 316155,
+          "name": "【iOS】分批发货-为我下单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-19"
+        },
+        {
+          "id": 316638,
+          "name": "【iOS】关联主体变更",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-25"
+        },
+        {
+          "id": 316637,
+          "name": "【iOS】公司主体变更记录",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-25"
+        },
+        {
+          "id": 316530,
+          "name": "【iOS】经销商资料审核",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-27"
+        },
+        {
+          "id": 316634,
+          "name": "【iOS】公司主体变更-申请",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-05",
+          "finished_by": "张春杰",
+          "finished_date": "2026-08-27"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 316860,
+          "name": "【iOS】提交订单",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-06",
+          "deadline": "2026-08-28"
+        },
+        {
+          "id": 316865,
+          "name": "【iOS】收银台",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-06",
+          "deadline": "2026-08-28"
+        },
+        {
+          "id": 316868,
+          "name": "【iOS】订单详情",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-06",
+          "deadline": "2026-08-28"
+        },
+        {
+          "id": 316869,
+          "name": "【iOS】售后申请退款",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-06",
+          "deadline": "2026-08-28"
+        }
+      ],
+      "resolved_bugs": [
+        {
+          "id": 335719,
+          "title": "【QA-iOS-用户侧-供应链金融】供应链金融分批发货订单支付页，支付使用账户显示错误",
+          "severity": 2,
+          "pri": 2,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 334563,
+          "title": "【QA-IOS-用户侧-分批提货小单】工程提货小单，无法支付",
+          "severity": 2,
+          "pri": 2,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333716,
+          "title": "【QA-IOS-用户侧-分批提货小单】为分销商的分批发货小单，支付失败",
+          "severity": 2,
+          "pri": 2,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 332851,
+          "title": "【QA-IOS-管理侧-工程批价】关联了特批方案的工程单在一次批价\\二次批价时仍校验了配提机型的剩余可购买数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 336708,
+          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，返利/工程订单显示“分批发货”类型配送方式",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336457,
+          "title": "【QA-IOS-用户侧-主体信息变更】申请变更主体信息是否同步弹窗提示语跟原型不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336412,
+          "title": "【QA-IOS-用户侧-资料变更】申请修改基础信息变更和公司名称及法人变更，结果也弹出同步变更弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336410,
+          "title": "【QA-IOS-用户侧-主体信息联合审批变更】申请主体信息变更是否同步，提交提示参数非法",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336240,
+          "title": "【QA-IOS-用户侧-主体信息变更】PID绑定多个商家，结果商家申请修改主体信息变更，没有弹出是否同步弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336031,
+          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，仓储费、运费温馨提示弹窗 提示说明文案错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 335982,
+          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单列表页点击待付款状态订单支付按钮无反应",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335978,
+          "title": "【QA-iOS-用户侧-供应链金融小单】点击支付待付款状态订单，收银台报错没有请求体",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335615,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页添加发货商品页商品为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 334937,
+          "title": "【QA-iOS-用户侧-提交订单】家用账号，提交订单页显示分批发货类型",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 334721,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，复制订单行号，提示：供货方复制成功",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334712,
+          "title": "【QA-IOS-用户侧-分批提货小单】为分销商发货，选择暂存前置仓，提交发货失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334699,
+          "title": "【QA-IOS-用户侧-工程机】工程提货列表数据为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334550,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，添加多个商品后，再次打开添加发货商品弹框，商品显示顺序变了",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334385,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，商品信息弹框，sku编码显示空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334251,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品多个后，发货商品列表显示与勾选的不同",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334126,
+          "title": "【QA-IOS-用户侧-分批提货小单】小单支付页，显示的不是运费金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334108,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，未选择预约发货日期，提交发货，提示没有请求体",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334026,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，还是显示配送",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334022,
+          "title": "【QA-PC-用户侧-分批提货小单】发货商品订单行 待发货数量=0，提交发货，提示与原型不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 334007,
+          "title": "【QA-IOS-用户侧-分批提货小单】待付款订单，勾选订单后，点击合并支付，没反应，不能合并支付",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333986,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品后，再去添加新的商品，会覆盖已添加商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333983,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，备货机型商品不展示标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333949,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，提交发货，提示配送类型不可为空/请选择收货地",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333883,
+          "title": "【QA-iOS-用户侧-提交订单】工程商品分批发货，提交订单提示“当前订单类型不支持分批发货配送方式”",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 333823,
+          "title": "【QA-iOS-用户侧-提交订单】大单组合套餐-提交订单页，分批发货类型显示运费",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 333794,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品，运费不会根据数量来变化",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333760,
+          "title": "【QA-IOS-用户侧-分批提货小单】新增分批发货页，会显示多余文案",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333758,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品，订购数量错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333749,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品弹框，输入型号，未搜索出结果",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333745,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，收货地址为空，不能选择",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333686,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品筛选弹框，未遮住商品信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333672,
+          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，商品信息弹框，未显示订单行号",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333592,
+          "title": "【QA-iOS-用户侧-提交订单】大单-提交订单页，分批发货类型金额信息字段显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        }
+      ],
+      "active_bugs": [
+        {
+          "id": 336811,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页商品信息弹窗缺少供货方",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336799,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页添加发货商品页筛选商品型号不生效",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336785,
+          "title": "【QA-IOS-用户侧-企业信息变更记录】关联主体信息变更单据类型显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336761,
+          "title": "【QA-IOS-管理侧-主体关联变更审核】管理侧已发起签约，用户侧不显示签署协议按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336721,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页点击提交发货后进入收银台，金额和账户显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336444,
+          "title": "【QA-IOS-用户侧-主体信息变更】进入变更记录，无法查看单据详情",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336356,
+          "title": "【QA-iOS-用户侧-供应链金融小单】组合套餐大单进入为我发货页没有带上大单的商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 336058,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页金额信息显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
+    },
+    {
+      "name": "李文清",
+      "role": "测试",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 13,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 180.0,
+      "done_count": 11,
+      "done_estimate": 142.0,
+      "done_consumed": 141.0,
+      "month_done_hours": 180.0,
+      "active_count": 2,
+      "active_estimate": 96.0,
+      "active_consumed": 39.0,
+      "active_left": 57.0,
+      "total_tasks": 13,
+      "total_estimate": 238.0,
+      "completion_rate": 84.6,
+      "efficiency": 84.6,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 310482,
+          "name": "【测试】RMS工程订单推送接口增加字段",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-23",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-03"
+        },
+        {
+          "id": 310470,
+          "name": "【测试】销司特批方案保证金-方案部分",
+          "consumed": 44.0,
+          "estimate": 44.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-23",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-03"
+        },
+        {
+          "id": 310436,
+          "name": "【测试】管理侧工程订单添加工程单号",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-23",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-03"
+        },
+        {
+          "id": 318360,
+          "name": "【测试设计】商用零售分批发货-零售大单--李文清",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-14"
+        },
+        {
+          "id": 318361,
+          "name": "【测试】商用零售分批发货-零售大单--IOS、H5",
+          "consumed": 36.0,
+          "estimate": 36.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 321237,
+          "name": "【测试设计】分销订单导出新增字段及扩容",
+          "consumed": 1.0,
+          "estimate": 1.0,
+          "type": "ae1_test_des",
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-18"
+        },
+        {
+          "id": 321239,
+          "name": "【测试设计】用户侧订单导出增加字段、店铺编辑",
+          "consumed": 1.0,
+          "estimate": 1.0,
+          "type": "ae1_test_des",
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-20"
+        },
+        {
+          "id": 321240,
+          "name": "【测试】用户侧订单导出增加字段、店铺编辑",
+          "consumed": 3.0,
+          "estimate": 4.0,
+          "type": "ae2_test",
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-21"
+        },
+        {
+          "id": 321238,
+          "name": "【测试】分销订单导出新增字段及扩容",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "ae2_test",
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-21"
+        },
+        {
+          "id": 324238,
+          "name": "【测试设计】供应链金融订单-贷款订单售后(大单)--李文清",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-27"
+        },
+        {
+          "id": 324234,
+          "name": "【测试设计】供应链金融订单-贷款订单(大单)--李文清",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "finished_by": "李文清",
+          "finished_date": "2026-08-27"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 324235,
+          "name": "【测试】供应链金融订单-贷款订单(大单)--李文清",
+          "status": "doing",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 48.0,
+          "consumed": 32.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "deadline": "2026-09-04"
+        },
+        {
+          "id": 324239,
+          "name": "【测试】供应链金融订单-贷款订单售后(大单)--李文清",
+          "status": "doing",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 48.0,
+          "consumed": 7.0,
+          "left": 41.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "deadline": "2026-09-04"
+        }
+      ],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
       "name": "李红燕",
       "role": "前端",
       "type_counts": {
@@ -11022,14 +11990,6 @@
         }
       ],
       "active_bugs": [
-        {
-          "id": 336769,
-          "title": "【QA-PC-用户侧-供应链金融小单】分批发货单合并支付，订单1已拒单，订单2接单后，再取消发货失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
         {
           "id": 336531,
           "title": "【QA-PC-管理侧-销司字典】关闭分批发货，会影响到用户侧",
@@ -11767,6 +12727,42 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 333313,
+          "title": "【QA-PC-管理侧-销司销售方案】复制、新建方案批量导入商品，上传成功后确认导入提示&quot;系统发生异常,请稍后再",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 333061,
+          "title": "【QA-PC-管理侧-4.0测算返利方案】经销商4.0测算返利方案提交后未保存商品上下架状态",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 333024,
+          "title": "【QA-PC/H5-管理侧-工程方案】审核导出缺少调价类型列",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 333022,
+          "title": "【QA-PC-管理侧-返利方案】4.0测算调价新增的商品直扣点位为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 336409,
           "title": "【QA-PC-管理侧-供应链金融小单】合并支付的小单，未接单，取消发货，状态还是待退款",
           "severity": 3,
@@ -11828,42 +12824,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
-        },
-        {
-          "id": 333313,
-          "title": "【QA-PC-管理侧-销司销售方案】复制、新建方案批量导入商品，上传成功后确认导入提示&quot;系统发生异常,请稍后再",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 333061,
-          "title": "【QA-PC-管理侧-4.0测算返利方案】经销商4.0测算返利方案提交后未保存商品上下架状态",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 333024,
-          "title": "【QA-PC/H5-管理侧-工程方案】审核导出缺少调价类型列",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 333022,
-          "title": "【QA-PC-管理侧-返利方案】4.0测算调价新增的商品直扣点位为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
         },
         {
           "id": 333873,
@@ -13700,714 +14660,6 @@
         }
       ],
       "active_bugs": []
-    },
-    {
-      "name": "张春杰",
-      "role": "移动端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 23,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 168.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 17,
-      "done_estimate": 168.0,
-      "done_consumed": 168.0,
-      "month_done_hours": 168.0,
-      "active_count": 6,
-      "active_estimate": 26.0,
-      "active_consumed": 0.0,
-      "active_left": 26.0,
-      "total_tasks": 23,
-      "total_estimate": 194.0,
-      "completion_rate": 73.9,
-      "efficiency": 73.9,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 313749,
-          "name": "【iOS】零用分批发货小单-提交发货（为分销商发货）",
-          "consumed": 24.0,
-          "estimate": 24.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-30",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-05"
-        },
-        {
-          "id": 313746,
-          "name": "【iOS】零用分批发货小单-提交发货（为我发货）",
-          "consumed": 24.0,
-          "estimate": 24.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-30",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-05"
-        },
-        {
-          "id": 313603,
-          "name": "【iOS】提交订单-大单（为分销商下单）",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-30",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 313600,
-          "name": "【iOS】提交订单-大单（为我下单）",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-30",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 313604,
-          "name": "【iOS】订单支付成功页",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-30",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-09"
-        },
-        {
-          "id": 313547,
-          "name": "【iOS】大小单收银台",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-30",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-09"
-        },
-        {
-          "id": 313420,
-          "name": "【iOS】合并支付收银台",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-07-30",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-09"
-        },
-        {
-          "id": 316228,
-          "name": "【iOS】组合套餐-为分销商发货",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-18"
-        },
-        {
-          "id": 316227,
-          "name": "【iOS】组合套餐发货-为我发货",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-18"
-        },
-        {
-          "id": 316226,
-          "name": "【iOS】分批发货-为分销商发货",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-18"
-        },
-        {
-          "id": 316225,
-          "name": "【iOS】分批发货-为我发货",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-18"
-        },
-        {
-          "id": 316234,
-          "name": "【iOS】收银台",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-19"
-        },
-        {
-          "id": 316159,
-          "name": "【iOS】支付收银台",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-19"
-        },
-        {
-          "id": 316156,
-          "name": "【iOS】分批发货-为经销商下单",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-19"
-        },
-        {
-          "id": 316155,
-          "name": "【iOS】分批发货-为我下单",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-19"
-        },
-        {
-          "id": 316638,
-          "name": "【iOS】关联主体变更",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-25"
-        },
-        {
-          "id": 316637,
-          "name": "【iOS】公司主体变更记录",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "finished_by": "张春杰",
-          "finished_date": "2026-08-25"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 316530,
-          "name": "【iOS】经销商资料审核",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "deadline": "2026-08-28"
-        },
-        {
-          "id": 316860,
-          "name": "【iOS】提交订单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-06",
-          "deadline": "2026-08-28"
-        },
-        {
-          "id": 316865,
-          "name": "【iOS】收银台",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-06",
-          "deadline": "2026-08-28"
-        },
-        {
-          "id": 316868,
-          "name": "【iOS】订单详情",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-06",
-          "deadline": "2026-08-28"
-        },
-        {
-          "id": 316869,
-          "name": "【iOS】售后申请退款",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-06",
-          "deadline": "2026-08-28"
-        },
-        {
-          "id": 316634,
-          "name": "【iOS】公司主体变更-申请",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 6.0,
-          "consumed": 0.0,
-          "left": 6.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-05",
-          "deadline": "2026-08-31"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 335719,
-          "title": "【QA-iOS-用户侧-供应链金融】供应链金融分批发货订单支付页，支付使用账户显示错误",
-          "severity": 2,
-          "pri": 2,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 334563,
-          "title": "【QA-IOS-用户侧-分批提货小单】工程提货小单，无法支付",
-          "severity": 2,
-          "pri": 2,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333716,
-          "title": "【QA-IOS-用户侧-分批提货小单】为分销商的分批发货小单，支付失败",
-          "severity": 2,
-          "pri": 2,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336457,
-          "title": "【QA-IOS-用户侧-主体信息变更】申请变更主体信息是否同步弹窗提示语跟原型不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336412,
-          "title": "【QA-IOS-用户侧-资料变更】申请修改基础信息变更和公司名称及法人变更，结果也弹出同步变更弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336708,
-          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，返利/工程订单显示“分批发货”类型配送方式",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336410,
-          "title": "【QA-IOS-用户侧-主体信息联合审批变更】申请主体信息变更是否同步，提交提示参数非法",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336240,
-          "title": "【QA-IOS-用户侧-主体信息变更】PID绑定多个商家，结果商家申请修改主体信息变更，没有弹出是否同步弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336031,
-          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，仓储费、运费温馨提示弹窗 提示说明文案错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 335982,
-          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单列表页点击待付款状态订单支付按钮无反应",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335978,
-          "title": "【QA-iOS-用户侧-供应链金融小单】点击支付待付款状态订单，收银台报错没有请求体",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335615,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页添加发货商品页商品为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 332851,
-          "title": "【QA-IOS-管理侧-工程批价】关联了特批方案的工程单在一次批价\\二次批价时仍校验了配提机型的剩余可购买数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 334937,
-          "title": "【QA-iOS-用户侧-提交订单】家用账号，提交订单页显示分批发货类型",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 334721,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，复制订单行号，提示：供货方复制成功",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334712,
-          "title": "【QA-IOS-用户侧-分批提货小单】为分销商发货，选择暂存前置仓，提交发货失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334699,
-          "title": "【QA-IOS-用户侧-工程机】工程提货列表数据为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334550,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，添加多个商品后，再次打开添加发货商品弹框，商品显示顺序变了",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334385,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，商品信息弹框，sku编码显示空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334251,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品多个后，发货商品列表显示与勾选的不同",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334126,
-          "title": "【QA-IOS-用户侧-分批提货小单】小单支付页，显示的不是运费金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334108,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，未选择预约发货日期，提交发货，提示没有请求体",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334026,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，还是显示配送",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334022,
-          "title": "【QA-PC-用户侧-分批提货小单】发货商品订单行 待发货数量=0，提交发货，提示与原型不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 334007,
-          "title": "【QA-IOS-用户侧-分批提货小单】待付款订单，勾选订单后，点击合并支付，没反应，不能合并支付",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333986,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品后，再去添加新的商品，会覆盖已添加商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333983,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，备货机型商品不展示标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333949,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，提交发货，提示配送类型不可为空/请选择收货地",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333883,
-          "title": "【QA-iOS-用户侧-提交订单】工程商品分批发货，提交订单提示“当前订单类型不支持分批发货配送方式”",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 333823,
-          "title": "【QA-iOS-用户侧-提交订单】大单组合套餐-提交订单页，分批发货类型显示运费",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 333794,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品，运费不会根据数量来变化",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333760,
-          "title": "【QA-IOS-用户侧-分批提货小单】新增分批发货页，会显示多余文案",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333758,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品，订购数量错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333749,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品弹框，输入型号，未搜索出结果",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333745,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，配送方式选择“暂存前置仓”，收货地址为空，不能选择",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333686,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货，添加发货商品筛选弹框，未遮住商品信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333672,
-          "title": "【QA-IOS-用户侧-分批提货小单】为我发货页，商品信息弹框，未显示订单行号",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333592,
-          "title": "【QA-iOS-用户侧-提交订单】大单-提交订单页，分批发货类型金额信息字段显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 336761,
-          "title": "【QA-IOS-管理侧-主体关联变更审核】管理侧已发起签约，用户侧不显示签署协议按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336721,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页点击提交发货后进入收银台，金额和账户显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336444,
-          "title": "【QA-IOS-用户侧-主体信息变更】进入变更记录，无法查看单据详情",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336356,
-          "title": "【QA-iOS-用户侧-供应链金融小单】组合套餐大单进入为我发货页没有带上大单的商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336058,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页金额信息显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
     },
     {
       "name": "郑忠",
@@ -16276,6 +16528,51 @@
       ],
       "resolved_bugs": [
         {
+          "id": 333090,
+          "title": "【qa-iOS-用户侧-自提履约单详情】下载自提函，结果提示不存在",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 333089,
+          "title": "【qa-iOS-用户侧-自提履约单详情】修改自提函委托信息，结果提示订单类型不匹配",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 332988,
+          "title": "【qa-iOS-管理侧-自提履约单详情】查看自提履约单详情自提函，下载自提函，结果下载失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 332986,
+          "title": "【QA-iOS-用户侧-我的订单】直发平台仓的履约单修改地址页面无法选择地址",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 332985,
+          "title": "【QA-iOS-用户侧-我的订单】OMS订单行是不可修改地址状态，履约单仍能修改地址",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 336559,
           "title": "【QA-iOS-用户侧-供应链金融】分批发货订单申请售后，售后弹窗活动优惠字段显示 明细 按钮",
           "severity": 3,
@@ -16337,51 +16634,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
-        },
-        {
-          "id": 333090,
-          "title": "【qa-iOS-用户侧-自提履约单详情】下载自提函，结果提示不存在",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 333089,
-          "title": "【qa-iOS-用户侧-自提履约单详情】修改自提函委托信息，结果提示订单类型不匹配",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 332988,
-          "title": "【qa-iOS-管理侧-自提履约单详情】查看自提履约单详情自提函，下载自提函，结果下载失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 332986,
-          "title": "【QA-iOS-用户侧-我的订单】直发平台仓的履约单修改地址页面无法选择地址",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 332985,
-          "title": "【QA-iOS-用户侧-我的订单】OMS订单行是不可修改地址状态，履约单仍能修改地址",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
         },
         {
           "id": 334946,
@@ -17144,6 +17396,51 @@
       ],
       "resolved_bugs": [
         {
+          "id": 333038,
+          "title": "【QA-PC-管理侧-组合套餐】新建组合套餐方案时商品上下架状态默认显示为--",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 333026,
+          "title": "【QA-PC-管理侧-组合套餐】4.0测算审核页导出商品缺少测算字段值",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 333025,
+          "title": "【QA-H5-管理侧-工程方案】审核导出缺少货权来源和仓库代码列",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 333008,
+          "title": "【QA-PC-管理侧-优惠券】新建审核页显示过滤单选框默认为空且点击重置后自动选择本次调价商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 333005,
+          "title": "【QA-PC-管理侧-返利方案】导出文件缺少调价类型列",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 336637,
           "title": "【QA-H5-管理侧-供应链金融小单】发货单详情页，不显示发货数量",
           "severity": 3,
@@ -17214,51 +17511,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
-        },
-        {
-          "id": 333038,
-          "title": "【QA-PC-管理侧-组合套餐】新建组合套餐方案时商品上下架状态默认显示为--",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 333026,
-          "title": "【QA-PC-管理侧-组合套餐】4.0测算审核页导出商品缺少测算字段值",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 333025,
-          "title": "【QA-H5-管理侧-工程方案】审核导出缺少货权来源和仓库代码列",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 333008,
-          "title": "【QA-PC-管理侧-优惠券】新建审核页显示过滤单选框默认为空且点击重置后自动选择本次调价商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 333005,
-          "title": "【QA-PC-管理侧-返利方案】导出文件缺少调价类型列",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
         },
         {
           "id": 335319,
@@ -17808,6 +18060,200 @@
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "deadline": "2026-09-04"
+        }
+      ],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
+      "name": "罗有文",
+      "role": "测试",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 13,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 154.0,
+      "done_count": 12,
+      "done_estimate": 133.0,
+      "done_consumed": 133.0,
+      "month_done_hours": 154.0,
+      "active_count": 1,
+      "active_estimate": 80.0,
+      "active_consumed": 21.0,
+      "active_left": 59.0,
+      "total_tasks": 13,
+      "total_estimate": 213.0,
+      "completion_rate": 92.3,
+      "efficiency": 92.3,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 315476,
+          "name": "【测试】商家入驻重复行校验逻辑变更",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-08-04",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-03"
+        },
+        {
+          "id": 310468,
+          "name": "【测试】特批方案新增工程保证金账户",
+          "consumed": 24.0,
+          "estimate": 24.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-07-23",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-03"
+        },
+        {
+          "id": 315475,
+          "name": "【测试设计】商家入驻重复行校验逻辑变更",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
+          "opened_date": "2026-08-04",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-04"
+        },
+        {
+          "id": 321234,
+          "name": "【测试设计】分销账单自动计算降价费/平台扣点费",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "ae1_test_des",
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 318396,
+          "name": "【测试设计】商用零售与工程大单支持多次部分退款--罗有文",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 318380,
+          "name": "【测试设计】商用零售分批发货销售任务统计逻辑改造--罗有文",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 318376,
+          "name": "【测试设计】商用零售分批发货账户流水逻辑改造--罗有文",
+          "consumed": 7.0,
+          "estimate": 7.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-07"
+        },
+        {
+          "id": 318397,
+          "name": "【测试】商用零售与工程大单支持多次部分退款--APP",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 318381,
+          "name": "【测试】商用零售分批发货销售任务统计逻辑改造--APP",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 318377,
+          "name": "【测试】商用零售分批发货账户流水逻辑改造--APP",
+          "consumed": 20.0,
+          "estimate": 20.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
+          "opened_date": "2026-08-12",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-17"
+        },
+        {
+          "id": 321235,
+          "name": "【测试】分销账单自动计算降价费/平台扣点费",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "ae2_test",
+          "platform": "分销",
+          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-20"
+        },
+        {
+          "id": 324280,
+          "name": "【测试设计】主体变更销司联合审批--罗有文",
+          "consumed": 27.0,
+          "estimate": 27.0,
+          "type": "ae1_test_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "finished_by": "罗有文",
+          "finished_date": "2026-08-24"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 324281,
+          "name": "【测试】主体变更销司联合审批--罗有文",
+          "status": "doing",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 80.0,
+          "consumed": 21.0,
+          "left": 59.0,
           "platform": "网批2.0",
           "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
           "opened_date": "2026-08-27",
@@ -18812,7 +19258,16 @@
           "openedBy": "匡军"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 336749,
+          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单驳回，填写驳回原因，驳回成功后，显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "李成斌",
@@ -18932,7 +19387,7 @@
       "active_tasks": [
         {
           "id": 324244,
-          "name": "【测试设计】供应链金融订单-解押订单(小单)--李成斌",
+          "name": "【测试设计】供应链金融订单-解押订单(小单)--APP",
           "status": "wait",
           "pri": 3,
           "type": "ae1_test_des",
@@ -18946,7 +19401,7 @@
         },
         {
           "id": 324245,
-          "name": "【测试】供应链金融订单-解押订单(小单)--李成斌",
+          "name": "【测试】供应链金融订单-解押订单(小单)--APP",
           "status": "wait",
           "pri": 3,
           "type": "ae2_test",
@@ -19752,7 +20207,7 @@
           "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单详情页，仓库代码不显示",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
         },
@@ -19829,7 +20284,16 @@
           "openedBy": "罗有文"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 336795,
+          "title": "【QA-PC-用户侧-供应链金融小单】待付款订单列表，勾选订单，弹出提示：系统异常：订单运费不存在",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "李漫嘉",
@@ -22385,6 +22849,14 @@
       ],
       "active_bugs": [
         {
+          "id": 336790,
+          "title": "【QA-PC-用户侧-供应链金融小单】为我发货，添加发货商品弹框，选择下单时间，查询未生效",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 336758,
           "title": "【QA-PC-管理侧-主体关联变更审核】管理侧已发起签约，用户侧不显示签署协议按钮",
           "severity": 3,
@@ -22610,206 +23082,6 @@
           "platform": "网批2.0"
         }
       ]
-    },
-    {
-      "name": "李文清",
-      "role": "测试",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 13,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 109.0,
-      "done_count": 9,
-      "done_estimate": 110.0,
-      "done_consumed": 109.0,
-      "month_done_hours": 109.0,
-      "active_count": 4,
-      "active_estimate": 128.0,
-      "active_consumed": 0.0,
-      "active_left": 128.0,
-      "total_tasks": 13,
-      "total_estimate": 238.0,
-      "completion_rate": 69.2,
-      "efficiency": 69.2,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 310482,
-          "name": "【测试】RMS工程订单推送接口增加字段",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-23",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-03"
-        },
-        {
-          "id": 310470,
-          "name": "【测试】销司特批方案保证金-方案部分",
-          "consumed": 44.0,
-          "estimate": 44.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-23",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-03"
-        },
-        {
-          "id": 310436,
-          "name": "【测试】管理侧工程订单添加工程单号",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-23",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-03"
-        },
-        {
-          "id": 318360,
-          "name": "【测试设计】商用零售分批发货-零售大单--李文清",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-14"
-        },
-        {
-          "id": 318361,
-          "name": "【测试】商用零售分批发货-零售大单--IOS、H5",
-          "consumed": 36.0,
-          "estimate": 36.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-17"
-        },
-        {
-          "id": 321237,
-          "name": "【测试设计】分销订单导出新增字段及扩容",
-          "consumed": 1.0,
-          "estimate": 1.0,
-          "type": "ae1_test_des",
-          "platform": "分销",
-          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-18"
-        },
-        {
-          "id": 321239,
-          "name": "【测试设计】用户侧订单导出增加字段、店铺编辑",
-          "consumed": 1.0,
-          "estimate": 1.0,
-          "type": "ae1_test_des",
-          "platform": "分销",
-          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-20"
-        },
-        {
-          "id": 321240,
-          "name": "【测试】用户侧订单导出增加字段、店铺编辑",
-          "consumed": 3.0,
-          "estimate": 4.0,
-          "type": "ae2_test",
-          "platform": "分销",
-          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-21"
-        },
-        {
-          "id": 321238,
-          "name": "【测试】分销订单导出新增字段及扩容",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "ae2_test",
-          "platform": "分销",
-          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "李文清",
-          "finished_date": "2026-08-21"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 324234,
-          "name": "【测试设计】供应链金融订单-贷款订单(大单)--李文清",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae1_test_des",
-          "estimate": 16.0,
-          "consumed": 0.0,
-          "left": 16.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "deadline": "2026-09-04"
-        },
-        {
-          "id": 324235,
-          "name": "【测试】供应链金融订单-贷款订单(大单)--李文清",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 48.0,
-          "consumed": 0.0,
-          "left": 48.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "deadline": "2026-09-04"
-        },
-        {
-          "id": 324238,
-          "name": "【测试设计】供应链金融订单-贷款订单售后(大单)--李文清",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae1_test_des",
-          "estimate": 16.0,
-          "consumed": 0.0,
-          "left": 16.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "deadline": "2026-09-04"
-        },
-        {
-          "id": 324239,
-          "name": "【测试】供应链金融订单-贷款订单售后(大单)--李文清",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 48.0,
-          "consumed": 0.0,
-          "left": 48.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "deadline": "2026-09-04"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
     },
     {
       "name": "马腾",
@@ -23469,202 +23741,6 @@
       ]
     },
     {
-      "name": "罗有文",
-      "role": "测试",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 13,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 106.0,
-      "done_count": 11,
-      "done_estimate": 106.0,
-      "done_consumed": 106.0,
-      "month_done_hours": 106.0,
-      "active_count": 2,
-      "active_estimate": 107.0,
-      "active_consumed": 0.0,
-      "active_left": 107.0,
-      "total_tasks": 13,
-      "total_estimate": 213.0,
-      "completion_rate": 84.6,
-      "efficiency": 84.6,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 315476,
-          "name": "【测试】商家入驻重复行校验逻辑变更",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-08-04",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-03"
-        },
-        {
-          "id": 310468,
-          "name": "【测试】特批方案新增工程保证金账户",
-          "consumed": 24.0,
-          "estimate": 24.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-07-23",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-03"
-        },
-        {
-          "id": 315475,
-          "name": "【测试设计】商家入驻重复行校验逻辑变更",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.81.0（0803/dev11.8）【2026】",
-          "opened_date": "2026-08-04",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-04"
-        },
-        {
-          "id": 321234,
-          "name": "【测试设计】分销账单自动计算降价费/平台扣点费",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "ae1_test_des",
-          "platform": "分销",
-          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 318396,
-          "name": "【测试设计】商用零售与工程大单支持多次部分退款--罗有文",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 318380,
-          "name": "【测试设计】商用零售分批发货销售任务统计逻辑改造--罗有文",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 318376,
-          "name": "【测试设计】商用零售分批发货账户流水逻辑改造--罗有文",
-          "consumed": 7.0,
-          "estimate": 7.0,
-          "type": "ae1_test_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-07"
-        },
-        {
-          "id": 318397,
-          "name": "【测试】商用零售与工程大单支持多次部分退款--APP",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-17"
-        },
-        {
-          "id": 318381,
-          "name": "【测试】商用零售分批发货销售任务统计逻辑改造--APP",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-17"
-        },
-        {
-          "id": 318377,
-          "name": "【测试】商用零售分批发货账户流水逻辑改造--APP",
-          "consumed": 20.0,
-          "estimate": 20.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
-          "opened_date": "2026-08-12",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-17"
-        },
-        {
-          "id": 321235,
-          "name": "【测试】分销账单自动计算降价费/平台扣点费",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "ae2_test",
-          "platform": "分销",
-          "execution": "分销平台_V1.38.0（0825分销/dev4.4）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "罗有文",
-          "finished_date": "2026-08-20"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 324280,
-          "name": "【测试设计】主体变更销司联合审批--罗有文",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae1_test_des",
-          "estimate": 27.0,
-          "consumed": 0.0,
-          "left": 27.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "deadline": "2026-09-04"
-        },
-        {
-          "id": 324281,
-          "name": "【测试】主体变更销司联合审批--罗有文",
-          "status": "wait",
-          "pri": 3,
-          "type": "ae2_test",
-          "estimate": 80.0,
-          "consumed": 0.0,
-          "left": 80.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "deadline": "2026-09-04"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
       "name": "江小芳",
       "role": "测试",
       "type_counts": {
@@ -23850,7 +23926,7 @@
         },
         {
           "id": 324256,
-          "name": "【测试设计】供应链金融两层订单对接金蝶、OMS--江小芳",
+          "name": "【测试设计】供应链金融两层订单对接金蝶、OMS--小单",
           "status": "wait",
           "pri": 3,
           "type": "ae1_test_des",
@@ -23864,7 +23940,7 @@
         },
         {
           "id": 324257,
-          "name": "【测试】供应链金融两层订单对接金蝶、OMS--江小芳",
+          "name": "【测试】供应链金融两层订单对接金蝶、OMS--小单",
           "status": "wait",
           "pri": 3,
           "type": "ae2_test",
@@ -24042,7 +24118,7 @@
         },
         {
           "id": 324254,
-          "name": "【测试设计】供应链金融两层订单对接金蝶、OMS--刘孝亮",
+          "name": "【测试设计】供应链金融两层订单对接金蝶、OMS--大单",
           "status": "wait",
           "pri": 3,
           "type": "ae1_test_des",
@@ -24056,7 +24132,7 @@
         },
         {
           "id": 324255,
-          "name": "【测试】供应链金融两层订单对接金蝶、OMS--刘孝亮",
+          "name": "【测试】供应链金融两层订单对接金蝶、OMS--大单",
           "status": "wait",
           "pri": 3,
           "type": "ae2_test",
@@ -27397,6 +27473,15 @@
           "openedBy": "李学鹍"
         },
         {
+          "id": 336755,
+          "title": "【QA-PC-管理侧-经销商贷款额度】第二个节点审核通过时，钱包已开通，且已有贷款金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 336597,
           "title": "【QA-PC-管理侧-解押还款额度】解押还款额度审核页中，还款方式不展示",
           "severity": 3,
@@ -27573,14 +27658,6 @@
           "pri": 3,
           "status": "active",
           "platform": "集采"
-        },
-        {
-          "id": 336755,
-          "title": "【QA-PC-管理侧-经销商贷款额度】第二个节点审核通过时，钱包已开通，且已有贷款金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
         },
         {
           "id": 336718,
