@@ -682,9 +682,9 @@ function rtoast(msg,type){
 function liveRefreshRoot(){
   var btn=document.getElementById('refreshBtn'); if(!btn) return;
   var isGH=window.location.origin.indexOf('github.io')>=0;
-  if(isGH || window.location.protocol==='file:'){
+  var SVR = (isGH || window.location.protocol==='file:') ? (localStorage.getItem('zentao_svr') || 'https://localhost:8900') : window.location.origin;
+  {
     btn.classList.add('loading');
-    var SVR = localStorage.getItem('zentao_svr') || 'https://localhost:8900';
     // 主通道: fetch cors（自签证书已导入信任库，HTTPS→HTTPS 同协议无混合内容问题）
     fetch(SVR+'/trigger-pipeline', {mode:'cors', cache:'no-store'})
     .then(function(r){
@@ -738,44 +738,6 @@ function liveRefreshRoot(){
     }
     return;
   }
-  // 本地 localhost → 同源API刷新
-  btn.classList.add('loading');
-  fetch(window.location.origin+'/api/refresh-root')
-  .then(function(r){return r.json();}).then(function(d){
-    if(d.error) throw new Error(d.error);
-    // 更新摘要栏数字
-    var sumItems=document.querySelectorAll('.summary-item .num');
-    if(sumItems[0]) sumItems[0].textContent=d.product_count||0;
-    if(sumItems[1]) sumItems[1].textContent=d.backend_count||0;
-    if(sumItems[2]) sumItems[2].textContent=d.frontend_count||0;
-    if(sumItems[3]) sumItems[3].textContent=d.mobile_count||0;
-    if(sumItems[4]) sumItems[4].textContent=d.test_count||0;
-    if(sumItems[5]) sumItems[5].textContent=d.overdue_count||0;
-    if(sumItems[6]) sumItems[6].textContent=d.daily_done||0;
-    if(d.risk_high !== undefined) {
-      var riskEl = document.getElementById('summary-risk');
-      if(riskEl) riskEl.textContent = d.risk_total||0;
-      var riskLabel = riskEl ? riskEl.parentElement.querySelector('.label') : null;
-      if(riskLabel) riskLabel.textContent = '\u{1F534} \u{98CE}\u{9669} (\u{9AD8}'+(d.risk_high||0)+'/\u{4E2D}'+(d.risk_medium||0)+')';
-    }
-    if(d.cap_danger !== undefined) {
-      var capEl = document.getElementById('summary-capacity');
-      if(capEl) capEl.textContent = d.cap_danger||0;
-      var capLabel = capEl ? capEl.parentElement.querySelector('.label') : null;
-      if(capLabel) capLabel.textContent = '\u{26A1} \u{8D85}\u{8F7D}\u{8FED}\u{4EE3} ('+(d.cap_danger||0)+'/'+(d.cap_total||0)+')';
-    }
-    // 更新时间标签
-    var dt=document.querySelector('.date-tag span');
-    if(dt){ var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
-      dt.textContent=document.querySelector('.date-tag span').textContent.replace(/\d+:\d+/,'')+' '+now+' 更新';}
-    btn.classList.remove('loading');
-    var now=new Date().toLocaleTimeString('zh-CN',{hour12:false});
-    var tsEl=btn.querySelector('.refresh-time'); if(tsEl) tsEl.textContent=now;
-    rtoast('实时刷新完成 — '+now,'ok');
-  }).catch(function(e){
-    btn.classList.remove('loading');
-    rtoast('本地刷新服务未启动，请运行: py _live_refresh_server.py 8900','err');
-  });
 }
 function updateUI(d){
   // ID-based（精确）
