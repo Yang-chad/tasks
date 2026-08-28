@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>需求63581 工时明细</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Microsoft YaHei',-apple-system,sans-serif; background:#f0f2f5; color:#1f2937; padding:24px; }
+.wrap { max-width:1200px; margin:0 auto; }
+.head { background:linear-gradient(135deg,#1a73e8,#4a9af5,#7ec8f7); color:#fff; border-radius:16px; padding:28px 32px; margin-bottom:20px; box-shadow:0 4px 16px rgba(26,115,232,.2); }
+.head h1 { font-size:22px; font-weight:600; margin-bottom:10px; }
+.head .meta { font-size:13px; opacity:.92; display:flex; flex-wrap:wrap; gap:18px; }
+.head .meta b { font-weight:600; }
+.cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+.card { background:#fff; border-radius:12px; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+.card .label { font-size:12px; color:#6b7280; margin-bottom:6px; }
+.card .val { font-size:26px; font-weight:700; color:#1a73e8; }
+.card .val.green { color:#10b981; }
+.card .val.purple { color:#7c3aed; }
+.card .val.orange { color:#ea580c; }
+.sec { background:#fff; border-radius:12px; padding:22px 24px; margin-bottom:18px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+.sec h2 { font-size:16px; font-weight:600; margin-bottom:16px; padding-left:10px; border-left:4px solid #1a73e8; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { background:#f8fafc; color:#475569; text-align:left; padding:10px 12px; font-weight:600; border-bottom:2px solid #e5e7eb; white-space:nowrap; }
+td { padding:9px 12px; border-bottom:1px solid #f1f5f9; }
+tr:hover td { background:#f8fafc; }
+.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.mono { font-family:Consolas,monospace; font-size:12px; color:#475569; }
+.name { color:#1f2937; }
+.tag { display:inline-block; padding:2px 10px; border-radius:20px; font-size:12px; font-weight:600; white-space:nowrap; }
+.ok { color:#10b981; font-weight:600; }
+.over { color:#ef4444; font-weight:600; }
+.note { background:#fef3c7; border:1px solid #fbbf24; color:#92400e; border-radius:10px; padding:12px 16px; font-size:13px; margin-bottom:18px; }
+.footer { text-align:center; color:#9ca3af; font-size:12px; margin-top:20px; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media (max-width:900px) { .two{grid-template-columns:1fr} .cards{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>需求 #63581 · 销司销售方案展示审批流程</h1>
+    <div class="meta">
+      <span>迭代：<b>网批2.0_V2.77.0（4540）</b></span>
+      <span>状态：<b>已关闭</b></span>
+      <span>产品：<b>奇点计划网批项目</b></span>
+      <span>创建人：<b>符宏勇</b></span>
+      <span>关闭人：<b>李兆杰</b></span>
+      <span>关闭日期：<b>2026-06-18</b></span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="label">关联任务总数</div><div class="val">23 个</div></div>
+    <div class="card"><div class="label">预估工时</div><div class="val purple">264 h</div></div>
+    <div class="card"><div class="label">实际消耗工时</div><div class="val green">256 h</div></div>
+    <div class="card"><div class="label">剩余工时</div><div class="val orange">0 h</div></div>
+  </div>
+
+  <div class="note">⚠️ 含 1 个【总任务】（#279192，132h/128h），它是整条需求的汇总任务、工时已覆盖各子任务；剔除该汇总后实际开发工时约 <b>132h 预估 / 128h 消耗</b>。</div>
+
+  <div class="two">
+    <div class="sec">
+      <h2>按角色汇总</h2>
+      <table>
+        <tr><th>角色</th><th class="num">任务数</th><th class="num">预估(h)</th><th class="num">消耗(h)</th><th class="num">偏差(h)</th></tr>
+        <tr><td><span class="tag" style="background:#ede9fe;color:#7c3aed">产品</span></td><td class="num">1</td><td class="num">20</td><td class="num">20</td><td class="num">0</td></tr><tr><td><span class="tag" style="background:#e0f2fe;color:#0284c7">测试</span></td><td class="num">2</td><td class="num">32</td><td class="num">32</td><td class="num">0</td></tr><tr><td><span class="tag" style="background:#fef3c7;color:#f59e0b">UI设计</span></td><td class="num">1</td><td class="num">10</td><td class="num">6</td><td class="num">4</td></tr><tr><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="num">8</td><td class="num">32</td><td class="num">32</td><td class="num">0</td></tr><tr><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="num">10</td><td class="num">38</td><td class="num">38</td><td class="num">0</td></tr><tr><td><span class="tag" style="background:#f1f5f9;color:#64748b">其他</span></td><td class="num">1</td><td class="num">132</td><td class="num">128</td><td class="num">4</td></tr>
+        <tr style="background:#f8fafc;font-weight:700"><td>合计</td><td class="num">23</td><td class="num">264</td><td class="num">256</td><td class="num">8</td></tr>
+      </table>
+    </div>
+    <div class="sec">
+      <h2>按完成人汇总</h2>
+      <table>
+        <tr><th>完成人</th><th class="num">任务数</th><th class="num">预估(h)</th><th class="num">消耗(h)</th></tr>
+        <tr><td>罗有文</td><td class="num">3</td><td class="num">164</td><td class="num">160</td></tr><tr><td>李红燕</td><td class="num">10</td><td class="num">38</td><td class="num">38</td></tr><tr><td>符宏勇</td><td class="num">1</td><td class="num">20</td><td class="num">20</td></tr><tr><td>许峻嘉</td><td class="num">4</td><td class="num">16</td><td class="num">16</td></tr><tr><td>郑忠</td><td class="num">4</td><td class="num">16</td><td class="num">16</td></tr><tr><td>钟爽</td><td class="num">1</td><td class="num">10</td><td class="num">6</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>任务工时明细（23 条）</h2>
+    <table>
+      <tr><th>任务ID</th><th>任务名称</th><th>角色</th><th>类型</th><th>完成人</th><th>完成日期</th><th class="num">预估(h)</th><th class="num">消耗(h)</th><th class="num">剩余(h)</th></tr>
+      <tr><td class="mono">287037</td><td class="name">【产品设计】销司销售方案展示审批流程</td><td><span class="tag" style="background:#ede9fe;color:#7c3aed">产品</span></td><td class="mono">ab2_request_des</td><td>符宏勇</td><td class="mono">2026-05-29</td><td class="num">20</td><td class="num ok">20</td><td class="num">0</td></tr><tr><td class="mono">284137</td><td class="name">【测试】销司销售方案展示审批流程</td><td><span class="tag" style="background:#e0f2fe;color:#0284c7">测试</span></td><td class="mono">ae2_test</td><td>罗有文</td><td class="mono">2026-06-02</td><td class="num">24</td><td class="num ok">24</td><td class="num">0</td></tr><tr><td class="mono">284136</td><td class="name">【测试设计】销司销售方案展示审批流程</td><td><span class="tag" style="background:#e0f2fe;color:#0284c7">测试</span></td><td class="mono">ae1_test_des</td><td>罗有文</td><td class="mono">2026-05-25</td><td class="num">8</td><td class="num ok">8</td><td class="num">0</td></tr><tr><td class="mono">281451</td><td class="name">【UI设计】销司销售方案新增审批流程展示</td><td><span class="tag" style="background:#fef3c7;color:#f59e0b">UI设计</span></td><td class="mono">ad1_UI_des</td><td>钟爽</td><td class="mono">2026-05-20</td><td class="num">10</td><td class="num ok">6</td><td class="num">0</td></tr><tr><td class="mono">281072</td><td class="name">【后端】销司工程特价方案列表、审核列表-展示审核流程图</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>许峻嘉</td><td class="mono">2026-05-20</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">281071</td><td class="name">【后端】销司工程特批方案列表、审核列表-展示审核流程图</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>许峻嘉</td><td class="mono">2026-05-20</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">281070</td><td class="name">【后端】销司返利销售方案列表、方案审核列表-展示审核流程图</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>许峻嘉</td><td class="mono">2026-05-20</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">281069</td><td class="name">【后端】销司日常销售方案列表、方案审核列表-展示审核流程图</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>许峻嘉</td><td class="mono">2026-05-20</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">280506</td><td class="name">【后端】销司限时特价活动2.管理列表和审批列表查看详情新增审批记录信息</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>郑忠</td><td class="mono">2026-05-25</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">280505</td><td class="name">【后端】销司限时特价活动1.审核列表展示审批流程图</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>郑忠</td><td class="mono">2026-05-25</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">280504</td><td class="name">【后端】销司组合套餐活动2.管理列表和审批列表查看详情新增审批记录信息</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>郑忠</td><td class="mono">2026-05-25</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">280503</td><td class="name">【后端】销司组合套餐活动1.审核列表展示审批流程图</td><td><span class="tag" style="background:#dcfce7;color:#10b981">后端</span></td><td class="mono">a_dev4_control</td><td>郑忠</td><td class="mono">2026-05-25</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">279668</td><td class="name">【PC管理】销司组合套餐销售方案审核详情增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">279667</td><td class="name">【PC管理】销司组合套餐销售方案审核增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">279666</td><td class="name">【PC管理】销司限时特价销售方案审核增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">279665</td><td class="name">【PC管理】销司返利销售方案审核增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">279664</td><td class="name">【PC管理】销司日常销售方案审核增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">279663</td><td class="name">【PC管理】销司组合套餐销售方案详情增加审批记录</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">4</td><td class="num ok">4</td><td class="num">0</td></tr><tr><td class="mono">279662</td><td class="name">【PC管理】销司组合套餐销售方案增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">8</td><td class="num ok">8</td><td class="num">0</td></tr><tr><td class="mono">279661</td><td class="name">【PC管理】销司工程特价销售方案增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">2</td><td class="num ok">2</td><td class="num">0</td></tr><tr><td class="mono">279660</td><td class="name">【PC管理】销司返利销售方案增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">2</td><td class="num ok">2</td><td class="num">0</td></tr><tr><td class="mono">279659</td><td class="name">【PC管理】销司日常销售方案增加审批流程</td><td><span class="tag" style="background:#fce7f3;color:#db2777">前端</span></td><td class="mono">a_dev2_front</td><td>李红燕</td><td class="mono">2026-05-22</td><td class="num">2</td><td class="num ok">2</td><td class="num">0</td></tr><tr><td class="mono">279192</td><td class="name">【总任务】销司销售方案展示审批流程</td><td><span class="tag" style="background:#f1f5f9;color:#64748b">其他</span></td><td class="mono">affair</td><td>罗有文</td><td class="mono">2026-06-02</td><td class="num">132</td><td class="num ok">128</td><td class="num">0</td></tr>
+      <tr style="background:#f8fafc;font-weight:700"><td colspan="6">合计</td><td class="num">264</td><td class="num">256</td><td class="num">0</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">数据来源：禅道 ztpm.gree.com · 生成时间 2026-08-28</div>
+</div>
+</body>
+</html>
