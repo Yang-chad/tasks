@@ -1,13 +1,13 @@
 {
   "summary": {
     "total_done": 947,
-    "total_active": 627,
+    "total_active": 629,
     "total_month_hours": 8172.5,
-    "total_estimate": 13652.5,
+    "total_estimate": 13672.5,
     "total_members": 52,
     "total_overdue": 8,
     "reference_hours": 168,
-    "report_time": "2026-08-28 16:02:42",
+    "report_time": "2026-08-28 16:12:24",
     "month": "2026年8月"
   },
   "members": [
@@ -1327,18 +1327,6 @@
           "finished_date": "2026-08-18"
         },
         {
-          "id": 306853,
-          "name": "【后端】供应链管理\t商用退款售后单 （大单、小单）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "徐琦",
-          "finished_date": "2026-08-24"
-        },
-        {
           "id": 305814,
           "name": "【后端】管理侧商用零售退款单列表查询",
           "consumed": 8.0,
@@ -1347,6 +1335,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
           "opened_date": "2026-07-13",
+          "finished_by": "徐琦",
+          "finished_date": "2026-08-24"
+        },
+        {
+          "id": 306853,
+          "name": "【后端】供应链管理\t商用退款售后单 （大单、小单）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-07-15",
           "finished_by": "徐琦",
           "finished_date": "2026-08-24"
         },
@@ -1599,6 +1599,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 335575,
+          "title": "【QA-PC-用户侧-分批发货大单】分批发货大单申请退款界面不显示商品信息",
+          "severity": 2,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 334046,
           "title": "【QA-PC-用户侧-分批提货大单售后单】零售优惠券分批提货，申请退款其中一个商品，结果返回全部已用优惠券",
           "severity": 2,
@@ -1608,13 +1617,40 @@
           "openedBy": "罗有文"
         },
         {
-          "id": 335575,
-          "title": "【QA-PC-用户侧-分批发货大单】分批发货大单申请退款界面不显示商品信息",
-          "severity": 2,
+          "id": 336769,
+          "title": "【QA-PC-用户侧-供应链金融小单】分批发货单合并支付，订单1已拒单，订单2接单后，再取消发货失败",
+          "severity": 3,
           "pri": 3,
           "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "刘孝亮"
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336608,
+          "title": "【QA-PC-用户侧-供应链金融小单】组合套餐小单售后详情页，报500",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336305,
+          "title": "【QA-PC-管理侧-供应链金融小单】发货单售后，最后1个接单审批通过，提示退款金额与逆向订单金额不一致提示退款金额与逆",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336137,
+          "title": "【QA-PC-用户侧-供应链金融小单】分批发货小单取消发货，解押退款商品金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
         },
         {
           "id": 334731,
@@ -1876,42 +1912,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "匡军"
-        },
-        {
-          "id": 336769,
-          "title": "【QA-PC-用户侧-供应链金融小单】分批发货单合并支付，订单1已拒单，订单2接单后，再取消发货失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336608,
-          "title": "【QA-PC-用户侧-供应链金融小单】组合套餐小单售后详情页，报500",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336305,
-          "title": "【QA-PC-管理侧-供应链金融小单】发货单售后，最后1个接单审批通过，提示退款金额与逆向订单金额不一致提示退款金额与逆",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336137,
-          "title": "【QA-PC-用户侧-供应链金融小单】分批发货小单取消发货，解押退款商品金额显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
         }
       ],
       "active_bugs": []
@@ -2559,375 +2559,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 335312,
-          "title": "【QA-PC-管理侧-供应链管理】工程订单定金单接单驳回，页面没有显示备注相关字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 335229,
-          "title": "【qa-pc-用户侧-商用小单详情】零售小单运费为0时，点击支付，结果提示已取消",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 334851,
-          "title": "【QA-PC-用户侧-分批提货小单】暂存前置仓订单小单，下单后进行修改地址，弹出界面地址与下单地址不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334822,
-          "title": "【QA-PC-用户侧-分批提货小单】小单列表，搜索仓库发货单号，其余搜索框置灰",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334777,
-          "title": "【QA-PC-用户侧-零售大单】组合套餐的零售大单，下小单后，下单没有在大单里展示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334711,
-          "title": "【QA-PC-用户侧-商用零售小单合并支付】商用零售小单合并支付免邮，没有弹出支付成功提示语： 合并支付成功，您的订单已",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 334653,
-          "title": "【QA-PC-管理侧-分批提货小单】管理侧接单小单详情页面，没有展示关联支付单号，显示为了经销商公司名称",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334651,
-          "title": "【QA-PC-用户侧-商用工程订单提货单】在工程订单提货单页面，点击分批提货待付尾款订单支付，结果支付尾款金额错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 334599,
-          "title": "【QA-PC-管理侧-分批提货小单】管理侧合并支付，小单点击接单进入详情，接单界面应该不显示价格",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334485,
-          "title": "【QA-PC-用户侧-零售多次退款】工程订单定金退款，接单以后可以部分退，但是默认值显示为1",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 334446,
-          "title": "【QA-PC-管理侧-分批提货小单】合并支付分批发货，管理侧零售发货单详情页，日志查看提示：参数非法",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334412,
-          "title": "【QA-PC-用户侧-零售大单】零售大单行状态为部分发货，无其他订单行状态，订单的状态还是待发货状态",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334172,
-          "title": "【QA-PC-用户侧-退款售后】分返利订单大单申请退款弹窗界面价格字段多显示了一行¥0.00的价格",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 334170,
-          "title": "【QA-PC-管理侧-零售大单】零售大单列表导出，导出字段与需求字段不同",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334163,
-          "title": "【qa-pc-用户侧-零售小单售后】在零售小单详情点击查看售后单，结果进入的售后详情页面金额内容显示与UI不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 334162,
-          "title": "【QA-PC-管理侧-零售大单】零售大单列表导出，文件名与需求不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334137,
-          "title": "【QA-PC-管理侧-零售大单】零售大单接单后，展示了指定发货仓",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334134,
-          "title": "【qa-pc-用户侧-零售小单合并支付】零售小单勾选订单合并支付，结果未计算订单金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 334110,
-          "title": "【QA-PC-用户侧-零售多次退款】工程订单定金退款，待接单状态申请退款没有显示整单退",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 334051,
-          "title": "【QA-PC-用户侧-分批提货小单】发货单详情页，上级行号没有显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334018,
-          "title": "【QA-PC-用户侧-分批提货小单】零售发货单列表，分批发货单会显示活动/零售标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334012,
-          "title": "【QA-PC-管理侧-零售大单】零售大单详情中，经销商名称和下单人为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 333995,
-          "title": "【qa-pc-用户侧-商用分批零售小单】零售小单详情查看售后单，结果进入售后详情页",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 333935,
-          "title": "【QA-PC-用户侧-分批提货】分批提货大单待接单状态下申请退款提交失败，提示退货商品数量不能为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 333929,
-          "title": "【QA-PC-管理侧-分批提货小单】零售发货单详情页， 驳回-内部备注/驳回-经销商备注不显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333926,
-          "title": "【QA-PC-管理侧-分批提货小单】零售发货单详情页，接单备注不显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333923,
-          "title": "【QA-PC-用户侧-分批提货小单合并支付】分批提货小单合并支付，跳转到收银台界面，订单金额错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 333907,
-          "title": "【QA-PC-用户侧-分批提货小单合并支付】分批提货小单合并免邮支付，提示没有请求体",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 333902,
-          "title": "【QA-PC-用户侧-零售大单】零售大单详情页，多出了送达信息字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 333865,
-          "title": "【QA-PC-用户侧-分批提货】分批提货大单申请退款界面退款数量及可编辑内容与原型要求不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 333791,
-          "title": "【QA-PC-用户侧-零售多次退款】商用账号下单限时特价商品，未接单，申请退款，可部分退款",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 333782,
-          "title": "【QA-PC-用户侧-零售大单】大单已下小单，大单详情中未展示小单列表",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 333779,
-          "title": "【QA-PC-用户侧-零售多次退款】商用账号下单返利商品，接单后申请退款，不能部分退款",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 333706,
-          "title": "【QA-PC-用户侧-商用零售分批发货大单】 商品金额、退款金额未根据退款数量进行计算",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333663,
-          "title": "【QA-PC-用户侧-商用零售分批发货】商用定金单，接单失败，提示参数非法",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333636,
-          "title": "【QA-PC-用户侧-返利方案】返利方案订单接单后申请退款时不可填写退款数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 333604,
-          "title": "【QA-PC-用户侧-分批提货小单合并支付】分批提货小单合并支付，结果支付金额错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 333577,
-          "title": "【QA-PC-用户侧-商用零售分批发货】 无法提交退款申请，提示 &quot;订单类型为分批提货大单,接口调用错误！&q",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333551,
-          "title": "【QA-PC-用户侧-零售分批提货大单】零售分批提货大单接单时，备注了经销商备注，用户侧未展示接单备注",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 333473,
-          "title": "【QA-PC-用户侧-商用零售分批发货】待接单大单申请退款需填写退款数量且商品金额、退款金额显示为0",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333471,
-          "title": "【QA-PC-用户侧-商用零售分批发货】大单详情页面商品信息显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 337117,
           "title": "【QA-PC-用户侧-订单管理】开启了分配发货普通订单下订单状态查询数据显示的内容与实际不一致",
           "severity": 3,
@@ -3295,6 +2926,375 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 335312,
+          "title": "【QA-PC-管理侧-供应链管理】工程订单定金单接单驳回，页面没有显示备注相关字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 335229,
+          "title": "【qa-pc-用户侧-商用小单详情】零售小单运费为0时，点击支付，结果提示已取消",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 334851,
+          "title": "【QA-PC-用户侧-分批提货小单】暂存前置仓订单小单，下单后进行修改地址，弹出界面地址与下单地址不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334822,
+          "title": "【QA-PC-用户侧-分批提货小单】小单列表，搜索仓库发货单号，其余搜索框置灰",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334777,
+          "title": "【QA-PC-用户侧-零售大单】组合套餐的零售大单，下小单后，下单没有在大单里展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334711,
+          "title": "【QA-PC-用户侧-商用零售小单合并支付】商用零售小单合并支付免邮，没有弹出支付成功提示语： 合并支付成功，您的订单已",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334653,
+          "title": "【QA-PC-管理侧-分批提货小单】管理侧接单小单详情页面，没有展示关联支付单号，显示为了经销商公司名称",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334651,
+          "title": "【QA-PC-用户侧-商用工程订单提货单】在工程订单提货单页面，点击分批提货待付尾款订单支付，结果支付尾款金额错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334599,
+          "title": "【QA-PC-管理侧-分批提货小单】管理侧合并支付，小单点击接单进入详情，接单界面应该不显示价格",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334485,
+          "title": "【QA-PC-用户侧-零售多次退款】工程订单定金退款，接单以后可以部分退，但是默认值显示为1",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 334446,
+          "title": "【QA-PC-管理侧-分批提货小单】合并支付分批发货，管理侧零售发货单详情页，日志查看提示：参数非法",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334412,
+          "title": "【QA-PC-用户侧-零售大单】零售大单行状态为部分发货，无其他订单行状态，订单的状态还是待发货状态",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334172,
+          "title": "【QA-PC-用户侧-退款售后】分返利订单大单申请退款弹窗界面价格字段多显示了一行¥0.00的价格",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334170,
+          "title": "【QA-PC-管理侧-零售大单】零售大单列表导出，导出字段与需求字段不同",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334163,
+          "title": "【qa-pc-用户侧-零售小单售后】在零售小单详情点击查看售后单，结果进入的售后详情页面金额内容显示与UI不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 334162,
+          "title": "【QA-PC-管理侧-零售大单】零售大单列表导出，文件名与需求不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334137,
+          "title": "【QA-PC-管理侧-零售大单】零售大单接单后，展示了指定发货仓",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334134,
+          "title": "【qa-pc-用户侧-零售小单合并支付】零售小单勾选订单合并支付，结果未计算订单金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 334110,
+          "title": "【QA-PC-用户侧-零售多次退款】工程订单定金退款，待接单状态申请退款没有显示整单退",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 334051,
+          "title": "【QA-PC-用户侧-分批提货小单】发货单详情页，上级行号没有显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334018,
+          "title": "【QA-PC-用户侧-分批提货小单】零售发货单列表，分批发货单会显示活动/零售标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334012,
+          "title": "【QA-PC-管理侧-零售大单】零售大单详情中，经销商名称和下单人为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 333995,
+          "title": "【qa-pc-用户侧-商用分批零售小单】零售小单详情查看售后单，结果进入售后详情页",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 333935,
+          "title": "【QA-PC-用户侧-分批提货】分批提货大单待接单状态下申请退款提交失败，提示退货商品数量不能为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 333929,
+          "title": "【QA-PC-管理侧-分批提货小单】零售发货单详情页， 驳回-内部备注/驳回-经销商备注不显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333926,
+          "title": "【QA-PC-管理侧-分批提货小单】零售发货单详情页，接单备注不显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333923,
+          "title": "【QA-PC-用户侧-分批提货小单合并支付】分批提货小单合并支付，跳转到收银台界面，订单金额错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333907,
+          "title": "【QA-PC-用户侧-分批提货小单合并支付】分批提货小单合并免邮支付，提示没有请求体",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333902,
+          "title": "【QA-PC-用户侧-零售大单】零售大单详情页，多出了送达信息字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 333865,
+          "title": "【QA-PC-用户侧-分批提货】分批提货大单申请退款界面退款数量及可编辑内容与原型要求不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 333791,
+          "title": "【QA-PC-用户侧-零售多次退款】商用账号下单限时特价商品，未接单，申请退款，可部分退款",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 333782,
+          "title": "【QA-PC-用户侧-零售大单】大单已下小单，大单详情中未展示小单列表",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 333779,
+          "title": "【QA-PC-用户侧-零售多次退款】商用账号下单返利商品，接单后申请退款，不能部分退款",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 333706,
+          "title": "【QA-PC-用户侧-商用零售分批发货大单】 商品金额、退款金额未根据退款数量进行计算",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333663,
+          "title": "【QA-PC-用户侧-商用零售分批发货】商用定金单，接单失败，提示参数非法",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333636,
+          "title": "【QA-PC-用户侧-返利方案】返利方案订单接单后申请退款时不可填写退款数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 333604,
+          "title": "【QA-PC-用户侧-分批提货小单合并支付】分批提货小单合并支付，结果支付金额错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333577,
+          "title": "【QA-PC-用户侧-商用零售分批发货】 无法提交退款申请，提示 &quot;订单类型为分批提货大单,接口调用错误！&q",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333551,
+          "title": "【QA-PC-用户侧-零售分批提货大单】零售分批提货大单接单时，备注了经销商备注，用户侧未展示接单备注",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 333473,
+          "title": "【QA-PC-用户侧-商用零售分批发货】待接单大单申请退款需填写退款数量且商品金额、退款金额显示为0",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333471,
+          "title": "【QA-PC-用户侧-商用零售分批发货】大单详情页面商品信息显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         }
       ],
       "active_bugs": [
@@ -3961,6 +3961,213 @@
       ],
       "resolved_bugs": [
         {
+          "id": 337110,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货”部分发货&quot;状态订单详情，页面订单状态显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 337009,
+          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单详情页修改分销商收货地址弹窗为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336925,
+          "title": "【QA-iOS-管理侧-供应链金融】分批发货订单详情，供货方/货权来源/仓库代码字段显示位置错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336924,
+          "title": "【QA-iOS-管理侧-供应链金融小单】分批发货小单详情页标签显示与UI不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336915,
+          "title": "【QA-iOS-管理侧-供应链金融小单】分批发货小单详情页备注超过一行时显示不完整",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336895,
+          "title": "【QA-iOS-管理侧-供应链金融】分批发货订单详情，订单无备注时仍显示备注字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336865,
+          "title": "【QA-iOS-管理侧-供应链金融小单】售后单详情页商品展示了多余的优惠信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336729,
+          "title": "【QA-iOS-管理侧-供应链金融小单】有货款账户运费产生且已退款成功的售后单详情页账户只显示了解押额度账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336615,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单售后详情，活动优惠字段金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336507,
+          "title": "【QA-IOS-管理侧-2层订单营销一体化打通】大单接单详情页，修改总部履约弹窗中，多出了指定发货仓",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336496,
+          "title": "【QA-IOS-管理侧-2层订单营销一体化打通】小单接单，修改总部履约及指定发货仓弹窗中，改总部履约上限值为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336376,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单被拒单，订单详情页显示 拒单备注 字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336357,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，商品信息弹窗显示货权来源和仓库代码字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336298,
+          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单详情页商品详情弹窗商品价格多显示了划线价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336265,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，组合套餐商品价格没有显示为--",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336219,
+          "title": "【QA-IOS-管理侧-销司字典】关闭分批发货功能，APP没有进行隐藏",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 336197,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单售后列表，筛选侧边栏字段与UX不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336140,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，商品信息弹窗缺少弹窗名称且字段排序与UX不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336063,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，商品信息显示运费小计字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 335837,
+          "title": "【QA-iOS-用户侧-供应链金融小单】待付款订单页面可勾选分批发货大单",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335823,
+          "title": "【QA-iOS-用户侧-供应链金融小单】详情页分批发货标签错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335814,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单列表，tab页间隔与边框相差过大或小与UX不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 335762,
+          "title": "【QA-iOS-用户侧-供应链金融】供应链金融分批发货订单详情，支付方式账户没有显示且缺少订单类型标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
           "id": 335316,
           "title": "【QA-iOS-管理侧-订单管理】工程订单定金单接单驳回，页面没有显示备注相关字段",
           "severity": 3,
@@ -4519,211 +4726,13 @@
           "openedBy": "李文清"
         },
         {
-          "id": 337110,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货”部分发货&quot;状态订单详情，页面订单状态显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 337009,
-          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单详情页修改分销商收货地址弹窗为空",
-          "severity": 3,
-          "pri": 3,
+          "id": 337010,
+          "title": "【QA-iOS-管理侧-供应链金融小单】分批发货小单详情页显示的下单信息和经销商信息与UI不符",
+          "severity": 4,
+          "pri": 4,
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
-        },
-        {
-          "id": 336925,
-          "title": "【QA-iOS-管理侧-供应链金融】分批发货订单详情，供货方/货权来源/仓库代码字段显示位置错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336924,
-          "title": "【QA-iOS-管理侧-供应链金融小单】分批发货小单详情页标签显示与UI不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336915,
-          "title": "【QA-iOS-管理侧-供应链金融小单】分批发货小单详情页备注超过一行时显示不完整",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336895,
-          "title": "【QA-iOS-管理侧-供应链金融】分批发货订单详情，订单无备注时仍显示备注字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336865,
-          "title": "【QA-iOS-管理侧-供应链金融小单】售后单详情页商品展示了多余的优惠信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336729,
-          "title": "【QA-iOS-管理侧-供应链金融小单】有货款账户运费产生且已退款成功的售后单详情页账户只显示了解押额度账户",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336615,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单售后详情，活动优惠字段金额显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336507,
-          "title": "【QA-IOS-管理侧-2层订单营销一体化打通】大单接单详情页，修改总部履约弹窗中，多出了指定发货仓",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336496,
-          "title": "【QA-IOS-管理侧-2层订单营销一体化打通】小单接单，修改总部履约及指定发货仓弹窗中，改总部履约上限值为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336376,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单被拒单，订单详情页显示 拒单备注 字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336357,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，商品信息弹窗显示货权来源和仓库代码字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336298,
-          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单详情页商品详情弹窗商品价格多显示了划线价",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336265,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，组合套餐商品价格没有显示为--",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336219,
-          "title": "【QA-IOS-管理侧-销司字典】关闭分批发货功能，APP没有进行隐藏",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 336197,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单售后列表，筛选侧边栏字段与UX不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336140,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，商品信息弹窗缺少弹窗名称且字段排序与UX不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336063,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单详情，商品信息显示运费小计字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 335837,
-          "title": "【QA-iOS-用户侧-供应链金融小单】待付款订单页面可勾选分批发货大单",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335823,
-          "title": "【QA-iOS-用户侧-供应链金融小单】详情页分批发货标签错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335814,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单列表，tab页间隔与边框相差过大或小与UX不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 335762,
-          "title": "【QA-iOS-用户侧-供应链金融】供应链金融分批发货订单详情，支付方式账户没有显示且缺少订单类型标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
         },
         {
           "id": 334418,
@@ -4737,15 +4746,6 @@
         {
           "id": 334236,
           "title": "【QA-iOS-用户侧-商用零售分批发货小单】售后单详情页多显示了分批发货标签",
-          "severity": 4,
-          "pri": 4,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 337010,
-          "title": "【QA-iOS-管理侧-供应链金融小单】分批发货小单详情页显示的下单信息和经销商信息与UI不符",
           "severity": 4,
           "pri": 4,
           "status": "closed",
@@ -5504,6 +5504,15 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 337133,
+          "title": "【QA-PC-管理侧-资料变更】资料变更页面，经销商资料变更审核列表，签署状态查询，无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
           "id": 337075,
           "title": "【QA-PC-管理侧-供应链金融账户】变更主体信息，失效的记录账户类型存错",
           "severity": 3,
@@ -5811,14 +5820,6 @@
         }
       ],
       "active_bugs": [
-        {
-          "id": 337133,
-          "title": "【QA-PC-管理侧-资料变更】资料变更页面，经销商资料变更审核列表，签署状态查询，无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
         {
           "id": 337063,
           "title": "【QA-PC-管理侧-主体关联变更审核】丙方法人信息为空且丙方的印章盖在了乙方位置",
@@ -7042,60 +7043,6 @@
           "openedBy": "邹娟"
         },
         {
-          "id": 335263,
-          "title": "【PRD-PC-管理侧-分批提货小单】合并支付接单页，按订单方量收运费，运费明细方量没有合计",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 335233,
-          "title": "【QA-H5-管理侧-分批提货小单】合并支付接单页，按订单方量收运费，运费规则缺少文案",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 335227,
-          "title": "【QA-H5-管理侧-分批提货小单】合并支付接单页，按订单方量收运费，运费明细未正常显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 335220,
-          "title": "【QA-H5-管理侧-分批提货小单】合并支付免邮，接单页，没显示运费明细",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333998,
-          "title": "【QA-PC-用户侧-我的账户】我的账户输入密码后，提示404",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333379,
-          "title": "【QA-PC-管理侧-转单设置】转单设置中，页面展示与需求不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
           "id": 336803,
           "title": "【QA-PC-管理侧-经销商解押还款】提交设置还款金额后，缺少二次确认",
           "severity": 3,
@@ -7359,6 +7306,60 @@
         {
           "id": 335511,
           "title": "【QA-PC-管理侧-经销商贷款额度设置】经销商贷款额度设置审核通过后，经销商账户可用贷款余额仍展示为 - -",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 335263,
+          "title": "【PRD-PC-管理侧-分批提货小单】合并支付接单页，按订单方量收运费，运费明细方量没有合计",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 335233,
+          "title": "【QA-H5-管理侧-分批提货小单】合并支付接单页，按订单方量收运费，运费规则缺少文案",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 335227,
+          "title": "【QA-H5-管理侧-分批提货小单】合并支付接单页，按订单方量收运费，运费明细未正常显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 335220,
+          "title": "【QA-H5-管理侧-分批提货小单】合并支付免邮，接单页，没显示运费明细",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333998,
+          "title": "【QA-PC-用户侧-我的账户】我的账户输入密码后，提示404",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333379,
+          "title": "【QA-PC-管理侧-转单设置】转单设置中，页面展示与需求不符",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -9104,276 +9105,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334940,
-          "title": "【QA-安卓-用户侧-提交订单】家用账号，提交订单页显示分批发货类型",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 334880,
-          "title": "【QA-安卓-用户侧-零售大单】待付款列表，勾选工程非标订单，会提示：订单运费不存在",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334709,
-          "title": "【QA-安卓-用户侧-工程机】工程提货列表数据为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334693,
-          "title": "【QA-安卓-用户侧-分批提货小单】下单小单自提单，能修改期望自提时间，选择日期提交后，提示数据异常",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334676,
-          "title": "【QA-安卓-用户侧-分批提货小单】下单小单，暂存前置仓，备注200字提交，提示400错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334539,
-          "title": "【QA-安卓-用户侧-商用零售分批发货小单】通过小单详情页进入关联的售后单详情页显示信息错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 334463,
-          "title": "【QA-安卓-用户侧-分批提货小单】去发货选择商品列表，点击商品查看商品详情，订单类型都显示为零售",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334460,
-          "title": "【QA-安卓-用户侧-分批提货小单】用户小单去发货，可以选择超过100个商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334439,
-          "title": "【QA-安卓-用户侧-分批提货小单】用户侧支付合并支付订单后，点击查看订单按钮，没有转跳到列表",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334387,
-          "title": "【QA-安卓-用户侧-零售大单】零售大单详情，查看商品信息，多出供货方，运费小计字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334294,
-          "title": "【QA-安卓-用户侧-零售大单】零售大单详情中展示字段有误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334273,
-          "title": "【QA-安卓-用户侧-分批提货小单】为我发货页，商品信息弹框，未显示订单行号",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334249,
-          "title": "【QA-安卓-用户侧-零售大单】零售大单待付款，没有展示倒计时",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334233,
-          "title": "【QA-安卓-用户侧-分批提货小单】去发货，默认是配送，点击选择小单商品后，切换为暂存前置仓，没有更新运费",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334189,
-          "title": "【QA-安卓-用户侧-分批提货小单】管理侧驳回小单订单并备注，备注显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334152,
-          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，提交小单添加商品后，无法添加多个商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334139,
-          "title": "【QA-安卓-用户侧-零售大单】零售分批发货订单列表，大单展示了分批提货标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334054,
-          "title": "【QA-安卓-用户侧-分批提货小单】发货单详情页，商品详情弹框，订单行号显示空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334040,
-          "title": "【QA-安卓-用户侧-分批提货小单】为我发货，搜索订单添加发货商品后，再去添加新的商品，会覆盖替换已添加商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334035,
-          "title": "【QA-安卓-用户侧-分批提货小单】待付款订单，勾选订单后，点击合并支付，金额计算错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334027,
-          "title": "【QA-安卓-用户侧-分批提货小单】自提的零售发货单详情页，会显示运费字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334016,
-          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，分批发货单会显示活动/零售标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334001,
-          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，提交小单添加商品后，无法删除商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333989,
-          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，提交小单自提，提示：请填写仓库信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333977,
-          "title": "【QA-安卓-用户侧-普通零售大单】普通零售大单申请取消发货，结果点击取消发货按钮无反应",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 333909,
-          "title": "【QA-安卓-用户侧-零售大单】零售大单已接单，并备注了经销商备注，订单详情未展示该备注",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 333833,
-          "title": "【QA-安卓-用户侧-零售大单】在分批发货订单列表，展示了小单的数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 333831,
-          "title": "【QA-安卓-用户侧-分批提货小单合并支付】分批提货小单合并支付，结果支付金额错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 333829,
-          "title": "【QA-安卓-用户侧-零售大单】零售大单列表，为展示订零售大单金额，且多了运费字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 333621,
-          "title": "【QA-安卓-用户侧-商用零售分批发货大单】 无法提交退款申请，提示 &quot;订单类型为分批提货大单,接口调用错误！",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 337151,
           "title": "【QA-安卓-用户侧-供应链金融小单】按方量计算运费时组合套餐为我发货页商品体积和运费合计都为0",
           "severity": 3,
@@ -9770,13 +9501,274 @@
           "openedBy": "李成斌"
         },
         {
-          "id": 333769,
-          "title": "【QA-安卓-用户侧-商用零售分批提货小单】发货单列表页非待付款状态的发货单点击取消发货会有多余二次确认弹窗",
-          "severity": 4,
-          "pri": 4,
+          "id": 334940,
+          "title": "【QA-安卓-用户侧-提交订单】家用账号，提交订单页显示分批发货类型",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 334880,
+          "title": "【QA-安卓-用户侧-零售大单】待付款列表，勾选工程非标订单，会提示：订单运费不存在",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334709,
+          "title": "【QA-安卓-用户侧-工程机】工程提货列表数据为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334693,
+          "title": "【QA-安卓-用户侧-分批提货小单】下单小单自提单，能修改期望自提时间，选择日期提交后，提示数据异常",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334676,
+          "title": "【QA-安卓-用户侧-分批提货小单】下单小单，暂存前置仓，备注200字提交，提示400错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334539,
+          "title": "【QA-安卓-用户侧-商用零售分批发货小单】通过小单详情页进入关联的售后单详情页显示信息错误",
+          "severity": 3,
+          "pri": 3,
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
+        },
+        {
+          "id": 334463,
+          "title": "【QA-安卓-用户侧-分批提货小单】去发货选择商品列表，点击商品查看商品详情，订单类型都显示为零售",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334460,
+          "title": "【QA-安卓-用户侧-分批提货小单】用户小单去发货，可以选择超过100个商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334439,
+          "title": "【QA-安卓-用户侧-分批提货小单】用户侧支付合并支付订单后，点击查看订单按钮，没有转跳到列表",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334387,
+          "title": "【QA-安卓-用户侧-零售大单】零售大单详情，查看商品信息，多出供货方，运费小计字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334294,
+          "title": "【QA-安卓-用户侧-零售大单】零售大单详情中展示字段有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334273,
+          "title": "【QA-安卓-用户侧-分批提货小单】为我发货页，商品信息弹框，未显示订单行号",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334249,
+          "title": "【QA-安卓-用户侧-零售大单】零售大单待付款，没有展示倒计时",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334233,
+          "title": "【QA-安卓-用户侧-分批提货小单】去发货，默认是配送，点击选择小单商品后，切换为暂存前置仓，没有更新运费",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334189,
+          "title": "【QA-安卓-用户侧-分批提货小单】管理侧驳回小单订单并备注，备注显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334152,
+          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，提交小单添加商品后，无法添加多个商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334139,
+          "title": "【QA-安卓-用户侧-零售大单】零售分批发货订单列表，大单展示了分批提货标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334054,
+          "title": "【QA-安卓-用户侧-分批提货小单】发货单详情页，商品详情弹框，订单行号显示空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334040,
+          "title": "【QA-安卓-用户侧-分批提货小单】为我发货，搜索订单添加发货商品后，再去添加新的商品，会覆盖替换已添加商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334035,
+          "title": "【QA-安卓-用户侧-分批提货小单】待付款订单，勾选订单后，点击合并支付，金额计算错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334027,
+          "title": "【QA-安卓-用户侧-分批提货小单】自提的零售发货单详情页，会显示运费字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334016,
+          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，分批发货单会显示活动/零售标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334001,
+          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，提交小单添加商品后，无法删除商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333989,
+          "title": "【QA-安卓-用户侧-分批提货小单】零售发货单列表，提交小单自提，提示：请填写仓库信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333977,
+          "title": "【QA-安卓-用户侧-普通零售大单】普通零售大单申请取消发货，结果点击取消发货按钮无反应",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333909,
+          "title": "【QA-安卓-用户侧-零售大单】零售大单已接单，并备注了经销商备注，订单详情未展示该备注",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 333833,
+          "title": "【QA-安卓-用户侧-零售大单】在分批发货订单列表，展示了小单的数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 333831,
+          "title": "【QA-安卓-用户侧-分批提货小单合并支付】分批提货小单合并支付，结果支付金额错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333829,
+          "title": "【QA-安卓-用户侧-零售大单】零售大单列表，为展示订零售大单金额，且多了运费字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 333621,
+          "title": "【QA-安卓-用户侧-商用零售分批发货大单】 无法提交退款申请，提示 &quot;订单类型为分批提货大单,接口调用错误！",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 336966,
@@ -9826,6 +9818,15 @@
         {
           "id": 335745,
           "title": "【QA-安卓-用户侧-供应链金融小单】待付款订单取消发货二次确认弹窗提示语错误",
+          "severity": 4,
+          "pri": 4,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 333769,
+          "title": "【QA-安卓-用户侧-商用零售分批提货小单】发货单列表页非待付款状态的发货单点击取消发货会有多余二次确认弹窗",
           "severity": 4,
           "pri": 4,
           "status": "closed",
@@ -10303,42 +10304,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334764,
-          "title": "【QA-PC-管理侧-待办事项】待办事项-商用工退款审批、商用订单审批子页签只能显示前10条数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 334441,
-          "title": "【QA-PC-用户侧-分批提货小单】售后单，分批发货应该不显示零售标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334060,
-          "title": "【QA-PC-用户侧/管理侧-商用零售分批发货大单退款】返利退款单退款账户显示不正确",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333905,
-          "title": "【QA-PC-管理侧-商用零售分批发货大单退款】筛选条件订单类型选项不可多选",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 337084,
           "title": "【QA-PC-用户侧-供应链金融小单】组合套餐小单售后详情页，单价、小计不是显示--",
           "severity": 3,
@@ -10373,6 +10338,42 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334764,
+          "title": "【QA-PC-管理侧-待办事项】待办事项-商用工退款审批、商用订单审批子页签只能显示前10条数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334441,
+          "title": "【QA-PC-用户侧-分批提货小单】售后单，分批发货应该不显示零售标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334060,
+          "title": "【QA-PC-用户侧/管理侧-商用零售分批发货大单退款】返利退款单退款账户显示不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333905,
+          "title": "【QA-PC-管理侧-商用零售分批发货大单退款】筛选条件订单类型选项不可多选",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 334002,
@@ -11689,6 +11690,303 @@
       ],
       "resolved_bugs": [
         {
+          "id": 337156,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，页面显示 经销商账号 字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 337088,
+          "title": "【QA-安卓-管理侧-供应链金融小单】已退款成功的售后单详情页退款金额信息与UI不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 337078,
+          "title": "【QA-安卓-管理侧-供应链金融】从待办事项进入分批发货订单详情，页面备注字段没有内容仍然显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 337065,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，页面显示修改总部履约及指定发货仓字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336948,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，接单驳回弹窗字段存在错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336923,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，供货方/货权来源/仓库代码字段显示位置错误，且显示运费相关字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336893,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单存在备注，查看订单详情时页面缺少备注字段和相关备注信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336833,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，商品详情弹窗显示总部履约/销司履约字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336830,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，大单标签显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336826,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单列表，分批发货大单显示运费相关字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336818,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单交易关闭状态详情页，页面显示驳回-经销商备注字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336812,
+          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，订单存在关联发货单，但页面不显示 发货单 按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336728,
+          "title": "【QA-安卓-管理侧-供应链金融小单】已退款成功的售后单详情页账户为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336683,
+          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，活动优惠字段显示“明细”按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336680,
+          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页商品单价和小计显示的不是优惠后的价格",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336676,
+          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，退款原因备注没有数据任然显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336663,
+          "title": "【QA-安卓-管理侧-供应链金融小单】售后单详情页商品缺少单价和数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336632,
+          "title": "【QA-安卓-用户侧-供应链金融】售后列表筛选侧边栏，普通订单退款显示 退定金 选项且缺少字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336617,
+          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，页面显示 分批发货 标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336612,
+          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，存在多字段显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336601,
+          "title": "【QA-安卓-用户侧-供应链金融】分批发货组合套餐订单售后详情，商品价格没有显示为：--",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336557,
+          "title": "【QA-安卓-管理侧-2层订单营销一体化打通】总部履约上限为0的时候，小单接单，修改总部履约填入任意值都会变成0，但销司",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336503,
+          "title": "【QA-安卓-管理侧-2层订单营销一体化打通】大单接单页详情，缺少修改总部履约的弹窗按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336494,
+          "title": "【QA-安卓-管理侧-2层订单营销一体化打通】小单接单，修改总部履约及指定发货仓弹窗中，改总部履约上限值为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336327,
+          "title": "【QA-安卓-用户侧-供应链金融】进入售后单列表，页面报404",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336260,
+          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页点击商品没有出现商品详情弹层",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336256,
+          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页商品信息显示与UI不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336234,
+          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单列表页点击接单按钮闪退",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336220,
+          "title": "【QA-安卓-管理侧-销司字典】关闭分批发货功能，APP没有进行隐藏",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 336198,
+          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后列表，筛选侧边栏字段与UX不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336184,
+          "title": "【QA-安卓-用户侧-供应链金融】查看售后单，App停止运行",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 335874,
+          "title": "【QA-安卓-用户侧-供应链金融小单】售后单列表页分批发货小单售后单标签错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335864,
+          "title": "【QA-安卓-用户侧-供应链金融小单】售后单列表页点击分批发货售后单闪退",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 334873,
           "title": "【QA-安卓-用户侧-分批提货订单售后】返利退款商品弹层缺少【使用返利】",
           "severity": 3,
@@ -12148,305 +12446,8 @@
           "openedBy": "刘孝亮"
         },
         {
-          "id": 337156,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，页面显示 经销商账号 字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 337088,
-          "title": "【QA-安卓-管理侧-供应链金融小单】已退款成功的售后单详情页退款金额信息与UI不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 337078,
-          "title": "【QA-安卓-管理侧-供应链金融】从待办事项进入分批发货订单详情，页面备注字段没有内容仍然显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 337065,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，页面显示修改总部履约及指定发货仓字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336948,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，接单驳回弹窗字段存在错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336923,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，供货方/货权来源/仓库代码字段显示位置错误，且显示运费相关字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336893,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单存在备注，查看订单详情时页面缺少备注字段和相关备注信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336833,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，商品详情弹窗显示总部履约/销司履约字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336830,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，大单标签显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336826,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单列表，分批发货大单显示运费相关字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336818,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单交易关闭状态详情页，页面显示驳回-经销商备注字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336812,
-          "title": "【QA-安卓-管理侧-供应链金融】分批发货订单详情，订单存在关联发货单，但页面不显示 发货单 按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336728,
-          "title": "【QA-安卓-管理侧-供应链金融小单】已退款成功的售后单详情页账户为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336683,
-          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，活动优惠字段显示“明细”按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336680,
-          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页商品单价和小计显示的不是优惠后的价格",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336676,
-          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，退款原因备注没有数据任然显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336663,
-          "title": "【QA-安卓-管理侧-供应链金融小单】售后单详情页商品缺少单价和数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336632,
-          "title": "【QA-安卓-用户侧-供应链金融】售后列表筛选侧边栏，普通订单退款显示 退定金 选项且缺少字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336617,
-          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，页面显示 分批发货 标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336612,
-          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后详情，存在多字段显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336601,
-          "title": "【QA-安卓-用户侧-供应链金融】分批发货组合套餐订单售后详情，商品价格没有显示为：--",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336557,
-          "title": "【QA-安卓-管理侧-2层订单营销一体化打通】总部履约上限为0的时候，小单接单，修改总部履约填入任意值都会变成0，但销司",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336503,
-          "title": "【QA-安卓-管理侧-2层订单营销一体化打通】大单接单页详情，缺少修改总部履约的弹窗按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336494,
-          "title": "【QA-安卓-管理侧-2层订单营销一体化打通】小单接单，修改总部履约及指定发货仓弹窗中，改总部履约上限值为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336327,
-          "title": "【QA-安卓-用户侧-供应链金融】进入售后单列表，页面报404",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336260,
-          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页点击商品没有出现商品详情弹层",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336256,
-          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页商品信息显示与UI不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336234,
-          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单列表页点击接单按钮闪退",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336220,
-          "title": "【QA-安卓-管理侧-销司字典】关闭分批发货功能，APP没有进行隐藏",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 336198,
-          "title": "【QA-安卓-用户侧-供应链金融】分批发货订单售后列表，筛选侧边栏字段与UX不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336184,
-          "title": "【QA-安卓-用户侧-供应链金融】查看售后单，App停止运行",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 335874,
-          "title": "【QA-安卓-用户侧-供应链金融小单】售后单列表页分批发货小单售后单标签错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335864,
-          "title": "【QA-安卓-用户侧-供应链金融小单】售后单列表页点击分批发货售后单闪退",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 334646,
-          "title": "【QA-安卓-用户侧-商用零售分批提货小单】售后单详情页商品详情弹层字段名称错误",
+          "id": 337014,
+          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页经销商信息与UI不符",
           "severity": 4,
           "pri": 4,
           "status": "closed",
@@ -12454,8 +12455,8 @@
           "openedBy": "李成斌"
         },
         {
-          "id": 337014,
-          "title": "【QA-安卓-管理侧-供应链金融小单】分批发货小单详情页经销商信息与UI不符",
+          "id": 334646,
+          "title": "【QA-安卓-用户侧-商用零售分批提货小单】售后单详情页商品详情弹层字段名称错误",
           "severity": 4,
           "pri": 4,
           "status": "closed",
@@ -13051,6 +13052,60 @@
           "openedBy": "邹娟"
         },
         {
+          "id": 337067,
+          "title": "【QA-安卓-用户侧-供应链金融小单】申请取消发货页商品信息弹窗与UI不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 337100,
+          "title": "【QA-安卓-用户侧-供应链金融】优惠券分批发货”部分发货&quot;状态订单，申请退款勾选商品提示“订单状态已更新，请",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336070,
+          "title": "【QA-安卓-用户侧-贷款解押账户】点击可用贷款余额、可用解押余额，提示：获取不到钱包信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 335963,
+          "title": "【QA-安卓-用户侧-供应链金融小单】点击支付运费不为0的待付款状态订单，收银台没有显示货款支付部分",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335752,
+          "title": "【QA-安卓-用户侧-我的账户】该商家未有贷款解押账户， 应不展示可用解押余额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 335729,
+          "title": "【QA-安卓-用户侧-供应链金融小单】申请取消发货页价格信息显示与UI不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 334941,
           "title": "【QA-安卓-用户侧-商用订单退款】商用非分批发货满减订单申请退款不能选择订单行退款",
           "severity": 3,
@@ -13364,60 +13419,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
-        },
-        {
-          "id": 337067,
-          "title": "【QA-安卓-用户侧-供应链金融小单】申请取消发货页商品信息弹窗与UI不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 337100,
-          "title": "【QA-安卓-用户侧-供应链金融】优惠券分批发货”部分发货&quot;状态订单，申请退款勾选商品提示“订单状态已更新，请",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336070,
-          "title": "【QA-安卓-用户侧-贷款解押账户】点击可用贷款余额、可用解押余额，提示：获取不到钱包信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 335963,
-          "title": "【QA-安卓-用户侧-供应链金融小单】点击支付运费不为0的待付款状态订单，收银台没有显示货款支付部分",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335752,
-          "title": "【QA-安卓-用户侧-我的账户】该商家未有贷款解押账户， 应不展示可用解押余额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 335729,
-          "title": "【QA-安卓-用户侧-供应链金融小单】申请取消发货页价格信息显示与UI不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
         }
       ],
       "active_bugs": [
@@ -13726,18 +13727,6 @@
           "finished_date": "2026-08-04"
         },
         {
-          "id": 306847,
-          "name": "【后端】企业微信登录菜单配置-添加/编辑元素，类型-增加【字段】返回判断",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "孙元通",
-          "finished_date": "2026-08-06"
-        },
-        {
           "id": 305799,
           "name": "【后端】分批提货支付--提供订单信息",
           "consumed": 8.0,
@@ -13758,6 +13747,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
           "opened_date": "2026-07-07",
+          "finished_by": "孙元通",
+          "finished_date": "2026-08-06"
+        },
+        {
+          "id": 306847,
+          "name": "【后端】企业微信登录菜单配置-添加/编辑元素，类型-增加【字段】返回判断",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-07-15",
           "finished_by": "孙元通",
           "finished_date": "2026-08-06"
         },
@@ -14547,6 +14548,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 335719,
+          "title": "【QA-iOS-用户侧-供应链金融】供应链金融分批发货订单支付页，支付使用账户显示错误",
+          "severity": 2,
+          "pri": 2,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
           "id": 334563,
           "title": "【QA-IOS-用户侧-分批提货小单】工程提货小单，无法支付",
           "severity": 2,
@@ -14565,15 +14575,6 @@
           "openedBy": "江小芳"
         },
         {
-          "id": 335719,
-          "title": "【QA-iOS-用户侧-供应链金融】供应链金融分批发货订单支付页，支付使用账户显示错误",
-          "severity": 2,
-          "pri": 2,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
           "id": 332851,
           "title": "【QA-IOS-管理侧-工程批价】关联了特批方案的工程单在一次批价\\二次批价时仍校验了配提机型的剩余可购买数量",
           "severity": 3,
@@ -14581,6 +14582,177 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 336986,
+          "title": "【QA-IOS-用户侧-搜索】活动专区组合套餐方案列表，查看其他组合套餐方案后再回到第一个，第一个页面显示异常",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李学鹍"
+        },
+        {
+          "id": 336967,
+          "title": "【QA-IOS-用户侧-搜索】组合套餐详情页面布局需优化",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李学鹍"
+        },
+        {
+          "id": 336965,
+          "title": "【QA-IOS-用户侧-企业信息变更记录】查看关联主体信息变更详情，结果缺少信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336855,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页商品缺少标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336846,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页选择自提方式时自提规则无法查看",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336811,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页商品信息弹窗缺少供货方",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336799,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页添加发货商品页筛选商品型号不生效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336785,
+          "title": "【QA-IOS-用户侧-企业信息变更记录】关联主体信息变更单据类型显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336721,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页点击提交发货后进入收银台，金额和账户显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336708,
+          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，返利/工程订单显示“分批发货”类型配送方式",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336457,
+          "title": "【QA-IOS-用户侧-主体信息变更】申请变更主体信息是否同步弹窗提示语跟原型不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336444,
+          "title": "【QA-IOS-用户侧-主体信息变更】进入变更记录，无法查看单据详情",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336412,
+          "title": "【QA-IOS-用户侧-资料变更】申请修改基础信息变更和公司名称及法人变更，结果也弹出同步变更弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336410,
+          "title": "【QA-IOS-用户侧-主体信息联合审批变更】申请主体信息变更是否同步，提交提示参数非法",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336240,
+          "title": "【QA-IOS-用户侧-主体信息变更】PID绑定多个商家，结果商家申请修改主体信息变更，没有弹出是否同步弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 336031,
+          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，仓储费、运费温馨提示弹窗 提示说明文案错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 335982,
+          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单列表页点击待付款状态订单支付按钮无反应",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335978,
+          "title": "【QA-iOS-用户侧-供应链金融小单】点击支付待付款状态订单，收银台报错没有请求体",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 335615,
+          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页添加发货商品页商品为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
         },
         {
           "id": 334937,
@@ -14806,177 +14978,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
-        },
-        {
-          "id": 336986,
-          "title": "【QA-IOS-用户侧-搜索】活动专区组合套餐方案列表，查看其他组合套餐方案后再回到第一个，第一个页面显示异常",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李学鹍"
-        },
-        {
-          "id": 336967,
-          "title": "【QA-IOS-用户侧-搜索】组合套餐详情页面布局需优化",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李学鹍"
-        },
-        {
-          "id": 336965,
-          "title": "【QA-IOS-用户侧-企业信息变更记录】查看关联主体信息变更详情，结果缺少信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336855,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页商品缺少标签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336846,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页选择自提方式时自提规则无法查看",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336811,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页商品信息弹窗缺少供货方",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336799,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页添加发货商品页筛选商品型号不生效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336785,
-          "title": "【QA-IOS-用户侧-企业信息变更记录】关联主体信息变更单据类型显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336721,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页点击提交发货后进入收银台，金额和账户显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336708,
-          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，返利/工程订单显示“分批发货”类型配送方式",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336457,
-          "title": "【QA-IOS-用户侧-主体信息变更】申请变更主体信息是否同步弹窗提示语跟原型不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336444,
-          "title": "【QA-IOS-用户侧-主体信息变更】进入变更记录，无法查看单据详情",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336412,
-          "title": "【QA-IOS-用户侧-资料变更】申请修改基础信息变更和公司名称及法人变更，结果也弹出同步变更弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336410,
-          "title": "【QA-IOS-用户侧-主体信息联合审批变更】申请主体信息变更是否同步，提交提示参数非法",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336240,
-          "title": "【QA-IOS-用户侧-主体信息变更】PID绑定多个商家，结果商家申请修改主体信息变更，没有弹出是否同步弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 336031,
-          "title": "【QA-iOS-用户侧-供应链金融】提交订单页，仓储费、运费温馨提示弹窗 提示说明文案错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 335982,
-          "title": "【QA-iOS-用户侧-供应链金融小单】分批发货小单列表页点击待付款状态订单支付按钮无反应",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335978,
-          "title": "【QA-iOS-用户侧-供应链金融小单】点击支付待付款状态订单，收银台报错没有请求体",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 335615,
-          "title": "【QA-iOS-用户侧-供应链金融小单】为我发货页添加发货商品页商品为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
         },
         {
           "id": 336836,
@@ -17119,15 +17120,6 @@
           "openedBy": "陈嘉劲"
         },
         {
-          "id": 333383,
-          "title": "【QA-PC-管理侧-转单设置】转单设置中，4.0家用销司未默认初始化为：自动转单",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
           "id": 336021,
           "title": "【QA-PC-管理侧-审批流配置】点击批量维护审批人，选择填写销售公司和销售公司下的账号，导入，提示：销售公司部门编码重",
           "severity": 3,
@@ -17144,6 +17136,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "马腾"
+        },
+        {
+          "id": 333383,
+          "title": "【QA-PC-管理侧-转单设置】转单设置中，4.0家用销司未默认初始化为：自动转单",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
         },
         {
           "id": 336271,
@@ -17416,42 +17417,6 @@
           "finished_date": "2026-08-20"
         },
         {
-          "id": 321296,
-          "name": "【后端】4.0模式下，经销商组合套餐方案管理侧-屏蔽商家ES改造迭代",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "冯澈",
-          "finished_date": "2026-08-28"
-        },
-        {
-          "id": 321294,
-          "name": "【后端】4.0模式下，经销商满减件方案管理侧-屏蔽商家ES改造迭代",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "冯澈",
-          "finished_date": "2026-08-28"
-        },
-        {
-          "id": 321292,
-          "name": "【后端】4.0模式下，经销商买赠方案管理侧-屏蔽商家ES改造迭代",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "冯澈",
-          "finished_date": "2026-08-28"
-        },
-        {
           "id": 324166,
           "name": "【后端】工程项目单(用户侧)-审批进度以及其4种类型单据详情",
           "consumed": 16.0,
@@ -17520,6 +17485,42 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-08-26",
+          "finished_by": "冯澈",
+          "finished_date": "2026-08-28"
+        },
+        {
+          "id": 321296,
+          "name": "【后端】4.0模式下，经销商组合套餐方案管理侧-屏蔽商家ES改造迭代",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "冯澈",
+          "finished_date": "2026-08-28"
+        },
+        {
+          "id": 321294,
+          "name": "【后端】4.0模式下，经销商满减件方案管理侧-屏蔽商家ES改造迭代",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "冯澈",
+          "finished_date": "2026-08-28"
+        },
+        {
+          "id": 321292,
+          "name": "【后端】4.0模式下，经销商买赠方案管理侧-屏蔽商家ES改造迭代",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-19",
           "finished_by": "冯澈",
           "finished_date": "2026-08-28"
         }
@@ -18322,15 +18323,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334135,
-          "title": "【QA-PC-用户侧-零售分批发货小单合并支付】合并支付收银台确认支付后报错",
-          "severity": 2,
-          "pri": 2,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
           "id": 335595,
           "title": "【QA-PC-用户侧-供应链金融】供应链金融分批发货订单支付，提示&quot;交易渠道金额必须为整数|交易总金额必须为整",
           "severity": 2,
@@ -18338,6 +18330,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 334135,
+          "title": "【QA-PC-用户侧-零售分批发货小单合并支付】合并支付收银台确认支付后报错",
+          "severity": 2,
+          "pri": 2,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
         },
         {
           "id": 333313,
@@ -18374,24 +18375,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
-        },
-        {
-          "id": 333873,
-          "title": "【QA-PC-用户侧-分批发货账户流水逻辑改造】小单的正向扣除运费金额，详情字段不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 333731,
-          "title": "【QA-PC-用户侧-分批发货账户流水逻辑改造】商用账号下单后申请退款备注，流水列表没有显示备注信息，详情里面有显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
         },
         {
           "id": 336883,
@@ -18464,6 +18447,24 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 333873,
+          "title": "【QA-PC-用户侧-分批发货账户流水逻辑改造】小单的正向扣除运费金额，详情字段不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 333731,
+          "title": "【QA-PC-用户侧-分批发货账户流水逻辑改造】商用账号下单后申请退款备注，流水列表没有显示备注信息，详情里面有显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
         }
       ],
       "active_bugs": []
@@ -20221,18 +20222,6 @@
           "finished_date": "2026-08-17"
         },
         {
-          "id": 321471,
-          "name": "【ui设计】零售配送小单合并支付免运费优化",
-          "consumed": 8.0,
-          "estimate": 16.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-20",
-          "finished_by": "王乐",
-          "finished_date": "2026-08-19"
-        },
-        {
           "id": 321475,
           "name": "【UI设计】商用重构  管理端PC-工程项目单列表SY01",
           "consumed": 32.0,
@@ -20240,6 +20229,18 @@
           "type": "ad1_UI_des",
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-20",
+          "finished_by": "王乐",
+          "finished_date": "2026-08-19"
+        },
+        {
+          "id": 321471,
+          "name": "【ui设计】零售配送小单合并支付免运费优化",
+          "consumed": 8.0,
+          "estimate": 16.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
           "opened_date": "2026-08-20",
           "finished_by": "王乐",
           "finished_date": "2026-08-19"
@@ -20644,6 +20645,87 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
+        },
+        {
+          "id": 337066,
+          "title": "【QA-iOS-用户侧-供应链金融小单】申请取消发货页商品信息弹窗与UI不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 337073,
+          "title": "【QA-iOS-管理侧-供应链金融】从待办事项进入分批发货订单详情，页面显示运费字段字段且支付方式没有显示账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336559,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单申请售后，售后弹窗活动优惠字段显示 明细 按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336157,
+          "title": "【QA-iOS-用户侧-供应链金融小单】申请取消发货页缺少商品单价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 336154,
+          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单退款弹窗，活动优惠明细数据显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 336075,
+          "title": "【QA-IOS-用户侧-贷款解押账户】跳转至FMS的页面不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 335993,
+          "title": "【QA-IOS-用户侧-贷款解押账户】可用解押余额展示为0",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 335740,
+          "title": "【QA-IOS-用户侧-我的账户】我的账户中，缺少可用贷款余额、可用解押余额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 335733,
+          "title": "【QA-iOS-用户侧-供应链金融小单】申请取消发货页价格信息显示与UI不符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
         },
         {
           "id": 334946,
@@ -21085,87 +21167,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
-        },
-        {
-          "id": 337066,
-          "title": "【QA-iOS-用户侧-供应链金融小单】申请取消发货页商品信息弹窗与UI不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 337073,
-          "title": "【QA-iOS-管理侧-供应链金融】从待办事项进入分批发货订单详情，页面显示运费字段字段且支付方式没有显示账户",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336559,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单申请售后，售后弹窗活动优惠字段显示 明细 按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336157,
-          "title": "【QA-iOS-用户侧-供应链金融小单】申请取消发货页缺少商品单价",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
-          "id": 336154,
-          "title": "【QA-iOS-用户侧-供应链金融】分批发货订单退款弹窗，活动优惠明细数据显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 336075,
-          "title": "【QA-IOS-用户侧-贷款解押账户】跳转至FMS的页面不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 335993,
-          "title": "【QA-IOS-用户侧-贷款解押账户】可用解押余额展示为0",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 335740,
-          "title": "【QA-IOS-用户侧-我的账户】我的账户中，缺少可用贷款余额、可用解押余额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 335733,
-          "title": "【QA-iOS-用户侧-供应链金融小单】申请取消发货页价格信息显示与UI不符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
         }
       ],
       "active_bugs": [
@@ -21639,6 +21640,87 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 336873,
+          "title": "【QA-H5-管理侧-供应链金融小单】自提发货单，备货清单，不能下载自提函",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336637,
+          "title": "【QA-H5-管理侧-供应链金融小单】发货单详情页，不显示发货数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336554,
+          "title": "【QA-H5-管理侧-供应链金融小单】发货单驳回后，驳回内部备注显示空，同时会显示接单备注、接单内部备注，",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336456,
+          "title": "【QA-H5-管理侧-供应链金融小单】发货单驳回失败，提示供应链金融订单请按供应链金融拒单!",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336448,
+          "title": "【QA-H5-管理侧-供应链金融小单】发货单驳回弹框，驳回原因、内部备注可以输入超过50个字符",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336441,
+          "title": "【QA-H5-管理侧-供应链金融小单】分批发货小单详情页，会显示RMS下单号",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336349,
+          "title": "【QA-H5-管理侧-供应链金融小单】自提的分批发货小单，下载提货清单，提示404",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336121,
+          "title": "【QA-H5-管理侧-供应链金融小单】分批发货小单详情页，商品信息弹框，价格会显示划线价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336057,
+          "title": "【QA-H5-管理侧-供应链金融小单】分批发货小单详情页，展示的不是优惠后单价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 335319,
           "title": "【QA-H5-管理侧-商用订单管理】工程订单定金单接单驳回，页面没有显示备注相关字段",
           "severity": 3,
@@ -21943,87 +22025,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
-        },
-        {
-          "id": 336873,
-          "title": "【QA-H5-管理侧-供应链金融小单】自提发货单，备货清单，不能下载自提函",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336637,
-          "title": "【QA-H5-管理侧-供应链金融小单】发货单详情页，不显示发货数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336554,
-          "title": "【QA-H5-管理侧-供应链金融小单】发货单驳回后，驳回内部备注显示空，同时会显示接单备注、接单内部备注，",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336456,
-          "title": "【QA-H5-管理侧-供应链金融小单】发货单驳回失败，提示供应链金融订单请按供应链金融拒单!",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336448,
-          "title": "【QA-H5-管理侧-供应链金融小单】发货单驳回弹框，驳回原因、内部备注可以输入超过50个字符",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336441,
-          "title": "【QA-H5-管理侧-供应链金融小单】分批发货小单详情页，会显示RMS下单号",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336349,
-          "title": "【QA-H5-管理侧-供应链金融小单】自提的分批发货小单，下载提货清单，提示404",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336121,
-          "title": "【QA-H5-管理侧-供应链金融小单】分批发货小单详情页，商品信息弹框，价格会显示划线价",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336057,
-          "title": "【QA-H5-管理侧-供应链金融小单】分批发货小单详情页，展示的不是优惠后单价",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
         }
       ],
       "active_bugs": []
@@ -23005,6 +23006,159 @@
       ],
       "resolved_bugs": [
         {
+          "id": 337064,
+          "title": "【QA-PC-用户侧-供应链金融小单】订单取消发货，售后单被驳回，导出订单数据，会显示申请退款数量和退款金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 337057,
+          "title": "【QA-PC-用户侧-供应链金融小单】订单有供货方是销司小库线下收运费的和供货方是格力的商品，运费规则不显示，明细少了文",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336749,
+          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单驳回，填写驳回原因，驳回成功后，显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336478,
+          "title": "【qa-pc-管理侧-商用零售小单】零售小单接单报错",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 336468,
+          "title": "【QA-PC-用户侧-供应链金融小单】发货单驳回后，收到站内信息内容与原型不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336461,
+          "title": "【QA-PC-管理侧-2层订单营销一体化打通】大单改总部履约，营销一体化拉走后，但没有进行转单，此时下小单，进入小单接单",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336460,
+          "title": "【QA-PC-管理侧-销司字典】自动转单条件已经符合，但是下单分批发货没有转单",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 336401,
+          "title": "【qa-pc-管理侧-商用零售大单】查看零售大单改总部履约，结果提示订单已排车不能改",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 336399,
+          "title": "【QA-PC-管理侧-2层商用订单营销一体化打通】工程大单接单时未修改总部履约，接单后在详情中修改总部履约，弹窗中没有数",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336345,
+          "title": "【QA-PC-用户侧-分批发货】用户侧导出订单数据种分批发货组合套餐订单中价格数据未显示为 --",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 336179,
+          "title": "【QA-PC-用户侧-供应链金融小单】分批发货单，导出订单数据，部分内容显示空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336171,
+          "title": "【QA-PC-用户侧-供应链金融小单】导出订单数据，待付款的订单，支付方式会显示内容",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336131,
+          "title": "【QA-PC-管理侧-接单审批】接单审批数据时会报错",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 335912,
+          "title": "【QA-PC-管理侧-分批发货订单大单】分批发货订单大单列表导出的商品数据与实际不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 335611,
+          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单，接单提示供应链金融接单失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 335578,
+          "title": "【QA-PC-管理侧-接单审批】接单审批管理，结果只能开启一个审批类型的接单流程",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 335574,
+          "title": "【QA-PC-管理侧-接单审批】接单审批列表，缺少类型",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
           "id": 335309,
           "title": "【QA-PC-管理侧-供应链管理】工程订单定金单接单驳回时填写备注，查看日志时显示为null",
           "severity": 3,
@@ -23228,159 +23382,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "匡军"
-        },
-        {
-          "id": 337064,
-          "title": "【QA-PC-用户侧-供应链金融小单】订单取消发货，售后单被驳回，导出订单数据，会显示申请退款数量和退款金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 337057,
-          "title": "【QA-PC-用户侧-供应链金融小单】订单有供货方是销司小库线下收运费的和供货方是格力的商品，运费规则不显示，明细少了文",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336749,
-          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单驳回，填写驳回原因，驳回成功后，显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336478,
-          "title": "【qa-pc-管理侧-商用零售小单】零售小单接单报错",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 336468,
-          "title": "【QA-PC-用户侧-供应链金融小单】发货单驳回后，收到站内信息内容与原型不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336461,
-          "title": "【QA-PC-管理侧-2层订单营销一体化打通】大单改总部履约，营销一体化拉走后，但没有进行转单，此时下小单，进入小单接单",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336460,
-          "title": "【QA-PC-管理侧-销司字典】自动转单条件已经符合，但是下单分批发货没有转单",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 336401,
-          "title": "【qa-pc-管理侧-商用零售大单】查看零售大单改总部履约，结果提示订单已排车不能改",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 336399,
-          "title": "【QA-PC-管理侧-2层商用订单营销一体化打通】工程大单接单时未修改总部履约，接单后在详情中修改总部履约，弹窗中没有数",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336345,
-          "title": "【QA-PC-用户侧-分批发货】用户侧导出订单数据种分批发货组合套餐订单中价格数据未显示为 --",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 336179,
-          "title": "【QA-PC-用户侧-供应链金融小单】分批发货单，导出订单数据，部分内容显示空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336171,
-          "title": "【QA-PC-用户侧-供应链金融小单】导出订单数据，待付款的订单，支付方式会显示内容",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336131,
-          "title": "【QA-PC-管理侧-接单审批】接单审批数据时会报错",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 335912,
-          "title": "【QA-PC-管理侧-分批发货订单大单】分批发货订单大单列表导出的商品数据与实际不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 335611,
-          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单，接单提示供应链金融接单失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 335578,
-          "title": "【QA-PC-管理侧-接单审批】接单审批管理，结果只能开启一个审批类型的接单流程",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 335574,
-          "title": "【QA-PC-管理侧-接单审批】接单审批列表，缺少类型",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
         }
       ],
       "active_bugs": []
@@ -24141,6 +24142,33 @@
           "openedBy": "江小芳"
         },
         {
+          "id": 336863,
+          "title": "【QA-PC-用户侧-供应链金融】为我\\为分销商下分批发货大单，供货方为格力且订购数量超过看销售数量时提示语错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 336795,
+          "title": "【QA-PC-用户侧-供应链金融小单】待付款订单列表，勾选订单，弹出提示：系统异常：订单运费不存在",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 336727,
+          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单详情页，仓库代码不显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 334625,
           "title": "【QA-PC-用户侧-零售大单】待发货商品清单弹窗，没有把大单订单行申请退款待审核的订单行剔除掉",
           "severity": 3,
@@ -24211,33 +24239,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "罗有文"
-        },
-        {
-          "id": 336863,
-          "title": "【QA-PC-用户侧-供应链金融】为我\\为分销商下分批发货大单，供货方为格力且订购数量超过看销售数量时提示语错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 336795,
-          "title": "【QA-PC-用户侧-供应链金融小单】待付款订单列表，勾选订单，弹出提示：系统异常：订单运费不存在",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 336727,
-          "title": "【QA-PC-管理侧-供应链金融小单】分批发货小单详情页，仓库代码不显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
         }
       ],
       "active_bugs": []
@@ -24767,141 +24768,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334557,
-          "title": "【QA-PC-用户侧-零售大单】待发货商品清单弹窗，选择订单类型为：零售订单，查询结果为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334555,
-          "title": "【QA-PC-用户侧-零售大单】待发货清单弹窗，通过分销商名称查询，无法查询",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334436,
-          "title": "【QA-PC-管理侧-零售发货单】待办事项-零售发货单中，暂存前置仓的分批提货零售小单，订单金额应为：--",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 334367,
-          "title": "【QA-PC-管理侧-零售发货单】待办事项-零售发货单中，零售小单的订单金额应为：- -",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 334337,
-          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】组合套餐退款详情商品弹层订购数量显示不正确",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 334093,
-          "title": "【QA-PC-管理侧-商用订单审批】首页进来的时候，商用订单审批需默认选择第一个页签",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 334086,
-          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】组合套餐不展示套餐名称、退款套数且订购数量不是单套的数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 334052,
-          "title": "【qa-h5-管理侧-零售发货小单售后】查看小单售后详情，退款金额显示的文案有误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 333969,
-          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】退款详情售后单号、关联订单点击复制按钮无反应",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333960,
-          "title": "【QA-PC-管理侧-工程提货单】待办事项-工程提货单显示零售分批提货单的数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 333945,
-          "title": "【QA-H5-管理侧-商用零售分批发货大单】退款详情以及商品弹层订购数量不正确",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333908,
-          "title": "【QA-PC-管理侧-商用订单审批】待办事项中，工程提货单缺少数据展示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 333884,
-          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】审批通过退款申请，点击确认按钮无任何提示，单据也仍未进行审批",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333830,
-          "title": "【QA-H5-管理侧-商用零售分批发货大单】退款详情缺少退款数量",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 333652,
-          "title": "【QA-PC-用户侧-商用零售分批发货】待发货商品清单页，勾选数据点击“去发货”，页面显示404",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
           "id": 337052,
           "title": "【QA-PC-管理侧-订单审批】订单审批中，缺少分批提货订单的数据",
           "severity": 3,
@@ -25035,6 +24901,141 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334557,
+          "title": "【QA-PC-用户侧-零售大单】待发货商品清单弹窗，选择订单类型为：零售订单，查询结果为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334555,
+          "title": "【QA-PC-用户侧-零售大单】待发货清单弹窗，通过分销商名称查询，无法查询",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334436,
+          "title": "【QA-PC-管理侧-零售发货单】待办事项-零售发货单中，暂存前置仓的分批提货零售小单，订单金额应为：--",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 334367,
+          "title": "【QA-PC-管理侧-零售发货单】待办事项-零售发货单中，零售小单的订单金额应为：- -",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 334337,
+          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】组合套餐退款详情商品弹层订购数量显示不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334093,
+          "title": "【QA-PC-管理侧-商用订单审批】首页进来的时候，商用订单审批需默认选择第一个页签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 334086,
+          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】组合套餐不展示套餐名称、退款套数且订购数量不是单套的数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 334052,
+          "title": "【qa-h5-管理侧-零售发货小单售后】查看小单售后详情，退款金额显示的文案有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 333969,
+          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】退款详情售后单号、关联订单点击复制按钮无反应",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333960,
+          "title": "【QA-PC-管理侧-工程提货单】待办事项-工程提货单显示零售分批提货单的数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 333945,
+          "title": "【QA-H5-管理侧-商用零售分批发货大单】退款详情以及商品弹层订购数量不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333908,
+          "title": "【QA-PC-管理侧-商用订单审批】待办事项中，工程提货单缺少数据展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 333884,
+          "title": "【QA-H5-管理侧-商用零售分批发货大单退款】审批通过退款申请，点击确认按钮无任何提示，单据也仍未进行审批",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333830,
+          "title": "【QA-H5-管理侧-商用零售分批发货大单】退款详情缺少退款数量",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 333652,
+          "title": "【QA-PC-用户侧-商用零售分批发货】待发货商品清单页，勾选数据点击“去发货”，页面显示404",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
         },
         {
           "id": 334057,
@@ -25639,6 +25640,24 @@
       "active_tasks": [],
       "resolved_bugs": [
         {
+          "id": 336581,
+          "title": "【QA-PC-管理侧-2层订单营销一体化打通】小单改总部履约上限为0，小单接单后，进入详情改总部履约弹窗中，无法输入改总",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 336531,
+          "title": "【QA-PC-管理侧-销司字典】关闭分批发货，会影响到用户侧",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
           "id": 334438,
           "title": "【QA-PC-管理侧-工程定金单】待办事项-工程定金单中、工程提货单，提交时间应为支付时间",
           "severity": 3,
@@ -25682,24 +25701,6 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 336581,
-          "title": "【QA-PC-管理侧-2层订单营销一体化打通】小单改总部履约上限为0，小单接单后，进入详情改总部履约弹窗中，无法输入改总",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 336531,
-          "title": "【QA-PC-管理侧-销司字典】关闭分批发货，会影响到用户侧",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
         }
       ],
       "active_bugs": [
@@ -26298,213 +26299,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 334816,
-          "title": "【QA-PC-管理侧-分批提货小单】接单列表，没有显示订单来源为中文",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334802,
-          "title": "【QA-PC-用户侧-分批提货小单】去发货，选择添加发货商品，选择下单时间进行筛选，无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334560,
-          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单列表勾选为分销商下单的商品，去发货，发货单提交界面，没有自动选择对应分销",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334558,
-          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单弹窗中勾选商品，去发货，进入发货单提交界面，默认商品订购数量为1，但提交",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334421,
-          "title": "【QA-PC-用户侧-商用工程小单】经销商没有分销商，结果点击工程定金去提货，结果跳转提交订单页面，显示为分销商下单信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 334261,
-          "title": "【QA-PC-用户侧-零售大单】零售大单和零售一层订单，支付页，金额字段有误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 334177,
-          "title": "【QA-PC-用户侧-分批提货小单】小单支付页，显示的不是运费金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 334092,
-          "title": "【QA-PC-用户侧-分批提货小单】去发货，选择100商品，没有提示最多选择99，",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333859,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，为分销商下单，提示：订单行【3582026081100014701】",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333848,
-          "title": "【QA-PC-用户侧-分批提货小单】新增分批发货页，为分销商下单，找不到对应商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 333798,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，下单达到免邮，提交后，显示404",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333793,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，商品列表能全部删除",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333788,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货小单，下自提单，结果提示请选择期望自提仓库",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 333784,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，没有做重复校验，能勾选相同订单添加到商品列表",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333700,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单类型筛选无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333693,
-          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单时间筛选无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333662,
-          "title": "【QA-PC-用户侧-分批提货小单】为分销商下小单，选择分销商后，没有加载分销商地址",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333654,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，加载数据上限为100，加载数据依旧为10",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333651,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，数据没有变动，仅序号变动了",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333648,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，缺少字段：订单号  订单行号  下单时间  订单类型",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333632,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，搜索SKU无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 333607,
-          "title": "【QA-PC-用户侧-分批提货小单】添加商品，勾选有相同SKU的商品时，会把其他SKU同步勾选上",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 336719,
-          "title": "【QA-PC-用户侧-供应链金融】返利\\工程商品下单时配送方式显示有分批发货",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 337085,
           "title": "【QA-PC-用户侧-主体关联变更审核】变更详情营业执照以及法人仍显示为更改前的图片",
           "severity": 3,
@@ -26611,6 +26405,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
+        },
+        {
+          "id": 336719,
+          "title": "【QA-PC-用户侧-供应链金融】返利\\工程商品下单时配送方式显示有分批发货",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 336693,
@@ -26881,6 +26684,204 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 334816,
+          "title": "【QA-PC-管理侧-分批提货小单】接单列表，没有显示订单来源为中文",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334802,
+          "title": "【QA-PC-用户侧-分批提货小单】去发货，选择添加发货商品，选择下单时间进行筛选，无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334560,
+          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单列表勾选为分销商下单的商品，去发货，发货单提交界面，没有自动选择对应分销",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334558,
+          "title": "【QA-PC-用户侧-零售大单】在待发货商品清单弹窗中勾选商品，去发货，进入发货单提交界面，默认商品订购数量为1，但提交",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334421,
+          "title": "【QA-PC-用户侧-商用工程小单】经销商没有分销商，结果点击工程定金去提货，结果跳转提交订单页面，显示为分销商下单信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 334261,
+          "title": "【QA-PC-用户侧-零售大单】零售大单和零售一层订单，支付页，金额字段有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 334177,
+          "title": "【QA-PC-用户侧-分批提货小单】小单支付页，显示的不是运费金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 334092,
+          "title": "【QA-PC-用户侧-分批提货小单】去发货，选择100商品，没有提示最多选择99，",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333859,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，为分销商下单，提示：订单行【3582026081100014701】",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333848,
+          "title": "【QA-PC-用户侧-分批提货小单】新增分批发货页，为分销商下单，找不到对应商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 333798,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，下单达到免邮，提交后，显示404",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333793,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，商品列表能全部删除",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333788,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货小单，下自提单，结果提示请选择期望自提仓库",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 333784,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，没有做重复校验，能勾选相同订单添加到商品列表",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333700,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单类型筛选无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333693,
+          "title": "【QA-PC-用户侧-分批提货小单】分批提货下小单，去发货选择商品，下单时间筛选无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333662,
+          "title": "【QA-PC-用户侧-分批提货小单】为分销商下小单，选择分销商后，没有加载分销商地址",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333654,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，加载数据上限为100，加载数据依旧为10",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333651,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，小单订单多于1页，点击切换页面，数据没有变动，仅序号变动了",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333648,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，缺少字段：订单号  订单行号  下单时间  订单类型",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333632,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，搜索SKU无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 333607,
+          "title": "【QA-PC-用户侧-分批提货小单】添加商品，勾选有相同SKU的商品时，会把其他SKU同步勾选上",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
         },
         {
           "id": 336310,
@@ -28671,7 +28672,7 @@
           "title": "【QA-PC-管理侧-价格管理-调拨价设置】调拨价列表显示有相同的SKU数据",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "集采",
           "openedBy": "李学鹍"
         },
@@ -28680,7 +28681,7 @@
           "title": "【QA-PC-管理侧-价格管理-调拨价设置】调拨价列表页面按更新时间查询不准确",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "集采",
           "openedBy": "李学鹍"
         },
@@ -28799,15 +28800,6 @@
           "pri": 3,
           "status": "closed",
           "platform": "集采",
-          "openedBy": "李学鹍"
-        },
-        {
-          "id": 330201,
-          "title": "【QA-PC-管理侧-供应链管理】销司小库库存页面查询报504 Gateway Timeout",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
           "openedBy": "李学鹍"
         },
         {
@@ -28953,6 +28945,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
+        },
+        {
+          "id": 330201,
+          "title": "【QA-PC-管理侧-供应链管理】销司小库库存页面查询报504 Gateway Timeout",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李学鹍"
         }
       ],
       "active_bugs": [
@@ -30116,7 +30117,7 @@
       "name": "钟日健",
       "role": "产品",
       "type_counts": {
-        "产品": 11,
+        "产品": 13,
         "后端": 2,
         "前端": 0,
         "移动端": 0,
@@ -30132,14 +30133,14 @@
       "done_estimate": 12.0,
       "done_consumed": 17.0,
       "month_done_hours": 17.0,
-      "active_count": 12,
-      "active_estimate": 140.0,
+      "active_count": 14,
+      "active_estimate": 160.0,
       "active_consumed": 0.0,
-      "active_left": 140.0,
-      "total_tasks": 13,
-      "total_estimate": 152.0,
-      "completion_rate": 7.7,
-      "efficiency": 7.7,
+      "active_left": 160.0,
+      "total_tasks": 15,
+      "total_estimate": 172.0,
+      "completion_rate": 6.7,
+      "efficiency": 6.7,
       "overdue": 7,
       "done_tasks": [
         {
@@ -30321,6 +30322,34 @@
           "left": 30.0,
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-28",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 325014,
+          "name": "家用-增加上传资料类型】GC14~18",
+          "status": "wait",
+          "pri": 3,
+          "type": "ab2_request_des",
+          "estimate": 14.0,
+          "consumed": 0.0,
+          "left": 14.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-28",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 325015,
+          "name": "家用-增加上传资料类型】GC14~18",
+          "status": "wait",
+          "pri": 3,
+          "type": "ab2_request_des",
+          "estimate": 6.0,
+          "consumed": 0.0,
+          "left": 6.0,
+          "platform": "集采",
+          "execution": "集采平台_V1.30.0（0831/集采dev4.0）【2026】",
           "opened_date": "2026-08-28",
           "deadline": "2026-09-30"
         }
