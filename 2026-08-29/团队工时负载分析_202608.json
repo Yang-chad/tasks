@@ -7,7 +7,7 @@
     "total_members": 52,
     "total_overdue": 18,
     "reference_hours": 168,
-    "report_time": "2026-08-29 08:06:28",
+    "report_time": "2026-08-29 12:02:36",
     "month": "2026年8月"
   },
   "members": [
@@ -1327,18 +1327,6 @@
           "finished_date": "2026-08-18"
         },
         {
-          "id": 306853,
-          "name": "【后端】供应链管理\t商用退款售后单 （大单、小单）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "徐琦",
-          "finished_date": "2026-08-24"
-        },
-        {
           "id": 305814,
           "name": "【后端】管理侧商用零售退款单列表查询",
           "consumed": 8.0,
@@ -1347,6 +1335,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
           "opened_date": "2026-07-13",
+          "finished_by": "徐琦",
+          "finished_date": "2026-08-24"
+        },
+        {
+          "id": 306853,
+          "name": "【后端】供应链管理\t商用退款售后单 （大单、小单）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-07-15",
           "finished_by": "徐琦",
           "finished_date": "2026-08-24"
         },
@@ -5542,8 +5542,35 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 337181,
+          "title": "【QA-PC-管理侧-资料变更】经销商当前工程保证金类型为定额保证金且存在未完结的工程单时，可以提交修改申请修改变更工程",
+          "severity": 3,
+          "pri": 3,
+          "status": "delay",
+          "platform": "网批2.0",
+          "openedBy": "李学鹍"
+        },
+        {
           "id": 337075,
           "title": "【QA-PC-管理侧-供应链金融账户】变更主体信息，失效的记录账户类型存错",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 337063,
+          "title": "【QA-PC-管理侧-主体关联变更审核】丙方法人信息为空且丙方的印章盖在了乙方位置",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 336254,
+          "title": "【QA-PC-管理侧-供应链金融账户】钱包绑定记录查询的数据申请单号为空",
           "severity": 3,
           "pri": 3,
           "status": "resolved",
@@ -5877,30 +5904,6 @@
         {
           "id": 337198,
           "title": "【QA-PC-管理侧-主体关联变更审核】合作过程-联合审批创建时间显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 337196,
-          "title": "【QA-PC-管理侧-主体关联变更审核】合作过程-联合审批记录显示不正确",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 337063,
-          "title": "【QA-PC-管理侧-主体关联变更审核】丙方法人信息为空且丙方的印章盖在了乙方位置",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336254,
-          "title": "【QA-PC-管理侧-供应链金融账户】钱包绑定记录查询的数据申请单号为空",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -7441,6 +7444,14 @@
         {
           "id": 337224,
           "title": "【QA-PC-用户侧-货款账户明细】运费补差、运费退款的金额应显示运费的金额，而非订单金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 337196,
+          "title": "【QA-PC-管理侧-主体关联变更审核】合作过程-联合审批记录显示不正确",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -10464,7 +10475,16 @@
           "openedBy": "伍镓烨"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 337232,
+          "title": "【QA-PC-用户侧-供应链金融】为我下单的大单售后单在列表也显示有分销商公司字段内容",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "陈嘉劲",
@@ -13511,6 +13531,14 @@
       ],
       "active_bugs": [
         {
+          "id": 337235,
+          "title": "【QA-安卓-用户侧-供应链金融】组合套餐分批发货订单申请售后，售后弹窗商品显示价格",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 337175,
           "title": "【QA-安卓-管理侧-退款审批】家用退款审批展示商用的订单",
           "severity": 3,
@@ -14017,18 +14045,6 @@
           "finished_date": "2026-08-04"
         },
         {
-          "id": 306847,
-          "name": "【后端】企业微信登录菜单配置-添加/编辑元素，类型-增加【字段】返回判断",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-07-15",
-          "finished_by": "孙元通",
-          "finished_date": "2026-08-06"
-        },
-        {
           "id": 305799,
           "name": "【后端】分批提货支付--提供订单信息",
           "consumed": 8.0,
@@ -14049,6 +14065,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.82.0（0820/dev11.9.1）【2026】",
           "opened_date": "2026-07-07",
+          "finished_by": "孙元通",
+          "finished_date": "2026-08-06"
+        },
+        {
+          "id": 306847,
+          "name": "【后端】企业微信登录菜单配置-添加/编辑元素，类型-增加【字段】返回判断",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-07-15",
           "finished_by": "孙元通",
           "finished_date": "2026-08-06"
         },
@@ -14874,15 +14902,6 @@
           "openedBy": "刘孝亮"
         },
         {
-          "id": 337108,
-          "title": "【QA-IOS-用户侧-主体关联变更】重新提交被驳回的主体关联单据，结果无法重新提交",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
           "id": 337101,
           "title": "【QA-IOS-用户侧-搜索】组合套餐详情页面先加购，再搜索后加购，总数超过了套餐限制",
           "severity": 3,
@@ -14890,6 +14909,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "李学鹍"
+        },
+        {
+          "id": 337108,
+          "title": "【QA-IOS-用户侧-主体关联变更】重新提交被驳回的主体关联单据，结果无法重新提交",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
         },
         {
           "id": 336986,
@@ -18055,7 +18083,7 @@
         {
           "id": 325091,
           "name": "【后端】销司工程特批方案-查询库存-限制查询调价待审核（即库存不响应以限制下单）",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 4.0,
@@ -21106,7 +21134,16 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 337233,
+          "title": "【QA-iOS-用户侧-供应链金融】组合套餐分批发货订单申请售后，售后弹窗商品显示价格",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "邹娟",
@@ -24358,7 +24395,16 @@
           "openedBy": "罗有文"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 337231,
+          "title": "【QA-PC-用户侧-供应链金融】组合套餐分批发货大单已申请了退款，仍能正常下小单发货",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "李漫嘉",
@@ -25757,15 +25803,6 @@
       "active_tasks": [],
       "resolved_bugs": [
         {
-          "id": 337172,
-          "title": "【QA-PC-用户侧-订单管理】分批发货大单部分发货状态下订单详情界面未显示去发货按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 336581,
           "title": "【QA-PC-管理侧-2层订单营销一体化打通】小单改总部履约上限为0，小单接单后，进入详情改总部履约弹窗中，无法输入改总",
           "severity": 3,
@@ -25773,6 +25810,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "匡军"
+        },
+        {
+          "id": 337172,
+          "title": "【QA-PC-用户侧-订单管理】分批发货大单部分发货状态下订单详情界面未显示去发货按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 336531,
