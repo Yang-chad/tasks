@@ -7,7 +7,7 @@
     "total_members": 48,
     "total_overdue": 10,
     "reference_hours": 168,
-    "report_time": "2026-09-01 13:18:59",
+    "report_time": "2026-09-01 14:07:07",
     "month": "2026年9月"
   },
   "members": [
@@ -1371,7 +1371,7 @@
         {
           "id": 323829,
           "name": "【后端】运费规则配置-列表&amp;查询条件",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 6.0,
@@ -1385,7 +1385,7 @@
         {
           "id": 323830,
           "name": "【后端】运费规则配置-编辑",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 8.0,
@@ -1399,7 +1399,7 @@
         {
           "id": 323831,
           "name": "【后端】运费规则配置-新增",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 8.0,
@@ -1413,7 +1413,7 @@
         {
           "id": 323832,
           "name": "【后端】运费规则配置-查看详情",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 4.0,
@@ -3634,6 +3634,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 337484,
+          "title": "【QA-PC-管理侧-主体关联变更审核】未配置三方协议时发起签约提示文案不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 337413,
           "title": "【QA-PC-管理侧-工具箱】主体关联变更，审核了三个节点后，在自动续约阶段，使用工具箱审核跳过，成功的界面，操作内容与",
           "severity": 3,
@@ -3655,14 +3664,6 @@
         {
           "id": 337494,
           "title": "【QA-PC-用户侧-经销商管理】经销商，关联主体变更提交审批，清空公司地址后，没有做是否必填项校验，能直接提交",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 337484,
-          "title": "【QA-PC-管理侧-主体关联变更审核】未配置三方协议时发起签约提示文案不正确",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -4437,7 +4438,17 @@
           "deadline": "2026-09-30"
         }
       ],
-      "resolved_bugs": [],
+      "resolved_bugs": [
+        {
+          "id": 337397,
+          "title": "【QA-PC-管理侧-2层订单营销一体化打通】工程小单详情中，没有展示上级订单行号",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        }
+      ],
       "active_bugs": [
         {
           "id": 337493,
@@ -6129,6 +6140,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
+        },
+        {
+          "id": 336435,
+          "title": "【QA-PC-用户侧-贷款解押账户】审核通过超时，再次审核通过时，总贷款金额叠加",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
         }
       ],
       "active_bugs": [
@@ -6159,14 +6179,6 @@
         {
           "id": 336569,
           "title": "【QA-PC-管理侧-经销商贷款额度】第二节点提示504后，继续审核提示不能再次申请开户，再次审核已完成审核流程",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 336435,
-          "title": "【QA-PC-用户侧-贷款解押账户】审核通过超时，再次审核通过时，总贷款金额叠加",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -8191,6 +8203,14 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 337518,
+          "title": "【QA-安卓-用户侧-经销商管理】经销商，关联主体变更提交审批，提示400错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 337507,
           "title": "【QA-安卓-管理侧-供应链金融】分批发货订单列表，订单存在部分发货，订单 部分发货 状态显示错误",
