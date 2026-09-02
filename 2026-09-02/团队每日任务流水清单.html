@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>团队每日完成任务流水清单 — 2026-09-01~2026-09-02</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Microsoft YaHei","微软雅黑",PingFang SC,sans-serif; background:#f0f2f5; color:#333; font-size:14px; padding:20px; }
+.container { max-width:1400px; margin:0 auto; }
+
+/* 头部 */
+.header { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); color:white; padding:32px 40px; border-radius:14px; margin-bottom:24px; }
+.header h1 { font-size:26px; font-weight:700; }
+.header .sub { margin-top:6px; font-size:13px; color:#8892b0; }
+
+/* 摘要卡片 */
+.summary { display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+.scard { background:white; border-radius:12px; padding:18px 22px; box-shadow:0 2px 8px rgba(0,0,0,.08); flex:1; min-width:130px; text-align:center; }
+.scard .num { font-size:34px; font-weight:800; }
+.scard .label { font-size:13px; color:#999; margin-top:4px; }
+
+/* 视图切换 */
+.view-tabs { display:flex;gap:4px;margin-bottom:20px; }
+.view-tab { padding:10px 22px;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;background:#fff;color:#94a3b8;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.06);font-family:inherit; }
+.view-tab:hover { color:#475569;background:rgba(99,102,241,.06); }
+.view-tab.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 12px rgba(99,102,241,.3); }
+
+/* 胶囊角色标签（跟员工负载一致） */
+.tab-bar { display:flex;gap:0;margin-bottom:20px;flex-wrap:wrap;background:#fff;border-radius:14px;padding:6px 8px;box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.tab-btn { background:transparent;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;font-family:inherit;color:#94a3b8;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden; }
+.tab-btn:hover { color:#475569;background:rgba(99,102,241,.06); }
+.tab-btn.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);box-shadow:0 4px 14px rgba(99,102,241,0.35),0 1px 3px rgba(0,0,0,0.12); }
+
+/* 面板切换 */
+.view-panel { display:none; }
+.view-panel.show { display:block; }
+.role-section { display:none; }
+.role-section.show { display:block; }
+
+/* 表格 */
+.table-wrap { background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.07); overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th { background:#f8f9fa; padding:10px 8px; text-align:center; font-weight:600; border-bottom:2px solid #e8e8e8; white-space:nowrap; position:sticky; top:0; z-index:1; }
+td { padding:7px 8px; text-align:center; border-bottom:1px solid #f0f0f0; white-space:nowrap; }
+tr:hover td { background:#f8f9ff; }
+td.name { text-align:left; font-weight:600; }
+td.total { font-weight:700; color:#1a73e8; }
+td.hours { color:#888; }
+td.has-task { background:#e8f5e9; color:#2e7d32; font-weight:600; border-radius:4px; }
+th.date-col { min-width:44px; font-size:11px; }
+.date-weekend { background:#fff3e0; }
+
+/* 任务类型标签 */
+.task-item { display:flex;align-items:flex-start;padding:5px 0;border-bottom:1px dashed #eee;font-size:12px; }
+.task-item:last-child { border:none; }
+.task-type { display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;margin-right:6px;flex-shrink:0;font-weight:500; }
+.type-产品 { background:#ede9fe; color:#7c3aed; }
+.type-后端 { background:#d1fae5; color:#059669; }
+.type-前端 { background:#fce7f3; color:#be185d; }
+.type-移动端 { background:#ffedd5; color:#c2410c; }
+.type-测试 { background:#f3e8ff; color:#7c3aed; }
+.type-UI设计 { background:#ccfbf1; color:#0d9488; }
+.type-其他 { background:#f3f4f6; color:#6b7280; }
+
+/* 日期折叠 */
+.person-section { margin-bottom:6px; }
+.person-summary { display:flex;align-items:center;gap:10px;padding:10px 16px;background:white;border-radius:10px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:.2s; }
+.person-summary:hover { box-shadow:0 2px 8px rgba(0,0,0,.1); }
+
+.footer { text-align:center;padding:24px;color:#bbb;font-size:12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>团队每日完成任务流水清单</h1>
+  <div class="sub">2026-09-01 ~ 2026-09-02 | 20 个已完成任务 | 6 人 | 覆盖 1 天</div>
+</div>
+
+<div class="summary">
+  <div class="scard"><div class="num" style=color:#10b981>20</div><div class="label">已完成任务</div></div>
+  <div class="scard"><div class="num" style=color:#6366f1>6</div><div class="label">参与人数</div></div>
+  <div class="scard"><div class="num" style=color:#f59e0b>1</div><div class="label">覆盖天数</div></div>
+  <div class="scard"><div class="num" style=color:#ea580c>91h</div><div class="label">预估工时</div></div>
+</div>
+
+<!-- 视图切换 -->
+<div class="view-tabs">
+  <button class="view-tab active" onclick="switchView('matrix')">人员×日期矩阵</button>
+  <button class="view-tab" onclick="switchView('daily')">按日期明细</button>
+</div>
+
+<!-- ═══ 矩阵视图 ═══ -->
+<div class="view-panel show" id="view-matrix">
+
+<!-- 角色标签 -->
+<div class="tab-bar matrix-tabs">
+<button class=tab-btn active onclick=switchMatrixTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(4人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("前端")>前端<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+</div>
+<div class="role-section show" data-role="后端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#10b981;border-left:4px solid #10b981;padding-left:8px;">后端</span>
+<span style="font-size:12px;color:#999;">12 个任务 · 47h · 4 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>李龙键</td><td class=total>6</td><td class=hours>21</td><td class=has-task>6</td></tr>
+<tr><td class=name>蒋志军</td><td class=total>3</td><td class=hours>12</td><td class=has-task>3</td></tr>
+<tr><td class=name>郑忠</td><td class=total>2</td><td class=hours>8</td><td class=has-task>2</td></tr>
+<tr><td class=name>阳超</td><td class=total>1</td><td class=hours>6</td><td class=has-task>1</td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="前端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#db2777;border-left:4px solid #db2777;padding-left:8px;">前端</span>
+<span style="font-size:12px;color:#999;">7 个任务 · 36h · 1 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>李漫嘉</td><td class=total>7</td><td class=hours>36</td><td class=has-task>7</td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="移动端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#ea580c;border-left:4px solid #ea580c;padding-left:8px;">移动端</span>
+<span style="font-size:12px;color:#999;">1 个任务 · 8h · 1 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>吴炜欣</td><td class=total>1</td><td class=hours>8</td><td class=has-task>1</td></tr>
+</tbody></table></div></div>
+</div><!-- /view-matrix -->
+
+<!-- ═══ 按日期明细视图 ═══ -->
+<div class="view-panel" id="view-daily">
+
+<!-- 角色标签 -->
+<div class="tab-bar daily-tabs">
+<button class=tab-btn active onclick=switchDailyTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(4人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("前端")>前端<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+</div>
+<div class="role-section show" data-daily-role="后端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
+<span style="font-weight:700;font-size:13px;">2026-09-01 (周二)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">12个任务 · 4人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李龙键</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(6个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#325623 【后端】黑吉商用销司 经销商返利销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325622 【后端】深圳商用销司 经销商返利销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325621 【后端】重庆商用销司 经销商返利销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323811 【后端】信用账户审核-列表&查询</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323810 【后端】信用账户额度管理-终止</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323803 【后端】信用账户额度管理-导出excel</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">蒋志军</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#323818 【后端】经销商资金账户-信用账户-流水跳转FMS</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323816 【后端】经销商资金账户-信用账户-查看</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323815 【后端】经销商资金账户-信用账户-列表</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">郑忠</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#321107 【后端】分销商管理-导出-导出文档增加字段【销售公司】（商家归属销售公司），排列导出文件的第一列；</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321106 【后端】客户库-导出-导出文档增加字段【销售公司】（商家归属销售公司），排列导出文件的第一列；</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">阳超</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#322326 【后端】用户侧订单列表详情赊销模式订单详情，金额平摊接口</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="前端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #db2777;">
+<span style="font-weight:700;font-size:13px;">2026-09-01 (周二)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">7个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李漫嘉</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(7个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#324546 【PC管理】网批3.0特价促销活动方案UI走查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#324545 【PC管理】网批3.0组合套餐活动方案UI走查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#322671 【PC管理】钱包开通记录查询工具箱</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#321903 【PC管理】接口同步数据筛查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#321437 【PC管理】入驻审核增加销售公司筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319178 【PC管理】冻结\注销增加【办事处】查询条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319177 【PC管理】资料变更增加【签署状态】筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="移动端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #ea580c;">
+<span style="font-weight:700;font-size:13px;">2026-09-01 (周二)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">1个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">吴炜欣</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#316821 【iOS】信用账户详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+</div><!-- /view-daily -->
+
+<div class="footer">禅道数据 · 自动生成于 2026-09-02 · WorkBuddy</div>
+
+<script>
+function switchView(v) {
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById('view-' + v).classList.add('show');
+  document.querySelectorAll('.view-tab').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function switchMatrixTab(r) {
+  // 切换矩阵面板内的角色标签
+  document.querySelectorAll('#view-matrix .tab-bar.matrix-tabs .tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().startsWith(r));
+  });
+  document.querySelectorAll('#view-matrix .role-section').forEach(s => {
+    s.classList.toggle('show', s.getAttribute('data-role') === r);
+  });
+}
+
+function switchDailyTab(r) {
+  document.querySelectorAll('#view-daily .tab-bar.daily-tabs .tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().startsWith(r));
+  });
+  document.querySelectorAll('#view-daily .role-section').forEach(s => {
+    s.classList.toggle('show', s.getAttribute('data-daily-role') === r);
+  });
+}
+</script>
+</div>
+</body></html>
