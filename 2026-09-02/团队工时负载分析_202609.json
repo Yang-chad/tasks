@@ -7,7 +7,7 @@
     "total_members": 49,
     "total_overdue": 21,
     "reference_hours": 168,
-    "report_time": "2026-09-02 16:08:56",
+    "report_time": "2026-09-02 16:36:27",
     "month": "2026年9月"
   },
   "members": [
@@ -198,7 +198,16 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 335998,
+          "title": "【QA-PC-管理侧-解押还款额度】设置解押还款额度999999998，且审核通过后，贷款解押账户仍显示为￥100,00",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "刘孝亮",
@@ -1593,6 +1602,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 337596,
+          "title": "【QA-PC-管理侧-资料变更】搜索条件切换页签，会不同步信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
           "id": 337485,
           "title": "【QA-H5-用户侧-供应链金融小单】发货售后单，驳回失败",
           "severity": 3,
@@ -1611,16 +1629,7 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 337596,
-          "title": "【QA-PC-管理侧-资料变更】搜索条件切换页签，会不同步信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "徐良侦",
@@ -5911,11 +5920,11 @@
     },
     {
       "name": "李红燕",
-      "role": "后端",
+      "role": "前端",
       "type_counts": {
         "产品": 0,
-        "后端": 19,
-        "前端": 6,
+        "后端": 0,
+        "前端": 25,
         "移动端": 0,
         "测试": 0,
         "其他": 1
@@ -6029,7 +6038,7 @@
           "name": "批量修改员工授权商家记录",
           "status": "doing",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
@@ -6043,7 +6052,7 @@
           "name": "批量修改员工授权商家",
           "status": "doing",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
@@ -6057,7 +6066,7 @@
           "name": "【GC21】  1、查看保证金核销页签-方案保证金汇总",
           "status": "wait",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
@@ -6071,7 +6080,7 @@
           "name": "【GC21】  1、查看保证金核销页签-方案维度汇总",
           "status": "wait",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 12.0,
           "consumed": 0.0,
           "left": 12.0,
@@ -6085,7 +6094,7 @@
           "name": "【GC21】  1、查看保证金核销页签-核销明细",
           "status": "wait",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 12.0,
           "consumed": 0.0,
           "left": 12.0,
@@ -6099,7 +6108,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-单据信息",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6113,7 +6122,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-金额汇总",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 2.0,
           "consumed": 0.0,
           "left": 2.0,
@@ -6127,7 +6136,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-SKU核销明细",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6141,7 +6150,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-核销订单行明细",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6155,7 +6164,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-当次提交单据-返还单",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6169,7 +6178,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-当次提交单据-收差单",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6183,7 +6192,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-备注与附件",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6197,7 +6206,7 @@
           "name": "【GC21】  查看保证金核销页签-核销订单行明细详情页-审批记录",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6208,10 +6217,10 @@
         },
         {
           "id": 327612,
-          "name": "【GC21】  查看保证金核销页签-底部文案&&“发起核销”按钮",
+          "name": "【GC21】  查看保证金核销页签-底部文案&amp;&amp;“发起核销”按钮",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6222,10 +6231,10 @@
         },
         {
           "id": 327613,
-          "name": "【GC22】  工程特批方案审批增加\"保证金核销\"页签",
+          "name": "【GC22】  工程特批方案审批增加&quot;保证金核销&quot;页签",
           "status": "wait",
           "pri": 3,
-          "type": "devel",
+          "type": "a_dev2_front",
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
@@ -6236,10 +6245,10 @@
         },
         {
           "id": 327639,
-          "name": "【GC22】  工程特批方案审批，增加\"保证金核销\"页签--审核&&查看",
+          "name": "【GC22】  工程特批方案审批，增加&quot;保证金核销&quot;页签--审核&amp;&amp;查看",
           "status": "wait",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
@@ -6250,10 +6259,10 @@
         },
         {
           "id": 327640,
-          "name": "【GC22】  工程特批方案审批，增加\"保证金核销\"页签--审批流程",
+          "name": "【GC22】  工程特批方案审批，增加&quot;保证金核销&quot;页签--审批流程",
           "status": "wait",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 6.0,
           "consumed": 0.0,
           "left": 6.0,
@@ -6264,10 +6273,10 @@
         },
         {
           "id": 327641,
-          "name": "【GC23】 增加\"保证金核销\"审批页&&通过&&驳回",
+          "name": "【GC23】 增加&quot;保证金核销&quot;审批页&amp;&amp;通过&amp;&amp;驳回",
           "status": "wait",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 12.0,
           "consumed": 0.0,
           "left": 12.0,
@@ -6278,10 +6287,10 @@
         },
         {
           "id": 327642,
-          "name": "【GC23】 增加\"保证金核销\"查看页",
+          "name": "【GC23】 增加&quot;保证金核销&quot;查看页",
           "status": "wait",
           "pri": 3,
-          "type": "a_dev",
+          "type": "a_dev2_front",
           "estimate": 8.0,
           "consumed": 0.0,
           "left": 8.0,
@@ -12435,17 +12444,7 @@
           "deadline": "2026-09-02"
         }
       ],
-      "resolved_bugs": [
-        {
-          "id": 335998,
-          "title": "【QA-PC-管理侧-解押还款额度】设置解押还款额度999999998，且审核通过后，贷款解押账户仍显示为￥100,00",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        }
-      ],
+      "resolved_bugs": [],
       "active_bugs": []
     },
     {
@@ -12539,7 +12538,16 @@
           "openedBy": "李文清"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 337656,
+          "title": "【QA-PC-用户侧-供应链金融小单】经销商履约单，修改地址，提示参数非法",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "梁庆芬",
