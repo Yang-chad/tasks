@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-09-02 | 全平台延期任务追踪 | 共 21 个延期任务 | 网批2.0: 21</p></div>
+<p>数据截止：2026-09-02 | 全平台延期任务追踪 | 共 12 个延期任务 | 网批2.0: 12</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">21</div><div class="label">延期任务总数</div></div>
-<div class="card card-wait"><div class="num">16</div><div class="label">待处理</div></div>
+<div class="card card-total"><div class="num">12</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">7</div><div class="label">待处理</div></div>
 <div class="card card-doing"><div class="num">5</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">21</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">4</div><div class="label">涉及人员</div></div>
+<div class="card card-overdue"><div class="num">12</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">3</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -71,40 +71,6 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
     <details open>
         <summary style="background:#667eea15; border-left:4px solid #667eea;">
-            <span class="assignee-name">许峻嘉</span>
-            <span class="assignee-stats">
-                <span class="stat-badge">共9个</span>
-                <span class="stat-badge stat-wait">待处理9</span>
-                <span class="stat-badge stat-doing">进行中0</span>
-                <span class="stat-badge stat-overdue">最长2天</span>
-                <span class="stat-badge stat-h">预估73h</span>
-                <span class="stat-badge stat-h">消耗0h</span>
-                <span class="stat-badge stat-h">剩余73h</span>
-            </span>
-        </summary>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-overdue"><td>325478</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】需求计划-提报需求任务单增加&amp;减少-禁止提交【转单设置】对应类目的商品需求">【后端】需求计划-提报需求任务单增加&减少-禁止提交【转单设置】对应类目的商品需求</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-31</td><td style="color:#ef4444;font-weight:700;">2天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>325477</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】需求计划-需求提报-禁止提交【转单设置】对应类目的商品需求">【后端】需求计划-需求提报-禁止提交【转单设置】对应类目的商品需求</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-08-31</td><td style="color:#ef4444;font-weight:700;">2天</td><td>4</td><td>0</td><td>4</td></tr>
-<tr class="row-overdue"><td>326109</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】审批流可视化改造一期(日销、返利、工程管理与审核)-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理">【后端】审批流可视化改造一期(日销、返利、工程管理与审核)-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-01</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>326108</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】审批流可视化改造一期(日销、返利、工程管理与审核)-需求评审、走查文档和自测文档输出">【后端】审批流可视化改造一期(日销、返利、工程管理与审核)-需求评审、走查文档和自测文档输出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-01</td><td style="color:#ef4444;font-weight:700;">1天</td><td>8</td><td>0</td><td>8</td></tr>
-<tr class="row-overdue"><td>326107</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】商用品类与营销一体化打通-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理">【后端】商用品类与营销一体化打通-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-01</td><td style="color:#ef4444;font-weight:700;">1天</td><td>12</td><td>0</td><td>12</td></tr>
-<tr class="row-overdue"><td>326106</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】商用品类与营销一体化打通-需求评审、走查文档和自测文档输出">【后端】商用品类与营销一体化打通-需求评审、走查文档和自测文档输出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-01</td><td style="color:#ef4444;font-weight:700;">1天</td><td>12</td><td>0</td><td>12</td></tr>
-<tr class="row-overdue"><td>326105</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】供应链金融账户（经销商贷款账户额度管理、经销商解压账户额度管理）-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理">【后端】供应链金融账户（经销商贷款账户额度管理、经销商解压账户额度管理）-输出详细技术文档设计、概要文档设计、技术评审会议文档及技术问题处理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-01</td><td style="color:#ef4444;font-weight:700;">1天</td><td>12</td><td>0</td><td>12</td></tr>
-<tr class="row-overdue"><td>326104</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】供应链金融账户（经销商贷款账户额度管理、经销商解压账户额度管理）-需求评审、走查文档和自测文档输出">【后端】供应链金融账户（经销商贷款账户额度管理、经销商解压账户额度管理）-需求评审、走查文档和自测文档输出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-01</td><td style="color:#ef4444;font-weight:700;">1天</td><td>12</td><td>0</td><td>12</td></tr>
-<tr class="row-overdue"><td>325624</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【后端】上海商用销司 经销商工程销售方案审批流图绘图">【后端】上海商用销司 经销商工程销售方案审批流图绘图</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev4_control</td><td>网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</td><td>2026-09-01</td><td style="color:#ef4444;font-weight:700;">1天</td><td>1</td><td>0</td><td>1</td></tr>
-</tbody>
-</table>
-</div>
-</details>
-    <details>
-        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
             <span class="assignee-name">钟日健</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共7个</span>
@@ -136,7 +102,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
             <span class="assignee-name">周志杰</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共4个</span>
@@ -165,7 +131,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </div>
 </details>
     <details>
-        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">胡健</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
@@ -192,9 +158,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u8bb8\u5cfb\u5609", "\u949f\u65e5\u5065", "\u5468\u5fd7\u6770", "\u80e1\u5065"],datasets:[{label:'延期任务数',data:[9, 7, 4, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80", "#43e97b80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[16, 5],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "3-\u4e2d"],datasets:[{data:[1, 20],backgroundColor:["#ef4444", "#f5576c"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u949f\u65e5\u5065", "\u5468\u5fd7\u6770", "\u80e1\u5065"],datasets:[{label:'延期任务数',data:[7, 4, 1],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[7, 5],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "3-\u4e2d"],datasets:[{data:[1, 11],backgroundColor:["#ef4444", "#f5576c"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
