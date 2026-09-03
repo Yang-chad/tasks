@@ -7,7 +7,7 @@
     "total_members": 49,
     "total_overdue": 17,
     "reference_hours": 168,
-    "report_time": "2026-09-03 10:36:45",
+    "report_time": "2026-09-03 11:15:47",
     "month": "2026年9月"
   },
   "members": [
@@ -6314,7 +6314,17 @@
           "deadline": "2026-09-30"
         }
       ],
-      "resolved_bugs": [],
+      "resolved_bugs": [
+        {
+          "id": 337648,
+          "title": "【QA-PC-管理侧-限时特价活动快照】活动最后节点审核通过后快照 status 仍为待审核状态",
+          "severity": 3,
+          "pri": 3,
+          "status": "delay",
+          "platform": "集采",
+          "openedBy": "李学鹍"
+        }
+      ],
       "active_bugs": []
     },
     {
@@ -9992,11 +10002,20 @@
       ],
       "resolved_bugs": [
         {
+          "id": 337690,
+          "title": "【QA-安卓-用户侧-经销商管理】经销商，关联主体变更提交审批，选择不同步变更，安卓的发起签约后全部签署完成后，没有强制",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
           "id": 337681,
           "title": "【QA-安卓-用户侧-经销商管理】经销商，关联主体变更提交审批，上传营业执照，下方法人信息名字会变更为营业执照的法人名字",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "陈嘉劲"
         },
@@ -12396,6 +12415,59 @@
       "active_bugs": []
     },
     {
+      "name": "梁庆芬",
+      "role": "其他",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 0,
+      "done_estimate": 0.0,
+      "done_consumed": 0.0,
+      "month_done_hours": 0.0,
+      "active_count": 0,
+      "active_estimate": 0.0,
+      "active_consumed": 0.0,
+      "active_left": 0.0,
+      "total_tasks": 0,
+      "total_estimate": 0.0,
+      "completion_rate": 0.0,
+      "efficiency": 0,
+      "overdue": 0,
+      "done_tasks": [],
+      "active_tasks": [],
+      "resolved_bugs": [
+        {
+          "id": 337578,
+          "title": "【QA-PC-管理侧-供应链金融小单】分批发货订单-发货单列表，根据收货人、收货电话查询，查询结果不准确",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 337598,
+          "title": "【QA-PC-用户侧-供应链金融小单】发货单-已取消的订单详情页，会显示删除按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        }
+      ],
+      "active_bugs": []
+    },
+    {
       "name": "李兆杰",
       "role": "其他",
       "type_counts": {
@@ -12444,59 +12516,6 @@
           "severity": 3,
           "pri": 3,
           "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
-    },
-    {
-      "name": "梁庆芬",
-      "role": "其他",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 0,
-      "done_estimate": 0.0,
-      "done_consumed": 0.0,
-      "month_done_hours": 0.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
-      "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 0,
-      "total_estimate": 0.0,
-      "completion_rate": 0.0,
-      "efficiency": 0,
-      "overdue": 0,
-      "done_tasks": [],
-      "active_tasks": [],
-      "resolved_bugs": [
-        {
-          "id": 337598,
-          "title": "【QA-PC-用户侧-供应链金融小单】发货单-已取消的订单详情页，会显示删除按钮",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 337578,
-          "title": "【QA-PC-管理侧-供应链金融小单】分批发货订单-发货单列表，根据收货人、收货电话查询，查询结果不准确",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
           "platform": "网批2.0"
         }
       ]
