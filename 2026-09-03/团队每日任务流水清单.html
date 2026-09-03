@@ -76,14 +76,14 @@ th.date-col { min-width:44px; font-size:11px; }
 
 <div class="header">
   <h1>团队每日完成任务流水清单</h1>
-  <div class="sub">2026-09-01 ~ 2026-09-03 | 69 个已完成任务 | 15 人 | 覆盖 3 天</div>
+  <div class="sub">2026-09-01 ~ 2026-09-03 | 73 个已完成任务 | 16 人 | 覆盖 3 天</div>
 </div>
 
 <div class="summary">
-  <div class="scard"><div class="num" style=color:#10b981>69</div><div class="label">已完成任务</div></div>
-  <div class="scard"><div class="num" style=color:#6366f1>15</div><div class="label">参与人数</div></div>
+  <div class="scard"><div class="num" style=color:#10b981>73</div><div class="label">已完成任务</div></div>
+  <div class="scard"><div class="num" style=color:#6366f1>16</div><div class="label">参与人数</div></div>
   <div class="scard"><div class="num" style=color:#f59e0b>3</div><div class="label">覆盖天数</div></div>
-  <div class="scard"><div class="num" style=color:#ea580c>409h</div><div class="label">预估工时</div></div>
+  <div class="scard"><div class="num" style=color:#ea580c>419h</div><div class="label">预估工时</div></div>
 </div>
 
 <!-- 视图切换 -->
@@ -97,12 +97,26 @@ th.date-col { min-width:44px; font-size:11px; }
 
 <!-- 角色标签 -->
 <div class="tab-bar matrix-tabs">
-<button class=tab-btn active onclick=switchMatrixTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(9人)</span></button>
+<button class=tab-btn active onclick=switchMatrixTab("产品")>产品<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(9人)</span></button>
 <button class=tab-btn onclick=switchMatrixTab("前端")>前端<span style="margin-left:4px;font-size:11px;opacity:.7;">(3人)</span></button>
 <button class=tab-btn onclick=switchMatrixTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(2人)</span></button>
 <button class=tab-btn onclick=switchMatrixTab("其他")>其他<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
 </div>
-<div class="role-section show" data-role="后端">
+<div class="role-section show" data-role="产品">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#7c3aed;border-left:4px solid #7c3aed;padding-left:8px;">产品</span>
+<span style="font-size:12px;color:#999;">2 个任务 · 2h · 1 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-03</th>
+<th class="date-col">09-02</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>梁庆芬</td><td class=total>2</td><td class=hours>2</td><td class=has-task>2</td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="后端">
 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
 <span style="font-weight:700;font-size:15px;color:#10b981;border-left:4px solid #10b981;padding-left:8px;">后端</span>
 <span style="font-size:12px;color:#999;">34 个任务 · 179h · 9 人</span>
@@ -141,7 +155,7 @@ th.date-col { min-width:44px; font-size:11px; }
 <div class="role-section" data-role="移动端">
 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
 <span style="font-weight:700;font-size:15px;color:#ea580c;border-left:4px solid #ea580c;padding-left:8px;">移动端</span>
-<span style="font-size:12px;color:#999;">6 个任务 · 42h · 2 人</span>
+<span style="font-size:12px;color:#999;">8 个任务 · 50h · 2 人</span>
 </div>
 <div class="table-wrap"><table>
 <thead><tr><th>人员</th><th>合计</th><th>工时h</th>
@@ -149,7 +163,7 @@ th.date-col { min-width:44px; font-size:11px; }
 <th class="date-col">09-02</th>
 <th class="date-col">09-01</th>
 </tr></thead><tbody>
-<tr><td class=name>徐良侦</td><td class=total>5</td><td class=hours>34</td><td></td><td class=has-task>5</td><td></td></tr>
+<tr><td class=name>徐良侦</td><td class=total>7</td><td class=hours>42</td><td class=has-task>2</td><td class=has-task>5</td><td></td></tr>
 <tr><td class=name>吴炜欣</td><td class=total>1</td><td class=hours>8</td><td></td><td></td><td class=has-task>1</td></tr>
 </tbody></table></div></div>
 <div class="role-section" data-role="其他">
@@ -172,12 +186,22 @@ th.date-col { min-width:44px; font-size:11px; }
 
 <!-- 角色标签 -->
 <div class="tab-bar daily-tabs">
-<button class=tab-btn active onclick=switchDailyTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(9人)</span></button>
+<button class=tab-btn active onclick=switchDailyTab("产品")>产品<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(9人)</span></button>
 <button class=tab-btn onclick=switchDailyTab("前端")>前端<span style="margin-left:4px;font-size:11px;opacity:.7;">(3人)</span></button>
 <button class=tab-btn onclick=switchDailyTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(2人)</span></button>
 <button class=tab-btn onclick=switchDailyTab("其他")>其他<span style="margin-left:4px;font-size:11px;opacity:.7;">(1人)</span></button>
 </div>
-<div class="role-section show" data-daily-role="后端">
+<div class="role-section show" data-daily-role="产品">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #7c3aed;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">2个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">梁庆芬</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-产品">产品</span><span>#329069 【产品设计】商用总可用库存校准</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-产品">产品</span><span>#329068 【产品设计】商用自提订单去掉要先备货才能完成自提限制</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="后端">
 <details class="person-section" style="margin-bottom:8px;">
 <summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
 <span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
@@ -224,6 +248,13 @@ th.date-col { min-width:44px; font-size:11px; }
 <div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李漫嘉</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(7个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#324546 【PC管理】网批3.0特价促销活动方案UI走查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#324545 【PC管理】网批3.0组合套餐活动方案UI走查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#322671 【PC管理】钱包开通记录查询工具箱</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#321903 【PC管理】接口同步数据筛查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#321437 【PC管理】入驻审核增加销售公司筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319178 【PC管理】冻结\注销增加【办事处】查询条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319177 【PC管理】资料变更增加【签署状态】筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">艾思芹</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(4个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#319198 【PC管理】工程小单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319197 【PC管理】零售小单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319196 【PC管理】工程大单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319195 【PC管理】零售大单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
 </div><!-- /role-section -->
 <div class="role-section" data-daily-role="移动端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #ea580c;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">2个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐良侦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#324364 【iOS】赊销家用-用户侧售后详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#316868 【iOS】赊销家用-用户侧订单详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
 <details class="person-section" style="margin-bottom:8px;">
 <summary class="person-summary" style="padding-left:16px;border-left:4px solid #ea580c;">
 <span style="font-weight:700;font-size:13px;">2026-09-02 (周三)</span>
