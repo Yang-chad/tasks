@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>团队每日完成任务流水清单 — 2026-09-01~2026-09-05</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Microsoft YaHei","微软雅黑",PingFang SC,sans-serif; background:#f0f2f5; color:#333; font-size:14px; padding:20px; }
+.container { max-width:1400px; margin:0 auto; }
+
+/* 头部 */
+.header { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); color:white; padding:32px 40px; border-radius:14px; margin-bottom:24px; }
+.header h1 { font-size:26px; font-weight:700; }
+.header .sub { margin-top:6px; font-size:13px; color:#8892b0; }
+
+/* 摘要卡片 */
+.summary { display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+.scard { background:white; border-radius:12px; padding:18px 22px; box-shadow:0 2px 8px rgba(0,0,0,.08); flex:1; min-width:130px; text-align:center; }
+.scard .num { font-size:34px; font-weight:800; }
+.scard .label { font-size:13px; color:#999; margin-top:4px; }
+
+/* 视图切换 */
+.view-tabs { display:flex;gap:4px;margin-bottom:20px; }
+.view-tab { padding:10px 22px;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;background:#fff;color:#94a3b8;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.06);font-family:inherit; }
+.view-tab:hover { color:#475569;background:rgba(99,102,241,.06); }
+.view-tab.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 12px rgba(99,102,241,.3); }
+
+/* 胶囊角色标签（跟员工负载一致） */
+.tab-bar { display:flex;gap:0;margin-bottom:20px;flex-wrap:wrap;background:#fff;border-radius:14px;padding:6px 8px;box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.tab-btn { background:transparent;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;font-family:inherit;color:#94a3b8;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden; }
+.tab-btn:hover { color:#475569;background:rgba(99,102,241,.06); }
+.tab-btn.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);box-shadow:0 4px 14px rgba(99,102,241,0.35),0 1px 3px rgba(0,0,0,0.12); }
+
+/* 面板切换 */
+.view-panel { display:none; }
+.view-panel.show { display:block; }
+.role-section { display:none; }
+.role-section.show { display:block; }
+
+/* 表格 */
+.table-wrap { background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.07); overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th { background:#f8f9fa; padding:10px 8px; text-align:center; font-weight:600; border-bottom:2px solid #e8e8e8; white-space:nowrap; position:sticky; top:0; z-index:1; }
+td { padding:7px 8px; text-align:center; border-bottom:1px solid #f0f0f0; white-space:nowrap; }
+tr:hover td { background:#f8f9ff; }
+td.name { text-align:left; font-weight:600; }
+td.total { font-weight:700; color:#1a73e8; }
+td.hours { color:#888; }
+td.has-task { background:#e8f5e9; color:#2e7d32; font-weight:600; border-radius:4px; }
+th.date-col { min-width:44px; font-size:11px; }
+.date-weekend { background:#fff3e0; }
+
+/* 任务类型标签 */
+.task-item { display:flex;align-items:flex-start;padding:5px 0;border-bottom:1px dashed #eee;font-size:12px; }
+.task-item:last-child { border:none; }
+.task-type { display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;margin-right:6px;flex-shrink:0;font-weight:500; }
+.type-产品 { background:#ede9fe; color:#7c3aed; }
+.type-后端 { background:#d1fae5; color:#059669; }
+.type-前端 { background:#fce7f3; color:#be185d; }
+.type-移动端 { background:#ffedd5; color:#c2410c; }
+.type-测试 { background:#f3e8ff; color:#7c3aed; }
+.type-UI设计 { background:#ccfbf1; color:#0d9488; }
+.type-其他 { background:#f3f4f6; color:#6b7280; }
+
+/* 日期折叠 */
+.person-section { margin-bottom:6px; }
+.person-summary { display:flex;align-items:center;gap:10px;padding:10px 16px;background:white;border-radius:10px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:.2s; }
+.person-summary:hover { box-shadow:0 2px 8px rgba(0,0,0,.1); }
+
+.footer { text-align:center;padding:24px;color:#bbb;font-size:12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>团队每日完成任务流水清单</h1>
+  <div class="sub">2026-09-01 ~ 2026-09-05 | 143 个已完成任务 | 37 人 | 覆盖 4 天</div>
+</div>
+
+<div class="summary">
+  <div class="scard"><div class="num" style=color:#10b981>143</div><div class="label">已完成任务</div></div>
+  <div class="scard"><div class="num" style=color:#6366f1>37</div><div class="label">参与人数</div></div>
+  <div class="scard"><div class="num" style=color:#f59e0b>4</div><div class="label">覆盖天数</div></div>
+  <div class="scard"><div class="num" style=color:#ea580c>2000h</div><div class="label">预估工时</div></div>
+</div>
+
+<!-- 视图切换 -->
+<div class="view-tabs">
+  <button class="view-tab active" onclick="switchView('matrix')">人员×日期矩阵</button>
+  <button class="view-tab" onclick="switchView('daily')">按日期明细</button>
+</div>
+
+<!-- ═══ 矩阵视图 ═══ -->
+<div class="view-panel show" id="view-matrix">
+
+<!-- 角色标签 -->
+<div class="tab-bar matrix-tabs">
+<button class=tab-btn active onclick=switchMatrixTab("产品")>产品<span style="margin-left:4px;font-size:11px;opacity:.7;">(2人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(12人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("前端")>前端<span style="margin-left:4px;font-size:11px;opacity:.7;">(4人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(2人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("测试")>测试<span style="margin-left:4px;font-size:11px;opacity:.7;">(12人)</span></button>
+<button class=tab-btn onclick=switchMatrixTab("其他")>其他<span style="margin-left:4px;font-size:11px;opacity:.7;">(5人)</span></button>
+</div>
+<div class="role-section show" data-role="产品">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#7c3aed;border-left:4px solid #7c3aed;padding-left:8px;">产品</span>
+<span style="font-size:12px;color:#999;">4 个任务 · 16h · 2 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-04</th>
+<th class="date-col">09-03</th>
+<th class="date-col">09-02</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>梁庆芬</td><td class=total>2</td><td class=hours>2</td><td></td><td class=has-task>2</td><td></td><td></td></tr>
+<tr><td class=name>周志杰</td><td class=total>2</td><td class=hours>14</td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="后端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#10b981;border-left:4px solid #10b981;padding-left:8px;">后端</span>
+<span style="font-size:12px;color:#999;">56 个任务 · 296h · 12 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-04</th>
+<th class="date-col">09-03</th>
+<th class="date-col">09-02</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>李龙键</td><td class=total>13</td><td class=hours>75</td><td class=has-task>1</td><td class=has-task>5</td><td class=has-task>1</td><td class=has-task>6</td></tr>
+<tr><td class=name>何嘉宝</td><td class=total>13</td><td class=hours>52</td><td class=has-task>1</td><td class=has-task>3</td><td class=has-task>3</td><td class=has-task>6</td></tr>
+<tr><td class=name>梁家槐</td><td class=total>6</td><td class=hours>36</td><td></td><td class=has-task>6</td><td></td><td></td></tr>
+<tr><td class=name>徐琦</td><td class=total>4</td><td class=hours>32</td><td class=has-task>2</td><td class=has-task>1</td><td class=has-task>1</td><td></td></tr>
+<tr><td class=name>孙元通</td><td class=total>4</td><td class=hours>17</td><td class=has-task>2</td><td></td><td class=has-task>2</td><td></td></tr>
+<tr><td class=name>冯澈</td><td class=total>4</td><td class=hours>12</td><td></td><td></td><td></td><td class=has-task>4</td></tr>
+<tr><td class=name>蒋志军</td><td class=total>3</td><td class=hours>12</td><td></td><td></td><td></td><td class=has-task>3</td></tr>
+<tr><td class=name>卢鑫</td><td class=total>2</td><td class=hours>12</td><td></td><td class=has-task>1</td><td></td><td class=has-task>1</td></tr>
+<tr><td class=name>阳超</td><td class=total>2</td><td class=hours>8</td><td></td><td class=has-task>1</td><td></td><td class=has-task>1</td></tr>
+<tr><td class=name>谢婉扬</td><td class=total>2</td><td class=hours>16</td><td></td><td></td><td class=has-task>2</td><td></td></tr>
+<tr><td class=name>郑忠</td><td class=total>2</td><td class=hours>8</td><td></td><td></td><td></td><td class=has-task>2</td></tr>
+<tr><td class=name>刘兰真</td><td class=total>1</td><td class=hours>16</td><td class=has-task>1</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="前端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#db2777;border-left:4px solid #db2777;padding-left:8px;">前端</span>
+<span style="font-size:12px;color:#999;">31 个任务 · 192h · 4 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-04</th>
+<th class="date-col">09-03</th>
+<th class="date-col">09-02</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>王子尘</td><td class=total>12</td><td class=hours>96</td><td></td><td class=has-task>12</td><td></td><td></td></tr>
+<tr><td class=name>艾思芹</td><td class=total>9</td><td class=hours>36</td><td></td><td class=has-task>1</td><td class=has-task>4</td><td class=has-task>4</td></tr>
+<tr><td class=name>李漫嘉</td><td class=total>7</td><td class=hours>36</td><td></td><td></td><td></td><td class=has-task>7</td></tr>
+<tr><td class=name>田宇飞</td><td class=total>3</td><td class=hours>24</td><td></td><td></td><td class=has-task>3</td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="移动端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#ea580c;border-left:4px solid #ea580c;padding-left:8px;">移动端</span>
+<span style="font-size:12px;color:#999;">10 个任务 · 58h · 2 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-04</th>
+<th class="date-col">09-03</th>
+<th class="date-col">09-02</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>徐良侦</td><td class=total>9</td><td class=hours>50</td><td></td><td class=has-task>4</td><td class=has-task>5</td><td></td></tr>
+<tr><td class=name>吴炜欣</td><td class=total>1</td><td class=hours>8</td><td></td><td></td><td></td><td class=has-task>1</td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="测试">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#0284c7;border-left:4px solid #0284c7;padding-left:8px;">测试</span>
+<span style="font-size:12px;color:#999;">34 个任务 · 1085h · 12 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-04</th>
+<th class="date-col">09-03</th>
+<th class="date-col">09-02</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>李学鹍</td><td class=total>7</td><td class=hours>70</td><td class=has-task>1</td><td class=has-task>6</td><td></td><td></td></tr>
+<tr><td class=name>马腾</td><td class=total>6</td><td class=hours>96</td><td></td><td class=has-task>6</td><td></td><td></td></tr>
+<tr><td class=name>匡军</td><td class=total>3</td><td class=hours>90</td><td class=has-task>1</td><td class=has-task>1</td><td></td><td class=has-task>1</td></tr>
+<tr><td class=name>江小芳</td><td class=total>3</td><td class=hours>106</td><td></td><td class=has-task>3</td><td></td><td></td></tr>
+<tr><td class=name>刘孝亮</td><td class=total>3</td><td class=hours>114</td><td></td><td class=has-task>3</td><td></td><td></td></tr>
+<tr><td class=name>罗有文</td><td class=total>2</td><td class=hours>82</td><td></td><td class=has-task>2</td><td></td><td></td></tr>
+<tr><td class=name>李成斌</td><td class=total>2</td><td class=hours>88</td><td></td><td class=has-task>2</td><td></td><td></td></tr>
+<tr><td class=name>李文清</td><td class=total>2</td><td class=hours>96</td><td></td><td class=has-task>2</td><td></td><td></td></tr>
+<tr><td class=name>伍镓烨</td><td class=total>2</td><td class=hours>88</td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>龙泽英</td><td class=total>2</td><td class=hours>96</td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>邹娟</td><td class=total>1</td><td class=hours>80</td><td></td><td class=has-task>1</td><td></td><td></td></tr>
+<tr><td class=name>陈嘉劲</td><td class=total>1</td><td class=hours>80</td><td class=has-task>1</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section" data-role="其他">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#64748b;border-left:4px solid #64748b;padding-left:8px;">其他</span>
+<span style="font-size:12px;color:#999;">8 个任务 · 353h · 5 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th>工时h</th>
+<th class="date-col">09-04</th>
+<th class="date-col">09-03</th>
+<th class="date-col">09-02</th>
+<th class="date-col">09-01</th>
+</tr></thead><tbody>
+<tr><td class=name>谭艳清</td><td class=total>3</td><td class=hours>170</td><td class=has-task>3</td><td></td><td></td><td></td></tr>
+<tr><td class=name>王乐</td><td class=total>2</td><td class=hours>52</td><td class=has-task>1</td><td></td><td class=has-task>1</td><td></td></tr>
+<tr><td class=name>林爱冰</td><td class=total>1</td><td class=hours>20</td><td></td><td class=has-task>1</td><td></td><td></td></tr>
+<tr><td class=name>张敏琪</td><td class=total>1</td><td class=hours>41</td><td></td><td class=has-task>1</td><td></td><td></td></tr>
+<tr><td class=name>李嘉毅</td><td class=total>1</td><td class=hours>70</td><td class=has-task>1</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+</div><!-- /view-matrix -->
+
+<!-- ═══ 按日期明细视图 ═══ -->
+<div class="view-panel" id="view-daily">
+
+<!-- 角色标签 -->
+<div class="tab-bar daily-tabs">
+<button class=tab-btn active onclick=switchDailyTab("产品")>产品<span style="margin-left:4px;font-size:11px;opacity:.7;">(2人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("后端")>后端<span style="margin-left:4px;font-size:11px;opacity:.7;">(12人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("前端")>前端<span style="margin-left:4px;font-size:11px;opacity:.7;">(4人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("移动端")>移动端<span style="margin-left:4px;font-size:11px;opacity:.7;">(2人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("测试")>测试<span style="margin-left:4px;font-size:11px;opacity:.7;">(12人)</span></button>
+<button class=tab-btn onclick=switchDailyTab("其他")>其他<span style="margin-left:4px;font-size:11px;opacity:.7;">(5人)</span></button>
+</div>
+<div class="role-section show" data-daily-role="产品">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #7c3aed;">
+<span style="font-weight:700;font-size:13px;">2026-09-04 (周五)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">2个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">周志杰</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-产品">产品</span><span>#314722 【产品】组合套餐专区新增检索条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-产品">产品</span><span>#305978 【产品】供应链金融经销商任务统计逻辑改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #7c3aed;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">2个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">梁庆芬</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-产品">产品</span><span>#329069 【产品设计】商用总可用库存校准</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-产品">产品</span><span>#329068 【产品设计】商用自提订单去掉要先备货才能完成自提限制</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="后端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
+<span style="font-weight:700;font-size:13px;">2026-09-04 (周五)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">7个任务 · 5人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐琦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#322564 【后端】fms对接--提供退款接口赊销账户退款</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#322325 【后端】管理侧列表详情赊销模式订退款申请后，金额平摊接口</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">孙元通</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-其他">其他</span><span>#328215 【后端】【9月需求评审】 评审时间:09月03日  上午9：30 评审地址：3楼会议室A302 评审议程: 集采： 1、调拨单-逆向单管理---钟日健</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#327891 【后端】工单处理，7个退款单行退款部分出库，商家退款，改库申请已提交，oms 已处理， 涉及订单金额12万请安排改库</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李龙键</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#323806 【后端】信用账户额度管理-额度设置-对接FMS</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">刘兰真</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#322330 【后端】管理员授权 页面列表，新增列表、移除、授权，详情，想想展示，状态</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">何嘉宝</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#321277 【后端】4.0模式下，经销商买赠方案管理侧-审核编辑、调价、查看新增-批量屏蔽商家</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">17个任务 · 6人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">梁家槐</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(6个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#324127 【后端】限时特价活动快照功能——端到端功能自测与快照数据一致性验证</span><span style="margin-left:auto;font-size:11px;color:#bbb;">集采 · 集采平台_V1.30.0（0907/集采dev4.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#324126 【后端】限时特价活动快照功能——创建活动审批流末节点通过触发点集成与容错隔离</span><span style="margin-left:auto;font-size:11px;color:#bbb;">集采 · 集采平台_V1.30.0（0907/集采dev4.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#324125 【后端】限时特价活动快照功能——基于 REQUIRES_NEW 独立事务的快照聚合服务与幂等控制实现</span><span style="margin-left:auto;font-size:11px;color:#bbb;">集采 · 集采平台_V1.30.0（0907/集采dev4.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#324124 【后端】限时特价活动快照功能——快照领域实体（PO）与 MyBatis 持久层映射体系搭建</span><span style="margin-left:auto;font-size:11px;color:#bbb;">集采 · 集采平台_V1.30.0（0907/集采dev4.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#324123 【后端】限时特价活动快照功能——分布式活动数据快照存储模型设计与数据库结构落地</span><span style="margin-left:auto;font-size:11px;color:#bbb;">集采 · 集采平台_V1.30.0（0907/集采dev4.0）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#324122 【后端】限时特价活动快照功能——需求评审、方案设计、BI上游沟通数据字段关系对接</span><span style="margin-left:auto;font-size:11px;color:#bbb;">集采 · 集采平台_V1.30.0（0907/集采dev4.0）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李龙键</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(5个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#323830 【后端】运费规则配置-编辑</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323829 【后端】运费规则配置-列表&amp;查询条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323814 【后端】信用账户审核-审批驳回</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323813 【后端】信用账户审核-审批通过</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#312061 【后端】钱包信用（赊销）账户金额-销司主体变更-提供接口能力</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">何嘉宝</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#321279 【后端】4.0模式下，经销商买赠方案管理侧-屏蔽商家推送ES</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321278 【后端】4.0模式下，经销商买赠方案管理侧-调整记录(批量屏蔽商家)</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321276 【后端】4.0模式下，经销商买赠方案管理侧-编辑、调价、查看新增-批量屏蔽商家</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">卢鑫</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#323805 【后端】信用账户额度管理-开户-提供接口</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐琦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#322323 【后端】管理测赊销模式订退款申请后，金额平摊--退款调用</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">阳超</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#328576 【后端】用自提订单转总部履约的订单闭环问题</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
+<span style="font-weight:700;font-size:13px;">2026-09-02 (周三)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">9个任务 · 5人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">何嘉宝</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#321282 【后端】4.0模式下，经销商满减件方案管理侧-审核编辑、调价、查看新增-批量屏蔽商家</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321281 【后端】4.0模式下，经销商满减件方案管理侧-编辑、调价、查看新增-批量屏蔽商家</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321280 【后端】4.0模式下，经销商买赠方案管理侧-缓存维护屏蔽商家和订单接口对接</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">谢婉扬</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#328213 【后端】订单支付之前订单货款平坦订算法</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#322320 【后端】赊销模式订单支付成功后，金额平摊接口api提供</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">孙元通</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#322321 【后端】赊销模式订单合并支付成功后，库存，接单接口</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321291 【后端】4.0模式下，经销商方案屏蔽商家订单对接(屏蔽商家）-订单，购物车接口定义，方案定义</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐琦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#324119 【后端】工程退款常规工程订单  分支</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李龙键</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#323831 【后端】运费规则配置-新增</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #10b981;">
+<span style="font-weight:700;font-size:13px;">2026-09-01 (周二)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">23个任务 · 7人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李龙键</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(6个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#323811 【后端】信用账户审核-列表&查询</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323810 【后端】信用账户额度管理-终止</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323803 【后端】信用账户额度管理-导出excel</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325623 【后端】黑吉商用销司 经销商返利销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325622 【后端】深圳商用销司 经销商返利销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325621 【后端】重庆商用销司 经销商返利销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">何嘉宝</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(6个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#321290 【后端】4.0模式下，经销商组合套餐方案管理侧-缓存维护屏蔽商家和订单接口对接</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321289 【后端】4.0模式下，经销商组合套餐方案管理侧-屏蔽商家推送ES</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321288 【后端】4.0模式下，经销商组合套餐方案管理侧-调整记录(批量屏蔽商家)</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321285 【后端】4.0模式下，经销商满减件方案管理侧-缓存维护屏蔽商家和订单接口对接</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321284 【后端】4.0模式下，经销商满减件方案管理侧-屏蔽商家推送ES</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321283 【后端】4.0模式下，经销商满减件方案管理侧-调整记录(批量屏蔽商家)</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">冯澈</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(4个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#325615 【后端】黑吉商用销司 经销商日销销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325614 【后端】深圳商用销司 经销商日销销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325613 【后端】重庆商用销司 经销商日销销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#325612 【后端】内蒙古商用销司 经销商日销销售方案（行业）审批流图绘图</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">蒋志军</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#323818 【后端】经销商资金账户-信用账户-流水跳转FMS</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323816 【后端】经销商资金账户-信用账户-查看</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#323815 【后端】经销商资金账户-信用账户-列表</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">郑忠</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#321107 【后端】分销商管理-导出-导出文档增加字段【销售公司】（商家归属销售公司），排列导出文件的第一列；</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span>#321106 【后端】客户库-导出-导出文档增加字段【销售公司】（商家归属销售公司），排列导出文件的第一列；</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">卢鑫</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#324778 【后端】赊销账户模式-商家状态校验</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">阳超</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-后端">后端</span><span>#322326 【后端】用户侧订单列表详情赊销模式订单详情，金额平摊接口</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="前端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #db2777;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">13个任务 · 2人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">王子尘</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(12个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#324654 【H5】审批流程组件封装</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#324653 【H5】替换审批流程组件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319683 【H5】资料变更添加审批流程入口</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319682 【H5】通用组件封装</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305716 【PC管理】赊销账户额度管理配置审核列表详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305715 【PC管理】赊销账户额度管理配置审核列表</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305714 【PC管理】赊销账户额度管理配置列表查看额度</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305713 【PC管理】赊销账户额度管理配置列表设置额度</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305712 【PC管理】赊销账户额度管理配置列表</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305689 【PC管理】功能菜单的审批流弹窗参数调整</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305688 【PC管理】功能菜单的审批流弹窗替换通用组件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#305687 【PC管理】审批流通用组件改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">艾思芹</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#324544 【PC管理】网批订单UI走查24行~26行</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #db2777;">
+<span style="font-weight:700;font-size:13px;">2026-09-02 (周三)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">7个任务 · 2人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">艾思芹</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(4个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#326473 【H5】零售大单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#326472 【H5】零售小单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#326471 【H5】工程大单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#326470 【H5】工程小单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">田宇飞</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#319261 【PC管理】审批流配置</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319260 【PC用户】审批详情展示签署信息</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319259 【PC用户】企业管理企业信息增加变更记录</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #db2777;">
+<span style="font-weight:700;font-size:13px;">2026-09-01 (周二)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">11个任务 · 2人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李漫嘉</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(7个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#324546 【PC管理】网批3.0特价促销活动方案UI走查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#324545 【PC管理】网批3.0组合套餐活动方案UI走查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#322671 【PC管理】钱包开通记录查询工具箱</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#321903 【PC管理】接口同步数据筛查</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#321437 【PC管理】入驻审核增加销售公司筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319178 【PC管理】冻结\注销增加【办事处】查询条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319177 【PC管理】资料变更增加【签署状态】筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">艾思芹</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(4个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-前端">前端</span><span>#319198 【PC管理】工程小单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319197 【PC管理】零售小单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319196 【PC管理】工程大单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span>#319195 【PC管理】零售大单接单页面</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="移动端">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #ea580c;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">4个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐良侦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(4个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#324366 【iOS】赊销家用-管理侧订单详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#324365 【iOS】赊销家用-管理侧售后详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#324364 【iOS】赊销家用-用户侧售后详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#316868 【iOS】赊销家用-用户侧订单详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #ea580c;">
+<span style="font-weight:700;font-size:13px;">2026-09-02 (周三)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">5个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">徐良侦</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(5个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#327933 【供应链金融订单部分】分批发货大单退款单详情页 增加 审批流程 按钮</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#316495 【iOS】分批发货小单详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#316240 【iOS】合并支付-待付款订单</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#315440 【iOS】分配发货大单详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#310274 【iOS】分批发货订单（小单）-发货单售后单详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #ea580c;">
+<span style="font-weight:700;font-size:13px;">2026-09-01 (周二)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">1个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">吴炜欣</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-移动端">移动端</span><span>#316821 【iOS】信用账户详情</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="测试">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #0284c7;">
+<span style="font-weight:700;font-size:13px;">2026-09-04 (周五)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">7个任务 · 5人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">伍镓烨</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324291 【测试】家用4.0买商用品类与营销一体化打通--伍镓烨</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324287 【测试】商用两层订单支持营销一体化打通--伍镓烨</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">龙泽英</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324253 【测试】供应链金融订单、售后单-企微提醒+待办事项</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324231 【测试】供应链金融经销商资金账户改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">匡军</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324285 【测试】商用两层订单支持营销一体化打通--匡军</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">陈嘉劲</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324283 【测试】主体变更销司联合审批--安卓用户侧+管理侧配置及数据查询</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李学鹍</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324269 【测试】经销商方案新增批量删除/取消商品预售</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #0284c7;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">26个任务 · 9人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李学鹍</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(6个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#326098 【测试设计】网批0820、0903，分销0824，集采0831版本测试任务分配和测试计划整理及测试进度问题跟进</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324277 【测试】权限集合增加筛选条件及导出能力</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324271 【测试】组合套餐专区新增检索条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324267 【测试】管理侧新增关闭所有页签能力</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324265 【测试】申请工程保证金变更逻辑校验改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324263 【测试】员工管理编辑后保存时取消同步姓名至企业微信</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">马腾</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(6个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324275 【测试】入驻审核增加销售公司筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324273 【测试】资料变更增加签署状态筛选冻结注销增加办事处筛选条件</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324261 【测试】客户库、分销商管理导出优化</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324259 【测试】供应链金融经销商任务统计逻辑改造</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324251 【测试】供应链金融订单-销司字典+接单审批配置</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324233 【测试】供应链金融-钱包开通</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">江小芳</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324257 【测试】供应链金融两层订单对接金蝶、OMS--小单</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324247 【测试】供应链金融订单-解押订单售后(小单)--PC+H5</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324243 【测试】供应链金融订单-解押订单(小单)--PC+H5</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">刘孝亮</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324255 【测试】供应链金融两层订单对接金蝶、OMS--大单</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324241 【测试】供应链金融订单-贷款订单售后(大单)--PC+H5</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324237 【测试】供应链金融订单-贷款订单(大单)--PC+H5</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">罗有文</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#329395 【测试】商用自提订单去掉要先备货才能完成自提限制--零售发货单(小单)</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324281 【测试】主体变更销司联合审批--IOS用户侧+H5管理侧</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李成斌</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324249 【测试】供应链金融订单-解押订单售后(小单)--APP</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324245 【测试】供应链金融订单-解押订单(小单)--APP</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李文清</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(2个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324239 【测试】供应链金融订单-贷款订单售后(大单)--app</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span>#324235 【测试】供应链金融订单-贷款订单(大单)--APP</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">匡军</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#329394 【测试】商用自提订单去掉要先备货才能完成自提限制--工程发货单(小单)</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">邹娟</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324279 【测试】主体变更销司联合审批--PC用户侧+PC管理侧</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #0284c7;">
+<span style="font-weight:700;font-size:13px;">2026-09-01 (周二)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">1个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">匡军</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-测试">测试</span><span>#324289 【测试】家用4.0买商用品类与营销一体化打通--匡军</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+<div class="role-section" data-daily-role="其他">
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #64748b;">
+<span style="font-weight:700;font-size:13px;">2026-09-04 (周五)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">5个任务 · 3人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">谭艳清</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(3个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-其他">其他</span><span>#329760 谭艳清-新推广销司组织架构及账号开通</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-其他">其他</span><span>#329751 谭艳清-商用全国权限集合优化</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div><div class="task-item"><span class="task-type type-其他">其他</span><span>#329745 谭艳清-网批系统组织架构权限日常处理</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">王乐</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-其他">其他</span><span>#325144 【ui设计】特批方案保证金核销二期GC19~24</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">李嘉毅</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-其他">其他</span><span>#329738 李嘉毅-网批系统组织架构权限日常处理</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #64748b;">
+<span style="font-weight:700;font-size:13px;">2026-09-03 (周四)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">2个任务 · 2人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">林爱冰</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-其他">其他</span><span>#325487 8 月 UI 设计走查-2</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div><div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">张敏琪</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-其他">其他</span><span>#323843 张敏琪操作手册及培训材料更新</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+<details class="person-section" style="margin-bottom:8px;">
+<summary class="person-summary" style="padding-left:16px;border-left:4px solid #64748b;">
+<span style="font-weight:700;font-size:13px;">2026-09-02 (周三)</span>
+<span style="font-size:12px;color:#888;margin-left:8px;">1个任务 · 1人</span>
+</summary>
+<div style="padding:8px 16px;">
+<div style="margin-bottom:6px;"><span style="font-weight:600;font-size:13px;">王乐</span><span style="font-size:11px;color:#aaa;margin-left:4px;">(1个)</span><div style="padding-left:8px;"><div class="task-item"><span class="task-type type-其他">其他</span><span>#325488 8 月 UI 设计走查-3</span><span style="margin-left:auto;font-size:11px;color:#bbb;">网批2.0 · 网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</span></div></div></div></div></details>
+</div><!-- /role-section -->
+</div><!-- /view-daily -->
+
+<div class="footer">禅道数据 · 自动生成于 2026-09-05 · WorkBuddy</div>
+
+<script>
+function switchView(v) {
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById('view-' + v).classList.add('show');
+  document.querySelectorAll('.view-tab').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function switchMatrixTab(r) {
+  // 切换矩阵面板内的角色标签
+  document.querySelectorAll('#view-matrix .tab-bar.matrix-tabs .tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().startsWith(r));
+  });
+  document.querySelectorAll('#view-matrix .role-section').forEach(s => {
+    s.classList.toggle('show', s.getAttribute('data-role') === r);
+  });
+}
+
+function switchDailyTab(r) {
+  document.querySelectorAll('#view-daily .tab-bar.daily-tabs .tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().startsWith(r));
+  });
+  document.querySelectorAll('#view-daily .role-section').forEach(s => {
+    s.classList.toggle('show', s.getAttribute('data-daily-role') === r);
+  });
+}
+</script>
+</div>
+</body></html>
