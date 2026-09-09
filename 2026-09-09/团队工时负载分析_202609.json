@@ -1,13 +1,13 @@
 {
   "summary": {
     "total_done": 290,
-    "total_active": 558,
+    "total_active": 582,
     "total_month_hours": 3121.0,
-    "total_estimate": 7700.0,
+    "total_estimate": 7793.0,
     "total_members": 51,
     "total_overdue": 22,
     "reference_hours": 168,
-    "report_time": "2026-09-09 11:43:03",
+    "report_time": "2026-09-09 13:49:03",
     "month": "2026年9月"
   },
   "members": [
@@ -593,12 +593,21 @@
           "title": "【QA-PC-管理侧-运费规则配置】变更配置信息后，调整记录点击查看变更前的详情按钮，查看，显示为空",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "陈嘉劲"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338217,
+          "title": "【qa-PC-用户侧-我的订单】查看多个信用账户支付的订单详情页面，结果信用ID显示一样",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "王子尘",
@@ -1238,6 +1247,14 @@
         {
           "id": 338239,
           "title": "【QA-PC-用户侧-我的订单】活动专区-组合套餐，使用小写字母进行查询商品时无法查询出对应商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 338196,
+          "title": "【QA-PC-管理侧-审批流可视化改造】销售方案列表，进入待审核状态的审批流程界面，",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -2185,7 +2202,7 @@
           "title": "【QA-PC-管理侧-批量修改部门授权商家】首次进入编辑授权经销商页面无数据，再次打开页面才会展示数据",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
         },
@@ -2217,7 +2234,16 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338264,
+          "title": "【QA-PC-管理侧-限时特价】价格为空、常规价格少于活动价格时，提交后，缺少弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "胡健",
@@ -4130,7 +4156,7 @@
       "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 29,
+        "后端": 33,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
@@ -4145,14 +4171,14 @@
       "done_estimate": 85.0,
       "done_consumed": 85.0,
       "month_done_hours": 85.0,
-      "active_count": 7,
-      "active_estimate": 28.0,
+      "active_count": 11,
+      "active_estimate": 39.0,
       "active_consumed": 0.0,
-      "active_left": 28.0,
-      "total_tasks": 29,
-      "total_estimate": 113.0,
-      "completion_rate": 75.9,
-      "efficiency": 75.9,
+      "active_left": 39.0,
+      "total_tasks": 33,
+      "total_estimate": 124.0,
+      "completion_rate": 66.7,
+      "efficiency": 66.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -4518,6 +4544,62 @@
           "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
           "opened_date": "2026-08-19",
           "deadline": "2026-09-15"
+        },
+        {
+          "id": 330818,
+          "name": "【后端】深圳商用销售公司模式绘制审批流程图（活动方案）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330824,
+          "name": "【后端】江苏商用销售公司模式绘制审批流程图（返利充值、工程保证金变更）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330825,
+          "name": "【后端】江苏商用销售公司模式绘制审批流程图（商家类型变更、补录协议、经营信息）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330830,
+          "name": "【后端】江苏商用销售公司模式绘制审批流程图（活动方案）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
         }
       ],
       "resolved_bugs": [
@@ -4570,10 +4652,10 @@
     },
     {
       "name": "范文玉",
-      "role": "前端",
+      "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 5,
+        "后端": 11,
         "前端": 9,
         "移动端": 0,
         "测试": 0,
@@ -4588,14 +4670,14 @@
       "done_estimate": 52.0,
       "done_consumed": 84.0,
       "month_done_hours": 84.0,
-      "active_count": 7,
-      "active_estimate": 48.0,
+      "active_count": 13,
+      "active_estimate": 96.0,
       "active_consumed": 0.0,
-      "active_left": 48.0,
-      "total_tasks": 14,
-      "total_estimate": 100.0,
-      "completion_rate": 50.0,
-      "efficiency": 50.0,
+      "active_left": 96.0,
+      "total_tasks": 20,
+      "total_estimate": 148.0,
+      "completion_rate": 35.0,
+      "efficiency": 35.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -4781,6 +4863,90 @@
           "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
           "opened_date": "2026-09-09",
           "deadline": "2026-09-30"
+        },
+        {
+          "id": 330813,
+          "name": "【h5管理】家用分批发货订单-发货单列表",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330814,
+          "name": "【h5管理】家用分批发货订单-发货单详情页（接单）",
+          "status": "wait",
+          "pri": 3,
+          "type": "devel",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330815,
+          "name": "【h5管理】家用分批发货订单-发货单详情页（自提）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330816,
+          "name": "【h5管理】家用分批发货订单-发货单详情（配送）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330836,
+          "name": "【PC前端】【GC27】 工程销售方案，增加“内部价”",
+          "status": "wait",
+          "pri": 3,
+          "type": "devel",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-10-10"
+        },
+        {
+          "id": 330837,
+          "name": "【PC前端】【GC28】工程销售方案-调整记录，增加“内部价”记录",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-10-10"
         }
       ],
       "resolved_bugs": [
@@ -4846,7 +5012,7 @@
       "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 18,
+        "后端": 28,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
@@ -4861,14 +5027,14 @@
       "done_estimate": 83.0,
       "done_consumed": 83.0,
       "month_done_hours": 83.0,
-      "active_count": 4,
-      "active_estimate": 40.0,
+      "active_count": 14,
+      "active_estimate": 63.0,
       "active_consumed": 0.0,
-      "active_left": 40.0,
-      "total_tasks": 18,
-      "total_estimate": 123.0,
-      "completion_rate": 77.8,
-      "efficiency": 77.8,
+      "active_left": 63.0,
+      "total_tasks": 28,
+      "total_estimate": 146.0,
+      "completion_rate": 50.0,
+      "efficiency": 50.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -5067,6 +5233,146 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-09-08",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330819,
+          "name": "【后端】陕西空调销司经销商甘肃正信信息系统有限公司，因入驻审核流程有误，需要修复邀请码、入驻资料审核等数据",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330820,
+          "name": "【后端】【深圳】商用网批切换成业务线模式，原先销售方案数据处理",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330821,
+          "name": "【后端】网批、分销、集采系统修复商品类型授权查询过多问题",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330826,
+          "name": "【后端】江苏商用销售公司模式审批流程图（分销商归属变更、分销商资料变更）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330827,
+          "name": "【后端】江苏商用销售公司模式审批流程图（注销账号、服务商创建分销商）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330831,
+          "name": "【后端】举报单条码查询异常问题排查",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330832,
+          "name": "【后端】江苏家用7个商家2024年入驻网批，因操作失误导致在网批系统同时存在经销商和分销商账号，与终端科确认涉及分销账号未在终端建店，现申请由技术在后台操作【删除分销商】账号数据",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330833,
+          "name": "【后端】BI活动方案关系表维护",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 1.0,
+          "consumed": 0.0,
+          "left": 1.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330834,
+          "name": "【后端】限时特价方案编号：HD302601081409。这个方案业务需要终止，但是使用C3023030 发起终止的时候，系统提示：“您无此活动审核权限",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330835,
+          "name": "【后端】金蝶588个客户处理失败，数据整理同步处理",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
           "deadline": "2026-09-30"
         },
         {
@@ -8727,6 +9033,24 @@
       ],
       "resolved_bugs": [
         {
+          "id": 338254,
+          "title": "【qa-PC-用户侧-我的订单】合并支付收银台界面，缺少展示使用货款多少钱",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 338250,
+          "title": "【qa-PC-用户侧-我的订单】点击订单列表的支付功能，结果跳转到收银台界面立即支付按钮置灰",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
           "id": 337599,
           "title": "【QA-PC-用户侧-变更记录】当关联主体信息数据比信息变更多，选择跳转页数后，结果信息变更数据显示为空",
           "severity": 3,
@@ -8754,24 +9078,7 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 338254,
-          "title": "【qa-PC-用户侧-我的订单】合并支付收银台界面，缺少展示使用货款多少钱",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 338250,
-          "title": "【qa-PC-用户侧-我的订单】点击订单列表的支付功能，结果跳转到收银台界面立即支付按钮置灰",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "莫世有",
@@ -9868,14 +10175,6 @@
         {
           "id": 338218,
           "title": "【qa-PC-用户侧-我的订单】单个订单行的信用款金额错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 338217,
-          "title": "【qa-PC-用户侧-我的订单】查看信用支付的订单详情页面，结果货款支付金额显示为0",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -12643,7 +12942,7 @@
       "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 13,
+        "后端": 17,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
@@ -12658,14 +12957,14 @@
       "done_estimate": 12.0,
       "done_consumed": 7.0,
       "month_done_hours": 7.0,
-      "active_count": 11,
-      "active_estimate": 114.0,
+      "active_count": 15,
+      "active_estimate": 125.0,
       "active_consumed": 0.0,
-      "active_left": 114.0,
-      "total_tasks": 13,
-      "total_estimate": 126.0,
-      "completion_rate": 15.4,
-      "efficiency": 15.4,
+      "active_left": 125.0,
+      "total_tasks": 17,
+      "total_estimate": 137.0,
+      "completion_rate": 11.8,
+      "efficiency": 11.8,
       "overdue": 0,
       "done_tasks": [
         {
@@ -12847,6 +13146,62 @@
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-09-09",
           "deadline": "2026-09-30"
+        },
+        {
+          "id": 330822,
+          "name": "【后端】江苏商用销售公司模式绘制审批流程图（入驻、关键签约信息）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330823,
+          "name": "【后端】江苏商用销售公司模式绘制审批流程图（关键基础信息）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330828,
+          "name": "【后端】江苏商用销售公司模式绘制审批流程图（常用地址、商家任务合并）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 330829,
+          "name": "【后端】江苏商用销售公司模式绘制审批流程图（冻结账号、解冻账号）",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-09",
+          "deadline": "2026-09-30"
         }
       ],
       "resolved_bugs": [
@@ -12896,7 +13251,16 @@
           "openedBy": "陈嘉劲"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338269,
+          "title": "【QA-PC-用户侧-信用额度设置】经销商修改企业信息，法人变更不同步变更提交报错",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "梁庆芬",
@@ -13133,14 +13497,6 @@
         {
           "id": 338238,
           "title": "【QA-PC-管理侧-方案审批】工程销售方案审核列表，审批通过后，未找到数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 338196,
-          "title": "【QA-PC-管理侧-审批流可视化改造】销售方案列表，进入待审核状态的审批流程界面，",
           "severity": 3,
           "pri": 3,
           "status": "active",
