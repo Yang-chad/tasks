@@ -1,13 +1,13 @@
 {
   "summary": {
     "total_done": 307,
-    "total_active": 608,
+    "total_active": 610,
     "total_month_hours": 3221.0,
-    "total_estimate": 8061.0,
+    "total_estimate": 8085.0,
     "total_members": 51,
     "total_overdue": 20,
     "reference_hours": 168,
-    "report_time": "2026-09-10 09:13:49",
+    "report_time": "2026-09-10 09:49:27",
     "month": "2026年9月"
   },
   "members": [
@@ -580,15 +580,6 @@
           "openedBy": "刘孝亮"
         },
         {
-          "id": 338390,
-          "title": "【QA-PC-管理侧-工程管理】工程单审批列表，审批流程弹窗-审批人员间隔过大",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
           "id": 338360,
           "title": "【QA-PC-管理侧-价格可见授权管理】未授权价格可见管理权限的账号在工程审批列表仍可点击查看\\审批进入详情页",
           "severity": 3,
@@ -614,6 +605,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "马腾"
+        },
+        {
+          "id": 338390,
+          "title": "【QA-PC-管理侧-工程管理】工程单审批列表，审批流程弹窗-审批人员间隔过大",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
         },
         {
           "id": 338326,
@@ -5012,7 +5012,7 @@
           "title": "【QA-PC-管理侧-方案审批】限时特价方案审核驳回后，再去编辑提交失败",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
         },
@@ -5114,14 +5114,6 @@
           "severity": 3,
           "pri": 3,
           "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 338375,
-          "title": "【QA-PC-管理侧-方案审批】限时特价方案审核列表，审批通过后，显示过滤：我已审核，不显示数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -5502,7 +5494,7 @@
       "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 28,
+        "后端": 30,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
@@ -5517,14 +5509,14 @@
       "done_estimate": 83.0,
       "done_consumed": 83.0,
       "month_done_hours": 83.0,
-      "active_count": 14,
-      "active_estimate": 63.0,
+      "active_count": 16,
+      "active_estimate": 87.0,
       "active_consumed": 0.0,
-      "active_left": 63.0,
-      "total_tasks": 28,
-      "total_estimate": 146.0,
-      "completion_rate": 50.0,
-      "efficiency": 50.0,
+      "active_left": 87.0,
+      "total_tasks": 30,
+      "total_estimate": 170.0,
+      "completion_rate": 46.7,
+      "efficiency": 46.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -5697,6 +5689,34 @@
         }
       ],
       "active_tasks": [
+        {
+          "id": 331079,
+          "name": "【后端】数据鉴权验签加密解密对接和联调",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 12.0,
+          "consumed": 0.0,
+          "left": 12.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-10",
+          "deadline": "2026-09-17"
+        },
+        {
+          "id": 331080,
+          "name": "【后端】提供和联调企业微信、BI系统查询多账户接口和对接文档输出",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 12.0,
+          "consumed": 0.0,
+          "left": 12.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-10",
+          "deadline": "2026-09-17"
+        },
         {
           "id": 323254,
           "name": "商用工程重构需求技术评审与设计",
@@ -7587,15 +7607,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 338303,
-          "title": "【QA-PC-管理侧-批量修改部门授权商家】总部职能部门账号上传文件失败，提示&quot;该账号无授权部门权限!&quo",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 338231,
           "title": "【QA-PC-管理侧-批量修改部门授权商家】无法登录账号",
           "severity": 3,
@@ -7632,7 +7643,16 @@
           "openedBy": "李学鹍"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338303,
+          "title": "【QA-PC-管理侧-批量修改部门授权商家】总部职能部门账号上传文件失败，提示&quot;该账号无授权部门权限!&quo",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "谢婉扬",
@@ -8295,15 +8315,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 338220,
-          "title": "【qa-安卓-用户侧-我的账户】当支付订单货款账户充足时，结果收银台显示信用账户内容",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
           "id": 338264,
           "title": "【QA-PC-管理侧-限时特价】价格为空、常规价格少于活动价格时，提交后，缺少弹窗",
           "severity": 3,
@@ -8320,6 +8331,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
+        },
+        {
+          "id": 338220,
+          "title": "【qa-安卓-用户侧-我的账户】当支付订单货款账户充足时，结果收银台显示信用账户内容",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
         },
         {
           "id": 338217,
@@ -8350,6 +8370,22 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 338436,
+          "title": "【QA-iOS-用户侧-信用账户】使用了信用账户的订单详情页支付方式缺少信用账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 338375,
+          "title": "【QA-PC-管理侧-方案审批】限时特价方案审核列表，审批通过后，显示过滤：我已审核，不显示数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
         {
           "id": 338257,
           "title": "【qa-安卓-用户侧-订单详情】订单信用款支付，结果订单详情的支付方式只显示货款账户支付",
@@ -9733,7 +9769,7 @@
           "title": "【qa-安卓-用户侧-订单售后】订单信用款支付申请退款，结果未显示退还信用金额字段",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "伍镓烨"
         },
@@ -11394,7 +11430,7 @@
           "title": "【QA-iOS-用户侧-信用账户】货款账户余额足够支付时收银台仍显示使用信用账户支付",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
