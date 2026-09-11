@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 327,
-    "total_active": 658,
-    "total_month_hours": 3360.0,
+    "total_done": 328,
+    "total_active": 657,
+    "total_month_hours": 3366.0,
     "total_estimate": 8389.0,
     "total_members": 51,
     "total_overdue": 19,
     "reference_hours": 168,
-    "report_time": "2026-09-11 08:38:59",
+    "report_time": "2026-09-11 09:57:39",
     "month": "2026年9月"
   },
   "members": [
@@ -765,8 +765,16 @@
       ],
       "active_bugs": [
         {
-          "id": 338305,
-          "title": "【QA-PC-管理侧-审批流可视化改造】草稿状态的销售方案，进入审批流程，接口报错500",
+          "id": 338666,
+          "title": "【QA-H5-管理侧-工程审批】审批列表，点击审批流程时没有跳转审批流程页面",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 338499,
+          "title": "【QA-PC-管理侧-工程管理】工程单审批审批详情页，审批流程弹窗没有显示审批人员tab页",
           "severity": 3,
           "pri": 3,
           "status": "confirmed",
@@ -3065,7 +3073,7 @@
           "title": "【QA-iOS-用户侧-信用账户】售后单详情页有多个商品的订单行使用信用款金额不是单个商品的",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
@@ -3074,7 +3082,7 @@
           "title": "【QA-iOS-用户侧-信用账户】有多个商品的订单行信用账户支付明细弹窗中使用信用款金额不是单个商品的金额使用的金额",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
@@ -4158,14 +4166,6 @@
       "resolved_bugs": [],
       "active_bugs": [
         {
-          "id": 338615,
-          "title": "【QA-PC-管理侧-信用额度设置】设置的信用额度，审批提示，商家相关附件不存在",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
           "id": 338284,
           "title": "【QA-安卓-用户侧-信用额度设置】信用额度点击跳转FMS报错",
           "severity": 3,
@@ -5104,7 +5104,7 @@
           "title": "【QA-PC-管理侧-买赠活动】购买数量、赠送数量为空时，缺少弹出弹窗",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
         },
@@ -5551,6 +5551,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 338632,
+          "title": "【QA-PC-管理侧-买赠活动】该SKU不存在商品列表中时，应不能导入成功",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 338075,
           "title": "【QA-PC-管理侧-限购数导出】所有商品均未设置限购数，导出经销商限购数提示与原型不一致",
           "severity": 3,
@@ -5605,16 +5614,7 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 338632,
-          "title": "【QA-PC-管理侧-买赠活动】该SKU不存在商品列表中时，应不能导入成功",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "梁家槐",
@@ -6136,23 +6136,23 @@
         "测试": 0,
         "其他": 0
       },
-      "type_backend_hrs": 74.0,
+      "type_backend_hrs": 80.0,
       "type_frontend_hrs": 0.0,
       "type_mobile_hrs": 0.0,
       "type_product_hrs": 0.0,
       "type_test_hrs": 0.0,
-      "done_count": 12,
-      "done_estimate": 74.0,
-      "done_consumed": 74.0,
-      "month_done_hours": 74.0,
-      "active_count": 29,
-      "active_estimate": 174.0,
+      "done_count": 13,
+      "done_estimate": 80.0,
+      "done_consumed": 80.0,
+      "month_done_hours": 80.0,
+      "active_count": 28,
+      "active_estimate": 168.0,
       "active_consumed": 0.0,
-      "active_left": 174.0,
+      "active_left": 168.0,
       "total_tasks": 41,
       "total_estimate": 248.0,
-      "completion_rate": 29.3,
-      "efficiency": 29.3,
+      "completion_rate": 31.7,
+      "efficiency": 31.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -6298,23 +6298,21 @@
           "opened_date": "2026-09-02",
           "finished_by": "刘兰真",
           "finished_date": "2026-09-10"
-        }
-      ],
-      "active_tasks": [
+        },
         {
           "id": 327905,
           "name": "【后端】 组织架构-批量修改岗位授权类目",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
+          "consumed": 6.0,
           "estimate": 6.0,
-          "consumed": 0.0,
-          "left": 6.0,
+          "type": "a_dev4_control",
           "platform": "网批2.0",
           "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
           "opened_date": "2026-09-02",
-          "deadline": "2026-09-15"
-        },
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-11"
+        }
+      ],
+      "active_tasks": [
         {
           "id": 327906,
           "name": "【后端】 组织架构-批量修改员工授权类目",
@@ -6346,7 +6344,7 @@
         {
           "id": 319920,
           "name": "【后端】api提供--提供阶梯价格-基础价格信息",
-          "status": "wait",
+          "status": "doing",
           "pri": 2,
           "type": "a_dev4_control",
           "estimate": 8.0,
@@ -6360,7 +6358,7 @@
         {
           "id": 319921,
           "name": "【后端】api提供--提供阶梯价格-阶梯价格信息",
-          "status": "wait",
+          "status": "doing",
           "pri": 2,
           "type": "a_dev4_control",
           "estimate": 8.0,
@@ -6458,7 +6456,7 @@
         {
           "id": 324187,
           "name": "【后端】工程项目单(管理端)-登录审批-解除地址限制-审批",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev4_control",
           "estimate": 16.0,
@@ -6723,7 +6721,7 @@
           "title": "【QA-PC-管理侧-批量修改员工授权商家】员工账号已授权岗位，仍上传失败",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
         },
@@ -6773,7 +6771,16 @@
           "openedBy": "李学鹍"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338661,
+          "title": "【QA-PC-管理侧-批量修改员工授权商家】总部职能账号无权限批量修改员工/岗位授权商家",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "李红燕",
@@ -7368,6 +7375,24 @@
       ],
       "resolved_bugs": [
         {
+          "id": 338621,
+          "title": "【QA-PC-管理侧-组织架构】新增员工时勾选再取消授权的业务域，提示语为英文",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 338614,
+          "title": "【QA-PC-管理侧-组织架构】员工管理列表授权业务域选项为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 338287,
           "title": "【QA-PC-管理侧-组织架构】管理员授权菜单的页签名称显示有误",
           "severity": 3,
@@ -7386,24 +7411,7 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 338621,
-          "title": "【QA-PC-管理侧-组织架构】新增员工时勾选再取消授权的业务域，提示语为英文",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 338614,
-          "title": "【QA-PC-管理侧-组织架构】员工管理列表授权业务域选项为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "徐琦",
@@ -8038,6 +8046,24 @@
       ],
       "resolved_bugs": [
         {
+          "id": 338635,
+          "title": "【QA-PC-管理侧-工程原因退款】销司额度补贴＞0的订单，申请退款失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 338586,
+          "title": "【QA-PC-管理侧-供应链管理】退货退款- 商用退款售后单，点击审批流程提示“Request failed with ",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
           "id": 338359,
           "title": "【qa-PC-用户侧-信用账户】拒单信用额度支付的订单，结果没有退回信用额度",
           "severity": 3,
@@ -8076,24 +8102,8 @@
       ],
       "active_bugs": [
         {
-          "id": 338635,
-          "title": "【QA-PC-管理侧-工程原因退款】销司额度补贴＞0的订单，申请退款失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
           "id": 338610,
           "title": "【QA-PC-管理侧-价格可见】未授权价格可见权限的账号查看商用售后单详情时价格相关内容未隐藏",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 338586,
-          "title": "【QA-PC-管理侧-供应链管理】退货退款- 商用退款售后单，点击审批流程提示“Request failed with ",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -8325,20 +8335,11 @@
           "openedBy": "李学鹍"
         },
         {
-          "id": 338606,
-          "title": "【QA-PC-管理侧-信用额度设置】设置的信用额度，未逾期，没有展示最早逾期的账户时间",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
           "id": 338604,
           "title": "【QA-PC-管理侧-信用额度设置】经销商账户没有开通信用账户，导出展示没有显示 -",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "马腾"
         },
@@ -8379,7 +8380,32 @@
           "openedBy": "马腾"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338615,
+          "title": "【QA-PC-管理侧-信用额度设置】设置的信用额度，如果过期前没有使用，不应该统计在已用额度里面展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 338606,
+          "title": "【QA-PC-管理侧-信用额度设置】设置的信用额度，未逾期，没有展示最早逾期的账户时间",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 338665,
+          "title": "【QA-PC-用户侧-信用额度设置】用户侧我的账户输入密码查看会闪一下，数据不显示了",
+          "severity": 4,
+          "pri": 4,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "谢婉扬",
@@ -9345,6 +9371,14 @@
           "severity": 3,
           "pri": 3,
           "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 338305,
+          "title": "【QA-PC-管理侧-审批流可视化改造】草稿状态的销售方案，进入审批流程，接口报错500",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -11886,7 +11920,16 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338618,
+          "title": "【qa-安卓-用户侧-合并支付】订单合并支付全使用信用账户金额支付，结果支付失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "田宇飞",
@@ -12839,15 +12882,6 @@
           "openedBy": "罗有文"
         },
         {
-          "id": 338570,
-          "title": "【QA-iOS-用户侧-信用账户】需要使用多个信用账户支付时信用账户支付金额显示为0",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
           "id": 338557,
           "title": "【QA-iOS-用户侧-信用账户】供应链金融小单收银台展示了信用账户信息",
           "severity": 3,
@@ -12857,11 +12891,20 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 338570,
+          "title": "【QA-iOS-用户侧-信用账户】需要使用多个信用账户支付时信用账户支付金额显示为0",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 338511,
           "title": "【QA-iOS-用户侧-信用账户】需要使用返利款支付时收银台没有展示返利账户信息且无法支付",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
@@ -12870,7 +12913,7 @@
           "title": "【QA-iOS-用户侧-信用账户】选择待付款状态订单支付进入收银台，没有开通信用账户也显示了信用账户相关提示语",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
@@ -13844,6 +13887,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 338548,
+          "title": "【QA-安卓-管理侧-价格可见授权】无价格权限的账号进入商品订单详情点击商品，应用报错闪退",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 338469,
           "title": "【qa-安卓-用户侧-售后详情】信用支付的退款单详情，退还信用款明细显示异常",
           "severity": 3,
@@ -14031,14 +14083,6 @@
           "severity": 3,
           "pri": 3,
           "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 338548,
-          "title": "【QA-安卓-管理侧-价格可见授权】无价格权限的账号进入商品订单详情点击商品，应用报错闪退",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -14999,16 +15043,7 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 338618,
-          "title": "【qa-安卓-用户侧-合并支付】订单合并支付全使用信用账户金额支付，结果支付失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "卢鑫",
@@ -16941,16 +16976,7 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": [
-        {
-          "id": 338499,
-          "title": "【QA-PC-管理侧-工程管理】工程单审批审批详情页，审批流程弹窗没有显示审批人员tab页",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "李兆杰",
