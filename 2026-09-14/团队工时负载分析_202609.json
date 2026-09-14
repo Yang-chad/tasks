@@ -2,12 +2,12 @@
   "summary": {
     "total_done": 391,
     "total_active": 635,
-    "total_month_hours": 3645.0,
+    "total_month_hours": 3653.0,
     "total_estimate": 8727.0,
     "total_members": 52,
     "total_overdue": 11,
     "reference_hours": 168,
-    "report_time": "2026-09-14 10:13:47",
+    "report_time": "2026-09-14 11:16:07",
     "month": "2026年9月"
   },
   "members": [
@@ -621,15 +621,6 @@
           "openedBy": "李学鹍"
         },
         {
-          "id": 338806,
-          "title": "【QA-PC-管理侧-信用额度设置】设置的信用额度，时间控件选择今日，它显示的是昨天的日期",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
           "id": 338788,
           "title": "【QA-PC-管理侧-用户侧-信用额度设置】信用额度溢出返还，显示的符号不对",
           "severity": 3,
@@ -646,6 +637,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "匡军"
+        },
+        {
+          "id": 338806,
+          "title": "【QA-PC-管理侧-信用额度设置】设置的信用额度，时间控件选择今日，它显示的是昨天的日期",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
         },
         {
           "id": 338613,
@@ -1540,7 +1540,7 @@
           "title": "【QA-PC-管理侧-信用额度设置】设置的信用额度审核，查询账号+审核条件：已审核查看数据的审核时间显示空白",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "马腾"
         },
@@ -1590,7 +1590,16 @@
           "openedBy": "陈嘉劲"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338897,
+          "title": "【QA-PC-管理侧-运费规则配置】查看已有运费规则配置，点击编辑运费规则，不修改直接保存，会增加一条修改记录",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "谭艳清",
@@ -3915,77 +3924,6 @@
       "active_bugs": []
     },
     {
-      "name": "刘孝亮",
-      "role": "测试",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 3,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 112.0,
-      "done_count": 3,
-      "done_estimate": 114.0,
-      "done_consumed": 112.0,
-      "month_done_hours": 112.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
-      "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 3,
-      "total_estimate": 114.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 324255,
-          "name": "【测试】供应链金融两层订单对接金蝶、OMS--大单",
-          "consumed": 17.0,
-          "estimate": 18.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "finished_by": "刘孝亮",
-          "finished_date": "2026-09-03"
-        },
-        {
-          "id": 324241,
-          "name": "【测试】供应链金融订单-贷款订单售后(大单)--PC+H5",
-          "consumed": 46.0,
-          "estimate": 48.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "finished_by": "刘孝亮",
-          "finished_date": "2026-09-03"
-        },
-        {
-          "id": 324237,
-          "name": "【测试】供应链金融订单-贷款订单(大单)--PC+H5",
-          "consumed": 49.0,
-          "estimate": 48.0,
-          "type": "ae2_test",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "finished_by": "刘孝亮",
-          "finished_date": "2026-09-03"
-        }
-      ],
-      "active_tasks": [],
-      "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
       "name": "徐良侦",
       "role": "移动端",
       "type_counts": {
@@ -3998,17 +3936,17 @@
       },
       "type_backend_hrs": 22.0,
       "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 82.0,
+      "type_mobile_hrs": 90.0,
       "type_product_hrs": 0.0,
       "type_test_hrs": 0.0,
       "done_count": 19,
       "done_estimate": 118.0,
       "done_consumed": 80.0,
-      "month_done_hours": 104.0,
+      "month_done_hours": 112.0,
       "active_count": 8,
       "active_estimate": 128.0,
-      "active_consumed": 24.0,
-      "active_left": 104.0,
+      "active_consumed": 32.0,
+      "active_left": 96.0,
       "total_tasks": 27,
       "total_estimate": 246.0,
       "completion_rate": 70.4,
@@ -4262,12 +4200,12 @@
         {
           "id": 327434,
           "name": "【iOS】【用户侧】商用工程重构 - 工程单列表-板块 - 工程项目单详情页",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev6_mobile",
           "estimate": 16.0,
-          "consumed": 0.0,
-          "left": 16.0,
+          "consumed": 8.0,
+          "left": 8.0,
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-09-01",
@@ -4477,6 +4415,77 @@
           "openedBy": "李成斌"
         }
       ],
+      "active_bugs": []
+    },
+    {
+      "name": "刘孝亮",
+      "role": "测试",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 3,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 112.0,
+      "done_count": 3,
+      "done_estimate": 114.0,
+      "done_consumed": 112.0,
+      "month_done_hours": 112.0,
+      "active_count": 0,
+      "active_estimate": 0.0,
+      "active_consumed": 0.0,
+      "active_left": 0.0,
+      "total_tasks": 3,
+      "total_estimate": 114.0,
+      "completion_rate": 100.0,
+      "efficiency": 100.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 324255,
+          "name": "【测试】供应链金融两层订单对接金蝶、OMS--大单",
+          "consumed": 17.0,
+          "estimate": 18.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "finished_by": "刘孝亮",
+          "finished_date": "2026-09-03"
+        },
+        {
+          "id": 324241,
+          "name": "【测试】供应链金融订单-贷款订单售后(大单)--PC+H5",
+          "consumed": 46.0,
+          "estimate": 48.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "finished_by": "刘孝亮",
+          "finished_date": "2026-09-03"
+        },
+        {
+          "id": 324237,
+          "name": "【测试】供应链金融订单-贷款订单(大单)--PC+H5",
+          "consumed": 49.0,
+          "estimate": 48.0,
+          "type": "ae2_test",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "finished_by": "刘孝亮",
+          "finished_date": "2026-09-03"
+        }
+      ],
+      "active_tasks": [],
+      "resolved_bugs": [],
       "active_bugs": []
     },
     {
@@ -6387,7 +6396,24 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338903,
+          "title": "【QA-PC-管理侧-组合套餐】删除再重新添加商品时，提交后，缺少活动价格/返利提货价格必须小于常规价校验",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 338899,
+          "title": "【QA-PC-管理侧-组合套餐】删除、新增屏蔽商家设置调整记录中，缺少套餐名称",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "伍镓烨",
@@ -7868,7 +7894,16 @@
           "openedBy": "匡军"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338900,
+          "title": "【QA-PC-管理侧-工程原因退款】经销商工程订单退款成功后，销司订单未联动退款",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "李红燕",
@@ -8815,7 +8850,16 @@
           "openedBy": "马腾"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338887,
+          "title": "【QA-PC-用户侧-信用额度设置】信用账户还款，用户侧导出显示为+号错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "谢婉扬",
@@ -12859,20 +12903,6 @@
       ],
       "active_tasks": [
         {
-          "id": 332329,
-          "name": "【商用重构】用户端-工程单列表 SY08",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev",
-          "estimate": 12.0,
-          "consumed": 0.0,
-          "left": 12.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-14",
-          "deadline": "2026-09-17"
-        },
-        {
           "id": 324183,
           "name": "【后端】工程项目单(管理端)-登录审批-非跨区登录-审批",
           "status": "wait",
@@ -12941,6 +12971,20 @@
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-08-26",
           "deadline": "2026-09-18"
+        },
+        {
+          "id": 332329,
+          "name": "【商用重构】用户端-工程单列表 SY08",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev",
+          "estimate": 12.0,
+          "consumed": 0.0,
+          "left": 12.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-14",
+          "deadline": "2026-10-15"
         }
       ],
       "resolved_bugs": [
@@ -15415,6 +15459,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 338815,
+          "title": "【QA-PC-用户侧-收银台】货款可用余额为0，从订单填写页面和合并支付中，点击支付按钮，结果货款和信用支付金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
           "id": 338618,
           "title": "【qa-PC-用户侧-合并支付】订单合并支付存在运费时，收银台货款支付金额为0",
           "severity": 3,
@@ -15496,16 +15549,7 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 338815,
-          "title": "【QA-PC-用户侧-收银台】货款可用余额为0，从订单填写页面和合并支付中，点击支付按钮，结果货款和信用支付金额显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "张春杰",
@@ -16055,7 +16099,16 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 338904,
+          "title": "【QA-iOS-用户侧-信用账户】收银台页面信用账户余额不足时信用账户支付金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "许峻嘉",
