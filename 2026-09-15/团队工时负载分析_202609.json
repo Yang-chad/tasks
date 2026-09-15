@@ -7,7 +7,7 @@
     "total_members": 53,
     "total_overdue": 10,
     "reference_hours": 168,
-    "report_time": "2026-09-15 14:27:12",
+    "report_time": "2026-09-15 14:42:39",
     "month": "2026年9月"
   },
   "members": [
@@ -4425,7 +4425,16 @@
           "openedBy": "李成斌"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 339166,
+          "title": "【QA-iOS-用户侧-订单运费】点击订单申请退款，退款和审批通过后，点击查看订单的退款详情，出现闪退",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "范文玉",
@@ -5747,7 +5756,7 @@
           "title": "【QA-PC-管理侧-方案审批】定向发券审核列表，审批驳回，选择我已审核，未查询出结果",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
         },
@@ -5941,7 +5950,16 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 339168,
+          "title": "【QA-PC-管理侧-审批流可视化改造】资料变更审批中，到第二个节点，审核时，审批节点类型错误，且审批人员也为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "罗有文",
@@ -6548,7 +6566,7 @@
         {
           "id": 330213,
           "name": "【PC前端】【GC26】  1、特批方案审批页增加显示过滤“待我审批”，同时默认“待我审批”",
-          "status": "wait",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev2_front",
           "estimate": 4.0,
@@ -9149,18 +9167,6 @@
           "finished_date": "2026-09-02"
         },
         {
-          "id": 327891,
-          "name": "【后端】工单处理，7个退款单行退款部分出库，商家退款，改库申请已提交，oms 已处理， 涉及订单金额12万请安排改库",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "孙元通",
-          "finished_date": "2026-09-04"
-        },
-        {
           "id": 328215,
           "name": "【后端】【9月需求评审】 评审时间:09月03日  上午9：30 评审地址：3楼会议室A302 评审议程: 集采： 1、调拨单-逆向单管理---钟日健",
           "consumed": 3.0,
@@ -9169,6 +9175,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-09-03",
+          "finished_by": "孙元通",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 327891,
+          "name": "【后端】工单处理，7个退款单行退款部分出库，商家退款，改库申请已提交，oms 已处理， 涉及订单金额12万请安排改库",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-09-02",
           "finished_by": "孙元通",
           "finished_date": "2026-09-04"
         },
@@ -9941,8 +9959,8 @@
         },
         {
           "id": 330214,
-          "name": "【PC前端】【GC29】  1、工程备货，原字段“批复点位”，若内部价＞0，则公式调整",
-          "status": "wait",
+          "name": "【PC管理】【GC29】  1、工程备货，原字段“批复点位”，若内部价＞0，则公式调整",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev2_front",
           "estimate": 6.0,
@@ -14775,6 +14793,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 339022,
+          "title": "【QA-iOS-用户侧-信用账户】没有使用货款账户支付的订单详情页支付方式仍有货款账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
           "id": 338218,
           "title": "【qa-PC-用户侧-我的订单】单个订单行的信用款金额错误",
           "severity": 3,
@@ -14802,16 +14829,7 @@
           "openedBy": "伍镓烨"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 339022,
-          "title": "【QA-iOS-用户侧-信用账户】没有使用货款账户支付的订单详情页支付方式仍有货款账户",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "许峻嘉",
@@ -15280,6 +15298,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 339154,
+          "title": "【QA-PC-管理侧-测算日常销售方案】测算日常销售方案，网批底价为空，缺少弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 338212,
           "title": "【QA-PC-管理侧-日常销售方案】网批挂价为空时，提示后，缺少弹窗",
           "severity": 3,
@@ -15298,16 +15325,7 @@
           "openedBy": "龙泽英"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 339154,
-          "title": "【QA-PC-管理侧-测算日常销售方案】测算日常销售方案，网批底价为空，缺少弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "莫世有",
