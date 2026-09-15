@@ -99,13 +99,13 @@ details[open] summary { background: #e8f0fe; }
 </div>
 
 <div class="summary-cards">
-    <div class="card success">
+    <div class="card danger">
         <div class="label">🔴 超载迭代</div>
-        <div class="value">0</div>
+        <div class="value">1</div>
     </div>
     <div class="card warning">
         <div class="label">🟡 偏多迭代</div>
-        <div class="value">1</div>
+        <div class="value">0</div>
     </div>
     <div class="card success">
         <div class="label">🟢 正常迭代</div>
@@ -178,20 +178,20 @@ details[open] summary { background: #e8f0fe; }
 <div class="section-body">
 <table>
 <tr><th>平台</th><th>迭代</th><th>进度</th><th>计划工时</th><th>基线(h)</th><th>负载率</th><th>任务数</th><th>产品</th><th>后端</th><th>前端</th><th>移动端</th><th>测试</th><th>状态</th></tr>
-<tr>
+<tr style="background:#fff5f5">
     <td><span class="platform-tag platform-902">网批2.0</span></td>
     <td><b>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</b> <span style="font-size:11px;color:#999">(eid=4764)</span></td>
     <td>21%</td>
-    <td><b>4322h</b></td>
+    <td><b>4526h</b></td>
     <td>2905h</td>
-    <td><b style="color:#f59e0b">149%</b></td>
-    <td>498</td>
+    <td><b style="color:#ef4444">156%</b></td>
+    <td>550</td>
     <td><span style="color:#ef4444;font-weight:500">397h</span></td>
-    <td><span style="color:#ef4444;font-weight:500">1690h</span></td>
+    <td><span style="color:#ef4444;font-weight:500">1678h</span></td>
     <td><span style="color:#ef4444;font-weight:500">786h</span></td>
-    <td><span style="color:#ef4444;font-weight:500">1168h</span></td>
+    <td><span style="color:#ef4444;font-weight:500">1384h</span></td>
     <td><span style="color:#10b981;font-weight:500">245h</span></td>
-    <td><span class="badge badge-warning">偏多</span></td>
+    <td><span class="badge badge-danger">⚠ 超载</span></td>
 </tr>
 <tr>
     <td><span class="platform-tag platform-902">网批2.0</span></td>
@@ -272,9 +272,60 @@ details[open] summary { background: #e8f0fe; }
 </div>
 </div>
 <div class="section">
+<div class="section-title">🚨 超载迭代详情</div>
+<div class="section-body">
+<details>
+<summary>🔴 [网批2.0] 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】 — 计划 4526h / 550 任务 (进度 21%)</summary>
+<table style="margin-top: 8px;">
+<tr><th>角色</th><th>计划工时</th><th>历史均值</th><th>负载率</th><th>容量条</th></tr>
+<tr>
+    <td>产品</td>
+    <td><b>397h</b></td>
+    <td>189h</td>
+    <td><b style="color:#ef4444">210.0%</b></td>
+    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 189h 历史均值</span></div></td>
+</tr>
+<tr>
+    <td>后端</td>
+    <td><b>1678h</b></td>
+    <td>943h</td>
+    <td><b style="color:#ef4444">178.0%</b></td>
+    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:178.0%;background:#ef4444"></div><span class="ratio-bar-text">vs 943h 历史均值</span></div></td>
+</tr>
+<tr>
+    <td>前端</td>
+    <td><b>786h</b></td>
+    <td>344h</td>
+    <td><b style="color:#ef4444">229.0%</b></td>
+    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 344h 历史均值</span></div></td>
+</tr>
+<tr>
+    <td>移动端</td>
+    <td><b>1384h</b></td>
+    <td>315h</td>
+    <td><b style="color:#ef4444">439.0%</b></td>
+    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 315h 历史均值</span></div></td>
+</tr>
+<tr>
+    <td>测试</td>
+    <td><b>245h</b></td>
+    <td>608h</td>
+    <td><b style="color:#10b981">40.0%</b></td>
+    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:40.0%;background:#10b981"></div><span class="ratio-bar-text">vs 608h 历史均值</span></div></td>
+</tr>
+<tr>
+    <td>其他</td>
+    <td><b>36h</b></td>
+    <td>507h</td>
+    <td><b style="color:#10b981">7.0%</b></td>
+    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:7.000000000000001%;background:#10b981"></div><span class="ratio-bar-text">vs 507h 历史均值</span></div></td>
+</tr>
+</table></details>
+</div></div>
+<div class="section">
 <div class="section-title">💡 规划建议</div>
 <div class="section-body" style="font-size:13px;line-height:1.8">
-<p>🟡 <b>1 个迭代负载偏重</b>，保持关注</p><p style="margin-top: 16px; color: #888;">📐 方法论说明：</p>
+<p>🔴 <b>发现 1 个超载迭代</b>，建议立即评估：</p><ul><li>拆分大需求或推迟到下个迭代</li><li>检查关键人瓶颈，平衡任务分配</li><li>与干系人沟通交付风险，调整预期</li></ul><p style="margin-top: 16px; color: #888;">📐 方法论说明：</p>
 <ul style="color: #888;">
 <li>历史 Velocity = 已完成迭代中 done 任务的 estimate 工时均值</li>
 <li>负载率 = 当前迭代计划工时 / 对应角色历史 Velocity</li>
