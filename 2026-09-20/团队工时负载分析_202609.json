@@ -7,7 +7,7 @@
     "total_members": 53,
     "total_overdue": 39,
     "reference_hours": 168,
-    "report_time": "2026-09-20 16:54:31",
+    "report_time": "2026-09-20 17:45:10",
     "month": "2026年9月"
   },
   "members": [
@@ -663,7 +663,7 @@
           "id": 335167,
           "name": "【后端】家用分批提货合并支付兼容",
           "status": "wait",
-          "pri": 3,
+          "pri": 2,
           "type": "a_dev",
           "estimate": 8.0,
           "consumed": 0.0,
@@ -3084,6 +3084,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 339829,
+          "title": "【QA-PC-用户侧-商用工程】新建登录延期页面原定登录截止日期显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 339730,
           "title": "【QA-PC-用户侧-商用工程】提交工程项目单报错，提示系统异常",
           "severity": 3,
@@ -3157,14 +3166,6 @@
         {
           "id": 339845,
           "title": "【QA-PC-用户侧-商用工程】工程项目单详情页面登录有效期显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 339829,
-          "title": "【QA-PC-用户侧-商用工程】新建登录延期页面原定登录截止日期显示错误",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -4234,24 +4235,7 @@
           "openedBy": "马腾"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 339869,
-          "title": "【QA-PC-用户侧-商用工程】复制重建批价单页面单，页面弹出选择项目单弹窗",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 339853,
-          "title": "【QA-PC-管理侧-商用工程】批价单详情-审批进度列表，作废申请显示提货延期",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "罗有文",
@@ -10065,7 +10049,7 @@
           "title": "【QA-PC-管理侧-商用工程】批价代客申请，选择工程项目单，会显示审批中的数据",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
         },
@@ -17070,6 +17054,30 @@
           "platform": "网批2.0"
         },
         {
+          "id": 339894,
+          "title": "【QA-PC-管理侧-商用工程】项目单列表代客申请回显草稿时行业大类值显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 339887,
+          "title": "【QA-PC-用户侧-商用工程】复制新建项目单行业大类显示为数字",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 339880,
+          "title": "【QA-PC-用户侧-家用工程】下单工程单后，安装现场证明材料，一次多选多个文件，超过100M，点击上传文件，提示了不能",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 339870,
           "title": "【QA-PC-用户侧-商用工程】新建项目单使用方负责人默认为业务负责人",
           "severity": 3,
@@ -18391,11 +18399,20 @@
           "openedBy": "江小芳"
         },
         {
+          "id": 339881,
+          "title": "【QA-PC-管理侧-商用工程】批价新建代客申请页，不是显示缺省页“选择工程项目单”按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 339820,
           "title": "【QA-PC-用户侧-商用工程】批价单详情页，批价单对应状态按钮显示错误",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
         },
@@ -18404,7 +18421,7 @@
           "title": "【QA-PC-管理侧-商用工程】批价单列表，批价单状态，多显示了 待提交",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "江小芳"
         },
@@ -18413,7 +18430,7 @@
           "title": "【QA-PC-用户侧-商用工程】账号为商用工程新模式，全部工程单页面显示新建工程单按钮和批量处理按钮",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
         },
@@ -18564,8 +18581,48 @@
       ],
       "active_bugs": [
         {
+          "id": 339897,
+          "title": "【QA-PC-用户侧-商用工程】全部批价单列表，数量角标与查询结果不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 339895,
+          "title": "【QA-PC-用户侧-商用工程】批价单详情页，商品为非标商品时没有显示商品标签",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 339874,
+          "title": "【QA-PC-用户侧-商用工程】新建批价，关联项目单弹窗，登录顺序显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 339871,
           "title": "【QA-PC-用户侧-商用工程】全部批价单列表，点击 复制新建 按钮无反应",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 339869,
+          "title": "【QA-PC-用户侧-商用工程】复制重建批价单页面单，页面弹出选择项目单弹窗",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 339853,
+          "title": "【QA-PC-管理侧-商用工程】批价单详情-审批进度列表，作废申请显示提货延期",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -18600,7 +18657,7 @@
           "title": "【QA-PC-用户侧-商用工程】批价单详情页，基本信息栏存在多字段错误",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -18616,7 +18673,7 @@
           "title": "【QA-PC-用户侧-商用工程】新建批价单页面，项目凭证附件类型显示与管理侧配置不一致",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -18624,7 +18681,7 @@
           "title": "【QA-PC-管理侧-商用工程】批价代客申请，选择工程项目单弹框，业务线显示数字，总套数显示0",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -18632,7 +18689,7 @@
           "title": "【QA-PC-用户侧-商用工程】新建批价单页面，关联项目侧边栏多处字段显示错误",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -18648,7 +18705,7 @@
           "title": "【QA-PC-管理侧-商用工程】批价单代客申请，已关联项目单，点击右侧”关联项目单”，展开页面部分字段显示错误、不显示，",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -18656,7 +18713,7 @@
           "title": "【QA-PC-用户侧-商用工程】新建批价单，关联项目单页面弹窗，项目名称/项目单号字段无法查询出结果",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -18664,7 +18721,7 @@
           "title": "【QA-PC-管理侧-商用工程】批价单代客申请，已关联项目单，点击右侧”关联项目单”，展开页面设备清单显示错误",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -21334,6 +21391,14 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 339877,
+          "title": "【QA-PC-用户侧-商用工程】全部批价单列表，批价单号字段显示不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 339778,
           "title": "【QA-PC-用户侧-商用工程】账号为商用工程新模式，查看常规工程单详情，详情页显示重建工程单按钮",
