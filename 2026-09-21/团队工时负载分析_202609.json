@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 817,
-    "total_active": 443,
-    "total_month_hours": 7191.1,
-    "total_estimate": 10905.5,
+    "total_done": 818,
+    "total_active": 442,
+    "total_month_hours": 7203.1,
+    "total_estimate": 10909.5,
     "total_members": 53,
     "total_overdue": 30,
     "reference_hours": 168,
-    "report_time": "2026-09-21 16:05:02",
+    "report_time": "2026-09-21 16:37:58",
     "month": "2026年9月"
   },
   "members": [
@@ -42,42 +42,6 @@
       "overdue": 0,
       "done_tasks": [
         {
-          "id": 323811,
-          "name": "【后端】信用账户审核-列表&查询",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-25",
-          "finished_by": "李龙键",
-          "finished_date": "2026-09-01"
-        },
-        {
-          "id": 323810,
-          "name": "【后端】信用账户额度管理-终止",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-25",
-          "finished_by": "李龙键",
-          "finished_date": "2026-09-01"
-        },
-        {
-          "id": 323803,
-          "name": "【后端】信用账户额度管理-导出excel",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-25",
-          "finished_by": "李龙键",
-          "finished_date": "2026-09-01"
-        },
-        {
           "id": 325623,
           "name": "【后端】黑吉商用销司 经销商返利销售方案（行业）审批流图绘图",
           "consumed": 3.0,
@@ -110,6 +74,42 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
           "opened_date": "2026-08-31",
+          "finished_by": "李龙键",
+          "finished_date": "2026-09-01"
+        },
+        {
+          "id": 323811,
+          "name": "【后端】信用账户审核-列表&查询",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-25",
+          "finished_by": "李龙键",
+          "finished_date": "2026-09-01"
+        },
+        {
+          "id": 323810,
+          "name": "【后端】信用账户额度管理-终止",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-25",
+          "finished_by": "李龙键",
+          "finished_date": "2026-09-01"
+        },
+        {
+          "id": 323803,
+          "name": "【后端】信用账户额度管理-导出excel",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-25",
           "finished_by": "李龙键",
           "finished_date": "2026-09-01"
         },
@@ -3807,6 +3807,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 340126,
+          "title": "【QA-PC-用户侧-商用工程】新建项目单添加非标商品提交后，未按规则生成商品ID",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 339851,
           "title": "【QA-PC-用户侧-商用工程】查看审批进度-工程登录详情报错",
           "severity": 3,
@@ -3924,8 +3933,16 @@
           "platform": "网批2.0"
         },
         {
-          "id": 340126,
-          "title": "【QA-PC-用户侧-商用工程】新建项目单添加非标商品提交后，未按规则生成商品ID",
+          "id": 340137,
+          "title": "【QA-PC-管理侧-作废】项目单作废审批通过后状态未变更，仍可继续审批",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 340132,
+          "title": "【QA-PC-用户侧-商用工程】工程参数配置-“销司简称”未配置仍能成功提交项目单",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -3934,14 +3951,6 @@
         {
           "id": 340120,
           "title": "【QA-PC-管理侧-工程审批】登录审批、查看详情界面保证金类型显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 340090,
-          "title": "【QA-PC-管理侧-商用工程】登录审批列表中，经销商提交的数据，缺少销售公司",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -3966,14 +3975,6 @@
         {
           "id": 339956,
           "title": "【QA-PC-用户侧-商用工程】新建工程项目单提交后未审核，状态直接变成了跟进中",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 339927,
-          "title": "【QA-PC-管理侧-工程审批】项目单审批时批量导入商品未成功",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -5841,7 +5842,16 @@
           "openedBy": "马腾"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 340136,
+          "title": "【QA-PC-管理侧-商用工程】批价单列表，根据项目名称，未查询出结果",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "罗有文",
@@ -7505,15 +7515,6 @@
           "openedBy": "李文清"
         },
         {
-          "id": 340105,
-          "title": "【QA-PC-管理侧-商用工程】批价单审批通过，存在作废审批中单据，审批通过，提示与原型不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
           "id": 340013,
           "title": "【QA-PC-管理侧-工程审批】价格审批详情界面查看审批流程报错，提示    &quot;系统发生异常,请稍后再试!&q",
           "severity": 3,
@@ -7521,6 +7522,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 340105,
+          "title": "【QA-PC-管理侧-商用工程】批价单审批通过，存在作废审批中单据，审批通过，提示与原型不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
         },
         {
           "id": 339913,
@@ -8013,6 +8023,725 @@
       ],
       "active_tasks": [],
       "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
+      "name": "刘兰真",
+      "role": "后端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 44,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 168.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 30,
+      "done_estimate": 170.0,
+      "done_consumed": 168.0,
+      "month_done_hours": 168.0,
+      "active_count": 14,
+      "active_estimate": 84.0,
+      "active_consumed": 0.0,
+      "active_left": 84.0,
+      "total_tasks": 44,
+      "total_estimate": 254.0,
+      "completion_rate": 68.2,
+      "efficiency": 68.2,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 322330,
+          "name": "【后端】管理员授权 页面列表，新增列表、移除、授权，详情，想想展示，状态",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 322339,
+          "name": "【后端】置灰用于保留层级，越域深链/接口仍走拦截兜底",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-05"
+        },
+        {
+          "id": 322333,
+          "name": "【后端】账号体系与业务域归属 · 授权了员工所配置的一个业务域即可查看/编辑",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-05"
+        },
+        {
+          "id": 322331,
+          "name": "【后端】管理员授权业务域数据库配置，查询，文档，详细涉及",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-05"
+        },
+        {
+          "id": 322338,
+          "name": "【后端】部门树按当前管理员授权业务域过滤：自身与后代均不命中的部门完全不可见；父级越域但存在命中后代时，父级以「置灰只读容器」常显（保留层级上下文），点击提示「该部门业务域未授权，不可查看/编辑」；仅自身与后代全部不命中的部门才完全不可见",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-07"
+        },
+        {
+          "id": 322336,
+          "name": "【后端】岗位  三个页签相互独立 · 各自按授权业务域过滤（授权了所配置的一个业务域即可查看/编辑）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-07"
+        },
+        {
+          "id": 322337,
+          "name": "【后端】部门 新增/编辑/查看 表单内嵌「授权业务域」多选（家用/商用/实施）；越域编辑将被拦截。查看态仅提供导出，无编辑/新增子部门按钮",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-08"
+        },
+        {
+          "id": 322335,
+          "name": "【后端】角色  三个页签相互独立 · 各自按授权业务域过滤（授权了所配置的一个业务域即可查看/编辑）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-08"
+        },
+        {
+          "id": 322334,
+          "name": "【后端】 权限集合 三个页签相互独立 · 各自按授权业务域过滤（授权了所配置的一个业务域即可查看/编辑）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-22",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-08"
+        },
+        {
+          "id": 327903,
+          "name": "【后端】组织架构- 批量复制权限",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-02",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-09"
+        },
+        {
+          "id": 327904,
+          "name": "【后端】 组织架构-批量修改权限集合",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-02",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-10"
+        },
+        {
+          "id": 327902,
+          "name": "【后端】 组织架构配置业务域隔离-管理员数据隔离",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-02",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-10"
+        },
+        {
+          "id": 327905,
+          "name": "【后端】 组织架构-批量修改岗位授权类目",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-02",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-11"
+        },
+        {
+          "id": 327907,
+          "name": "【后端】 组织架构-批量修改部门授权类目",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-02",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-14"
+        },
+        {
+          "id": 327906,
+          "name": "【后端】 组织架构-批量修改员工授权类目",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-02",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-14"
+        },
+        {
+          "id": 332508,
+          "name": "【后端】工程批价单驳回重新提交批价单新增商品，内部价保存",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-14",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-15"
+        },
+        {
+          "id": 332507,
+          "name": "【后端】工程批价单新建批价单新增商品，内部价保存",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-14",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-15"
+        },
+        {
+          "id": 332506,
+          "name": "【后端】家用特批方案添加内部价，方案查询",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-14",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-15"
+        },
+        {
+          "id": 324187,
+          "name": "【后端】工程项目单(管理端)-登录审批-解除地址限制-审批",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-26",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-16"
+        },
+        {
+          "id": 319921,
+          "name": "【后端】api提供--提供阶梯价格-阶梯价格信息",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-14",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 319920,
+          "name": "【后端】api提供--提供阶梯价格-基础价格信息",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-14",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 325718,
+          "name": "【后端】集合--生产导出数据-生产数据初始化",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 325717,
+          "name": "【后端】角色--生产导出数据-生产数据初始化",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 325716,
+          "name": "【后端】菜单--生产导出数据-生产数据初始化",
+          "consumed": 1.0,
+          "estimate": 2.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 325715,
+          "name": "【后端】组织架构--生产导出数据-生产数据初始化",
+          "consumed": 1.0,
+          "estimate": 2.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 325714,
+          "name": "【后端】员工--生产导出数据-生产数据初始化",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 325713,
+          "name": "【后端】岗位--生产导出数据-生产数据初始化",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-18"
+        },
+        {
+          "id": 329254,
+          "name": "【后端】解除地址限制申请，发起审批，新增数据",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-04",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-20"
+        },
+        {
+          "id": 319918,
+          "name": "【后端】rms对接--新工程重构审批地址解绑-",
+          "consumed": 12.0,
+          "estimate": 12.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-14",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-21"
+        },
+        {
+          "id": 319915,
+          "name": "【后端】审批地址解绑--审批流-查看",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-14",
+          "finished_by": "刘兰真",
+          "finished_date": "2026-09-21"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 319916,
+          "name": "【后端】审批地址解绑--审批流-审核",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-14",
+          "deadline": "2026-09-24"
+        },
+        {
+          "id": 319917,
+          "name": "【后端】审批地址解绑--审批流-通过驳回",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-08-14",
+          "deadline": "2026-09-24"
+        },
+        {
+          "id": 329506,
+          "name": "【后端】【GD03】  1、大盘详情页，“合作中”状态下新增“大盘售后结算优惠”，新增数据",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329507,
+          "name": "【后端】【GD04】  1、新建“大盘售后结算优惠”发起审批",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329508,
+          "name": "【后端】【GD05】  1、大盘审批-新增审批页“大盘售后结算优惠”类型；",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329509,
+          "name": "【后端】【GD06】  1、新增审批页“大盘售后结算优惠”审批页；通过驳回",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329510,
+          "name": "【后端】【GD07】  1、大盘-审批进度，新增“大盘售后结算优惠”类型",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329512,
+          "name": "【后端】【GD08】  1、大盘-审批进度，新增“大盘售后结算优惠”查看页",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329513,
+          "name": "【后端】【GD09】  1、大盘-详情页-基本信息，增加字段“大盘售后结算优惠”",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329514,
+          "name": "【后端】【GD10】  1、业务单-审批页，关联大盘则展示“大盘售后结算优惠”的配置选择；",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329515,
+          "name": "【后端】【GD11】  1、业务单-审批进度-提货审批，关联大盘则展示“大盘售后结算优惠”的配置；",
+          "status": "doing",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329516,
+          "name": "【后端】【GD12】  1、业务单-详情页，展示“大盘售后结算优惠”的配置；",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329517,
+          "name": "【后端】rms对接--大盘相关数据大盘数据",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 329561,
+          "name": "【后端】大盘工程单关联大盘优惠标签展示",
+          "status": "wait",
+          "pri": 2,
+          "type": "a_dev4_control",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-04",
+          "deadline": "2026-10-15"
+        }
+      ],
+      "resolved_bugs": [
+        {
+          "id": 339757,
+          "title": "【QA-PC-管理侧-商用工程26~29】工程备货机批价审核，内部价&gt;0，工程单未保存内部价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 339157,
+          "title": "【QA-PC-管理侧-组织架构】员工管理列表导出数据包含了当前账号无法管理的业务域员工",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 338967,
+          "title": "【QA-PC-管理侧-批量修改部门授权商家】经销商账号不在部门管理范围时，失败原因不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338955,
+          "title": "【QA-PC-管理侧-批量修改岗位授权商家】当前账号不具备该岗位的管理权限仍能上传成功",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338708,
+          "title": "【QA-PC-管理侧-组织架构】非管理员账户，进入员工管理列表仍显示有数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 338693,
+          "title": "【QA-PC-管理侧-批量修改员工授权商家】当前账号不具备该员工的管理权限仍能上传成功",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338661,
+          "title": "【QA-PC-管理侧-批量修改员工授权商家】总部职能账号无权限批量修改员工/岗位授权商家",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338628,
+          "title": "【QA-PC-管理侧-组织架构】新增员工时选择了业务域，重新编辑员工信息时业务域未勾选",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 338582,
+          "title": "【QA-PC-管理侧-批量修改员工授权商家】员工账号已授权岗位，仍上传失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338530,
+          "title": "【QA-PC-管理侧-批量修改员工授权商家】上传开关配置为空的文件报系统异常",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338231,
+          "title": "【QA-PC-管理侧-批量修改部门授权商家】无法登录账号",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338206,
+          "title": "【QA-PC-管理侧-批量修改部门授权商家】批量修改部门已关闭授权的商家失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 338125,
+          "title": "【QA-PC-管理侧-批量修改部门授权商家】批量修改部门授权商家提示成功但实际未生效",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 337521,
+          "title": "【QA-PC-管理侧-岗位管理】岗位管理权限集合中导出的文件中”所属销司“字段内容未显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "delay",
+          "platform": "网批2.0",
+          "openedBy": "李学鹍"
+        }
+      ],
       "active_bugs": []
     },
     {
@@ -8781,727 +9510,6 @@
         }
       ],
       "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
-      "name": "刘兰真",
-      "role": "后端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 44,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 160.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 29,
-      "done_estimate": 162.0,
-      "done_consumed": 160.0,
-      "month_done_hours": 160.0,
-      "active_count": 15,
-      "active_estimate": 92.0,
-      "active_consumed": 0.0,
-      "active_left": 92.0,
-      "total_tasks": 44,
-      "total_estimate": 254.0,
-      "completion_rate": 65.9,
-      "efficiency": 65.9,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 322330,
-          "name": "【后端】管理员授权 页面列表，新增列表、移除、授权，详情，想想展示，状态",
-          "consumed": 16.0,
-          "estimate": 16.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-04"
-        },
-        {
-          "id": 322339,
-          "name": "【后端】置灰用于保留层级，越域深链/接口仍走拦截兜底",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-05"
-        },
-        {
-          "id": 322333,
-          "name": "【后端】账号体系与业务域归属 · 授权了员工所配置的一个业务域即可查看/编辑",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-05"
-        },
-        {
-          "id": 322331,
-          "name": "【后端】管理员授权业务域数据库配置，查询，文档，详细涉及",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-05"
-        },
-        {
-          "id": 322338,
-          "name": "【后端】部门树按当前管理员授权业务域过滤：自身与后代均不命中的部门完全不可见；父级越域但存在命中后代时，父级以「置灰只读容器」常显（保留层级上下文），点击提示「该部门业务域未授权，不可查看/编辑」；仅自身与后代全部不命中的部门才完全不可见",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-07"
-        },
-        {
-          "id": 322336,
-          "name": "【后端】岗位  三个页签相互独立 · 各自按授权业务域过滤（授权了所配置的一个业务域即可查看/编辑）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-07"
-        },
-        {
-          "id": 322337,
-          "name": "【后端】部门 新增/编辑/查看 表单内嵌「授权业务域」多选（家用/商用/实施）；越域编辑将被拦截。查看态仅提供导出，无编辑/新增子部门按钮",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-08"
-        },
-        {
-          "id": 322335,
-          "name": "【后端】角色  三个页签相互独立 · 各自按授权业务域过滤（授权了所配置的一个业务域即可查看/编辑）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-08"
-        },
-        {
-          "id": 322334,
-          "name": "【后端】 权限集合 三个页签相互独立 · 各自按授权业务域过滤（授权了所配置的一个业务域即可查看/编辑）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-22",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-08"
-        },
-        {
-          "id": 327903,
-          "name": "【后端】组织架构- 批量复制权限",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-09"
-        },
-        {
-          "id": 327904,
-          "name": "【后端】 组织架构-批量修改权限集合",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-10"
-        },
-        {
-          "id": 327902,
-          "name": "【后端】 组织架构配置业务域隔离-管理员数据隔离",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-10"
-        },
-        {
-          "id": 327905,
-          "name": "【后端】 组织架构-批量修改岗位授权类目",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-11"
-        },
-        {
-          "id": 327907,
-          "name": "【后端】 组织架构-批量修改部门授权类目",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-14"
-        },
-        {
-          "id": 327906,
-          "name": "【后端】 组织架构-批量修改员工授权类目",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-14"
-        },
-        {
-          "id": 332508,
-          "name": "【后端】工程批价单驳回重新提交批价单新增商品，内部价保存",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-14",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-15"
-        },
-        {
-          "id": 332507,
-          "name": "【后端】工程批价单新建批价单新增商品，内部价保存",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-14",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-15"
-        },
-        {
-          "id": 332506,
-          "name": "【后端】家用特批方案添加内部价，方案查询",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-14",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-15"
-        },
-        {
-          "id": 324187,
-          "name": "【后端】工程项目单(管理端)-登录审批-解除地址限制-审批",
-          "consumed": 16.0,
-          "estimate": 16.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-08-26",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-16"
-        },
-        {
-          "id": 319921,
-          "name": "【后端】api提供--提供阶梯价格-阶梯价格信息",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-08-14",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 319920,
-          "name": "【后端】api提供--提供阶梯价格-基础价格信息",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-08-14",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 325718,
-          "name": "【后端】集合--生产导出数据-生产数据初始化",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 325717,
-          "name": "【后端】角色--生产导出数据-生产数据初始化",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 325716,
-          "name": "【后端】菜单--生产导出数据-生产数据初始化",
-          "consumed": 1.0,
-          "estimate": 2.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 325715,
-          "name": "【后端】组织架构--生产导出数据-生产数据初始化",
-          "consumed": 1.0,
-          "estimate": 2.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 325714,
-          "name": "【后端】员工--生产导出数据-生产数据初始化",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 325713,
-          "name": "【后端】岗位--生产导出数据-生产数据初始化",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-18"
-        },
-        {
-          "id": 329254,
-          "name": "【后端】解除地址限制申请，发起审批，新增数据",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-04",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-20"
-        },
-        {
-          "id": 319918,
-          "name": "【后端】rms对接--新工程重构审批地址解绑-",
-          "consumed": 12.0,
-          "estimate": 12.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-08-14",
-          "finished_by": "刘兰真",
-          "finished_date": "2026-09-21"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 319915,
-          "name": "【后端】审批地址解绑--审批流-查看",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-08-14",
-          "deadline": "2026-09-24"
-        },
-        {
-          "id": 319916,
-          "name": "【后端】审批地址解绑--审批流-审核",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-08-14",
-          "deadline": "2026-09-24"
-        },
-        {
-          "id": 319917,
-          "name": "【后端】审批地址解绑--审批流-通过驳回",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-08-14",
-          "deadline": "2026-09-24"
-        },
-        {
-          "id": 329506,
-          "name": "【后端】【GD03】  1、大盘详情页，“合作中”状态下新增“大盘售后结算优惠”，新增数据",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329507,
-          "name": "【后端】【GD04】  1、新建“大盘售后结算优惠”发起审批",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329508,
-          "name": "【后端】【GD05】  1、大盘审批-新增审批页“大盘售后结算优惠”类型；",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329509,
-          "name": "【后端】【GD06】  1、新增审批页“大盘售后结算优惠”审批页；通过驳回",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329510,
-          "name": "【后端】【GD07】  1、大盘-审批进度，新增“大盘售后结算优惠”类型",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329512,
-          "name": "【后端】【GD08】  1、大盘-审批进度，新增“大盘售后结算优惠”查看页",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329513,
-          "name": "【后端】【GD09】  1、大盘-详情页-基本信息，增加字段“大盘售后结算优惠”",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329514,
-          "name": "【后端】【GD10】  1、业务单-审批页，关联大盘则展示“大盘售后结算优惠”的配置选择；",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329515,
-          "name": "【后端】【GD11】  1、业务单-审批进度-提货审批，关联大盘则展示“大盘售后结算优惠”的配置；",
-          "status": "doing",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329516,
-          "name": "【后端】【GD12】  1、业务单-详情页，展示“大盘售后结算优惠”的配置；",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329517,
-          "name": "【后端】rms对接--大盘相关数据大盘数据",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 329561,
-          "name": "【后端】大盘工程单关联大盘优惠标签展示",
-          "status": "wait",
-          "pri": 2,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-04",
-          "deadline": "2026-10-15"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 339757,
-          "title": "【QA-PC-管理侧-商用工程26~29】工程备货机批价审核，内部价&gt;0，工程单未保存内部价",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 339157,
-          "title": "【QA-PC-管理侧-组织架构】员工管理列表导出数据包含了当前账号无法管理的业务域员工",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 338967,
-          "title": "【QA-PC-管理侧-批量修改部门授权商家】经销商账号不在部门管理范围时，失败原因不正确",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338955,
-          "title": "【QA-PC-管理侧-批量修改岗位授权商家】当前账号不具备该岗位的管理权限仍能上传成功",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338708,
-          "title": "【QA-PC-管理侧-组织架构】非管理员账户，进入员工管理列表仍显示有数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 338693,
-          "title": "【QA-PC-管理侧-批量修改员工授权商家】当前账号不具备该员工的管理权限仍能上传成功",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338661,
-          "title": "【QA-PC-管理侧-批量修改员工授权商家】总部职能账号无权限批量修改员工/岗位授权商家",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338628,
-          "title": "【QA-PC-管理侧-组织架构】新增员工时选择了业务域，重新编辑员工信息时业务域未勾选",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 338582,
-          "title": "【QA-PC-管理侧-批量修改员工授权商家】员工账号已授权岗位，仍上传失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338530,
-          "title": "【QA-PC-管理侧-批量修改员工授权商家】上传开关配置为空的文件报系统异常",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338231,
-          "title": "【QA-PC-管理侧-批量修改部门授权商家】无法登录账号",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338206,
-          "title": "【QA-PC-管理侧-批量修改部门授权商家】批量修改部门已关闭授权的商家失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 338125,
-          "title": "【QA-PC-管理侧-批量修改部门授权商家】批量修改部门授权商家提示成功但实际未生效",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 337521,
-          "title": "【QA-PC-管理侧-岗位管理】岗位管理权限集合中导出的文件中”所属销司“字段内容未显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "delay",
-          "platform": "网批2.0",
-          "openedBy": "李学鹍"
-        }
-      ],
       "active_bugs": []
     },
     {
@@ -11386,6 +11394,18 @@
           "finished_date": "2026-09-02"
         },
         {
+          "id": 324544,
+          "name": "【PC管理】网批订单UI走查24行~26行",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
+          "finished_by": "艾思芹",
+          "finished_date": "2026-09-03"
+        },
+        {
           "id": 319560,
           "name": "【PC管理】订单详情展示信用相关信息",
           "consumed": 8.0,
@@ -11406,18 +11426,6 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
           "opened_date": "2026-08-13",
-          "finished_by": "艾思芹",
-          "finished_date": "2026-09-03"
-        },
-        {
-          "id": 324544,
-          "name": "【PC管理】网批订单UI走查24行~26行",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev2_front",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
           "finished_by": "艾思芹",
           "finished_date": "2026-09-03"
         },
@@ -12568,6 +12576,15 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 339789,
+          "title": "【QA-PC-管理侧-商用工程】审批列表，根据项目单号、经销商名称查询，未查询出对应结果",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
           "id": 339734,
           "title": "【QA-PC-管理侧-商用工程】批价代客申请，选择工程项目单，会显示审批中的数据",
           "severity": 3,
@@ -12696,6 +12713,22 @@
       ],
       "active_bugs": [
         {
+          "id": 340141,
+          "title": "【QA-PC-管理侧-商用工程】项目单列表筛选项目地址、登录时间、商家类型结果仍显示了所有项目单",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 340090,
+          "title": "【QA-PC-管理侧-商用工程】登录审批列表中，经销商提交的数据，缺少销售公司",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 340047,
           "title": "【QA-PC-管理侧-商用工程】关联项目单列表添加关联工程单列表没有显示所有授权经销商的项目单",
           "severity": 3,
@@ -12736,6 +12769,14 @@
           "platform": "网批2.0"
         },
         {
+          "id": 339927,
+          "title": "【QA-PC-管理侧-工程审批】项目单审批时批量导入商品未成功",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 339903,
           "title": "【QA-PC-管理侧-商用工程】项目单列表筛选项目名称结果仍显示了所有项目单",
           "severity": 3,
@@ -12746,14 +12787,6 @@
         {
           "id": 339801,
           "title": "【QA-PC-用户侧-商用工程】新建工程项目单提示商品不在销售方案中，但是未清除列表的商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 339789,
-          "title": "【QA-PC-管理侧-商用工程】审批列表，根据项目单号、经销商名称查询，未查询出对应结果",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -13554,18 +13587,6 @@
           "finished_date": "2026-09-02"
         },
         {
-          "id": 328215,
-          "name": "【后端】【9月需求评审】 评审时间:09月03日  上午9：30 评审地址：3楼会议室A302 评审议程: 集采： 1、调拨单-逆向单管理---钟日健",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "meeting",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-03",
-          "finished_by": "孙元通",
-          "finished_date": "2026-09-04"
-        },
-        {
           "id": 327891,
           "name": "【后端】工单处理，7个退款单行退款部分出库，商家退款，改库申请已提交，oms 已处理， 涉及订单金额12万请安排改库",
           "consumed": 2.0,
@@ -13574,6 +13595,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
           "opened_date": "2026-09-02",
+          "finished_by": "孙元通",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 328215,
+          "name": "【后端】【9月需求评审】 评审时间:09月03日  上午9：30 评审地址：3楼会议室A302 评审议程: 集采： 1、调拨单-逆向单管理---钟日健",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "meeting",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-03",
           "finished_by": "孙元通",
           "finished_date": "2026-09-04"
         },
@@ -17851,6 +17884,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 340109,
+          "title": "【QA-PC-管理侧-销司特批方案审核GC26-29】销司特批方案审批-收差审核列表，显示过滤选择【全部单据】，传参错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
           "id": 339793,
           "title": "【QA-PC-管理侧-工程优化26~29】家用销司工程特批方案审批列表，方案审核/收差审核，显示过滤默认选择：待我审核，",
           "severity": 3,
@@ -17896,16 +17938,7 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 340109,
-          "title": "【QA-PC-管理侧-销司特批方案审核GC26-29】销司特批方案审批-收差审核列表，显示过滤选择【全部单据】，传参错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "吴炜欣",
@@ -18743,6 +18776,15 @@
           "openedBy": "刘孝亮"
         },
         {
+          "id": 340083,
+          "title": "【QA-PC-管理侧-商用工程】登录审批中，跨区类型为非跨区，审核详情页显示为：省外跨区登录",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 339894,
           "title": "【QA-PC-管理侧-商用工程】项目单列表代客申请回显草稿时行业大类值显示错误",
           "severity": 3,
@@ -18754,15 +18796,6 @@
         {
           "id": 339887,
           "title": "【QA-PC-用户侧-商用工程】复制新建项目单行业大类显示为数字",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 339860,
-          "title": "【QA-PC-用户侧-商用工程】新建项目页面容积/空调面积不显示单位",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -18880,6 +18913,22 @@
       ],
       "active_bugs": [
         {
+          "id": 340142,
+          "title": "【QA-PC-用户侧-商用工程】项目单详情页面非标商品ID显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 340138,
+          "title": "【QA-PC-管理侧-商用工程】登录审批中，设备清单缺少删除操作列，多了商品ID列",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 340122,
           "title": "【QA-PC-管理侧-商用工程】登录审核中，行业大类在审核页仍显示为数字、查看页显示为空",
           "severity": 3,
@@ -18898,14 +18947,6 @@
         {
           "id": 340102,
           "title": "【QA-PC-管理侧-商用工程】登录审核页中，业务线选择家用/冷链，空调面积/容积未随业务线变化",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 340083,
-          "title": "【QA-PC-管理侧-商用工程】登录审批中，跨区类型为非跨区，审核详情页显示为：省外跨区登录",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -19096,18 +19137,6 @@
           "finished_date": "2026-09-21"
         },
         {
-          "id": 335627,
-          "name": "需求调研、需求设计、需求评审",
-          "consumed": 15.0,
-          "estimate": 15.0,
-          "type": "ab2_request_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "王也",
-          "finished_date": "2026-09-21"
-        },
-        {
           "id": 335633,
           "name": "江苏、山东推广客户管理相关流程配置",
           "consumed": 4.5,
@@ -19115,6 +19144,18 @@
           "type": "ab1_needs_research",
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "王也",
+          "finished_date": "2026-09-21"
+        },
+        {
+          "id": 335627,
+          "name": "需求调研、需求设计、需求评审",
+          "consumed": 15.0,
+          "estimate": 15.0,
+          "type": "ab2_request_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
           "opened_date": "2026-09-21",
           "finished_by": "王也",
           "finished_date": "2026-09-21"
@@ -19985,11 +20026,310 @@
       ],
       "active_bugs": [
         {
-          "id": 340128,
-          "title": "【QA-PC-管理侧-销司销售方案】销司工程特批方案详情页面，保证金核销页面部分内容显示有误",
+          "id": 340146,
+          "title": "【QA-PC-管理侧-销司销售方案】核销单详情页面，当前提交单据板块显示了发票单号，与UX不一致",
           "severity": 3,
           "pri": 3,
           "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 340144,
+          "title": "【QA-PC-管理侧-商用工程内部价GC26-29】工程备货机批价审核，第一个节点批复点位计算正确，从第二个审核节点查看",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
+    },
+    {
+      "name": "许峻嘉",
+      "role": "后端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 10,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 46.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 10,
+      "done_estimate": 46.0,
+      "done_consumed": 46.0,
+      "month_done_hours": 46.0,
+      "active_count": 0,
+      "active_estimate": 0.0,
+      "active_consumed": 0.0,
+      "active_left": 0.0,
+      "total_tasks": 10,
+      "total_estimate": 46.0,
+      "completion_rate": 100.0,
+      "efficiency": 100.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 331236,
+          "name": "【后端】销售方案（日销、返利、工程、一件代发）原分页可视业务单据状态范围变更（需求变更）",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-10",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 321374,
+          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商工程方方案审核列表数据展示逻辑（我已审核）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 321373,
+          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商一件代发方案审核列表数据展示逻辑（我已审核）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 321372,
+          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商返利方案审核列表数据展示逻辑（我已审核）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 321371,
+          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商日销方案审核列表数据展示逻辑（我已审核）",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-08-19",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 331567,
+          "name": "【后端】工程销售方案，提供内部价查询接口",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-11",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-15"
+        },
+        {
+          "id": 331565,
+          "name": "【后端】工程销售方案，增加“内部价”填写，非必填",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-11",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-15"
+        },
+        {
+          "id": 331564,
+          "name": "【后端】特批方案审批页增加显示过滤“待我审批”",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-11",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-15"
+        },
+        {
+          "id": 333197,
+          "name": "【后端】商用sku商品推送网批数据校对和异常分析(20260915)",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-15",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-15"
+        },
+        {
+          "id": 331566,
+          "name": "【后端】工程销售方案，增加提交方案的校验，sku底价、主标题、sku、网批挂机、工程基准价 校验不能为空",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "opened_date": "2026-09-11",
+          "finished_by": "许峻嘉",
+          "finished_date": "2026-09-16"
+        }
+      ],
+      "active_tasks": [],
+      "resolved_bugs": [
+        {
+          "id": 339207,
+          "title": "【QA-PC-管理侧-方案审批】4.0测算返利方案审核列表，审批后，选择我已审核，未查询出结果",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 338945,
+          "title": "【QA-PC-管理侧-方案审批】一件代发销售方案审核列表，选择我已审核，查询出的结果会显示我未审核的数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 338939,
+          "title": "【QA-PC-管理侧-方案审批】新建工程销售方案，提交报错",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 338713,
+          "title": "【QA-PC-管理侧-内容运营】 运营位审批-榜单推荐审批，点击审批流程提示“Request failed with s",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 338552,
+          "title": "【QA-PC-管理侧-审批流可视化改造】日销方案审批节点类型为岗位时，审批人员中，该岗位下与当前账号的业务线没有重叠，依",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 338238,
+          "title": "【QA-PC-管理侧-方案审批】日常销售方案审核列表，审批通过后，显示过滤：我已审核/全部单据，未找到数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 338112,
+          "title": "【QA-PC-管理侧-方案审批】日常销售方案审核列表，选择我已审核，查询出的结果会显示我未审核的数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 337552,
+          "title": "【qa-pc-管理侧-供应链数据】类目异常的订单重新消费后，结果供应链数据未生成数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 337395,
+          "title": "【QA-PC-管理侧-经销商贷款额度】设置贷款额度后，提交失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 337349,
+          "title": "【qa-pc-管理侧-需求计划】4.0销司转单设置类目，提报需求计划时导入对应类目的商品提交，结果正常导入提交需求计划",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 337113,
+          "title": "【qa-pc-用户侧-商品列表详情】商品列表或详情查看商品，商品可销售数量有值时，用户侧展示售罄",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 336718,
+          "title": "【QA-PC-管理侧-经销商解押还款】该商家没有开通一级钱包和贷款解押账户仍能提交设置还款金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 336569,
+          "title": "【QA-PC-管理侧-经销商贷款额度】第二节点提示504后，继续审核提示不能再次申请开户，再次审核已完成审核流程",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 336435,
+          "title": "【QA-PC-用户侧-贷款解押账户】审核通过超时，再次审核通过时，总贷款金额叠加",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        }
+      ],
+      "active_bugs": [
+        {
+          "id": 339428,
+          "title": "【QA-PC-管理侧-内容运营】内容运营公告/ 轮播图/榜单/热搜词审批流程审批人员，下级账号看不到上级账号",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -20975,6 +21315,30 @@
       ],
       "active_bugs": [
         {
+          "id": 340135,
+          "title": "【QA-PC-用户侧-商用工程】批价单放弃提货，提示”Request failed with status code 4",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 340131,
+          "title": "【QA-PC-用户侧-商用工程】复制重建批价单页面缺少提示信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 340130,
+          "title": "【QA-PC-管理侧-商用工程】待提货状态的批价单详情页，缺少提货有效期",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 340127,
           "title": "【QA-PC-用户侧-商用工程】批价单审批被驳回，点击重新提交按钮无反应",
           "severity": 3,
@@ -20987,7 +21351,7 @@
           "title": "【QA-PC-用户侧-商用工程】项目首页工程清单，批价单缺少业务线",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -20995,7 +21359,7 @@
           "title": "【QA-PC-用户侧-商用工程】批价单审批被驳回，审批进度详情页仍显示通过",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -21140,297 +21504,6 @@
           "severity": 4,
           "pri": 4,
           "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
-    },
-    {
-      "name": "许峻嘉",
-      "role": "后端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 10,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 42.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 10,
-      "done_estimate": 42.0,
-      "done_consumed": 42.0,
-      "month_done_hours": 42.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
-      "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 10,
-      "total_estimate": 42.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 331236,
-          "name": "【后端】销售方案（日销、返利、工程、一件代发）原分页可视业务单据状态范围变更（需求变更）",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-10",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-04"
-        },
-        {
-          "id": 321374,
-          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商工程方方案审核列表数据展示逻辑（我已审核）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-04"
-        },
-        {
-          "id": 321373,
-          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商一件代发方案审核列表数据展示逻辑（我已审核）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-04"
-        },
-        {
-          "id": 321372,
-          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商返利方案审核列表数据展示逻辑（我已审核）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-04"
-        },
-        {
-          "id": 321371,
-          "name": "【后端】优化现有2.0、3.0、4.0、4.0测算模式下经销商日销方案审核列表数据展示逻辑（我已审核）",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-08-19",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-04"
-        },
-        {
-          "id": 331567,
-          "name": "【后端】工程销售方案，提供内部价查询接口",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-11",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-15"
-        },
-        {
-          "id": 331565,
-          "name": "【后端】工程销售方案，增加“内部价”填写，非必填",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-11",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-15"
-        },
-        {
-          "id": 331564,
-          "name": "【后端】特批方案审批页增加显示过滤“待我审批”",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-11",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-15"
-        },
-        {
-          "id": 333197,
-          "name": "【后端】商用sku商品推送网批数据校对和异常分析(20260915)",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-15",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-15"
-        },
-        {
-          "id": 331566,
-          "name": "【后端】工程销售方案，增加提交方案的校验，sku底价、主标题、sku、网批挂机、工程基准价 校验不能为空",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "opened_date": "2026-09-11",
-          "finished_by": "许峻嘉",
-          "finished_date": "2026-09-16"
-        }
-      ],
-      "active_tasks": [],
-      "resolved_bugs": [
-        {
-          "id": 339207,
-          "title": "【QA-PC-管理侧-方案审批】4.0测算返利方案审核列表，审批后，选择我已审核，未查询出结果",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 338945,
-          "title": "【QA-PC-管理侧-方案审批】一件代发销售方案审核列表，选择我已审核，查询出的结果会显示我未审核的数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 338939,
-          "title": "【QA-PC-管理侧-方案审批】新建工程销售方案，提交报错",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 338713,
-          "title": "【QA-PC-管理侧-内容运营】 运营位审批-榜单推荐审批，点击审批流程提示“Request failed with s",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 338552,
-          "title": "【QA-PC-管理侧-审批流可视化改造】日销方案审批节点类型为岗位时，审批人员中，该岗位下与当前账号的业务线没有重叠，依",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 338238,
-          "title": "【QA-PC-管理侧-方案审批】日常销售方案审核列表，审批通过后，显示过滤：我已审核/全部单据，未找到数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 338112,
-          "title": "【QA-PC-管理侧-方案审批】日常销售方案审核列表，选择我已审核，查询出的结果会显示我未审核的数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 337552,
-          "title": "【qa-pc-管理侧-供应链数据】类目异常的订单重新消费后，结果供应链数据未生成数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 337395,
-          "title": "【QA-PC-管理侧-经销商贷款额度】设置贷款额度后，提交失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 337349,
-          "title": "【qa-pc-管理侧-需求计划】4.0销司转单设置类目，提报需求计划时导入对应类目的商品提交，结果正常导入提交需求计划",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 337113,
-          "title": "【qa-pc-用户侧-商品列表详情】商品列表或详情查看商品，商品可销售数量有值时，用户侧展示售罄",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 336718,
-          "title": "【QA-PC-管理侧-经销商解押还款】该商家没有开通一级钱包和贷款解押账户仍能提交设置还款金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 336569,
-          "title": "【QA-PC-管理侧-经销商贷款额度】第二节点提示504后，继续审核提示不能再次申请开户，再次审核已完成审核流程",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 336435,
-          "title": "【QA-PC-用户侧-贷款解押账户】审核通过超时，再次审核通过时，总贷款金额叠加",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 339428,
-          "title": "【QA-PC-管理侧-内容运营】内容运营公告/ 轮播图/榜单/热搜词审批流程审批人员，下级账号看不到上级账号",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -21613,18 +21686,6 @@
       "overdue": 0,
       "done_tasks": [
         {
-          "id": 329069,
-          "name": "【产品设计】商用总可用库存校准",
-          "consumed": 1.0,
-          "estimate": 1.0,
-          "type": "ab2_request_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
-          "opened_date": "2026-09-03",
-          "finished_by": "梁庆芬",
-          "finished_date": "2026-09-03"
-        },
-        {
           "id": 329068,
           "name": "【产品设计】商用自提订单去掉要先备货才能完成自提限制",
           "consumed": 1.0,
@@ -21632,6 +21693,18 @@
           "type": "ab2_request_des",
           "platform": "网批2.0",
           "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-09-03",
+          "finished_by": "梁庆芬",
+          "finished_date": "2026-09-03"
+        },
+        {
+          "id": 329069,
+          "name": "【产品设计】商用总可用库存校准",
+          "consumed": 1.0,
+          "estimate": 1.0,
+          "type": "ab2_request_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
           "opened_date": "2026-09-03",
           "finished_by": "梁庆芬",
           "finished_date": "2026-09-03"
@@ -21881,6 +21954,14 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 340128,
+          "title": "【QA-PC-管理侧-销司销售方案】销司工程特批方案详情页面，保证金核销页面部分内容显示有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 339971,
           "title": "【QA-PC-管理侧-销司销售方案】核销审批审批详情或查看详情页面，单据信息字段与原型不一致。",

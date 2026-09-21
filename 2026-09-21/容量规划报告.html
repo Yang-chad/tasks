@@ -99,9 +99,9 @@ details[open] summary { background: #e8f0fe; }
 </div>
 
 <div class="summary-cards">
-    <div class="card danger">
+    <div class="card success">
         <div class="label">🔴 超载迭代</div>
-        <div class="value">2</div>
+        <div class="value">0</div>
     </div>
     <div class="card warning">
         <div class="label">🟡 偏多迭代</div>
@@ -109,11 +109,11 @@ details[open] summary { background: #e8f0fe; }
     </div>
     <div class="card success">
         <div class="label">🟢 正常迭代</div>
-        <div class="value">4</div>
+        <div class="value">6</div>
     </div>
     <div class="card info">
         <div class="label">📈 历史基线 (总体)</div>
-        <div class="value">292h</div>
+        <div class="value">2623h</div>
     </div>
 </div>
 
@@ -127,38 +127,45 @@ details[open] summary { background: #e8f0fe; }
         <tr><th>角色</th><th>推算均值(h/迭代)</th><th>占比</th><th>累计工时</th><th>样本迭代数</th></tr>
         <tr>
             <td><span class="role-bar" style="width:12px;background:#7c3aed"></span>产品</td>
-            <td><b>28</b></td>
-            <td>9.5%</td>
-            <td>0h</td>
-            <td>3</td>
+            <td><b>176</b></td>
+            <td>6.7%</td>
+            <td>878h</td>
+            <td>5</td>
         </tr>
         <tr>
             <td><span class="role-bar" style="width:12px;background:#10b981"></span>后端</td>
-            <td><b>236</b></td>
-            <td>80.8%</td>
-            <td>708h</td>
-            <td>3</td>
+            <td><b>851</b></td>
+            <td>32.4%</td>
+            <td>4256h</td>
+            <td>5</td>
         </tr>
         <tr>
             <td><span class="role-bar" style="width:12px;background:#db2777"></span>前端</td>
-            <td><b>8</b></td>
-            <td>2.7%</td>
-            <td>24h</td>
-            <td>3</td>
+            <td><b>350</b></td>
+            <td>13.4%</td>
+            <td>1751h</td>
+            <td>5</td>
         </tr>
         <tr>
             <td><span class="role-bar" style="width:12px;background:#ea580c"></span>移动端</td>
-            <td><b>48</b></td>
-            <td>16.4%</td>
-            <td>144h</td>
-            <td>3</td>
+            <td><b>313</b></td>
+            <td>11.9%</td>
+            <td>1564h</td>
+            <td>5</td>
         </tr>
         <tr>
             <td><span class="role-bar" style="width:12px;background:#0284c7"></span>测试</td>
-            <td><b>56</b></td>
-            <td>19.0%</td>
-            <td>0h</td>
-            <td>3</td>
+            <td><b>593</b></td>
+            <td>22.6%</td>
+            <td>2964h</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td><span class="role-bar" style="width:12px;background:#64748b"></span>其他</td>
+            <td><b>340</b></td>
+            <td>13.0%</td>
+            <td>1701h</td>
+            <td>5</td>
         </tr>
     </table>
 </div>
@@ -171,45 +178,45 @@ details[open] summary { background: #e8f0fe; }
 <div class="section-body">
 <table>
 <tr><th>平台</th><th>迭代</th><th>进度</th><th>计划工时</th><th>基线(h)</th><th>负载率</th><th>任务数</th><th>产品</th><th>后端</th><th>前端</th><th>移动端</th><th>测试</th><th>状态</th></tr>
-<tr style="background:#fff5f5">
+<tr>
     <td><span class="platform-tag platform-902">网批2.0</span></td>
     <td><b>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</b> <span style="font-size:11px;color:#999">(eid=4764)</span></td>
     <td>60%</td>
-    <td><b>2337h</b></td>
-    <td>292h</td>
-    <td><b style="color:#ef4444">800%</b></td>
-    <td>287</td>
+    <td><b>2329h</b></td>
+    <td>2623h</td>
+    <td><b style="color:#10b981">89%</b></td>
+    <td>286</td>
     <td><span style="color:#ef4444;font-weight:500">339h</span></td>
-    <td><span style="color:#10b981;font-weight:500">279h</span></td>
+    <td><span style="color:#10b981;font-weight:500">271h</span></td>
     <td><span style="color:#ef4444;font-weight:500">738h</span></td>
     <td><span style="color:#ef4444;font-weight:500">818h</span></td>
-    <td><span style="color:#ef4444;font-weight:500">163h</span></td>
-    <td><span class="badge badge-danger">⚠ 超载</span></td>
+    <td><span style="color:#10b981;font-weight:500">163h</span></td>
+    <td><span class="badge badge-success">正常</span></td>
 </tr>
-<tr style="background:#fff5f5">
+<tr>
     <td><span class="platform-tag platform-902">网批2.0</span></td>
     <td><b>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</b> <span style="font-size:11px;color:#999">(eid=4811)</span></td>
     <td>9%</td>
     <td><b>1011h</b></td>
-    <td>292h</td>
-    <td><b style="color:#ef4444">346%</b></td>
+    <td>2623h</td>
+    <td><b style="color:#10b981">39%</b></td>
     <td>137</td>
-    <td><span style="color:#ef4444;font-weight:500">52h</span></td>
-    <td><span style="color:#ef4444;font-weight:500">448h</span></td>
-    <td><span style="color:#ef4444;font-weight:500">282h</span></td>
-    <td><span style="color:#ef4444;font-weight:500">150h</span></td>
+    <td><span style="color:#10b981;font-weight:500">52h</span></td>
+    <td><span style="color:#10b981;font-weight:500">448h</span></td>
+    <td><span style="color:#10b981;font-weight:500">282h</span></td>
+    <td><span style="color:#10b981;font-weight:500">150h</span></td>
     <td><span style="color:#10b981;font-weight:500">7h</span></td>
-    <td><span class="badge badge-danger">⚠ 超载</span></td>
+    <td><span class="badge badge-success">正常</span></td>
 </tr>
 <tr>
     <td><span class="platform-tag platform-902">网批2.0</span></td>
     <td><b>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</b> <span style="font-size:11px;color:#999">(eid=4812)</span></td>
     <td>38%</td>
     <td><b>139h</b></td>
-    <td>292h</td>
-    <td><b style="color:#10b981">48%</b></td>
+    <td>2623h</td>
+    <td><b style="color:#10b981">5%</b></td>
     <td>6</td>
-    <td><span style="color:#ef4444;font-weight:500">139h</span></td>
+    <td><span style="color:#10b981;font-weight:500">139h</span></td>
     <td>-</td>
     <td>-</td>
     <td>-</td>
@@ -221,12 +228,12 @@ details[open] summary { background: #e8f0fe; }
     <td><b>集采平台_V1.31.0（1015/集采dev4.1）【2026】</b> <span style="font-size:11px;color:#999">(eid=4814)</span></td>
     <td>10%</td>
     <td><b>76h</b></td>
-    <td>292h</td>
-    <td><b style="color:#10b981">26%</b></td>
+    <td>2623h</td>
+    <td><b style="color:#10b981">3%</b></td>
     <td>10</td>
     <td>-</td>
     <td><span style="color:#10b981;font-weight:500">44h</span></td>
-    <td><span style="color:#ef4444;font-weight:500">32h</span></td>
+    <td><span style="color:#10b981;font-weight:500">32h</span></td>
     <td>-</td>
     <td>-</td>
     <td><span class="badge badge-success">正常</span></td>
@@ -236,10 +243,10 @@ details[open] summary { background: #e8f0fe; }
     <td><b>网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</b> <span style="font-size:11px;color:#999">(eid=4838)</span></td>
     <td>0%</td>
     <td><b>54h</b></td>
-    <td>292h</td>
-    <td><b style="color:#10b981">18%</b></td>
+    <td>2623h</td>
+    <td><b style="color:#10b981">2%</b></td>
     <td>5</td>
-    <td><span style="color:#f59e0b;font-weight:500">35h</span></td>
+    <td><span style="color:#10b981;font-weight:500">35h</span></td>
     <td><span style="color:#10b981;font-weight:500">16h</span></td>
     <td>-</td>
     <td>-</td>
@@ -251,8 +258,8 @@ details[open] summary { background: #e8f0fe; }
     <td><b>集采平台_V1.32.0（1030/集采dev4.2）【2026】</b> <span style="font-size:11px;color:#999">(eid=4833)</span></td>
     <td>47%</td>
     <td><b>30h</b></td>
-    <td>292h</td>
-    <td><b style="color:#10b981">10%</b></td>
+    <td>2623h</td>
+    <td><b style="color:#10b981">1%</b></td>
     <td>1</td>
     <td><span style="color:#10b981;font-weight:500">30h</span></td>
     <td>-</td>
@@ -265,100 +272,9 @@ details[open] summary { background: #e8f0fe; }
 </div>
 </div>
 <div class="section">
-<div class="section-title">🚨 超载迭代详情</div>
-<div class="section-body">
-<details>
-<summary>🔴 [网批2.0] 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】 — 计划 2337h / 287 任务 (进度 60%)</summary>
-<table style="margin-top: 8px;">
-<tr><th>角色</th><th>计划工时</th><th>历史均值</th><th>负载率</th><th>容量条</th></tr>
-<tr>
-    <td>产品</td>
-    <td><b>339h</b></td>
-    <td>28h</td>
-    <td><b style="color:#ef4444">1219.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 28h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>后端</td>
-    <td><b>279h</b></td>
-    <td>236h</td>
-    <td><b style="color:#10b981">118.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:118.0%;background:#10b981"></div><span class="ratio-bar-text">vs 236h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>前端</td>
-    <td><b>738h</b></td>
-    <td>8h</td>
-    <td><b style="color:#ef4444">9225.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 8h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>移动端</td>
-    <td><b>818h</b></td>
-    <td>48h</td>
-    <td><b style="color:#ef4444">1704.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 48h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>测试</td>
-    <td><b>163h</b></td>
-    <td>56h</td>
-    <td><b style="color:#ef4444">293.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 56h 历史均值</span></div></td>
-</tr>
-</table></details>
-<details>
-<summary>🔴 [网批2.0] 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】 — 计划 1011h / 137 任务 (进度 9%)</summary>
-<table style="margin-top: 8px;">
-<tr><th>角色</th><th>计划工时</th><th>历史均值</th><th>负载率</th><th>容量条</th></tr>
-<tr>
-    <td>产品</td>
-    <td><b>52h</b></td>
-    <td>28h</td>
-    <td><b style="color:#ef4444">187.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:187.0%;background:#ef4444"></div><span class="ratio-bar-text">vs 28h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>后端</td>
-    <td><b>448h</b></td>
-    <td>236h</td>
-    <td><b style="color:#ef4444">190.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:190.0%;background:#ef4444"></div><span class="ratio-bar-text">vs 236h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>前端</td>
-    <td><b>282h</b></td>
-    <td>8h</td>
-    <td><b style="color:#ef4444">3525.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 8h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>移动端</td>
-    <td><b>150h</b></td>
-    <td>48h</td>
-    <td><b style="color:#ef4444">312.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:200%;background:#ef4444"></div><span class="ratio-bar-text">vs 48h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>测试</td>
-    <td><b>7h</b></td>
-    <td>56h</td>
-    <td><b style="color:#10b981">13.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:13.0%;background:#10b981"></div><span class="ratio-bar-text">vs 56h 历史均值</span></div></td>
-</tr>
-<tr>
-    <td>其他</td>
-    <td><b>72h</b></td>
-    <td>0h</td>
-    <td><b style="color:#10b981">0.0%</b></td>
-    <td><div class="ratio-bar-container"><div class="ratio-bar-fill" style="width:0%;background:#10b981"></div><span class="ratio-bar-text">vs 0h 历史均值</span></div></td>
-</tr>
-</table></details>
-</div></div>
-<div class="section">
 <div class="section-title">💡 规划建议</div>
 <div class="section-body" style="font-size:13px;line-height:1.8">
-<p>🔴 <b>发现 2 个超载迭代</b>，建议立即评估：</p><ul><li>拆分大需求或推迟到下个迭代</li><li>检查关键人瓶颈，平衡任务分配</li><li>与干系人沟通交付风险，调整预期</li></ul><p style="margin-top: 16px; color: #888;">📐 方法论说明：</p>
+<p>🟢 所有活跃迭代负载正常，当前规划合理。</p><p style="margin-top: 16px; color: #888;">📐 方法论说明：</p>
 <ul style="color: #888;">
 <li>历史 Velocity = 已完成迭代中 done 任务的 estimate 工时均值</li>
 <li>负载率 = 当前迭代计划工时 / 对应角色历史 Velocity</li>
@@ -371,11 +287,11 @@ const ctx = document.getElementById('velocityChart').getContext('2d');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["\u4ea7\u54c1", "\u540e\u7aef", "\u524d\u7aef", "\u79fb\u52a8\u7aef", "\u6d4b\u8bd5"],
+        labels: ["\u4ea7\u54c1", "\u540e\u7aef", "\u524d\u7aef", "\u79fb\u52a8\u7aef", "\u6d4b\u8bd5", "\u5176\u4ed6"],
         datasets: [{
             label: '平均工时 (h)',
-            data: [27.8, 236.0, 8.0, 48.0, 55.6],
-            backgroundColor: ["#7c3aed", "#10b981", "#db2777", "#ea580c", "#0284c7"],
+            data: [175.7, 851.1, 350.2, 312.8, 592.9, 340.2],
+            backgroundColor: ["#7c3aed", "#10b981", "#db2777", "#ea580c", "#0284c7", "#64748b"],
             borderRadius: 6,
             borderSkipped: false,
         }]
