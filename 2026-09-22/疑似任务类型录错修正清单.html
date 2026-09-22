@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="xJ7UnRNDqnhL436FcxZ0xc">
+<head data-page-node-id="Fn8tQCdohcPrwIr0WVWHC3">
+<meta charset="UTF-8" data-page-node-id="Mv2hwCifNYLXO1nk5K3DD1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="wdbTl3FvFKENiRvfit2Cq2">
+<title>疑似任务类型录错修正清单 — 53条</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Microsoft YaHei","微软雅黑",sans-serif; background:#f0f2f5; color:#333; font-size:14px; padding:20px; }
+.container { max-width:1280px; margin:0 auto; }
+.header { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); color:#fff; padding:28px 36px; border-radius:14px; margin-bottom:20px; }
+.header h1 { font-size:24px; font-weight:700; }
+.header .sub { margin-top:6px; font-size:13px; color:#8892b0; }
+.summary { display:flex; gap:14px; margin-bottom:22px; }
+.scard { background:#fff; border-radius:12px; padding:16px 20px; box-shadow:0 2px 8px rgba(0,0,0,.07); min-width:110px; text-align:center; }
+.scard .num { font-size:30px; font-weight:800; }
+.scard .label { font-size:12px; color:#999; margin-top:3px; }
+.role-sec { margin-bottom:24px; }
+.role-head { font-weight:700; font-size:16px; padding:8px 12px; margin-bottom:10px; background:#fff; border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+.role-head .cnt { font-size:12px; color:#999; font-weight:400; margin-left:8px; }
+.tbl-wrap { background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.07); overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th { background:#f8f9fa; padding:10px 8px; text-align:left; font-weight:600; border-bottom:2px solid #e8e8e8; white-space:nowrap; }
+td { padding:8px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+tr:hover td { background:#f8f9ff; }
+.idx { color:#999; }
+.tid { color:#666; white-space:nowrap; font-family:monospace; }
+.nm { max-width:320px; }
+.person { font-weight:600; white-space:nowrap; }
+.meta { color:#999; font-size:11px; }
+.badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; white-space:nowrap; font-family:monospace; }
+.badge-wrong { background:#fee2e2; color:#b91c1c; }
+.badge-right { background:#dcfce7; color:#15803d; }
+.footer { text-align:center; padding:20px; color:#bbb; font-size:12px; }
+</style>
+</head>
+<body data-page-node-id="QdZIcaiDbnPiLfGZXEq9FJ">
+<div class="container" data-page-node-id="rwOhGoqRY1QxZS6J4nbnKv">
+<div class="header" data-page-node-id="Tp2gAX41CTmFLPlYQZ5VVk">
+  <h1 data-page-node-id="wENTVqIU4qFkoSJKV1u9Ez">疑似任务类型录错 · 修正清单</h1>
+  <div class="sub" data-page-node-id="d4fKHJGWzPym6Bcr4P93Rj">未关闭迭代 · 未完成任务 · 负责人主角色与 type 归类不一致 · 共 53 条 · 2026-09-22</div>
+</div>
+<div class="summary" data-page-node-id="egEB5DPh3Gg8ho6NdXf3F9"><div class="scard" data-page-node-id="LGvRDtWyjFouTOezQv6vLk"><div class="num" style="color:#ea580c" data-page-node-id="WsOxD1238SF0U3D3Z8MYx5">39</div><div class="label" data-page-node-id="gsBrLsEMhXiVM7fvCADC2M">应属移动端</div></div>
+<div class="scard" data-page-node-id="NMKVns0iEu9hOPcwd5UmlP"><div class="num" style="color:#db2777" data-page-node-id="7nTyyITyDYcLHovqHXMUJT">14</div><div class="label" data-page-node-id="mSzEWgiTGDyhBUNJ4Op4NQ">应属前端</div></div>
+</div>
+<div class="role-sec" data-page-node-id="JG5nfsoVMqAAgc4XHM7EKC">
+<div class="role-head" style="border-left:4px solid #ea580c;color:#ea580c;" data-page-node-id="dTxqkTAbKOyX9E6QGmy9Qr">应属「移动端」<span class="cnt" data-page-node-id="hC3X6xS0X6pEEDCVdzifFW">39 条</span></div>
+<div class="tbl-wrap" data-page-node-id="5bK1mVCsADRAYhdLZRmS3o"><table data-page-node-id="csHTJGbHRZHRQjmkg6KhVk">
+<thead data-page-node-id="htYptvW56jhhCNu1lfscSq"><tr data-page-node-id="7R2A9250KyVzNB6c9W0bU2"><th data-page-node-id="gEPAGKcHldl19S93rv1Jp2">#</th><th data-page-node-id="xy3J9Mf8sEK9fzUm8E4j4K">ID</th><th data-page-node-id="HksjwRlG94xvPzofLhP3YZ">任务名</th><th data-page-node-id="z673X3fnM777oLCnsy6aGW">负责人</th><th data-page-node-id="AKsSK2AyXxCQga7xG7HBOV">当前type</th><th data-page-node-id="miG3DEFCJOBeOvhnC6gEwr">建议改为</th><th data-page-node-id="DinPN7dabqkrzqEN8D6B26">状态</th><th data-page-node-id="UIQoWB2XPshaiD82iB7bom">平台</th><th data-page-node-id="oMjBGD7hotPGMKwiAitSKC">迭代</th></tr></thead>
+<tbody data-page-node-id="5xfbCpT2M1GC3r5neXIL0J"><tr data-page-node-id="M1hzgJWi5S2SC3PFSomUXR">
+<td class="idx" data-page-node-id="63mDEWeXHoxwZkYKb3lcqs">1</td>
+<td class="tid" data-page-node-id="tD3AqbSu7HLFfvvfQFYH8V">#335722</td>
+<td class="nm" data-page-node-id="4ob0pDTnqtAhNOA5nv1F0h">【iOS】用户侧 - 申请退款 - 大单</td>
+<td class="person" data-page-node-id="QTX8P4edPfpfFBQLDKXRel">吴炜欣</td>
+<td data-page-node-id="a0CcsUNwjIpOBC3iLAzOXp"><span class="badge badge-wrong" data-page-node-id="zIOHlIQhuBaKfFqTAQQF1l">a_dev</span></td>
+<td data-page-node-id="pJF1wKsPEBa2UfpC0HhUaI"><span class="badge badge-right" data-page-node-id="iZWrQo5WBFrnAkY6GF1KXO">a_dev6_mobile</span></td>
+<td data-page-node-id="VAl5wluwarGErZcVUhAGXx">待处理</td>
+<td class="meta" data-page-node-id="DDeaHCR2SzhLzcKcHFeVE5">网批2.0</td>
+<td class="meta" data-page-node-id="dWlmZtCEJk8s83Q2CCKo46">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="CeXkoKi985bNOkNL7LyGGS">
+<td class="idx" data-page-node-id="7oqE012kcJcAE1snmotHqD">2</td>
+<td class="tid" data-page-node-id="gOmGNqbqADFLyCP2fihOxL">#335723</td>
+<td class="nm" data-page-node-id="8jw3J0CaZTSdy4s6fizlwc">【iOS】用户侧 - 申请取消发货 - 普通发货单</td>
+<td class="person" data-page-node-id="ZkUDQ68YKnmPopGN8J2zI3">吴炜欣</td>
+<td data-page-node-id="nML3TQ5J2oZXJYCzpeEWkX"><span class="badge badge-wrong" data-page-node-id="plQ5BbaVa3q3h4DGdJR44M">a_dev</span></td>
+<td data-page-node-id="xjcCvbI1djFMneCs4aH893"><span class="badge badge-right" data-page-node-id="TAIk4pxE2ttI1LMK5mLMBM">a_dev6_mobile</span></td>
+<td data-page-node-id="LGCVNYEz21kXDB6BLI80HI">待处理</td>
+<td class="meta" data-page-node-id="BG0xlwa9tqC0GroDcQ9VAz">网批2.0</td>
+<td class="meta" data-page-node-id="EqUR50ZWRNRP4wYQDgO7yl">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="Y5XeigU9fYhP0bwss6qdIM">
+<td class="idx" data-page-node-id="aL5BiX7C0JpIZFvDBYGqiD">3</td>
+<td class="tid" data-page-node-id="BbEA0gyqxzlkAxoIunJMuy">#335743</td>
+<td class="nm" data-page-node-id="IovFEvpoRtrRXROSVeAAfd">【iOS】管理侧 - 待办事项 - 退款审批 - 家用分批发货大小单</td>
+<td class="person" data-page-node-id="4sR1PFNB9UBNJT9WgPAlYP">吴炜欣</td>
+<td data-page-node-id="cxl6JwIrnQQmU20EI11RKe"><span class="badge badge-wrong" data-page-node-id="H6Txa34MW5PK4T976TPGZg">a_dev</span></td>
+<td data-page-node-id="VXYoOC2nSvsBu6rfllhA1O"><span class="badge badge-right" data-page-node-id="MSePpjHcE916B8vRYCBAff">a_dev6_mobile</span></td>
+<td data-page-node-id="ShEdSefhiTMH6J8zFYlxwB">待处理</td>
+<td class="meta" data-page-node-id="3rEF0NvdfvEQIoYg6tiFyX">网批2.0</td>
+<td class="meta" data-page-node-id="UTyjiO5ZZmfdBwZQSqNBYD">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="M9gr3c7WeKX2ajMhzlYwfc">
+<td class="idx" data-page-node-id="oIkCll5TcVcQ1aEF1INl3r">4</td>
+<td class="tid" data-page-node-id="5VrkDI9ftJGexdpmgGbWOR">#335744</td>
+<td class="nm" data-page-node-id="aSYSfDjXUInM8Vg67inEn5">【iOS】管理侧 - 待办事项 - 订单审批 - 家用分批发货大小单</td>
+<td class="person" data-page-node-id="sLVEi5MDIN1VWGBpxF1Thn">吴炜欣</td>
+<td data-page-node-id="txGg4vCbD42iXcbKCc4dC9"><span class="badge badge-wrong" data-page-node-id="nqijPdr5TE2XmwmC7ztUQX">a_dev</span></td>
+<td data-page-node-id="rNxhYOUcpaJ9SvEjkRGsZN"><span class="badge badge-right" data-page-node-id="WgHpaAmJFGCYZDoiRPGI0g">a_dev6_mobile</span></td>
+<td data-page-node-id="FCwEVCnUA7s3nBpHuwINki">待处理</td>
+<td class="meta" data-page-node-id="qTm1bdtk166QUnZxsIldau">网批2.0</td>
+<td class="meta" data-page-node-id="u5yaKWC1P0gct5uwRRcvWG">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="AFA4p3g7lMitiXBR3UfAlN">
+<td class="idx" data-page-node-id="fx3T3ZYVEG04CFKWQuq1Cm">5</td>
+<td class="tid" data-page-node-id="6HPDt7fVChCgBVHzew4UpE">#335709</td>
+<td class="nm" data-page-node-id="5k7xXKsHGJw8DYExA6Od3M">【iOS】用户侧 - 下单页 - 为我下单</td>
+<td class="person" data-page-node-id="ggs0WfWwonpVjFDaSVw6KY">张春杰</td>
+<td data-page-node-id="2o8Fg3WR6diAvMfhYcv2aI"><span class="badge badge-wrong" data-page-node-id="6XL6MJcyEDERqHVk6HoZkH">a_dev</span></td>
+<td data-page-node-id="AsOuykCJzwZOP1oiEx8wjr"><span class="badge badge-right" data-page-node-id="PbYlmMO6q2Wt4FHzNW3MgA">a_dev6_mobile</span></td>
+<td data-page-node-id="xfhEMzaAPenFk7R50hso3w">待处理</td>
+<td class="meta" data-page-node-id="Lzl3X62ntYgBxYKffwRuyL">网批2.0</td>
+<td class="meta" data-page-node-id="LEaO0RUaztAHWf3OuFaKHa">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="6dTs5IoEkowuCAyXbDn311">
+<td class="idx" data-page-node-id="r366oaMEQLbrU8atpdjGpZ">6</td>
+<td class="tid" data-page-node-id="o1kqbq5ndEm1dJv8wKfJtC">#335710</td>
+<td class="nm" data-page-node-id="4ibbi8qQRdKLatlXCUQQKM">【iOS】用户侧 - 下单页 - 为分销商下单</td>
+<td class="person" data-page-node-id="pFt2emwO6BTzWUErNRL1Fu">张春杰</td>
+<td data-page-node-id="hzQKJeOsliDfYWcCLJufm9"><span class="badge badge-wrong" data-page-node-id="gqKIdStLjni3LSE2knbBGg">a_dev</span></td>
+<td data-page-node-id="4JEdJJVVTiilRg7EKKt6Bj"><span class="badge badge-right" data-page-node-id="hjFY1xvQx8yNLHDkwzU7G8">a_dev6_mobile</span></td>
+<td data-page-node-id="CeGkf2cXXbFXrOwAzOXbRv">待处理</td>
+<td class="meta" data-page-node-id="oltqxPTL3HUE2tBdqNTCqL">网批2.0</td>
+<td class="meta" data-page-node-id="HT1cePWkLe7bKdojxnJQTh">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="XIJkxcn7gl5mPtqdXHOjnt">
+<td class="idx" data-page-node-id="gGS3aM5MZDgD3uxtHLajsK">7</td>
+<td class="tid" data-page-node-id="0exuIzTf5TvUzf8wagHvt7">#335711</td>
+<td class="nm" data-page-node-id="OX4AfbrlkLp10iiBRgLKXB">【iOS】用户侧 - 新增分批发货 - 为我发货</td>
+<td class="person" data-page-node-id="pWxy2KhLgfhJ2VTxA0R9T4">张春杰</td>
+<td data-page-node-id="yg97g8hsVtl3ktnhl6fpaM"><span class="badge badge-wrong" data-page-node-id="IzYtXjS1NNetWNF2GN9bEA">a_dev</span></td>
+<td data-page-node-id="SEX2EhGqhSTUHacS64sP8k"><span class="badge badge-right" data-page-node-id="IdPm3gjfHVilUP2cZeIPAD">a_dev6_mobile</span></td>
+<td data-page-node-id="tvsjtaCLFoZax8d4forf0J">待处理</td>
+<td class="meta" data-page-node-id="e1r54Q9ukqAKxJTVjiz9ZL">网批2.0</td>
+<td class="meta" data-page-node-id="7KWoWkMnsBbEHfy12CagLB">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="pFGrRKMrSNrW0nrDByvhyd">
+<td class="idx" data-page-node-id="dZziw76u111WxWZWOzDCpT">8</td>
+<td class="tid" data-page-node-id="gIft4lo9D5FaRXEpHeEL4U">#335712</td>
+<td class="nm" data-page-node-id="rqPCbCOj7BvutoaMmTUVwi">【iOS】用户侧 - 新增分批发货 - 为分销商发货</td>
+<td class="person" data-page-node-id="YGAMTBMqBAtJ15eINbra2A">张春杰</td>
+<td data-page-node-id="MBee2EtQqTUxNThDvhAvDT"><span class="badge badge-wrong" data-page-node-id="vykOyNFSTcVtNQsmNWsKhd">a_dev</span></td>
+<td data-page-node-id="GPIVnRuHpcVYbgovUkCHzR"><span class="badge badge-right" data-page-node-id="PS5JOWcvu6tfPCiPorc3p2">a_dev6_mobile</span></td>
+<td data-page-node-id="ozBFnFNk7lvLIvAhsCvUh0">待处理</td>
+<td class="meta" data-page-node-id="bBl78fdcMKYxbEiLoR1bCO">网批2.0</td>
+<td class="meta" data-page-node-id="rfIiXrYBjdvkrnkl7NgOmr">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="fKMcEfGCOczwaxqdf9ZvwN">
+<td class="idx" data-page-node-id="y86mwgJghD02yIKLyUOpDv">9</td>
+<td class="tid" data-page-node-id="BDt6coPirLrOgG92mNjXRy">#335713</td>
+<td class="nm" data-page-node-id="42g2cyDqNLZUoWkUGtlZEK">【iOS】用户侧 - 新增分批发货 - 组合套餐发货</td>
+<td class="person" data-page-node-id="P1KxRPswjSVqgAJFD8tpPl">张春杰</td>
+<td data-page-node-id="BA6ydQLAvJxvMCqV0I1ys4"><span class="badge badge-wrong" data-page-node-id="pR0IABlJeM1MDrsZrT8SQ3">a_dev</span></td>
+<td data-page-node-id="INPB5dOQmoqhhDkl7VAmzG"><span class="badge badge-right" data-page-node-id="UBofbc5dWxr4wng9a61bOA">a_dev6_mobile</span></td>
+<td data-page-node-id="urkERJJfbpBKakkqFpLZA7">待处理</td>
+<td class="meta" data-page-node-id="PjsbvZNRWNxIW35D3vy1Ea">网批2.0</td>
+<td class="meta" data-page-node-id="kLu2QCcxeq51o9ROk8F9VJ">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="0moIwROK36dJTZOJQXDoPW">
+<td class="idx" data-page-node-id="UGu6Mbnlpxh0RrlfuTwzLP">10</td>
+<td class="tid" data-page-node-id="oe5I8eFa728jrkbN2gQhNY">#335714</td>
+<td class="nm" data-page-node-id="cUU1aLL60kHAxr87aoEHgV">【iOS】用户侧 - 新增分批发货 - 工程、返利</td>
+<td class="person" data-page-node-id="WUayXiwC3p0yg8qmNqXy1k">张春杰</td>
+<td data-page-node-id="F8Hdo2bTIRGPqOGRNyLSPI"><span class="badge badge-wrong" data-page-node-id="aC1dkF3uXTCmHn5xiVLAzM">a_dev</span></td>
+<td data-page-node-id="4UzfU9H29ASyqfBC10f2GQ"><span class="badge badge-right" data-page-node-id="8397svr0CaaRnnu8c54exl">a_dev6_mobile</span></td>
+<td data-page-node-id="zkGAvgSTtBLzOD0Np28OZj">待处理</td>
+<td class="meta" data-page-node-id="NqAyoDB1J9tvt4TuZ1jhSq">网批2.0</td>
+<td class="meta" data-page-node-id="DYbz4OHiHWNzu7JjZrWDDT">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="7LDq7a2MHeULeTbWwOa3Ha">
+<td class="idx" data-page-node-id="TDftT86OFzmmjfP9nW9q2b">11</td>
+<td class="tid" data-page-node-id="w2L5qy5RdDfnXJ4bkzO3O6">#335715</td>
+<td class="nm" data-page-node-id="dSbrouVEKmENo4EwOEZPkU">【iOS】用户侧- 收银台</td>
+<td class="person" data-page-node-id="HFfkwEpkagqFlose9eyDNc">张春杰</td>
+<td data-page-node-id="oUjq9BlEddrjCpc4Yr4lRR"><span class="badge badge-wrong" data-page-node-id="OruMmFsb6q8dalB4OZHx7K">a_dev</span></td>
+<td data-page-node-id="LSpHwLG9kt5pEA7qn2Zewe"><span class="badge badge-right" data-page-node-id="gh9jBZyg5VPrHMjUbbQt4i">a_dev6_mobile</span></td>
+<td data-page-node-id="SW4mfgtvJP6Br1Gd1EdeCo">待处理</td>
+<td class="meta" data-page-node-id="7THutG5JYyDTKQVS7yBwMG">网批2.0</td>
+<td class="meta" data-page-node-id="xrCiQjMwP9kUNFS7BHQL1C">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="bNVIPSvDQ84ZitwA0I405k">
+<td class="idx" data-page-node-id="tf8PQlIxbrAdjeOSl1gaLL">12</td>
+<td class="tid" data-page-node-id="Zuj8uw9B3JBIarQQOI6RLF">#335740</td>
+<td class="nm" data-page-node-id="guCex3pBHwg76jouE87D0A">【iOS】用户侧- 收银台（合并支付）</td>
+<td class="person" data-page-node-id="FZuC4D2oHYlC2UaKSzMWZx">张春杰</td>
+<td data-page-node-id="tN02cJEp9CY8HisY5BhfLl"><span class="badge badge-wrong" data-page-node-id="zQfvvhQHmkhk8UiUVuj2IX">a_dev</span></td>
+<td data-page-node-id="cT1f4cnXCS6w2eXWBBxkn1"><span class="badge badge-right" data-page-node-id="6w0rk628C77sxpLvYAjDt7">a_dev6_mobile</span></td>
+<td data-page-node-id="K56pytW7JzvjYvquuzex8p">待处理</td>
+<td class="meta" data-page-node-id="vikA5vw9tOfA2KX7ARD3fU">网批2.0</td>
+<td class="meta" data-page-node-id="OEzFRM4LBO2PXrqhbUvbAI">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="MOOdZ6kpCq2aagnT2cNci7">
+<td class="idx" data-page-node-id="F2jCx0ZvnLICnpz1C0IgsX">13</td>
+<td class="tid" data-page-node-id="ljKjHf9vzWJCCi0SoLeFOt">#335694</td>
+<td class="nm" data-page-node-id="LjRW9i3Mhxcul2EDcuvuxE">【iOS】用户侧 - 订单列表 -（合并支付、支付）</td>
+<td class="person" data-page-node-id="ax7vrx5rRKjZwv3Z2k3p9O">徐良侦</td>
+<td data-page-node-id="EUogeoHOkcqObqPFQ2DQ4q"><span class="badge badge-wrong" data-page-node-id="l7qkwW111jGZXmURyTzBit">a_dev</span></td>
+<td data-page-node-id="2vnlA7DSlUVbZfWh8phzSA"><span class="badge badge-right" data-page-node-id="4JCdBmGSXee1XGH2mIQzU3">a_dev6_mobile</span></td>
+<td data-page-node-id="qq2vWGWUTAlu8gnvWeRxLf">待处理</td>
+<td class="meta" data-page-node-id="obXNUaQc5Ah4Qv6yXibPvP">网批2.0</td>
+<td class="meta" data-page-node-id="Pzlrn6AJTYPxYlkzRokexu">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="1xKFuGyP2btZhs2DqCTYLD">
+<td class="idx" data-page-node-id="GbhM8ta5IEcWV01eegdIdY">14</td>
+<td class="tid" data-page-node-id="kQZlChAIBaGrkN1EnwGxSO">#335695</td>
+<td class="nm" data-page-node-id="BKbLjdxz1Hrod0CkT1RI9b">【iOS】用户侧 - 订单列表 - 大单</td>
+<td class="person" data-page-node-id="EnSrHABlFiB4piHM0BABVx">徐良侦</td>
+<td data-page-node-id="w8ghcP2RR3Vkx4QDTf6Wk8"><span class="badge badge-wrong" data-page-node-id="2U5IycIxdj55GBf4BLRAaN">a_dev</span></td>
+<td data-page-node-id="qFrCKP0Jb3kfhFw7XZXReX"><span class="badge badge-right" data-page-node-id="ZdjTel6M9LDB2A3zR8HuUn">a_dev6_mobile</span></td>
+<td data-page-node-id="B7F8fJ7qAZLEbL8yTCMzXT">待处理</td>
+<td class="meta" data-page-node-id="jHmyxmYHQ047rlyYD5BFmp">网批2.0</td>
+<td class="meta" data-page-node-id="Z6iW1Hv6ClCZqAaxTPkI1e">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="PoKbDoaHE2St86cSDy2D7A">
+<td class="idx" data-page-node-id="TmG3SMjzmJVOlyKuzoitob">15</td>
+<td class="tid" data-page-node-id="xdtrHxTwtlbNU2gPbjZxYa">#335696</td>
+<td class="nm" data-page-node-id="Q8NvSBDmgiaEDUatBQRDMk">【iOS】用户侧 - 订单列表 - 小单</td>
+<td class="person" data-page-node-id="2AZahKwGyQRxEBgIEx9ub2">徐良侦</td>
+<td data-page-node-id="96CJ8uOrzFEI4ZkjjwARk2"><span class="badge badge-wrong" data-page-node-id="e63YUOirDcXVxabzBMejVB">a_dev</span></td>
+<td data-page-node-id="QMo2jJc695PZvci4sza4Fr"><span class="badge badge-right" data-page-node-id="FFDoSRLRJaIhxE8nKpH12q">a_dev6_mobile</span></td>
+<td data-page-node-id="hbkEgFH4dvVLNxxuZ31bGM">待处理</td>
+<td class="meta" data-page-node-id="OxbSwUP9chTEhB0LczwQXr">网批2.0</td>
+<td class="meta" data-page-node-id="w9eQ6fdfYlnvdNipkkco71">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="FLruvrvWd5nJXDIbFfHuOV">
+<td class="idx" data-page-node-id="Wzaaus94EcksnCFbcRvjjO">16</td>
+<td class="tid" data-page-node-id="1o2cnnWB7nJ7ytveLZxM0W">#335697</td>
+<td class="nm" data-page-node-id="CTi0wJJ50u949pJeAzfPpP">【iOS】用户侧 - 订单详情 - 大单</td>
+<td class="person" data-page-node-id="5gUzggBwJAekhU37E1pJff">徐良侦</td>
+<td data-page-node-id="sxUFcHSFy5aVFe3VE1E1UH"><span class="badge badge-wrong" data-page-node-id="r7mol5ALj2WDnk41CPTGxh">a_dev</span></td>
+<td data-page-node-id="udgW3epgcDVU0ZScb4OhRw"><span class="badge badge-right" data-page-node-id="ggsg11r83iHqp0rahVgqH5">a_dev6_mobile</span></td>
+<td data-page-node-id="C6AaSWeqEoHFpWbSAmkjg8">待处理</td>
+<td class="meta" data-page-node-id="gkTCsCsnXZVkAGsYtpGuWz">网批2.0</td>
+<td class="meta" data-page-node-id="u0FAjKYUywyobDFurv5ELH">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="ZMHPCzccf6fnqWmhknzEbh">
+<td class="idx" data-page-node-id="ixeb0KHpWAx4cE8wFa6ZAi">17</td>
+<td class="tid" data-page-node-id="UmDbWIuuAUHTUiFGLYs69d">#335698</td>
+<td class="nm" data-page-node-id="CImvvg17yUCt4rWfMlX1Rr">【iOS】用户侧 - 订单详情 - 小单</td>
+<td class="person" data-page-node-id="2WuFhU20mIw76jZBlh5CUU">徐良侦</td>
+<td data-page-node-id="wg0s2UJc4Ti40aMz1M43gf"><span class="badge badge-wrong" data-page-node-id="L02Y3HztZz18diM9YNS81Z">a_dev</span></td>
+<td data-page-node-id="hdWhtoOfzZp9SICfhN2JBn"><span class="badge badge-right" data-page-node-id="ewIUl3HYlyutJOtDclsGBt">a_dev6_mobile</span></td>
+<td data-page-node-id="3VuUJw1mICI2mgHXaAwz0h">待处理</td>
+<td class="meta" data-page-node-id="w5HeJFY9hW0oeL8AWhSzLX">网批2.0</td>
+<td class="meta" data-page-node-id="DvdmM5FDAxtEoHhHR0hYKE">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="HPNqIWJ58iTAj3uu4wDDof">
+<td class="idx" data-page-node-id="K6P1s3SkSzCBmC3WqvTAot">18</td>
+<td class="tid" data-page-node-id="0l4vfA36gOhY8jeqjKttEM">#335699</td>
+<td class="nm" data-page-node-id="T3Epgu1jFXECJqRzwVIP00">【iOS】管理侧 - 订单列表 - 大单</td>
+<td class="person" data-page-node-id="zwsz163ZiPWrJQMiRX0g5c">徐良侦</td>
+<td data-page-node-id="jrRCOQgJmoHT6I0ksmZIzt"><span class="badge badge-wrong" data-page-node-id="g346BSErKKEyX63GSrIarc">a_dev</span></td>
+<td data-page-node-id="Cjts4uUwmEwazYoC4EmXpX"><span class="badge badge-right" data-page-node-id="cy5YW9hWbCcX5AfCq9xVk0">a_dev6_mobile</span></td>
+<td data-page-node-id="6vFunojEc15KJQw0RFEtjw">待处理</td>
+<td class="meta" data-page-node-id="KyzU16clJhNwkZa4pKCQT0">网批2.0</td>
+<td class="meta" data-page-node-id="EYFIhTuAcYECqfHzJc6Xub">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="JLBHJjfaQMqGqzKWnZdFN3">
+<td class="idx" data-page-node-id="cfCVcRM7F43yBbOdnGAfln">19</td>
+<td class="tid" data-page-node-id="fE7rrGZ8J6AebL5hm5Xb9D">#335700</td>
+<td class="nm" data-page-node-id="jEApM7Y2oDj4jvtj3keXYw">【iOS】管理侧 - 订单列表 - 小单</td>
+<td class="person" data-page-node-id="Gf0fkAMl89DUpHXAtqC4Uj">徐良侦</td>
+<td data-page-node-id="0SNEuHZ5Aw6KgBxp1SF9IA"><span class="badge badge-wrong" data-page-node-id="sb5vQD7WJJai8FPhPOFPPx">a_dev</span></td>
+<td data-page-node-id="ImlxQFoR6Mqie01guIsYNg"><span class="badge badge-right" data-page-node-id="akHCmYHgpiCE4EZbYLc07E">a_dev6_mobile</span></td>
+<td data-page-node-id="YlOlZSbAfgPUPc3fNFHKFJ">待处理</td>
+<td class="meta" data-page-node-id="uPv17RDnE7RNS6V4is79rW">网批2.0</td>
+<td class="meta" data-page-node-id="EMAh8lFy8lBb0xxnHN64EA">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="0j1481WEBz83yVzKj6YANS">
+<td class="idx" data-page-node-id="en8HKZwfd4NNRcqY1mAq5G">20</td>
+<td class="tid" data-page-node-id="ijHGcklkCmtSrCCos1T30U">#335701</td>
+<td class="nm" data-page-node-id="CScwIMWr7AGwpvhG6wBUof">【iOS】管理侧 - 订单详情/接单详情 - 大单</td>
+<td class="person" data-page-node-id="QDKSAzaAnGHqWm1HhYoiuX">徐良侦</td>
+<td data-page-node-id="NnTyIyxERMsUEE2EnNnQ4V"><span class="badge badge-wrong" data-page-node-id="8CX9EREQo7sK7plR6F1le0">a_dev</span></td>
+<td data-page-node-id="D0IUwwBc6yEYAnHpQpaP7L"><span class="badge badge-right" data-page-node-id="nxHMTUhFlZpOCcLqiGuVsm">a_dev6_mobile</span></td>
+<td data-page-node-id="EsUTtSILCYDNgKGTAM1IDW">待处理</td>
+<td class="meta" data-page-node-id="22i5VCJLF3X4cyeQjeC9n5">网批2.0</td>
+<td class="meta" data-page-node-id="r74nlTUkWIkai8VtWpMDdD">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="FNxa6Nry0rTxYDqpebJpXw">
+<td class="idx" data-page-node-id="PFZZpaGxjO3DD2XITI9iH3">21</td>
+<td class="tid" data-page-node-id="JcRNu7NANCFuXXbxcpsEFE">#335702</td>
+<td class="nm" data-page-node-id="mwIvRio8PymHFfUA3jnkWR">【iOS】管理侧 - 订单详情/接单详情 - 小单</td>
+<td class="person" data-page-node-id="jQ6erVgTNiLlIIQ2nIImcc">徐良侦</td>
+<td data-page-node-id="HwuOiXocRa8GgOSo9fxKX1"><span class="badge badge-wrong" data-page-node-id="QRUcjRajUcNiQZNHhGf7YX">a_dev</span></td>
+<td data-page-node-id="SijN558NxxutwZKEawwpPN"><span class="badge badge-right" data-page-node-id="cj29mSTWW7d5Sx6NwileSk">a_dev6_mobile</span></td>
+<td data-page-node-id="W5doPKtYqgZISm5VIR7jpF">待处理</td>
+<td class="meta" data-page-node-id="JyA7xy12je1Du990kRqC5Z">网批2.0</td>
+<td class="meta" data-page-node-id="sOLu3W8MT1POUhGzubMf51">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="xuz6MrTzbgSjTFJv64iB7n">
+<td class="idx" data-page-node-id="KLKMOLD1DFMCWnCAlgygVO">22</td>
+<td class="tid" data-page-node-id="pNaUbEUiHOenhh87cvolor">#335724</td>
+<td class="nm" data-page-node-id="rCaIIEPhFgCHsuXs6wn2Fj">【iOS】用户侧 - 售后列表 - 大单</td>
+<td class="person" data-page-node-id="k91SEATwh3LwNKmkE6qgHi">徐良侦</td>
+<td data-page-node-id="4qLV1wBFdJOXut9dl68bjD"><span class="badge badge-wrong" data-page-node-id="2ScXnqldJQDslEKGdUb68Z">a_dev</span></td>
+<td data-page-node-id="ppD7qT2j8TvbUmCEdzMfjr"><span class="badge badge-right" data-page-node-id="kAvAxfZ8yJQ59suF7GtQCs">a_dev6_mobile</span></td>
+<td data-page-node-id="rpu1ShjuEKr3jKaVUJOdhJ">待处理</td>
+<td class="meta" data-page-node-id="PFPQTOEX90w7HEGHhLpNsJ">网批2.0</td>
+<td class="meta" data-page-node-id="oZTEDMDfPc5N0GUKeszSs2">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="DagaTYGZr80gXCKdmysVQp">
+<td class="idx" data-page-node-id="89AAnQvxrSmtlyL3kC0CSz">23</td>
+<td class="tid" data-page-node-id="xFVD0aJ0Z8o0UFM5ahzIAf">#335725</td>
+<td class="nm" data-page-node-id="IevLnO3pmzQjEpYxSCUWO7">【iOS】用户侧 - 售后列表 - 小单</td>
+<td class="person" data-page-node-id="QoXWPLkVU90k5LYe1yYLzC">徐良侦</td>
+<td data-page-node-id="pOVCefuiHXZVWL7o3F8MlX"><span class="badge badge-wrong" data-page-node-id="D2Dq4ELu7Ir8oskobIqBaL">a_dev</span></td>
+<td data-page-node-id="Y8CS6XErMXR6lFAxyfbDoW"><span class="badge badge-right" data-page-node-id="nIdziUyxFXifH8aRXcPnAB">a_dev6_mobile</span></td>
+<td data-page-node-id="OlmuzmG5esKV5bwfjiAHXt">待处理</td>
+<td class="meta" data-page-node-id="NAv1dnQE1JGMinbx24hIbb">网批2.0</td>
+<td class="meta" data-page-node-id="pEmYTQlpEOVHTPG8AWMc1h">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="F5PUGxNvQHXiUImNOp5Js6">
+<td class="idx" data-page-node-id="pwxKzuW4pwURSbcM2RfmRq">24</td>
+<td class="tid" data-page-node-id="hCBGN9OiO6Pk0uaesD37Pj">#335726</td>
+<td class="nm" data-page-node-id="OIaHbxTFTcd4fxlCMO17WC">【iOS】用户侧 - 售后详情 - 大单</td>
+<td class="person" data-page-node-id="ufUFGtoFnvcpe4hrbEh7Mk">徐良侦</td>
+<td data-page-node-id="ilWSpdOTqzniTyEwPXwCu4"><span class="badge badge-wrong" data-page-node-id="vdwAvVpldv8oOXJFfAsxXJ">a_dev</span></td>
+<td data-page-node-id="1NGyoKioM2imTu95EZP3nA"><span class="badge badge-right" data-page-node-id="VBcD6AtuliFeOqkjSAKT70">a_dev6_mobile</span></td>
+<td data-page-node-id="C3MQbf4GQ8it4Jx5E91Aw6">待处理</td>
+<td class="meta" data-page-node-id="xLDlr1LcEU0nzvYefgVUfQ">网批2.0</td>
+<td class="meta" data-page-node-id="gBGOQ1vMAE1Beo9DNAdVNn">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="xpn77rOgCNcePRS5jX1P1P">
+<td class="idx" data-page-node-id="qp6zM6vJ9eGOIrA5AKbU7D">25</td>
+<td class="tid" data-page-node-id="dgVAgdK179yAEmAlwsdz4C">#335727</td>
+<td class="nm" data-page-node-id="ZYFpwYHd0aBkp6wUEub4Jf">【iOS】用户侧 - 售后详情 - 小单</td>
+<td class="person" data-page-node-id="ilHy4f6ar7d2610wSOfc5J">徐良侦</td>
+<td data-page-node-id="XcQwON6nkzOVmsyCE6fuRj"><span class="badge badge-wrong" data-page-node-id="UYkcDmRd2Jb5ewG3q9HZTU">a_dev</span></td>
+<td data-page-node-id="cMcipZAIdXzUKra83bMzKI"><span class="badge badge-right" data-page-node-id="Gx3FvlNkY4iKsGE8kLH3Z3">a_dev6_mobile</span></td>
+<td data-page-node-id="Snt3OHG1TfenYaj1xr7Yk4">待处理</td>
+<td class="meta" data-page-node-id="Z8YY9dzzeAaPF4vnHBfz1L">网批2.0</td>
+<td class="meta" data-page-node-id="rCuMdPvDaZ9IuxLpb4LAsr">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="MsEY6kTevmCVcQ4p3GlDVg">
+<td class="idx" data-page-node-id="VFs75ED1iIzbgJtugEIUxr">26</td>
+<td class="tid" data-page-node-id="jpLM0hNtMyCGwG6wZLc2dE">#335728</td>
+<td class="nm" data-page-node-id="i17eZwVoxG1fGhE3AAdSBs">【iOS】管理侧 - 售后列表 - 大单</td>
+<td class="person" data-page-node-id="TDTzVXRJbWEs7Nwv2BjiGm">徐良侦</td>
+<td data-page-node-id="OV7jAgG2yzyqgNczXovoiC"><span class="badge badge-wrong" data-page-node-id="6KBRlwPueiBYXFgdE1jubw">a_dev</span></td>
+<td data-page-node-id="rmYJiFAvl0DVvPdl6WuWFk"><span class="badge badge-right" data-page-node-id="pEfkBlBRjRBzTBzU5ZqCki">a_dev6_mobile</span></td>
+<td data-page-node-id="5udnPeoep2xVDHfyRZ9lgQ">待处理</td>
+<td class="meta" data-page-node-id="MFFmHIM179bTbtFzg0Xz1G">网批2.0</td>
+<td class="meta" data-page-node-id="BB9L1sge9sAtdx9vVE43Ti">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="wifGG4hVywFBy5oV8f7h6L">
+<td class="idx" data-page-node-id="SZCt4rnClYCPldVdBHKnQq">27</td>
+<td class="tid" data-page-node-id="BH8SdpISUymmwV58oxYbj7">#335729</td>
+<td class="nm" data-page-node-id="myyv4AOwfIeEHVTxmmD9TP">【iOS】管理侧 - 售后列表 - 小单</td>
+<td class="person" data-page-node-id="kRQOHM3F7QIQmVlnBfP8Gc">徐良侦</td>
+<td data-page-node-id="E10nmJRYg1YL8rady3mKoo"><span class="badge badge-wrong" data-page-node-id="2Es9zpdGxDtsBWDd2UuD99">a_dev</span></td>
+<td data-page-node-id="OHEmYtCAlYyp3MZ4izvBBe"><span class="badge badge-right" data-page-node-id="V7FvEZFXlnhzGdpBv9qPC3">a_dev6_mobile</span></td>
+<td data-page-node-id="OUWuvkR3tkAYiXlXlJuE9E">待处理</td>
+<td class="meta" data-page-node-id="9UAEAW55h5dKBsrZatjG4U">网批2.0</td>
+<td class="meta" data-page-node-id="cdQA8HYRbL4VEMqO55dkFQ">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="mBQH2aIwh3MIqJMcNOTBhO">
+<td class="idx" data-page-node-id="v0r2C0BRB5est387KSfEOm">28</td>
+<td class="tid" data-page-node-id="G2hAbY6nGrIcNg8RvenEa0">#335730</td>
+<td class="nm" data-page-node-id="1SHL8ZowTFGHQ3eBLvgyeb">【iOS】管理侧 - 售后详情 - 大单</td>
+<td class="person" data-page-node-id="KvgmuTdieevZzRQyzd1PRe">徐良侦</td>
+<td data-page-node-id="pC4KFUY8iXk1HmAVNascYf"><span class="badge badge-wrong" data-page-node-id="grrzawsxtli9ypJrBIZXXS">a_dev</span></td>
+<td data-page-node-id="W8dlW6a7u7glFSiHAGz2oJ"><span class="badge badge-right" data-page-node-id="QzIYHO2zsDEVLQZp9LWDEA">a_dev6_mobile</span></td>
+<td data-page-node-id="gU23QH3nWsCivVBelvtbaR">待处理</td>
+<td class="meta" data-page-node-id="IGDamBzEf3CKOFcPVSlwKk">网批2.0</td>
+<td class="meta" data-page-node-id="ZYF65WEZm4TKYb789bDuHW">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="bUSuJX1tBUsP145GMICuzd">
+<td class="idx" data-page-node-id="kykDDWOI0ZBxzxuFIONe80">29</td>
+<td class="tid" data-page-node-id="tZc7Wz24LbzOoEVvUa4r0b">#335731</td>
+<td class="nm" data-page-node-id="HjwP789KBUnQlaiA18wpyN">【iOS】管理侧 - 售后详情 - 小单</td>
+<td class="person" data-page-node-id="rkPD36gJ65cIzUww2rWLIp">徐良侦</td>
+<td data-page-node-id="kZXcJgTRoqrJjgFm6rrKsu"><span class="badge badge-wrong" data-page-node-id="bddcEuPoAOOkIUQpO1dn6u">a_dev</span></td>
+<td data-page-node-id="M5l93bHOusH2dnMFLgh8kp"><span class="badge badge-right" data-page-node-id="dL1RMDh7V90iIvDxwqCNDT">a_dev6_mobile</span></td>
+<td data-page-node-id="Yg1zEQstxmdvsAdxOtV0xp">待处理</td>
+<td class="meta" data-page-node-id="oGG6hjfmTfv0FSzf1pSfEn">网批2.0</td>
+<td class="meta" data-page-node-id="eKBNsH1eeVGEDGy9hHD8xr">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="2vo1PqbM67IqOp2kXzvROc">
+<td class="idx" data-page-node-id="BYaJjbnx4OCUljNCQiqc5m">30</td>
+<td class="tid" data-page-node-id="4U4PhyLFA1fNBm9LduQAC9">#330681</td>
+<td class="nm" data-page-node-id="cHHJGl6iDxvEkjBrXf0BFk">【Android】【管理测】商用工程重构 - 首页</td>
+<td class="person" data-page-node-id="Q7ErH6XV238XrHsUY51eGW">黄宇安</td>
+<td data-page-node-id="dupJtb7mLB7HBl2nbIEFi7"><span class="badge badge-wrong" data-page-node-id="2vsHOE6JkU95bLsSdVPrx1">devel</span></td>
+<td data-page-node-id="SXFja4BBDUoMUSD0XWAqqJ"><span class="badge badge-right" data-page-node-id="EGbVcmNPHXu6HZXXTcOcFM">a_dev6_mobile</span></td>
+<td data-page-node-id="6kHw1M54aL0rAZ3AEXqr4o">待处理</td>
+<td class="meta" data-page-node-id="KAcVy8Lyd2wR3OB2gkUQQ1">网批2.0</td>
+<td class="meta" data-page-node-id="mPBfwnpYiPJUECg6fSz7XL">网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td>
+</tr>
+<tr data-page-node-id="j9GObNTCYLIKBIfz9FjZjE">
+<td class="idx" data-page-node-id="Yvy0UuveVL0Gr4JzPH99jz">31</td>
+<td class="tid" data-page-node-id="QFbvyV7oAhylNsOslMfupA">#332619</td>
+<td class="nm" data-page-node-id="Omzi9oK6rwo7vqtK56IxFO">[adroid] 用户侧- 收银台</td>
+<td class="person" data-page-node-id="Y7cWf9QTAtoFq8d6kG8haG">黄宇安</td>
+<td data-page-node-id="v2caWbAyTq9CNhgnpeas1V"><span class="badge badge-wrong" data-page-node-id="3oW87ACAp6hEcxmzGIIxXn">a_dev</span></td>
+<td data-page-node-id="0e2z9KE0x49thIVcCo2Viz"><span class="badge badge-right" data-page-node-id="jwqkxUvfAe1mELfTH99nfQ">a_dev6_mobile</span></td>
+<td data-page-node-id="zO4QPySdNPFkT6GuES6wN9">待处理</td>
+<td class="meta" data-page-node-id="FC4OLnB3dEFjYMGLcpGhh0">网批2.0</td>
+<td class="meta" data-page-node-id="WbRbIDAqqUOcSfYmFv4FxY">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="G3GEJq0VqKZrBDmrrK2AiU">
+<td class="idx" data-page-node-id="jwXGYJocEF0KzUt9skibSN">32</td>
+<td class="tid" data-page-node-id="ZLOMDH73qZHDUiRVnfxMPz">#332657</td>
+<td class="nm" data-page-node-id="zcvYQCMW18zlnTCSf8MBZK">【android】用户侧 - 大单申请退款</td>
+<td class="person" data-page-node-id="yhqYBZzgH8d4YisljNyFFf">黄宇安</td>
+<td data-page-node-id="cfTGFCk09GZGbBE4K30qri"><span class="badge badge-wrong" data-page-node-id="fhWcvsdpuElsHZh3cALqAs">a_dev</span></td>
+<td data-page-node-id="fNdqe3eLbTkswZQOhKQ00X"><span class="badge badge-right" data-page-node-id="NqrwSWf2GFWDCgbQokWNGW">a_dev6_mobile</span></td>
+<td data-page-node-id="X69l3dB3IhZu6UMwGLoD0J">待处理</td>
+<td class="meta" data-page-node-id="DXTDDuaMS7x8y5789r29e6">网批2.0</td>
+<td class="meta" data-page-node-id="qpx2TdN7feBXlHYYfa0YzT">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="cpZO5eI7aONfe4jYhjI5QC">
+<td class="idx" data-page-node-id="Zz2tzijaeMw4bGigGc4CIm">33</td>
+<td class="tid" data-page-node-id="aA9CuHTOZ30jB0AX5MhwNB">#332658</td>
+<td class="nm" data-page-node-id="Gzc3ngGPHcq97B4e1dFsLg">【android]用户侧- 售后单列表</td>
+<td class="person" data-page-node-id="9a67W0vIkExpMcU0KsH8Dg">黄宇安</td>
+<td data-page-node-id="3QIpD6fACh0yw1Rq1zgUWE"><span class="badge badge-wrong" data-page-node-id="aaYwv66WD33WVxJjD5JGud">a_dev</span></td>
+<td data-page-node-id="UAovAyKwzMG2nXRGICGAa3"><span class="badge badge-right" data-page-node-id="kTjGGXaUFSiMkbQuXzyEz4">a_dev6_mobile</span></td>
+<td data-page-node-id="Gst1yJ4YOAwpdFZXm99bvd">待处理</td>
+<td class="meta" data-page-node-id="p3opUCNOpdAlgbre4LGtz9">网批2.0</td>
+<td class="meta" data-page-node-id="wucuFEcfXUO47S5NJEkJrd">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="JMiRq8SULQwfZdBGsIK3dh">
+<td class="idx" data-page-node-id="kMjpIybB21rG5kXEjjExJg">34</td>
+<td class="tid" data-page-node-id="deWWYdYM9ZNxf78VHosRBE">#332659</td>
+<td class="nm" data-page-node-id="oAfN06F7YQI5Otx2Z1mBZy">【android】用户侧- 大单售后详情</td>
+<td class="person" data-page-node-id="708X6IfKtA64s4MYY72e0h">黄宇安</td>
+<td data-page-node-id="QetRtwGpweo4Ur5emtxYc2"><span class="badge badge-wrong" data-page-node-id="ZP9A575fBj5RoUwenyCpHC">a_dev</span></td>
+<td data-page-node-id="3Jb8DPcDEv0L1Y9YikVuov"><span class="badge badge-right" data-page-node-id="LDANO5PL2zqRKjf5jAsHtb">a_dev6_mobile</span></td>
+<td data-page-node-id="jzsnWNvUfQMBc3ffy0YmPM">待处理</td>
+<td class="meta" data-page-node-id="R3fzSWDaZ3lHAaQmuJfrhw">网批2.0</td>
+<td class="meta" data-page-node-id="fPFBPTy55GCKmywdKg1EKh">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="p5sfBXSI3oYqI9SmBJ9LrK">
+<td class="idx" data-page-node-id="YHCGdnK9fOxZkVvDT9khBE">35</td>
+<td class="tid" data-page-node-id="UrPCHFSk1ed7uNPCYVcSE4">#332660</td>
+<td class="nm" data-page-node-id="CIisQLXKAsjNy8j03u9S4m">【Android】 用户侧 - 申请取消发货</td>
+<td class="person" data-page-node-id="fnfM1nZFgjFLcG3LGkuICn">黄宇安</td>
+<td data-page-node-id="xCp1NdVKEFbR7jN6ko6yps"><span class="badge badge-wrong" data-page-node-id="EXjpLcD6IOFulNVBZmLDYm">devel</span></td>
+<td data-page-node-id="P4bdJOzhCTqfidunvONZV0"><span class="badge badge-right" data-page-node-id="mCMx01qRYxoL1T7Hr6AKoq">a_dev6_mobile</span></td>
+<td data-page-node-id="yDvsIPWszausq8wnsb52Km">待处理</td>
+<td class="meta" data-page-node-id="FBVUCiCCaS1D3kSbHe0E3Y">网批2.0</td>
+<td class="meta" data-page-node-id="hD7lIh8mVsNmAt185tQKDY">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="a00vbC1EpEf8GAGiCcL0bL">
+<td class="idx" data-page-node-id="uy9NoogqmkoGVvuP7qz7a3">36</td>
+<td class="tid" data-page-node-id="nFuVxIA1ladDS9maqfXrBc">#332661</td>
+<td class="nm" data-page-node-id="OqH1Biv4ypuk02MChkJ8jl">【Android】用户侧 - 发货单售后列表</td>
+<td class="person" data-page-node-id="zEuSzxgzCJNF6oVA6rZ5VP">黄宇安</td>
+<td data-page-node-id="BRn3QuHyzHNwnkdNuaZDq5"><span class="badge badge-wrong" data-page-node-id="HXGLmiGtbZcBvuSjF0GZdm">devel</span></td>
+<td data-page-node-id="AKEW8pJMO0WhAfCfqkWPxj"><span class="badge badge-right" data-page-node-id="9MhnqwCBw4uHs3EGQARBo5">a_dev6_mobile</span></td>
+<td data-page-node-id="C1rTbkheGBJbnrpDGUjmA1">待处理</td>
+<td class="meta" data-page-node-id="C3VInt4aUNDbk0WuYGs0uN">网批2.0</td>
+<td class="meta" data-page-node-id="692hC3YIZvKDBeZwGwrpE7">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="HJSIqPpn2eyTSMEHeBFDS0">
+<td class="idx" data-page-node-id="RvWMopBKTMsCseaHuHeFPY">37</td>
+<td class="tid" data-page-node-id="nBZNGStMuPZx03n6sTk6Be">#332662</td>
+<td class="nm" data-page-node-id="h2u5lJ1o5V2HaiO3Ml3P12">【Android】用户侧 - 发货单售后详情</td>
+<td class="person" data-page-node-id="JL1oDPhLMRZKfaASVkK3EV">黄宇安</td>
+<td data-page-node-id="hFksIlc9k0MHXUX2SmF3wf"><span class="badge badge-wrong" data-page-node-id="POnbaXkcextfdKz8rFIomS">devel</span></td>
+<td data-page-node-id="5Q7cminRoQlJJ5BH8BiaNz"><span class="badge badge-right" data-page-node-id="cSgrzHlPT70JjHF2BJ3pYM">a_dev6_mobile</span></td>
+<td data-page-node-id="jtuNHlcFC2V3PavvuhJReL">待处理</td>
+<td class="meta" data-page-node-id="k2mIZ1W7ruNcJLBCRTOMq9">网批2.0</td>
+<td class="meta" data-page-node-id="KUgal0quHUGJp2K3UDPVdD">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="KeGz2kkGhiJYAFh7sQZKiD">
+<td class="idx" data-page-node-id="StINsJ2P9N9hWOAdWAUBNj">38</td>
+<td class="tid" data-page-node-id="sfYvTQdwd47KHgrYAXkBpf">#335750</td>
+<td class="nm" data-page-node-id="hCiC0RiSEdOLV40lg0GUOB">【Android】管理侧 - 待办事项 - 订单审批 - 家用分批发货大小单</td>
+<td class="person" data-page-node-id="bHQBso17GrNQ4RMM9mY0XN">黄宇安</td>
+<td data-page-node-id="VktBIHgFd0C6a5vYtOtPN7"><span class="badge badge-wrong" data-page-node-id="UH548SbhWtRmCF3KcU3koG">a_dev</span></td>
+<td data-page-node-id="q2Yo5YZpJm1Nonc65UpgJH"><span class="badge badge-right" data-page-node-id="FFRjcwnVzPxQsLdxCEa5mO">a_dev6_mobile</span></td>
+<td data-page-node-id="kEaH3Ot7LBz5dOZylaDsC6">待处理</td>
+<td class="meta" data-page-node-id="D4VDRIF8OulLMQHRyoUqA8">网批2.0</td>
+<td class="meta" data-page-node-id="7rZlWC65EgHvhUwaAkVC2T">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="OHLwD2LH2Up2lcRVfv8uUD">
+<td class="idx" data-page-node-id="pIMgna1f1LVrSagV2mFW3b">39</td>
+<td class="tid" data-page-node-id="F6xNnj1bFzXlCBa6Gmywce">#335751</td>
+<td class="nm" data-page-node-id="cafRjLUn9AyXXcrnHSjTOi">【Android】管理侧 - 待办事项 - 退款审批 - 家用分批发货大小单</td>
+<td class="person" data-page-node-id="1oUr6guvwN267f16I1UCTV">黄宇安</td>
+<td data-page-node-id="Al0vBuutbxNeFdTvT37GnQ"><span class="badge badge-wrong" data-page-node-id="m1uxmT0qaAVgqFRkHhPXFM">a_dev</span></td>
+<td data-page-node-id="OCA8oGZL2kiDCoCSEqRNG1"><span class="badge badge-right" data-page-node-id="QKsH6qq04o7cGG8agI01qA">a_dev6_mobile</span></td>
+<td data-page-node-id="pwBNIbT5P3qKBnOM1Q88Q9">待处理</td>
+<td class="meta" data-page-node-id="QtyphH0kJ8j9cDsVV9uRpS">网批2.0</td>
+<td class="meta" data-page-node-id="PkNbAa9DyBVtXPKpHNwUSj">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+</tbody></table></div></div>
+<div class="role-sec" data-page-node-id="QzYiwzbgApFOYCptoUFVXv">
+<div class="role-head" style="border-left:4px solid #db2777;color:#db2777;" data-page-node-id="tpGGZijzFpW2b9ebTQGVVh">应属「前端」<span class="cnt" data-page-node-id="o1A0bJ9pEBqOMbxFkA5mR6">14 条</span></div>
+<div class="tbl-wrap" data-page-node-id="Yfo72YsnFBZp8IbNUbTcZw"><table data-page-node-id="LlDDDlsvHm6JxeOVWBdnUy">
+<thead data-page-node-id="olwja9DMvCMaUVFcP1VSZG"><tr data-page-node-id="vn9Iz8Q6G61FDDemrBQVdQ"><th data-page-node-id="JAME1SbxjjGGug8jqTG5GC">#</th><th data-page-node-id="W5CnxEH3UhdEeYUw9VP98e">ID</th><th data-page-node-id="e8V1tLlX8u0HBConBZYGZO">任务名</th><th data-page-node-id="hRufMGf9xHjvFubCbQiEhC">负责人</th><th data-page-node-id="xrLsjKWRC3LLdN0VIIIcsR">当前type</th><th data-page-node-id="YcuO6WExw7hnT54AFjPV5Z">建议改为</th><th data-page-node-id="1ud7LJZvUJVoDywofWMsPN">状态</th><th data-page-node-id="UaQR2kCWKvC6HL4oDDbtaD">平台</th><th data-page-node-id="gZc7yRUVvmZDKHv8tPEsD0">迭代</th></tr></thead>
+<tbody data-page-node-id="j2j90ECPLaeVBv9GOdaIPd"><tr data-page-node-id="GIxlItQWvd6J4kJoV7QEWF">
+<td class="idx" data-page-node-id="BSofgQxYSAbxclzkcWr6Pg">1</td>
+<td class="tid" data-page-node-id="1hpZep33AjthlilJv5o9oc">#330134</td>
+<td class="nm" data-page-node-id="aMwEfRjRzyFeiBsjoPjikk">【GC30】  1、家用工程单-详情页，展示“大盘售后结算优惠”的配置</td>
+<td class="person" data-page-node-id="AGmg6P9Eog0RvCHe6zWABr">李漫嘉</td>
+<td data-page-node-id="ddhFINVTxgeyjBcq1zaCRC"><span class="badge badge-wrong" data-page-node-id="ef5EyozfrGQ1gOJ7sJcBaL">devel</span></td>
+<td data-page-node-id="qIkshpmnlGX74B77Nc0HE3"><span class="badge badge-right" data-page-node-id="Bt4wB0MCg0RS7SyNCXneP3">a_dev2_front</span></td>
+<td data-page-node-id="eoeQJm6dDCDgaUwwEQlf3Z">待处理</td>
+<td class="meta" data-page-node-id="K6pISbmiEJ604jqeHyeyz4">网批2.0</td>
+<td class="meta" data-page-node-id="wDMz9RvwzBqr3UHC0wRyfE">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="WE6JmoghvDKjcMbZrTHeN2">
+<td class="idx" data-page-node-id="egmEMtBXeSjUUdANivOBjM">2</td>
+<td class="tid" data-page-node-id="kKKXAz3yuR4z8lXbIn0Oca">#330971</td>
+<td class="nm" data-page-node-id="5pWIzTyObrcvSt6RkV4L0Q">【H5】分批发货订单售后大单列表</td>
+<td class="person" data-page-node-id="PVFHMmD9DCkv65Y86NSF3W">李漫嘉</td>
+<td data-page-node-id="VAWV7KiHi6KFDv17dy7SXP"><span class="badge badge-wrong" data-page-node-id="NzWFOJZUhzxf4c5INQRr7j">devel</span></td>
+<td data-page-node-id="MP4cCci7FChxfj3KRehRdA"><span class="badge badge-right" data-page-node-id="y9dn22GZJOz6s9UDE2r6py">a_dev2_front</span></td>
+<td data-page-node-id="pcZZcJLOG3PLmWSEdLWeTF">待处理</td>
+<td class="meta" data-page-node-id="pzL61pAHkuZU7AEiSMu5PI">网批2.0</td>
+<td class="meta" data-page-node-id="Y0LA1sN0NtdJ4OMoxvAmIO">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="4rwxVZ0nQJakiAURkbMXId">
+<td class="idx" data-page-node-id="YDZpW99HCI9oiG1OtufG7E">3</td>
+<td class="tid" data-page-node-id="nfzRXrQb4xG6GL1bVXGW9D">#334567</td>
+<td class="nm" data-page-node-id="a0LJYLdmWSPHdMr8QJABpd">【PC用户】 商用工程收银台</td>
+<td class="person" data-page-node-id="b7QZyvrad6wBkyCedYf1t4">田宇飞</td>
+<td data-page-node-id="WUqDj3slZW4ug0OE0HQjLw"><span class="badge badge-wrong" data-page-node-id="UgXANlhMqfhUjN9K7pDCUR">devel</span></td>
+<td data-page-node-id="ZcCTnAO9j1DKswAjhnQoH2"><span class="badge badge-right" data-page-node-id="7QRDXUguIYQhhaisS51EZO">a_dev2_front</span></td>
+<td data-page-node-id="19OTy2F9S4as8VD7ZMXq9s">待处理</td>
+<td class="meta" data-page-node-id="SbertYRZ6cCh4SDlobVeYt">网批2.0</td>
+<td class="meta" data-page-node-id="EFywbYqfvDxRLtHDMSqBAb">网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td>
+</tr>
+<tr data-page-node-id="SnB63Wx5KsrQjcNIsS6bfh">
+<td class="idx" data-page-node-id="4dBG1YHKsby2ZnT3lAaoQK">4</td>
+<td class="tid" data-page-node-id="T675S8r0tFPrWf79RUxDdZ">#334568</td>
+<td class="nm" data-page-node-id="CUnlj3XZ8gkqohk3FCfVgM">【PC用户】 家用工程收银台</td>
+<td class="person" data-page-node-id="GHB6AmTylG84nLNAe9fC4B">田宇飞</td>
+<td data-page-node-id="rjULHh3DwC7I8tV7CmrLHd"><span class="badge badge-wrong" data-page-node-id="hI1nPp92wL0xQ5v1mlq1Jp">devel</span></td>
+<td data-page-node-id="1lGMUxtj5o5wle0hNMjw61"><span class="badge badge-right" data-page-node-id="FjVzEPnLLhFjCugHUCY4Oz">a_dev2_front</span></td>
+<td data-page-node-id="5MKPFMXzqZeunNFbMpuI5Y">待处理</td>
+<td class="meta" data-page-node-id="NL3NCv97ypFnLWCt5HYVHI">网批2.0</td>
+<td class="meta" data-page-node-id="9Y0UALH6Ul15xM5HTvtRFH">网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td>
+</tr>
+<tr data-page-node-id="L3FSE3LU4N9bF2DTIrwj95">
+<td class="idx" data-page-node-id="9R3dOAFN5Yr2vjEKXEnedd">5</td>
+<td class="tid" data-page-node-id="RSmh378uHUZZZ2cfganLrQ">#330806</td>
+<td class="nm" data-page-node-id="WvkBjmEQQHJchs1RKunEp8">【h5管理】家用分批发货订单-订单列表</td>
+<td class="person" data-page-node-id="DbEp0PKkF4aaN98hXCY73e">范文玉</td>
+<td data-page-node-id="6rE04nBL83hviX2YgW7gWV"><span class="badge badge-wrong" data-page-node-id="NplviGnDTQ5b98HADdkvIC">devel</span></td>
+<td data-page-node-id="uXw3LPu9n1sWhICpxqWgVI"><span class="badge badge-right" data-page-node-id="CfE4ELbYjpffympBaAOPZU">a_dev2_front</span></td>
+<td data-page-node-id="fIFKJfMA8SqgqrKXNyYTvR">待处理</td>
+<td class="meta" data-page-node-id="lOBkebsGneYDtftPpCbHyy">网批2.0</td>
+<td class="meta" data-page-node-id="L6Sgva2FCcBXvBkSEJd7S1">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="YNfGKY2Bf9mDmCHcVvMW95">
+<td class="idx" data-page-node-id="2YvzfnCj9mHadOpSS4P11G">6</td>
+<td class="tid" data-page-node-id="wnA1H4vQ1ryfMxkOeCcbRe">#330808</td>
+<td class="nm" data-page-node-id="QzNsyffGsEStZpyEOBkY8O">【h5管理】家用分批发货订单-订单接单页</td>
+<td class="person" data-page-node-id="kMHJlUDJJgbHEtkNevDjdV">范文玉</td>
+<td data-page-node-id="ksFtuDvLMYGuQPj6GUGz0L"><span class="badge badge-wrong" data-page-node-id="IGylSciQ4ABjCnJvtxtaOp">devel</span></td>
+<td data-page-node-id="3AubCTMDJiQ09LPNubk8zq"><span class="badge badge-right" data-page-node-id="Oxz34A5LtxfKPf98YYYArY">a_dev2_front</span></td>
+<td data-page-node-id="NB1Lt2oG2KLXD9WBmNOm4H">待处理</td>
+<td class="meta" data-page-node-id="L2ZpDAKl3NiY0lXetDP6HP">网批2.0</td>
+<td class="meta" data-page-node-id="ril2HkWg3KC0FDvAPJP13O">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="odD18v3tuqoEN8YklJCJqM">
+<td class="idx" data-page-node-id="o01BnQYChFAzCOt4qTkESP">7</td>
+<td class="tid" data-page-node-id="bFVUR8FH9YGG4eJADmCEOY">#330809</td>
+<td class="nm" data-page-node-id="Zg9kt8EcCTFSheNpQFo97U">【h5管理】家用分批发货订单-订单详情页</td>
+<td class="person" data-page-node-id="wqOFcr6faBXCJurMDm9JJB">范文玉</td>
+<td data-page-node-id="gJdTGP0iwydjGmOEIAIZSI"><span class="badge badge-wrong" data-page-node-id="1Pu57VDxEoCQDJGD7WCUei">devel</span></td>
+<td data-page-node-id="WZjrSRC6SMspshKGLM8Rhd"><span class="badge badge-right" data-page-node-id="RBqTRSX6RtOrCBcXj270IG">a_dev2_front</span></td>
+<td data-page-node-id="LZJjAhwl2DrT9FLVsb0R0u">待处理</td>
+<td class="meta" data-page-node-id="X2xqOjMR6sIsx0a2e0GgJe">网批2.0</td>
+<td class="meta" data-page-node-id="enjCLyBCXRXEzGHptabFpj">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="QHPpeWN2IGyuzAYDR62Te1">
+<td class="idx" data-page-node-id="orFTUTAuJ2Ot9MTm3rxKrW">8</td>
+<td class="tid" data-page-node-id="i0dGSEPvwOdJu8HQVJ3mPE">#330813</td>
+<td class="nm" data-page-node-id="GrAjghUyD1CHhQjFxkXBFO">【h5管理】家用分批发货订单-发货单列表</td>
+<td class="person" data-page-node-id="MWN7hOg75kUOIONFkWRTMk">范文玉</td>
+<td data-page-node-id="uPlyPDBdSFWNrxNYuwtWV0"><span class="badge badge-wrong" data-page-node-id="e3Ml0dXF22IqLmWmxRbj8L">devel</span></td>
+<td data-page-node-id="o7mlYNaLB8ERg7ihfpEIjZ"><span class="badge badge-right" data-page-node-id="7zzQMRESDKqEtqQKHyuikp">a_dev2_front</span></td>
+<td data-page-node-id="64yitbtJZmVbX0k2Lzdzq4">待处理</td>
+<td class="meta" data-page-node-id="XIWb190ZWUocj4mwcHcx4q">网批2.0</td>
+<td class="meta" data-page-node-id="OmUUuZwWuOl9SVoRdPVr5f">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="5Hw2lHGYNTSEnZ9lMWqy1d">
+<td class="idx" data-page-node-id="1ZaPAm3GGEiSVXTpTjsQNC">9</td>
+<td class="tid" data-page-node-id="7JNd73KCQzvszHubLCLZC7">#330814</td>
+<td class="nm" data-page-node-id="cQt7E8ZylDTDobPwrv4Evb">【h5管理】家用分批发货订单-发货单详情页（接单）</td>
+<td class="person" data-page-node-id="ouqHsDqiZxZ3KNBddy7zuo">范文玉</td>
+<td data-page-node-id="VBS9yPcqCGBeBI7ULMuxE3"><span class="badge badge-wrong" data-page-node-id="fvbECamUT47rM4PUYvTTml">devel</span></td>
+<td data-page-node-id="agLy74bugmirwyEYIlIx6l"><span class="badge badge-right" data-page-node-id="kUmE6AIas3ldZeL1ZrQzZQ">a_dev2_front</span></td>
+<td data-page-node-id="npTGaiNybbTCPwjzuruVWK">待处理</td>
+<td class="meta" data-page-node-id="RC8oDCfYeVyVFIG1pKOaU9">网批2.0</td>
+<td class="meta" data-page-node-id="rIV6wzWE1kXBs9qJF4ojKG">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="4iKrWcddvYAFH84Y6ouTdv">
+<td class="idx" data-page-node-id="E2c6FgHDTijZkFX3deqsa6">10</td>
+<td class="tid" data-page-node-id="Rx690WtzL9RZBNeLYAhnP6">#330815</td>
+<td class="nm" data-page-node-id="Lm3UKSln7TFGdD3vMkc0HB">【h5管理】家用分批发货订单-发货单详情页（自提）</td>
+<td class="person" data-page-node-id="o0HlVnVuQxdJPFUMnDsolv">范文玉</td>
+<td data-page-node-id="YYA30zxbJy4hGQzpvCezxO"><span class="badge badge-wrong" data-page-node-id="oF0ZXvJ5iN1QDeF6DgNQcf">devel</span></td>
+<td data-page-node-id="a0nLjMSylm7w3QO4REr0DE"><span class="badge badge-right" data-page-node-id="GipnQeYJQebNGQ10f8lPOI">a_dev2_front</span></td>
+<td data-page-node-id="bRse52xlnNSv8nR74rGmMa">待处理</td>
+<td class="meta" data-page-node-id="oJiQYGvuiFa7YGojip967G">网批2.0</td>
+<td class="meta" data-page-node-id="y7yUEPcsDtg6oegMPOMOsm">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="BTdEIVnscsjGzCksxpp6Xz">
+<td class="idx" data-page-node-id="CAGe3Ms5KBjVCmkfOyNp4C">11</td>
+<td class="tid" data-page-node-id="BbzblO98DlKlwY9qEOx4ca">#330816</td>
+<td class="nm" data-page-node-id="LxDBKUgDvRh9tSqjlxCUCg">【h5管理】家用分批发货订单-发货单详情（配送）</td>
+<td class="person" data-page-node-id="XWY4FONlLSDNC3Gd9lBGyo">范文玉</td>
+<td data-page-node-id="gNv55OG6shW6mjHnnDOzRc"><span class="badge badge-wrong" data-page-node-id="0p9HDxz18wET0qgL9XmsR9">devel</span></td>
+<td data-page-node-id="ks2wPHavCdOKKviFIPTF9G"><span class="badge badge-right" data-page-node-id="A4vHw1jocDw3I2hU2BeG9I">a_dev2_front</span></td>
+<td data-page-node-id="4fb1FmnTi0cTAdMsbIY4yj">待处理</td>
+<td class="meta" data-page-node-id="caAOzivNnfUzhGZc9hDlo1">网批2.0</td>
+<td class="meta" data-page-node-id="JVEblSfs7KpCnC0QcNCu1t">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td>
+</tr>
+<tr data-page-node-id="P2F9h41HxDXC3wnvH4MAil">
+<td class="idx" data-page-node-id="avACMojEmRhpfNTQH5q2u1">12</td>
+<td class="tid" data-page-node-id="WqACUYN6AIneuDnjb908VG">#330836</td>
+<td class="nm" data-page-node-id="7M1YCVmQND7JB3Q4OoyxqD">【PC前端】【GC27】 工程销售方案，增加“内部价”</td>
+<td class="person" data-page-node-id="qtfenZFIzfgY2RnJuKtsu5">范文玉</td>
+<td data-page-node-id="AnTFEemelmKWzYJA76kZKM"><span class="badge badge-wrong" data-page-node-id="IC5RbftUoaqVzdipfasrdi">devel</span></td>
+<td data-page-node-id="ZH1OzB7II8Np5NTEhijYOY"><span class="badge badge-right" data-page-node-id="jGRqZOhZKu1EaRjGGL5yVL">a_dev2_front</span></td>
+<td data-page-node-id="KEDi4A45hfkxPDDxtObcF7">待处理</td>
+<td class="meta" data-page-node-id="eGMFXQvG3BHE1iaHAbCG3R">网批2.0</td>
+<td class="meta" data-page-node-id="TsdNkFgEDuW66uKzZmg4rL">网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td>
+</tr>
+<tr data-page-node-id="pjZDJTKYpLoOyET9mvnndU">
+<td class="idx" data-page-node-id="bdebMENhCizTkk2XIfVucc">13</td>
+<td class="tid" data-page-node-id="RR9howz2VdjcFCw0qihpaz">#330837</td>
+<td class="nm" data-page-node-id="GW9hVQi7QdZYKFbgWbStJT">【PC前端】【GC28】工程销售方案-调整记录，增加“内部价”记录</td>
+<td class="person" data-page-node-id="pywPekYbtu8AoAGqrtn4ch">范文玉</td>
+<td data-page-node-id="3AYD5ABAgxuShc8pnqeBcK"><span class="badge badge-wrong" data-page-node-id="2gbDRwR7BzZIvWOPukts7S">devel</span></td>
+<td data-page-node-id="Iv8ffYX5LPHW5reNy8aoTZ"><span class="badge badge-right" data-page-node-id="4ehrV6WopxH0DnnfM7rU8H">a_dev2_front</span></td>
+<td data-page-node-id="F4GPOGR0mrWg0BhNFLMQhO">待处理</td>
+<td class="meta" data-page-node-id="evNXPSCuuE0UKodQ62mlfq">网批2.0</td>
+<td class="meta" data-page-node-id="BhIHXtyX3YGUuRX8KC44WV">网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td>
+</tr>
+<tr data-page-node-id="c6MtUjashSAoWsIA4a08ba">
+<td class="idx" data-page-node-id="4b8sdAp9ZNeqcwbYBDdrhg">14</td>
+<td class="tid" data-page-node-id="peqLL87hswGpVGT7lDHaC0">#330887</td>
+<td class="nm" data-page-node-id="fyjM11B4A27w4AmCJKKLv2">【PC管理】货款账户和返利账户流水明细行业隔离</td>
+<td class="person" data-page-node-id="1e0y54KJMMai23kGbCmwsg">范文玉</td>
+<td data-page-node-id="8y0h9mfcs0stvu2tES1h9S"><span class="badge badge-wrong" data-page-node-id="gJjddaEJaifB4SKxniHfUI">devel</span></td>
+<td data-page-node-id="a7xp5BIiT5bWQRNBe0AjML"><span class="badge badge-right" data-page-node-id="gMLvjOkPIukKoXTEsjA0OZ">a_dev2_front</span></td>
+<td data-page-node-id="EQFhwWFCoE9BOM70qzm9Bt">待处理</td>
+<td class="meta" data-page-node-id="AoXFf2GUgrNDsdfk38CmLc">网批2.0</td>
+<td class="meta" data-page-node-id="kEGd4AG63gqxMAP2058hCQ">网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</td>
+</tr>
+</tbody></table></div></div>
+
+<div class="footer" data-page-node-id="FRKsCe0sgO4Bi7G8S57dTO">禅道数据 · 自动扫描 · 确认后批量修正 type（移动端→a_dev6_mobile / 前端→a_dev2_front）</div>
+</div>
+</body></html>
