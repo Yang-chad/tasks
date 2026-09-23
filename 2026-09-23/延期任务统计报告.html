@@ -54,13 +54,13 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <body>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="header"><h1>🚨 延期任务统计报告</h1>
-<p>数据截止：2026-09-23 | 全平台延期任务追踪 | 共 19 个延期任务 | 网批2.0: 19</p></div>
+<p>数据截止：2026-09-23 | 全平台延期任务追踪 | 共 23 个延期任务 | 网批2.0: 23</p></div>
 <div class="cards">
-<div class="card card-total"><div class="num">19</div><div class="label">延期任务总数</div></div>
-<div class="card card-wait"><div class="num">2</div><div class="label">待处理</div></div>
+<div class="card card-total"><div class="num">23</div><div class="label">延期任务总数</div></div>
+<div class="card card-wait"><div class="num">6</div><div class="label">待处理</div></div>
 <div class="card card-doing"><div class="num">17</div><div class="label">进行中</div></div>
-<div class="card card-overdue"><div class="num">19</div><div class="label">延期</div></div>
-<div class="card card-people"><div class="num">2</div><div class="label">涉及人员</div></div>
+<div class="card card-overdue"><div class="num">23</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">3</div><div class="label">涉及人员</div></div>
 </div>
 <div class="charts">
 <div class="chart-box"><h3>延期任务按人员分布</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
@@ -111,6 +111,35 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
     <details>
         <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">颜成序</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共4个</span>
+                <span class="stat-badge stat-wait">待处理4</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">最长19天</span>
+                <span class="stat-badge stat-h">预估100h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余100h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>所属迭代</th><th>截止日期</th><th>超期天数</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-overdue"><td>336892</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【商用1.0】江苏商用管理层培训">【商用1.0】江苏商用管理层培训</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>x_extension</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-04</td><td style="color:#ef4444;font-weight:700;">19天</td><td>30</td><td>0</td><td>30</td></tr>
+<tr class="row-overdue"><td>336893</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【商用1.0】江苏商用网批系统培训">【商用1.0】江苏商用网批系统培训</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>x_extension</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-07</td><td style="color:#ef4444;font-weight:700;">16天</td><td>30</td><td>0</td><td>30</td></tr>
+<tr class="row-overdue"><td>336894</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="【网批4.0】网批4.0培训 [供应链金融]（财务公司）">【网批4.0】网批4.0培训 [供应链金融]（财务公司）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>x_extension</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-11</td><td style="color:#ef4444;font-weight:700;">12天</td><td>10</td><td>0</td><td>10</td></tr>
+<tr class="row-overdue"><td>336891</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="推广地区基础系统配置">推广地区基础系统配置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>x_extension</td><td>网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</td><td>2026-09-18</td><td style="color:#ef4444;font-weight:700;">5天</td><td>30</td><td>0</td><td>30</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
             <span class="assignee-name">吴炜欣</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共4个</span>
@@ -140,9 +169,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </details>
 </div>
 <script>
-new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u5f20\u6625\u6770", "\u5434\u709c\u6b23"],datasets:[{label:'延期任务数',data:[15, 4],backgroundColor:["#667eea80", "#f093fb80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[2, 17],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[19],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u5f20\u6625\u6770", "\u989c\u6210\u5e8f", "\u5434\u709c\u6b23"],datasets:[{label:'延期任务数',data:[15, 4, 4],backgroundColor:["#667eea80", "#f093fb80", "#4facfe80"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[6, 17],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[23],backgroundColor:["#ef4444"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
 </html>
