@@ -3,15 +3,15 @@
   "config_key": "backend",
   "task_label": "后端开发",
   "platform": "三平台汇总",
-  "total_incomplete": 176,
+  "total_incomplete": 179,
   "type_breakdown": {
-    "a_dev4_control": 161,
+    "a_dev4_control": 165,
     "a_dev": 13,
-    "devel": 2
+    "devel": 1
   },
   "summary": {
-    "wait": 145,
-    "doing": 31,
+    "wait": 150,
+    "doing": 29,
     "changed": 0,
     "other": 0,
     "overdue": 0
@@ -923,12 +923,12 @@
       ]
     },
     "卢鑫": {
-      "count": 24,
-      "wait": 24,
-      "doing": 0,
-      "estimate": 112,
+      "count": 21,
+      "wait": 20,
+      "doing": 1,
+      "estimate": 100,
       "consumed": 0,
-      "left": 112,
+      "left": 100,
       "tasks": [
         {
           "id": 336776,
@@ -1234,7 +1234,7 @@
           "id": 338280,
           "name": "导出模板4.0各个活动方案导出“销售标签”字段",
           "type": "a_dev4_control",
-          "status": "wait",
+          "status": "doing",
           "assignee": "卢鑫",
           "exec_name": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
           "deadline": "2026-10-14",
@@ -1244,51 +1244,6 @@
           "left": 16,
           "pri": 3,
           "openedDate": "2026-09-28T07:39:23Z"
-        },
-        {
-          "id": 338391,
-          "name": "【后端】经销商入驻审核通过后业务线为空，经排查是由于APP端参数漏传导致经销商没有绑定对应业务线，已在后端加上拦截校验。",
-          "type": "a_dev4_control",
-          "status": "wait",
-          "assignee": "卢鑫",
-          "exec_name": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "deadline": "2026-09-30",
-          "days_overdue": 0,
-          "estimate": 4,
-          "consumed": 0,
-          "left": 4,
-          "pri": 3,
-          "openedDate": "2026-09-28T08:21:47Z"
-        },
-        {
-          "id": 338389,
-          "name": "【后端】经销商桂林市叠彩区格铭家电维修部申请分销转为直营，由于变更业务经理，导致当前业务经理郑鑫无法审核，提单修改旧业务经理创建的邀请码，将创建人改为新业务经理。",
-          "type": "a_dev4_control",
-          "status": "wait",
-          "assignee": "卢鑫",
-          "exec_name": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "deadline": "2026-09-30",
-          "days_overdue": 0,
-          "estimate": 4,
-          "consumed": 0,
-          "left": 4,
-          "pri": 3,
-          "openedDate": "2026-09-28T08:21:26Z"
-        },
-        {
-          "id": 338388,
-          "name": "【后端】经销商乐安县云海升服务中心变更为乐安县海盛暖通设备销售部，银行入账记录还是就主体，排查缓存未发现数据异常，后续在资料变更功能代码加上日志继续跟踪该问题。",
-          "type": "a_dev4_control",
-          "status": "wait",
-          "assignee": "卢鑫",
-          "exec_name": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
-          "deadline": "2026-09-30",
-          "days_overdue": 0,
-          "estimate": 4,
-          "consumed": 0,
-          "left": 4,
-          "pri": 3,
-          "openedDate": "2026-09-28T08:21:02Z"
         }
       ]
     },
@@ -1558,12 +1513,12 @@
       ]
     },
     "徐琦": {
-      "count": 16,
+      "count": 15,
       "wait": 14,
-      "doing": 2,
-      "estimate": 64,
+      "doing": 1,
+      "estimate": 58,
       "consumed": 0,
-      "left": 64,
+      "left": 58,
       "tasks": [
         {
           "id": 331321,
@@ -1774,21 +1729,6 @@
           "left": 4,
           "pri": 2,
           "openedDate": "2026-09-11T09:30:05Z"
-        },
-        {
-          "id": 329486,
-          "name": "【后端】新建逆向保存-逆向生成生成预览，导入明细",
-          "type": "a_dev4_control",
-          "status": "doing",
-          "assignee": "徐琦",
-          "exec_name": "集采平台_V1.31.0（1015/集采dev4.1）【2026】",
-          "deadline": "2026-09-30",
-          "days_overdue": 0,
-          "estimate": 6,
-          "consumed": 0,
-          "left": 6,
-          "pri": 2,
-          "openedDate": "2026-09-04T06:28:38Z"
         },
         {
           "id": 329483,
@@ -2028,12 +1968,12 @@
       ]
     },
     "李龙键": {
-      "count": 13,
-      "wait": 5,
+      "count": 14,
+      "wait": 6,
       "doing": 8,
-      "estimate": 92,
+      "estimate": 102,
       "consumed": 0,
-      "left": 92,
+      "left": 102,
       "tasks": [
         {
           "id": 336650,
@@ -2109,6 +2049,21 @@
           "left": 8,
           "pri": 2,
           "openedDate": "2026-09-20T07:46:46Z"
+        },
+        {
+          "id": 338433,
+          "name": "保证金核销，补充逻辑：若“保证金金额”为0，则“剩余可核销数量”强制为0；",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "李龙键",
+          "exec_name": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "deadline": "2026-10-08",
+          "days_overdue": 0,
+          "estimate": 10,
+          "consumed": 0,
+          "left": 10,
+          "pri": 3,
+          "openedDate": "2026-09-28T08:45:08Z"
         },
         {
           "id": 336574,
@@ -2582,29 +2537,144 @@
         }
       ]
     },
-    "阳超": {
-      "count": 6,
-      "wait": 0,
-      "doing": 6,
-      "estimate": 40,
+    "许峻嘉": {
+      "count": 8,
+      "wait": 8,
+      "doing": 0,
+      "estimate": 48,
       "consumed": 0,
-      "left": 40,
+      "left": 48,
       "tasks": [
         {
-          "id": 337600,
-          "name": "【后端】商用提货订单库存发货数据小库订单库存余量计算",
+          "id": 338588,
+          "name": "【后端】4.0一件代发测算销售方案-发货仓库配置升级",
           "type": "a_dev4_control",
-          "status": "doing",
-          "assignee": "阳超",
-          "exec_name": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "deadline": "2026-10-13",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "deadline": "2026-10-30",
           "days_overdue": 0,
-          "estimate": 4,
+          "estimate": 6,
           "consumed": 0,
-          "left": 4,
-          "pri": 2,
-          "openedDate": "2026-09-24T08:19:32Z"
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T10:54:10Z"
         },
+        {
+          "id": 338587,
+          "name": "【后端】4.0一件代发销售方案-发货仓库配置升级",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "deadline": "2026-10-30",
+          "days_overdue": 0,
+          "estimate": 6,
+          "consumed": 0,
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T10:54:10Z"
+        },
+        {
+          "id": 338586,
+          "name": "【后端】4.0经销商工程销售方案-发货仓库配置升级",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "deadline": "2026-10-30",
+          "days_overdue": 0,
+          "estimate": 6,
+          "consumed": 0,
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T10:54:10Z"
+        },
+        {
+          "id": 338585,
+          "name": "【后端】4.0经销商返利测算销售方案-发货仓库配置升级",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "deadline": "2026-10-30",
+          "days_overdue": 0,
+          "estimate": 6,
+          "consumed": 0,
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T10:54:10Z"
+        },
+        {
+          "id": 338584,
+          "name": "【后端】4.0经销商返利销售方案-发货仓库配置升级",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "deadline": "2026-10-30",
+          "days_overdue": 0,
+          "estimate": 6,
+          "consumed": 0,
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T10:54:10Z"
+        },
+        {
+          "id": 338583,
+          "name": "【后端】4.0经销商日常测算销售方案-发货仓库配置升级",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "deadline": "2026-10-30",
+          "days_overdue": 0,
+          "estimate": 6,
+          "consumed": 0,
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T10:54:10Z"
+        },
+        {
+          "id": 338582,
+          "name": "【后端】4.0经销商日常销售方案-发货仓库配置升级",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "deadline": "2026-10-30",
+          "days_overdue": 0,
+          "estimate": 6,
+          "consumed": 0,
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T10:54:10Z"
+        },
+        {
+          "id": 338594,
+          "name": "【后端】销司库存相关查询CWMS数据优化需求评审",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "许峻嘉",
+          "exec_name": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
+          "deadline": "2026-09-30",
+          "days_overdue": 0,
+          "estimate": 6,
+          "consumed": 0,
+          "left": 6,
+          "pri": 3,
+          "openedDate": "2026-09-28T11:30:11Z"
+        }
+      ]
+    },
+    "阳超": {
+      "count": 4,
+      "wait": 0,
+      "doing": 4,
+      "estimate": 28,
+      "consumed": 0,
+      "left": 28,
+      "tasks": [
         {
           "id": 332157,
           "name": "【后端】PC主页审批大单待我审批-查询",
@@ -2653,21 +2723,6 @@
         {
           "id": 331325,
           "name": "【后端】下单小单履约发货单联动大单发货总数据推送金蝶",
-          "type": "devel",
-          "status": "doing",
-          "assignee": "阳超",
-          "exec_name": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "deadline": "2026-10-15",
-          "days_overdue": 0,
-          "estimate": 8,
-          "consumed": 0,
-          "left": 8,
-          "pri": 2,
-          "openedDate": "2026-09-10T07:07:55Z"
-        },
-        {
-          "id": 331324,
-          "name": "【后端】小单履约签收联动大单履约金蝶交互-大单",
           "type": "devel",
           "status": "doing",
           "assignee": "阳超",
