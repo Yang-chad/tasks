@@ -7,7 +7,7 @@
     "total_members": 56,
     "total_overdue": 0,
     "reference_hours": 168,
-    "report_time": "2026-09-29 17:37:00",
+    "report_time": "2026-09-29 20:45:44",
     "month": "2026年9月"
   },
   "members": [
@@ -364,15 +364,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 341520,
-          "title": "【QA-iOS-用户侧-商用工程】重新提交解除地址限制页面展示了剩余有效期",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 341391,
           "title": "【QA-PC-管理侧-销司销售方案】核销方案中存在一个保证金单价为0的商品，方案列表应该不显示发起核销",
           "severity": 3,
@@ -380,6 +371,15 @@
           "status": "delay",
           "platform": "网批2.0",
           "openedBy": "180150"
+        },
+        {
+          "id": 341520,
+          "title": "【QA-iOS-用户侧-商用工程】重新提交解除地址限制页面展示了剩余有效期",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 341351,
@@ -660,18 +660,6 @@
       "overdue": 0,
       "done_tasks": [
         {
-          "id": 329068,
-          "name": "【产品设计】商用自提订单去掉要先备货才能完成自提限制",
-          "consumed": 1.0,
-          "estimate": 1.0,
-          "type": "ab2_request_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-09-03",
-          "finished_by": "梁庆芬",
-          "finished_date": "2026-09-03"
-        },
-        {
           "id": 329069,
           "name": "【产品设计】商用总可用库存校准",
           "consumed": 1.0,
@@ -679,6 +667,18 @@
           "type": "ab2_request_des",
           "platform": "网批2.0",
           "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
+          "opened_date": "2026-09-03",
+          "finished_by": "梁庆芬",
+          "finished_date": "2026-09-03"
+        },
+        {
+          "id": 329068,
+          "name": "【产品设计】商用自提订单去掉要先备货才能完成自提限制",
+          "consumed": 1.0,
+          "estimate": 1.0,
+          "type": "ab2_request_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
           "opened_date": "2026-09-03",
           "finished_by": "梁庆芬",
           "finished_date": "2026-09-03"
@@ -1635,6 +1635,33 @@
           "openedBy": "伍镓烨"
         },
         {
+          "id": 341513,
+          "title": "【QA-IOS-用户侧-商用重构-订单】批价单提货页，进入商品详情页，加购商品，提示商品已售罄，无法加购",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 341510,
+          "title": "【QA-IOS-用户侧-商用重构-订单】提货单页，点击商品图片进入商详页，加入购物车查看，批价单页，只展示了tab页，内",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 341506,
+          "title": "【QA-IOS-用户侧-商用重构-订单】批价单的商品，从首页工程商品进入商详页，批价单tab页展示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
           "id": 341488,
           "title": "【QA-IOS-管理侧-商用工程】审批通过的提货延期单据-查看页，当前提货截止未去掉，审批决定延期至、延期天数显示--",
           "severity": 3,
@@ -1646,6 +1673,24 @@
         {
           "id": 341476,
           "title": "【QA-IOS-管理侧-商用工程】价格审批-关联项目参考页签，登录顺序不显示",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 341475,
+          "title": "【QA-IOS-管理侧-商用工程】提货延期/作废审批单据查看页，顶部少了项目名称",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 341457,
+          "title": "【QA-IOS-管理侧-商用工程】二次价格审批，非标商品绑定真实商品，权限区间不显示",
           "severity": 3,
           "pri": 3,
           "status": "resolved",
@@ -1669,33 +1714,6 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "江小芳"
-        },
-        {
-          "id": 341185,
-          "title": "【QA-IOS-管理侧-工程审批】工程项目单审批时修改了行业大类、中标信息，审批 通过后仍显示修改前的内容",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 341182,
-          "title": "【QA-IOS-管理侧-工程项目单】工程项目单业务线为冷链，在审批\\查看详情时未切换为容积显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 341173,
-          "title": "【QA-IOS-管理侧-工程项目单】项目单详情页客户类型显示内容与实际不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
         },
         {
           "id": 340999,
@@ -1986,8 +2004,26 @@
           "openedBy": "江小芳"
         },
         {
+          "id": 341185,
+          "title": "【QA-IOS-管理侧-工程审批】工程项目单审批时修改了行业大类、中标信息，审批 通过后仍显示修改前的内容",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 341184,
           "title": "【QA-IOS-管理侧-工程审批】工程项目单有添加备注附件，在审批\\查看详情时未回显附件内容",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 341182,
+          "title": "【QA-IOS-管理侧-工程项目单】工程项目单业务线为冷链，在审批\\查看详情时未切换为容积显示",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -2042,6 +2078,15 @@
         {
           "id": 341174,
           "title": "【QA-IOS-管理侧-工程项目单】未与其他项目单关联的项目单详情页，登录顺序应不显示查看按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 341173,
+          "title": "【QA-IOS-管理侧-工程项目单】项目单详情页客户类型显示内容与实际不一致",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -2762,35 +2807,43 @@
       ],
       "active_bugs": [
         {
-          "id": 341513,
-          "title": "【QA-IOS-用户侧-商用重构-订单】批价单提货页，进入商品详情页，加购商品，提示商品已售罄，无法加购",
+          "id": 341646,
+          "title": "【QA-IOS-管理侧-审批进度】解除地址限制审批查看详情页内容与实际不一致",
           "severity": 3,
           "pri": 3,
           "status": "active",
           "platform": "网批2.0"
         },
         {
-          "id": 341510,
-          "title": "【QA-IOS-用户侧-商用重构-订单】提货单页，点击商品图片进入商详页，加入购物车查看，批价单页，只展示了tab页，内",
+          "id": 341645,
+          "title": "【QA-IOS-管理侧-审批进度】审批进度单据详情页未显示提示内容",
           "severity": 3,
           "pri": 3,
           "status": "active",
           "platform": "网批2.0"
         },
         {
-          "id": 341506,
-          "title": "【QA-IOS-用户侧-商用重构-订单】批价单的商品，从首页工程商品进入商详页，批价单tab页展示为空",
+          "id": 341644,
+          "title": "【QA-IOS-管理侧-审批进度】驳回 强提醒的备注内容与原型要求不一致",
           "severity": 3,
           "pri": 3,
           "status": "active",
           "platform": "网批2.0"
         },
         {
-          "id": 341475,
-          "title": "【QA-IOS-管理侧-商用工程】提货延期/作废审批单据查看页，顶部少了项目名称",
+          "id": 341643,
+          "title": "【QA-IOS-管理侧-审批进度】审批进度单据详情页的审批记录显示为空",
           "severity": 3,
           "pri": 3,
-          "status": "confirmed",
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341642,
+          "title": "【QA-IOS-管理侧-审批进度】解除地址限制审批进度详情与实际内容不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
           "platform": "网批2.0"
         },
         {
@@ -2799,14 +2852,6 @@
           "severity": 3,
           "pri": 3,
           "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 341457,
-          "title": "【QA-IOS-管理侧-商用工程】二次价格审批，非标商品绑定真实商品，权限区间不显示",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -3977,15 +4022,6 @@
           "openedBy": "陈嘉劲"
         },
         {
-          "id": 341597,
-          "title": "【QA-安卓-用户侧-商用工程】点击查看提货页面的商品，转跳商品详情，商品详情页，应该是工程商品的详情页",
-          "severity": 4,
-          "pri": 4,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
           "id": 340666,
           "title": "【QA-安卓-用户侧-商用赊销】商用工程赊销下单普通配送方式和分配提货,查看订单详情页有使用信用款,会显示共用信用款",
           "severity": 4,
@@ -3993,6 +4029,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "马腾"
+        },
+        {
+          "id": 341597,
+          "title": "【QA-安卓-用户侧-商用工程】点击查看提货页面的商品，转跳商品详情，商品详情页，应该是工程商品的详情页",
+          "severity": 4,
+          "pri": 4,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
         },
         {
           "id": 341141,
@@ -6246,11 +6291,19 @@
       ],
       "active_bugs": [
         {
+          "id": 341633,
+          "title": "【QA-iOS-用户侧-商用工程】审批进度-登录审批详情页部分内容显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 341572,
           "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单合并支付进入收银台，结果显示信用账户支付金额",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -6258,7 +6311,7 @@
           "title": "【qa-iOS-用户侧-家用工程返利订单】家用工程返利订单列表支付进入收银台，结果界面不显示返利账户信息",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -6266,7 +6319,7 @@
           "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单详情支付进入收银台，结果界面显示异常",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -6274,7 +6327,7 @@
           "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单列表支付进入收银台，结果不展示返利账户信息",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -6282,7 +6335,7 @@
           "title": "【qa-iOS-用户侧-家用工程订单】家用工程订单支付进入收银台，结果工程保证金未计算到货款支付金额",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -6886,15 +6939,6 @@
           "openedBy": "李文清"
         },
         {
-          "id": 341561,
-          "title": "【QA-安卓-用户侧-商用工程】审批进度-登录审批详情页项目状态与业务线显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 341542,
           "title": "【QA-安卓-用户侧-商用工程】批价单审批进度详情页，延期天数显示错误",
           "severity": 3,
@@ -6904,38 +6948,11 @@
           "openedBy": "李文清"
         },
         {
-          "id": 341534,
-          "title": "【QA-安卓-用户侧-商用工程】重新提交解除地址限制未回显上一次提交的数据",
+          "id": 341561,
+          "title": "【QA-安卓-用户侧-商用工程】审批进度-登录审批详情页项目状态与业务线显示错误",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341499,
-          "title": "【QA-安卓-用户侧-商用工程】项目单商品弹层缺少删除按钮，无法删除商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341228,
-          "title": "【QA-安卓-用户侧-商用工程】解除地址限制审批记录错误，显示了所有单据的审批记录",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 340967,
-          "title": "【QA-安卓-用户侧-商用工程】审批进度-解除地址限制显示错误，显示成了工程登录",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
         },
@@ -6949,6 +6966,15 @@
           "openedBy": "李文清"
         },
         {
+          "id": 341534,
+          "title": "【QA-安卓-用户侧-商用工程】重新提交解除地址限制未回显上一次提交的数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 341505,
           "title": "【QA-安卓-用户侧-商用工程】批价单二次申请价格页面，关联项目单参考存在字段显示错误",
           "severity": 3,
@@ -6956,6 +6982,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 341499,
+          "title": "【QA-安卓-用户侧-商用工程】项目单商品弹层缺少删除按钮，无法删除商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 341487,
@@ -7138,6 +7173,15 @@
           "openedBy": "邹娟"
         },
         {
+          "id": 341228,
+          "title": "【QA-安卓-用户侧-商用工程】解除地址限制审批记录错误，显示了所有单据的审批记录",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 341222,
           "title": "【QA-安卓-管理侧-商用订单】查看多退少补订单，缺少信用款明细且商品金额显示错误",
           "severity": 3,
@@ -7199,6 +7243,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
+        },
+        {
+          "id": 340967,
+          "title": "【QA-安卓-用户侧-商用工程】审批进度-解除地址限制显示错误，显示成了工程登录",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 340952,
@@ -7760,6 +7813,22 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 341636,
+          "title": "【QA-安卓-用户侧-商用工程】查看解除地址限制详情页面不显示附件",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341635,
+          "title": "【QA-安卓-用户侧-商用工程】复制新建已驳回的项目单，来源说明字段显示不正确且复制的商品仅显示价格误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 341607,
           "title": "【QA-安卓-用户侧-商用工程】二次申请价格页面，添加商品后编辑申请价格后确认，实际无效",
@@ -8613,33 +8682,6 @@
           "openedBy": "龙泽英"
         },
         {
-          "id": 341569,
-          "title": "【QA-安卓-用户侧-商用赊销】家用赊销合并支付，勾选返利和其他订单一并支付，结果不展示信用账户",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 341550,
-          "title": "【QA-安卓-管理侧-商用工程】批价单列表中，无法通过项目名称查询出结果",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
-          "id": 341543,
-          "title": "【QA-安卓-管理侧-商用工程】批价单列表中，搜索条件输入数据查询后，删除数据，再次查询无法刷新列表数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "龙泽英"
-        },
-        {
           "id": 341524,
           "title": "【QA-安卓-管理侧-商用工程】项目单列表页和详情页没有登录顺序的项目单登录顺序会显示“null-候补登录”",
           "severity": 3,
@@ -8647,33 +8689,6 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "李成斌"
-        },
-        {
-          "id": 341486,
-          "title": "【QA-安卓-用户侧-经销商账户】查看当前 - 工程保证金总额，保证金账户流水明细，没有显示：批价单号”、“批价单状态”",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 341219,
-          "title": "【QA-安卓-用户侧-商用赊销】查看工程保证金扣款流水，工程单号显示为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 341218,
-          "title": "【QA-安卓-用户侧-商用赊销】查看使用信用款支付尾款流水号，没有展示货款支付金额和信用支付款金额字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
         },
         {
           "id": 340788,
@@ -8703,6 +8718,33 @@
           "openedBy": "马腾"
         },
         {
+          "id": 341569,
+          "title": "【QA-安卓-用户侧-商用赊销】家用赊销合并支付，勾选返利和其他订单一并支付，结果不展示信用账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 341550,
+          "title": "【QA-安卓-管理侧-商用工程】批价单列表中，无法通过项目名称查询出结果",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 341543,
+          "title": "【QA-安卓-管理侧-商用工程】批价单列表中，搜索条件输入数据查询后，删除数据，再次查询无法刷新列表数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 341493,
           "title": "【QA-安卓-管理侧-商用工程】项目单的登录顺序为候补登录时，批价单列表中，批价单的登录顺序显示为空",
           "severity": 3,
@@ -8719,6 +8761,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
+        },
+        {
+          "id": 341486,
+          "title": "【QA-安卓-用户侧-经销商账户】查看当前 - 工程保证金总额，保证金账户流水明细，没有显示：批价单号”、“批价单状态”",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
         },
         {
           "id": 341366,
@@ -8755,6 +8806,24 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
+        },
+        {
+          "id": 341219,
+          "title": "【QA-安卓-用户侧-商用赊销】查看工程保证金扣款流水，工程单号显示为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 341218,
+          "title": "【QA-安卓-用户侧-商用赊销】查看使用信用款支付尾款流水号，没有展示货款支付金额和信用支付款金额字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
         },
         {
           "id": 341014,
@@ -9091,6 +9160,46 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 341638,
+          "title": "【QA-安卓-管理侧-商用工程】未配置任何附件类型时，“项目凭证”卡片应隐藏",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341634,
+          "title": "【QA-安卓-管理侧-商用工程】非标商品只能显示7个9，不能显示7个9+两个小数点",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341629,
+          "title": "【QA-安卓-管理侧-商用工程】新增非标商品在商品弹窗输入10个9后，点击确定后，出现闪退",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341625,
+          "title": "【qa-安卓-用户侧-资金流水】多退的流水”退还订单款项“，进入详情金额显示为空，商品信息不展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341623,
+          "title": "【QA-安卓-用户侧-商用赊销】家用赊销合并支付，勾选返利和其他订单一并支付，结果支付金额显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 341612,
           "title": "【QA-安卓-用户侧-商用赊销】查看订单退款（退还尾款）流水详情，结果已退货款金额错误",
@@ -10041,11 +10150,47 @@
           "openedBy": "邹娟"
         },
         {
+          "id": 341616,
+          "title": "【qa-iOS-用户侧-资金流水】多退的流水”退还订单款项“，进入详情提示订单已删除",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341598,
+          "title": "【QA-iOS-用户侧-商用工程】新建批价单/二次申请价格/复制重建添加非标商品，存在必填字段未校验",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 341595,
+          "title": "【QA-iOS-用户侧-商用工程】新建批价单/二次申请价格/复制重建添加非标商品到新建页面，对非标商品进行删除无效",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 341570,
+          "title": "【QA-iOS-用户侧-商用工程】重新提交解除地址限制失败，提示项目编码不能为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 341492,
           "title": "【QA-iOS-用户侧-商用工程】重新提交项目单页面项目单号和剩余有效期显示不完整",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
         },
@@ -10815,40 +10960,7 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 341616,
-          "title": "【qa-iOS-用户侧-资金流水】多退的流水”退还订单款项“，进入详情提示订单已删除",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 341598,
-          "title": "【QA-iOS-用户侧-商用工程】新建批价单/二次申请价格/复制重建添加非标商品，存在必填字段未校验",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 341595,
-          "title": "【QA-iOS-用户侧-商用工程】新建批价单/二次申请价格/复制重建添加非标商品到新建页面，对非标商品进行删除无效",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 341570,
-          "title": "【QA-iOS-用户侧-商用工程】重新提交解除地址限制失败，提示项目编码不能为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "艾思芹",
@@ -10977,18 +11089,6 @@
           "finished_date": "2026-09-02"
         },
         {
-          "id": 324544,
-          "name": "【PC管理】网批订单UI走查24行~26行",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev2_front",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-27",
-          "finished_by": "艾思芹",
-          "finished_date": "2026-09-03"
-        },
-        {
           "id": 319560,
           "name": "【PC管理】订单详情展示信用相关信息",
           "consumed": 8.0,
@@ -11009,6 +11109,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
           "opened_date": "2026-08-13",
+          "finished_by": "艾思芹",
+          "finished_date": "2026-09-03"
+        },
+        {
+          "id": 324544,
+          "name": "【PC管理】网批订单UI走查24行~26行",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev2_front",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-27",
           "finished_by": "艾思芹",
           "finished_date": "2026-09-03"
         },
@@ -14945,42 +15057,6 @@
       "overdue": 0,
       "done_tasks": [
         {
-          "id": 325623,
-          "name": "【后端】黑吉商用销司 经销商返利销售方案（行业）审批流图绘图",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "李龙键",
-          "finished_date": "2026-09-01"
-        },
-        {
-          "id": 325622,
-          "name": "【后端】深圳商用销司 经销商返利销售方案（行业）审批流图绘图",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "李龙键",
-          "finished_date": "2026-09-01"
-        },
-        {
-          "id": 325621,
-          "name": "【后端】重庆商用销司 经销商返利销售方案（行业）审批流图绘图",
-          "consumed": 3.0,
-          "estimate": 3.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-31",
-          "finished_by": "李龙键",
-          "finished_date": "2026-09-01"
-        },
-        {
           "id": 323811,
           "name": "【后端】信用账户审核-列表&查询",
           "consumed": 4.0,
@@ -15013,6 +15089,42 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.84.0（0917/feature_26.09.v1）【2026】",
           "opened_date": "2026-08-25",
+          "finished_by": "李龙键",
+          "finished_date": "2026-09-01"
+        },
+        {
+          "id": 325623,
+          "name": "【后端】黑吉商用销司 经销商返利销售方案（行业）审批流图绘图",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "李龙键",
+          "finished_date": "2026-09-01"
+        },
+        {
+          "id": 325622,
+          "name": "【后端】深圳商用销司 经销商返利销售方案（行业）审批流图绘图",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-31",
+          "finished_by": "李龙键",
+          "finished_date": "2026-09-01"
+        },
+        {
+          "id": 325621,
+          "name": "【后端】重庆商用销司 经销商返利销售方案（行业）审批流图绘图",
+          "consumed": 3.0,
+          "estimate": 3.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-31",
           "finished_by": "李龙键",
           "finished_date": "2026-09-01"
         },
@@ -17722,33 +17834,6 @@
           "openedBy": "江小芳"
         },
         {
-          "id": 341558,
-          "title": "【QA-PC-用户侧-商用工程】审批进度-登录审批详情页缺少项目状态字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341496,
-          "title": "【QA-PC-用户侧-商用工程】重新提交项目单页面缺少基本信息字段",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341485,
-          "title": "【QA-PC-用户侧-商用工程】项目单放弃登录/驳回有效期到期，已驳回的单据状态仍可以重新提交",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 340676,
           "title": "【QA-PC-管理侧-商用工程】关联项目单列表添加关联工程单筛选项目名称、工程状态、项目地址、登录时间、总套数结果仍是所",
           "severity": 3,
@@ -17758,22 +17843,22 @@
           "openedBy": "李成斌"
         },
         {
-          "id": 340566,
-          "title": "【QA-PC-管理侧-项目单详情】项目单审批进度列表点击审批流程，弹窗显示有审批人员页签",
+          "id": 341558,
+          "title": "【QA-PC-用户侧-商用工程】审批进度-登录审批详情页缺少项目状态字段",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "刘孝亮"
+          "openedBy": "邹娟"
         },
         {
-          "id": 340176,
-          "title": "【QA-PC-管理侧-工程审批】项目单审批\\查看详情界面审批记录里的附件无法预览或下载",
+          "id": 341485,
+          "title": "【QA-PC-用户侧-商用工程】项目单放弃登录/驳回有效期到期，已驳回的单据状态仍可以重新提交",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "刘孝亮"
+          "openedBy": "邹娟"
         },
         {
           "id": 341472,
@@ -17884,6 +17969,15 @@
           "openedBy": "龙泽英"
         },
         {
+          "id": 340566,
+          "title": "【QA-PC-管理侧-项目单详情】项目单审批进度列表点击审批流程，弹窗显示有审批人员页签",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 340565,
           "title": "【QA-PC-管理侧-项目单详情】项目单详情\\登录审批进度单据详情界面申请点位、空调面积单位符号显示内容与UI不一致",
           "severity": 3,
@@ -17981,6 +18075,15 @@
           "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
+        },
+        {
+          "id": 340176,
+          "title": "【QA-PC-管理侧-工程审批】项目单审批\\查看详情界面审批记录里的附件无法预览或下载",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 340163,
@@ -18316,7 +18419,32 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 341647,
+          "title": "【QA-PC-管理侧-审批进度】解除地址限制审批查看详情页，未回显附件内容",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341640,
+          "title": "【QA-PC-管理侧-审批进度】查看解除地址限制审批进度详情报错，提示系统发生异常",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 341496,
+          "title": "【QA-PC-用户侧-商用工程】重新提交项目单页面缺少基本信息字段",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "蒋志军",
@@ -18709,24 +18837,6 @@
           "openedBy": "李学鹍"
         },
         {
-          "id": 341198,
-          "title": "【QA-PC-管理侧-工程审批】登录延期审批详情页原定登录截止、当前提货截止日期显示为 Invalid date",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 341178,
-          "title": "【QA-后端-管理侧-工程项目单】代客申请未添加商品时提交失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
           "id": 340511,
           "title": "【QA-PC-管理侧-商用工程】项目单详情页-审批进度详情页审批记录附件和内部附件信息返回为空",
           "severity": 3,
@@ -18754,6 +18864,15 @@
           "openedBy": "江小芳"
         },
         {
+          "id": 341198,
+          "title": "【QA-PC-管理侧-工程审批】登录延期审批详情页原定登录截止、当前提货截止日期显示为 Invalid date",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 341186,
           "title": "【QA-PC-管理侧-商用工程】非跨区/省外跨区登录审批，通过弹框，登录顺序显示错误",
           "severity": 3,
@@ -18765,6 +18884,15 @@
         {
           "id": 341181,
           "title": "【QA-IOS-管理侧-工程项目单】工程项目单审批时页面无添加商品按钮，无法在审批时修改或添加商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 341178,
+          "title": "【QA-后端-管理侧-工程项目单】代客申请未添加商品时提交失败",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -20449,17 +20577,35 @@
           "openedBy": "刘孝亮"
         },
         {
-          "id": 339927,
-          "title": "【QA-PC-管理侧-工程审批】项目单审批时批量导入商品未成功",
+          "id": 341511,
+          "title": "【QA-安卓-用户侧-商用工程】项目单发货数量大于0，购买数量却显示为0",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
-          "openedBy": "刘孝亮"
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 341474,
+          "title": "【QA-PC-用户侧-商用工程】重新提交项目单会复制商品",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 341460,
           "title": "【QA-PC-用户侧-商用工程】项目单放弃登录后，单据仍能进行审批",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 341450,
+          "title": "【QA-PC-用户侧-商用工程】重新提交项目单，安装地址显示不正确",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -20756,24 +20902,8 @@
           "platform": "网批2.0"
         },
         {
-          "id": 341511,
-          "title": "【QA-安卓-用户侧-商用工程】项目单发货数量大于0，购买数量却显示为0",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 341474,
-          "title": "【QA-PC-用户侧-商用工程】重新提交项目单会复制商品",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 341450,
-          "title": "【QA-PC-用户侧-商用工程】重新提交项目单，安装地址显示不正确",
+          "id": 339927,
+          "title": "【QA-PC-管理侧-工程审批】项目单审批时批量导入商品未成功",
           "severity": 3,
           "pri": 3,
           "status": "confirmed",
@@ -23513,18 +23643,6 @@
       "overdue": 0,
       "done_tasks": [
         {
-          "id": 323843,
-          "name": "张敏琪操作手册及培训材料更新",
-          "consumed": 41.0,
-          "estimate": 41.0,
-          "type": "x_extension",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-08-25",
-          "finished_by": "张敏琪",
-          "finished_date": "2026-09-03"
-        },
-        {
           "id": 337701,
           "name": "【商用1.0】网批江苏商用系统培训",
           "consumed": 29.0,
@@ -23533,6 +23651,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-09-27",
+          "finished_by": "张敏琪",
+          "finished_date": "2026-09-03"
+        },
+        {
+          "id": 323843,
+          "name": "张敏琪操作手册及培训材料更新",
+          "consumed": 41.0,
+          "estimate": 41.0,
+          "type": "x_extension",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-08-25",
           "finished_by": "张敏琪",
           "finished_date": "2026-09-03"
         },
@@ -24977,6 +25107,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 341512,
+          "title": "【QA-PC-用户侧-商用工程】工程商品下单分批提货商品，下单后，点击再来一单，提示参数非法",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
           "id": 341339,
           "title": "【QA-IOS-管理侧/用户侧-商用重构-订单】2个订单行的订单退款其中一个订单行后，订单金额展示有误",
           "severity": 3,
@@ -25076,16 +25215,7 @@
           "openedBy": "伍镓烨"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 341512,
-          "title": "【QA-PC-用户侧-商用工程】工程商品下单分批提货商品，下单后，点击再来一单，提示参数非法",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "谢婉扬",
@@ -27119,7 +27249,16 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 341641,
+          "title": "【QA-安卓-管理侧-商用工程】批价单添加非标商品后，非标商品ID未根据规则生成",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "王乐",
@@ -27365,18 +27504,6 @@
           "finished_date": "2026-09-02"
         },
         {
-          "id": 327891,
-          "name": "【后端】工单处理，7个退款单行退款部分出库，商家退款，改库申请已提交，oms 已处理， 涉及订单金额12万请安排改库",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
-          "opened_date": "2026-09-02",
-          "finished_by": "孙元通",
-          "finished_date": "2026-09-04"
-        },
-        {
           "id": 328215,
           "name": "【后端】【9月需求评审】 评审时间:09月03日  上午9：30 评审地址：3楼会议室A302 评审议程: 集采： 1、调拨单-逆向单管理---钟日健",
           "consumed": 3.0,
@@ -27385,6 +27512,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-09-03",
+          "finished_by": "孙元通",
+          "finished_date": "2026-09-04"
+        },
+        {
+          "id": 327891,
+          "name": "【后端】工单处理，7个退款单行退款部分出库，商家退款，改库申请已提交，oms 已处理， 涉及订单金额12万请安排改库",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.83.0（0903/feature_26.08.v1）【2026】",
+          "opened_date": "2026-09-02",
           "finished_by": "孙元通",
           "finished_date": "2026-09-04"
         },
@@ -27545,18 +27684,6 @@
           "finished_date": "2026-09-10"
         },
         {
-          "id": 331420,
-          "name": "【后端】数据聊天记录删除逻辑开发，聊天会话删除",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批AI需求研究开发【2026】",
-          "opened_date": "2026-09-10",
-          "finished_by": "孙元通",
-          "finished_date": "2026-09-11"
-        },
-        {
           "id": 331539,
           "name": "【后端】四川二次画图，又变化图7个图",
           "consumed": 2.0,
@@ -27565,6 +27692,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-09-11",
+          "finished_by": "孙元通",
+          "finished_date": "2026-09-11"
+        },
+        {
+          "id": 331420,
+          "name": "【后端】数据聊天记录删除逻辑开发，聊天会话删除",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批AI需求研究开发【2026】",
+          "opened_date": "2026-09-10",
           "finished_by": "孙元通",
           "finished_date": "2026-09-11"
         },
