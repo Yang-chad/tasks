@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>团队每日完成任务流水清单 — 2026-10-01~2026-10-10</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Microsoft YaHei","微软雅黑",PingFang SC,sans-serif; background:#f0f2f5; color:#333; font-size:14px; padding:20px; }
+.container { max-width:1400px; margin:0 auto; }
+
+/* 头部 */
+.header { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); color:white; padding:32px 40px; border-radius:14px; margin-bottom:24px; }
+.header h1 { font-size:26px; font-weight:700; }
+.header .sub { margin-top:6px; font-size:13px; color:#8892b0; }
+
+/* 摘要卡片 */
+.summary { display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+.scard { background:white; border-radius:12px; padding:18px 22px; box-shadow:0 2px 8px rgba(0,0,0,.08); flex:1; min-width:130px; text-align:center; }
+.scard .num { font-size:34px; font-weight:800; }
+.scard .label { font-size:13px; color:#999; margin-top:4px; }
+
+/* 视图切换 */
+.view-tabs { display:flex;gap:4px;margin-bottom:20px; }
+.view-tab { padding:10px 22px;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;background:#fff;color:#94a3b8;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.06);font-family:inherit; }
+.view-tab:hover { color:#475569;background:rgba(99,102,241,.06); }
+.view-tab.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 4px 12px rgba(99,102,241,.3); }
+
+/* 胶囊角色标签（跟员工负载一致） */
+.tab-bar { display:flex;gap:0;margin-bottom:20px;flex-wrap:wrap;background:#fff;border-radius:14px;padding:6px 8px;box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.tab-btn { background:transparent;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;font-family:inherit;color:#94a3b8;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden; }
+.tab-btn:hover { color:#475569;background:rgba(99,102,241,.06); }
+.tab-btn.active { color:#fff;font-weight:600;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);box-shadow:0 4px 14px rgba(99,102,241,0.35),0 1px 3px rgba(0,0,0,0.12); }
+
+/* 面板切换 */
+.view-panel { display:none; }
+.view-panel.show { display:block; }
+.role-section { display:none; }
+.role-section.show { display:block; }
+
+/* 表格 */
+.table-wrap { background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.07); overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th { background:#f8f9fa; padding:10px 8px; text-align:center; font-weight:600; border-bottom:2px solid #e8e8e8; white-space:nowrap; position:sticky; top:0; z-index:1; }
+td { padding:7px 8px; text-align:center; border-bottom:1px solid #f0f0f0; white-space:nowrap; }
+tr:hover td { background:#f8f9ff; }
+td.name { text-align:left; font-weight:600; }
+td.total { font-weight:700; color:#1a73e8; }
+td.hours { color:#888; }
+td.hours-under { color:#ef4444; font-weight:700; background:#fff5f5; border-radius:4px; }
+td.ref { color:#94a3b8; }
+td.has-task { background:#e8f5e9; color:#2e7d32; font-weight:600; border-radius:4px; }
+th.date-col { min-width:44px; font-size:11px; }
+.date-weekend { background:#fff3e0; }
+
+/* 任务类型标签 */
+.task-item { display:flex;align-items:flex-start;padding:5px 0;border-bottom:1px dashed #eee;font-size:12px; }
+.task-item:last-child { border:none; }
+.task-type { display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;margin-right:6px;flex-shrink:0;font-weight:500; }
+.type-产品 { background:#ede9fe; color:#7c3aed; }
+.type-后端 { background:#d1fae5; color:#059669; }
+.type-前端 { background:#fce7f3; color:#be185d; }
+.type-移动端 { background:#ffedd5; color:#c2410c; }
+.type-测试 { background:#f3e8ff; color:#7c3aed; }
+.type-UI设计 { background:#ccfbf1; color:#0d9488; }
+.type-其他 { background:#f3f4f6; color:#6b7280; }
+
+/* 日期折叠（第一级） */
+.day-section { margin-bottom:10px; background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); overflow:hidden; }
+.day-summary { display:flex; align-items:center; gap:10px; padding:14px 18px; cursor:pointer; font-weight:700; font-size:14px; list-style:none; user-select:none; }
+.day-summary::-webkit-details-marker { display:none; }
+.day-summary .day-count { font-size:12px; color:#888; font-weight:400; margin-left:auto; }
+.day-body { padding:0 12px 12px; }
+
+/* 角色分组（第二级） */
+.role-group { margin:8px 0; border:1px solid #f0f0f0; border-radius:10px; overflow:hidden; }
+.role-summary { display:flex; align-items:center; gap:10px; padding:10px 14px; cursor:pointer; font-weight:600; font-size:13px; background:#fafafa; list-style:none; user-select:none; }
+.role-summary::-webkit-details-marker { display:none; }
+.role-summary .role-count { font-size:11px; color:#999; font-weight:400; margin-left:auto; }
+.role-body { padding:8px 14px 12px; }
+
+/* 人员（第三级） */
+.person-detail { margin-bottom:10px; }
+.person-head { font-weight:600; font-size:13px; margin-bottom:4px; padding-left:8px; border-left:3px solid #cbd5e1; }
+.person-head span { font-size:11px; color:#aaa; font-weight:400; }
+.task-name { flex:1; min-width:0; white-space:normal; }
+.task-meta { margin-left:auto; font-size:11px; color:#bbb; flex-shrink:0; white-space:nowrap; }
+
+.footer { text-align:center;padding:24px;color:#bbb;font-size:12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>团队每日完成任务流水清单</h1>
+  <div class="sub">2026-10-01 ~ 2026-10-10 | 94 个已完成任务 | 25 人 | 覆盖 5 天</div>
+</div>
+
+<div class="summary">
+  <div class="scard"><div class="num" style=color:#10b981>94</div><div class="label">已完成任务</div></div>
+  <div class="scard"><div class="num" style=color:#6366f1>25</div><div class="label">参与人数</div></div>
+  <div class="scard"><div class="num" style=color:#f59e0b>5</div><div class="label">覆盖天数</div></div>
+  <div class="scard" title="本月实际工时 = 已完成任务消耗工时 + 进行中任务已消耗工时（口径同团队产出效率分析）"><div class="num" style=color:#ea580c>1167h</div><div class="label">本月实际工时</div></div>
+</div>
+
+<!-- 视图切换 -->
+<div class="view-tabs">
+  <button class="view-tab active" onclick="switchView('matrix')">人员×日期矩阵</button>
+  <button class="view-tab" onclick="switchView('daily')">按日期明细</button>
+</div>
+
+<!-- ═══ 矩阵视图 ═══ -->
+<div class="view-panel show" id="view-matrix">
+
+<!-- 各角色板块平铺展示（无需切换） -->
+<div class="role-section show" data-role="产品">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#7c3aed;border-left:4px solid #7c3aed;padding-left:8px;">产品</span>
+<span style="font-size:12px;color:#999;">1 个任务 · 138h · 1 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th title="本月实际工时 = 已完成任务消耗工时 + 进行中任务已消耗工时（口径同团队产出效率分析）">本月实际工时h</th><th>参考工时h</th>
+<th class="date-col">10-09</th>
+<th class="date-col">10-08</th>
+<th class="date-col">10-07</th>
+<th class="date-col">10-02</th>
+<th class="date-col">10-01</th>
+</tr></thead><tbody>
+<tr><td class=name>胡健</td><td class=total>1</td><td class=hours title="完成消耗8h + 进行中已耗130h">138</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>1</td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section show" data-role="后端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#10b981;border-left:4px solid #10b981;padding-left:8px;">后端</span>
+<span style="font-size:12px;color:#999;">37 个任务 · 205h · 8 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th title="本月实际工时 = 已完成任务消耗工时 + 进行中任务已消耗工时（口径同团队产出效率分析）">本月实际工时h</th><th>参考工时h</th>
+<th class="date-col">10-09</th>
+<th class="date-col">10-08</th>
+<th class="date-col">10-07</th>
+<th class="date-col">10-02</th>
+<th class="date-col">10-01</th>
+</tr></thead><tbody>
+<tr><td class=name>李龙键</td><td class=total>9</td><td class=hours title="完成消耗64h + 进行中已耗0h">64</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>9</td><td></td><td></td><td></td></tr>
+<tr><td class=name>谢婉扬</td><td class=total>8</td><td class=hours title="完成消耗32h + 进行中已耗0h">32</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>3</td><td class=has-task>3</td><td></td><td class=has-task>1</td><td class=has-task>1</td></tr>
+<tr><td class=name>刘兰真</td><td class=total>5</td><td class=hours title="完成消耗32h + 进行中已耗0h">32</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>2</td><td class=has-task>3</td><td></td><td></td><td></td></tr>
+<tr><td class=name>卢鑫</td><td class=total>5</td><td class=hours title="完成消耗31h + 进行中已耗0h">31</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>2</td><td class=has-task>3</td><td></td><td></td><td></td></tr>
+<tr><td class=name>徐琦</td><td class=total>3</td><td class=hours title="完成消耗18h + 进行中已耗0h">18</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>1</td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>孙元通</td><td class=total>2</td><td class="hours hours-under" title="完成消耗10h + 进行中已耗0h · 未达参考工时">10</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>阳超</td><td class=total>2</td><td class="hours hours-under" title="完成消耗9h + 进行中已耗0h · 未达参考工时">9</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>梁家槐</td><td class=total>3</td><td class="hours hours-under" title="完成消耗9h + 进行中已耗0h · 未达参考工时">9</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>3</td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section show" data-role="前端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#db2777;border-left:4px solid #db2777;padding-left:8px;">前端</span>
+<span style="font-size:12px;color:#999;">8 个任务 · 80h · 2 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th title="本月实际工时 = 已完成任务消耗工时 + 进行中任务已消耗工时（口径同团队产出效率分析）">本月实际工时h</th><th>参考工时h</th>
+<th class="date-col">10-09</th>
+<th class="date-col">10-08</th>
+<th class="date-col">10-07</th>
+<th class="date-col">10-02</th>
+<th class="date-col">10-01</th>
+</tr></thead><tbody>
+<tr><td class=name>王子尘</td><td class=total>7</td><td class=hours title="完成消耗48h + 进行中已耗0h">48</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>7</td><td></td><td></td><td></td></tr>
+<tr><td class=name>莫世有</td><td class=total>1</td><td class=hours title="完成消耗32h + 进行中已耗0h">32</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>1</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section show" data-role="移动端">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#ea580c;border-left:4px solid #ea580c;padding-left:8px;">移动端</span>
+<span style="font-size:12px;color:#999;">25 个任务 · 158h · 4 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th title="本月实际工时 = 已完成任务消耗工时 + 进行中任务已消耗工时（口径同团队产出效率分析）">本月实际工时h</th><th>参考工时h</th>
+<th class="date-col">10-09</th>
+<th class="date-col">10-08</th>
+<th class="date-col">10-07</th>
+<th class="date-col">10-02</th>
+<th class="date-col">10-01</th>
+</tr></thead><tbody>
+<tr><td class=name>张春杰</td><td class=total>5</td><td class=hours title="完成消耗62h + 进行中已耗0h">62</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td></td><td class=has-task>5</td><td></td><td></td></tr>
+<tr><td class=name>张其辉</td><td class=total>12</td><td class=hours title="完成消耗48h + 进行中已耗0h">48</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>12</td><td></td><td></td><td></td></tr>
+<tr><td class=name>徐良侦</td><td class=total>4</td><td class=hours title="完成消耗32h + 进行中已耗0h">32</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>4</td><td></td><td></td><td></td></tr>
+<tr><td class=name>陈灿茂</td><td class=total>4</td><td class=hours title="完成消耗16h + 进行中已耗0h">16</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>4</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section show" data-role="测试">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#0284c7;border-left:4px solid #0284c7;padding-left:8px;">测试</span>
+<span style="font-size:12px;color:#999;">18 个任务 · 511h · 7 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th title="本月实际工时 = 已完成任务消耗工时 + 进行中任务已消耗工时（口径同团队产出效率分析）">本月实际工时h</th><th>参考工时h</th>
+<th class="date-col">10-09</th>
+<th class="date-col">10-08</th>
+<th class="date-col">10-07</th>
+<th class="date-col">10-02</th>
+<th class="date-col">10-01</th>
+</tr></thead><tbody>
+<tr><td class=name>邹娟</td><td class=total>2</td><td class=hours title="完成消耗104h + 进行中已耗0h">104</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>陈嘉劲</td><td class=total>4</td><td class=hours title="完成消耗92h + 进行中已耗0h">92</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>4</td><td></td><td></td><td></td><td></td></tr>
+<tr><td class=name>刘孝亮</td><td class=total>4</td><td class=hours title="完成消耗80h + 进行中已耗0h">80</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>2</td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>李文清</td><td class=total>2</td><td class=hours title="完成消耗72h + 进行中已耗0h">72</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>伍镓烨</td><td class=total>3</td><td class=hours title="完成消耗65h + 进行中已耗0h">65</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>3</td><td></td><td></td><td></td></tr>
+<tr><td class=name>罗有文</td><td class=total>2</td><td class=hours title="完成消耗59h + 进行中已耗0h">59</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>2</td><td></td><td></td><td></td></tr>
+<tr><td class=name>龙泽英</td><td class=total>1</td><td class=hours title="完成消耗38h + 进行中已耗0h">38</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>1</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+<div class="role-section show" data-role="其他">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+<span style="font-weight:700;font-size:15px;color:#64748b;border-left:4px solid #64748b;padding-left:8px;">其他</span>
+<span style="font-size:12px;color:#999;">5 个任务 · 75h · 3 人</span>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>人员</th><th>合计</th><th title="本月实际工时 = 已完成任务消耗工时 + 进行中任务已消耗工时（口径同团队产出效率分析）">本月实际工时h</th><th>参考工时h</th>
+<th class="date-col">10-09</th>
+<th class="date-col">10-08</th>
+<th class="date-col">10-07</th>
+<th class="date-col">10-02</th>
+<th class="date-col">10-01</th>
+</tr></thead><tbody>
+<tr><td class=name>张敏琪</td><td class=total>1</td><td class=hours title="完成消耗41h + 进行中已耗0h">41</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>1</td><td></td><td></td><td></td></tr>
+<tr><td class=name>钟爽</td><td class=total>3</td><td class=hours title="完成消耗26h + 进行中已耗0h">26</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td class=has-task>3</td><td></td><td></td><td></td><td></td></tr>
+<tr><td class=name>王乐</td><td class=total>1</td><td class="hours hours-under" title="完成消耗8h + 进行中已耗0h · 未达参考工时">8</td><td class=ref title="参考工时 = 2工作日 × 8h">16</td><td></td><td class=has-task>1</td><td></td><td></td><td></td></tr>
+</tbody></table></div></div>
+</div><!-- /view-matrix -->
+
+<!-- ═══ 按日期明细视图 ═══ -->
+<div class="view-panel" id="view-daily">
+
+<!-- 全部展开/收起 -->
+<div style="display:flex;gap:8px;margin-bottom:16px;">
+  <button class="view-tab" onclick="expandAll()">全部展开</button>
+  <button class="view-tab" onclick="collapseAll()">全部收起</button>
+</div>
+<details class="day-section">
+<summary class="day-summary">
+<span style="font-weight:700;font-size:14px;">2026-10-09 (周五)</span>
+<span class="day-count">21个任务 · 9人</span>
+</summary>
+<div class="day-body">
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #7c3aed;">
+<span style="color:#7c3aed;">产品</span>
+<span class="role-count">1个任务 · 1人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">胡健 <span>(1个)</span></div><div class="task-item"><span class="task-type type-产品">产品</span><span class="task-name">#319949 【产品】网批违规跨区页面，希望可以同时查询多条SN码单据（像条码全链路那样）产品设计</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #10b981;">
+<span style="color:#10b981;">后端</span>
+<span class="role-count">11个任务 · 5人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">卢鑫 <span>(2个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#338280 导出模板4.0各个活动方案导出“销售标签”字段</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336770 【后端】分销商入驻场景组织架构迭代维护</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">刘兰真 <span>(2个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#329510 【后端】【GD07】  1、大盘-审批进度，新增“大盘售后结算优惠”类型</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#329509 【后端】【GD06】  1、新增审批页“大盘售后结算优惠”审批页；通过驳回</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">梁家槐 <span>(3个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336943 【后端】三套环境的集采火山云平台模板对接</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336942 【后端】三套环境的分销火山云平台模板对接</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336941 【后端】三套环境的网批火山云平台模板对接</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">谢婉扬 <span>(3个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331312 【后端】用户侧常规发货单 申请取消发货 (新增)</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331306 【后端】工程类分批发货小单提交订单</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331272 【后端】家用分批下单支付成功后，赊销账户订单平摊</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">徐琦 <span>(1个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331284 【后端】用户侧商用零售大单申请退款单-信用退款</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div></div></details>
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #0284c7;">
+<span style="color:#0284c7;">测试</span>
+<span class="role-count">6个任务 · 2人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">陈嘉劲 <span>(4个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336748 【测试】网批违规跨区页面，希望可以同时查询多条SN码单据（像条码全链路那样）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336736 【测试】【家用-增加上传资料类型】GC14~18</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336733 【测试】商用工程重构-订单部分--陈嘉劲（PC+Android）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336713 【测试】商用工程重构-账户部分--（PC+安卓）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">刘孝亮 <span>(2个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336719 【测试】【商用重构】管理端-工程项目单列表 SY01--刘孝亮（PC）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336716 【测试】【商用重构】管理端-关联项目单和工程参数配置和模式开关 SY04~06和10--刘孝亮(sy04)</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #64748b;">
+<span style="color:#64748b;">其他</span>
+<span class="role-count">3个任务 · 1人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">钟爽 <span>(3个)</span></div><div class="task-item"><span class="task-type type-其他">其他</span><span class="task-name">#336640 【UI设计】返利专区新增搜索条件</span><span class="task-meta">网批2.0 · 网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</span></div><div class="task-item"><span class="task-type type-其他">其他</span><span class="task-name">#337151 【UI设计】员工部门变动时的账号变动</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div><div class="task-item"><span class="task-type type-其他">其他</span><span class="task-name">#336638 【UI设计】客户库增加导出业务线业务</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div></div></div></details>
+</div></details>
+<details class="day-section">
+<summary class="day-summary">
+<span style="font-weight:700;font-size:14px;">2026-10-08 (周四)</span>
+<span class="day-count">66个任务 · 20人</span>
+</summary>
+<div class="day-body">
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #10b981;">
+<span style="color:#10b981;">后端</span>
+<span class="role-count">24个任务 · 7人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">李龙键 <span>(9个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#338433 保证金核销，补充逻辑：若“保证金金额”为0，则“剩余可核销数量”强制为0；</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336574 【后端】订单支付--商用工程支付支持</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332316 【后端】商用北京赊销家用工程普通订单支持信用账户支付</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332315 【后端】商用北京赊销商用工程分批提货订单支持信用账户支付</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332314 【后端】商用北京赊销商用工程普通订单支持信用账户支付</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332313 【后端】商用北京赊销商用返利分批提货订单限制信用账户支付</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332312 【后端】商用北京赊销商用返利普通订单限制信用账户支付</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332311 【后端】商用北京赊销商用零售/活动分批提货订单支持信用账户支付</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332310 【后端】商用北京赊销商用零售/活动普通订单支持信用账户支付</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">刘兰真 <span>(3个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#329508 【后端】【GD05】  1、大盘审批-新增审批页“大盘售后结算优惠”类型；</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#329507 【后端】【GD04】  1、新建“大盘售后结算优惠”发起审批</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#329506 【后端】【GD03】  1、大盘详情页，“合作中”状态下新增“大盘售后结算优惠”，新增数据</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">卢鑫 <span>(3个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336772 【后端】分销商变更归属场景组织架构迭代维护</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336771 【后端】商家库迁移商家场景组织架构迭代维护</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#336769 【后端】商家入驻场景组织架构迭代维护</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">徐琦 <span>(2个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332219 【后端】批价单关联工程订单退款详情弹窗，工程批价单维度</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331313 【后端】用户侧发货单--申请售后</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">孙元通 <span>(2个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#340156 【后端】北商用销司也需要切换业务线模式，领导在企微已经审批完毕，相关的日销、返利、活动也需要重新安排绘制了。因为节后10 月 8 号就要切换，今天方便的话，就可以提前绘制了。注意：湖北商用销司只有 2 个业务线，需要看线上文档绘制（客户代码：56）--工程绘图</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#340155 【后端】【湖北】10月8日切换业务线 。 1、业务线为【家装】【工装】。 2、【订单取消（经销商申请退款）】修改为非绑定方式， 3、订单数据清洗，按当地提供表格进行清洗。76000+单</span><span class="task-meta">网批2.0 · 网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">阳超 <span>(2个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332157 【后端】PC主页审批大单待我审批-查询</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#332153 【后端】补退接口-大单补推订单发货单推送金蝶开发</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">谢婉扬 <span>(3个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331245 【后端】商用多退少补--扣款-信用账户进行多退少补改造信用平坦</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#337604 【后端】家用分批提货订单计算任务统计兼容分批订单</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331307 【后端】组合套餐类分批发货小单提交订单</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div></div></details>
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #db2777;">
+<span style="color:#db2777;">前端</span>
+<span class="role-count">8个任务 · 2人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">王子尘 <span>(7个)</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#329478 【PC管理】逆向单详情</span><span class="task-meta">集采 · 集采平台_V1.31.0（1015/集采dev4.1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#329477 【PC管理】ERP 开单透视表格合并计算</span><span class="task-meta">集采 · 集采平台_V1.31.0（1015/集采dev4.1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#329476 【PC管理】逆向单文件导入解析</span><span class="task-meta">集采 · 集采平台_V1.31.0（1015/集采dev4.1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#329475 【PC管理】逆向单管理列表</span><span class="task-meta">集采 · 集采平台_V1.31.0（1015/集采dev4.1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#337597 【PC管理】销司ERP编码增加层级字段</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#336641 【PC管理】商用销司库存信息小库库存余量公式迭代</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#330794 【PC管理】客户销司字典转单设置</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">莫世有 <span>(1个)</span></div><div class="task-item"><span class="task-type type-前端">前端</span><span class="task-name">#321632 【H5】【SY01】工程单列表-板块-审批进度以及其4种类型单据详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #ea580c;">
+<span style="color:#ea580c;">移动端</span>
+<span class="role-count">20个任务 · 3人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">张其辉 <span>(12个)</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333369 【Android】管理侧 - 家用工程售后详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333368 【Android】管理侧 - 家用工程订单详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333367 【Android】管理侧 - 商用工程售后详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333366 【Android】管理侧 - 商用工程订单详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333365 【Android】管理侧 - 商用零售售后详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333364 【Android】管理侧 - 商用零售订单详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333363 【Android】管理侧 - 家用工程接单页</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333362 【Android】管理侧 - 商用工程接单页</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333361 【Android】管理侧 - 商用零售接单页</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333348 【Android】用户侧 - 家用工程售后详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333343 【Android】用户侧 - 商用工程售后详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333342 【Android】用户侧 - 商用零售售后详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">徐良侦 <span>(4个)</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#335729 【iOS】管理侧 - 售后列表 - 小单</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#335728 【iOS】管理侧 - 售后列表 - 大单</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#335700 【iOS】管理侧 - 订单列表 - 小单</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#335699 【iOS】管理侧 - 订单列表 - 大单</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div><div class="person-detail"><div class="person-head">陈灿茂 <span>(4个)</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333347 【Android】用户侧 - 家用工程订单详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333341 【Android】用户侧 - 商用工程订单详情</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333329 【Android】用户侧 - 商用工程订单列表</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#333326 【Android】用户侧 - 商用工程下单页</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #0284c7;">
+<span style="color:#0284c7;">测试</span>
+<span class="role-count">12个任务 · 6人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">邹娟 <span>(2个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336735 【测试】工程销售方案（导入数据）与销司特批方案（关联历史工程单与展示）GC10~GC13--邹娟</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336730 【测试】【商用重构】用户端-工程单列表 SY08</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">李文清 <span>(2个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336734 【测试】工程销售方案（导入数据）与销司特批方案（关联历史工程单与展示）GC10~GC13--李文清</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336731 【测试】【商用重构】用户端-批价单列表 SY09</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">伍镓烨 <span>(3个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336749 【测试】CWMS异常数据返回处理逻辑（CWMS无SKU）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336745 【测试】新增北京商用信用账户能力及资金流水改造--伍镓烨（IOS）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336742 【测试】北京商用信用账户支付金额销售任务统计--伍镓烨（IOS）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">罗有文 <span>(2个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336744 【测试】新增北京商用信用账户能力及资金流水改造--罗有文（PC+H5）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336741 【测试】北京商用信用账户支付金额销售任务统计--罗有文（PC+H5）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">刘孝亮 <span>(2个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336727 【测试】【商用重构】管理端-工程审批 SY03--刘孝亮（PC）</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336718 【测试】【商用重构】管理端-工程项目单列表 SY01--刘孝亮IOS</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">龙泽英 <span>(1个)</span></div><div class="task-item"><span class="task-type type-测试">测试</span><span class="task-name">#336728 【测试】【商用重构】管理端-工程审批 SY03--龙泽英(Android)</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #64748b;">
+<span style="color:#64748b;">其他</span>
+<span class="role-count">2个任务 · 2人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">张敏琪 <span>(1个)</span></div><div class="task-item"><span class="task-type type-其他">其他</span><span class="task-name">#337700 张敏琪操作手册及培训材料更新</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div><div class="person-detail"><div class="person-head">王乐 <span>(1个)</span></div><div class="task-item"><span class="task-type type-其他">其他</span><span class="task-name">#340560 【uI设计】家用经销商订单快照记录销售标签</span><span class="task-meta">网批2.0 · 网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</span></div></div></div></details>
+</div></details>
+<details class="day-section">
+<summary class="day-summary">
+<span style="font-weight:700;font-size:14px;">2026-10-07 (周三)</span>
+<span class="day-count">5个任务 · 1人</span>
+</summary>
+<div class="day-body">
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #ea580c;">
+<span style="color:#ea580c;">移动端</span>
+<span class="role-count">5个任务 · 1人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">张春杰 <span>(5个)</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#330295 iOS-用户端-批价单商品详情页</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#327393 【iOS】提交订单页</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#327392 【iOS】购物车部分</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#327365 【iOS】【管理测】商用工程重构-工程审批-省外跨区登录-审批&amp;amp;查看</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div><div class="task-item"><span class="task-type type-移动端">移动端</span><span class="task-name">#327364 【iOS】【管理测】商用工程重构-工程审批-非跨区登录-审批&amp;amp;查看</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+</div></details>
+<details class="day-section">
+<summary class="day-summary">
+<span style="font-weight:700;font-size:14px;">2026-10-02 (周五)</span>
+<span class="day-count">1个任务 · 1人</span>
+</summary>
+<div class="day-body">
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #10b981;">
+<span style="color:#10b981;">后端</span>
+<span class="role-count">1个任务 · 1人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">谢婉扬 <span>(1个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331244 【后端】商用多退少补--退款-信用账户进行多退少补改造信用平坦</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+</div></details>
+<details class="day-section">
+<summary class="day-summary">
+<span style="font-weight:700;font-size:14px;">2026-10-01 (周四)</span>
+<span class="day-count">1个任务 · 1人</span>
+</summary>
+<div class="day-body">
+<details class="role-group">
+<summary class="role-summary" style="border-left:4px solid #10b981;">
+<span style="color:#10b981;">后端</span>
+<span class="role-count">1个任务 · 1人</span>
+</summary>
+<div class="role-body">
+<div class="person-detail"><div class="person-head">谢婉扬 <span>(1个)</span></div><div class="task-item"><span class="task-type type-后端">后端</span><span class="task-name">#331235 【后端】家用赊销账户按行业模式任务统计算法新增取信用账户支付金额参与任务统计</span><span class="task-meta">网批2.0 · 网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</span></div></div></div></details>
+</div></details>
+</div><!-- /view-daily -->
+
+<div class="footer">禅道数据 · 自动生成于 2026-10-10 · WorkBuddy</div>
+
+<script>
+function switchView(v) {
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById('view-' + v).classList.add('show');
+  document.querySelectorAll('.view-tab').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function expandAll() {
+  document.querySelectorAll('#view-daily details').forEach(d => d.open = true);
+}
+
+function collapseAll() {
+  document.querySelectorAll('#view-daily details').forEach(d => d.open = false);
+}
+</script>
+</div>
+</body></html>
