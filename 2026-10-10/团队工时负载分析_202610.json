@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 170,
-    "total_active": 362,
-    "total_month_hours": 1918.2,
+    "total_done": 175,
+    "total_active": 357,
+    "total_month_hours": 1928.2,
     "total_estimate": 4095.5,
     "total_members": 50,
-    "total_overdue": 5,
+    "total_overdue": 4,
     "reference_hours": 136,
-    "report_time": "2026-10-10 17:24:16",
+    "report_time": "2026-10-10 20:27:05",
     "month": "2026年10月"
   },
   "members": [
@@ -25,21 +25,21 @@
       "type_backend_hrs": 0.0,
       "type_frontend_hrs": 0.0,
       "type_mobile_hrs": 0.0,
-      "type_product_hrs": 138.0,
+      "type_product_hrs": 140.0,
       "type_test_hrs": 0.0,
-      "done_count": 1,
-      "done_estimate": 10.0,
-      "done_consumed": 8.0,
-      "month_done_hours": 138.0,
-      "active_count": 6,
-      "active_estimate": 166.0,
-      "active_consumed": 130.0,
-      "active_left": 57.0,
+      "done_count": 2,
+      "done_estimate": 28.0,
+      "done_consumed": 27.0,
+      "month_done_hours": 140.0,
+      "active_count": 5,
+      "active_estimate": 148.0,
+      "active_consumed": 113.0,
+      "active_left": 56.0,
       "total_tasks": 7,
       "total_estimate": 176.0,
-      "completion_rate": 14.3,
-      "efficiency": 14.3,
-      "overdue": 1,
+      "completion_rate": 28.6,
+      "efficiency": 28.6,
+      "overdue": 0,
       "done_tasks": [
         {
           "id": 319949,
@@ -52,23 +52,21 @@
           "opened_date": "2026-08-14",
           "finished_by": "胡健",
           "finished_date": "2026-10-09"
-        }
-      ],
-      "active_tasks": [
+        },
         {
           "id": 319946,
           "name": "【产品】企微端新增应用，支持业务人员进行条码信息查询产品设计",
-          "status": "doing",
-          "pri": 2,
-          "type": "ab2_request_des",
+          "consumed": 19.0,
           "estimate": 18.0,
-          "consumed": 17.0,
-          "left": 1.0,
+          "type": "ab2_request_des",
           "platform": "网批2.0",
           "execution": "网批模式_V2.85.0（1008/feature_26.09.v2）【2026】",
           "opened_date": "2026-08-14",
-          "deadline": "2026-10-09"
-        },
+          "finished_by": "胡健",
+          "finished_date": "2026-10-10"
+        }
+      ],
+      "active_tasks": [
         {
           "id": 324464,
           "name": "【产品】网批销司日常销售方案+销司返利销售方案对接定价平台做价格及数量校验",
@@ -599,13 +597,49 @@
       ],
       "resolved_bugs": [
         {
-          "id": 342234,
-          "title": "【QA-IOS-管理侧-商用工程】价格审批页，内部价＞0，还未填写批复价格，批复点位会显示100.0%",
+          "id": 342293,
+          "title": "【QA-IOS-管理侧-工程审批】项目单审批时选择已签单无合同，提交时提示请上传无合同签单说明",
           "severity": 3,
           "pri": 3,
           "status": "resolved",
           "platform": "网批2.0",
-          "openedBy": "江小芳"
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342292,
+          "title": "【QA-IOS-管理侧-工程项目单】项目单详情界面选择丢单无合同，提交时提示”是否有合同取值不合法（1是\\2否）&quo",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342270,
+          "title": "【QA-IOS-管理侧-工程审批】工程审批时项目状态分别选择已中标、已签单、已丢单时附件可上传数量可超出1个",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342259,
+          "title": "【QA-ios-管理侧-商用工程】登录审批时分别选择已中标、已丢单、已签单，但不填写必填信息仍可审批通过，未做必填校验",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342249,
+          "title": "[QA\\PRD-IOS-管理侧-工程项目单】代客申请页面当输入的客户名称、采购单位超长时核对按钮会被隐藏",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
         },
         {
           "id": 341958,
@@ -615,6 +649,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342234,
+          "title": "【QA-IOS-管理侧-商用工程】价格审批页，内部价＞0，还未填写批复价格，批复点位会显示100.0%",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
         },
         {
           "id": 342191,
@@ -1222,24 +1265,32 @@
       ],
       "active_bugs": [
         {
-          "id": 342270,
-          "title": "【QA-IOS-管理侧-工程审批】工程审批时项目状态分别选择已中标、已签单、已丢单时附件可上传数量可超出1个",
+          "id": 342297,
+          "title": "【QA-IOS-管理侧-工程审批】省外跨区第二个节点审批弹窗界面未回显已有的跨区编号",
           "severity": 3,
           "pri": 3,
           "status": "active",
           "platform": "网批2.0"
         },
         {
-          "id": 342259,
-          "title": "【QA-ios-管理侧-商用工程】登录审批时分别选择已中标、已丢单、已签单，但不填写必填信息仍可审批通过，未做必填校验",
+          "id": 342296,
+          "title": "【QA-IOS-管理侧-工程审批】作废审批通过、驳回提交失败，提示工程单ID不能为空",
           "severity": 3,
           "pri": 3,
           "status": "active",
           "platform": "网批2.0"
         },
         {
-          "id": 342249,
-          "title": "[QA\\PRD-IOS-管理侧-工程项目单】代客申请页面当输入的客户名称、采购单位超长时核对按钮会被隐藏",
+          "id": 342295,
+          "title": "【QA-IOS-管理侧-工程审批】解除地址限制审批通过、驳回均无法提交",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 342294,
+          "title": "【QA-IOS-管理侧-工程审批】登录延期审批时选择或者使用默认的延期至时间均提交失败，提示审批通过时延期截至时间不能为",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -1985,6 +2036,502 @@
       ],
       "active_tasks": [],
       "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
+      "name": "徐良侦",
+      "role": "移动端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 21,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 64.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 12,
+      "done_estimate": 72.0,
+      "done_consumed": 64.0,
+      "month_done_hours": 64.0,
+      "active_count": 9,
+      "active_estimate": 72.0,
+      "active_consumed": 0.0,
+      "active_left": 72.0,
+      "total_tasks": 21,
+      "total_estimate": 144.0,
+      "completion_rate": 57.1,
+      "efficiency": 57.1,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 335729,
+          "name": "【iOS】管理侧 - 售后列表 - 小单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-08"
+        },
+        {
+          "id": 335728,
+          "name": "【iOS】管理侧 - 售后列表 - 大单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-08"
+        },
+        {
+          "id": 335700,
+          "name": "【iOS】管理侧 - 订单列表 - 小单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-08"
+        },
+        {
+          "id": 335699,
+          "name": "【iOS】管理侧 - 订单列表 - 大单",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-08"
+        },
+        {
+          "id": 341325,
+          "name": "【iOS】管理侧 - 订单详情",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-10-10",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        },
+        {
+          "id": 341324,
+          "name": "【iOS】管理侧 - 售后单详情",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-10-10",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        },
+        {
+          "id": 341319,
+          "name": "【iOS】用户侧 - 订单详情页",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-10-10",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        },
+        {
+          "id": 341318,
+          "name": "【iOS】用户侧 - 售后单详情页",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-10-10",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        },
+        {
+          "id": 335731,
+          "name": "【iOS】管理侧 - 售后详情 - 小单",
+          "consumed": 6.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        },
+        {
+          "id": 335730,
+          "name": "【iOS】管理侧 - 售后详情 - 大单",
+          "consumed": 6.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        },
+        {
+          "id": 335702,
+          "name": "【iOS】管理侧 - 订单详情/接单详情 - 小单",
+          "consumed": 6.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        },
+        {
+          "id": 335701,
+          "name": "【iOS】管理侧 - 订单详情/接单详情 - 大单",
+          "consumed": 6.0,
+          "estimate": 8.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-10"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 335694,
+          "name": "【iOS】用户侧 - 订单列表 -（合并支付、支付）",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335695,
+          "name": "【iOS】用户侧 - 订单列表 - 大单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335696,
+          "name": "【iOS】用户侧 - 订单列表 - 小单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335697,
+          "name": "【iOS】用户侧 - 订单详情 - 大单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335698,
+          "name": "【iOS】用户侧 - 订单详情 - 小单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335724,
+          "name": "【iOS】用户侧 - 售后列表 - 大单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335725,
+          "name": "【iOS】用户侧 - 售后列表 - 小单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335726,
+          "name": "【iOS】用户侧 - 售后详情 - 大单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 335727,
+          "name": "【iOS】用户侧 - 售后详情 - 小单",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev6_mobile",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-21",
+          "deadline": "2026-10-15"
+        }
+      ],
+      "resolved_bugs": [
+        {
+          "id": 341013,
+          "title": "【QA-IOS-用户侧-商用重构-订单】购物车/提交订单页/订单详情，点击商品图标，跳转到商详页为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 342107,
+          "title": "【QA\\PRD-IOS-用户侧-首页】销司未开启商用工程新模式，进入工程机页签仍为商用工程新模式的内容",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342020,
+          "title": "【PRD-iOS-用户侧-商用工程】批价单详情页，非标商品关联正式商品后，商品主图仍显示为非标商品主图",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 342015,
+          "title": "【qa-iOS-用户侧-商用工程订单】商用工程分批发货订单，在订单列表或详情去支付，结果收银台显示已取消订单",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341920,
+          "title": "【QA-iOS-用户侧-商用工程】批价单详情页，剩余有效期不足一天时显示错误吴",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 341913,
+          "title": "【qa-iOS-用户侧-商用零售返利订单】商用零售订单和返利订单合并支付进入收银台，结果返利订单的货款金额计算到信用金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341866,
+          "title": "【QA-iOS-用户侧-商用赊销】商用分批发货大单订单详情支付，结果收银台不展示信用账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341814,
+          "title": "【QA-iOS-用户侧-商用工程】添加非标商品时没有填写申请点位，详情页商品信息弹窗申请字段显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李文清"
+        },
+        {
+          "id": 341788,
+          "title": "【QA-iOS-用户侧-商用工程】已关闭的项目单仍显示剩余天数",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 341785,
+          "title": "【QA-iOS-用户侧-商用工程】项目单详情页面非标商品ID显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 341777,
+          "title": "【qa-iOS-用户侧-商用工程尾款】商用工程尾款订单支付进入收银台，结果不展示信用账户信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341775,
+          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售订单和返利订单合并支付进入收银台，结果返利订单的货款金额计算到信用金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341572,
+          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单合并支付进入收银台，结果显示信用账户支付金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341551,
+          "title": "【qa-iOS-用户侧-家用工程返利订单】家用工程返利订单列表支付进入收银台，结果界面不显示返利账户信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341548,
+          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单详情支付进入收银台，结果界面显示异常",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341547,
+          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单列表支付进入收银台，结果不展示返利账户信息",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341535,
+          "title": "【qa-iOS-用户侧-家用工程订单】家用工程订单支付进入收银台，结果工程保证金未计算到货款支付金额",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 341253,
+          "title": "【qa-iOS-用户侧-家用工程】家用工程订单货款部分只够保证金和运费且有信用账户余额时，收银台不展示信用账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "伍镓烨"
+        },
+        {
+          "id": 340999,
+          "title": "【QA-IOS-用户侧-商用重构-订单】一层订单的定金单，在列表支付，失败，提示：有订单行批复价/预估价未批复，不能支付",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 342001,
+          "title": "【QA-iOS-用户侧-商用工程】审批记录审批人未暗文显示",
+          "severity": 4,
+          "pri": 4,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 341831,
+          "title": "【QA-iOS-用户侧-商用工程】登录延期详情页延期期限信息日期格式不正确，多显示了时分秒",
+          "severity": 4,
+          "pri": 4,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        }
+      ],
       "active_bugs": []
     },
     {
@@ -2936,510 +3483,6 @@
       "active_bugs": []
     },
     {
-      "name": "徐良侦",
-      "role": "移动端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 21,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 56.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 8,
-      "done_estimate": 64.0,
-      "done_consumed": 56.0,
-      "month_done_hours": 56.0,
-      "active_count": 13,
-      "active_estimate": 80.0,
-      "active_consumed": 0.0,
-      "active_left": 80.0,
-      "total_tasks": 21,
-      "total_estimate": 144.0,
-      "completion_rate": 38.1,
-      "efficiency": 38.1,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 335729,
-          "name": "【iOS】管理侧 - 售后列表 - 小单",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-08"
-        },
-        {
-          "id": 335728,
-          "name": "【iOS】管理侧 - 售后列表 - 大单",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-08"
-        },
-        {
-          "id": 335700,
-          "name": "【iOS】管理侧 - 订单列表 - 小单",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-08"
-        },
-        {
-          "id": 335699,
-          "name": "【iOS】管理侧 - 订单列表 - 大单",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-08"
-        },
-        {
-          "id": 335731,
-          "name": "【iOS】管理侧 - 售后详情 - 小单",
-          "consumed": 6.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-10"
-        },
-        {
-          "id": 335730,
-          "name": "【iOS】管理侧 - 售后详情 - 大单",
-          "consumed": 6.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-10"
-        },
-        {
-          "id": 335702,
-          "name": "【iOS】管理侧 - 订单详情/接单详情 - 小单",
-          "consumed": 6.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-10"
-        },
-        {
-          "id": 335701,
-          "name": "【iOS】管理侧 - 订单详情/接单详情 - 大单",
-          "consumed": 6.0,
-          "estimate": 8.0,
-          "type": "a_dev6_mobile",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "finished_by": "徐良侦",
-          "finished_date": "2026-10-10"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 335694,
-          "name": "【iOS】用户侧 - 订单列表 -（合并支付、支付）",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335695,
-          "name": "【iOS】用户侧 - 订单列表 - 大单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335696,
-          "name": "【iOS】用户侧 - 订单列表 - 小单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335697,
-          "name": "【iOS】用户侧 - 订单详情 - 大单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335698,
-          "name": "【iOS】用户侧 - 订单详情 - 小单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335724,
-          "name": "【iOS】用户侧 - 售后列表 - 大单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335725,
-          "name": "【iOS】用户侧 - 售后列表 - 小单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335726,
-          "name": "【iOS】用户侧 - 售后详情 - 大单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 335727,
-          "name": "【iOS】用户侧 - 售后详情 - 小单",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-21",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 341318,
-          "name": "【iOS】用户侧 - 售后单详情页",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-10-10",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 341319,
-          "name": "【iOS】用户侧 - 订单详情页",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-10-10",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 341324,
-          "name": "【iOS】管理侧 - 售后单详情",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-10-10",
-          "deadline": "2026-10-15"
-        },
-        {
-          "id": 341325,
-          "name": "【iOS】管理侧 - 订单详情",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 2.0,
-          "consumed": 0.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-10-10",
-          "deadline": "2026-10-15"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 341013,
-          "title": "【QA-IOS-用户侧-商用重构-订单】购物车/提交订单页/订单详情，点击商品图标，跳转到商详页为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 342107,
-          "title": "【QA\\PRD-IOS-用户侧-首页】销司未开启商用工程新模式，进入工程机页签仍为商用工程新模式的内容",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 342020,
-          "title": "【PRD-iOS-用户侧-商用工程】批价单详情页，非标商品关联正式商品后，商品主图仍显示为非标商品主图",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 342015,
-          "title": "【qa-iOS-用户侧-商用工程订单】商用工程分批发货订单，在订单列表或详情去支付，结果收银台显示已取消订单",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341920,
-          "title": "【QA-iOS-用户侧-商用工程】批价单详情页，剩余有效期不足一天时显示错误吴",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 341913,
-          "title": "【qa-iOS-用户侧-商用零售返利订单】商用零售订单和返利订单合并支付进入收银台，结果返利订单的货款金额计算到信用金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341866,
-          "title": "【QA-iOS-用户侧-商用赊销】商用分批发货大单订单详情支付，结果收银台不展示信用账户",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341814,
-          "title": "【QA-iOS-用户侧-商用工程】添加非标商品时没有填写申请点位，详情页商品信息弹窗申请字段显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "李文清"
-        },
-        {
-          "id": 341788,
-          "title": "【QA-iOS-用户侧-商用工程】已关闭的项目单仍显示剩余天数",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341785,
-          "title": "【QA-iOS-用户侧-商用工程】项目单详情页面非标商品ID显示错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341777,
-          "title": "【qa-iOS-用户侧-商用工程尾款】商用工程尾款订单支付进入收银台，结果不展示信用账户信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341775,
-          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售订单和返利订单合并支付进入收银台，结果返利订单的货款金额计算到信用金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341572,
-          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单合并支付进入收银台，结果显示信用账户支付金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341551,
-          "title": "【qa-iOS-用户侧-家用工程返利订单】家用工程返利订单列表支付进入收银台，结果界面不显示返利账户信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341548,
-          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单详情支付进入收银台，结果界面显示异常",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341547,
-          "title": "【qa-iOS-用户侧-家用零售返利订单】家用零售返利订单列表支付进入收银台，结果不展示返利账户信息",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341535,
-          "title": "【qa-iOS-用户侧-家用工程订单】家用工程订单支付进入收银台，结果工程保证金未计算到货款支付金额",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 341253,
-          "title": "【qa-iOS-用户侧-家用工程】家用工程订单货款部分只够保证金和运费且有信用账户余额时，收银台不展示信用账户",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "伍镓烨"
-        },
-        {
-          "id": 340999,
-          "title": "【QA-IOS-用户侧-商用重构-订单】一层订单的定金单，在列表支付，失败，提示：有订单行批复价/预估价未批复，不能支付",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
-          "id": 342001,
-          "title": "【QA-iOS-用户侧-商用工程】审批记录审批人未暗文显示",
-          "severity": 4,
-          "pri": 4,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341831,
-          "title": "【QA-iOS-用户侧-商用工程】登录延期详情页延期期限信息日期格式不正确，多显示了时分秒",
-          "severity": 4,
-          "pri": 4,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        }
-      ],
-      "active_bugs": []
-    },
-    {
       "name": "梁嘉健",
       "role": "后端",
       "type_counts": {
@@ -4106,6 +4149,15 @@
           "openedBy": "李文清"
         },
         {
+          "id": 342196,
+          "title": "【QA-安卓-用户侧-商用工程】项目单跨区类型”省内跨区“不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 342109,
           "title": "【QA\\PRD-安卓-用户侧-首页】销司未开启商用工程新模式，进入工程机页签仍为商用工程新模式的内容",
           "severity": 3,
@@ -4281,14 +4333,6 @@
         {
           "id": 342211,
           "title": "【QA-安卓-用户侧-商用工程】采购单位未查询到企业，仍提示工商校验通过",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342196,
-          "title": "【QA-安卓-用户侧-商用工程】项目单跨区类型”省内跨区“不正确",
           "severity": 3,
           "pri": 3,
           "status": "confirmed",
@@ -5750,6 +5794,92 @@
       "active_bugs": []
     },
     {
+      "name": "钟爽",
+      "role": "其他",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 4
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 3,
+      "done_estimate": 35.0,
+      "done_consumed": 26.0,
+      "month_done_hours": 26.0,
+      "active_count": 1,
+      "active_estimate": 20.0,
+      "active_consumed": 0.0,
+      "active_left": 20.0,
+      "total_tasks": 4,
+      "total_estimate": 55.0,
+      "completion_rate": 75.0,
+      "efficiency": 75.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 336640,
+          "name": "【UI设计】返利专区新增搜索条件",
+          "consumed": 8.0,
+          "estimate": 10.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v1）【2026】",
+          "opened_date": "2026-09-23",
+          "finished_by": "钟爽",
+          "finished_date": "2026-10-09"
+        },
+        {
+          "id": 337151,
+          "name": "【UI设计】员工部门变动时的账号变动",
+          "consumed": 6.0,
+          "estimate": 10.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-23",
+          "finished_by": "钟爽",
+          "finished_date": "2026-10-09"
+        },
+        {
+          "id": 336638,
+          "name": "【UI设计】客户库增加导出业务线业务",
+          "consumed": 12.0,
+          "estimate": 15.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-23",
+          "finished_by": "钟爽",
+          "finished_date": "2026-10-09"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 340862,
+          "name": "【UI设计】客户管理增加定价平台渠道",
+          "status": "wait",
+          "pri": 3,
+          "type": "ad1_UI_des",
+          "estimate": 20.0,
+          "consumed": 0.0,
+          "left": 20.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-09",
+          "deadline": "2026-10-16"
+        }
+      ],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
       "name": "徐琦",
       "role": "后端",
       "type_counts": {
@@ -6261,92 +6391,6 @@
           "openedBy": "马腾"
         }
       ],
-      "active_bugs": []
-    },
-    {
-      "name": "钟爽",
-      "role": "其他",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 4
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 3,
-      "done_estimate": 35.0,
-      "done_consumed": 26.0,
-      "month_done_hours": 26.0,
-      "active_count": 1,
-      "active_estimate": 20.0,
-      "active_consumed": 0.0,
-      "active_left": 20.0,
-      "total_tasks": 4,
-      "total_estimate": 55.0,
-      "completion_rate": 75.0,
-      "efficiency": 75.0,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 336640,
-          "name": "【UI设计】返利专区新增搜索条件",
-          "consumed": 8.0,
-          "estimate": 10.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v1）【2026】",
-          "opened_date": "2026-09-23",
-          "finished_by": "钟爽",
-          "finished_date": "2026-10-09"
-        },
-        {
-          "id": 337151,
-          "name": "【UI设计】员工部门变动时的账号变动",
-          "consumed": 6.0,
-          "estimate": 10.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-23",
-          "finished_by": "钟爽",
-          "finished_date": "2026-10-09"
-        },
-        {
-          "id": 336638,
-          "name": "【UI设计】客户库增加导出业务线业务",
-          "consumed": 12.0,
-          "estimate": 15.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-23",
-          "finished_by": "钟爽",
-          "finished_date": "2026-10-09"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 340862,
-          "name": "【UI设计】客户管理增加定价平台渠道",
-          "status": "wait",
-          "pri": 3,
-          "type": "ad1_UI_des",
-          "estimate": 20.0,
-          "consumed": 0.0,
-          "left": 20.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-09",
-          "deadline": "2026-10-16"
-        }
-      ],
-      "resolved_bugs": [],
       "active_bugs": []
     },
     {
@@ -10067,7 +10111,7 @@
           "title": "【QA-iOS-用户侧-商用工程】复制新建/重新提交会保存企业查询信息",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         },
         {
@@ -10878,7 +10922,24 @@
           "openedBy": "陈嘉劲"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 342273,
+          "title": "【qa-pc-用户侧-家用分批发货订单】家用分批发货小单订单详情的取消发货弹窗样式有误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 342272,
+          "title": "【qa-pc-用户侧-家用分批发货订单】家用分批发货小单订单详情的取消发货按钮显示文案错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "谢福邦",
@@ -11102,11 +11163,20 @@
       "active_tasks": [],
       "resolved_bugs": [
         {
+          "id": 342278,
+          "title": "【QA-IOS-管理侧-工程项目单】项目单详情界面选择丢单，提交时丢单原因传值错误，提交成功后查看未显示丢单信息，图片附",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 342189,
           "title": "【QA/PRD-PC-管理侧-商用工程】项目单列表页数据隔离没有隔离该账号没有授权的业务线的项目单",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
@@ -11115,7 +11185,7 @@
           "title": "【QA/PRD-PC-管理侧-商用工程】关联项目单通过编辑按钮进入的添加关联工程单弹窗中有购买数量不为0的项目单",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李成斌"
         },
