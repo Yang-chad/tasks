@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迭代4811 需求工时表</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei',-apple-system,sans-serif;background:#f0f2f5;color:#1f2937;padding:24px}
+.wrap{max-width:1400px;margin:0 auto}
+.head{background:linear-gradient(135deg,#1a73e8,#4a9af5,#7ec8f7);color:#fff;border-radius:16px;padding:24px 30px;margin-bottom:18px;box-shadow:0 4px 16px rgba(26,115,232,.2)}
+.head h1{font-size:21px;font-weight:600;margin-bottom:8px}
+.head .sub{font-size:13px;opacity:.92;line-height:1.7}
+.legend{display:flex;gap:16px;margin-bottom:12px;font-size:12px;color:#475569;align-items:center;flex-wrap:wrap}
+.legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.legend .hint{margin-left:auto;color:#6b7280}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.card .l{font-size:12px;color:#6b7280;margin-bottom:6px}
+.card .v{font-size:24px;font-weight:700;color:#1a73e8}
+.card .v.red{color:#ef4444}
+.dist{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:18px}
+.dist h2{font-size:14px;font-weight:600;margin-bottom:14px;padding-left:10px;border-left:4px solid #ef4444}
+.dist .grid{display:flex;gap:14px;flex-wrap:wrap}
+.mc{flex:1;min-width:100px;text-align:center;padding:12px;background:#f8fafc;border-radius:10px}
+.mc .mc-n{font-size:22px;font-weight:700}
+.mc .mc-l{font-size:12px;color:#6b7280;margin-top:2px}
+.sec{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.table-wrap{overflow:visible}
+table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12px}
+th{padding:8px 6px;font-weight:600;font-size:12px;line-height:1.35;border-bottom:2px solid #e5e7eb;white-space:normal;text-align:center;position:sticky;top:0;z-index:10}
+th.h-base{background:#eef4ff;color:#1e40af}
+th.h-calc{background:#fff7ed;color:#c2410c;border-bottom-color:#fdba74}
+th.h-detail{background:#ecfdf5;color:#047857;border-bottom-color:#6ee7b7}
+/* 数值列表头右对齐，与数据对齐 */
+th.h-calc,th.h-detail{text-align:right;padding-right:8px}
+/* 排序 */
+th.sortable{cursor:pointer;user-select:none;transition:filter .15s}
+th.sortable:hover{filter:brightness(.93);z-index:100}
+th.sortable[data-dir="asc"]::after{content:"▲";font-size:9px;margin-left:3px;color:inherit}
+th.sortable[data-dir="desc"]::after{content:"▼";font-size:9px;margin-left:3px;color:inherit}
+/* 公式 tooltip */
+th[data-tip]:hover::after{
+  content:attr(data-tip);
+  position:absolute;top:calc(100% + 5px);left:50%;transform:translateX(-50%);
+  background:#1f2937;color:#fff;font-size:12px;font-weight:400;line-height:1.5;
+  padding:8px 12px;border-radius:8px;white-space:nowrap;z-index:1001;
+  box-shadow:0 6px 16px rgba(0,0,0,.28);
+}
+th[data-tip]:hover::before{
+  content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-bottom-color:#1f2937;z-index:1001;
+}
+td{padding:8px 6px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:12px}
+tbody tr:nth-child(even) td{background:#fafbfd}
+tr:hover td{background:#eff6ff !important}
+td.name{text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.mono{font-family:Consolas,monospace;font-size:12px;color:#475569;white-space:nowrap}
+/* 数值单元格：等宽字体 + 右对齐，0/空值淡化 */
+td.num{font-family:Consolas,monospace;font-size:12px;font-weight:500;color:#334155;text-align:right;padding-right:8px;white-space:nowrap;overflow:hidden}
+td.num.zero{color:#cbd5e1;font-weight:400}
+.note{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:14px;line-height:1.7}
+.footer{text-align:center;color:#9ca3af;font-size:12px;margin-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="head">
+<h1>迭代4811 需求工时表</h1>
+<div class="sub">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】（迭代 4811） · 共 21 个需求</div>
+</div>
+<div class="cards"><div class="card"><div class="l">需求总数</div><div class="v">21</div></div><div class="card"><div class="l">开发任务数（剔除【总任务】）</div><div class="v">257</div></div><div class="card"><div class="l">需求h合计（五角色消耗）</div><div class="v">731.0</div></div><div class="card"><div class="l">开发任务h合计</div><div class="v">488.0</div></div><div class="card"><div class="l">自动计算合计</div><div class="v red">7.40</div></div></div>
+<div class="dist"><h2>五角色消耗工时分布（合计 731.0h）</h2><div class="grid"><div class="mc"><div class="mc-n" style="color:#10b981">378.0h</div><div class="mc-l">后端消耗</div></div><div class="mc"><div class="mc-n" style="color:#db2777">40.0h</div><div class="mc-l">前端消耗</div></div><div class="mc"><div class="mc-n" style="color:#ea580c">70.0h</div><div class="mc-l">移动消耗</div></div><div class="mc"><div class="mc-n" style="color:#0284c7">7.0h</div><div class="mc-l">测试消耗</div></div><div class="mc"><div class="mc-n" style="color:#7c3aed">236.0h</div><div class="mc-l">产品消耗</div></div></div></div>
+<div class="note">&#9888;&#65039; 核心结论：21 个需求共消耗 731.0h（五角色口径），其中开发任务 488.0h（占 67%）、测试 7.0h、产品 236.0h。消耗最高：#68904 4.0经销商销售方案新增销售标签（136.0h）；其次 #70066 家用分批发货订单-订单（126.0h）。自动计算合计 7.40。</div>
+<div class="legend">
+<span><span class="sw" style="background:#fff7ed"></span>计算列</span>
+<span><span class="sw" style="background:#ecfdf5"></span>明细列</span>
+<span class="hint">&#128269; 悬停表头查看公式 · 点击表头升降序</span>
+</div>
+<div class="sec">
+<div class="table-wrap">
+<table>
+<colgroup><col style="width:64px"><col style="width:240px"><col style="width:78px"><col style="width:82px"><col style="width:82px"><col style="width:82px"><col style="width:82px"><col style="width:68px"><col style="width:74px"><col style="width:64px"><col style="width:64px"><col style="width:64px"><col style="width:64px"><col style="width:64px"></colgroup>
+<thead><tr><th class="sortable h-base" data-col="0" data-type="num" data-tip="需求ID（禅道 story id）">需求ID</th><th class="sortable h-base" data-col="1" data-type="text" data-tip="需求标题" style="text-align:left">需求名称</th><th class="sortable h-calc" data-col="2" data-type="num" data-tip="自动计算 =（总工时计算 + 开发工时计算 + 产品工时计算 + 测试工时计算）÷ 4">自动计算</th><th class="sortable h-calc" data-col="3" data-type="num" data-tip="总工时计算 = 需求h ÷ 7.25 ÷ 14">总工时计算</th><th class="sortable h-calc" data-col="4" data-type="num" data-tip="开发工时计算 = 开发任务h ÷ 7.25 ÷ 6">开发工时计算</th><th class="sortable h-calc" data-col="5" data-type="num" data-tip="产品工时计算 = 产品 ÷ 7.25 ÷ 3">产品工时计算</th><th class="sortable h-calc" data-col="6" data-type="num" data-tip="测试工时计算 = 测试 ÷ 7.25 ÷ 3">测试工时计算</th><th class="sortable h-detail" data-col="7" data-type="num" data-tip="需求h = 前端 + 后端 + 移动 + 测试 + 产品（五角色消耗工时相加）">需求h</th><th class="sortable h-detail" data-col="8" data-type="num" data-tip="开发任务h = 后端 + 前端 + 移动端">开发任务h</th><th class="sortable h-detail" data-col="9" data-type="num" data-tip="该需求所有【后端】类型任务的消耗工时（consumed）总和">后端</th><th class="sortable h-detail" data-col="10" data-type="num" data-tip="该需求所有【前端】类型任务的消耗工时（consumed）总和">前端</th><th class="sortable h-detail" data-col="11" data-type="num" data-tip="该需求所有【移动端】类型任务的消耗工时（consumed）总和">移动</th><th class="sortable h-detail" data-col="12" data-type="num" data-tip="该需求所有【测试】类型任务的消耗工时（consumed）总和">测试</th><th class="sortable h-detail" data-col="13" data-type="num" data-tip="该需求所有【产品】类型任务的消耗工时（consumed）总和">产品</th></tr></thead>
+<tbody>
+<tr><td class="mono">68904</td><td class="name" title="4.0经销商销售方案新增销售标签">4.0经销商销售方案新增销售标签</td><td class="num">1.16</td><td class="num">1.34</td><td class="num">2.97</td><td class="num zero">0.00</td><td class="num">0.32</td><td class="num">136.0</td><td class="num">129.0</td><td class="num">105.0</td><td class="num">24.0</td><td class="num zero">-</td><td class="num">7.0</td><td class="num zero">-</td></tr><tr><td class="mono">68940</td><td class="name" title="网批家用分批提货经销商任务统计逻辑兼容改造">网批家用分批提货经销商任务统计逻辑兼容改造</td><td class="num">0.03</td><td class="num">0.04</td><td class="num">0.09</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num">4.0</td><td class="num">4.0</td><td class="num">4.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td></tr><tr><td class="mono">68946</td><td class="name" title="家用分批提货经销商资金账户流水兼容改造">家用分批提货经销商资金账户流水兼容改造</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td></tr><tr><td class="mono">69203</td><td class="name" title="天津多层级订单部分RMS一件代发场景补全">天津多层级订单部分RMS一件代发场景补全</td><td class="num">0.11</td><td class="num">0.08</td><td class="num zero">0.00</td><td class="num">0.37</td><td class="num zero">0.00</td><td class="num">8.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">8.0</td></tr><tr><td class="mono">69411</td><td class="name" title="销司ERP编码增加层级字段">销司ERP编码增加层级字段</td><td class="num">0.22</td><td class="num">0.24</td><td class="num">0.46</td><td class="num">0.18</td><td class="num zero">0.00</td><td class="num">24.0</td><td class="num">20.0</td><td class="num">16.0</td><td class="num">4.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">4.0</td></tr><tr><td class="mono">69830</td><td class="name" title="大客户-大盘售后结算优惠相关需求GD03~12和GC30">大客户-大盘售后结算优惠相关需求GD03~12和GC30</td><td class="num">0.76</td><td class="num">0.73</td><td class="num">1.10</td><td class="num">1.20</td><td class="num zero">0.00</td><td class="num">74.0</td><td class="num">48.0</td><td class="num">48.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">26.0</td></tr><tr><td class="mono">70066</td><td class="name" title="家用分批发货订单-订单">家用分批发货订单-订单</td><td class="num">1.21</td><td class="num">1.24</td><td class="num">2.21</td><td class="num">1.38</td><td class="num zero">0.00</td><td class="num">126.0</td><td class="num">96.0</td><td class="num">48.0</td><td class="num zero">-</td><td class="num">48.0</td><td class="num zero">-</td><td class="num">30.0</td></tr><tr><td class="mono">70069</td><td class="name" title="家用分批发货订单-订单售后">家用分批发货订单-订单售后</td><td class="num">0.68</td><td class="num">0.61</td><td class="num">0.74</td><td class="num">1.38</td><td class="num zero">0.00</td><td class="num">62.0</td><td class="num">32.0</td><td class="num">16.0</td><td class="num zero">-</td><td class="num">16.0</td><td class="num zero">-</td><td class="num">30.0</td></tr><tr><td class="mono">70070</td><td class="name" title="家用分批发货订单-发货单">家用分批发货订单-发货单</td><td class="num">0.68</td><td class="num">0.61</td><td class="num">0.74</td><td class="num">1.38</td><td class="num zero">0.00</td><td class="num">62.0</td><td class="num">32.0</td><td class="num">32.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">30.0</td></tr><tr><td class="mono">70071</td><td class="name" title="家用分批发货订单-发货单售后">家用分批发货订单-发货单售后</td><td class="num">0.44</td><td class="num">0.32</td><td class="num">0.05</td><td class="num">1.38</td><td class="num zero">0.00</td><td class="num">32.0</td><td class="num">2.0</td><td class="num">2.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">30.0</td></tr><tr><td class="mono">70072</td><td class="name" title="家用分批发货订单-转单设置">家用分批发货订单-转单设置</td><td class="num">0.37</td><td class="num">0.37</td><td class="num">0.64</td><td class="num">0.46</td><td class="num zero">0.00</td><td class="num">38.0</td><td class="num">28.0</td><td class="num">20.0</td><td class="num">8.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">10.0</td></tr><tr><td class="mono">70073</td><td class="name" title="家用分批发货订单-接单、退款审批企微提醒、待办事项">家用分批发货订单-接单、退款审批企微提醒、待办事项</td><td class="num">0.29</td><td class="num">0.25</td><td class="num">0.23</td><td class="num">0.69</td><td class="num zero">0.00</td><td class="num">25.0</td><td class="num">10.0</td><td class="num">10.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">15.0</td></tr><tr><td class="mono">70074</td><td class="name" title="家用分批发货订单-发货单与普通订单合并支付免运费">家用分批发货订单-发货单与普通订单合并支付免运费</td><td class="num">0.30</td><td class="num">0.23</td><td class="num">0.07</td><td class="num">0.92</td><td class="num zero">0.00</td><td class="num">23.0</td><td class="num">3.0</td><td class="num">3.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">20.0</td></tr><tr><td class="mono">70075</td><td class="name" title="家用分批发货订单-对接OMS、金蝶">家用分批发货订单-对接OMS、金蝶</td><td class="num">0.65</td><td class="num">0.68</td><td class="num">1.24</td><td class="num">0.69</td><td class="num zero">0.00</td><td class="num">69.0</td><td class="num">54.0</td><td class="num">54.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">15.0</td></tr><tr><td class="mono">70628</td><td class="name" title="经销商账户累计提货总额计算公式改造">经销商账户累计提货总额计算公式改造</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td></tr><tr><td class="mono">70776</td><td class="name" title="家用经销商订单快照记录销售标签">家用经销商订单快照记录销售标签</td><td class="num">0.28</td><td class="num">0.26</td><td class="num">0.32</td><td class="num">0.55</td><td class="num zero">0.00</td><td class="num">26.0</td><td class="num">14.0</td><td class="num">8.0</td><td class="num zero">-</td><td class="num">6.0</td><td class="num zero">-</td><td class="num">12.0</td></tr><tr><td class="mono">70871</td><td class="name" title="商用销司库存信息小库库存余量公式迭代">商用销司库存信息小库库存余量公式迭代</td><td class="num">0.14</td><td class="num">0.13</td><td class="num">0.16</td><td class="num">0.28</td><td class="num zero">0.00</td><td class="num">13.0</td><td class="num">7.0</td><td class="num">3.0</td><td class="num">4.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">6.0</td></tr><tr><td class="mono">70914</td><td class="name" title="短信模板ID调整与平台切换">短信模板ID调整与平台切换</td><td class="num">0.07</td><td class="num">0.09</td><td class="num">0.21</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num">9.0</td><td class="num">9.0</td><td class="num">9.0</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td></tr><tr><td class="mono">71107</td><td class="name" title="9 月 UIUX走查">9 月 UIUX走查</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td></tr><tr><td class="mono">71312</td><td class="name" title="【QA-PC-管理侧-工程销售方案】工程销售方案的网批挂价、主标题、工程基准价为空时提交都是toast提示">【QA-PC-管理侧-工程销售方案】工程销售方案的网批挂价、主标题、工程基准价为空时…</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td></tr><tr><td class="mono">71313</td><td class="name" title="【QA-PC-管理侧-商用工程】批价单已提货，关联的项目单作废单据可以审批通过">【QA-PC-管理侧-商用工程】批价单已提货，关联的项目单作废单据可以审批通过</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">0.00</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="footer">数据来源：禅道 ztpm.gree.com · 迭代 4811 · consumed 工时口径 · 生成时间 2026-10-10 15:40</div>
+</div>
+<script>
+(function(){
+  var table = document.querySelector('table');
+  var tbody = table.tBodies[0];
+  document.querySelectorAll('th.sortable').forEach(function(th){
+    th.addEventListener('click', function(){
+      var col = parseInt(th.getAttribute('data-col'), 10);
+      var type = th.getAttribute('data-type');
+      var dir = th.getAttribute('data-dir') === 'asc' ? 'desc' : 'asc';
+      document.querySelectorAll('th.sortable').forEach(function(h){ h.removeAttribute('data-dir'); });
+      th.setAttribute('data-dir', dir);
+      var rows = Array.prototype.slice.call(tbody.rows);
+      rows.sort(function(a, b){
+        var ca = a.cells[col].innerText.trim();
+        var cb = b.cells[col].innerText.trim();
+        if (type === 'num') {
+          var va = parseFloat(ca), vb = parseFloat(cb);
+          var ea = isNaN(va), eb = isNaN(vb);
+          if (ea && eb) return 0;
+          if (ea) return 1;   // 空值("-") 恒排最后
+          if (eb) return -1;
+          return dir === 'asc' ? va - vb : vb - va;
+        } else {
+          return dir === 'asc' ? ca.localeCompare(cb, 'zh') : cb.localeCompare(ca, 'zh');
+        }
+      });
+      rows.forEach(function(r){ tbody.appendChild(r); });
+    });
+  });
+})();
+</script>
+</body>
+</html>

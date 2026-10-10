@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迭代4866 需求工时表</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei',-apple-system,sans-serif;background:#f0f2f5;color:#1f2937;padding:24px}
+.wrap{max-width:1400px;margin:0 auto}
+.head{background:linear-gradient(135deg,#1a73e8,#4a9af5,#7ec8f7);color:#fff;border-radius:16px;padding:24px 30px;margin-bottom:18px;box-shadow:0 4px 16px rgba(26,115,232,.2)}
+.head h1{font-size:21px;font-weight:600;margin-bottom:8px}
+.head .sub{font-size:13px;opacity:.92;line-height:1.7}
+.legend{display:flex;gap:16px;margin-bottom:12px;font-size:12px;color:#475569;align-items:center;flex-wrap:wrap}
+.legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.legend .hint{margin-left:auto;color:#6b7280}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.card .l{font-size:12px;color:#6b7280;margin-bottom:6px}
+.card .v{font-size:24px;font-weight:700;color:#1a73e8}
+.card .v.red{color:#ef4444}
+.dist{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:18px}
+.dist h2{font-size:14px;font-weight:600;margin-bottom:14px;padding-left:10px;border-left:4px solid #ef4444}
+.dist .grid{display:flex;gap:14px;flex-wrap:wrap}
+.mc{flex:1;min-width:100px;text-align:center;padding:12px;background:#f8fafc;border-radius:10px}
+.mc .mc-n{font-size:22px;font-weight:700}
+.mc .mc-l{font-size:12px;color:#6b7280;margin-top:2px}
+.sec{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.table-wrap{overflow:visible}
+table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12px}
+th{padding:8px 6px;font-weight:600;font-size:12px;line-height:1.35;border-bottom:2px solid #e5e7eb;white-space:normal;text-align:center;position:sticky;top:0;z-index:10}
+th.h-base{background:#eef4ff;color:#1e40af}
+th.h-calc{background:#fff7ed;color:#c2410c;border-bottom-color:#fdba74}
+th.h-detail{background:#ecfdf5;color:#047857;border-bottom-color:#6ee7b7}
+/* 数值列表头右对齐，与数据对齐 */
+th.h-calc,th.h-detail{text-align:right;padding-right:8px}
+/* 排序 */
+th.sortable{cursor:pointer;user-select:none;transition:filter .15s}
+th.sortable:hover{filter:brightness(.93);z-index:100}
+th.sortable[data-dir="asc"]::after{content:"▲";font-size:9px;margin-left:3px;color:inherit}
+th.sortable[data-dir="desc"]::after{content:"▼";font-size:9px;margin-left:3px;color:inherit}
+/* 公式 tooltip */
+th[data-tip]:hover::after{
+  content:attr(data-tip);
+  position:absolute;top:calc(100% + 5px);left:50%;transform:translateX(-50%);
+  background:#1f2937;color:#fff;font-size:12px;font-weight:400;line-height:1.5;
+  padding:8px 12px;border-radius:8px;white-space:nowrap;z-index:1001;
+  box-shadow:0 6px 16px rgba(0,0,0,.28);
+}
+th[data-tip]:hover::before{
+  content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-bottom-color:#1f2937;z-index:1001;
+}
+td{padding:8px 6px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:12px}
+tbody tr:nth-child(even) td{background:#fafbfd}
+tr:hover td{background:#eff6ff !important}
+td.name{text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.mono{font-family:Consolas,monospace;font-size:12px;color:#475569;white-space:nowrap}
+/* 数值单元格：等宽字体 + 右对齐，0/空值淡化 */
+td.num{font-family:Consolas,monospace;font-size:12px;font-weight:500;color:#334155;text-align:right;padding-right:8px;white-space:nowrap;overflow:hidden}
+td.num.zero{color:#cbd5e1;font-weight:400}
+.note{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:14px;line-height:1.7}
+.footer{text-align:center;color:#9ca3af;font-size:12px;margin-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="head">
+<h1>迭代4866 需求工时表</h1>
+<div class="sub">网批模式_V2.89.0（1130/feature_26.11.v2）【2026】（迭代 4866） · 共 0 个需求</div>
+</div>
+<div class="cards"><div class="card"><div class="l">需求总数</div><div class="v">0</div></div><div class="card"><div class="l">开发任务数（剔除【总任务】）</div><div class="v">0</div></div><div class="card"><div class="l">需求h合计（五角色消耗）</div><div class="v">0.0</div></div><div class="card"><div class="l">开发任务h合计</div><div class="v">0.0</div></div><div class="card"><div class="l">自动计算合计</div><div class="v red">0.00</div></div></div>
+<div class="dist"><h2>五角色消耗工时分布（合计 0.0h）</h2><div class="grid"><div class="mc"><div class="mc-n" style="color:#10b981">0.0h</div><div class="mc-l">后端消耗</div></div><div class="mc"><div class="mc-n" style="color:#db2777">0.0h</div><div class="mc-l">前端消耗</div></div><div class="mc"><div class="mc-n" style="color:#ea580c">0.0h</div><div class="mc-l">移动消耗</div></div><div class="mc"><div class="mc-n" style="color:#0284c7">0.0h</div><div class="mc-l">测试消耗</div></div><div class="mc"><div class="mc-n" style="color:#7c3aed">0.0h</div><div class="mc-l">产品消耗</div></div></div></div>
+<div class="note">&#9888;&#65039; 核心结论：0 个需求共消耗 0.0h（五角色口径），其中开发任务 0.0h（占 0%）、测试 0.0h、产品 0.0h。暂无需求消耗数据。自动计算合计 0.00。</div>
+<div class="legend">
+<span><span class="sw" style="background:#fff7ed"></span>计算列</span>
+<span><span class="sw" style="background:#ecfdf5"></span>明细列</span>
+<span class="hint">&#128269; 悬停表头查看公式 · 点击表头升降序</span>
+</div>
+<div class="sec">
+<div class="table-wrap">
+<table>
+<colgroup><col style="width:64px"><col style="width:240px"><col style="width:78px"><col style="width:82px"><col style="width:82px"><col style="width:82px"><col style="width:82px"><col style="width:68px"><col style="width:74px"><col style="width:64px"><col style="width:64px"><col style="width:64px"><col style="width:64px"><col style="width:64px"></colgroup>
+<thead><tr><th class="sortable h-base" data-col="0" data-type="num" data-tip="需求ID（禅道 story id）">需求ID</th><th class="sortable h-base" data-col="1" data-type="text" data-tip="需求标题" style="text-align:left">需求名称</th><th class="sortable h-calc" data-col="2" data-type="num" data-tip="自动计算 =（总工时计算 + 开发工时计算 + 产品工时计算 + 测试工时计算）÷ 4">自动计算</th><th class="sortable h-calc" data-col="3" data-type="num" data-tip="总工时计算 = 需求h ÷ 7.25 ÷ 14">总工时计算</th><th class="sortable h-calc" data-col="4" data-type="num" data-tip="开发工时计算 = 开发任务h ÷ 7.25 ÷ 6">开发工时计算</th><th class="sortable h-calc" data-col="5" data-type="num" data-tip="产品工时计算 = 产品 ÷ 7.25 ÷ 3">产品工时计算</th><th class="sortable h-calc" data-col="6" data-type="num" data-tip="测试工时计算 = 测试 ÷ 7.25 ÷ 3">测试工时计算</th><th class="sortable h-detail" data-col="7" data-type="num" data-tip="需求h = 前端 + 后端 + 移动 + 测试 + 产品（五角色消耗工时相加）">需求h</th><th class="sortable h-detail" data-col="8" data-type="num" data-tip="开发任务h = 后端 + 前端 + 移动端">开发任务h</th><th class="sortable h-detail" data-col="9" data-type="num" data-tip="该需求所有【后端】类型任务的消耗工时（consumed）总和">后端</th><th class="sortable h-detail" data-col="10" data-type="num" data-tip="该需求所有【前端】类型任务的消耗工时（consumed）总和">前端</th><th class="sortable h-detail" data-col="11" data-type="num" data-tip="该需求所有【移动端】类型任务的消耗工时（consumed）总和">移动</th><th class="sortable h-detail" data-col="12" data-type="num" data-tip="该需求所有【测试】类型任务的消耗工时（consumed）总和">测试</th><th class="sortable h-detail" data-col="13" data-type="num" data-tip="该需求所有【产品】类型任务的消耗工时（consumed）总和">产品</th></tr></thead>
+<tbody>
+
+</tbody>
+</table>
+</div>
+</div>
+<div class="footer">数据来源：禅道 ztpm.gree.com · 迭代 4866 · consumed 工时口径 · 生成时间 2026-10-10 15:40</div>
+</div>
+<script>
+(function(){
+  var table = document.querySelector('table');
+  var tbody = table.tBodies[0];
+  document.querySelectorAll('th.sortable').forEach(function(th){
+    th.addEventListener('click', function(){
+      var col = parseInt(th.getAttribute('data-col'), 10);
+      var type = th.getAttribute('data-type');
+      var dir = th.getAttribute('data-dir') === 'asc' ? 'desc' : 'asc';
+      document.querySelectorAll('th.sortable').forEach(function(h){ h.removeAttribute('data-dir'); });
+      th.setAttribute('data-dir', dir);
+      var rows = Array.prototype.slice.call(tbody.rows);
+      rows.sort(function(a, b){
+        var ca = a.cells[col].innerText.trim();
+        var cb = b.cells[col].innerText.trim();
+        if (type === 'num') {
+          var va = parseFloat(ca), vb = parseFloat(cb);
+          var ea = isNaN(va), eb = isNaN(vb);
+          if (ea && eb) return 0;
+          if (ea) return 1;   // 空值("-") 恒排最后
+          if (eb) return -1;
+          return dir === 'asc' ? va - vb : vb - va;
+        } else {
+          return dir === 'asc' ? ca.localeCompare(cb, 'zh') : cb.localeCompare(ca, 'zh');
+        }
+      });
+      rows.forEach(function(r){ tbody.appendChild(r); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
