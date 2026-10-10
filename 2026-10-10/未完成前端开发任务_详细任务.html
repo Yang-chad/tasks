@@ -44,6 +44,10 @@ tr:hover { background: #fafbfc; }
 .badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
 .badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
 .badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+.badge-mismatch { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff7e6; color: #c77700; border: 1px solid #ffb84d; margin-left: 4px; }
+tr.row-mismatch { background: #fff7e6 !important; }
+tr.row-mismatch td:first-child { border-left: 3px solid #ffa726; }
+tr.row-mismatch:hover { background: #ffe7ba !important; }
 tr.row-overdue { background: #fff5f5 !important; }
 tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
 tr.row-overdue:hover { background: #fee2e2 !important; }
@@ -55,7 +59,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </head>
 <body>
 <div class="header"><h1>未完成前端开发任务明细</h1>
-<p>统计日期: 2026-10-10 | 总计: 54 个未完成任务 | 涉及 7 人 | 类型: a_dev2_front(54)</p></div>
+<p>统计日期: 2026-10-10 | 总计: 54 个未完成任务 | 涉及 7 人 | 类型: 前端开发(54)</p></div>
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="cards">
 <div class="card card-total"><div class="num">54</div><div class="label">任务总数</div></div>
@@ -92,26 +96,26 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>330880</td><td title="【PC用户】分批发货单与普通单合并支付">【PC用户】分批发货单与普通单合并支付</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330879</td><td title="【PC管理】家用分批发货-发货单接单">【PC管理】家用分批发货-发货单接单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330878</td><td title="【PC管理】家用分批发货-发货单详情">【PC管理】家用分批发货-发货单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330877</td><td title="【PC管理】家用分批发货-发货单列">【PC管理】家用分批发货-发货单列</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330876</td><td title="【PC用户】家用分批发货-发货单申请退款">【PC用户】家用分批发货-发货单申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330875</td><td title="【PC用户】家用分批发货-发货单详情">【PC用户】家用分批发货-发货单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330874</td><td title="【PC用户】家用分批发货-发货单列表">【PC用户】家用分批发货-发货单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330863</td><td title="【PC管理】家用分批发货接单页">【PC管理】家用分批发货接单页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330862</td><td title="【PC管理】家用分批发货订单详情页">【PC管理】家用分批发货订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330861</td><td title="【PC管理】家用分批发货订单详情页">【PC管理】家用分批发货订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330860</td><td title="【PC用户】家用分批发货申请退款">【PC用户】家用分批发货申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330859</td><td title="【PC用户】家用分批发货订单详情页">【PC用户】家用分批发货订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330858</td><td title="【PC用户】家用分批发货订单列表">【PC用户】家用分批发货订单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330816</td><td title="【h5管理】家用分批发货订单-发货单详情（配送）">【h5管理】家用分批发货订单-发货单详情（配送）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330815</td><td title="【h5管理】家用分批发货订单-发货单详情页（自提）">【h5管理】家用分批发货订单-发货单详情页（自提）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330814</td><td title="【h5管理】家用分批发货订单-发货单详情页（接单）">【h5管理】家用分批发货订单-发货单详情页（接单）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330813</td><td title="【h5管理】家用分批发货订单-发货单列表">【h5管理】家用分批发货订单-发货单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330809</td><td title="【h5管理】家用分批发货订单-订单详情页">【h5管理】家用分批发货订单-订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330808</td><td title="【h5管理】家用分批发货订单-订单接单页">【h5管理】家用分批发货订单-订单接单页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330806</td><td title="【h5管理】家用分批发货订单-订单列表">【h5管理】家用分批发货订单-订单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330880</td><td title="【PC用户】分批发货单与普通单合并支付">【PC用户】分批发货单与普通单合并支付</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330879</td><td title="【PC管理】家用分批发货-发货单接单">【PC管理】家用分批发货-发货单接单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330878</td><td title="【PC管理】家用分批发货-发货单详情">【PC管理】家用分批发货-发货单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330877</td><td title="【PC管理】家用分批发货-发货单列">【PC管理】家用分批发货-发货单列</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330876</td><td title="【PC用户】家用分批发货-发货单申请退款">【PC用户】家用分批发货-发货单申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330875</td><td title="【PC用户】家用分批发货-发货单详情">【PC用户】家用分批发货-发货单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330874</td><td title="【PC用户】家用分批发货-发货单列表">【PC用户】家用分批发货-发货单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330863</td><td title="【PC管理】家用分批发货接单页">【PC管理】家用分批发货接单页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330862</td><td title="【PC管理】家用分批发货订单详情页">【PC管理】家用分批发货订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330861</td><td title="【PC管理】家用分批发货订单详情页">【PC管理】家用分批发货订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330860</td><td title="【PC用户】家用分批发货申请退款">【PC用户】家用分批发货申请退款</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330859</td><td title="【PC用户】家用分批发货订单详情页">【PC用户】家用分批发货订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330858</td><td title="【PC用户】家用分批发货订单列表">【PC用户】家用分批发货订单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330816</td><td title="【h5管理】家用分批发货订单-发货单详情（配送）">【h5管理】家用分批发货订单-发货单详情（配送）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330815</td><td title="【h5管理】家用分批发货订单-发货单详情页（自提）">【h5管理】家用分批发货订单-发货单详情页（自提）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330814</td><td title="【h5管理】家用分批发货订单-发货单详情页（接单）">【h5管理】家用分批发货订单-发货单详情页（接单）</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330813</td><td title="【h5管理】家用分批发货订单-发货单列表">【h5管理】家用分批发货订单-发货单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330809</td><td title="【h5管理】家用分批发货订单-订单详情页">【h5管理】家用分批发货订单-订单详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330808</td><td title="【h5管理】家用分批发货订单-订单接单页">【h5管理】家用分批发货订单-订单接单页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330806</td><td title="【h5管理】家用分批发货订单-订单列表">【h5管理】家用分批发货订单-订单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
 </tbody>
 </table>
 </div>
@@ -137,20 +141,20 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>330981</td><td title="【PC管理】待办事项-家用分批发货大小单订单审批">【PC管理】待办事项-家用分批发货大小单订单审批</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330977</td><td title="【PC管理】分批发货订单售后小单详情">【PC管理】分批发货订单售后小单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330976</td><td title="【PC用户】分批发货订单售后小单详情">【PC用户】分批发货订单售后小单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330975</td><td title="【PC管理】分批发货订单售后小单列表">【PC管理】分批发货订单售后小单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330974</td><td title="【PC用户】分批发货订单售后小单列表">【PC用户】分批发货订单售后小单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330970</td><td title="【PC管理】分批发货订单售后大单详情">【PC管理】分批发货订单售后大单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330969</td><td title="【PC用户】分批发货订单售后大单详情">【PC用户】分批发货订单售后大单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330968</td><td title="【PC管理】分批发货订单售后大单列表">【PC管理】分批发货订单售后大单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330967</td><td title="【PC用户】分批发货订单售后大单列表">【PC用户】分批发货订单售后大单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330127</td><td title="【PC管理】【GD08】  1、大盘-审批进度，新增“大盘售后结算优惠”查看页">【PC管理】【GD08】  1、大盘-审批进度，新增“大盘售后结算优惠”查看页</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330126</td><td title="【PC管理】 【GD07】  1、大盘-审批进度，新增“大盘售后结算优惠”类型">【PC管理】 【GD07】  1、大盘-审批进度，新增“大盘售后结算优惠”类型</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>2</td><td>0</td><td>2</td></tr>
-<tr><td>330125</td><td title="【PC管理】【GD06】  1、新增审批页“大盘售后结算优惠”审批页">【PC管理】【GD06】  1、新增审批页“大盘售后结算优惠”审批页</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330124</td><td title="【PC管理】【GD05】  1、大盘审批-新增审批页“大盘售后结算优惠”类型">【PC管理】【GD05】  1、大盘审批-新增审批页“大盘售后结算优惠”类型</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330123</td><td title="【PC管理】【GD04】  1、新建“大盘售后结算优惠”页">【PC管理】【GD04】  1、新建“大盘售后结算优惠”页</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330981</td><td title="【PC管理】待办事项-家用分批发货大小单订单审批">【PC管理】待办事项-家用分批发货大小单订单审批</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330977</td><td title="【PC管理】分批发货订单售后小单详情">【PC管理】分批发货订单售后小单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330976</td><td title="【PC用户】分批发货订单售后小单详情">【PC用户】分批发货订单售后小单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330975</td><td title="【PC管理】分批发货订单售后小单列表">【PC管理】分批发货订单售后小单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330974</td><td title="【PC用户】分批发货订单售后小单列表">【PC用户】分批发货订单售后小单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330970</td><td title="【PC管理】分批发货订单售后大单详情">【PC管理】分批发货订单售后大单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330969</td><td title="【PC用户】分批发货订单售后大单详情">【PC用户】分批发货订单售后大单详情</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330968</td><td title="【PC管理】分批发货订单售后大单列表">【PC管理】分批发货订单售后大单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330967</td><td title="【PC用户】分批发货订单售后大单列表">【PC用户】分批发货订单售后大单列表</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330127</td><td title="【PC管理】【GD08】  1、大盘-审批进度，新增“大盘售后结算优惠”查看页">【PC管理】【GD08】  1、大盘-审批进度，新增“大盘售后结算优惠”查看页</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330126</td><td title="【PC管理】 【GD07】  1、大盘-审批进度，新增“大盘售后结算优惠”类型">【PC管理】 【GD07】  1、大盘-审批进度，新增“大盘售后结算优惠”类型</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>2</td><td>0</td><td>2</td></tr>
+<tr><td>330125</td><td title="【PC管理】【GD06】  1、新增审批页“大盘售后结算优惠”审批页">【PC管理】【GD06】  1、新增审批页“大盘售后结算优惠”审批页</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330124</td><td title="【PC管理】【GD05】  1、大盘审批-新增审批页“大盘售后结算优惠”类型">【PC管理】【GD05】  1、大盘审批-新增审批页“大盘售后结算优惠”类型</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330123</td><td title="【PC管理】【GD04】  1、新建“大盘售后结算优惠”页">【PC管理】【GD04】  1、新建“大盘售后结算优惠”页</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
 </tbody>
 </table>
 </div>
@@ -176,17 +180,17 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>330982</td><td title="【PC管理】待办事项-家用分批发货大小单退款审批">【PC管理】待办事项-家用分批发货大小单退款审批</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330979</td><td title="【H5】分批发货订单售后小单详情">【H5】分批发货订单售后小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330978</td><td title="【H5】分批发货订单售后小单列表">【H5】分批发货订单售后小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330972</td><td title="【H5】分批发货订单售后大单详情">【H5】分批发货订单售后大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330971</td><td title="【H5】分批发货订单售后大单列表">【H5】分批发货订单售后大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330134</td><td title="【GC30】  1、家用工程单-详情页，展示“大盘售后结算优惠”的配置">【GC30】  1、家用工程单-详情页，展示“大盘售后结算优惠”的配置</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330131</td><td title="【GD12】  1、业务单-详情页，展示“大盘售后结算优惠”的配置">【GD12】  1、业务单-详情页，展示“大盘售后结算优惠”的配置</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330130</td><td title="【GD11】  1、业务单-审批进度-提货审批，关联大盘则展示“大盘售后结算优惠”的配置">【GD11】  1、业务单-审批进度-提货审批，关联大盘则展示“大盘售后结算优惠”的配置</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330129</td><td title="【GD10】  1、业务单-审批页，关联大盘则展示“大盘售后结算优惠”的配置选择">【GD10】  1、业务单-审批页，关联大盘则展示“大盘售后结算优惠”的配置选择</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>330128</td><td title="【GD09】  1、大盘-详情页-基本信息，增加字段“大盘售后结算优惠”">【GD09】  1、大盘-详情页-基本信息，增加字段“大盘售后结算优惠”</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>330122</td><td title="【GD03】  1、大盘详情页，“合作中”状态下新增“大盘售后结算优惠”按钮">【GD03】  1、大盘详情页，“合作中”状态下新增“大盘售后结算优惠”按钮</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330982</td><td title="【PC管理】待办事项-家用分批发货大小单退款审批">【PC管理】待办事项-家用分批发货大小单退款审批</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330979</td><td title="【H5】分批发货订单售后小单详情">【H5】分批发货订单售后小单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330978</td><td title="【H5】分批发货订单售后小单列表">【H5】分批发货订单售后小单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330972</td><td title="【H5】分批发货订单售后大单详情">【H5】分批发货订单售后大单详情</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330971</td><td title="【H5】分批发货订单售后大单列表">【H5】分批发货订单售后大单列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330134</td><td title="【GC30】  1、家用工程单-详情页，展示“大盘售后结算优惠”的配置">【GC30】  1、家用工程单-详情页，展示“大盘售后结算优惠”的配置</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330131</td><td title="【GD12】  1、业务单-详情页，展示“大盘售后结算优惠”的配置">【GD12】  1、业务单-详情页，展示“大盘售后结算优惠”的配置</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330130</td><td title="【GD11】  1、业务单-审批进度-提货审批，关联大盘则展示“大盘售后结算优惠”的配置">【GD11】  1、业务单-审批进度-提货审批，关联大盘则展示“大盘售后结算优惠”的配置</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330129</td><td title="【GD10】  1、业务单-审批页，关联大盘则展示“大盘售后结算优惠”的配置选择">【GD10】  1、业务单-审批页，关联大盘则展示“大盘售后结算优惠”的配置选择</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>330128</td><td title="【GD09】  1、大盘-详情页-基本信息，增加字段“大盘售后结算优惠”">【GD09】  1、大盘-详情页-基本信息，增加字段“大盘售后结算优惠”</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>330122</td><td title="【GD03】  1、大盘详情页，“合作中”状态下新增“大盘售后结算优惠”按钮">【GD03】  1、大盘详情页，“合作中”状态下新增“大盘售后结算优惠”按钮</td><td><span class="badge-wait">已变更</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
 </tbody>
 </table>
 </div>
@@ -212,9 +216,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>333988</td><td title="【PC管理】4.0经销商销售方案新增销售标签-限时特价、组合套餐、满减件、满金额减、买赠、优惠券">【PC管理】4.0经销商销售方案新增销售标签-限时特价、组合套餐、满减件、满金额减、买赠、优惠券</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-12</td><td></td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>333987</td><td title="【pc管理】4.0经销商销售方案新增销售标签-日销/返利/工程/一件代发">【pc管理】4.0经销商销售方案新增销售标签-日销/返利/工程/一件代发</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-12</td><td></td><td>16</td><td>0</td><td>16</td></tr>
-<tr><td>330887</td><td title="【PC管理】货款账户和返利账户流水明细行业隔离">【PC管理】货款账户和返利账户流水明细行业隔离</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</td><td>2026-11-13</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>333988</td><td title="【PC管理】4.0经销商销售方案新增销售标签-限时特价、组合套餐、满减件、满金额减、买赠、优惠券">【PC管理】4.0经销商销售方案新增销售标签-限时特价、组合套餐、满减件、满金额减、买赠、优惠券</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-12</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>333987</td><td title="【pc管理】4.0经销商销售方案新增销售标签-日销/返利/工程/一件代发">【pc管理】4.0经销商销售方案新增销售标签-日销/返利/工程/一件代发</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-12</td><td></td><td>16</td><td>0</td><td>16</td></tr>
+<tr><td>330887</td><td title="【PC管理】货款账户和返利账户流水明细行业隔离">【PC管理】货款账户和返利账户流水明细行业隔离</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</td><td>2026-11-13</td><td></td><td>16</td><td>0</td><td>16</td></tr>
 </tbody>
 </table>
 </div>
@@ -240,9 +244,9 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>334578</td><td title="【PC用户】分批发货收银台">【PC用户】分批发货收银台</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>334577</td><td title="【PC用户】分批发货下大单">【PC用户】分批发货下大单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
-<tr><td>334576</td><td title="【PC用户】分批发货下小单">【PC用户】分批发货下小单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>334578</td><td title="【PC用户】分批发货收银台">【PC用户】分批发货收银台</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>334577</td><td title="【PC用户】分批发货下大单">【PC用户】分批发货下大单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>334576</td><td title="【PC用户】分批发货下小单">【PC用户】分批发货下小单</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
 </tbody>
 </table>
 </div>
@@ -268,8 +272,8 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>341314</td><td title="【PC管理】导入绑定业务经理">【PC管理】导入绑定业务经理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
-<tr><td>341313</td><td title="【PC管理】导出业务线业务经理">【PC管理】导出业务线业务经理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>341314</td><td title="【PC管理】导入绑定业务经理">【PC管理】导入绑定业务经理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>341313</td><td title="【PC管理】导出业务线业务经理">【PC管理】导出业务线业务经理</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td>2026-10-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
 </tbody>
 </table>
 </div>
@@ -295,7 +299,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>341331</td><td title="【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列">【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>a_dev2_front</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>341331</td><td title="【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列">【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td>2026-10-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
 </tbody>
 </table>
 </div>
