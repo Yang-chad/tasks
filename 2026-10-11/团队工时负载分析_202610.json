@@ -7,7 +7,7 @@
     "total_members": 50,
     "total_overdue": 5,
     "reference_hours": 136,
-    "report_time": "2026-10-11 12:40:21",
+    "report_time": "2026-10-11 16:44:45",
     "month": "2026年10月"
   },
   "members": [
@@ -601,7 +601,7 @@
           "title": "【QA-IOS-管理侧-工程审批】省外跨区第二个节点审批弹窗界面未回显已有的跨区编号",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -610,7 +610,7 @@
           "title": "【QA-IOS-管理侧-工程审批】作废审批通过、驳回提交失败，提示工程单ID不能为空",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -619,7 +619,7 @@
           "title": "【QA-IOS-管理侧-工程审批】解除地址限制审批通过、驳回均无法提交",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -628,16 +628,7 @@
           "title": "【QA-IOS-管理侧-工程审批】登录延期审批时选择或者使用默认的延期至时间均提交失败，提示审批通过时延期截至时间不能为",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 342293,
-          "title": "【QA-IOS-管理侧-工程审批】项目单审批时选择已签单无合同，提交时提示请上传无合同签单说明",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -646,7 +637,7 @@
           "title": "【QA-IOS-管理侧-工程项目单】项目单详情界面选择丢单无合同，提交时提示”是否有合同取值不合法（1是\\2否）&quo",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -655,7 +646,7 @@
           "title": "【QA-IOS-管理侧-工程审批】工程审批时项目状态分别选择已中标、已签单、已丢单时附件可上传数量可超出1个",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -664,7 +655,7 @@
           "title": "【QA-ios-管理侧-商用工程】登录审批时分别选择已中标、已丢单、已签单，但不填写必填信息仍可审批通过，未做必填校验",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -673,16 +664,7 @@
           "title": "[QA\\PRD-IOS-管理侧-工程项目单】代客申请页面当输入的客户名称、采购单位超长时核对按钮会被隐藏",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "刘孝亮"
-        },
-        {
-          "id": 341958,
-          "title": "【QA-IOS-管理侧-工程审批】工程审批时添加了附件及内部备注附件，审核通过后查看审批记录不显示附件内容",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
@@ -797,6 +779,15 @@
         {
           "id": 341970,
           "title": "【QA-IOS-管理侧-工程审批】登录延期审批界面，延期至的时间未回显",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 341958,
+          "title": "【QA-IOS-管理侧-工程审批】工程审批时添加了附件及内部备注附件，审核通过后查看审批记录不显示附件内容",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -1299,7 +1290,40 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 342301,
+          "title": "【QA-IOS-管理侧-工程审批】登录审批选择已签单，提交时未先校验是否核对工程信息，提交通过后再次审批时未回显上一节点",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 342299,
+          "title": "【QA-IOS-管理侧-工程审批】登录延期审批修改了延期至时间提交后仍为提交时所选时间，且查看审批详情界面决定延期期限时",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 342298,
+          "title": "【QA-IOS-管理侧-工程审批】解除地址限制时修改安装范围提交后仍显示原地址，且附件图片无法直接预览",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 342293,
+          "title": "【QA-IOS-管理侧-工程审批】项目单审批时选择已签单无合同，提交时提示请上传无合同签单说明",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "李学鹍",
@@ -4673,18 +4697,6 @@
           "finished_date": "2026-10-08"
         },
         {
-          "id": 336770,
-          "name": "【后端】分销商入驻场景组织架构迭代维护",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-23",
-          "finished_by": "卢鑫",
-          "finished_date": "2026-10-09"
-        },
-        {
           "id": 338280,
           "name": "导出模板4.0各个活动方案导出“销售标签”字段",
           "consumed": 16.0,
@@ -4693,6 +4705,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
           "opened_date": "2026-09-28",
+          "finished_by": "卢鑫",
+          "finished_date": "2026-10-09"
+        },
+        {
+          "id": 336770,
+          "name": "【后端】分销商入驻场景组织架构迭代维护",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-23",
           "finished_by": "卢鑫",
           "finished_date": "2026-10-09"
         },
@@ -9573,195 +9597,6 @@
       ]
     },
     {
-      "name": "谢福邦",
-      "role": "前端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 1,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 0,
-      "done_estimate": 0.0,
-      "done_consumed": 0.0,
-      "month_done_hours": 0.0,
-      "active_count": 1,
-      "active_estimate": 8.0,
-      "active_consumed": 0.0,
-      "active_left": 8.0,
-      "total_tasks": 1,
-      "total_estimate": 8.0,
-      "completion_rate": 0.0,
-      "efficiency": 0.0,
-      "overdue": 0,
-      "done_tasks": [],
-      "active_tasks": [
-        {
-          "id": 341331,
-          "name": "【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-10",
-          "deadline": "2026-10-15"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
-      "name": "钟日健",
-      "role": "产品",
-      "type_counts": {
-        "产品": 3,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 0,
-      "done_estimate": 0.0,
-      "done_consumed": 0.0,
-      "month_done_hours": 0.0,
-      "active_count": 3,
-      "active_estimate": 130.0,
-      "active_consumed": 0.0,
-      "active_left": 130.0,
-      "total_tasks": 3,
-      "total_estimate": 130.0,
-      "completion_rate": 0.0,
-      "efficiency": 0.0,
-      "overdue": 3,
-      "done_tasks": [],
-      "active_tasks": [
-        {
-          "id": 337996,
-          "name": "【产品设计与评审】",
-          "status": "wait",
-          "pri": 3,
-          "type": "ab2_request_des",
-          "estimate": 55.0,
-          "consumed": 0.0,
-          "left": 55.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-28",
-          "deadline": "2026-09-30"
-        },
-        {
-          "id": 338000,
-          "name": "【产品设计与评审】",
-          "status": "wait",
-          "pri": 3,
-          "type": "ab2_request_des",
-          "estimate": 55.0,
-          "consumed": 0.0,
-          "left": 55.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-28",
-          "deadline": "2026-09-30"
-        },
-        {
-          "id": 338001,
-          "name": "【产品设计与评审】",
-          "status": "wait",
-          "pri": 3,
-          "type": "ab2_request_des",
-          "estimate": 20.0,
-          "consumed": 0.0,
-          "left": 20.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-28",
-          "deadline": "2026-09-30"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 342012,
-          "title": "【QA-IOS-管理侧-商用工程】批复价格/预估价为空，购买数量＞0，二次批价审批，批复价格填写后，下个审批节点，批复价",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 341872,
-          "title": "【QA-PC-管理侧-商用工程】批价单已提货，关联的项目单作废单据可以审批通过",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 341852,
-          "title": "【QA-PC-管理侧-工程销售方案】工程销售方案提交失败弹窗【下载失败原因】按钮不正确",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341849,
-          "title": "【QA-PC-管理侧-工程销售方案】工程销售方案的网批挂价、主标题、工程基准价为空时提交都是toast提示",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
-          "id": 341760,
-          "title": "【QA-IOS-管理侧-商用工程】批价单审批页，批复价格，预估价填写弹框会默认显示0.00",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 342232,
-          "title": "【QA-iOS-用户侧-商用工程】已签单无合同项目单文案”合同附件“错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342231,
-          "title": "【QA-安卓-用户侧-商用工程】已签单无合同项目单文案”合同附件“错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
-    },
-    {
       "name": "冯澈",
       "role": "后端",
       "type_counts": {
@@ -11134,6 +10969,195 @@
       ]
     },
     {
+      "name": "谢福邦",
+      "role": "前端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 1,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 0,
+      "done_estimate": 0.0,
+      "done_consumed": 0.0,
+      "month_done_hours": 0.0,
+      "active_count": 1,
+      "active_estimate": 8.0,
+      "active_consumed": 0.0,
+      "active_left": 8.0,
+      "total_tasks": 1,
+      "total_estimate": 8.0,
+      "completion_rate": 0.0,
+      "efficiency": 0.0,
+      "overdue": 0,
+      "done_tasks": [],
+      "active_tasks": [
+        {
+          "id": 341331,
+          "name": "【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-10",
+          "deadline": "2026-10-15"
+        }
+      ],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
+      "name": "钟日健",
+      "role": "产品",
+      "type_counts": {
+        "产品": 3,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 0,
+      "done_estimate": 0.0,
+      "done_consumed": 0.0,
+      "month_done_hours": 0.0,
+      "active_count": 3,
+      "active_estimate": 130.0,
+      "active_consumed": 0.0,
+      "active_left": 130.0,
+      "total_tasks": 3,
+      "total_estimate": 130.0,
+      "completion_rate": 0.0,
+      "efficiency": 0.0,
+      "overdue": 3,
+      "done_tasks": [],
+      "active_tasks": [
+        {
+          "id": 337996,
+          "name": "【产品设计与评审】",
+          "status": "wait",
+          "pri": 3,
+          "type": "ab2_request_des",
+          "estimate": 55.0,
+          "consumed": 0.0,
+          "left": 55.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-28",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 338000,
+          "name": "【产品设计与评审】",
+          "status": "wait",
+          "pri": 3,
+          "type": "ab2_request_des",
+          "estimate": 55.0,
+          "consumed": 0.0,
+          "left": 55.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-28",
+          "deadline": "2026-09-30"
+        },
+        {
+          "id": 338001,
+          "name": "【产品设计与评审】",
+          "status": "wait",
+          "pri": 3,
+          "type": "ab2_request_des",
+          "estimate": 20.0,
+          "consumed": 0.0,
+          "left": 20.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-28",
+          "deadline": "2026-09-30"
+        }
+      ],
+      "resolved_bugs": [
+        {
+          "id": 342012,
+          "title": "【QA-IOS-管理侧-商用工程】批复价格/预估价为空，购买数量＞0，二次批价审批，批复价格填写后，下个审批节点，批复价",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 341872,
+          "title": "【QA-PC-管理侧-商用工程】批价单已提货，关联的项目单作废单据可以审批通过",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 341852,
+          "title": "【QA-PC-管理侧-工程销售方案】工程销售方案提交失败弹窗【下载失败原因】按钮不正确",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 341849,
+          "title": "【QA-PC-管理侧-工程销售方案】工程销售方案的网批挂价、主标题、工程基准价为空时提交都是toast提示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
+          "id": 341760,
+          "title": "【QA-IOS-管理侧-商用工程】批价单审批页，批复价格，预估价填写弹框会默认显示0.00",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        }
+      ],
+      "active_bugs": [
+        {
+          "id": 342232,
+          "title": "【QA-iOS-用户侧-商用工程】已签单无合同项目单文案”合同附件“错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 342231,
+          "title": "【QA-安卓-用户侧-商用工程】已签单无合同项目单文案”合同附件“错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
+    },
+    {
       "name": "蒋志军",
       "role": "其他",
       "type_counts": {
@@ -11170,7 +11194,7 @@
           "title": "【QA-IOS-管理侧-工程项目单】项目单详情界面选择丢单，提交时丢单原因传值错误，提交成功后查看未显示丢单信息，图片附",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
         },
