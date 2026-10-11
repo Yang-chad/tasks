@@ -7,7 +7,7 @@
     "total_members": 50,
     "total_overdue": 5,
     "reference_hours": 136,
-    "report_time": "2026-10-11 16:44:45",
+    "report_time": "2026-10-11 20:51:30",
     "month": "2026年10月"
   },
   "members": [
@@ -364,7 +364,16 @@
       ],
       "active_tasks": [],
       "resolved_bugs": [],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 342293,
+          "title": "【QA-IOS-管理侧-工程审批】项目单审批时选择已签单无合同，提交时提示请上传无合同签单说明",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "张春杰",
@@ -596,6 +605,33 @@
         }
       ],
       "resolved_bugs": [
+        {
+          "id": 342301,
+          "title": "【QA-IOS-管理侧-工程审批】登录审批选择已签单，提交时未先校验是否核对工程信息，提交通过后再次审批时未回显上一节点",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342299,
+          "title": "【QA-IOS-管理侧-工程审批】登录延期审批修改了延期至时间提交后仍为提交时所选时间，且查看审批详情界面决定延期期限时",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342298,
+          "title": "【QA-IOS-管理侧-工程审批】解除地址限制时修改安装范围提交后仍显示原地址，且附件图片无法直接预览",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
         {
           "id": 342297,
           "title": "【QA-IOS-管理侧-工程审批】省外跨区第二个节点审批弹窗界面未回显已有的跨区编号",
@@ -1290,40 +1326,7 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 342301,
-          "title": "【QA-IOS-管理侧-工程审批】登录审批选择已签单，提交时未先校验是否核对工程信息，提交通过后再次审批时未回显上一节点",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342299,
-          "title": "【QA-IOS-管理侧-工程审批】登录延期审批修改了延期至时间提交后仍为提交时所选时间，且查看审批详情界面决定延期期限时",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342298,
-          "title": "【QA-IOS-管理侧-工程审批】解除地址限制时修改安装范围提交后仍显示原地址，且附件图片无法直接预览",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342293,
-          "title": "【QA-IOS-管理侧-工程审批】项目单审批时选择已签单无合同，提交时提示请上传无合同签单说明",
-          "severity": 3,
-          "pri": 3,
-          "status": "confirmed",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "李学鹍",
@@ -5821,92 +5824,6 @@
       "active_bugs": []
     },
     {
-      "name": "钟爽",
-      "role": "其他",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 4
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 3,
-      "done_estimate": 35.0,
-      "done_consumed": 26.0,
-      "month_done_hours": 26.0,
-      "active_count": 1,
-      "active_estimate": 20.0,
-      "active_consumed": 0.0,
-      "active_left": 20.0,
-      "total_tasks": 4,
-      "total_estimate": 55.0,
-      "completion_rate": 75.0,
-      "efficiency": 75.0,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 336640,
-          "name": "【UI设计】返利专区新增搜索条件",
-          "consumed": 8.0,
-          "estimate": 10.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v1）【2026】",
-          "opened_date": "2026-09-23",
-          "finished_by": "钟爽",
-          "finished_date": "2026-10-09"
-        },
-        {
-          "id": 337151,
-          "name": "【UI设计】员工部门变动时的账号变动",
-          "consumed": 6.0,
-          "estimate": 10.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-23",
-          "finished_by": "钟爽",
-          "finished_date": "2026-10-09"
-        },
-        {
-          "id": 336638,
-          "name": "【UI设计】客户库增加导出业务线业务",
-          "consumed": 12.0,
-          "estimate": 15.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-09-23",
-          "finished_by": "钟爽",
-          "finished_date": "2026-10-09"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 340862,
-          "name": "【UI设计】客户管理增加定价平台渠道",
-          "status": "wait",
-          "pri": 3,
-          "type": "ad1_UI_des",
-          "estimate": 20.0,
-          "consumed": 0.0,
-          "left": 20.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-09",
-          "deadline": "2026-10-16"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
-    },
-    {
       "name": "徐琦",
       "role": "后端",
       "type_counts": {
@@ -6418,6 +6335,92 @@
           "openedBy": "马腾"
         }
       ],
+      "active_bugs": []
+    },
+    {
+      "name": "钟爽",
+      "role": "其他",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 4
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 3,
+      "done_estimate": 35.0,
+      "done_consumed": 26.0,
+      "month_done_hours": 26.0,
+      "active_count": 1,
+      "active_estimate": 20.0,
+      "active_consumed": 0.0,
+      "active_left": 20.0,
+      "total_tasks": 4,
+      "total_estimate": 55.0,
+      "completion_rate": 75.0,
+      "efficiency": 75.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 337151,
+          "name": "【UI设计】员工部门变动时的账号变动",
+          "consumed": 6.0,
+          "estimate": 10.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-23",
+          "finished_by": "钟爽",
+          "finished_date": "2026-10-09"
+        },
+        {
+          "id": 336638,
+          "name": "【UI设计】客户库增加导出业务线业务",
+          "consumed": 12.0,
+          "estimate": 15.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-09-23",
+          "finished_by": "钟爽",
+          "finished_date": "2026-10-09"
+        },
+        {
+          "id": 336640,
+          "name": "【UI设计】返利专区新增搜索条件",
+          "consumed": 8.0,
+          "estimate": 10.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v1）【2026】",
+          "opened_date": "2026-09-23",
+          "finished_by": "钟爽",
+          "finished_date": "2026-10-09"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 340862,
+          "name": "【UI设计】客户管理增加定价平台渠道",
+          "status": "wait",
+          "pri": 3,
+          "type": "ad1_UI_des",
+          "estimate": 20.0,
+          "consumed": 0.0,
+          "left": 20.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-09",
+          "deadline": "2026-10-16"
+        }
+      ],
+      "resolved_bugs": [],
       "active_bugs": []
     },
     {
