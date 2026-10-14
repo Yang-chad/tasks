@@ -1,13 +1,13 @@
 {
   "summary": {
     "total_done": 261,
-    "total_active": 567,
+    "total_active": 568,
     "total_month_hours": 2508.2,
-    "total_estimate": 6328.5,
+    "total_estimate": 6332.5,
     "total_members": 51,
     "total_overdue": 7,
     "reference_hours": 136,
-    "report_time": "2026-10-14 10:51:10",
+    "report_time": "2026-10-14 11:18:33",
     "month": "2026年10月"
   },
   "members": [
@@ -1066,15 +1066,7 @@
           "title": "【QA-iOS-管理侧-家用分批发货订单售后】组合套餐退款详情商品弹层总退款数量和订购数量显示不正确",
           "severity": 3,
           "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342484,
-          "title": "【QA-iOS-用户侧-商用工程】已关联批价单的项目单仍显示登录有效期",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -1912,6 +1904,14 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 342742,
+          "title": "【QA-H5-管理侧-家用分批发货】家用分批发货工程订单详情，订单金额信息字段显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 342736,
           "title": "【QA-H5-管理侧-家用分批发货】家用分批发货订单列表，订单显示 含运费 字段",
@@ -3070,6 +3070,14 @@
       ],
       "active_bugs": [
         {
+          "id": 342708,
+          "title": "【QA-IOS-管理侧-大盘售后结算优惠】业务单提货审批第二个节点时未回显关联大盘信息，且大盘售后结算优惠选项未勾选",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 342690,
           "title": "【QA-iOS-用户侧-分批发货订单】点击分批发货订单列表，去发货，为分销商下单，转跳界面，添加商品，提交订单，提示：解",
           "severity": 3,
@@ -3660,6 +3668,33 @@
           "openedBy": "李成斌"
         },
         {
+          "id": 342669,
+          "title": "【QA-H5-管理侧-商用工程】批价单代客申请中，二次添加非标商品的弹窗显示上一次添加的数据，未清空",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 342661,
+          "title": "【QA-H5-管理侧-商用工程】批价单代客申请-添加商品弹窗 不显示 添加商品页签-添加商品弹窗输入的申请点位、备注",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
+          "id": 342651,
+          "title": "【QA-H5-管理侧-商用工程】批价单代客申请-添加商品弹窗中，申请价格无法输入9999999.99",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 342639,
           "title": "【【QA-H5-管理侧-商用工程】批价单代客申请-选择工程项目弹窗中，输入内容后，无法查询出数据",
           "severity": 3,
@@ -3868,30 +3903,6 @@
         }
       ],
       "active_bugs": [
-        {
-          "id": 342669,
-          "title": "【QA-H5-管理侧-商用工程】批价单代客申请中，二次添加非标商品的弹窗显示上一次添加的数据，未清空",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342661,
-          "title": "【QA-H5-管理侧-商用工程】批价单代客申请-添加商品弹窗 不显示 添加商品页签-添加商品弹窗输入的申请点位、备注",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
-          "id": 342651,
-          "title": "【QA-H5-管理侧-商用工程】批价单代客申请-添加商品弹窗中，申请价格无法输入9999999.99",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
         {
           "id": 342623,
           "title": "【QA-H5-管理侧-商用工程】项目单代客申请联系方式选择固定电话提交时提示电话类型取值不合法",
@@ -5405,7 +5416,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 32,
+        "前端": 34,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -5419,14 +5430,14 @@
       "done_estimate": 72.0,
       "done_consumed": 72.0,
       "month_done_hours": 72.0,
-      "active_count": 22,
-      "active_estimate": 116.0,
+      "active_count": 24,
+      "active_estimate": 128.0,
       "active_consumed": 0.0,
-      "active_left": 116.0,
-      "total_tasks": 32,
-      "total_estimate": 188.0,
-      "completion_rate": 31.2,
-      "efficiency": 31.2,
+      "active_left": 128.0,
+      "total_tasks": 34,
+      "total_estimate": 200.0,
+      "completion_rate": 29.4,
+      "efficiency": 29.4,
       "overdue": 0,
       "done_tasks": [
         {
@@ -5574,6 +5585,20 @@
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-10",
+          "deadline": "2026-10-15"
+        },
+        {
+          "id": 341331,
+          "name": "【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
           "platform": "网批2.0",
           "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
           "opened_date": "2026-10-10",
@@ -5857,6 +5882,20 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
           "opened_date": "2026-10-13",
+          "deadline": "2026-10-30"
+        },
+        {
+          "id": 344048,
+          "name": "【PC管理】客户库按钮交互重构改为归集方式",
+          "status": "wait",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-14",
           "deadline": "2026-10-30"
         }
       ],
@@ -6191,6 +6230,14 @@
           "platform": "网批2.0"
         },
         {
+          "id": 342484,
+          "title": "【QA-iOS-用户侧-商用工程】已关联批价单的项目单仍显示登录有效期",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 342480,
           "title": "【QA-安卓-用户侧-商用工程】已关联批价单的项目单仍显示登录有效期",
           "severity": 3,
@@ -6451,7 +6498,7 @@
         {
           "id": 343156,
           "name": "【后端】【GD27】用户端  1、工程单详情页-新增 与工程单类型、配提、价格审批编码相关校验（&lt;-用户端不需要）信息；  2、全状态展示，缺少数据则隐藏字段或隐藏列；",
-          "status": "wait",
+          "status": "doing",
           "pri": 2,
           "type": "a_dev4_control",
           "estimate": 4.0,
@@ -6465,7 +6512,7 @@
         {
           "id": 343157,
           "name": "【后端】【GD27】管理端  1、工程单详情页-新增 与工程单类型、配提、价格审批编码相关校验（&lt;-用户端不需要）信息；  2、全状态展示，缺少数据则隐藏字段或隐藏列；",
-          "status": "wait",
+          "status": "doing",
           "pri": 2,
           "type": "a_dev4_control",
           "estimate": 4.0,
@@ -10014,18 +10061,6 @@
           "finished_date": "2026-10-08"
         },
         {
-          "id": 338280,
-          "name": "导出模板4.0各个活动方案导出“销售标签”字段",
-          "consumed": 16.0,
-          "estimate": 16.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
-          "opened_date": "2026-09-28",
-          "finished_by": "卢鑫",
-          "finished_date": "2026-10-09"
-        },
-        {
           "id": 336770,
           "name": "【后端】分销商入驻场景组织架构迭代维护",
           "consumed": 4.0,
@@ -10034,6 +10069,18 @@
           "platform": "网批2.0",
           "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
           "opened_date": "2026-09-23",
+          "finished_by": "卢鑫",
+          "finished_date": "2026-10-09"
+        },
+        {
+          "id": 338280,
+          "name": "导出模板4.0各个活动方案导出“销售标签”字段",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】",
+          "opened_date": "2026-09-28",
           "finished_by": "卢鑫",
           "finished_date": "2026-10-09"
         },
@@ -10263,19 +10310,19 @@
     },
     {
       "name": "王也",
-      "role": "后端",
+      "role": "产品",
       "type_counts": {
-        "产品": 1,
-        "后端": 2,
+        "产品": 3,
+        "后端": 0,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
         "其他": 0
       },
-      "type_backend_hrs": 40.0,
+      "type_backend_hrs": 0.0,
       "type_frontend_hrs": 0.0,
       "type_mobile_hrs": 0.0,
-      "type_product_hrs": 1.0,
+      "type_product_hrs": 41.0,
       "type_test_hrs": 0.0,
       "done_count": 3,
       "done_estimate": 36.0,
@@ -10296,7 +10343,7 @@
           "name": "销售方案价格校验-对接定价平台",
           "consumed": 30.0,
           "estimate": 30.0,
-          "type": "devel",
+          "type": "ab2_request_des",
           "platform": "分销",
           "execution": "分销平台_V1.39.0（1030分销/dev4.5）【2026】",
           "opened_date": "2026-10-08",
@@ -10320,7 +10367,7 @@
           "name": "商家主体变更联动PID变更逻辑迭代优化   需求调研、需求设计、需求评审",
           "consumed": 10.0,
           "estimate": 5.0,
-          "type": "a_dev",
+          "type": "ab2_request_des",
           "platform": "网批2.0",
           "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
           "opened_date": "2026-09-28",
@@ -11651,6 +11698,22 @@
       ],
       "active_bugs": [
         {
+          "id": 342744,
+          "title": "【QA-PC-用户侧-家用分批发货订单】发货清单中勾选为分销商下单的商品，点击去发货跳转到发货单提交页，没有展示对应的分",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 342741,
+          "title": "【QA-H5-管理侧-商用工程】用户侧二次批价申请输入数量为10，审批页显示为1",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 342732,
           "title": "【QA-H5-管理侧-商用工程】用户侧选择30天，提货延期审批显示29天",
           "severity": 3,
@@ -12250,11 +12313,11 @@
       "role": "后端",
       "type_counts": {
         "产品": 0,
-        "后端": 22,
+        "后端": 24,
         "前端": 0,
         "移动端": 0,
         "测试": 0,
-        "其他": 2
+        "其他": 0
       },
       "type_backend_hrs": 29.0,
       "type_frontend_hrs": 0.0,
@@ -12728,6 +12791,96 @@
           "platform": "网批2.0"
         }
       ]
+    },
+    {
+      "name": "林爱冰",
+      "role": "其他",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 4
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 1,
+      "done_estimate": 16.0,
+      "done_consumed": 16.0,
+      "month_done_hours": 16.0,
+      "active_count": 3,
+      "active_estimate": 32.0,
+      "active_consumed": 0.0,
+      "active_left": 32.0,
+      "total_tasks": 4,
+      "total_estimate": 48.0,
+      "completion_rate": 25.0,
+      "efficiency": 25.0,
+      "overdue": 3,
+      "done_tasks": [
+        {
+          "id": 342898,
+          "name": "【UI设计】APP商用供应链金融-贷款订单(大单)",
+          "consumed": 16.0,
+          "estimate": 16.0,
+          "type": "ad1_UI_des",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-12",
+          "finished_by": "林爱冰",
+          "finished_date": "2026-10-12"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 342929,
+          "name": "【UI设计】APP商用供应链金融-解押订单(小单)",
+          "status": "doing",
+          "pri": 3,
+          "type": "ad1_UI_des",
+          "estimate": 16.0,
+          "consumed": 0.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-12",
+          "deadline": "2026-10-13"
+        },
+        {
+          "id": 342932,
+          "name": "【UI设计】APP商用供应链金融-解押订单售后(小单)",
+          "status": "doing",
+          "pri": 3,
+          "type": "ad1_UI_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-12",
+          "deadline": "2026-10-13"
+        },
+        {
+          "id": 342995,
+          "name": "【UI设计】APP商用供应链金融-贷款订单售后(大单)",
+          "status": "doing",
+          "pri": 3,
+          "type": "ad1_UI_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-12",
+          "deadline": "2026-10-13"
+        }
+      ],
+      "resolved_bugs": [],
+      "active_bugs": []
     },
     {
       "name": "黄宇安",
@@ -13477,96 +13630,6 @@
           "platform": "网批2.0"
         }
       ]
-    },
-    {
-      "name": "林爱冰",
-      "role": "其他",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 4
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 1,
-      "done_estimate": 16.0,
-      "done_consumed": 16.0,
-      "month_done_hours": 16.0,
-      "active_count": 3,
-      "active_estimate": 32.0,
-      "active_consumed": 0.0,
-      "active_left": 32.0,
-      "total_tasks": 4,
-      "total_estimate": 48.0,
-      "completion_rate": 25.0,
-      "efficiency": 25.0,
-      "overdue": 3,
-      "done_tasks": [
-        {
-          "id": 342898,
-          "name": "【UI设计】APP商用供应链金融-贷款订单(大单)",
-          "consumed": 16.0,
-          "estimate": 16.0,
-          "type": "ad1_UI_des",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-12",
-          "finished_by": "林爱冰",
-          "finished_date": "2026-10-12"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 342929,
-          "name": "【UI设计】APP商用供应链金融-解押订单(小单)",
-          "status": "doing",
-          "pri": 3,
-          "type": "ad1_UI_des",
-          "estimate": 16.0,
-          "consumed": 0.0,
-          "left": 16.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-12",
-          "deadline": "2026-10-13"
-        },
-        {
-          "id": 342932,
-          "name": "【UI设计】APP商用供应链金融-解押订单售后(小单)",
-          "status": "doing",
-          "pri": 3,
-          "type": "ad1_UI_des",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-12",
-          "deadline": "2026-10-13"
-        },
-        {
-          "id": 342995,
-          "name": "【UI设计】APP商用供应链金融-贷款订单售后(大单)",
-          "status": "doing",
-          "pri": 3,
-          "type": "ad1_UI_des",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-12",
-          "deadline": "2026-10-13"
-        }
-      ],
-      "resolved_bugs": [],
-      "active_bugs": []
     },
     {
       "name": "梁家槐",
@@ -16479,15 +16542,6 @@
           "openedBy": "刘孝亮"
         },
         {
-          "id": 342659,
-          "title": "【QA-H5-管理侧-家用分批发货订单售后】退款详情页点击驳回按钮无反应",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        },
-        {
           "id": 342642,
           "title": "【QA-H5-管理侧-家用分批发货订单售后】组合套餐/返利组合套餐订购套数显示错误且不显示总退款数量",
           "severity": 3,
@@ -16504,6 +16558,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "刘孝亮"
+        },
+        {
+          "id": 342659,
+          "title": "【QA-H5-管理侧-家用分批发货订单售后】退款详情页点击驳回按钮无反应",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
         },
         {
           "id": 342613,
@@ -16604,7 +16667,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 19,
+        "前端": 18,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -16618,31 +16681,17 @@
       "done_estimate": 0.0,
       "done_consumed": 0.0,
       "month_done_hours": 0.0,
-      "active_count": 19,
-      "active_estimate": 92.0,
+      "active_count": 18,
+      "active_estimate": 84.0,
       "active_consumed": 0.0,
-      "active_left": 92.0,
-      "total_tasks": 19,
-      "total_estimate": 92.0,
+      "active_left": 84.0,
+      "total_tasks": 18,
+      "total_estimate": 84.0,
       "completion_rate": 0.0,
       "efficiency": 0.0,
       "overdue": 0,
       "done_tasks": [],
       "active_tasks": [
-        {
-          "id": 341331,
-          "name": "【PC管理】网批2.0/3.0/4.0/4.0测算模式的 经销商限时特价/组合套餐 活动方案管理列表新增“活动性质”筛选条件及字段列",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-10",
-          "deadline": "2026-10-15"
-        },
         {
           "id": 342569,
           "name": "【PC用户】售后 零售大单、零售小单用延期发货订单方式与OMS交互",
@@ -17059,6 +17108,68 @@
       ]
     },
     {
+      "name": "梁庆芬",
+      "role": "其他",
+      "type_counts": {
+        "产品": 0,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 0,
+      "done_estimate": 0.0,
+      "done_consumed": 0.0,
+      "month_done_hours": 0.0,
+      "active_count": 0,
+      "active_estimate": 0.0,
+      "active_consumed": 0.0,
+      "active_left": 0.0,
+      "total_tasks": 0,
+      "total_estimate": 0.0,
+      "completion_rate": 0.0,
+      "efficiency": 0,
+      "overdue": 0,
+      "done_tasks": [],
+      "active_tasks": [],
+      "resolved_bugs": [
+        {
+          "id": 342517,
+          "title": "【QA-PC-用户侧-家用分批发货订单】分批发货订单列表-待发货商品清单，货款订单列表中支付方式为空",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
+        },
+        {
+          "id": 342019,
+          "title": "【QA-PC-用户侧-商用工程】批价工程商品， 点击提货加入购物车，购物车显示的工程项目名称和提货界面的不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "陈嘉劲"
+        },
+        {
+          "id": 342355,
+          "title": "【QA-H5-管理侧-家用分批发货订单售后】分批发货订单售后列表缺少”退款“标识",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        }
+      ],
+      "active_bugs": []
+    },
+    {
       "name": "蒋志军",
       "role": "其他",
       "type_counts": {
@@ -17368,78 +17479,7 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 342708,
-          "title": "【QA-IOS-管理侧-大盘售后结算优惠】业务单提货审批第二个节点时未回显关联大盘信息，且大盘售后结算优惠选项未勾选",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
-    },
-    {
-      "name": "梁庆芬",
-      "role": "其他",
-      "type_counts": {
-        "产品": 0,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 0,
-      "done_estimate": 0.0,
-      "done_consumed": 0.0,
-      "month_done_hours": 0.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
-      "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 0,
-      "total_estimate": 0.0,
-      "completion_rate": 0.0,
-      "efficiency": 0,
-      "overdue": 0,
-      "done_tasks": [],
-      "active_tasks": [],
-      "resolved_bugs": [
-        {
-          "id": 342019,
-          "title": "【QA-PC-用户侧-商用工程】批价工程商品， 点击提货加入购物车，购物车显示的工程项目名称和提货界面的不一致",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "陈嘉劲"
-        },
-        {
-          "id": 342355,
-          "title": "【QA-H5-管理侧-家用分批发货订单售后】分批发货订单售后列表缺少”退款“标识",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "邹娟"
-        }
-      ],
-      "active_bugs": [
-        {
-          "id": 342517,
-          "title": "【QA-PC-用户侧-家用分批发货订单】分批发货订单列表-待发货商品清单，货款订单列表中支付方式为空",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "韩瑞莹",
