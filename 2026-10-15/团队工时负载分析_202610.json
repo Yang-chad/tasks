@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 369,
-    "total_active": 519,
-    "total_month_hours": 3368.2,
+    "total_done": 370,
+    "total_active": 518,
+    "total_month_hours": 3378.2,
     "total_estimate": 6808.5,
     "total_members": 51,
     "total_overdue": 1,
     "reference_hours": 136,
-    "report_time": "2026-10-15 11:46:08",
+    "report_time": "2026-10-15 13:33:02",
     "month": "2026年10月"
   },
   "members": [
@@ -270,21 +270,21 @@
       },
       "type_backend_hrs": 0.0,
       "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 157.0,
+      "type_mobile_hrs": 167.0,
       "type_product_hrs": 0.0,
       "type_test_hrs": 0.0,
-      "done_count": 28,
-      "done_estimate": 256.0,
-      "done_consumed": 157.0,
-      "month_done_hours": 157.0,
-      "active_count": 15,
-      "active_estimate": 200.0,
+      "done_count": 29,
+      "done_estimate": 272.0,
+      "done_consumed": 167.0,
+      "month_done_hours": 167.0,
+      "active_count": 14,
+      "active_estimate": 184.0,
       "active_consumed": 0.0,
-      "active_left": 200.0,
+      "active_left": 184.0,
       "total_tasks": 43,
       "total_estimate": 456.0,
-      "completion_rate": 65.1,
-      "efficiency": 65.1,
+      "completion_rate": 67.4,
+      "efficiency": 67.4,
       "overdue": 0,
       "done_tasks": [
         {
@@ -622,6 +622,18 @@
           "opened_date": "2026-10-12",
           "finished_by": "徐良侦",
           "finished_date": "2026-10-14"
+        },
+        {
+          "id": 342871,
+          "name": "【iOS】管理侧- 订单详情（大单）",
+          "consumed": 10.0,
+          "estimate": 16.0,
+          "type": "a_dev6_mobile",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
+          "opened_date": "2026-10-12",
+          "finished_by": "徐良侦",
+          "finished_date": "2026-10-15"
         }
       ],
       "active_tasks": [
@@ -642,20 +654,6 @@
         {
           "id": 342869,
           "name": "【iOS】用户侧- 订单详情（大单）",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
-          "estimate": 16.0,
-          "consumed": 0.0,
-          "left": 16.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】",
-          "opened_date": "2026-10-12",
-          "deadline": "2026-10-31"
-        },
-        {
-          "id": 342871,
-          "name": "【iOS】管理侧- 订单详情（大单）",
           "status": "wait",
           "pri": 3,
           "type": "a_dev6_mobile",
@@ -837,6 +835,15 @@
         }
       ],
       "resolved_bugs": [
+        {
+          "id": 342921,
+          "title": "【QA-IOS-用户侧-家用分批发货合并支付】解押单和解押单合并支付，支付失败。",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
         {
           "id": 342865,
           "title": "【QA-iOS-用户侧-分批发货】分批发货订单筛选小单后，点击更多按钮，点击再来一单，提示参数非法",
@@ -3089,14 +3096,6 @@
           "platform": "网批2.0"
         },
         {
-          "id": 342921,
-          "title": "【QA-IOS-用户侧-家用分批发货合并支付】解押单和解押单合并支付，支付失败。",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        },
-        {
           "id": 342827,
           "title": "【QA-iOS-用户侧-家用分批发货】返利订单账户混合支付，账户存在余额不足时没有对应提示且支付按钮没有置灰",
           "severity": 3,
@@ -3528,15 +3527,6 @@
           "openedBy": "李文清"
         },
         {
-          "id": 342889,
-          "title": "【QA-安卓-管理侧-家用分批发货订单】工程分批发货大单详情，缺少字段：工程保证金，项目名称，工程单号",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "匡军"
-        },
-        {
           "id": 342493,
           "title": "【QA-安卓-用户侧-商用工程】已流标、已中标、已丢单且未关联批价单的项目单不显示剩余天数",
           "severity": 3,
@@ -3607,6 +3597,15 @@
           "status": "resolved",
           "platform": "网批2.0",
           "openedBy": "邹娟"
+        },
+        {
+          "id": 342889,
+          "title": "【QA-安卓-管理侧-家用分批发货订单】工程分批发货大单详情，缺少字段：工程保证金，项目名称，工程单号",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "匡军"
         },
         {
           "id": 342663,
