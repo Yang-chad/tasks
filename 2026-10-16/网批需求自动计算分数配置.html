@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网批需求自动计算分数配置</title>
+<script src="../assets/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","微软雅黑",sans-serif;background:#f0f2f5;color:#333;padding:24px}
+.container{max-width:1180px;margin:0 auto}
+.header{background:linear-gradient(135deg,#0f3460,#1a1a2e);color:#fff;padding:28px 32px;border-radius:12px;margin-bottom:20px}
+.header h1{font-size:23px;margin-bottom:8px}
+.header .sub{font-size:13px;opacity:.8;line-height:1.6}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.card .label{font-size:12px;color:#888;margin-bottom:6px}
+.card .value{font-size:26px;font-weight:bold;color:#1a73e8}
+.section{background:#fff;border-radius:10px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.section h2{font-size:17px;margin-bottom:16px;color:#1a1a2e;border-left:4px solid #1a73e8;padding-left:12px}
+.formula{background:#f7f9fc;border:1px solid #e3e9f2;border-radius:8px;padding:16px;margin:12px 0;font-family:Consolas,monospace;font-size:13px;line-height:1.8}
+.formula .kw{color:#c0392b;font-weight:bold}
+.formula .fn{color:#1a73e8}
+.formula .cm{color:#888}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:#f7f8fa;color:#555;font-weight:600;padding:9px 10px;text-align:left;border-bottom:2px solid #e8e8e8;position:sticky;top:0}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f0}
+tr:hover{background:#fafbfc}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.top{background:#fff8e1;font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge.total{background:#e8f0fe;color:#1a73e8}
+.badge.dev{background:#e6f7ee;color:#27ae60}
+.badge.prod{background:#fef3e2;color:#e67e22}
+.badge.test{background:#fce4ec;color:#e91e63}
+.dim-table td:first-child{font-weight:600;color:#333}
+.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:20px;cursor:pointer;font-size:13px;background:#f0f2f5;color:#555;border:1px solid transparent}
+.tab.active{background:#1a73e8;color:#fff}
+.note{font-size:12px;color:#888;margin-top:12px;line-height:1.7}
+.footer{text-align:center;font-size:12px;color:#aaa;margin-top:20px}
+.highlight{color:#e67e22;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>⚙️ 网批需求「自动计算分数」配置说明</h1>
+    <div class="sub">数据来源：PMO 专家评分系统（ztpm.gree.com:8888/ppi/qr/requirements）· 需求池 211 条 · 生成时间 2026-10-16</div>
+  </div>
+
+  <div class="summary">
+    <div class="card"><div class="label">需求池总条数</div><div class="value" id="totalCnt"></div></div>
+    <div class="card"><div class="label">有效自动分条目</div><div class="value" id="validCnt"></div></div>
+    <div class="card"><div class="label">最高自动分</div><div class="value" id="maxAuto" style="color:#e67e22"></div></div>
+    <div class="card"><div class="label">平均自动分</div><div class="value" id="avgAuto" style="color:#27ae60"></div></div>
+  </div>
+
+  <div class="section">
+    <h2>📐 评分维度与类型分组</h2>
+    <table class="dim-table">
+      <tr><th style="width:140px">任务类型分组</th><th>匹配的禅道任务类型（type）</th></tr>
+      <tr><td>🔵 前端 front</td><td>a_dev2_front、devel</td></tr>
+      <tr><td>🟢 后端 back</td><td>a_dev4_control、a_dev8_debugging、design、control_dev、etl_dev、yyc_dev、lt_dev</td></tr>
+      <tr><td>🟡 移动端 mobile</td><td>a_dev、a_dev6_mobile、mobile_dev</td></tr>
+      <tr><td>🔴 测试 test</td><td>test、ae1_test_des、ae2_test</td></tr>
+      <tr><td>🟠 产品 product</td><td>ab1_needs_research、ab2_request_des、ab3_request_check、dataay_dev</td></tr>
+    </table>
+    <div class="note">※ 每个需求下挂的禅道任务按 type 归类，累加各类型工时（task_hours），作为自动计算输入。</div>
+  </div>
+
+  <div class="section">
+    <h2>🧮 自动计算算法（前端 ReviewRequirementView 源码还原）</h2>
+    <div class="formula">
+      <span class="cm">// 1. 按类型累加工时</span><br>
+      总工时 total = Σ(全部类型工时)<br>
+      开发工时 dev = 前端 + 后端 + 移动端 工时之和<br>
+      产品工时 prod = 产品类型工时<br>
+      测试工时 test = 测试类型工时<br><br>
+      <span class="cm">// 2. 归一化（基准 7.25 人·天，除以各档天数）</span><br>
+      <span class="fn">d_total</span> = total / 7.25 / <span class="kw">14</span><br>
+      <span class="fn">d_dev</span>   = dev   / 7.25 / <span class="kw">6</span><br>
+      <span class="fn">d_prod</span>  = prod  / 7.25 / <span class="kw">2</span><br>
+      <span class="fn">d_test</span>  = test  / 7.25 / <span class="kw">3</span><br><br>
+      <span class="cm">// 3. 自动计算分数</span><br>
+      <span class="fn">auto</span> = 上述 4 项中 <span class="kw">有效值(&gt;0)的平均值</span>；若有效值 &lt; 3 个，则 <span class="kw">退化为 d_total</span>
+    </div>
+    <div class="note">
+      💡 <b>解读</b>：系统把一个需求的工时按「总量 / 开发 / 产品 / 测试」拆成 4 个维度，各自按不同"标准天数"（14/6/2/3 天）折算成无量纲分值，再取平均，得到需求综合规模分（用于量化评审参考）。
+      当前页面中「自动计算」列即该值，分数范围受工时规模影响，无硬性 1-5 上限（前端输入框 autoMin/autoMax=1/5 仅用于筛选，非算法钳制）。
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📊 网批需求自动计算分数排行（Top 20）</h2>
+    <div class="tabs" id="tabs">
+      <div class="tab active" onclick="switchTab(this,'all')">全部</div>
+      <div class="tab" onclick="switchTab(this,'top')">仅含开发工时</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>需求名称</th><th>所属迭代</th><th class="num">自动分</th>
+          <th class="num">总工时</th><th class="num">开发</th><th class="num">产品</th><th class="num">测试</th>
+          <th>各维度归一化分</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="note">※ 「各维度归一化分」= 总/14、开发/6、产品/2、测试/3（已除以 7.25）。自动分 = 有效维度均值。</div>
+  </div>
+
+  <div class="section">
+    <h2>📈 自动分数分布</h2>
+    <canvas id="distChart" height="120"></canvas>
+  </div>
+
+  <div class="footer">网批需求自动计算分数配置 · 算法源自前端源码 · 数据实时取自 PMO 系统</div>
+</div>
+
+<script>
+const DATA = {"totalCnt": 211, "validCnt": 211, "maxAuto": 7.22, "avgAuto": 1.25, "rows": [{"story_id": 62012, "name": "内网新测试环境打通与问题处理", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "李兆杰", "total_h": 492, "dev_h": 252, "prod_h": 0, "test_h": 240, "d_total": 4.85, "d_dev": 5.79, "d_prod": "-", "d_test": 11.03, "auto": 7.22}, {"story_id": 59388, "name": "企业协同平台身份认证系统迭代升级：支持手机号关联多账号登录体系", "exec": "网批2.0_V2.73.0（0415/dev11.0）【2026】", "opened_by": "王也", "total_h": 390, "dev_h": 20, "prod_h": 0, "test_h": 370, "d_total": 3.84, "d_dev": 0.46, "d_prod": "-", "d_test": 17.01, "auto": 7.1}, {"story_id": 64559, "name": "5月份实施日常运维需求", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "李兆杰", "total_h": 721, "dev_h": 50, "prod_h": 0, "test_h": 0, "d_total": 7.1, "d_dev": 1.15, "d_prod": "-", "d_test": "-", "auto": 7.1}, {"story_id": 59737, "name": "营销一体化系统打通", "exec": "网批2.0_V2.73.0（0415/dev11.0）【2026】", "opened_by": "梁庆芬", "total_h": 474, "dev_h": 160, "prod_h": 160, "test_h": 154, "d_total": 4.67, "d_dev": 3.68, "d_prod": 11.03, "d_test": 7.08, "auto": 6.62}, {"story_id": 64564, "name": "6月份实施日常运维需求", "exec": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】", "opened_by": "李兆杰", "total_h": 672, "dev_h": 0, "prod_h": 0, "test_h": 0, "d_total": 6.62, "d_dev": "-", "d_prod": "-", "d_test": "-", "auto": 6.62}, {"story_id": 63402, "name": "26年5月其他任务工时（工单处理与数据处理）", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "李兆杰", "total_h": 485, "dev_h": 370, "prod_h": 0, "test_h": 115, "d_total": 4.78, "d_dev": 8.51, "d_prod": "-", "d_test": 5.29, "auto": 6.19}, {"story_id": 62271, "name": "4月份实施日常运维需求", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "李兆杰", "total_h": 606, "dev_h": 0, "prod_h": 0, "test_h": 0, "d_total": 5.97, "d_dev": "-", "d_prod": "-", "d_test": "-", "auto": 5.97}, {"story_id": 63470, "name": "商用分批提货-定金单部分", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "梁庆芬", "total_h": 608, "dev_h": 488, "prod_h": 24, "test_h": 80, "d_total": 5.99, "d_dev": 11.22, "d_prod": 1.66, "d_test": 3.68, "auto": 5.64}, {"story_id": 63620, "name": "【商用-增加填写申请点位】GC30~38", "exec": "网批2.0_V2.76.0（0519/dev11.3.1）【2026】", "opened_by": "钟日健", "total_h": 474, "dev_h": 332, "prod_h": 0, "test_h": 78, "d_total": 4.67, "d_dev": 7.63, "d_prod": "-", "d_test": 3.59, "auto": 5.3}, {"story_id": 63523, "name": "商用分批提货-分批提货部分", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "梁庆芬", "total_h": 529, "dev_h": 392, "prod_h": 24, "test_h": 93, "d_total": 5.21, "d_dev": 9.01, "d_prod": 1.66, "d_test": 4.28, "auto": 5.04}, {"story_id": 63626, "name": "【工程特批方案“资源机”】GC48~60", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "钟日健", "total_h": 352, "dev_h": 169, "prod_h": 0, "test_h": 159, "d_total": 3.47, "d_dev": 3.89, "d_prod": "-", "d_test": 7.31, "auto": 4.89}, {"story_id": 63092, "name": "经销商销售任务行业属性优化", "exec": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】", "opened_by": "周志杰", "total_h": 336, "dev_h": 287, "prod_h": 0, "test_h": 49, "d_total": 3.31, "d_dev": 6.6, "d_prod": "-", "d_test": 2.25, "auto": 4.05}, {"story_id": 63727, "name": "非空平台仓订单-平台仓履约单(小单)", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "梁庆芬", "total_h": 390, "dev_h": 236, "prod_h": 24, "test_h": 106, "d_total": 3.84, "d_dev": 5.43, "d_prod": 1.66, "d_test": 4.87, "auto": 3.95}, {"story_id": 63592, "name": "6月产品经理其他任务工时（业务模式调研、推广协助、材料准备与汇报、生产问题协助）", "exec": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】", "opened_by": "李兆杰", "total_h": 160, "dev_h": 13, "prod_h": 142, "test_h": 0, "d_total": 1.58, "d_dev": 0.3, "d_prod": 9.79, "d_test": "-", "auto": 3.89}, {"story_id": 61344, "name": "经销商组合套餐方案政策测算逻辑改造", "exec": "网批2.0_V2.75.0（0514/dev11.3）【2026】", "opened_by": "周志杰", "total_h": 278, "dev_h": 66, "prod_h": 58, "test_h": 154, "d_total": 2.74, "d_dev": 1.52, "d_prod": 4.0, "d_test": 7.08, "auto": 3.83}, {"story_id": 62426, "name": "3.0模式经销商销售方案行业属性优化", "exec": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】", "opened_by": "周志杰", "total_h": 325, "dev_h": 281, "prod_h": 0, "test_h": 38, "d_total": 3.2, "d_dev": 6.46, "d_prod": "-", "d_test": 1.75, "auto": 3.8}, {"story_id": 62672, "name": "网批系统各模块导出能力对接下载中心，同时文件导出的时候增加导出密码能力——一期", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "胡健", "total_h": 395, "dev_h": 328, "prod_h": 24, "test_h": 43, "d_total": 3.89, "d_dev": 7.54, "d_prod": 1.66, "d_test": 1.98, "auto": 3.77}, {"story_id": 63726, "name": "非空平台仓订单-延期发货单(大单)", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "梁庆芬", "total_h": 358, "dev_h": 202, "prod_h": 20, "test_h": 120, "d_total": 3.53, "d_dev": 4.64, "d_prod": 1.38, "d_test": 5.52, "auto": 3.77}, {"story_id": 63597, "name": "行业数据隔离【二期】---权限隔离迭代", "exec": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】", "opened_by": "王也", "total_h": 343, "dev_h": 298, "prod_h": 0, "test_h": 21, "d_total": 3.38, "d_dev": 6.85, "d_prod": "-", "d_test": 0.97, "auto": 3.73}, {"story_id": 63621, "name": "【商用-工程行业隔离】GC42~47", "exec": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】", "opened_by": "钟日健", "total_h": 318, "dev_h": 297, "prod_h": 0, "test_h": 21, "d_total": 3.13, "d_dev": 6.83, "d_prod": "-", "d_test": 0.97, "auto": 3.64}, {"story_id": 62191, "name": "26年4月其他任务工时（需求评审、技术评审、用例评审等）", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "李兆杰", "total_h": 305, "dev_h": 147, "prod_h": 19, "test_h": 123, "d_total": 3.0, "d_dev": 3.38, "d_prod": 1.31, "d_test": 5.66, "auto": 3.34}, {"story_id": 63668, "name": "网批系统各模块导出能力对接下载中心，同时文件导出的时候增加导出密码能力——二期", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "胡健", "total_h": 255, "dev_h": 212, "prod_h": 0, "test_h": 43, "d_total": 2.51, "d_dev": 4.87, "d_prod": "-", "d_test": 1.98, "auto": 3.12}, {"story_id": 59892, "name": "【大客户跨区-省外跨区板块】PC-涉及省外跨区的改造 GC06~07", "exec": "网批2.0_V2.73.0（0415/dev11.0）【2026】", "opened_by": "钟日健", "total_h": 245, "dev_h": 114, "prod_h": 55, "test_h": 76, "d_total": 2.41, "d_dev": 2.62, "d_prod": 3.79, "d_test": 3.49, "auto": 3.08}, {"story_id": 62127, "name": "【家用工程】4.0特批方案收差：新建-审批 04~08", "exec": "网批2.0_V2.75.0（0514/dev11.3）【2026】", "opened_by": "钟日健", "total_h": 266, "dev_h": 212, "prod_h": 0, "test_h": 38, "d_total": 2.62, "d_dev": 4.87, "d_prod": "-", "d_test": 1.75, "auto": 3.08}, {"story_id": 62170, "name": "4.0经销商浏览商品库存拆分", "exec": "网批2.0_V2.75.0（0514/dev11.3）【2026】", "opened_by": "梁庆芬", "total_h": 211, "dev_h": 111, "prod_h": 0, "test_h": 100, "d_total": 2.08, "d_dev": 2.55, "d_prod": "-", "d_test": 4.6, "auto": 3.08}, {"story_id": 59800, "name": "26年3月其他任务工时（推广工单协助、数据处理等）", "exec": "网批2.0_V2.72.0（0401/dev10.9）【2026】", "opened_by": "李兆杰", "total_h": 226, "dev_h": 32, "prod_h": 6, "test_h": 188, "d_total": 2.23, "d_dev": 0.74, "d_prod": 0.41, "d_test": 8.64, "auto": 3.01}, {"story_id": 62141, "name": "【大客户】大盘增加“安装区域（需跨区申请）”区域类型 06~10", "exec": "网批2.0_V2.75.0（0514/dev11.3）【2026】", "opened_by": "钟日健", "total_h": 251, "dev_h": 172, "prod_h": 0, "test_h": 55, "d_total": 2.47, "d_dev": 3.95, "d_prod": "-", "d_test": 2.53, "auto": 2.98}, {"story_id": 63404, "name": "5月产品其他任务工时（业务模式调研、材料准备与汇报、生产问题协助）", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "李兆杰", "total_h": 168.0, "dev_h": 28.5, "prod_h": 133, "test_h": 2, "d_total": 1.66, "d_dev": 0.66, "d_prod": 9.17, "d_test": 0.09, "auto": 2.9}, {"story_id": 63670, "name": "网批系统各模块导出能力对接下载中心，同时文件导出的时候增加导出密码能力——三期", "exec": "网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】", "opened_by": "胡健", "total_h": 251, "dev_h": 246, "prod_h": 0, "test_h": 5, "d_total": 2.47, "d_dev": 5.66, "d_prod": "-", "d_test": 0.23, "auto": 2.79}, {"story_id": 62027, "name": "行业数据隔离建设【一期】", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "王也", "total_h": 229, "dev_h": 108, "prod_h": 16, "test_h": 105, "d_total": 2.26, "d_dev": 2.48, "d_prod": 1.1, "d_test": 4.83, "auto": 2.67}, {"story_id": 63728, "name": "非空平台仓订单-平台仓履约单甩货", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "梁庆芬", "total_h": 138, "dev_h": 0, "prod_h": 10, "test_h": 128, "d_total": 1.36, "d_dev": "-", "d_prod": 0.69, "d_test": 5.89, "auto": 2.65}, {"story_id": 62143, "name": "【家用工程】大盘增加“安装区域（需跨区申请）”区域类型 13~16、20、22", "exec": "网批2.0_V2.75.0（0514/dev11.3）【2026】", "opened_by": "钟日健", "total_h": 184, "dev_h": 134, "prod_h": 0, "test_h": 50, "d_total": 1.81, "d_dev": 3.08, "d_prod": "-", "d_test": 2.3, "auto": 2.4}, {"story_id": 64645, "name": "销司返利方案新增通补政策关联逻辑改造", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "周志杰", "total_h": 216, "dev_h": 124, "prod_h": 17, "test_h": 75, "d_total": 2.13, "d_dev": 2.85, "d_prod": 1.17, "d_test": 3.45, "auto": 2.4}, {"story_id": 63736, "name": "工程配提资源机订单部分", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "梁庆芬", "total_h": 207, "dev_h": 108, "prod_h": 40, "test_h": 43, "d_total": 2.04, "d_dev": 2.48, "d_prod": 2.76, "d_test": 1.98, "auto": 2.31}, {"story_id": 62056, "name": "经销商销售方案多次保存逻辑优化", "exec": "网批2.0_V2.75.0（0514/dev11.3）【2026】", "opened_by": "周志杰", "total_h": 213, "dev_h": 136, "prod_h": 17, "test_h": 60, "d_total": 2.1, "d_dev": 3.13, "d_prod": 1.17, "d_test": 2.76, "auto": 2.29}, {"story_id": 62189, "name": "26年4月其他任务工时（推广协助）", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "李兆杰", "total_h": 179, "dev_h": 159, "prod_h": 20, "test_h": 0, "d_total": 1.76, "d_dev": 3.66, "d_prod": 1.38, "d_test": "-", "auto": 2.27}, {"story_id": 62733, "name": "【适用销司/销售公司/所属部门等】检索框优化为支持多选及搜索：涉及32个页面调整——一期", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "胡健", "total_h": 215, "dev_h": 156, "prod_h": 16, "test_h": 43, "d_total": 2.12, "d_dev": 3.59, "d_prod": 1.1, "d_test": 1.98, "auto": 2.2}, {"story_id": 60707, "name": "经销商限时特价限量数编辑权限优化", "exec": "网批研发需求池", "opened_by": "周志杰", "total_h": 177, "dev_h": 104, "prod_h": 48, "test_h": 25, "d_total": 1.74, "d_dev": 2.39, "d_prod": 3.31, "d_test": 1.15, "auto": 2.15}, {"story_id": 63524, "name": "商用分批提货-分批提货售后部分", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "梁庆芬", "total_h": 215, "dev_h": 144, "prod_h": 20, "test_h": 39, "d_total": 2.12, "d_dev": 3.31, "d_prod": 1.38, "d_test": 1.79, "auto": 2.15}, {"story_id": 59409, "name": "新增部门/岗位/员工维度的商品品类批量授权能力，优化权限管理效率", "exec": "网批2.0_V2.73.0（0415/dev11.0）【2026】", "opened_by": "王也", "total_h": 166, "dev_h": 124, "prod_h": 0, "test_h": 42, "d_total": 1.64, "d_dev": 2.85, "d_prod": "-", "d_test": 1.93, "auto": 2.14}, {"story_id": 59896, "name": "【大客户】功能迭代与交互体验优化以及解除地址限制（APP/H5）GD07~09", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "钟日健", "total_h": 174, "dev_h": 100, "prod_h": 0, "test_h": 50, "d_total": 1.71, "d_dev": 2.3, "d_prod": "-", "d_test": 2.3, "auto": 2.1}, {"story_id": 63522, "name": "商用分批提货-定金单售后部分", "exec": "网批2.0_V2.78.0（0615/dev11.5）【2026】", "opened_by": "梁庆芬", "total_h": 189, "dev_h": 116, "prod_h": 20, "test_h": 53, "d_total": 1.86, "d_dev": 2.67, "d_prod": 1.38, "d_test": 2.44, "auto": 2.09}, {"story_id": 59736, "name": "经销商订单退款补差运费及开票优化", "exec": "网批2.0_V2.72.0（0401/dev10.9）【2026】", "opened_by": "梁庆芬", "total_h": 128, "dev_h": 16, "prod_h": 60, "test_h": 52, "d_total": 1.26, "d_dev": 0.37, "d_prod": 4.14, "d_test": 2.39, "auto": 2.04}, {"story_id": 62130, "name": "【家用工程】督导回传资料可关联多个工程单内容同步 03和21", "exec": "网批2.0_V2.75.0（0514/dev11.3）【2026】", "opened_by": "钟日健", "total_h": 178, "dev_h": 160, "prod_h": 0, "test_h": 10, "d_total": 1.75, "d_dev": 3.68, "d_prod": "-", "d_test": 0.46, "auto": 1.96}, {"story_id": 59897, "name": "【家用工程上传项目凭证】PC/APP/H5  GC01~03", "exec": "网批2.0_V2.72.0（0401/dev10.9）【2026】", "opened_by": "钟日健", "total_h": 123, "dev_h": 8, "prod_h": 35, "test_h": 80, "d_total": 1.21, "d_dev": 0.18, "d_prod": 2.41, "d_test": 3.68, "auto": 1.87}, {"story_id": 61859, "name": "经销商暂存前置仓订单长期方案-订单部分", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "梁庆芬", "total_h": 136, "dev_h": 58, "prod_h": 53, "test_h": 25, "d_total": 1.34, "d_dev": 1.33, "d_prod": 3.66, "d_test": 1.15, "auto": 1.87}, {"story_id": 63836, "name": "非组合套餐方案政策测算差额计算逻辑调整", "exec": "网批2.0_V2.76.0（0519/dev11.3.1）【2026】", "opened_by": "周志杰", "total_h": 128, "dev_h": 16, "prod_h": 28, "test_h": 84, "d_total": 1.26, "d_dev": 0.37, "d_prod": 1.93, "d_test": 3.86, "auto": 1.85}, {"story_id": 65327, "name": "商用零售分批发货-零售大单", "exec": "网批模式_V2.82.0（0820/dev11.9.1）【2026】", "opened_by": "梁庆芬", "total_h": 184, "dev_h": 0, "prod_h": 184, "test_h": 0, "d_total": 1.81, "d_dev": "-", "d_prod": 12.69, "d_test": "-", "auto": 1.81}, {"story_id": 62035, "name": "销司库存模块功能增强：支持备货机型配置及提醒、总可用库存编辑限制管控", "exec": "网批2.0_V2.74.0（0428/0506/dev11.1/11.2）【2026】", "opened_by": "王也", "total_h": 132, "dev_h": 40, "prod_h": 0, "test_h": 68, "d_total": 1.3, "d_dev": 0.92, "d_prod": "-", "d_test": 3.13, "auto": 1.78}, {"story_id": 62424, "name": "经销商活动/返利方案新增复制方案功能", "exec": "网批2.0_V2.77.0（0602/dev11.4）【2026】", "opened_by": "周志杰", "total_h": 166, "dev_h": 114, "prod_h": 20, "test_h": 32, "d_total": 1.64, "d_dev": 2.62, "d_prod": 1.38, "d_test": 1.47, "auto": 1.78}]};
+
+let rows = DATA.rows;
+document.getElementById('totalCnt').textContent = DATA.totalCnt;
+document.getElementById('validCnt').textContent = DATA.validCnt;
+document.getElementById('maxAuto').textContent = DATA.maxAuto.toFixed(2);
+document.getElementById('avgAuto').textContent = DATA.avgAuto.toFixed(2);
+
+function render(list) {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+  list.forEach((r, i) => {
+    const cls = i === 0 ? 'top' : '';
+    const dTotal = r.d_total === '-' ? '-' : r.d_total.toFixed(2);
+    const dDev = r.d_dev === '-' ? '-' : r.d_dev.toFixed(2);
+    const dProd = r.d_prod === '-' ? '-' : r.d_prod.toFixed(2);
+    const dTest = r.d_test === '-' ? '-' : r.d_test.toFixed(2);
+    const name = r.name.length > 24 ? r.name.slice(0,24) + '…' : r.name;
+    const exec = (r.exec||'').length > 20 ? (r.exec||'').slice(0,20)+'…' : (r.exec||'');
+    tbody.innerHTML += `
+      <tr class="${cls}">
+        <td>${i+1}</td>
+        <td title="${r.name.replace(/"/g,'&quot;')}">${name}</td>
+        <td>${exec}</td>
+        <td class="num" style="font-weight:700;color:#e67e22">${r.auto.toFixed(2)}</td>
+        <td class="num">${r.total_h.toFixed(0)}</td>
+        <td class="num">${r.dev_h.toFixed(0)}</td>
+        <td class="num">${r.prod_h.toFixed(0)}</td>
+        <td class="num">${r.test_h.toFixed(0)}</td>
+        <td class="num" style="color:#888">${dTotal} / ${dDev} / ${dProd} / ${dTest}</td>
+      </tr>`;
+  });
+}
+
+function switchTab(el, mode) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  if (mode === 'all') render(rows);
+  else render(rows.filter(r => r.dev_h > 0));
+}
+
+render(rows);
+
+// 分布图
+const buckets = [0,1,2,3,4,5,6,7,8,100];
+const labels = ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8+'];
+const counts = new Array(labels.length).fill(0);
+rows.forEach(r => {
+  let idx = Math.min(Math.floor(r.auto), 8);
+  counts[idx]++;
+});
+new Chart(document.getElementById('distChart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: '需求数',
+      data: counts,
+      backgroundColor: 'rgba(26,115,232,.65)',
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, grid: { color: '#f0f0f0' } }, x: { grid: { display: false } } }
+  }
+});
+</script>
+</body>
+</html>

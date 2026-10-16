@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网批项目量化评审评分报告</title>
+<script src="../assets/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","微软雅黑",sans-serif;background:#f0f2f5;color:#333;padding:24px}
+.container{max-width:1100px;margin:0 auto}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);color:#fff;padding:28px 32px;border-radius:12px;margin-bottom:20px}
+.header h1{font-size:24px;margin-bottom:8px}
+.header .sub{font-size:13px;opacity:.8}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.card .label{font-size:12px;color:#888;margin-bottom:6px}
+.card .value{font-size:28px;font-weight:bold}
+.card .value.red{color:#e74c3c}
+.card .value.blue{color:#1a73e8}
+.card .value.green{color:#27ae60}
+.card .value.orange{color:#f39c12}
+.section{background:#fff;border-radius:10px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.section h2{font-size:18px;margin-bottom:16px;color:#1a1a2e;border-left:4px solid #1a73e8;padding-left:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#f7f8fa;color:#555;font-weight:600;padding:10px 12px;text-align:left;border-bottom:2px solid #e8e8e8}
+td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+tr:hover{background:#fafbfc}
+.bar-wrap{background:#f0f2f5;border-radius:4px;height:18px;position:relative;min-width:120px}
+.bar{height:100%;border-radius:4px;background:linear-gradient(90deg,#1a73e8,#4a9af5);transition:width .3s}
+.bar.q2{background:linear-gradient(90deg,#f093fb,#f39c12)}
+.bar-label{position:absolute;right:6px;top:0;line-height:18px;font-size:11px;color:#fff;font-weight:600}
+.rank1{background:#fff8e1}
+.rank1 .name{font-weight:bold;color:#e67e22}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge.q3{background:#e8f0fe;color:#1a73e8}
+.badge.q2{background:#fce4ec;color:#e91e63}
+.expert-cell{font-size:12px;color:#666}
+.expert-cell b{color:#333}
+.note{font-size:12px;color:#888;margin-top:12px;line-height:1.6}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.chart-box{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.chart-box h3{font-size:14px;margin-bottom:12px;color:#555;text-align:center}
+.footer{text-align:center;font-size:12px;color:#aaa;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📊 网批项目量化评审评分报告</h1>
+    <div class="sub">数据来源：PMO 专家评分系统（ztpm.gree.com:8888）· 生成时间 2026-10-16</div>
+  </div>
+
+  <div class="summary">
+    <div class="card">
+      <div class="label">2026年Q3 需求数</div>
+      <div class="value blue">10</div>
+    </div>
+    <div class="card">
+      <div class="label">Q3 平均评分</div>
+      <div class="value orange" id="q3avg"></div>
+    </div>
+    <div class="card">
+      <div class="label">2026年Q2 需求数</div>
+      <div class="value blue">10</div>
+    </div>
+    <div class="card">
+      <div class="label">Q2 平均评分</div>
+      <div class="value green" id="q2avg"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📈 评分维度说明</h2>
+    <table>
+      <tr><th>维度</th><th>含义</th><th>满分</th></tr>
+      <tr><td>需求规模 (scale)</td><td>需求工作量与复杂度综合评估，核心维度</td><td>10</td></tr>
+      <tr><td>业务逻辑复杂度</td><td>业务流程的复杂程度</td><td>2</td></tr>
+      <tr><td>用户规模</td><td>影响用户范围</td><td>2</td></tr>
+      <tr><td>三方系统协作难度</td><td>与第三方系统对接难度</td><td>2</td></tr>
+      <tr><td>技术复杂度</td><td>技术实现难度</td><td>2</td></tr>
+      <tr><td>信息安全要求</td><td>安全等级要求</td><td>1</td></tr>
+      <tr><td>重塑业务流程</td><td>是否重塑现有流程</td><td>1</td></tr>
+      <tr><td>关键用户特殊性</td><td>关键用户特殊要求</td><td>1</td></tr>
+    </table>
+    <div class="note">※ 当前评分数据中，专家主要依据「需求规模」维度打分（scale），其余辅助维度多为 0。总分 = 各维度之和。</div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>2026年Q3 需求评分（4位专家平均）</h3>
+      <canvas id="chartQ3" height="300"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>2026年Q2 需求评分（4位专家平均）</h3>
+      <canvas id="chartQ2" height="300"></canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🏆 2026年Q3 需求评分排行（会议 2026-10-16）</h2>
+    <table>
+      <tr><th>排名</th><th>需求名称</th><th>专家平均分</th><th>自动计算分</th><th>专家/自动</th><th>专家评分</th><th style="width:24%">评分对比</th></tr>
+      <tbody id="q3body"></tbody>
+    </table>
+    <div class="note">※ 「自动计算分」来源于需求池 task_hours（总/14 + 开发/6 + 产品/2 + 测试/3 归一化后的均值），与专家打分的「需求规模」口径不同，供交叉参考。</div>
+  </div>
+
+  <div class="section">
+    <h2>🏆 2026年Q2 需求评分排行（会议 2026-07-22）</h2>
+    <table>
+      <tr><th>排名</th><th>需求名称</th><th>平均分</th><th>专家评分</th><th style="width:30%">评分对比</th></tr>
+      <tbody id="q2body"></tbody>
+    </table>
+  </div>
+
+  <div class="footer">网批项目量化评审 · PMO 专家评分系统 · 自动生成</div>
+</div>
+
+<script>
+const DATA = {"q3": [{"name": "销司特批方案保证金-方案部分", "avg": 2.02, "experts": {"夏伟": 2.8, "姜仲骏": 1.9, "颜子健": 1.37, "张胜银": 2}, "auto": 2.29}, {"name": "供应链金融两层订单对接金蝶、OMS", "avg": 1.16, "experts": {"夏伟": 1.4, "姜仲骏": 1, "颜子健": 0.85, "张胜银": 1.4}, "auto": 1.42}, {"name": "商用-满额减-用户侧商城建设", "avg": 1.66, "experts": {"夏伟": 1.4, "姜仲骏": 2, "颜子健": 1.23, "张胜银": 2}, "auto": 2.04}, {"name": "服务商与经销商运费方案差异化", "avg": 1.29, "experts": {"夏伟": 0.7, "姜仲骏": 1.5, "颜子健": 1.05, "张胜银": 1.9}, "auto": 1.61}, {"name": "工程原因退款添加审批流", "avg": 1.15, "experts": {"夏伟": 1.2, "姜仲骏": 1.2, "颜子健": 0.88, "张胜银": 1.3}, "auto": 1.46}, {"name": "操作日志增加场景及导出功能", "avg": 1.09, "experts": {"夏伟": 0.8, "姜仲骏": 1, "颜子健": 0.85, "张胜银": 1.7}, "auto": 1.43}, {"name": "【商用重构】管理端-批价单列表 SY02", "avg": 2.82, "experts": {"夏伟": 2.5, "姜仲骏": 3.3, "颜子健": 2.59, "张胜银": 2.9}, "auto": 3.99}, {"name": "4.0经销商活动方案新增错位经营逻辑", "avg": 1.38, "experts": {"夏伟": 1.2, "姜仲骏": 1.9, "颜子健": 1, "张胜银": 1.4}, "auto": 2.0}, {"name": "价格可见授权管理建设", "avg": 1.17, "experts": {"夏伟": 0.8, "姜仲骏": 1.6, "颜子健": 1.07, "张胜银": 1.2}, "auto": 1.78}, {"name": "商用零售与工程小单接单、合并支付接单审批", "avg": 1.25, "experts": {"夏伟": 0.7, "姜仲骏": 1.3, "颜子健": 1.29, "张胜银": 1.7}, "auto": 2.15}], "q2": [{"name": "商用分批提货-分批提货部分", "avg": 3.67, "experts": {"池松富": 3.5, "李鹏飞": 4, "梁建铭": 3.2, "姜仲骏": 4}}, {"name": "销司返利方案新增通补政策关联逻辑改造", "avg": 1.35, "experts": {"池松富": 1.4, "李鹏飞": 1.5, "梁建铭": 1.2, "姜仲骏": 1.3}}, {"name": "非组合套餐方案政策测算差额计算逻辑调整", "avg": 1.32, "experts": {"池松富": 1.2, "李鹏飞": 1.5, "梁建铭": 1.7, "姜仲骏": 0.9}}, {"name": "行业数据隔离建设【一期】", "avg": 1.3, "experts": {"池松富": 1.4, "李鹏飞": 1, "梁建铭": 1.5, "姜仲骏": 1.3}}, {"name": "销司销售方案展示审批流程", "avg": 1.25, "experts": {"池松富": 1, "李鹏飞": 1.4, "梁建铭": 1.6, "姜仲骏": 1}}, {"name": "非空平台仓订单-OMS对接、金蝶对接", "avg": 1.0, "experts": {"池松富": 0.8, "李鹏飞": 1.3, "梁建铭": 1, "姜仲骏": 0.9}}, {"name": "商用满额减订单部分", "avg": 0.9, "experts": {"池松富": 0.9, "李鹏飞": 1.1, "梁建铭": 0.9, "姜仲骏": 0.7}}, {"name": "【PC+APP】管理端待办事项增加数量提醒；调整待办事项刷新机制及范围", "avg": 0.88, "experts": {"池松富": 0.8, "李鹏飞": 1, "梁建铭": 1.1, "姜仲骏": 0.6}}, {"name": "网批AI智能下单", "avg": 0.8, "experts": {"池松富": 0.7, "李鹏飞": 0.8, "梁建铭": 0.9, "姜仲骏": 0.8}}, {"name": "销司日销方案新增批量上下架逻辑", "avg": 0.8, "experts": {"池松富": 0.8, "李鹏飞": 1, "梁建铭": 0.7, "姜仲骏": 0.7}}], "q3_experts": ["夏伟", "姜仲骏", "张胜银", "颜子健"], "q2_experts": ["姜仲骏", "李鹏飞", "梁建铭", "池松富"]};
+
+function renderTable(tbodyId, rows, experts, period) {
+  const tbody = document.getElementById(tbodyId);
+  const maxAvg = Math.max(...rows.map(r => r.avg));
+  const rankIcons = ['🥇','🥈','🥉'];
+  rows.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    if (i === 0) tr.className = 'rank1';
+    const rankTxt = i < 3 ? rankIcons[i] + ' ' + (i+1) : (i+1);
+    const expertStr = experts.map(e => `${e}:<b>${r.experts[e] ?? '-'}</b>`).join(' ');
+    const pct = Math.round(r.avg / maxAvg * 100);
+    const autoCell = period === 'q3'
+      ? `<td style="text-align:center;font-weight:700;color:#8e44ad">${r.auto ?? '-'}</td><td style="text-align:center;color:#555">${(r.avg / r.auto).toFixed(2)}</td>`
+      : '';
+    tr.innerHTML = `
+      <td>${rankTxt}</td>
+      <td class="name">${r.name}</td>
+      <td><b>${r.avg.toFixed(2)}</b></td>
+      ${autoCell}
+      <td class="expert-cell">${expertStr}</td>
+      <td><div class="bar-wrap"><div class="bar ${period==='q2'?'q2':''}" style="width:${pct}%"></div><span class="bar-label">${r.avg.toFixed(2)}</span></div></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderChart(canvasId, rows, color) {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: rows.map(r => r.name.length > 12 ? r.name.slice(0,12)+'…' : r.name),
+      datasets: [{
+        label: '平均评分',
+        data: rows.map(r => r.avg),
+        backgroundColor: color,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, grid: { color: '#f0f0f0' } } }
+    }
+  });
+}
+
+renderTable('q3body', DATA.q3, DATA.q3_experts, 'q3');
+renderTable('q2body', DATA.q2, DATA.q2_experts, 'q2');
+renderChart('chartQ3', DATA.q3, 'rgba(26,115,232,.7)');
+renderChart('chartQ2', DATA.q2, 'rgba(240,147,251,.7)');
+
+const q3avg = (DATA.q3.reduce((s,r)=>s+r.avg,0) / DATA.q3.length).toFixed(2);
+const q2avg = (DATA.q2.reduce((s,r)=>s+r.avg,0) / DATA.q2.length).toFixed(2);
+document.getElementById('q3avg').textContent = q3avg;
+document.getElementById('q2avg').textContent = q2avg;
+</script>
+</body>
+</html>
