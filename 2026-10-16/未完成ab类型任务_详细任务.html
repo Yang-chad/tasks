@@ -63,8 +63,8 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <div class="back-link"><a href="index.html">← 返回报告中心</a></div>
 <div class="cards">
 <div class="card card-total"><div class="num">26</div><div class="label">任务总数</div></div>
-<div class="card card-wait"><div class="num">2</div><div class="label">待处理</div></div>
-<div class="card card-doing"><div class="num">22</div><div class="label">进行中</div></div>
+<div class="card card-wait"><div class="num">1</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">23</div><div class="label">进行中</div></div>
 <div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
 <div class="card card-people"><div class="num">4</div><div class="label">负责人</div></div>
 </div>
@@ -180,8 +180,8 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
             <span class="assignee-name">梁庆芬</span>
             <span class="assignee-stats">
                 <span class="stat-badge">共1个</span>
-                <span class="stat-badge stat-wait">待处理1</span>
-                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-wait">待处理0</span>
+                <span class="stat-badge stat-doing">进行中1</span>
                 <span class="stat-badge stat-overdue">延期0</span>
                 <span class="stat-badge stat-h">预估3h</span>
                 <span class="stat-badge stat-h">消耗0h</span>
@@ -196,7 +196,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 </tr>
 </thead>
 <tbody>
-<tr><td>344803</td><td title="【产品】商用一层订单-营销一体化改小库发货场景补全">【产品】商用一层订单-营销一体化改小库发货场景补全</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>需求设计</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-16</td><td></td><td>3</td><td>0</td><td>3</td></tr>
+<tr><td>344803</td><td title="【产品】商用一层订单-营销一体化改小库发货场景补全">【产品】商用一层订单-营销一体化改小库发货场景补全</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>需求设计</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td>2026-10-16</td><td></td><td>3</td><td>0</td><td>3</td></tr>
 </tbody>
 </table>
 </div>
@@ -205,7 +205,7 @@ tr.row-overdue:hover { background: #fee2e2 !important; }
 <div class="footer">禅道项目管理系统 · 自动生成于 2026-10-16</div>
 <script>
 new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u5468\u5fd7\u6770", "\u80e1\u5065", "\u738b\u4e5f", "\u6881\u5e86\u82ac"],datasets:[{label:'未完成任务数',data:[14, 9, 2, 1],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
-new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[2, 22],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[1, 23],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["1-\u7d27\u6025", "2-\u9ad8", "3-\u4e2d"],datasets:[{data:[2, 1, 23],backgroundColor:["#f5576c", "#ffa726", "#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 </script>
 </body>
