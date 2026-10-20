@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>近5日新增任务明细 — 2026-10-20</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Microsoft YaHei','微软雅黑',sans-serif; background:#f0f2f5; color:#333; padding:20px; }
+.header { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); color:#fff; padding:28px 32px; border-radius:12px; margin-bottom:20px; }
+.header h1 { font-size:22px; margin-bottom:6px; }
+.header .sub { font-size:13px; opacity:0.75; }
+.summary { display:flex; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+.summary .card { background:#fff; border-radius:10px; padding:16px 20px; min-width:100px; text-align:center; box-shadow:0 1px 4px rgba(0,0,0,0.06); flex:1; }
+.summary .card .num { font-size:26px; font-weight:700; }
+.summary .card .label { font-size:12px; color:#888; margin-top:4px; }
+.section { background:#fff; border-radius:10px; padding:20px; margin-bottom:16px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+details.day-details { background:#fff; border-radius:10px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); overflow:hidden; }
+details.day-details summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:8px; padding:14px 20px; font-size:15px; font-weight:600; color:#333; border-left:4px solid #667eea; user-select:none; }
+details.day-details summary::-webkit-details-marker { display:none; }
+details.day-details summary::before { content:"▸"; color:#667eea; font-size:12px; transition:transform 0.2s; flex-shrink:0; }
+details.day-details[open] > summary::before { transform:rotate(90deg); }
+details.day-details summary .day-week { font-weight:400; color:#888; font-size:13px; }
+details.day-details summary .day-count { margin-left:auto; font-weight:600; color:#667eea; font-size:13px; }
+.day-content { padding:0 20px 20px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th, td { padding:8px 10px; text-align:left; border-bottom:1px solid #f0f0f0; }
+th { background:#f8f9fa; color:#555; font-weight:600; white-space:nowrap; }
+tr:hover { background:#f8f9ff; }
+.badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; }
+.badge-wait { background:#fff3e0; color:#e65100; }
+.badge-doing { background:#e8f5e9; color:#2e7d32; }
+.badge-done { background:#e3f2fd; color:#1565c0; }
+.badge-pause { background:#fce4ec; color:#c62828; }
+.pri-1 { color:#f5576c; font-weight:700; }
+.pri-2 { color:#ffa726; font-weight:600; }
+.pri-3 { color:#888; }
+.back-btn { display:inline-block; margin-bottom:16px; color:#667eea; text-decoration:none; font-size:13px; }
+.back-btn:hover { text-decoration:underline; }
+.role-bar { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+.platform-tag { display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; background:#f0f0f0; color:#666; }
+.empty { color:#999; text-align:center; padding:20px; }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-btn">← 返回报告中心</a>
+<div class="header">
+  <h1>📋 近5日新增任务明细</h1>
+  <div class="sub">2026-10-20 | 近5天共 70 个新增任务</div>
+</div>
+
+<div class="summary">
+  <div class="card"><div class="num">0</div><div class="label">10-20</div></div>
+  <div class="card"><div class="num">8</div><div class="label">10-19</div></div>
+  <div class="card"><div class="num">0</div><div class="label">10-18</div></div>
+  <div class="card"><div class="num">9</div><div class="label">10-17</div></div>
+  <div class="card"><div class="num">53</div><div class="label">10-16</div></div>
+</div>
+<details class="day-details"><summary><span class="day-date">2026-10-20</span><span class="day-week">周二</span><span class="day-count">0 个</span></summary><div class="day-content"><p class="empty">当日无新建任务</p></div></details>
+<details class="day-details"><summary><span class="day-date">2026-10-19</span><span class="day-week">周一</span><span class="day-count">8 个</span></summary><div class="day-content">
+  <table>
+    <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td>345735</td><td>【UI设计】财务模块审批列表新增待我审核功能</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>林爱冰</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345749</td><td>【测试】客户库导出增加【商用常规工程保证金扣缴方式】字段</td><td><span class="role-bar" style="background:#0284c7"></span>测试</td><td class="pri-3">3-中</td><td>李学鹍</td><td><span class="badge badge-done">已完成</span></td><td>1h</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345761</td><td>【后端】商用销司库存信息小库库存余量查询迭代</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-done">已完成</span></td><td>2h</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345901</td><td>分销、集采线上店铺稽查需求（店铺授权及实付价格稽查）调研</td><td><span class="role-bar" style="background:#7c3aed"></span>产品</td><td class="pri-3">3-中</td><td>王也</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346110</td><td>【PC管理】【GC05】  1、"项目类型"是“资源机项目”，增加报批类型【资源机/周转机/其他】三选一  2、历史数据，“报批类型”默认为其他</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346111</td><td>【PC管理】【GC06】  1、特批方案列表，增加“报批类型”搜索条件和列表字段</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346112</td><td>【PC管理】【GC07】  1、一次\二次-审批，有无 “关联方案”标签控制字段“销司应付货款”数据</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346113</td><td>【H5】【GC07】  1、一次\二次-审批，有无 “关联方案”标签控制字段“销司应付货款”数据</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+    </tbody>
+  </table>
+</div>
+</details>
+<details class="day-details"><summary><span class="day-date">2026-10-18</span><span class="day-week">周日</span><span class="day-count">0 个</span></summary><div class="day-content"><p class="empty">当日无新建任务</p></div></details>
+<details class="day-details"><summary><span class="day-date">2026-10-17</span><span class="day-week">周六</span><span class="day-count">9 个</span></summary><div class="day-content">
+  <table>
+    <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td>345583</td><td>【PC管理】4.0日常方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345584</td><td>【PC管理】4.0返利方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345585</td><td>【PC管理】4.0限时特价方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345586</td><td>【PC管理】4.0满件减方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345587</td><td>【PC管理】4.0买赠方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345588</td><td>【PC管理】4.0组合套餐方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345589</td><td>【PC管理】4.0优惠券方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345590</td><td>【PC管理】4.0日常工程方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345591</td><td>【PC管理】4.0一件代发方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+    </tbody>
+  </table>
+</div>
+</details>
+<details class="day-details"><summary><span class="day-date">2026-10-16</span><span class="day-week">周五</span><span class="day-count">53 个</span></summary><div class="day-content">
+  <table>
+    <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td>344911</td><td>【后端】对接营销一体化 商用一层订单-营销一体化改小库发货场景补全</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-2">2-高</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>3h</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>344918</td><td>GD30  业务单提货审批</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>陈灿茂</td><td><span class="badge badge-wait">待处理</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>344919</td><td>GD30  业务单提货审批</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>张春杰</td><td><span class="badge badge-doing">进行中</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345213</td><td>【总任务】用户端-工程页签-工程清单-模糊搜索条件“项目名称/使用单位”</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>1h</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345214</td><td>【后端】工程主页和工程列表查询支持模糊工程项目可使用单位</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-1">1-紧急</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>1h</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345229</td><td>【总任务】调拨价审批列表数据隔离变更</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>李兆杰</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>集采平台_V1.31.0（1015/集采dev4.1）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345235</td><td>【后端】3批次共3259条商品图片数据维护&校对</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345246</td><td>【后端】调拨价审批列表数据隔离逻辑变更，支持总部职能部门权限</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>集采平台_V1.31.0（1015/集采dev4.1）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345255</td><td>【后端】网批、集采、分销对接定价平台做价格及数量校验接口-技术设计</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-doing">进行中</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345268</td><td>【后端】网批销司日常、返利、工程特批等销售方案对接定价平台做价格及数量校验-技术方案设计与沟通</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>16h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345318</td><td>【后端】销司日常销售方案-销售方案审核-提交待审核/调价待审核（通过录入、驳回清空）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345319</td><td>【后端】销司日常销售方案-销售方案审核-终止待审核的（终止流转校验表无变化）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345320</td><td>【后端】销司日常销售方案-销售方案审核-查看（渠道/定价类型回显）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345321</td><td>【后端】销司日常销售方案-销售方案审核-审核校验（类型）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345322</td><td>【后端】销司日常销售方案-复制联调</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345323</td><td>【后端】销司日常销售方案-查看（渠道/定价类型回显）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345325</td><td>【后端】销司日常销售方案-调价（批量导入、按SKU设置价格审批编号、审核记录、调整记录等）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345326</td><td>【后端】销司日常销售方案-已审核-编辑/进行中-编辑（定价平台渠道、定价类型、方案提交时新增校验）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345327</td><td>【后端】销司日常销售方案-新建/草稿-编辑/已驳回-方案提交时新增校验&历史数据清洗(定价类型、定价平台渠道)</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345328</td><td>【后端】销司日常销售方案-新建/草稿-编辑/已驳回（批量导入、按SKU设置价格审批编号、定价类型、定价平台渠道）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345329</td><td>【后端】销司日常销售方案-删除-已结束状态的销售方案不能删除&amp;其他删除（校验表清空）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345348</td><td>【后端】日常销售方案-销售方案审核-提交待审核/调价待审核（通过录入、驳回清空）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345349</td><td>【后端】日常销售方案-销售方案审核-终止待审核的（终止流转校验表无变化）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345350</td><td>【后端】日常销售方案-销售方案审核-查看（渠道/定价类型回显）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345351</td><td>【后端】日常销售方案-销售方案审核-审核校验（类型）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345352</td><td>【后端】日常销售方案-复制联调</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345353</td><td>【后端】日常销售方案-查看（渠道/定价类型回显）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345354</td><td>【后端】日常销售方案-调价（批量导入、按SKU设置价格审批编号、审核记录、调整记录等）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345355</td><td>【后端】日常销售方案-已审核-编辑/进行中-编辑（定价平台渠道、定价类型、方案提交时新增校验）</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345356</td><td>【后端】日常销售方案-新建/草稿-编辑/已驳回-方案提交时新增校验&历史数据清洗(定价类型、定价平台渠道)</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345363</td><td>【后端】销售方案价格校验-对接定价平台-技术方案设计</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>8h</td><td>分销平台_V1.39.0（1030分销/dev4.5）【2026】</td><td><span class="platform-tag">分销</span></td></tr>
+      <tr><td>345364</td><td>【后端】日销销售方案对接定价平台-技术方案设计</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>8h</td><td>集采平台_V1.32.0（1030/集采dev4.2）【2026】</td><td><span class="platform-tag">集采</span></td></tr>
+      <tr><td>345467</td><td>【后端】【GD53】大客户销售方案审批页面增加价格校验逻辑</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345468</td><td>【后端】【GD52】大客户销售方案审批页面商品信息新增字段和列表</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345469</td><td>【后端】【GD52】大客户销售方案商品信息新增字段和列表</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345470</td><td>【后端】【GD51】大客户销售方案商品批量导入新增价格审批编号以及价格校验</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345471</td><td>【后端】【GD51】大客户销售方案新增价格审批编号以及价格校验优化</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345472</td><td>【后端】【GD50】大客户销售方案结束时间优化包括新建&调价</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345473</td><td>【后端】【GC04】特批方案审批页面提交增加价格校验逻辑</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345474</td><td>【后端】【GC03】特批方案审批页面商品信息批量导入新增定价类型以及价格校验</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345475</td><td>【后端】【GC03】特批方案商品信息批量导入新增定价类型</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345476</td><td>【后端】【GC03】特批方案商品信息批量导出新增定价类型</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345477</td><td>【后端】【GC02】特批方案商品信息新增定价类型</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345478</td><td>【后端】【GC02】特批方案基本信息新增定价平台渠道交互和逻辑</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345479</td><td>【后端】【GC01】特批方案结束时间优化包含资源机项目和特批项目的新建&调价</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345480</td><td>【后端】大客户方案&工程特批方案-对接定价平台技术设计</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>16h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345523</td><td>【产品】销售方案名称输入范围限制优化</td><td><span class="role-bar" style="background:#7c3aed"></span>产品</td><td class="pri-3">3-中</td><td>周志杰</td><td><span class="badge badge-doing">进行中</span></td><td>5h</td><td>网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345557</td><td>【后端】发货仓库名称字段</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>冯澈</td><td><span class="badge badge-done">已完成</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345558</td><td>【后端】仓库名称查询与展示</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>冯澈</td><td><span class="badge badge-done">已完成</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345559</td><td>【后端】日销销售方案发货仓库名称改造</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>冯澈</td><td><span class="badge badge-done">已完成</span></td><td>14h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345560</td><td>【后端】返利销售方案发货仓库名称改造</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>冯澈</td><td><span class="badge badge-done">已完成</span></td><td>14h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345561</td><td>【后端】工程销售方案发货仓库名称改造</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>冯澈</td><td><span class="badge badge-done">已完成</span></td><td>12h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345562</td><td>【后端】一件代发销售方案发货仓库名称改造</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>冯澈</td><td><span class="badge badge-done">已完成</span></td><td>12h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+    </tbody>
+  </table>
+</div>
+</details>
+</body>
+</html>
