@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>近5日新增任务明细 — 2026-10-21</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Microsoft YaHei','微软雅黑',sans-serif; background:#f0f2f5; color:#333; padding:20px; }
+.header { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); color:#fff; padding:28px 32px; border-radius:12px; margin-bottom:20px; }
+.header h1 { font-size:22px; margin-bottom:6px; }
+.header .sub { font-size:13px; opacity:0.75; }
+.summary { display:flex; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+.summary .card { background:#fff; border-radius:10px; padding:16px 20px; min-width:100px; text-align:center; box-shadow:0 1px 4px rgba(0,0,0,0.06); flex:1; }
+.summary .card .num { font-size:26px; font-weight:700; }
+.summary .card .label { font-size:12px; color:#888; margin-top:4px; }
+.section { background:#fff; border-radius:10px; padding:20px; margin-bottom:16px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+details.day-details { background:#fff; border-radius:10px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); overflow:hidden; }
+details.day-details summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:8px; padding:14px 20px; font-size:15px; font-weight:600; color:#333; border-left:4px solid #667eea; user-select:none; }
+details.day-details summary::-webkit-details-marker { display:none; }
+details.day-details summary::before { content:"▸"; color:#667eea; font-size:12px; transition:transform 0.2s; flex-shrink:0; }
+details.day-details[open] > summary::before { transform:rotate(90deg); }
+details.day-details summary .day-week { font-weight:400; color:#888; font-size:13px; }
+details.day-details summary .day-count { margin-left:auto; font-weight:600; color:#667eea; font-size:13px; }
+.day-content { padding:0 20px 20px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th, td { padding:8px 10px; text-align:left; border-bottom:1px solid #f0f0f0; }
+th { background:#f8f9fa; color:#555; font-weight:600; white-space:nowrap; }
+tr:hover { background:#f8f9ff; }
+.badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; }
+.badge-wait { background:#fff3e0; color:#e65100; }
+.badge-doing { background:#e8f5e9; color:#2e7d32; }
+.badge-done { background:#e3f2fd; color:#1565c0; }
+.badge-pause { background:#fce4ec; color:#c62828; }
+.pri-1 { color:#f5576c; font-weight:700; }
+.pri-2 { color:#ffa726; font-weight:600; }
+.pri-3 { color:#888; }
+.back-btn { display:inline-block; margin-bottom:16px; color:#667eea; text-decoration:none; font-size:13px; }
+.back-btn:hover { text-decoration:underline; }
+.role-bar { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+.platform-tag { display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; background:#f0f0f0; color:#666; }
+.empty { color:#999; text-align:center; padding:20px; }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-btn">← 返回报告中心</a>
+<div class="header">
+  <h1>📋 近5日新增任务明细</h1>
+  <div class="sub">2026-10-21 | 近5天共 54 个新增任务</div>
+</div>
+
+<div class="summary">
+  <div class="card"><div class="num">0</div><div class="label">10-21</div></div>
+  <div class="card"><div class="num">37</div><div class="label">10-20</div></div>
+  <div class="card"><div class="num">8</div><div class="label">10-19</div></div>
+  <div class="card"><div class="num">0</div><div class="label">10-18</div></div>
+  <div class="card"><div class="num">9</div><div class="label">10-17</div></div>
+</div>
+<details class="day-details"><summary><span class="day-date">2026-10-21</span><span class="day-week">周三</span><span class="day-count">0 个</span></summary><div class="day-content"><p class="empty">当日无新建任务</p></div></details>
+<details class="day-details"><summary><span class="day-date">2026-10-20</span><span class="day-week">周二</span><span class="day-count">37 个</span></summary><div class="day-content">
+  <table>
+    <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td>346197</td><td>【后端】【GC05】特批方案-"项目类型"是“资源机项目”，增加报批类型【资源机/周转机/其他】三选一</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346198</td><td>【后端】【GC05】特批方案-查询明细-增加报批类型</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346199</td><td>【后端】【GC05】特批方案-历史数据清洗-“报批类型”默认为其他</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>2h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346200</td><td>【后端】【GC06】特批方案列表，增加“报批类型”搜索条件和列表字段</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>许峻嘉</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346214</td><td>【后端】商用供应链金融两层订单支付、退款对接FMS</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>李龙键</td><td><span class="badge badge-wait">待处理</span></td><td>5h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346221</td><td>【后端】管理侧-资金账户-列表-供应链金融</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346222</td><td>【后端】管理侧-资金账户-详情统计-供应链金融</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346223</td><td>【后端】管理侧-资金账户-详情明细-供应链金融</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346224</td><td>【后端】用户侧-资金账户-列表-供应链金融</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>2h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346225</td><td>【后端】用户侧-资金账户-详情统计-供应链金融</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>2h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346226</td><td>【后端】用户侧-资金账户-详情明细-供应链金融</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>蒋志军</td><td><span class="badge badge-done">已完成</span></td><td>2h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346227</td><td>【总任务】去提货页面，商品字段需要显示完整字段</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346303</td><td>【PC管理】SY32 登录审批-非跨区与省外跨区 审批页，新增“快速查询工程单”</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>田宇飞</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346304</td><td>【PC管理】SY33 用户端-新建/重新提交/复制新建，移除“已流标”“已丢单”</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>莫世有</td><td><span class="badge badge-doing">进行中</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346309</td><td>【PC管理】SY35 自定义配置，增加“列宽”</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>王子尘</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346317</td><td>【PC管理】前端工程本地serve冷启动慢问题原因调查</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>王子尘</td><td><span class="badge badge-doing">进行中</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346318</td><td>【PC管理】前端工程jekens打包过慢问题原因调查</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>王子尘</td><td><span class="badge badge-doing">进行中</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346319</td><td>【PC管理】针对前端工程jekens打包过慢问题修复验证</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>王子尘</td><td><span class="badge badge-doing">进行中</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346320</td><td>【PC管理】前端工程本地serve冷启动慢问题原因修复以及验证</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>王子尘</td><td><span class="badge badge-doing">进行中</span></td><td>8h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346326</td><td>【Android】商用工程重构 - 快速查询工程单 32</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>陈灿茂</td><td><span class="badge badge-wait">待处理</span></td><td>10h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346327</td><td>【ios】商用工程重构 - 快速查询工程单 32</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>张春杰</td><td><span class="badge badge-doing">进行中</span></td><td>10h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346328</td><td>【Android】商用工程重构 -  【SY33】  1、用户端-新建/重新提交/复制新建，工程单，用方信息-项目状态，选项移除“已流标”“已丢单”的两个选项，以及对应的移动端也要处理</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>张其辉</td><td><span class="badge badge-doing">进行中</span></td><td>10h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346329</td><td>【ios】商用工程重构 -  【SY33】  1、用户端-新建/重新提交/复制新建，工程单，用方信息-项目状态，选项移除“已流标”“已丢单”的两个选项，以及对应的移动端也要处理</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>吴炜欣</td><td><span class="badge badge-wait">待处理</span></td><td>10h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346330</td><td>【Android】商用工程重构 -  【SY34】  1、管理端-工程单详情，点击“完结确认”按钮，二次确认时需要校验所有关联批价单都需要完结才能确定完毕，否则错误提示</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>黄宇安</td><td><span class="badge badge-wait">待处理</span></td><td>10h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346331</td><td>【IOS】商用工程重构 -  【SY34】  1、管理端-工程单详情，点击“完结确认”按钮，二次确认时需要校验所有关联批价单都需要完结才能确定完毕，否则错误提示</td><td><span class="role-bar" style="background:#ea580c"></span>移动端</td><td class="pri-3">3-中</td><td>徐良侦</td><td><span class="badge badge-doing">进行中</span></td><td>10h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346332</td><td>【产品】商用工程返利订单资金流水</td><td><span class="role-bar" style="background:#7c3aed"></span>产品</td><td class="pri-3">3-中</td><td>周志杰</td><td><span class="badge badge-doing">进行中</span></td><td>12h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346334</td><td>【产品】商用工程返利订单任务统计</td><td><span class="role-bar" style="background:#7c3aed"></span>产品</td><td class="pri-3">3-中</td><td>周志杰</td><td><span class="badge badge-doing">进行中</span></td><td>5h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346354</td><td>商用四川审批流配置</td><td><span class="role-bar" style="background:#7c3aed"></span>产品</td><td class="pri-3">3-中</td><td>王也</td><td><span class="badge badge-done">已完成</span></td><td>1h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346361</td><td>【总任务】商用工程-工程管理 SY36~40</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346362</td><td>【总任务】商用工程返利OMS、金蝶对接</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346363</td><td>【总任务】商用工程返利订单资金流水</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346364</td><td>【总任务】商用工程返利多退少补</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346365</td><td>【总任务】商用工程返利订单-售后单</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346366</td><td>【总任务】商用工程返利订单</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346367</td><td>【总任务】商用工程返利订单任务统计</td><td><span class="role-bar" style="background:#64748b"></span>其他</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-wait">待处理</span></td><td>1h</td><td>网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346376</td><td>【iOS】经销商资金流水APP端新增备注字段展示</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>吴炜欣</td><td><span class="badge badge-doing">进行中</span></td><td>6h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346377</td><td>【Android】经销商资金流水APP端新增备注字段展示</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>黄宇安</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+    </tbody>
+  </table>
+</div>
+</details>
+<details class="day-details"><summary><span class="day-date">2026-10-19</span><span class="day-week">周一</span><span class="day-count">8 个</span></summary><div class="day-content">
+  <table>
+    <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td>345735</td><td>【UI设计】财务模块审批列表新增待我审核功能</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>林爱冰</td><td><span class="badge badge-wait">待处理</span></td><td>4h</td><td>网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345749</td><td>【测试】客户库导出增加【商用常规工程保证金扣缴方式】字段</td><td><span class="role-bar" style="background:#0284c7"></span>测试</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>1h</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345761</td><td>【后端】商用销司库存信息小库库存余量查询迭代</td><td><span class="role-bar" style="background:#10b981"></span>后端</td><td class="pri-3">3-中</td><td>-</td><td><span class="badge badge-done">已关闭</span></td><td>2h</td><td>网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345901</td><td>分销、集采线上店铺稽查需求（店铺授权及实付价格稽查）调研</td><td><span class="role-bar" style="background:#7c3aed"></span>产品</td><td class="pri-3">3-中</td><td>王也</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346110</td><td>【PC管理】【GC05】  1、&quot;项目类型&quot;是“资源机项目”，增加报批类型【资源机/周转机/其他】三选一  2、历史数据，“报批类型”默认为其他</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-doing">进行中</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346111</td><td>【PC管理】【GC06】  1、特批方案列表，增加“报批类型”搜索条件和列表字段</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-doing">进行中</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346112</td><td>【PC管理】【GC07】  1、一次\二次-审批，有无 “关联方案”标签控制字段“销司应付货款”数据</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>346113</td><td>【H5】【GC07】  1、一次\二次-审批，有无 “关联方案”标签控制字段“销司应付货款”数据</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>李红燕</td><td><span class="badge badge-wait">待处理</span></td><td>6h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+    </tbody>
+  </table>
+</div>
+</details>
+<details class="day-details"><summary><span class="day-date">2026-10-18</span><span class="day-week">周日</span><span class="day-count">0 个</span></summary><div class="day-content"><p class="empty">当日无新建任务</p></div></details>
+<details class="day-details"><summary><span class="day-date">2026-10-17</span><span class="day-week">周六</span><span class="day-count">9 个</span></summary><div class="day-content">
+  <table>
+    <thead><tr><th>ID</th><th>任务名称</th><th>角色</th><th>优先级</th><th>负责人</th><th>状态</th><th>预估</th><th>所属迭代</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td>345583</td><td>【PC管理】4.0日常方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345584</td><td>【PC管理】4.0返利方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345585</td><td>【PC管理】4.0限时特价方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345586</td><td>【PC管理】4.0满件减方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345587</td><td>【PC管理】4.0买赠方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345588</td><td>【PC管理】4.0组合套餐方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345589</td><td>【PC管理】4.0优惠券方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345590</td><td>【PC管理】4.0日常工程方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+      <tr><td>345591</td><td>【PC管理】4.0一件代发方案新建复制编辑调价审核查看页批量导入、商品表格、调整记录发货仓配置升级</td><td><span class="role-bar" style="background:#db2777"></span>前端</td><td class="pri-3">3-中</td><td>范文玉</td><td><span class="badge badge-done">已完成</span></td><td>4h</td><td>网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</td><td><span class="platform-tag">网批2.0</span></td></tr>
+    </tbody>
+  </table>
+</div>
+</details>
+</body>
+</html>
