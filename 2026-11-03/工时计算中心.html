@@ -78,28 +78,29 @@
 <option value="2026Q3">2026Q3</option>
     </select>
     <select id="f-version">
-      <option value="">全部版本</option>
-<option value="V2.89.0">V2.89.0</option>
-<option value="V2.88.0">V2.88.0</option>
-<option value="V2.87.1">V2.87.1</option>
-<option value="V2.87.0">V2.87.0</option>
-<option value="V2.86.0">V2.86.0</option>
-<option value="V2.85.0">V2.85.0</option>
-<option value="V2.84.0">V2.84.0</option>
-<option value="V2.83.0">V2.83.0</option>
-<option value="V2.82.0">V2.82.0</option>
-<option value="V2.81.0">V2.81.0</option>
-<option value="V2.80.0">V2.80.0</option>
-<option value="V2.79.0">V2.79.0</option>
-<option value="V1.41.0">V1.41.0</option>
-<option value="V1.40.0">V1.40.0</option>
-<option value="V1.39.0">V1.39.0</option>
-<option value="V1.38.0">V1.38.0</option>
-<option value="V1.33.0">V1.33.0</option>
-<option value="V1.32.0">V1.32.0</option>
-<option value="V1.31.0">V1.31.0</option>
-<option value="V1.30.0">V1.30.0</option>
-<option value="V1.8">V1.8</option>
+      <option value="">全部迭代（按名称选）</option>
+<option value="4910">分销平台_V1.41.0（1130分销/dev4.7）【2026】</option>
+<option value="4902">网批模式_V2.87.1（1109/feature_26.11.v1 ）【2026】</option>
+<option value="4894">分销平台_V1.40.0（1118分销/dev4.6）【2026】</option>
+<option value="4866">网批模式_V2.89.0（1130/feature_26.11.v2）【2026】</option>
+<option value="4852">分销平台_V1.39.0（1030分销/dev4.5）【2026】</option>
+<option value="4851">集采平台_V1.33.0（1118/集采dev4.3）【2026】</option>
+<option value="4838">网批模式_V2.88.0（1118/feature_26.11.v1）【2026】</option>
+<option value="4833">集采平台_V1.32.0（1030/集采dev4.2）【2026】</option>
+<option value="4814">集采平台_V1.31.0（1023/集采dev4.1）【2026】</option>
+<option value="4812">网批模式_V2.87.0（1030/feature_26.10.v2）【2026】</option>
+<option value="4811">网批模式_V2.86.0（1015/feature_26.10.v1）【2026】</option>
+<option value="4764">网批模式_V2.85.0（1008/feature_26.09.v2）【2026】</option>
+<option value="4763">网批模式_V2.84.0（0917/feature_26.09.v1）【2026】</option>
+<option value="4675">分销平台_V1.38.0（0825分销/dev4.4）【2026】</option>
+<option value="4661">网批模式_V2.83.0（0903/feature_26.08.v1）【2026】</option>
+<option value="4660">网批模式_V2.82.0（0820/dev11.9.1）【2026】</option>
+<option value="4647">集采平台_V1.30.0（0907/集采dev4.0）【2026】</option>
+<option value="4626">网批大前端V1.8（0730）【2026】</option>
+<option value="4625">网批模式_V2.81.0（0803/dev11.8）【2026】</option>
+<option value="4624">网批模式_V2.80.0（0716/dev11.7）【2026】</option>
+<option value="4561">网批模式_V2.79.0（0702/dev11.5.1/dev11.6）【2026】</option>
+<option value="4503">网批AI需求研究开发【2026】</option>
     </select>
     <select id="f-sort">
       <option value="eid">按迭代编号（新→旧）</option>
@@ -155,7 +156,7 @@ function render(){
     if (p && r.platform !== p) return false;
     if (st && r.status !== st) return false;
     if (q && r.quarter !== q) return false;
-    if (v && r.version !== v) return false;
+    if (v && String(r.eid) !== v) return false;
     if (name && r.name.toLowerCase().indexOf(name) < 0 && String(r.eid).indexOf(name) < 0) return false;
     return true;
   });
