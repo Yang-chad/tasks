@@ -55,7 +55,7 @@
   <a class="back-link" href="工时计算中心.html">← 返回工时计算中心</a>
   <div class="header">
     <h1>重点需求汇总</h1>
-    <p>在所有迭代工时计算页中勾选标记的需求，集中在此查看工时计算结果</p>
+    <p>在工时计算中心勾选「重点」标记的需求，集中在此查看工时计算结果。本地预览确认无误后，点下方按钮发布给团队。</p>
     <button id="sync-btn" style="margin-top:14px;padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(102,126,234,.4)">⬆ 一键同步到 Git（发布给团队查看）</button>
     <span id="sync-status" style="margin-left:12px;font-size:12px;color:#8892b0"></span>
   </div>
@@ -118,8 +118,12 @@
     });
   }
 
-  // 数据源：远程有数据（非空）才用远程已发布数据，否则回退本机 localStorage
-  var USE_REMOTE = (typeof window.KEY_STORIES !== 'undefined' && Array.isArray(window.KEY_STORIES) && window.KEY_STORIES.length > 0);
+  // 数据源判断：
+  // - 本地/内网（localhost、127.0.0.1、172.*、*.8900、file://）→ 编辑模式，显示本机 localStorage 实时勾选
+  // - 远程（yang-chad.github.io 等）→ 查看模式，显示已发布数据 window.KEY_STORIES
+  var host = location.hostname || '';
+  var IS_LOCAL = (host === 'localhost' || host === '127.0.0.1' || host === '' || /^172\./.test(host) || /^192\.168\./.test(host) || /^10\./.test(host));
+  var USE_REMOTE = !IS_LOCAL && (typeof window.KEY_STORIES !== 'undefined' && Array.isArray(window.KEY_STORIES) && window.KEY_STORIES.length > 0);
 
   function loadFocus(){
     var items = [];
@@ -242,12 +246,15 @@
       btn.disabled = true;
       setStatus('正在同步 ' + items.length + ' 项…', '#667eea');
 
-      // 探测本地服务地址（GitHub Pages 下指向 localhost，本机预览指向 8900）
-      var base = 'https://localhost:8900';
-      // 如果当前页面就是从本地 8900 打开，直接用相对
+      // 探测本地服务地址：
+      // - 本地/内网访问（8900 服务、172.*、localhost）→ 直接用当前页面 origin
+      // - GitHub Pages 远程访问 → 指向本机 localhost:8900（前提是用户本机开着服务）
       var host = location.hostname;
-      if (host === 'localhost' || host === '127.0.0.1'){
+      var base;
+      if (host === '' || host === 'localhost' || host === '127.0.0.1' || /^172\./.test(host) || /^192\.168\./.test(host) || /^10\./.test(host)){
         base = location.protocol + '//' + location.host;
+      } else {
+        base = 'https://localhost:8900';
       }
 
       var xhr = new XMLHttpRequest();
@@ -287,6 +294,8 @@
     if (USE_REMOTE){
       var v = window.KEY_STORIES_UPDATED || '';
       setStatus('已加载团队共享清单' + (v ? '（更新于 ' + v + '）' : ''), '#8892b0');
+    } else if (IS_LOCAL){
+      setStatus('本机编辑模式：显示你当前勾选的重点需求，确认后点「同步到 Git」发布', '#667eea');
     } else {
       setStatus('当前显示本机标记，点击上方按钮发布给团队', '#8892b0');
     }
