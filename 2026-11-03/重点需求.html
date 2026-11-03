@@ -7,7 +7,7 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f0f2f5;color:#1f2937;padding:20px}
-  .container{max-width:1200px;margin:0 auto}
+  .container{max-width:1400px;margin:0 auto}
   .back-link{display:inline-block;margin-bottom:14px;color:#667eea;font-size:13px;text-decoration:none}
   .back-link:hover{text-decoration:underline}
   .header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);border-radius:16px;color:#fff;padding:26px 30px;margin-bottom:18px}
@@ -18,22 +18,35 @@
   .scard .num{font-size:28px;font-weight:800;color:#667eea}
   .scard .num.red{color:#ef4444}
   .scard .lbl{font-size:12px;color:#888;margin-top:4px}
-  .table-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-  table{width:100%;border-collapse:collapse}
-  th{background:#f3f4f6;color:#374151;padding:11px 14px;text-align:left;font-weight:600;font-size:13px;white-space:nowrap}
-  td{padding:11px 14px;border-bottom:1px solid #f0f0f0;font-size:13px}
-  tbody tr:hover{background:#f8f9fc}
-  .name-cell{max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .num{font-family:Consolas,monospace;text-align:right;color:#334155}
-  .bar{display:inline-flex;height:12px;border-radius:6px;overflow:hidden;background:#f0f0f0;vertical-align:middle;width:150px}
-  .bar div{height:100%}
-  .legend{display:flex;gap:16px;margin-top:12px;font-size:12px;color:#475569;align-items:center;flex-wrap:wrap}
-  .legend span{display:inline-flex;align-items:center;gap:5px}
-  .sw{display:inline-block;width:11px;height:11px;border-radius:3px}
-  .empty{text-align:center;color:#9ca3af;padding:50px;font-size:14px;line-height:2}
-  .empty a{color:#667eea}
+
+  /* 工时明细表（复用工时计算页的 14 列结构 + 迭代列 + 操作列） */
+  .legend{display:flex;gap:16px;margin-bottom:12px;font-size:12px;color:#475569;align-items:center;flex-wrap:wrap}
+  .legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+  .legend .hint{margin-left:auto;color:#6b7280}
+  .sec{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 12px rgba(0,0,0,.06);overflow-x:auto}
+  table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12px}
+  th{padding:8px 6px;font-weight:600;font-size:12px;line-height:1.35;border-bottom:2px solid #e5e7eb;white-space:normal;text-align:center;position:sticky;top:0;z-index:10}
+  th.h-base{background:#eef4ff;color:#1e40af}
+  th.h-iter{background:#f3f4f6;color:#374151}
+  th.h-calc{background:#fff7ed;color:#c2410c;border-bottom-color:#fdba74;text-align:right;padding-right:8px}
+  th.h-detail{background:#ecfdf5;color:#047857;border-bottom-color:#6ee7b7;text-align:right;padding-right:8px}
+  th.h-op{background:#f3f4f6;color:#374151}
+  th.sortable{cursor:pointer;user-select:none;transition:filter .15s}
+  th.sortable:hover{filter:brightness(.93)}
+  th.sortable[data-dir="asc"]::after{content:"▲";font-size:9px;margin-left:3px}
+  th.sortable[data-dir="desc"]::after{content:"▼";font-size:9px;margin-left:3px}
+  th[data-tip]:hover::after{content:attr(data-tip);position:absolute;top:calc(100% + 5px);left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;font-size:12px;font-weight:400;line-height:1.5;padding:8px 12px;border-radius:8px;white-space:nowrap;z-index:1001;box-shadow:0 6px 16px rgba(0,0,0,.28)}
+  td{padding:8px 6px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:12px}
+  tbody tr:nth-child(even) td{background:#fafbfd}
+  tbody tr:hover td{background:#eff6ff}
+  td.name{text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  td.mono{font-family:Consolas,monospace;font-size:12px;color:#475569;white-space:nowrap}
+  td.num{font-family:Consolas,monospace;font-size:12px;font-weight:500;color:#334155;text-align:right;padding-right:8px;white-space:nowrap;overflow:hidden}
+  td.num.zero{color:#cbd5e1;font-weight:400}
   .del-btn{color:#ef4444;cursor:pointer;font-size:12px;border:1px solid #fecaca;background:#fff;padding:3px 10px;border-radius:6px}
   .del-btn:hover{background:#fef2f2}
+  .empty{text-align:center;color:#9ca3af;padding:50px;font-size:14px;line-height:2}
+  .empty a{color:#667eea}
   .footer{text-align:center;color:#9ca3af;font-size:12px;margin-top:24px;padding:12px}
 </style>
 </head>
@@ -42,7 +55,7 @@
   <a class="back-link" href="工时计算中心.html">← 返回工时计算中心</a>
   <div class="header">
     <h1>重点需求汇总</h1>
-    <p>在所有迭代工时计算页中勾选标记的需求，集中在此查看（数据存于本机浏览器）</p>
+    <p>在所有迭代工时计算页中勾选标记的需求，集中在此查看工时计算结果（数据存于本机浏览器）</p>
   </div>
 
   <div class="summary">
@@ -52,10 +65,31 @@
     <div class="scard"><div class="num" id="s-dev">0</div><div class="lbl">开发h合计</div></div>
   </div>
 
-  <div class="table-card">
-    <table>
+  <div class="legend">
+    <span><span class="sw" style="background:#fff7ed"></span>计算列</span>
+    <span><span class="sw" style="background:#ecfdf5"></span>明细列</span>
+    <span class="hint">&#128269; 悬停表头查看公式 · 点击表头升降序</span>
+  </div>
+
+  <div class="sec">
+    <table id="maintable">
       <thead><tr>
-        <th>迭代</th><th>需求ID</th><th>需求名称</th><th>需求h</th><th>开发h</th><th>五角色工时分布</th><th>操作</th>
+        <th class="h-iter" style="width:64px">迭代</th>
+        <th class="h-base" style="width:64px">需求ID</th>
+        <th class="h-base" style="width:240px;text-align:left">需求名称</th>
+        <th class="h-calc sortable" data-col="3" data-type="num" data-tip="自动计算 =（总工时计算 + 开发工时计算 + 产品工时计算 + 测试工时计算）÷ 4">自动计算</th>
+        <th class="h-calc sortable" data-col="4" data-type="num" data-tip="总工时计算 = 需求h ÷ 7.25 ÷ 14">总工时计算</th>
+        <th class="h-calc sortable" data-col="5" data-type="num" data-tip="开发工时计算 = 开发任务h ÷ 7.25 ÷ 6">开发工时计算</th>
+        <th class="h-calc sortable" data-col="6" data-type="num" data-tip="产品工时计算 = 产品 ÷ 7.25 ÷ 2">产品工时计算</th>
+        <th class="h-calc sortable" data-col="7" data-type="num" data-tip="测试工时计算 = 测试 ÷ 7.25 ÷ 3">测试工时计算</th>
+        <th class="h-detail sortable" data-col="8" data-type="num" data-tip="需求h = 前端 + 后端 + 移动 + 测试 + 产品">需求h</th>
+        <th class="h-detail sortable" data-col="9" data-type="num" data-tip="开发任务h = 后端 + 前端 + 移动端">开发任务h</th>
+        <th class="h-detail sortable" data-col="10" data-type="num" data-tip="后端消耗工时">后端</th>
+        <th class="h-detail sortable" data-col="11" data-type="num" data-tip="前端消耗工时">前端</th>
+        <th class="h-detail sortable" data-col="12" data-type="num" data-tip="移动端消耗工时">移动</th>
+        <th class="h-detail sortable" data-col="13" data-type="num" data-tip="测试消耗工时">测试</th>
+        <th class="h-detail sortable" data-col="14" data-type="num" data-tip="产品消耗工时">产品</th>
+        <th class="h-op" style="width:72px">操作</th>
       </tr></thead>
       <tbody id="tbody"></tbody>
     </table>
@@ -66,14 +100,6 @@
     </div>
   </div>
 
-  <div class="legend">
-    <span><span class="sw" style="background:#1D9E75"></span>后端</span>
-    <span><span class="sw" style="background:#D4537E"></span>前端</span>
-    <span><span class="sw" style="background:#EF9F27"></span>移动端</span>
-    <span><span class="sw" style="background:#378ADD"></span>测试</span>
-    <span><span class="sw" style="background:#7F77DD"></span>产品</span>
-  </div>
-
   <div class="footer">
     <p>重点需求标记存储于本机浏览器 localStorage · 换设备/浏览器后需重新标记</p>
   </div>
@@ -81,7 +107,6 @@
 
 <script>
 (function(){
-  var RC = {'后端':'#1D9E75','前端':'#D4537E','移动':'#EF9F27','测试':'#378ADD','产品':'#7F77DD'};
   var ROLES = ['后端','前端','移动','测试','产品'];
 
   function escapeHtml(s){
@@ -107,15 +132,32 @@
     return items;
   }
 
+  // 工时计算（与 _gen_hours_preview 同口径）
+  function calcRow(h){
+    var be = parseFloat(h['后端'])||0, fe = parseFloat(h['前端'])||0,
+        mo = parseFloat(h['移动'])||0, te = parseFloat(h['测试'])||0,
+        pr = parseFloat(h['产品'])||0;
+    var totalAll = be + fe + mo + te + pr;      // 需求h
+    var devH = be + fe + mo;                     // 开发任务h
+    var totalCalc = totalAll / 7.25 / 14;
+    var devCalc = devH / 7.25 / 6;
+    var prodCalc = pr / 7.25 / 2;
+    var testCalc = te / 7.25 / 3;
+    var autoCalc = (totalCalc + devCalc + prodCalc + testCalc) / 4;
+    return {totalAll:totalAll, devH:devH, autoCalc:autoCalc, totalCalc:totalCalc,
+            devCalc:devCalc, prodCalc:prodCalc, testCalc:testCalc,
+            be:be, fe:fe, mo:mo, te:te, pr:pr};
+  }
+
+  function calcTd(v){ return '<td class="num' + (v<=0?' zero':'') + '">' + v.toFixed(2) + '</td>'; }
+  function detailTd(v){ return v>0 ? ('<td class="num">' + v.toFixed(1) + '</td>') : '<td class="num zero">-</td>'; }
+
   function render(){
     var items = loadFocus();
     var totalH = 0, devH = 0, iters = {};
     items.forEach(function(it){
-      var h = it.hours || {};
-      var t = 0;
-      ROLES.forEach(function(r){ t += parseFloat(h[r]) || 0; });
-      var d = (parseFloat(h['后端'])||0) + (parseFloat(h['前端'])||0) + (parseFloat(h['移动'])||0);
-      totalH += t; devH += d;
+      var c = calcRow(it.hours || {});
+      totalH += c.totalAll; devH += c.devH;
       if (it.eid) iters[it.eid] = 1;
     });
 
@@ -134,27 +176,16 @@
 
     var html = '';
     items.forEach(function(it){
-      var h = it.hours || {};
-      var t = 0;
-      ROLES.forEach(function(r){ t += parseFloat(h[r]) || 0; });
-      var d = (parseFloat(h['后端'])||0) + (parseFloat(h['前端'])||0) + (parseFloat(h['移动'])||0);
-
-      var segs = '';
-      if (t > 0){
-        ROLES.forEach(function(r){
-          var v = parseFloat(h[r]) || 0;
-          var pct = Math.round(v / t * 100);
-          if (pct > 0) segs += '<div style="width:' + pct + '%;background:' + RC[r] + '" title="' + r + ' ' + v.toFixed(1) + 'h"></div>';
-        });
-      }
-
+      var c = calcRow(it.hours || {});
+      var name = it.title || '';
+      var nameShort = name.length > 42 ? name.slice(0,42) + '…' : name;
       html += '<tr>'
-        + '<td><span style="color:#667eea;font-weight:600;">#' + escapeHtml(it.eid||'') + '</span></td>'
-        + '<td style="font-family:Consolas,monospace;color:#475569;">' + escapeHtml(it.sid||'') + '</td>'
-        + '<td class="name-cell" title="' + escapeHtml(it.title||'') + '">' + escapeHtml(it.title||'') + '</td>'
-        + '<td class="num">' + t.toFixed(1) + '</td>'
-        + '<td class="num">' + d.toFixed(1) + '</td>'
-        + '<td><span class="bar">' + segs + '</span></td>'
+        + '<td class="mono" style="color:#667eea;font-weight:600;">#' + escapeHtml(it.eid||'') + '</td>'
+        + '<td class="mono">' + escapeHtml(it.sid||'') + '</td>'
+        + '<td class="name" title="' + escapeHtml(name) + '">' + escapeHtml(nameShort) + '</td>'
+        + calcTd(c.autoCalc) + calcTd(c.totalCalc) + calcTd(c.devCalc) + calcTd(c.prodCalc) + calcTd(c.testCalc)
+        + detailTd(c.totalAll) + detailTd(c.devH)
+        + detailTd(c.be) + detailTd(c.fe) + detailTd(c.mo) + detailTd(c.te) + detailTd(c.pr)
         + '<td><button class="del-btn" data-key="key_story_' + escapeHtml(it.eid||'') + '_' + escapeHtml(it.sid||'') + '">取消标记</button></td>'
         + '</tr>';
     });
@@ -167,6 +198,37 @@
       });
     });
   }
+
+  // 表头排序
+  (function(){
+    var table = document.getElementById('maintable');
+    var tbody = document.getElementById('tbody');
+    table.querySelectorAll('th.sortable').forEach(function(th){
+      th.addEventListener('click', function(){
+        var col = parseInt(th.getAttribute('data-col'), 10);
+        var type = th.getAttribute('data-type');
+        var dir = th.getAttribute('data-dir') === 'asc' ? 'desc' : 'asc';
+        table.querySelectorAll('th.sortable').forEach(function(h){ h.removeAttribute('data-dir'); });
+        th.setAttribute('data-dir', dir);
+        var rows = Array.prototype.slice.call(tbody.rows);
+        rows.sort(function(a, b){
+          var ca = a.cells[col].innerText.trim();
+          var cb = b.cells[col].innerText.trim();
+          if (type === 'num') {
+            var va = parseFloat(ca), vb = parseFloat(cb);
+            var ea = isNaN(va), eb = isNaN(vb);
+            if (ea && eb) return 0;
+            if (ea) return 1;
+            if (eb) return -1;
+            return dir === 'asc' ? va - vb : vb - va;
+          } else {
+            return dir === 'asc' ? ca.localeCompare(cb, 'zh') : cb.localeCompare(ca, 'zh');
+          }
+        });
+        rows.forEach(function(r){ tbody.appendChild(r); });
+      });
+    });
+  })();
 
   render();
 })();
