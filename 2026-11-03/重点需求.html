@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重点需求汇总</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f0f2f5;color:#1f2937;padding:20px}
+  .container{max-width:1200px;margin:0 auto}
+  .back-link{display:inline-block;margin-bottom:14px;color:#667eea;font-size:13px;text-decoration:none}
+  .back-link:hover{text-decoration:underline}
+  .header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);border-radius:16px;color:#fff;padding:26px 30px;margin-bottom:18px}
+  .header h1{font-size:24px;margin-bottom:8px;font-weight:600}
+  .header p{color:#8892b0;font-size:13px;line-height:1.7}
+  .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  .scard{background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 2px 10px rgba(0,0,0,.05);text-align:center}
+  .scard .num{font-size:28px;font-weight:800;color:#667eea}
+  .scard .num.red{color:#ef4444}
+  .scard .lbl{font-size:12px;color:#888;margin-top:4px}
+  .table-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  table{width:100%;border-collapse:collapse}
+  th{background:#f3f4f6;color:#374151;padding:11px 14px;text-align:left;font-weight:600;font-size:13px;white-space:nowrap}
+  td{padding:11px 14px;border-bottom:1px solid #f0f0f0;font-size:13px}
+  tbody tr:hover{background:#f8f9fc}
+  .name-cell{max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .num{font-family:Consolas,monospace;text-align:right;color:#334155}
+  .bar{display:inline-flex;height:12px;border-radius:6px;overflow:hidden;background:#f0f0f0;vertical-align:middle;width:150px}
+  .bar div{height:100%}
+  .legend{display:flex;gap:16px;margin-top:12px;font-size:12px;color:#475569;align-items:center;flex-wrap:wrap}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:3px}
+  .empty{text-align:center;color:#9ca3af;padding:50px;font-size:14px;line-height:2}
+  .empty a{color:#667eea}
+  .del-btn{color:#ef4444;cursor:pointer;font-size:12px;border:1px solid #fecaca;background:#fff;padding:3px 10px;border-radius:6px}
+  .del-btn:hover{background:#fef2f2}
+  .footer{text-align:center;color:#9ca3af;font-size:12px;margin-top:24px;padding:12px}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back-link" href="工时计算中心.html">← 返回工时计算中心</a>
+  <div class="header">
+    <h1>重点需求汇总</h1>
+    <p>在所有迭代工时计算页中勾选标记的需求，集中在此查看（数据存于本机浏览器）</p>
+  </div>
+
+  <div class="summary">
+    <div class="scard"><div class="num" id="s-total">0</div><div class="lbl">重点需求数</div></div>
+    <div class="scard"><div class="num" id="s-iter">0</div><div class="lbl">涉及迭代数</div></div>
+    <div class="scard"><div class="num red" id="s-hours">0</div><div class="lbl">需求h合计</div></div>
+    <div class="scard"><div class="num" id="s-dev">0</div><div class="lbl">开发h合计</div></div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead><tr>
+        <th>迭代</th><th>需求ID</th><th>需求名称</th><th>需求h</th><th>开发h</th><th>五角色工时分布</th><th>操作</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty" id="empty" style="display:none">
+      暂无重点需求<br>
+      请到任一迭代的「工时计算」页，勾选需求行的「重点」复选框标记<br>
+      <a href="工时计算中心.html">前往工时计算中心 →</a>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><span class="sw" style="background:#1D9E75"></span>后端</span>
+    <span><span class="sw" style="background:#D4537E"></span>前端</span>
+    <span><span class="sw" style="background:#EF9F27"></span>移动端</span>
+    <span><span class="sw" style="background:#378ADD"></span>测试</span>
+    <span><span class="sw" style="background:#7F77DD"></span>产品</span>
+  </div>
+
+  <div class="footer">
+    <p>重点需求标记存储于本机浏览器 localStorage · 换设备/浏览器后需重新标记</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var RC = {'后端':'#1D9E75','前端':'#D4537E','移动':'#EF9F27','测试':'#378ADD','产品':'#7F77DD'};
+  var ROLES = ['后端','前端','移动','测试','产品'];
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  }
+
+  function loadFocus(){
+    var items = [];
+    for (var i = 0; i < localStorage.length; i++){
+      var key = localStorage.key(i);
+      if (key.indexOf('key_story_') !== 0) continue;
+      try {
+        var v = JSON.parse(localStorage.getItem(key));
+        if (v && v.sid) items.push(v);
+      } catch(e){}
+    }
+    items.sort(function(a,b){
+      if (a.eid !== b.eid) return (b.eid||0) - (a.eid||0);
+      return (b.sid||0) - (a.sid||0);
+    });
+    return items;
+  }
+
+  function render(){
+    var items = loadFocus();
+    var totalH = 0, devH = 0, iters = {};
+    items.forEach(function(it){
+      var h = it.hours || {};
+      var t = 0;
+      ROLES.forEach(function(r){ t += parseFloat(h[r]) || 0; });
+      var d = (parseFloat(h['后端'])||0) + (parseFloat(h['前端'])||0) + (parseFloat(h['移动'])||0);
+      totalH += t; devH += d;
+      if (it.eid) iters[it.eid] = 1;
+    });
+
+    document.getElementById('s-total').textContent = items.length;
+    document.getElementById('s-iter').textContent = Object.keys(iters).length;
+    document.getElementById('s-hours').textContent = totalH.toFixed(1);
+    document.getElementById('s-dev').textContent = devH.toFixed(1);
+
+    var tb = document.getElementById('tbody');
+    if (!items.length){
+      document.getElementById('empty').style.display = 'block';
+      tb.innerHTML = '';
+      return;
+    }
+    document.getElementById('empty').style.display = 'none';
+
+    var html = '';
+    items.forEach(function(it){
+      var h = it.hours || {};
+      var t = 0;
+      ROLES.forEach(function(r){ t += parseFloat(h[r]) || 0; });
+      var d = (parseFloat(h['后端'])||0) + (parseFloat(h['前端'])||0) + (parseFloat(h['移动'])||0);
+
+      var segs = '';
+      if (t > 0){
+        ROLES.forEach(function(r){
+          var v = parseFloat(h[r]) || 0;
+          var pct = Math.round(v / t * 100);
+          if (pct > 0) segs += '<div style="width:' + pct + '%;background:' + RC[r] + '" title="' + r + ' ' + v.toFixed(1) + 'h"></div>';
+        });
+      }
+
+      html += '<tr>'
+        + '<td><span style="color:#667eea;font-weight:600;">#' + escapeHtml(it.eid||'') + '</span></td>'
+        + '<td style="font-family:Consolas,monospace;color:#475569;">' + escapeHtml(it.sid||'') + '</td>'
+        + '<td class="name-cell" title="' + escapeHtml(it.title||'') + '">' + escapeHtml(it.title||'') + '</td>'
+        + '<td class="num">' + t.toFixed(1) + '</td>'
+        + '<td class="num">' + d.toFixed(1) + '</td>'
+        + '<td><span class="bar">' + segs + '</span></td>'
+        + '<td><button class="del-btn" data-key="key_story_' + escapeHtml(it.eid||'') + '_' + escapeHtml(it.sid||'') + '">取消标记</button></td>'
+        + '</tr>';
+    });
+    tb.innerHTML = html;
+
+    document.querySelectorAll('.del-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        localStorage.removeItem(btn.getAttribute('data-key'));
+        render();
+      });
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
