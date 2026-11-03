@@ -118,8 +118,8 @@
     });
   }
 
-  // 数据源：优先远程已发布数据（window.KEY_STORIES），否则本机 localStorage
-  var USE_REMOTE = (typeof window.KEY_STORIES !== 'undefined' && Array.isArray(window.KEY_STORIES));
+  // 数据源：远程有数据（非空）才用远程已发布数据，否则回退本机 localStorage
+  var USE_REMOTE = (typeof window.KEY_STORIES !== 'undefined' && Array.isArray(window.KEY_STORIES) && window.KEY_STORIES.length > 0);
 
   function loadFocus(){
     var items = [];
