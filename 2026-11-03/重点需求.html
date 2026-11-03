@@ -55,7 +55,9 @@
   <a class="back-link" href="工时计算中心.html">← 返回工时计算中心</a>
   <div class="header">
     <h1>重点需求汇总</h1>
-    <p>在所有迭代工时计算页中勾选标记的需求，集中在此查看工时计算结果（数据存于本机浏览器）</p>
+    <p>在所有迭代工时计算页中勾选标记的需求，集中在此查看工时计算结果</p>
+    <button id="sync-btn" style="margin-top:14px;padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(102,126,234,.4)">⬆ 一键同步到 Git（发布给团队查看）</button>
+    <span id="sync-status" style="margin-left:12px;font-size:12px;color:#8892b0"></span>
   </div>
 
   <div class="summary">
@@ -101,10 +103,11 @@
   </div>
 
   <div class="footer">
-    <p>重点需求标记存储于本机浏览器 localStorage · 换设备/浏览器后需重新标记</p>
+    <p>点击顶部「一键同步到 Git」可将本机标记发布到 GitHub Pages，团队通过 <b>yang-chad.github.io/tasks</b> 查看</p>
   </div>
 </div>
 
+<script src="key_stories_data.js"></script>
 <script>
 (function(){
   var ROLES = ['后端','前端','移动','测试','产品'];
@@ -115,7 +118,31 @@
     });
   }
 
+  // 数据源：优先远程已发布数据（window.KEY_STORIES），否则本机 localStorage
+  var USE_REMOTE = (typeof window.KEY_STORIES !== 'undefined' && Array.isArray(window.KEY_STORIES));
+
   function loadFocus(){
+    var items = [];
+    if (USE_REMOTE){
+      items = window.KEY_STORIES.slice();
+    } else {
+      for (var i = 0; i < localStorage.length; i++){
+        var key = localStorage.key(i);
+        if (key.indexOf('key_story_') !== 0) continue;
+        try {
+          var v = JSON.parse(localStorage.getItem(key));
+          if (v && v.sid) items.push(v);
+        } catch(e){}
+      }
+    }
+    items.sort(function(a,b){
+      if (a.eid !== b.eid) return (b.eid||0) - (a.eid||0);
+      return (b.sid||0) - (a.sid||0);
+    });
+    return items;
+  }
+
+  function loadLocal(){
     var items = [];
     for (var i = 0; i < localStorage.length; i++){
       var key = localStorage.key(i);
@@ -125,10 +152,6 @@
         if (v && v.sid) items.push(v);
       } catch(e){}
     }
-    items.sort(function(a,b){
-      if (a.eid !== b.eid) return (b.eid||0) - (a.eid||0);
-      return (b.sid||0) - (a.sid||0);
-    });
     return items;
   }
 
@@ -186,7 +209,7 @@
         + calcTd(c.autoCalc) + calcTd(c.totalCalc) + calcTd(c.devCalc) + calcTd(c.prodCalc) + calcTd(c.testCalc)
         + detailTd(c.totalAll) + detailTd(c.devH)
         + detailTd(c.be) + detailTd(c.fe) + detailTd(c.mo) + detailTd(c.te) + detailTd(c.pr)
-        + '<td><button class="del-btn" data-key="key_story_' + escapeHtml(it.eid||'') + '_' + escapeHtml(it.sid||'') + '">取消标记</button></td>'
+        + '<td>' + (USE_REMOTE ? '<span style="color:#cbd5e1">已发布</span>' : '<button class="del-btn" data-key="key_story_' + escapeHtml(it.eid||'') + '_' + escapeHtml(it.sid||'') + '">取消标记</button>') + '</td>'
         + '</tr>';
     });
     tb.innerHTML = html;
@@ -198,6 +221,76 @@
       });
     });
   }
+
+  // 一键同步到 Git
+  (function(){
+    var btn = document.getElementById('sync-btn');
+    var status = document.getElementById('sync-status');
+    if (!btn) return;
+
+    function setStatus(msg, color){
+      status.textContent = msg;
+      status.style.color = color || '#8892b0';
+    }
+
+    btn.addEventListener('click', function(){
+      var items = loadLocal();
+      if (!items.length){
+        setStatus('⚠ 本机暂无已标记的重点需求，请先到工时页勾选', '#f59e0b');
+        return;
+      }
+      btn.disabled = true;
+      setStatus('正在同步 ' + items.length + ' 项…', '#667eea');
+
+      // 探测本地服务地址（GitHub Pages 下指向 localhost，本机预览指向 8900）
+      var base = 'https://localhost:8900';
+      // 如果当前页面就是从本地 8900 打开，直接用相对
+      var host = location.hostname;
+      if (host === 'localhost' || host === '127.0.0.1'){
+        base = location.protocol + '//' + location.host;
+      }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', base + '/api/key-stories-sync', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.timeout = 30000;
+      xhr.onreadystatechange = function(){
+        if (xhr.readyState !== 4) return;
+        btn.disabled = false;
+        if (xhr.status === 200){
+          try {
+            var r = JSON.parse(xhr.responseText);
+            if (r.ok){
+              setStatus('✅ 已同步并发布（' + r.items + ' 项，push ' + (r.push==='success'?'成功':'待确认') + '），约1分钟后团队可见', '#10b981');
+            } else {
+              setStatus('⚠ ' + (r.error||'同步失败'), '#f59e0b');
+            }
+          } catch(e){ setStatus('✅ 同步完成', '#10b981'); }
+        } else if (xhr.status === 0){
+          setStatus('⚠ 无法连接本地服务（请确认本地 8900 服务已启动）', '#ef4444');
+        } else {
+          setStatus('⚠ 同步失败（HTTP ' + xhr.status + '）', '#ef4444');
+        }
+      };
+      xhr.onerror = function(){
+        btn.disabled = false;
+        setStatus('⚠ 网络错误，无法连接本地服务', '#ef4444');
+      };
+      xhr.ontimeout = function(){
+        btn.disabled = false;
+        setStatus('⚠ 同步超时', '#ef4444');
+      };
+      xhr.send(JSON.stringify({items: items}));
+    });
+
+    // 初始状态提示
+    if (USE_REMOTE){
+      var v = window.KEY_STORIES_UPDATED || '';
+      setStatus('已加载团队共享清单' + (v ? '（更新于 ' + v + '）' : ''), '#8892b0');
+    } else {
+      setStatus('当前显示本机标记，点击上方按钮发布给团队', '#8892b0');
+    }
+  })();
 
   // 表头排序
   (function(){
