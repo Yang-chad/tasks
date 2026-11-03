@@ -1,3 +1,3 @@
 window.KEY_STORIES = [{"eid": "4812", "iter_name": "网批模式_V2.87.0（1030/feature_26.10.v2）【2026】", "sid": "69420", "title": "网批销司日常销售方案对接定价平台做价格及数量校验", "hours": {"后端": 48, "前端": 80, "移动": 0, "测试": 61.5, "产品": 66}}, {"eid": "4811", "iter_name": "网批模式_V2.86.0（1015/feature_26.10.v1）【2026】", "sid": "70066", "title": "家用分批发货订单-订单", "hours": {"后端": 72, "前端": 36, "移动": 273, "测试": 59, "产品": 30}}];
-window.KEY_STORIES_VERSION = '20261103-152640';
-window.KEY_STORIES_UPDATED = '2026-11-03 15:26:40';
+window.KEY_STORIES_VERSION = '20261103-153512';
+window.KEY_STORIES_UPDATED = '2026-11-03 15:35:12';
