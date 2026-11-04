@@ -153,6 +153,7 @@
 <option value="4503">网批AI需求研究开发【2026】</option>
     </select>
     <select id="f-sort">
+      <option value="time" selected>按时间（新→旧）</option>
       <option value="eid">按迭代编号（新→旧）</option>
       <option value="begin">按开始日期（新→旧）</option>
       <option value="name">按名称</option>
@@ -223,7 +224,8 @@ function render(){
     return true;
   });
 
-  if (sort === 'eid') list.sort(function(a,b){return b.eid - a.eid;});
+  if (sort === 'time') list.sort(function(a,b){return (b.end||b.begin||'').localeCompare(a.end||a.begin||'');});
+  else if (sort === 'eid') list.sort(function(a,b){return b.eid - a.eid;});
   else if (sort === 'begin') list.sort(function(a,b){return (b.begin||'').localeCompare(a.begin||'');});
   else if (sort === 'name') list.sort(function(a,b){return a.name.localeCompare(b.name,'zh');});
 
