@@ -138,10 +138,6 @@
           if (v && v.sid) items.push(v);
         } catch(e){}
       }
-      // 内网/本机访问且本机无勾选记录时，回退读取已发布的团队清单
-      if (!items.length && typeof window.KEY_STORIES !== 'undefined' && Array.isArray(window.KEY_STORIES) && window.KEY_STORIES.length > 0){
-        items = window.KEY_STORIES.slice();
-      }
     }
     items.sort(function(a,b){
       if (a.eid !== b.eid) return (b.eid||0) - (a.eid||0);
