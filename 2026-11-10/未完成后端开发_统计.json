@@ -3,13 +3,14 @@
   "config_key": "backend",
   "task_label": "后端开发",
   "platform": "三平台汇总",
-  "total_incomplete": 156,
+  "total_incomplete": 163,
   "type_breakdown": {
-    "a_dev4_control": 156
+    "a_dev4_control": 158,
+    "a_dev": 5
   },
   "summary": {
-    "wait": 136,
-    "doing": 15,
+    "wait": 140,
+    "doing": 18,
     "changed": 5,
     "other": 0,
     "overdue": 4
@@ -1297,8 +1298,8 @@
     },
     "阳超": {
       "count": 14,
-      "wait": 12,
-      "doing": 2,
+      "wait": 10,
+      "doing": 4,
       "estimate": 114,
       "consumed": 0,
       "left": 114,
@@ -1337,7 +1338,7 @@
           "id": 348218,
           "name": "【后端】中间层销司订单　/　来源单据-查询--取消转单",
           "type": "a_dev4_control",
-          "status": "wait",
+          "status": "doing",
           "assignee": "阳超",
           "exec_name": "网批模式_V2.88.0（1118/feature_26.11.v1）【2026】",
           "deadline": "2026-11-18",
@@ -1352,7 +1353,7 @@
           "id": 348217,
           "name": "【后端】中间层销司订单　/　来源单据-查询--确认转单",
           "type": "a_dev4_control",
-          "status": "wait",
+          "status": "doing",
           "assignee": "阳超",
           "exec_name": "网批模式_V2.88.0（1118/feature_26.11.v1）【2026】",
           "deadline": "2026-11-18",
@@ -2346,13 +2347,43 @@
       ]
     },
     "李龙键": {
-      "count": 4,
-      "wait": 3,
-      "doing": 1,
-      "estimate": 34,
+      "count": 6,
+      "wait": 4,
+      "doing": 2,
+      "estimate": 50,
       "consumed": 0,
-      "left": 34,
+      "left": 50,
       "tasks": [
+        {
+          "id": 355676,
+          "name": "【后端】大客户销司信用款支付流水兼容",
+          "type": "a_dev4_control",
+          "status": "wait",
+          "assignee": "李龙键",
+          "exec_name": "网批模式_V2.89.0（1130/feature_26.11.v2）【2026】",
+          "deadline": "2026-11-30",
+          "days_overdue": 0,
+          "estimate": 8,
+          "consumed": 0,
+          "left": 8,
+          "pri": 2,
+          "openedDate": "2026-11-10T06:52:29Z"
+        },
+        {
+          "id": 355651,
+          "name": "【后端】生产环境“工程返利涉及纯货款的情况无流水返回”问题分析、排查、处理",
+          "type": "a_dev4_control",
+          "status": "doing",
+          "assignee": "李龙键",
+          "exec_name": "网批模式_V2.89.0（1130/feature_26.11.v2）【2026】",
+          "deadline": "2026-11-12",
+          "days_overdue": 0,
+          "estimate": 8,
+          "consumed": 0,
+          "left": 8,
+          "pri": 3,
+          "openedDate": "2026-11-10T06:13:47Z"
+        },
         {
           "id": 355632,
           "name": "【后端】大客户销司订单退款支持信用账户",
@@ -2412,6 +2443,91 @@
           "left": 2,
           "pri": 2,
           "openedDate": "2026-10-29T07:02:12Z"
+        }
+      ]
+    },
+    "艾思芹": {
+      "count": 5,
+      "wait": 5,
+      "doing": 0,
+      "estimate": 24,
+      "consumed": 0,
+      "left": 24,
+      "tasks": [
+        {
+          "id": 355696,
+          "name": "【PC管理侧】一件代发详情页",
+          "type": "a_dev",
+          "status": "wait",
+          "assignee": "艾思芹",
+          "exec_name": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "deadline": "2026-11-30",
+          "days_overdue": 0,
+          "estimate": 4,
+          "consumed": 0,
+          "left": 4,
+          "pri": 3,
+          "openedDate": "2026-11-10T07:10:09Z"
+        },
+        {
+          "id": 355695,
+          "name": "【PC管理侧】一件代发列表页",
+          "type": "a_dev",
+          "status": "wait",
+          "assignee": "艾思芹",
+          "exec_name": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "deadline": "2026-11-30",
+          "days_overdue": 0,
+          "estimate": 4,
+          "consumed": 0,
+          "left": 4,
+          "pri": 3,
+          "openedDate": "2026-11-10T07:10:09Z"
+        },
+        {
+          "id": 355694,
+          "name": "【PC用户侧】一件代发详情页",
+          "type": "a_dev",
+          "status": "wait",
+          "assignee": "艾思芹",
+          "exec_name": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "deadline": "2026-11-30",
+          "days_overdue": 0,
+          "estimate": 4,
+          "consumed": 0,
+          "left": 4,
+          "pri": 3,
+          "openedDate": "2026-11-10T07:10:09Z"
+        },
+        {
+          "id": 355693,
+          "name": "【PC用户侧】一件代发订单列表页",
+          "type": "a_dev",
+          "status": "wait",
+          "assignee": "艾思芹",
+          "exec_name": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "deadline": "2026-11-30",
+          "days_overdue": 0,
+          "estimate": 4,
+          "consumed": 0,
+          "left": 4,
+          "pri": 3,
+          "openedDate": "2026-11-10T07:10:09Z"
+        },
+        {
+          "id": 355692,
+          "name": "【PC用户侧】特价方案订单导入",
+          "type": "a_dev",
+          "status": "wait",
+          "assignee": "艾思芹",
+          "exec_name": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "deadline": "2026-11-30",
+          "days_overdue": 0,
+          "estimate": 8,
+          "consumed": 0,
+          "left": 8,
+          "pri": 3,
+          "openedDate": "2026-11-10T07:10:09Z"
         }
       ]
     },
