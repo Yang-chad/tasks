@@ -56,7 +56,8 @@
   <div class="header">
     <h1>重点需求汇总</h1>
     <p>在工时计算中心勾选「重点」标记的需求，集中在此查看工时计算结果。本地预览确认无误后，点下方按钮发布给团队。</p>
-    <button id="sync-btn" style="margin-top:14px;padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(102,126,234,.4)">⬆ 一键同步到 Git（发布给团队查看）</button>
+    <button id="recalc-btn" style="margin-top:14px;padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(245,158,11,.4)">🔄 重算重点需求工时</button>
+    <button id="sync-btn" style="margin-top:14px;margin-left:10px;padding:10px 22px;border:none;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(102,126,234,.4)">⬆ 一键同步到 Git（发布给团队查看）</button>
     <span id="sync-status" style="margin-left:12px;font-size:12px;color:#8892b0"></span>
   </div>
 
@@ -225,6 +226,76 @@
       });
     });
   }
+
+  // 重算重点需求工时（实时从禅道拉取，更新已发布清单）
+  (function(){
+    var btn = document.getElementById('recalc-btn');
+    var status = document.getElementById('sync-status');
+    if (!btn) return;
+
+    function setStatus(msg, color){
+      status.textContent = msg;
+      status.style.color = color || '#8892b0';
+    }
+
+    function probeBase(){
+      var host = location.hostname;
+      if (host === '' || host === 'localhost' || host === '127.0.0.1' || /^172\./.test(host) || /^192\.168\./.test(host) || /^10\./.test(host)){
+        return location.protocol + '//' + location.host;
+      }
+      return 'https://localhost:8900';
+    }
+
+    btn.addEventListener('click', function(){
+      btn.disabled = true;
+      setStatus('正在从禅道实时重算工时…', '#d97706');
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', probeBase() + '/api/key-stories-recalc', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.timeout = 120000;
+      xhr.onreadystatechange = function(){
+        if (xhr.readyState !== 4) return;
+        btn.disabled = false;
+        if (xhr.status === 200){
+          try {
+            var r = JSON.parse(xhr.responseText);
+            if (r.ok){
+              // 用重算结果更新本地缓存与显示
+              if (r.data && r.data.length){
+                window.KEY_STORIES = r.data;
+                window.KEY_STORIES_UPDATED = new Date().toLocaleString('zh-CN');
+                r.data.forEach(function(it){
+                  if (it.eid && it.sid){
+                    try {
+                      localStorage.setItem('key_story_' + it.eid + '_' + it.sid, JSON.stringify(it));
+                    } catch(e){}
+                  }
+                });
+                render();
+              }
+              setStatus('✅ 工时已重算（' + r.items + ' 项，push ' + (r.push==='success'?'成功':'待确认') + '）', '#10b981');
+            } else {
+              setStatus('⚠ ' + (r.error||'重算失败'), '#f59e0b');
+            }
+          } catch(e){ setStatus('✅ 重算完成', '#10b981'); }
+        } else if (xhr.status === 0){
+          setStatus('⚠ 无法连接本地服务（请确认本地 8900 服务已启动）', '#ef4444');
+        } else {
+          setStatus('⚠ 重算失败（HTTP ' + xhr.status + '）', '#ef4444');
+        }
+      };
+      xhr.onerror = function(){
+        btn.disabled = false;
+        setStatus('⚠ 网络错误，无法连接本地服务', '#ef4444');
+      };
+      xhr.ontimeout = function(){
+        btn.disabled = false;
+        setStatus('⚠ 重算超时（禅道拉取较慢，请重试）', '#ef4444');
+      };
+      xhr.send(JSON.stringify({}));
+    });
+  })();
 
   // 一键同步到 Git
   (function(){
