@@ -331,7 +331,7 @@
       var xhr = new XMLHttpRequest();
       xhr.open('POST', base + '/api/key-stories-sync', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.timeout = 30000;
+      xhr.timeout = 120000;
       xhr.onreadystatechange = function(){
         if (xhr.readyState !== 4) return;
         btn.disabled = false;
@@ -356,7 +356,7 @@
       };
       xhr.ontimeout = function(){
         btn.disabled = false;
-        setStatus('⚠ 同步超时', '#ef4444');
+        setStatus('⚠ 同步超时（git push 较慢，通常数据已提交，可稍后刷新页面确认）', '#f59e0b');
       };
       xhr.send(JSON.stringify({items: items}));
     });
