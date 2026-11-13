@@ -1,13 +1,13 @@
 {
   "summary": {
-    "total_done": 368,
-    "total_active": 317,
-    "total_month_hours": 3216.8,
-    "total_estimate": 6142.0,
+    "total_done": 377,
+    "total_active": 372,
+    "total_month_hours": 3274.8,
+    "total_estimate": 7113.0,
     "total_members": 52,
     "total_overdue": 0,
     "reference_hours": 168,
-    "report_time": "2026-11-13 13:13:54",
+    "report_time": "2026-11-13 16:10:06",
     "month": "2026年11月"
   },
   "members": [
@@ -320,7 +320,16 @@
           "openedBy": "伍镓烨"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 346865,
+          "title": "【QA-安卓-用户侧-限时特价】返利限时特价缺少限购数区间值",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "王子尘",
@@ -328,28 +337,28 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 32,
+        "前端": 33,
         "移动端": 0,
         "测试": 0,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 124.0,
+      "type_frontend_hrs": 136.0,
       "type_mobile_hrs": 0.0,
       "type_product_hrs": 0.0,
       "type_test_hrs": 0.0,
-      "done_count": 17,
-      "done_estimate": 124.0,
-      "done_consumed": 124.0,
-      "month_done_hours": 124.0,
-      "active_count": 15,
-      "active_estimate": 92.0,
+      "done_count": 20,
+      "done_estimate": 136.0,
+      "done_consumed": 136.0,
+      "month_done_hours": 136.0,
+      "active_count": 13,
+      "active_estimate": 88.0,
       "active_consumed": 0.0,
-      "active_left": 92.0,
-      "total_tasks": 32,
-      "total_estimate": 216.0,
-      "completion_rate": 53.1,
-      "efficiency": 53.1,
+      "active_left": 88.0,
+      "total_tasks": 33,
+      "total_estimate": 224.0,
+      "completion_rate": 60.6,
+      "efficiency": 60.6,
       "overdue": 0,
       "done_tasks": [
         {
@@ -555,60 +564,68 @@
           "opened_date": "2026-10-12",
           "finished_by": "王子尘",
           "finished_date": "2026-11-12"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 342227,
-          "name": "【PC管理】平台补贴费配置列表",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "分销",
-          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
-          "opened_date": "2026-10-12",
-          "deadline": "2026-11-18"
-        },
-        {
-          "id": 342228,
-          "name": "【PC管理】平台补贴费配置导出",
-          "status": "doing",
-          "pri": 3,
-          "type": "a_dev2_front",
-          "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
-          "platform": "分销",
-          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
-          "opened_date": "2026-10-12",
-          "deadline": "2026-11-18"
         },
         {
           "id": 342229,
           "name": "【PC管理】平台补贴费配置详情",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev2_front",
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-10-12",
+          "finished_by": "王子尘",
+          "finished_date": "2026-11-13"
+        },
+        {
+          "id": 342228,
+          "name": "【PC管理】平台补贴费配置导出",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev2_front",
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-10-12",
+          "finished_by": "王子尘",
+          "finished_date": "2026-11-13"
+        },
+        {
+          "id": 342227,
+          "name": "【PC管理】平台补贴费配置列表",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev2_front",
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-10-12",
+          "finished_by": "王子尘",
+          "finished_date": "2026-11-13"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 357126,
+          "name": "【PC管理】销司/客户字典中间层销司订单转单设置",
           "status": "doing",
           "pri": 3,
           "type": "a_dev2_front",
           "estimate": 4.0,
           "consumed": 0.0,
           "left": 4.0,
-          "platform": "分销",
-          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
-          "opened_date": "2026-10-12",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
           "deadline": "2026-11-18"
         },
         {
-          "id": 357126,
-          "name": "【PC管理】销司/客户字典中间层销司订单转单设置",
-          "status": "wait",
+          "id": 357228,
+          "name": "【PC管理】导出为excel的全局组件工具类调研以及封装",
+          "status": "doing",
           "pri": 3,
           "type": "a_dev2_front",
-          "estimate": 4.0,
+          "estimate": 8.0,
           "consumed": 0.0,
-          "left": 4.0,
+          "left": 8.0,
           "platform": "网批2.0",
           "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
           "opened_date": "2026-11-13",
@@ -771,11 +788,20 @@
       ],
       "resolved_bugs": [
         {
+          "id": 346872,
+          "title": "【QA-PC-管理侧-平台补贴费配置】销司提交申请修改后，超管没有显示审核通过按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "分销",
+          "openedBy": "陈嘉劲"
+        },
+        {
           "id": 346834,
           "title": "【QA-PC-管理侧-平台补贴费配置】提交申请修改后，页面转跳到旧的平台补贴费配置界面",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "分销",
           "openedBy": "陈嘉劲"
         },
@@ -1128,6 +1154,15 @@
           "openedBy": "马腾"
         },
         {
+          "id": 346837,
+          "title": "【QA-安卓-用户侧-限时特价】商详页中，缺少限购数展示",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "龙泽英"
+        },
+        {
           "id": 346619,
           "title": "【QA-安卓-用户侧-经销商端展示业务线】热门推荐最下面，有一个户式采暖的标签，点击商详页显示的是家装，里外不一致",
           "severity": 3,
@@ -1272,16 +1307,7 @@
           "openedBy": "刘孝亮"
         }
       ],
-      "active_bugs": [
-        {
-          "id": 346837,
-          "title": "【QA-安卓-用户侧-限时特价】商详页中，缺少限购数展示",
-          "severity": 3,
-          "pri": 3,
-          "status": "active",
-          "platform": "网批2.0"
-        }
-      ]
+      "active_bugs": []
     },
     {
       "name": "李学鹍",
@@ -1291,7 +1317,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 4,
+        "测试": 10,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -1303,14 +1329,14 @@
       "done_estimate": 118.0,
       "done_consumed": 110.0,
       "month_done_hours": 110.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 6,
+      "active_estimate": 80.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 4,
-      "total_estimate": 118.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 80.0,
+      "total_tasks": 10,
+      "total_estimate": 198.0,
+      "completion_rate": 40.0,
+      "efficiency": 40.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -1362,7 +1388,92 @@
           "finished_date": "2026-11-01"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357344,
+          "name": "【测试设计】审批流可视化改造二期--李学鹍（资金账户/返利政策）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 16.0,
+          "consumed": 0.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357345,
+          "name": "【测试】审批流可视化改造二期--李学鹍（资金账户/返利政策）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 48.0,
+          "consumed": 0.0,
+          "left": 48.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357352,
+          "name": "【测试设计】用户登录口令存储算法升级（SM3 加盐迭代）暨安全性整改迭代",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357353,
+          "name": "【测试】用户登录口令存储算法升级（SM3 加盐迭代）暨安全性整改迭代",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357354,
+          "name": "【测试设计】管理侧新增条码信息查询能力 APP",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 1.0,
+          "consumed": 0.0,
+          "left": 1.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357355,
+          "name": "【测试】管理侧新增条码信息查询能力 APP",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -1736,11 +1847,27 @@
       ],
       "active_bugs": [
         {
+          "id": 346860,
+          "title": "【QA-IOS-管理侧-家用工程】价格审批页，修改批复价格，会自动变成299",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 346857,
+          "title": "【QA-IOS-管理侧-家用工程】价格审批页，批复价格修改，提示高于批价上限",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
           "id": 346827,
           "title": "【QA-IOS-管理侧-家用工程】价格审批页，sku已关联特批方案，销司应付-货款总额错误",
           "severity": 3,
           "pri": 3,
-          "status": "active",
+          "status": "confirmed",
           "platform": "网批2.0"
         }
       ]
@@ -2056,7 +2183,24 @@
           "openedBy": "李文清"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 346874,
+          "title": "【QA-PC-管理侧-财务模块审批列表】经销商市场保证金单据审核列表点击查看单据报错",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 346866,
+          "title": "【QA-PC-管理侧-财务模块审批列表】经销商市场保证金单据审核列表中当前登录账号不在单据的审批流中也有审核按钮",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "徐良侦",
@@ -2609,15 +2753,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 346585,
-          "title": "【QA-PC-管理侧-财务模块审批列表】经销商市场保证金单据审核列表筛选全部单据结果是待我审批的单据",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "李成斌"
-        },
-        {
           "id": 346567,
           "title": "【QA-IOS-用户侧-经销商端展示业务线】返利专区的日常方案点击商品，商详页没有显示业务线标签",
           "severity": 3,
@@ -2638,6 +2773,15 @@
         {
           "id": 346593,
           "title": "【QA-PC-管理侧-财务模块审批列表】贷款额度、解押还款额度和信用额度审批列表筛选待我审批结果会出现当前账号不可审批的",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "李成斌"
+        },
+        {
+          "id": 346585,
+          "title": "【QA-PC-管理侧-财务模块审批列表】经销商市场保证金单据审核列表筛选全部单据结果是待我审批的单据",
           "severity": 3,
           "pri": 3,
           "status": "closed",
@@ -2673,6 +2817,22 @@
         }
       ],
       "active_bugs": [
+        {
+          "id": 346888,
+          "title": "【QA-PC-用户侧-限时特价】调价修改开始时间，开始时间到，该活动仍无商品能够购买",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 346882,
+          "title": "【QA-PC-管理侧-财务模块审批列表】经销商市场保证金单据审核列表筛选待我审核结果返回单据总数与实际总数不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        },
         {
           "id": 346764,
           "title": "【QA-PC-管理侧-账户资金】在批量调账列表中查看数据的审批流程，审批人员页签显示暂无数据",
@@ -2986,7 +3146,7 @@
           "title": "【QA-PC-管理侧-销司销售方案】  销司工程特批方案列表页使用选择时间字段查询时，查询结果显示不正确",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "李文清"
         }
@@ -3517,6 +3677,311 @@
           "platform": "网批2.0"
         }
       ]
+    },
+    {
+      "name": "蒋志军",
+      "role": "后端",
+      "type_counts": {
+        "产品": 0,
+        "后端": 16,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 92.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 0.0,
+      "type_test_hrs": 0.0,
+      "done_count": 14,
+      "done_estimate": 92.0,
+      "done_consumed": 92.0,
+      "month_done_hours": 92.0,
+      "active_count": 2,
+      "active_estimate": 16.0,
+      "active_consumed": 0.0,
+      "active_left": 16.0,
+      "total_tasks": 16,
+      "total_estimate": 108.0,
+      "completion_rate": 87.5,
+      "efficiency": 87.5,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 353325,
+          "name": "【后端】销售方案列表、调价、编辑-技术方案设计",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "design",
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-11-04",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-06"
+        },
+        {
+          "id": 352927,
+          "name": "【后端】商用多层级-销司资金账户列表",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-04",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-06"
+        },
+        {
+          "id": 352924,
+          "name": "【后端】商用多层级-销司资金账户技术方案设计",
+          "consumed": 4.0,
+          "estimate": 4.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-04",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-06"
+        },
+        {
+          "id": 346651,
+          "name": "【后端】资金账户-返利账户的“累计提货总额”算法-数据清洗",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.1（1109/feature_26.11.v1）【2026】",
+          "opened_date": "2026-10-21",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-06"
+        },
+        {
+          "id": 346650,
+          "name": "【后端】资金账户-返利账户的“累计提货总额”算法，工程返利订单中返利支付部分金额/退款金额 纳入统计",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.87.1（1109/feature_26.11.v1）【2026】",
+          "opened_date": "2026-10-21",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-06"
+        },
+        {
+          "id": 353347,
+          "name": "【后端】全部销司日销方案、经销商销售方案校验迭代",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-04",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-09"
+        },
+        {
+          "id": 352926,
+          "name": "【后端】商用多层级-销司多个资金账户统计接口兼容&联调",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-04",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-09"
+        },
+        {
+          "id": 352925,
+          "name": "【后端】商用多层级-销司多个资金账户流水兼容&联调",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-04",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-09"
+        },
+        {
+          "id": 355032,
+          "name": "【后端】网批”在经销商市场保证金奖罚单创建页面填写“罚款金额”时输入“-10”展示为“10”，提交后奖/罚总金额为“-10“，测试奖罚单FK2026110600001“问题分析、数据排查&确认&修复",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-09",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-10"
+        },
+        {
+          "id": 355031,
+          "name": "【后端】网批”【山东销司】申请总部删除数据的商家清单“生产数据处理",
+          "consumed": 2.0,
+          "estimate": 2.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-09",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-10"
+        },
+        {
+          "id": 356437,
+          "name": "【后端】分销共计12个maven模块的swagger分组改造",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-11",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-13"
+        },
+        {
+          "id": 356436,
+          "name": "【后端】网批共计21个maven模块的swagger分组改造",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-11",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-13"
+        },
+        {
+          "id": 356435,
+          "name": "【后端】网批、集采、分销qa环境文档网关改造",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-11",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-13"
+        },
+        {
+          "id": 356434,
+          "name": "【后端】网批、集采、分销dev环境文档网关改造",
+          "consumed": 8.0,
+          "estimate": 8.0,
+          "type": "a_dev4_control",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-11",
+          "finished_by": "蒋志军",
+          "finished_date": "2026-11-13"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 357229,
+          "name": "【后端】商用工程-批价单关联项目单-商品信息提供",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 12.0,
+          "consumed": 0.0,
+          "left": 12.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-18"
+        },
+        {
+          "id": 357230,
+          "name": "【后端】商用工程-批价单关联项目单-商品信息技术设计",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev4_control",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-18"
+        }
+      ],
+      "resolved_bugs": [
+        {
+          "id": 346812,
+          "title": "【QA-PC-管理侧-销司资金账户】销司账户层级为普通层级，也会显示跳转的账户",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 346323,
+          "title": "【QA-PC-管理侧-销司资金账户】销司配置钱包那边的没返回钱包数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 345786,
+          "title": "【QA-PC-用户侧-经销商账户】支付配送小单运费后，货款账户-累积提货总额会减少",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "江小芳"
+        },
+        {
+          "id": 345771,
+          "title": "【QA-PC-用户侧-资金流水】用户侧和管理侧的返利统计，没有在退款的时候统计数额。",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 345596,
+          "title": "【QA-PC-用户侧-资金流水】用户侧搜索工程单号没有显示应有的数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 345474,
+          "title": "【QA-PC-用户侧-商用返利工程多退少补订单】返利金额账户金额为0，执行少补时，结果没有从货款账户扣款",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        },
+        {
+          "id": 345430,
+          "title": "【QA-PC-管理侧-资金流水】管理侧的经销商资金流水搜索订单单号，不显示已经有的数据",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "马腾"
+        },
+        {
+          "id": 345407,
+          "title": "【QA-PC-用户侧-商用返利工程多退少补订单】返利工程多退订单，执行多退定时器，退款失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "罗有文"
+        }
+      ],
+      "active_bugs": []
     },
     {
       "name": "刘兰真",
@@ -4677,7 +5142,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 6,
+        "测试": 8,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -4689,14 +5154,14 @@
       "done_estimate": 135.0,
       "done_consumed": 83.8,
       "month_done_hours": 83.8,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 2,
+      "active_estimate": 75.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 6,
-      "total_estimate": 135.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 75.0,
+      "total_tasks": 8,
+      "total_estimate": 210.0,
+      "completion_rate": 75.0,
+      "efficiency": 75.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -4772,7 +5237,204 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357319,
+          "name": "【测试设计】多层级定价方案建设--伍镓烨",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 19.0,
+          "consumed": 0.0,
+          "left": 19.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357320,
+          "name": "【测试】多层级定价方案建设--伍镓烨",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 56.0,
+          "consumed": 0.0,
+          "left": 56.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
+      "resolved_bugs": [],
+      "active_bugs": []
+    },
+    {
+      "name": "胡健",
+      "role": "产品",
+      "type_counts": {
+        "产品": 10,
+        "后端": 0,
+        "前端": 0,
+        "移动端": 0,
+        "测试": 0,
+        "其他": 0
+      },
+      "type_backend_hrs": 0.0,
+      "type_frontend_hrs": 0.0,
+      "type_mobile_hrs": 0.0,
+      "type_product_hrs": 79.0,
+      "type_test_hrs": 0.0,
+      "done_count": 4,
+      "done_estimate": 28.0,
+      "done_consumed": 28.0,
+      "month_done_hours": 79.0,
+      "active_count": 6,
+      "active_estimate": 78.0,
+      "active_consumed": 51.0,
+      "active_left": 24.0,
+      "total_tasks": 10,
+      "total_estimate": 106.0,
+      "completion_rate": 40.0,
+      "efficiency": 40.0,
+      "overdue": 0,
+      "done_tasks": [
+        {
+          "id": 351949,
+          "name": "【产品】分销一件代发限时特价方案对接定价平台场景调研及接口逻辑讨论",
+          "consumed": 6.0,
+          "estimate": 6.0,
+          "type": "ab1_needs_research",
+          "platform": "分销",
+          "execution": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "opened_date": "2026-11-03",
+          "finished_by": "胡健",
+          "finished_date": "2026-11-05"
+        },
+        {
+          "id": 355006,
+          "name": "【产品】网批项目组产品组12月需求分析和规划",
+          "consumed": 7.0,
+          "estimate": 7.0,
+          "type": "ab1_needs_research",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-09",
+          "finished_by": "胡健",
+          "finished_date": "2026-11-06"
+        },
+        {
+          "id": 348938,
+          "name": "【产品】分销一件代发业务模式调研",
+          "consumed": 10.0,
+          "estimate": 10.0,
+          "type": "ab1_needs_research",
+          "platform": "分销",
+          "execution": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "opened_date": "2026-10-28",
+          "finished_by": "胡健",
+          "finished_date": "2026-11-09"
+        },
+        {
+          "id": 355007,
+          "name": "【产品】空调违规跨区迭代需求分析与调研",
+          "consumed": 5.0,
+          "estimate": 5.0,
+          "type": "ab1_needs_research",
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-09",
+          "finished_by": "胡健",
+          "finished_date": "2026-11-13"
+        }
+      ],
+      "active_tasks": [
+        {
+          "id": 351960,
+          "name": "【产品】专款专用业务场景调研及初步产品方向及规划",
+          "status": "doing",
+          "pri": 3,
+          "type": "ab1_needs_research",
+          "estimate": 25.0,
+          "consumed": 14.0,
+          "left": 10.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-03",
+          "deadline": "2026-11-16"
+        },
+        {
+          "id": 344372,
+          "name": "【产品】主页待办事项新增财务审批能力",
+          "status": "doing",
+          "pri": 3,
+          "type": "ab2_request_des",
+          "estimate": 20.0,
+          "consumed": 17.0,
+          "left": 1.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-10-15",
+          "deadline": "2026-11-18"
+        },
+        {
+          "id": 356810,
+          "name": "【产品】APP管理侧新增条码信息查询能力的产品设计",
+          "status": "doing",
+          "pri": 3,
+          "type": "ab2_request_des",
+          "estimate": 8.0,
+          "consumed": 6.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-12",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 349106,
+          "name": "【产品】电商 天猫优品仓配、天猫-苏易易购仓配业务模式调研及方案讨论",
+          "status": "doing",
+          "pri": 3,
+          "type": "ab1_needs_research",
+          "estimate": 9.0,
+          "consumed": 4.0,
+          "left": 5.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
+          "opened_date": "2026-10-29",
+          "deadline": "2026-11-20"
+        },
+        {
+          "id": 355146,
+          "name": "【产品】审核举报单时不受理的流程及结果调整",
+          "status": "doing",
+          "pri": 3,
+          "type": "ab1_needs_research",
+          "estimate": 8.0,
+          "consumed": 6.0,
+          "left": 2.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.91.0（1230/feature_26.12.v2）【2026】",
+          "opened_date": "2026-11-09",
+          "deadline": "2026-11-20"
+        },
+        {
+          "id": 357278,
+          "name": "【产品】多层级转总部履约业务流程调研",
+          "status": "doing",
+          "pri": 3,
+          "type": "ab1_needs_research",
+          "estimate": 8.0,
+          "consumed": 4.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-20"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -4782,7 +5444,7 @@
       "type_counts": {
         "产品": 0,
         "后端": 0,
-        "前端": 18,
+        "前端": 21,
         "移动端": 0,
         "测试": 0,
         "其他": 0
@@ -4796,14 +5458,14 @@
       "done_estimate": 78.0,
       "done_consumed": 78.0,
       "month_done_hours": 78.0,
-      "active_count": 6,
-      "active_estimate": 36.0,
+      "active_count": 9,
+      "active_estimate": 48.0,
       "active_consumed": 0.0,
-      "active_left": 36.0,
-      "total_tasks": 18,
-      "total_estimate": 114.0,
-      "completion_rate": 66.7,
-      "efficiency": 66.7,
+      "active_left": 48.0,
+      "total_tasks": 21,
+      "total_estimate": 126.0,
+      "completion_rate": 57.1,
+      "efficiency": 57.1,
       "overdue": 0,
       "done_tasks": [
         {
@@ -4952,6 +5614,48 @@
         }
       ],
       "active_tasks": [
+        {
+          "id": 357231,
+          "name": "【PC用户】管理端代客申请批价单 关联工程单，则把工程单的商品同步到批价单展示",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-18"
+        },
+        {
+          "id": 357232,
+          "name": "【PC管理】批价单新建批价单，关联工程单，工程单的商品同步到批价单展示",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-18"
+        },
+        {
+          "id": 357233,
+          "name": "【H5】管理端代客申请批价单，关联工程单，工程单的商品同步到批价单展示",
+          "status": "doing",
+          "pri": 3,
+          "type": "a_dev2_front",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-18"
+        },
         {
           "id": 353263,
           "name": "【PC管理】【GC01】  1、家用-常规工程，导入生成工程单",
@@ -5630,7 +6334,16 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 346890,
+          "title": "【QA-PC-管理侧-客户库】导入绑定业务经理，上传的数据不是重复，导入失败",
+          "severity": 3,
+          "pri": 3,
+          "status": "active",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "徐琦",
@@ -7479,7 +8192,7 @@
           "title": "【QA-PC-管理侧-平台补贴费配置】设置知悉人，导入上传员工账号，提示：成功数据 Key 不能为空",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "分销",
           "openedBy": "陈嘉劲"
         },
@@ -7497,7 +8210,7 @@
           "title": "【QA-PC-管理侧-多层级定价方案审核】最后修改人和修改时间记录了终止的申请人和时间",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "邹娟"
         },
@@ -7556,162 +8269,6 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": []
-    },
-    {
-      "name": "胡健",
-      "role": "产品",
-      "type_counts": {
-        "产品": 9,
-        "后端": 0,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 0.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 67.0,
-      "type_test_hrs": 0.0,
-      "done_count": 3,
-      "done_estimate": 23.0,
-      "done_consumed": 23.0,
-      "month_done_hours": 67.0,
-      "active_count": 6,
-      "active_estimate": 75.0,
-      "active_consumed": 44.0,
-      "active_left": 28.0,
-      "total_tasks": 9,
-      "total_estimate": 98.0,
-      "completion_rate": 33.3,
-      "efficiency": 33.3,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 351949,
-          "name": "【产品】分销一件代发限时特价方案对接定价平台场景调研及接口逻辑讨论",
-          "consumed": 6.0,
-          "estimate": 6.0,
-          "type": "ab1_needs_research",
-          "platform": "分销",
-          "execution": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
-          "opened_date": "2026-11-03",
-          "finished_by": "胡健",
-          "finished_date": "2026-11-05"
-        },
-        {
-          "id": 355006,
-          "name": "【产品】网批项目组产品组12月需求分析和规划",
-          "consumed": 7.0,
-          "estimate": 7.0,
-          "type": "ab1_needs_research",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-09",
-          "finished_by": "胡健",
-          "finished_date": "2026-11-06"
-        },
-        {
-          "id": 348938,
-          "name": "【产品】分销一件代发业务模式调研",
-          "consumed": 10.0,
-          "estimate": 10.0,
-          "type": "ab1_needs_research",
-          "platform": "分销",
-          "execution": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
-          "opened_date": "2026-10-28",
-          "finished_by": "胡健",
-          "finished_date": "2026-11-09"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 355007,
-          "name": "【产品】空调违规跨区迭代需求分析与调研",
-          "status": "doing",
-          "pri": 3,
-          "type": "ab1_needs_research",
-          "estimate": 5.0,
-          "consumed": 3.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-09",
-          "deadline": "2026-11-13"
-        },
-        {
-          "id": 351960,
-          "name": "【产品】专款专用业务场景调研及初步产品方向及规划",
-          "status": "doing",
-          "pri": 3,
-          "type": "ab1_needs_research",
-          "estimate": 25.0,
-          "consumed": 14.0,
-          "left": 10.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-03",
-          "deadline": "2026-11-16"
-        },
-        {
-          "id": 344372,
-          "name": "【产品】主页待办事项新增财务审批能力",
-          "status": "doing",
-          "pri": 3,
-          "type": "ab2_request_des",
-          "estimate": 20.0,
-          "consumed": 17.0,
-          "left": 1.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
-          "opened_date": "2026-10-15",
-          "deadline": "2026-11-18"
-        },
-        {
-          "id": 356810,
-          "name": "【产品】APP管理侧新增条码信息查询能力的产品设计",
-          "status": "wait",
-          "pri": 3,
-          "type": "ab2_request_des",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
-          "opened_date": "2026-11-12",
-          "deadline": "2026-11-19"
-        },
-        {
-          "id": 349106,
-          "name": "【产品】电商 天猫优品仓配、天猫-苏易易购仓配业务模式调研及方案讨论",
-          "status": "doing",
-          "pri": 3,
-          "type": "ab1_needs_research",
-          "estimate": 9.0,
-          "consumed": 4.0,
-          "left": 5.0,
-          "platform": "分销",
-          "execution": "分销平台_V1.41.0（1130分销/dev4.7）【2026】",
-          "opened_date": "2026-10-29",
-          "deadline": "2026-11-20"
-        },
-        {
-          "id": 355146,
-          "name": "【产品】审核举报单时不受理的流程及结果调整",
-          "status": "doing",
-          "pri": 3,
-          "type": "ab1_needs_research",
-          "estimate": 8.0,
-          "consumed": 6.0,
-          "left": 2.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.91.0（1230/feature_26.12.v2）【2026】",
-          "opened_date": "2026-11-09",
-          "deadline": "2026-11-20"
-        }
-      ],
-      "resolved_bugs": [],
       "active_bugs": []
     },
     {
@@ -8109,24 +8666,6 @@
       ],
       "resolved_bugs": [
         {
-          "id": 346831,
-          "title": "【QA-安卓-管理侧-家用工程】价格审批页，批复价格不会自动获取上个节点审批的价格",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 346825,
-          "title": "【QA-安卓-管理侧-家用工程】价格审批页，sku已关联特批方案，销司应付-货款总额错误",
-          "severity": 3,
-          "pri": 3,
-          "status": "resolved",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
           "id": 346002,
           "title": "【QA-安卓-用户侧-商用工程返利订单】工程返利订单进行支付，订单没有使用到返利/使用返利为0时收银台仍显示返利账户",
           "severity": 3,
@@ -8190,7 +8729,24 @@
           "openedBy": "江小芳"
         }
       ],
-      "active_bugs": []
+      "active_bugs": [
+        {
+          "id": 346831,
+          "title": "【QA-安卓-管理侧-家用工程】价格审批页，批复价格不会自动获取上个节点审批的价格",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        },
+        {
+          "id": 346825,
+          "title": "【QA-安卓-管理侧-家用工程】价格审批页，sku已关联特批方案，销司应付-货款总额错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "confirmed",
+          "platform": "网批2.0"
+        }
+      ]
     },
     {
       "name": "范文玉",
@@ -8601,11 +9157,20 @@
       ],
       "resolved_bugs": [
         {
+          "id": 346862,
+          "title": "【QA-PC-管理侧-多层级定价方案】申请修改其他账号创建的方案时创建人显示错误",
+          "severity": 3,
+          "pri": 3,
+          "status": "closed",
+          "platform": "网批2.0",
+          "openedBy": "邹娟"
+        },
+        {
           "id": 346796,
           "title": "【QA-PC-管理侧-测算限时特价】审核页中，商品列表部分列名折叠",
           "severity": 3,
           "pri": 3,
-          "status": "resolved",
+          "status": "closed",
           "platform": "网批2.0",
           "openedBy": "龙泽英"
         },
@@ -8709,286 +9274,10 @@
           "openedBy": "邹娟"
         }
       ],
-      "active_bugs": []
-    },
-    {
-      "name": "蒋志军",
-      "role": "后端",
-      "type_counts": {
-        "产品": 0,
-        "后端": 14,
-        "前端": 0,
-        "移动端": 0,
-        "测试": 0,
-        "其他": 0
-      },
-      "type_backend_hrs": 62.0,
-      "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 0.0,
-      "type_product_hrs": 0.0,
-      "type_test_hrs": 0.0,
-      "done_count": 10,
-      "done_estimate": 62.0,
-      "done_consumed": 62.0,
-      "month_done_hours": 62.0,
-      "active_count": 4,
-      "active_estimate": 30.0,
-      "active_consumed": 0.0,
-      "active_left": 30.0,
-      "total_tasks": 14,
-      "total_estimate": 92.0,
-      "completion_rate": 71.4,
-      "efficiency": 71.4,
-      "overdue": 0,
-      "done_tasks": [
-        {
-          "id": 353325,
-          "name": "【后端】销售方案列表、调价、编辑-技术方案设计",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "design",
-          "platform": "分销",
-          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
-          "opened_date": "2026-11-04",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-06"
-        },
-        {
-          "id": 352927,
-          "name": "【后端】商用多层级-销司资金账户列表",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
-          "opened_date": "2026-11-04",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-06"
-        },
-        {
-          "id": 352924,
-          "name": "【后端】商用多层级-销司资金账户技术方案设计",
-          "consumed": 4.0,
-          "estimate": 4.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
-          "opened_date": "2026-11-04",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-06"
-        },
-        {
-          "id": 346651,
-          "name": "【后端】资金账户-返利账户的“累计提货总额”算法-数据清洗",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.1（1109/feature_26.11.v1）【2026】",
-          "opened_date": "2026-10-21",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-06"
-        },
-        {
-          "id": 346650,
-          "name": "【后端】资金账户-返利账户的“累计提货总额”算法，工程返利订单中返利支付部分金额/退款金额 纳入统计",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.87.1（1109/feature_26.11.v1）【2026】",
-          "opened_date": "2026-10-21",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-06"
-        },
-        {
-          "id": 353347,
-          "name": "【后端】全部销司日销方案、经销商销售方案校验迭代",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
-          "opened_date": "2026-11-04",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-09"
-        },
-        {
-          "id": 352926,
-          "name": "【后端】商用多层级-销司多个资金账户统计接口兼容&联调",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
-          "opened_date": "2026-11-04",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-09"
-        },
-        {
-          "id": 352925,
-          "name": "【后端】商用多层级-销司多个资金账户流水兼容&联调",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
-          "opened_date": "2026-11-04",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-09"
-        },
-        {
-          "id": 355032,
-          "name": "【后端】网批”在经销商市场保证金奖罚单创建页面填写“罚款金额”时输入“-10”展示为“10”，提交后奖/罚总金额为“-10“，测试奖罚单FK2026110600001“问题分析、数据排查&确认&修复",
-          "consumed": 8.0,
-          "estimate": 8.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-09",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-10"
-        },
-        {
-          "id": 355031,
-          "name": "【后端】网批”【山东销司】申请总部删除数据的商家清单“生产数据处理",
-          "consumed": 2.0,
-          "estimate": 2.0,
-          "type": "a_dev4_control",
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-09",
-          "finished_by": "蒋志军",
-          "finished_date": "2026-11-10"
-        }
-      ],
-      "active_tasks": [
-        {
-          "id": 356434,
-          "name": "【后端】网批、集采、分销dev环境文档网关改造",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-11",
-          "deadline": "2026-11-13"
-        },
-        {
-          "id": 356435,
-          "name": "【后端】网批、集采、分销qa环境文档网关改造",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-11",
-          "deadline": "2026-11-13"
-        },
-        {
-          "id": 356436,
-          "name": "【后端】网批共计21个maven模块的swagger分组改造",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 8.0,
-          "consumed": 0.0,
-          "left": 8.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-11",
-          "deadline": "2026-11-13"
-        },
-        {
-          "id": 356437,
-          "name": "【后端】分销共计12个maven模块的swagger分组改造",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev4_control",
-          "estimate": 6.0,
-          "consumed": 0.0,
-          "left": 6.0,
-          "platform": "网批2.0",
-          "execution": "网批模式_V2.89.0（1130/feature_26.11.v3）【2026】",
-          "opened_date": "2026-11-11",
-          "deadline": "2026-11-13"
-        }
-      ],
-      "resolved_bugs": [
-        {
-          "id": 346323,
-          "title": "【QA-PC-管理侧-销司资金账户】销司配置钱包那边的没返回钱包数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 345786,
-          "title": "【QA-PC-用户侧-经销商账户】支付配送小单运费后，货款账户-累积提货总额会减少",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "江小芳"
-        },
-        {
-          "id": 345771,
-          "title": "【QA-PC-用户侧-资金流水】用户侧和管理侧的返利统计，没有在退款的时候统计数额。",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 345596,
-          "title": "【QA-PC-用户侧-资金流水】用户侧搜索工程单号没有显示应有的数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 345474,
-          "title": "【QA-PC-用户侧-商用返利工程多退少补订单】返利金额账户金额为0，执行少补时，结果没有从货款账户扣款",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        },
-        {
-          "id": 345430,
-          "title": "【QA-PC-管理侧-资金流水】管理侧的经销商资金流水搜索订单单号，不显示已经有的数据",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "马腾"
-        },
-        {
-          "id": 345407,
-          "title": "【QA-PC-用户侧-商用返利工程多退少补订单】返利工程多退订单，执行多退定时器，退款失败",
-          "severity": 3,
-          "pri": 3,
-          "status": "closed",
-          "platform": "网批2.0",
-          "openedBy": "罗有文"
-        }
-      ],
       "active_bugs": [
         {
-          "id": 346812,
-          "title": "【QA-PC-管理侧-销司资金账户】销司账户层级为普通层级，也会显示跳转的账户",
+          "id": 346873,
+          "title": "【QA-PC-用户侧-返利限时特价】返利限时特价商品详情页中，应展示限购数区间范围值",
           "severity": 3,
           "pri": 3,
           "status": "active",
@@ -9009,21 +9298,21 @@
       },
       "type_backend_hrs": 0.0,
       "type_frontend_hrs": 0.0,
-      "type_mobile_hrs": 60.0,
+      "type_mobile_hrs": 64.0,
       "type_product_hrs": 0.0,
       "type_test_hrs": 0.0,
-      "done_count": 4,
-      "done_estimate": 60.0,
-      "done_consumed": 60.0,
-      "month_done_hours": 60.0,
-      "active_count": 7,
-      "active_estimate": 59.0,
+      "done_count": 5,
+      "done_estimate": 64.0,
+      "done_consumed": 64.0,
+      "month_done_hours": 64.0,
+      "active_count": 6,
+      "active_estimate": 55.0,
       "active_consumed": 0.0,
-      "active_left": 59.0,
+      "active_left": 55.0,
       "total_tasks": 11,
       "total_estimate": 119.0,
-      "completion_rate": 36.4,
-      "efficiency": 36.4,
+      "completion_rate": 45.5,
+      "efficiency": 45.5,
       "overdue": 0,
       "done_tasks": [
         {
@@ -9073,23 +9362,21 @@
           "opened_date": "2026-10-21",
           "finished_by": "吴炜欣",
           "finished_date": "2026-11-10"
-        }
-      ],
-      "active_tasks": [
+        },
         {
           "id": 356671,
           "name": "[ios] 商品详情页活动名称长度增加限制",
-          "status": "wait",
-          "pri": 3,
-          "type": "a_dev6_mobile",
+          "consumed": 4.0,
           "estimate": 4.0,
-          "consumed": 0.0,
-          "left": 4.0,
+          "type": "a_dev6_mobile",
           "platform": "网批2.0",
           "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
           "opened_date": "2026-11-12",
-          "deadline": "2026-11-18"
-        },
+          "finished_by": "吴炜欣",
+          "finished_date": "2026-11-13"
+        }
+      ],
+      "active_tasks": [
         {
           "id": 352649,
           "name": "[ios] 商用工程 管理侧 新增申请二次批价",
@@ -9864,6 +10151,15 @@
       ],
       "resolved_bugs": [
         {
+          "id": 346842,
+          "title": "【QA-PC-管理侧-商用多层级订单】总部直发来源单据 在列表部分内容与原型及UI要求的显示不一致",
+          "severity": 3,
+          "pri": 3,
+          "status": "resolved",
+          "platform": "网批2.0",
+          "openedBy": "刘孝亮"
+        },
+        {
           "id": 346799,
           "title": "【QA-PC-管理侧-商用多层级订单】处理异常的来源单据点击处理报错",
           "severity": 3,
@@ -10066,7 +10362,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 4,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -10078,14 +10374,14 @@
       "done_estimate": 43.0,
       "done_consumed": 47.5,
       "month_done_hours": 47.5,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 2,
+      "active_estimate": 75.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 43.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 75.0,
+      "total_tasks": 4,
+      "total_estimate": 118.0,
+      "completion_rate": 50.0,
+      "efficiency": 50.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -10113,7 +10409,36 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357309,
+          "name": "【测试设计】商用多层级订单-中间层销司订单多退少补",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 19.0,
+          "consumed": 0.0,
+          "left": 19.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357310,
+          "name": "【测试】商用多层级订单-中间层销司订单多退少补",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 56.0,
+          "consumed": 0.0,
+          "left": 56.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -10125,7 +10450,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 5,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -10137,14 +10462,14 @@
       "done_estimate": 43.0,
       "done_consumed": 46.0,
       "month_done_hours": 46.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 3,
+      "active_estimate": 72.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 43.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 72.0,
+      "total_tasks": 5,
+      "total_estimate": 115.0,
+      "completion_rate": 40.0,
+      "efficiency": 40.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -10172,7 +10497,50 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357342,
+          "name": "【测试设计】审批流可视化改造二期--李文清（4.0/4.0测算/销司/2.0）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 16.0,
+          "consumed": 0.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357343,
+          "name": "【测试】审批流可视化改造二期--李文清（4.0/4.0测算/销司/2.0）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 48.0,
+          "consumed": 0.0,
+          "left": 48.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357357,
+          "name": "【测试】商用工程-批价单关联项目单，同步商品信息 SY07--李文清",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -10184,7 +10552,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 5,
+        "测试": 12,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -10196,14 +10564,14 @@
       "done_estimate": 45.0,
       "done_consumed": 45.0,
       "month_done_hours": 45.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 7,
+      "active_estimate": 82.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 5,
-      "total_estimate": 45.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 82.0,
+      "total_tasks": 12,
+      "total_estimate": 127.0,
+      "completion_rate": 41.7,
+      "efficiency": 41.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -10267,7 +10635,106 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357317,
+          "name": "【测试设计】大客户-新建二次调价",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357318,
+          "name": "【测试】大客户-新建二次调价",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 24.0,
+          "consumed": 0.0,
+          "left": 24.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357324,
+          "name": "【测试设计】家用工程-销司应付货款 字段逻辑优化 GC07",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 5.0,
+          "consumed": 0.0,
+          "left": 5.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357325,
+          "name": "【测试】家用工程-销司应付货款 字段逻辑优化 GC07",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 16.0,
+          "consumed": 0.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357340,
+          "name": "【测试设计】客户库增加导出业务线业务经理和导入绑定业务经理能力",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 5.0,
+          "consumed": 0.0,
+          "left": 5.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357341,
+          "name": "【测试】客户库增加导出业务线业务经理和导入绑定业务经理能力",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 16.0,
+          "consumed": 0.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357356,
+          "name": "【测试】商用工程-批价单关联项目单，同步商品信息 SY07--江小芳",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -10705,7 +11172,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 12,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -10717,14 +11184,14 @@
       "done_estimate": 43.0,
       "done_consumed": 44.0,
       "month_done_hours": 44.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 10,
+      "active_estimate": 85.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 43.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 85.0,
+      "total_tasks": 12,
+      "total_estimate": 128.0,
+      "completion_rate": 16.7,
+      "efficiency": 16.7,
       "overdue": 0,
       "done_tasks": [
         {
@@ -10752,7 +11219,148 @@
           "finished_date": "2026-11-10"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357298,
+          "name": "【测试设计】分销销售方案功能迭代优化",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 1.0,
+          "consumed": 0.0,
+          "left": 1.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357299,
+          "name": "【测试】分销销售方案功能迭代优化",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357300,
+          "name": "【测试设计】批量配置一品多地",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 2.0,
+          "consumed": 0.0,
+          "left": 2.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357301,
+          "name": "【测试】批量配置一品多地",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357302,
+          "name": "【测试设计】三方平台点位配置",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357303,
+          "name": "【测试】三方平台点位配置",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 35.0,
+          "consumed": 0.0,
+          "left": 35.0,
+          "platform": "分销",
+          "execution": "分销平台_V1.40.0（1118分销/dev4.6）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357346,
+          "name": "【测试设计】销司订单下单商品停止采购校验",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357347,
+          "name": "【测试】销司订单下单商品停止采购校验",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357348,
+          "name": "【测试设计】商品库增加状态、订单增加限制的需求",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357349,
+          "name": "【测试】商品库增加状态、订单增加限制的需求",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 12.0,
+          "consumed": 0.0,
+          "left": 12.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -10764,7 +11372,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 5,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -10776,14 +11384,14 @@
       "done_estimate": 43.0,
       "done_consumed": 43.0,
       "month_done_hours": 43.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 3,
+      "active_estimate": 79.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 43.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 79.0,
+      "total_tasks": 5,
+      "total_estimate": 122.0,
+      "completion_rate": 40.0,
+      "efficiency": 40.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -10811,7 +11419,50 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357321,
+          "name": "【测试设计】多层级定价方案建设--邹娟",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 19.0,
+          "consumed": 0.0,
+          "left": 19.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357322,
+          "name": "【测试】多层级定价方案建设--邹娟",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 56.0,
+          "consumed": 0.0,
+          "left": 56.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357323,
+          "name": "【测试】【QA-PC-用户侧-商用工程】已关联批价单的项目单仍显示登录有效期",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -10823,7 +11474,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 4,
+        "测试": 10,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -10835,14 +11486,14 @@
       "done_estimate": 43.0,
       "done_consumed": 43.0,
       "month_done_hours": 43.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 6,
+      "active_estimate": 74.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 4,
-      "total_estimate": 43.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 74.0,
+      "total_tasks": 10,
+      "total_estimate": 117.0,
+      "completion_rate": 40.0,
+      "efficiency": 40.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -10894,7 +11545,92 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357307,
+          "name": "【测试设计】商用多层级-资金账户兼容改造",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357308,
+          "name": "【测试】商用多层级-资金账户兼容改造",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 24.0,
+          "consumed": 0.0,
+          "left": 24.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357338,
+          "name": "【测试设计】3.0日销方案唯一性校验及业务线前端展示",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 9.0,
+          "consumed": 0.0,
+          "left": 9.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357339,
+          "name": "【测试】3.0日销方案唯一性校验及业务线前端展示",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 28.0,
+          "consumed": 0.0,
+          "left": 28.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357350,
+          "name": "【测试设计】返利专区新增筛选条件",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 1.0,
+          "consumed": 0.0,
+          "left": 1.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357351,
+          "name": "【测试】返利专区新增筛选条件",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 4.0,
+          "consumed": 0.0,
+          "left": 4.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [
         {
           "id": 345577,
@@ -11365,7 +12101,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 8,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -11377,14 +12113,14 @@
       "done_estimate": 37.0,
       "done_consumed": 37.0,
       "month_done_hours": 37.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 6,
+      "active_estimate": 80.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 37.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 80.0,
+      "total_tasks": 8,
+      "total_estimate": 117.0,
+      "completion_rate": 25.0,
+      "efficiency": 25.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -11412,7 +12148,92 @@
           "finished_date": "2026-11-10"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357328,
+          "name": "【测试设计】销售方案名称输入范围限制优化--龙泽英（销司）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357329,
+          "name": "【测试】销售方案名称输入范围限制优化--龙泽英（销司）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357334,
+          "name": "【测试设计】商用经销商限时特价订单增加最低购买数校验",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 5.0,
+          "consumed": 0.0,
+          "left": 5.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357335,
+          "name": "【测试】商用经销商限时特价订单增加最低购买数校验",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 16.0,
+          "consumed": 0.0,
+          "left": 16.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357336,
+          "name": "【测试设计】限时特价新增最低限购数逻辑",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 12.0,
+          "consumed": 0.0,
+          "left": 12.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357337,
+          "name": "【测试】限时特价新增最低限购数逻辑",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 36.0,
+          "consumed": 0.0,
+          "left": 36.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -11424,7 +12245,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 8,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -11436,14 +12257,14 @@
       "done_estimate": 32.0,
       "done_consumed": 37.0,
       "month_done_hours": 37.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 6,
+      "active_estimate": 75.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 32.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 75.0,
+      "total_tasks": 8,
+      "total_estimate": 107.0,
+      "completion_rate": 25.0,
+      "efficiency": 25.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -11471,7 +12292,92 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357326,
+          "name": "【测试设计】销售方案名称输入范围限制优化--李成斌（经销商）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 3.0,
+          "consumed": 0.0,
+          "left": 3.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357327,
+          "name": "【测试】销售方案名称输入范围限制优化--李成斌（经销商）",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357330,
+          "name": "【测试设计】主页待办事项新增财务版块能力",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357331,
+          "name": "【测试】主页待办事项新增财务版块能力",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 24.0,
+          "consumed": 0.0,
+          "left": 24.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357332,
+          "name": "【测试设计】财务模块审批列表新增待我审核功能",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357333,
+          "name": "【测试】财务模块审批列表新增待我审核功能",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 24.0,
+          "consumed": 0.0,
+          "left": 24.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -11483,7 +12389,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 4,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -11495,14 +12401,14 @@
       "done_estimate": 43.0,
       "done_consumed": 34.0,
       "month_done_hours": 34.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 2,
+      "active_estimate": 75.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 43.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 75.0,
+      "total_tasks": 4,
+      "total_estimate": 118.0,
+      "completion_rate": 50.0,
+      "efficiency": 50.0,
       "overdue": 0,
       "done_tasks": [
         {
@@ -11530,7 +12436,36 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357311,
+          "name": "【测试设计】商用多层级订单-来源单据、中间层销司订单",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 19.0,
+          "consumed": 0.0,
+          "left": 19.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357312,
+          "name": "【测试】商用多层级订单-来源单据、中间层销司订单",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 56.0,
+          "consumed": 0.0,
+          "left": 56.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": []
     },
@@ -12155,7 +13090,7 @@
         "后端": 0,
         "前端": 0,
         "移动端": 0,
-        "测试": 2,
+        "测试": 6,
         "其他": 0
       },
       "type_backend_hrs": 0.0,
@@ -12167,14 +13102,14 @@
       "done_estimate": 30.0,
       "done_consumed": 28.0,
       "month_done_hours": 28.0,
-      "active_count": 0,
-      "active_estimate": 0.0,
+      "active_count": 4,
+      "active_estimate": 75.0,
       "active_consumed": 0.0,
-      "active_left": 0.0,
-      "total_tasks": 2,
-      "total_estimate": 30.0,
-      "completion_rate": 100.0,
-      "efficiency": 100.0,
+      "active_left": 75.0,
+      "total_tasks": 6,
+      "total_estimate": 105.0,
+      "completion_rate": 33.3,
+      "efficiency": 33.3,
       "overdue": 0,
       "done_tasks": [
         {
@@ -12202,7 +13137,64 @@
           "finished_date": "2026-11-09"
         }
       ],
-      "active_tasks": [],
+      "active_tasks": [
+        {
+          "id": 357313,
+          "name": "【测试设计】商用多层级订单-单据生成",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 8.0,
+          "consumed": 0.0,
+          "left": 8.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357314,
+          "name": "【测试】商用多层级订单-单据生成",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 24.0,
+          "consumed": 0.0,
+          "left": 24.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357315,
+          "name": "【测试设计】商用多层级订单-营销一体化、OMS、金蝶对接",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae1_test_des",
+          "estimate": 11.0,
+          "consumed": 0.0,
+          "left": 11.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        },
+        {
+          "id": 357316,
+          "name": "【测试】商用多层级订单-营销一体化、OMS、金蝶对接",
+          "status": "wait",
+          "pri": 3,
+          "type": "ae2_test",
+          "estimate": 32.0,
+          "consumed": 0.0,
+          "left": 32.0,
+          "platform": "网批2.0",
+          "execution": "网批模式_V2.88.0（1118/feature_26.11.v2）【2026】",
+          "opened_date": "2026-11-13",
+          "deadline": "2026-11-19"
+        }
+      ],
       "resolved_bugs": [],
       "active_bugs": [
         {
