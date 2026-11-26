@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>错配任务类型更新对比清单 2026-11-26</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif; background: #f0f2f5; padding: 24px; color: #1f2329; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header { background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); color: #fff; border-radius: 14px; padding: 26px 30px; margin-bottom: 20px; }
+  header h1 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  header .meta { font-size: 13px; opacity: .92; line-height: 1.7; }
+  .summary { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .card { background: #fff; border-radius: 12px; padding: 16px 22px; flex: 1; min-width: 150px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .card .k { font-size: 12px; color: #86909c; }
+  .card .v { font-size: 26px; font-weight: 700; margin-top: 4px; }
+  .card.good .v { color: #10b981; }
+  .card.info .v { color: #3b82f6; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06); font-size: 13px; }
+  th { background: #fafafa; color: #4e5969; font-weight: 600; text-align: left; padding: 12px 10px; border-bottom: 1px solid #eee; white-space: nowrap; }
+  td { padding: 12px 10px; border-bottom: 1px solid #f2f3f5; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f7f9fc; }
+  .num { font-variant-numeric: tabular-nums; color: #4e5969; white-space: nowrap; }
+  .name { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .role { background: #fce7f3; color: #db2777; padding: 2px 10px; border-radius: 20px; font-size: 12px; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; font-family: monospace; }
+  .badge.before { background: #e8f7f0; color: #0f9d58; }
+  .badge.after { background: #e8f0ff; color: #3b82f6; }
+  .sub { font-size: 11px; color: #86909c; margin-top: 3px; }
+  .arrow { color: #c9cdd4; font-size: 18px; text-align: center; }
+  .ok { color: #10b981; font-weight: 700; font-size: 16px; }
+  footer { text-align: center; color: #86909c; font-size: 12px; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>错配任务类型更新对比清单</h1>
+    <div class="meta">
+      扫描板块：员工负载（团队工时负载分析_202611）· 扫描日期：2026-11-26<br>
+      修复规则：成员主角色明确（排除"其他"），名下任务的 type 归类 ≠ 主角色即判为错配；剔除【总任务】；UI设计归"其他"不计。<br>
+      修复方式：禅道 RESTful PUT /tasks/{id} 仅传 {"type": 目标}，逐条 GET 快照 → 校验 → 提交 → 复核，仅改 type、不动其他字段。
+    </div>
+  </header>
+  <div class="summary">
+    <div class="card info"><div class="k">扫描错配</div><div class="v">4</div></div>
+    <div class="card good"><div class="k">修复成功</div><div class="v">4</div></div>
+    <div class="card"><div class="k">连带损伤</div><div class="v">0</div></div>
+    <div class="card"><div class="k">realStarted 被清空</div><div class="v">0</div></div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>任务ID</th><th>负责人</th><th>角色</th><th>任务名称</th>
+        <th>修复前类型</th><th></th><th>修复后类型</th>
+        <th>状态</th><th>指派账号</th><th>父任务</th><th>难度</th><th>关联需求</th><th>预估工时</th><th>截止日期</th><th>校验</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="num">361232</td>
+      <td>艾思芹</td>
+      <td><span class="role">前端</span></td>
+      <td class="name" title="【PC管理】中间层冻结采购单-结算信息">【PC管理】中间层冻结采购单-结算信息</td>
+      <td><span class="badge before">devel</span><div class="sub">后端开发（后端）</div></td>
+      <td class="arrow">→</td>
+      <td><span class="badge after">a_dev2_front</span><div class="sub">前端开发（前端）</div></td>
+      <td class="num">wait</td>
+      <td class="num">680748</td>
+      <td class="num">358093</td>
+      <td class="num">medium</td>
+      <td class="num">73343</td>
+      <td class="num">4h</td>
+      <td class="num">2026-12-15</td>
+      <td class="ok">✓</td>
+    </tr>
+    <tr>
+      <td class="num">361233</td>
+      <td>艾思芹</td>
+      <td><span class="role">前端</span></td>
+      <td class="name" title="【PC管理】中间层冻结采购单-售后单信息">【PC管理】中间层冻结采购单-售后单信息</td>
+      <td><span class="badge before">devel</span><div class="sub">后端开发（后端）</div></td>
+      <td class="arrow">→</td>
+      <td><span class="badge after">a_dev2_front</span><div class="sub">前端开发（前端）</div></td>
+      <td class="num">wait</td>
+      <td class="num">680748</td>
+      <td class="num">358093</td>
+      <td class="num">medium</td>
+      <td class="num">73343</td>
+      <td class="num">4h</td>
+      <td class="num">2026-12-15</td>
+      <td class="ok">✓</td>
+    </tr>
+    <tr>
+      <td class="num">361234</td>
+      <td>艾思芹</td>
+      <td><span class="role">前端</span></td>
+      <td class="name" title="【PC管理】中间层冻结采购单-确认价格">【PC管理】中间层冻结采购单-确认价格</td>
+      <td><span class="badge before">devel</span><div class="sub">后端开发（后端）</div></td>
+      <td class="arrow">→</td>
+      <td><span class="badge after">a_dev2_front</span><div class="sub">前端开发（前端）</div></td>
+      <td class="num">wait</td>
+      <td class="num">680748</td>
+      <td class="num">358093</td>
+      <td class="num">medium</td>
+      <td class="num">73343</td>
+      <td class="num">4h</td>
+      <td class="num">2026-12-15</td>
+      <td class="ok">✓</td>
+    </tr>
+    <tr>
+      <td class="num">361237</td>
+      <td>艾思芹</td>
+      <td><span class="role">前端</span></td>
+      <td class="name" title="【PC用户】特价方案导入-查看生成单">【PC用户】特价方案导入-查看生成单</td>
+      <td><span class="badge before">devel</span><div class="sub">后端开发（后端）</div></td>
+      <td class="arrow">→</td>
+      <td><span class="badge after">a_dev2_front</span><div class="sub">前端开发（前端）</div></td>
+      <td class="num">wait</td>
+      <td class="num">680748</td>
+      <td class="num">352623</td>
+      <td class="num">medium</td>
+      <td class="num">72700</td>
+      <td class="num">8h</td>
+      <td class="num">2026-11-30</td>
+      <td class="ok">✓</td>
+    </tr>
+    </tbody>
+  </table>
+  <footer>所有任务仅 type 字段从 devel（后端）变更为 a_dev2_front（前端），其余字段（指派/父关联/难度/关联需求/工时/截止日期/状态/realStarted/desc）均未改动。</footer>
+</div>
+</body>
+</html>
