@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>错配任务类型扫描报告 2026-11-27</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif; background: #f0f2f5; padding: 24px; color: #1f2329; }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; border-radius: 14px; padding: 26px 30px; margin-bottom: 20px; }
+  header h1 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  header .meta { font-size: 13px; opacity: .94; line-height: 1.7; }
+  .summary { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .card { background: #fff; border-radius: 12px; padding: 16px 22px; flex: 1; min-width: 150px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .card .k { font-size: 12px; color: #86909c; }
+  .card .v { font-size: 26px; font-weight: 700; margin-top: 4px; }
+  .card.good .v { color: #10b981; }
+  .card.info .v { color: #3b82f6; }
+  .empty { background: #fff; border-radius: 12px; padding: 40px 30px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,.06); margin-bottom: 20px; }
+  .empty .icon { font-size: 48px; }
+  .empty .t { font-size: 18px; font-weight: 600; margin: 12px 0 6px; color: #10b981; }
+  .empty .s { font-size: 13px; color: #86909c; line-height: 1.7; }
+  .rolebar { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+  .rolebar span { background: #f2f3f5; color: #4e5969; padding: 4px 12px; border-radius: 16px; font-size: 12px; }
+  .sec { background: #fff; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); margin-bottom: 20px; overflow: hidden; }
+  .sec h2 { font-size: 15px; font-weight: 600; padding: 16px 20px; border-bottom: 1px solid #f2f3f5; color: #1f2329; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #fafafa; color: #4e5969; font-weight: 600; text-align: left; padding: 11px 12px; border-bottom: 1px solid #eee; white-space: nowrap; }
+  td { padding: 11px 12px; border-bottom: 1px solid #f2f3f5; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; font-family: monospace; }
+  .badge.ok { background: #e8f0ff; color: #3b82f6; }
+  .ok { color: #10b981; font-weight: 700; }
+  footer { text-align: center; color: #86909c; font-size: 12px; margin-top: 18px; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>错配任务类型扫描报告</h1>
+    <div class="meta">
+      扫描板块：员工负载（团队工时负载分析_202611）· 扫描日期：2026-11-27<br>
+      修复规则：成员主角色明确（排除"其他"），名下任务的 type 归类 ≠ 主角色即判为错配；剔除【总任务】；UI设计归"其他"不计。
+    </div>
+  </header>
+  <div class="summary">
+    <div class="card info"><div class="k">扫描成员</div><div class="v">54</div></div>
+    <div class="card good"><div class="k">扫描错配</div><div class="v">0</div></div>
+    <div class="card good"><div class="k">需要修复</div><div class="v">0</div></div>
+    <div class="card"><div class="k">连带损伤</div><div class="v">0</div></div>
+  </div>
+  <div class="empty">
+    <div class="icon">✅</div>
+    <div class="t">当前员工负载板块无错配任务，无需修复</div>
+    <div class="s">今日 54 名成员（产品6 / 后端14 / 前端8 / 移动端6 / 测试12 / 其他8）名下全部 done / active 任务的 type 归类均与主角色一致。</div>
+    <div class="rolebar">
+      <span>产品 6</span><span>后端 14</span><span>前端 8</span><span>移动端 6</span><span>测试 12</span><span>其他 8</span>
+    </div>
+  </div>
+  <div class="sec">
+    <h2>近期修复持久化复核（昨日 2026-11-26）</h2>
+    <table>
+      <thead><tr><th>任务ID</th><th>当前 type</th><th>状态</th><th>指派账号</th><th>校验</th></tr></thead>
+      <tbody>
+        <tr><td>#361232</td><td><span class="badge ok">a_dev2_front</span></td><td>wait</td><td>680748</td><td class="ok">✓ 无回退</td></tr>
+        <tr><td>#361233</td><td><span class="badge ok">a_dev2_front</span></td><td>wait</td><td>680748</td><td class="ok">✓ 无回退</td></tr>
+        <tr><td>#361234</td><td><span class="badge ok">a_dev2_front</span></td><td>wait</td><td>680748</td><td class="ok">✓ 无回退</td></tr>
+        <tr><td>#361237</td><td><span class="badge ok">a_dev2_front</span></td><td>done</td><td>680748</td><td class="ok">✓ 无回退</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <footer>
+    扫描结论：本次无需执行任何 type 更新，因此无"更新前后"差异记录。<br>
+    昨日修复的 4 条前端任务（devel → a_dev2_front）经 API 复核已持久化、无回退。
+  </footer>
+</div>
+</body>
+</html>
