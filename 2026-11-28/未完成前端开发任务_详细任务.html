@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成前端开发任务明细</title>
+<script src="../assets/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 24px; color: #1a1a2e; }
+.header p { color: #888; margin-top: 4px; }
+.cards { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.card { flex: 1; min-width: 120px; background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card .num { font-size: 28px; font-weight: 700; }
+.card .label { font-size: 12px; color: #888; margin-top: 4px; }
+.card-total .num { color: #667eea; }
+.card-wait .num { color: #f5576c; }
+.card-doing .num { color: #43e97b; }
+.card-overdue .num { color: #ffa726; }
+.card-people .num { color: #4facfe; }
+.charts { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.chart-box { flex: 1; min-width: 320px; background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.chart-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; text-align: center; }
+.chart-container { position: relative; height: 300px; }
+.chart-container canvas { max-height: 300px; }
+details { background: #fff; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+summary { padding: 12px 16px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; user-select: none; overflow-x: auto; }
+summary::-webkit-details-marker { display: none; }
+.assignee-name { font-size: 15px; }
+.assignee-stats { display: flex; gap: 6px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0; }
+.stat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #eee; color: #555; font-weight: normal; }
+.stat-wait { background: #fde8e8; color: #c62828; }
+.stat-doing { background: #e8f5e9; color: #2e7d32; }
+.stat-overdue { background: #fff3e0; color: #e65100; }
+.stat-h { background: #e3f2fd; color: #1565c0; }
+.table-wrapper { overflow-x: auto; padding: 0 16px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #f5f6f8; padding: 8px 6px; text-align: left; font-weight: 600; white-space: nowrap; position: sticky; top: 0; }
+td { padding: 6px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+tr:hover { background: #fafbfc; }
+.badge-wait { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fde8e8; color: #c62828; }
+.badge-doing { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #e8f5e9; color: #2e7d32; }
+.badge-pause { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #f5f5f5; color: #666; }
+.badge-overdue { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff3e0; color: #e65100; }
+.badge-mismatch { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 11px; background: #fff7e6; color: #c77700; border: 1px solid #ffb84d; margin-left: 4px; }
+tr.row-mismatch { background: #fff7e6 !important; }
+tr.row-mismatch td:first-child { border-left: 3px solid #ffa726; }
+tr.row-mismatch:hover { background: #ffe7ba !important; }
+tr.row-overdue { background: #fff5f5 !important; }
+tr.row-overdue td:first-child { border-left: 3px solid #ef4444; }
+tr.row-overdue:hover { background: #fee2e2 !important; }
+.back-link { text-align: center; margin-bottom: 16px; }
+.back-link a { color: #667eea; text-decoration: none; font-size: 13px; padding: 6px 16px; border-radius: 16px; background: #e8ecf4; border: 1px solid #d0d5e0; display: inline-block; transition: background 0.2s; }
+.back-link a:hover { background: #d0d5e0; }
+.footer { text-align: center; color: #aaa; font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+<div class="header"><h1>未完成前端开发任务明细</h1>
+<p>统计日期: 2026-11-28 | 总计: 137 个未完成任务 | 涉及 8 人 | 类型: 前端开发(137)</p></div>
+<div class="back-link"><a href="index.html">← 返回报告中心</a></div>
+<div class="cards">
+<div class="card card-total"><div class="num">137</div><div class="label">任务总数</div></div>
+<div class="card card-wait"><div class="num">128</div><div class="label">待处理</div></div>
+<div class="card card-doing"><div class="num">9</div><div class="label">进行中</div></div>
+<div class="card card-overdue"><div class="num">0</div><div class="label">延期</div></div>
+<div class="card card-people"><div class="num">8</div><div class="label">负责人</div></div>
+</div>
+<div class="charts">
+<div class="chart-box"><h3>负责人任务分布 (Top8)</h3><div class="chart-container"><canvas id="barChart"></canvas></div></div>
+<div class="chart-box"><h3>任务状态分布</h3><div class="chart-container"><canvas id="statusPie"></canvas></div></div>
+<div class="chart-box"><h3>优先级分布</h3><div class="chart-container"><canvas id="priPie"></canvas></div></div>
+</div>
+<div class="details">
+<h3 style="margin-bottom:10px;">按负责人明细（点击展开）</h3>
+    <details open>
+        <summary style="background:#667eea15; border-left:4px solid #667eea;">
+            <span class="assignee-name">王子尘</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共27个</span>
+                <span class="stat-badge stat-wait">待处理23</span>
+                <span class="stat-badge stat-doing">进行中4</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估188h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余188h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>358302</td><td title="【PC管理】员工管理账号类型重新调整">【PC管理】员工管理账号类型重新调整</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358301</td><td title="【PC管理】员工管理账号类型支持全局搜索">【PC管理】员工管理账号类型支持全局搜索</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358300</td><td title="【PC管理】分销商管理新增禁用时间、禁用人账号">【PC管理】分销商管理新增禁用时间、禁用人账号</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359311</td><td title="【PC管理】菜单收藏交互重构以及浮动组件开发">【PC管理】菜单收藏交互重构以及浮动组件开发</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-31</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360529</td><td title="【PC管理】单据管理设置审核">【PC管理】单据管理设置审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360528</td><td title="【PC管理】单据管理设置">【PC管理】单据管理设置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360527</td><td title="【PC管理】市场保证金设置">【PC管理】市场保证金设置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360526</td><td title="【PC管理】经销商信用账户额度审核">【PC管理】经销商信用账户额度审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360525</td><td title="【PC管理】经销商信用账户额度设置">【PC管理】经销商信用账户额度设置</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360524</td><td title="【PC管理】返利填表管理审核">【PC管理】返利填表管理审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360523</td><td title="【PC管理】返利填表管理查看">【PC管理】返利填表管理查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360522</td><td title="【PC管理】返利填表管理填表">【PC管理】返利填表管理填表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360521</td><td title="【PC管理】批量调账审核">【PC管理】批量调账审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360520</td><td title="【PC管理】批量调账查看">【PC管理】批量调账查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360519</td><td title="【PC管理】批量调账新建">【PC管理】批量调账新建</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360518</td><td title="【PC管理】代客充值审核">【PC管理】代客充值审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360517</td><td title="【PC管理】代客充值申请">【PC管理】代客充值申请</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359742</td><td title="【PC管理】客户库详编辑情资金账户">【PC管理】客户库详编辑情资金账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359741</td><td title="【PC管理】客户库查看资金账户">【PC管理】客户库查看资金账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359740</td><td title="【PC管理】客户库-资金资料导出">【PC管理】客户库-资金资料导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359739</td><td title="【PC管理】客户库-批量维护资金账户">【PC管理】客户库-批量维护资金账户</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359738</td><td title="【PC管理】销司客户字典设置核算单位列表停用启用">【PC管理】销司客户字典设置核算单位列表停用启用</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359737</td><td title="【PC管理】销司客户字典设置核算单位列表开通存量商家">【PC管理】销司客户字典设置核算单位列表开通存量商家</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359736</td><td title="【PC管理】销司客户字典设置核算单位列表解绑业务线">【PC管理】销司客户字典设置核算单位列表解绑业务线</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359735</td><td title="【PC管理】销司客户字典设置核算单位列表编辑">【PC管理】销司客户字典设置核算单位列表编辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359734</td><td title="【PC管理】销司客户字典设置核算单位列表新增">【PC管理】销司客户字典设置核算单位列表新增</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359733</td><td title="【PC管理】销司客户字典设置核算单位列表">【PC管理】销司客户字典设置核算单位列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-21</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f093fb15; border-left:4px solid #f093fb;">
+            <span class="assignee-name">李红燕</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共25个</span>
+                <span class="stat-badge stat-wait">待处理20</span>
+                <span class="stat-badge stat-doing">进行中5</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估184h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余184h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>358236</td><td title="【PC管理】组织架构配置详情调整负责区域联动">【PC管理】组织架构配置详情调整负责区域联动</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358234</td><td title="【PC管理】客户库详情增加配置业务线经营区域">【PC管理】客户库详情增加配置业务线经营区域</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358233</td><td title="【PC管理】客户库增加批量配置业务线经营区域">【PC管理】客户库增加批量配置业务线经营区域</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358231</td><td title="【PC管理】经营信息变更增加业务线经营区域">【PC管理】经营信息变更增加业务线经营区域</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358229</td><td title="【PC管理】入驻资料审核增加业务线经营区域">【PC管理】入驻资料审核增加业务线经营区域</td><td><span class="badge-doing">进行中</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358235</td><td title="【H5】客户库详情增加配置业务线经营区域">【H5】客户库详情增加配置业务线经营区域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358232</td><td title="【H5】经营信息变更增加业务线经营区域">【H5】经营信息变更增加业务线经营区域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358230</td><td title="【H5】入驻资料审核增加业务线经营区域">【H5】入驻资料审核增加业务线经营区域</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360798</td><td title="【PC用户】红字发票信息表新增专款专用模式下的核算单位字段展示">【PC用户】红字发票信息表新增专款专用模式下的核算单位字段展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>360797</td><td title="【PC用户】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水弹窗">【PC用户】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360796</td><td title="【PC用户】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水类型">【PC用户】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360795</td><td title="【PC用户】经销商账户查看页专款专用模式-核算单位账户卡片及流水列表">【PC用户】经销商账户查看页专款专用模式-核算单位账户卡片及流水列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360794</td><td title="【PC用户】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水弹窗">【PC用户】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360793</td><td title="【PC用户】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水类型">【PC用户】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360792</td><td title="【PC用户】经销商账户查看页专款专用模式-账户总览5种卡片">【PC用户】经销商账户查看页专款专用模式-账户总览5种卡片</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360790</td><td title="【PC用户】经销商账户查看页专款专用模式页签">【PC用户】经销商账户查看页专款专用模式页签</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360789</td><td title="【PC管理】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水弹窗">【PC管理】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360788</td><td title="【PC管理】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水类型">【PC管理】经销商账户查看页专款专用模式-核算单位账户-流水列表新增5种流水类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360787</td><td title="【PC管理】经销商账户查看页专款专用模式-核算单位账户卡片及流水列表">【PC管理】经销商账户查看页专款专用模式-核算单位账户卡片及流水列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360786</td><td title="【PC管理】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水弹窗">【PC管理】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水弹窗</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360785</td><td title="【PC管理】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水类型">【PC管理】经销商账户查看页专款专用模式-标准账户-流水列表新增3种流水类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360784</td><td title="【PC管理】经销商账户查看页专款专用模式-账户总览5种卡片">【PC管理】经销商账户查看页专款专用模式-账户总览5种卡片</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360783</td><td title="【PC管理】经销商账户查看页专款专用模式页签">【PC管理】经销商账户查看页专款专用模式页签</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360782</td><td title="【PC管理】经销商账户列表适配专款专用模式，资金字段取值调整为「账户总览」对应数据">【PC管理】经销商账户列表适配专款专用模式，资金字段取值调整为「账户总览」对应数据</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>360781</td><td title="【PC管理】经销商账户列表新增货款账户冻结金额和返利账户冻结金额">【PC管理】经销商账户列表新增货款账户冻结金额和返利账户冻结金额</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#4facfe15; border-left:4px solid #4facfe;">
+            <span class="assignee-name">莫世有</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共22个</span>
+                <span class="stat-badge stat-wait">待处理22</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估88h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余88h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>358291</td><td title="【H5】【SY05】工程单详情-使用方信息-跨区类型-新增“省内跨区”">【H5】【SY05】工程单详情-使用方信息-跨区类型-新增“省内跨区”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358290</td><td title="【PC管理】【SY05】工程单详情-使用方信息-跨区类型-新增“省内跨区”">【PC管理】【SY05】工程单详情-使用方信息-跨区类型-新增“省内跨区”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358289</td><td title="【PC管理】【SY04】工程项目单-详情-审批进度-“工程登录”单据，新增“省内跨区”类型">【PC管理】【SY04】工程项目单-详情-审批进度-“工程登录”单据，新增“省内跨区”类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358288</td><td title="【H5】【SY04】工程项目单-详情-审批进度-“工程登录”单据，新增“省内跨区”类型">【H5】【SY04】工程项目单-详情-审批进度-“工程登录”单据，新增“省内跨区”类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358277</td><td title="【H5】【SY01】顶部选择“业务线”，并且界面展示对应的业务线的【经营区域】字段">【H5】【SY01】顶部选择“业务线”，并且界面展示对应的业务线的【经营区域】字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358276</td><td title="【H5】【SY01】使用方信息-“项目地址”，若与当前所选择业务线的“经营区域”进行判断，“跨区类型”">【H5】【SY01】使用方信息-“项目地址”，若与当前所选择业务线的“经营区域”进行判断，“跨区类型”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358275</td><td title="【H5】【SY01】代客申请和新建工程单，业务线取值为经销商所授权的业务线范围">【H5】【SY01】代客申请和新建工程单，业务线取值为经销商所授权的业务线范围</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358274</td><td title="【PC管理】【SY01】顶部选择“业务线”，并且界面展示对应的业务线的【经营区域】字段">【PC管理】【SY01】顶部选择“业务线”，并且界面展示对应的业务线的【经营区域】字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358273</td><td title="【PC管理】【SY01】使用方信息-“项目地址”，若与当前所选择业务线的“经营区域”进行判断，“跨区类型”">【PC管理】【SY01】使用方信息-“项目地址”，若与当前所选择业务线的“经营区域”进行判断，“跨区类型”</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358272</td><td title="【PC管理】【SY01】代客申请和新建工程单，业务线取值为经销商所授权的业务线范围">【PC管理】【SY01】代客申请和新建工程单，业务线取值为经销商所授权的业务线范围</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361491</td><td title="【H5管理】【SY10-2】  1、管理端&amp;用户端，批价单-审批进度-工程批价，增加“核算单位”展示">【H5管理】【SY10-2】  1、管理端&用户端，批价单-审批进度-工程批价，增加“核算单位”展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361490</td><td title="【PC管理】【SY10-2】  1、管理端&amp;用户端，批价单-审批进度-工程批价，增加“核算单位”展示">【PC管理】【SY10-2】  1、管理端&用户端，批价单-审批进度-工程批价，增加“核算单位”展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361489</td><td title="【H5管理】【SY10-1】  1、管理端，工程批价审批-查看页，增加“核算单位”展示">【H5管理】【SY10-1】  1、管理端，工程批价审批-查看页，增加“核算单位”展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361488</td><td title="【PC管理】【SY10-1】  1、管理端，工程批价审批-查看页，增加“核算单位”展示">【PC管理】【SY10-1】  1、管理端，工程批价审批-查看页，增加“核算单位”展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361487</td><td title="【H5管理】【SY10】  1、管理端，工程批价审批-审批页，增加“核算单位”展示">【H5管理】【SY10】  1、管理端，工程批价审批-审批页，增加“核算单位”展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361486</td><td title="【PC管理】【SY10】  1、管理端，工程批价审批-审批页，增加“核算单位”展示">【PC管理】【SY10】  1、管理端，工程批价审批-审批页，增加“核算单位”展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361485</td><td title="【H5管理】【SY09】  1、管理端与用户端，工程单详情页-基础信息，增加“核算单位”展示  2、管理端与用户端，工程单详情页-基础信息，“保证金类型”若没数据则隐藏字段">【H5管理】【SY09】  1、管理端与用户端，工程单详情页-基础信息，增加“核算单位”展示  2、管理端与用户端，工程单详情页-基础信息，“保证金类型”若没数据则隐藏字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361484</td><td title="【PC用户】【SY09】  1、管理端与用户端，工程单详情页-基础信息，增加“核算单位”展示  2、管理端与用户端，工程单详情页-基础信息，“保证金类型”若没数据则隐藏字段">【PC用户】【SY09】  1、管理端与用户端，工程单详情页-基础信息，增加“核算单位”展示  2、管理端与用户端，工程单详情页-基础信息，“保证金类型”若没数据则隐藏字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361483</td><td title="【PC管理】【SY09】  1、管理端与用户端，工程单详情页-基础信息，增加“核算单位”展示  2、管理端与用户端，工程单详情页-基础信息，“保证金类型”若没数据则隐藏字段">【PC管理】【SY09】  1、管理端与用户端，工程单详情页-基础信息，增加“核算单位”展示  2、管理端与用户端，工程单详情页-基础信息，“保证金类型”若没数据则隐藏字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361482</td><td title="【H5管理】【SY08】  1、管理端代客申请批价单 与 批价单新建批价单，新增“核算单位”逻辑  2、若选择核算单位，则不保存保证金类型">【H5管理】【SY08】  1、管理端代客申请批价单 与 批价单新建批价单，新增“核算单位”逻辑  2、若选择核算单位，则不保存保证金类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361481</td><td title="【PC用户】【SY08】  1、管理端代客申请批价单 与 批价单新建批价单，新增“核算单位”逻辑  2、若选择核算单位，则不保存保证金类型">【PC用户】【SY08】  1、管理端代客申请批价单 与 批价单新建批价单，新增“核算单位”逻辑  2、若选择核算单位，则不保存保证金类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361480</td><td title="【PC管理】【SY08】  1、管理端代客申请批价单 与 批价单新建批价单，新增“核算单位”逻辑  2、若选择核算单位，则不保存保证金类型">【PC管理】【SY08】  1、管理端代客申请批价单 与 批价单新建批价单，新增“核算单位”逻辑  2、若选择核算单位，则不保存保证金类型</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#43e97b15; border-left:4px solid #43e97b;">
+            <span class="assignee-name">范文玉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共19个</span>
+                <span class="stat-badge stat-wait">待处理19</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估152h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余152h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>358239</td><td title="【PC管理】销司层级定价方案新增「批复价（元）」字段 新建/修改/重新提交">【PC管理】销司层级定价方案新增「批复价（元）」字段 新建/修改/重新提交</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358238</td><td title="【PC管理】销司层级定价方案导入/导出新增「批复价（元）」">【PC管理】销司层级定价方案导入/导出新增「批复价（元）」</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>358237</td><td title="【PC管理】销司层级定价方案的商品范围审核/查看新增「批复价（元）」字段">【PC管理】销司层级定价方案的商品范围审核/查看新增「批复价（元）」字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361009</td><td title="【PC管理】3.0经销商满金额减销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商满金额减销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361008</td><td title="【PC管理】3.0经销商优惠券销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商优惠券销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361007</td><td title="【PC管理】3.0经销商买赠销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商买赠销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361006</td><td title="【PC管理】3.0经销商组合套餐销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商组合套餐销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361005</td><td title="【PC管理】3.0经销商满件减销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商满件减销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361004</td><td title="【PC管理】3.0经销商限时特价销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商限时特价销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361003</td><td title="【PC管理】3.0经销商返利销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商返利销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361002</td><td title="【PC管理】3.0经销商日常销售方案支持选择该方案所归属的核算单位审核/查看">【PC管理】3.0经销商日常销售方案支持选择该方案所归属的核算单位审核/查看</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361001</td><td title="【PC管理】3.0经销商满金额减销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商满金额减销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>361000</td><td title="【PC管理】3.0经销商优惠券销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商优惠券销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360999</td><td title="【PC管理】3.0经销商买赠销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商买赠销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360998</td><td title="【PC管理】3.0经销商组合套餐销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商组合套餐销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360997</td><td title="【PC管理】3.0经销商满件减销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商满件减销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360996</td><td title="【PC管理】3.0经销商限时特价销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商限时特价销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360995</td><td title="【PC管理】3.0经销商返利销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商返利销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360994</td><td title="【PC管理】3.0经销商日常销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制">【PC管理】3.0经销商日常销售方案支持选择该方案所归属的核算单位新增/编辑/调价/复制</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#f5576c15; border-left:4px solid #f5576c;">
+            <span class="assignee-name">田宇飞</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共12个</span>
+                <span class="stat-badge stat-wait">待处理12</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估48h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余48h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>358293</td><td title="【H5】【SY06】代客申请和新建批价单，业务线取值为经销商所授权的业务线范围">【H5】【SY06】代客申请和新建批价单，业务线取值为经销商所授权的业务线范围</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358292</td><td title="【PC管理】【SY06】代客申请和新建批价单，业务线取值为经销商所授权的业务线范围">【PC管理】【SY06】代客申请和新建批价单，业务线取值为经销商所授权的业务线范围</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358287</td><td title="【H5】【SY03】新增“省内跨区”审批页面">【H5】【SY03】新增“省内跨区”审批页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358286</td><td title="【PC管理】【SY03】新增“省内跨区”审批页面">【PC管理】【SY03】新增“省内跨区”审批页面</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358285</td><td title="【H5】【SY03】工程审批-列表页-搜索条件新增“业务线”筛选条件">【H5】【SY03】工程审批-列表页-搜索条件新增“业务线”筛选条件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358284</td><td title="【PC管理】【SY03】工程审批-列表页-搜索条件新增“业务线”筛选条件">【PC管理】【SY03】工程审批-列表页-搜索条件新增“业务线”筛选条件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358283</td><td title="【H5】【SY03】工程审批-列表页-登录审批页签，在“非跨区登录”tab后，新增“省内跨区登录”tab，列表信息与非跨区登录列表字段一样">【H5】【SY03】工程审批-列表页-登录审批页签，在“非跨区登录”tab后，新增“省内跨区登录”tab，列表信息与非跨区登录列表字段一样</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358282</td><td title="【PC管理】【SY03】工程审批-列表页-登录审批页签，在“非跨区登录”tab后，新增“省内跨区登录”tab，列表信息与非跨区登录列表字段一样">【PC管理】【SY03】工程审批-列表页-登录审批页签，在“非跨区登录”tab后，新增“省内跨区登录”tab，列表信息与非跨区登录列表字段一样</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358281</td><td title="【H5】【SY02】顶部“业务线”，界面展示对应的业务线的【经营区域】字段">【H5】【SY02】顶部“业务线”，界面展示对应的业务线的【经营区域】字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358280</td><td title="【PC管理】【SY02】顶部“业务线”，界面展示对应的业务线的【经营区域】字段">【PC管理】【SY02】顶部“业务线”，界面展示对应的业务线的【经营区域】字段</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358279</td><td title="【H5】【SY02】管理端-非跨区审批与省内跨区审批，业务线不再允许改动">【H5】【SY02】管理端-非跨区审批与省内跨区审批，业务线不再允许改动</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>358278</td><td title="【PC管理】【SY02】管理端-非跨区审批与省内跨区审批，业务线不再允许改动">【PC管理】【SY02】管理端-非跨区审批与省内跨区审批，业务线不再允许改动</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ffa72615; border-left:4px solid #ffa726;">
+            <span class="assignee-name">李漫嘉</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共11个</span>
+                <span class="stat-badge stat-wait">待处理11</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估88h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余88h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>357872</td><td title="【H5】商用工程管理-工程审批价-登录审批表和详情页-审批流程优化审批人员节点">【H5】商用工程管理-工程审批价-登录审批表和详情页-审批流程优化审批人员节点</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.89.0（1130/feature_26.11.v3）【2026】</td><td>2026-11-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>357871</td><td title="【H5】商用工程管理-工程审批价格审批列表和详情页-审批流程优化审批人员节点">【H5】商用工程管理-工程审批价格审批列表和详情页-审批流程优化审批人员节点</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.89.0（1130/feature_26.11.v3）【2026】</td><td>2026-11-30</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360747</td><td title="【PC管理】账户资金调拨资金申请管理审批列表">【PC管理】账户资金调拨资金申请管理审批列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360746</td><td title="【PC管理】账户资金调拨资金申请管理列表审批终止">【PC管理】账户资金调拨资金申请管理列表审批终止</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360745</td><td title="【PC管理】账户资金调拨资金申请管理列表导出">【PC管理】账户资金调拨资金申请管理列表导出</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360744</td><td title="【PC管理】账户资金调拨资金申请管理列表">【PC管理】账户资金调拨资金申请管理列表</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360740</td><td title="【PC管理】账户资金调拨申请页账户和调拨类型及核算单位联调和交互">【PC管理】账户资金调拨申请页账户和调拨类型及核算单位联调和交互</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360739</td><td title="【PC管理】账户资金调拨单据信息审核">【PC管理】账户资金调拨单据信息审核</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360738</td><td title="【PC管理】账户资金调拨单据信息的详情查看页">【PC管理】账户资金调拨单据信息的详情查看页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360737</td><td title="【PC管理】账户资金调拨资金执行信模块流水">【PC管理】账户资金调拨资金执行信模块流水</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>360736</td><td title="【PC管理】账户资金调拨单据信息新建申请">【PC管理】账户资金调拨单据信息新建申请</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.91.0（1220/feature_26.12.v2）【2026】</td><td>2026-12-20</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#26c6da15; border-left:4px solid #26c6da;">
+            <span class="assignee-name">艾思芹</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共11个</span>
+                <span class="stat-badge stat-wait">待处理11</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估76h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余76h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>361234</td><td title="【PC管理】中间层冻结采购单-确认价格">【PC管理】中间层冻结采购单-确认价格</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361233</td><td title="【PC管理】中间层冻结采购单-售后单信息">【PC管理】中间层冻结采购单-售后单信息</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>361232</td><td title="【PC管理】中间层冻结采购单-结算信息">【PC管理】中间层冻结采购单-结算信息</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359312</td><td title="【PC管理】中间层冻结采购单-关联订单跳转">【PC管理】中间层冻结采购单-关联订单跳转</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359299</td><td title="【PC管理】中间层订单-详情页增加展示逻辑">【PC管理】中间层订单-详情页增加展示逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359298</td><td title="【PC管理】中间层订单-列表页新增查询">【PC管理】中间层订单-列表页新增查询</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359283</td><td title="【PC管理】来源单据-详情增加展示逻辑">【PC管理】来源单据-详情增加展示逻辑</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359282</td><td title="【PC管理】来源单据-列表页增加查询条件及展示">【PC管理】来源单据-列表页增加查询条件及展示</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359279</td><td title="【PC管理】中间层冻结采购单-待确认列表页">【PC管理】中间层冻结采购单-待确认列表页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359278</td><td title="【PC管理】中间层冻结采购单-详情页">【PC管理】中间层冻结采购单-详情页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+<tr><td>359277</td><td title="【PC管理】中间层冻结采购单-全部列表页">【PC管理】中间层冻结采购单-全部列表页</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>8</td><td>0</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+    <details>
+        <summary style="background:#ab47bc15; border-left:4px solid #ab47bc;">
+            <span class="assignee-name">谢福邦</span>
+            <span class="assignee-stats">
+                <span class="stat-badge">共10个</span>
+                <span class="stat-badge stat-wait">待处理10</span>
+                <span class="stat-badge stat-doing">进行中0</span>
+                <span class="stat-badge stat-overdue">延期0</span>
+                <span class="stat-badge stat-h">预估40h</span>
+                <span class="stat-badge stat-h">消耗0h</span>
+                <span class="stat-badge stat-h">剩余40h</span>
+            </span>
+        </summary>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th><th>任务名称</th><th>状态</th><th>优先级</th><th>类型</th><th>执行</th><th>截止日期</th><th>延期</th><th>预估h</th><th>消耗h</th><th>剩余h</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>359897</td><td title="【H5】商用普通订单-接单页修改总部履约调整">【H5】商用普通订单-接单页修改总部履约调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359896</td><td title="【H5】商用零售小单-接单页修改总部履约调整">【H5】商用零售小单-接单页修改总部履约调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359895</td><td title="【PC管理】商用普通订单-接单页修改总部履约调整">【PC管理】商用普通订单-接单页修改总部履约调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359894</td><td title="【PC管理】商用零售小单-接单页修改总部履约调整">【PC管理】商用零售小单-接单页修改总部履约调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359892</td><td title="【PC管理】商用零售订单-营销一体化">【PC管理】商用零售订单-营销一体化</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359831</td><td title="【H5】商用零售大单、零售小单、普通订单详情页调整">【H5】商用零售大单、零售小单、普通订单详情页调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359830</td><td title="【H5】商用零售大单-接单页修改总部履约调整">【H5】商用零售大单-接单页修改总部履约调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359829</td><td title="【PC管理】商用零售大单、零售小单、普通订单详情页调整">【PC管理】商用零售大单、零售小单、普通订单详情页调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359828</td><td title="【PC管理】商用零售大单-接单页修改总部履约调整">【PC管理】商用零售大单-接单页修改总部履约调整</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>359827</td><td title="【PC管理】商用订单-零售订单、工程订单增加查询条件">【PC管理】商用订单-零售订单、工程订单增加查询条件</td><td><span class="badge-wait">待处理</span></td><td>3-中</td><td>前端开发</td><td>网批模式_V2.90.0（1215/feature_26.12.v1）【2026】</td><td>2026-12-15</td><td></td><td>4</td><td>0</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="footer">禅道项目管理系统 · 自动生成于 2026-11-28</div>
+<script>
+new Chart(document.getElementById('barChart'),{type:'bar',data:{labels:["\u738b\u5b50\u5c18", "\u674e\u7ea2\u71d5", "\u83ab\u4e16\u6709", "\u8303\u6587\u7389", "\u7530\u5b87\u98de", "\u674e\u6f2b\u5609", "\u827e\u601d\u82b9", "\u8c22\u798f\u90a6"],datasets:[{label:'未完成任务数',data:[27, 25, 22, 19, 12, 11, 11, 10],backgroundColor:["#667eea", "#f093fb", "#4facfe", "#43e97b", "#f5576c", "#ffa726", "#26c6da", "#ab47bc"],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
+new Chart(document.getElementById('statusPie'),{type:'pie',data:{labels:["\u5f85\u5904\u7406", "\u8fdb\u884c\u4e2d"],datasets:[{data:[128, 9],backgroundColor:["#f5576c", "#43e97b"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('priPie'),{type:'pie',data:{labels:["3-\u4e2d"],datasets:[{data:[137],backgroundColor:["#4facfe"]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+</script>
+</body>
+</html>
